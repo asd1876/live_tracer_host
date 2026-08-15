@@ -202,7 +202,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(5, 1fr);
+        repeat(6, 1fr);
 
     gap: 12px;
 
@@ -387,6 +387,11 @@ button {
 
 .dot.green {
     background: var(--green);
+}
+
+
+.dot.blue {
+    background: var(--blue);
 }
 
 
@@ -600,6 +605,7 @@ the topic status.
 0 = red
 1 = yellow
 2 = green
+3 = blue
 */
 
 .topic {
@@ -654,6 +660,18 @@ the topic status.
 
     background:
         #f7fff9;
+}
+
+
+/* Blue state */
+
+.topic.blue {
+
+    border-left-color:
+        var(--blue);
+
+    background:
+        #f6f9ff;
 }
 
 
@@ -764,6 +782,18 @@ STATUS BUTTON
 }
 
 
+/* Blue */
+
+.topic.blue .status-button {
+
+    border-color:
+        var(--blue);
+
+    background:
+        var(--blue-bg);
+}
+
+
 /*
 CHECK MARK
 */
@@ -806,6 +836,14 @@ CHECK MARK
 
     border-color:
         var(--green);
+}
+
+
+.topic.blue
+.status-button::after {
+
+    border-color:
+        var(--blue);
 }
 
 
@@ -1219,6 +1257,22 @@ CHECK MARK
     <div class="stat">
 
         <div class="stat-label">
+            Revisit
+        </div>
+
+        <div
+            class="stat-number"
+            id="revisitCount"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-label">
             Overall Progress
         </div>
 
@@ -1302,6 +1356,11 @@ CHECK MARK
             Mastered
         </option>
 
+
+        <option value="3">
+            Revisit
+        </option>
+
     </select>
 
 </section>
@@ -1341,9 +1400,18 @@ CHECK MARK
     </div>
 
 
+    <div class="legend-item">
+
+        <span class="dot blue"></span>
+
+        Revisit
+
+    </div>
+
+
     <span>
         Click the circle to cycle:
-        🔴 → 🟡 → 🟢 → 🔴
+        🔴 → 🟡 → 🟢 → 🔵 → 🔴
     </span>
 
 </div>
@@ -1569,9 +1637,10 @@ function saveState() {
 // 0 = untouched
 // 1 = one-time study
 // 2 = mastered
+// 3 = revisit
 //
 // Click:
-// 0 -> 1 -> 2 -> 0
+// 0 -> 1 -> 2 -> 3 -> 0
 // ============================================================
 
 function getStatus(id) {
@@ -1590,7 +1659,7 @@ function cycleStatus(id) {
 
 
     const next =
-        (current + 1) % 3;
+        (current + 1) % 4;
 
 
     state.progress[id] =
@@ -1633,6 +1702,8 @@ function updateDashboard() {
 
     let mastered = 0;
 
+    let revisit = 0;
+
 
     FILES.forEach(file => {
 
@@ -1658,6 +1729,12 @@ function updateDashboard() {
 
         }
 
+        else if (status === 3) {
+
+            revisit++;
+
+        }
+
     });
 
 
@@ -1679,6 +1756,11 @@ function updateDashboard() {
     document
         .getElementById("masteredCount")
         .textContent = mastered;
+
+
+    document
+        .getElementById("revisitCount")
+        .textContent = revisit;
 
 
     /*
@@ -2133,6 +2215,9 @@ function render() {
 
                 status 2:
                     "green"
+
+                status 3:
+                    "blue"
                 */
 
                 let statusClass = "";
@@ -2149,6 +2234,13 @@ function render() {
 
                     statusClass =
                         "green";
+
+                }
+
+                else if (status === 3) {
+
+                    statusClass =
+                        "blue";
 
                 }
 
@@ -2170,10 +2262,17 @@ function render() {
 
                 }
 
-                else {
+                else if (status === 2) {
 
                     statusText =
                         "Mastered";
+
+                }
+
+                else {
+
+                    statusText =
+                        "Revisit";
 
                 }
 
