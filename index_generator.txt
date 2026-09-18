@@ -1,0 +1,108 @@
+from pathlib import Path
+import html
+
+# Directories or files to ignore during index generation
+IGNORE_LIST = {
+    ".git",
+    ".github",
+    ".gitignore",
+    "index.html",
+    "generate_index.py",
+    "__pycache__",
+    ".DS_Store",
+    "index_generator.txt",
+    "LICENSE",
+}
+
+
+def build_tree(dir_path: Path, root_path: Path) -> str:
+    """Recursively builds an HTML nested list for directories and files."""
+    items = sorted(
+        dir_path.iterdir(), key=lambda x: (not x.is_dir(), x.name.lower())
+    )
+    html_out = ["<ul>"]
+
+    for item in items:
+        if item.name in IGNORE_LIST or item.name.startswith("."):
+            continue
+
+        rel_path = item.relative_to(root_path).as_posix()
+        escaped_name = html.escape(item.name)
+
+        if item.is_dir():
+            html_out.append(
+                f'<li><span class="folder">📁 {escaped_name}</span>'
+            )
+            html_out.append(build_tree(item, root_path))
+            html_out.append("</li>")
+        else:
+            html_out.append(
+                f'<li><a href="{rel_path}">📄 {escaped_name}</a></li>'
+            )
+
+    html_out.append("</ul>")
+    return "\n".join(html_out)
+
+
+def generate_index_html(repo_root: str = "."):
+    root = Path(repo_root).resolve()
+    tree_html = build_tree(root, root)
+
+    html_content = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository Index</title>
+    <style>
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #24292e;
+        }}
+        h1 {{
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 10px;
+        }}
+        ul {{
+            list-style-type: none;
+            padding-left: 20px;
+        }}
+        body > ul {{
+            padding-left: 0;
+        }}
+        li {{
+            margin: 4px 0;
+        }}
+        a {{
+            color: #0366d6;
+            text-decoration: none;
+        }}
+        a:hover {{
+            text-decoration: underline;
+        }}
+        .folder {{
+            font-weight: bold;
+            color: #586069;
+        }}
+    </style>
+</head>
+<body>
+    <h1>Repository Directory Index</h1>
+    {tree_html}
+</body>
+</html>
+"""
+
+    output_path = root / "index.html"
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"Successfully generated {output_path}")
+
+
+if __name__ == "__main__":
+    generate_index_html()
