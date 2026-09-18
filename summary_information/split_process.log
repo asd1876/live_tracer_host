@@ -1,0 +1,16 @@
+2026-09-19 04:58:17,365 - INFO - === Starting HTML Split Process ===
+2026-09-19 04:58:17,365 - INFO - Input file: ogrodut__summary_.html
+2026-09-19 04:58:17,365 - INFO - Target splits (N): 5
+2026-09-19 04:58:17,726 - INFO - Total Indexes found: 1516
+2026-09-19 04:58:17,726 - INFO - Calculated target capacity per split file: ~304 items
+2026-09-19 04:58:17,770 - INFO - --- Writing Split Output Files ---
+2026-09-19 04:58:17,781 - INFO - File: split_html_outputs\part_1_of_5.html | Inserted Data Count: 302 items | Index Range: [0 to 303]
+2026-09-19 04:58:17,794 - INFO - File: split_html_outputs\part_2_of_5.html | Inserted Data Count: 298 items | Index Range: [304 to 607]
+2026-09-19 04:58:17,807 - INFO - File: split_html_outputs\part_3_of_5.html | Inserted Data Count: 295 items | Index Range: [609 to 911]
+2026-09-19 04:58:17,837 - INFO - File: split_html_outputs\part_4_of_5.html | Inserted Data Count: 301 items | Index Range: [912 to 1215]
+2026-09-19 04:58:17,860 - INFO - File: split_html_outputs\part_5_of_5.html | Inserted Data Count: 320 items | Index Range: [1216 to 1538]
+2026-09-19 04:58:17,860 - INFO - === Process Summary ===
+2026-09-19 04:58:17,860 - INFO - Total Indexes Found: 1516
+2026-09-19 04:58:17,860 - INFO - Total Files Created: 5/5
+2026-09-19 04:58:17,860 - INFO - Total Errors Encountered: 0
+2026-09-19 04:58:17,860 - INFO - Log written to: E:\temp\edge_vocab\final_version\github\live_tracer_host\summary_information\split_process.log

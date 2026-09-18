@@ -1,0 +1,147 @@
+import os
+import re
+import math
+import logging
+
+def setup_logger(log_filename="split_process.log"):
+    """Configures logging to both file and console."""
+    logger = logging.getLogger("HTML_Splitter")
+    logger.setLevel(logging.INFO)
+    logger.handlers = [] # Clear existing handlers
+
+    # File Handler
+    file_handler = logging.FileHandler(log_filename, mode='w', encoding='utf-8')
+    file_format = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(file_format)
+    logger.addHandler(file_handler)
+
+    # Console Handler
+    console_handler = logging.StreamHandler()
+    console_format = logging.Formatter('%(levelname)s: %(message)s')
+    console_handler.setFormatter(console_format)
+    logger.addHandler(console_handler)
+
+    return logger
+
+def split_html_by_index(input_file, total_splits, log_filename="split_process.log"):
+    """
+    Splits a consolidated HTML file into N smaller HTML files and logs details.
+    
+    :param input_file: Path to the input combined HTML file.
+    :param total_splits: Number of output split files (N).
+    :param log_filename: Path for the log file.
+    """
+    logger = setup_logger(log_filename)
+    logger.info("=== Starting HTML Split Process ===")
+    logger.info(f"Input file: {input_file}")
+    logger.info(f"Target splits (N): {total_splits}")
+
+    if total_splits <= 0:
+        error_msg = "Total splits (N) must be greater than 0."
+        logger.error(error_msg)
+        raise ValueError(error_msg)
+
+    if not os.path.exists(input_file):
+        error_msg = f"File not found: {input_file}"
+        logger.error(error_msg)
+        raise FileNotFoundError(error_msg)
+
+    try:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        logger.error(f"Failed to read input file: {e}")
+        return
+
+    # Pattern to match the <h3> tag containing the index and the HTML block following it
+    pattern = re.compile(
+        r'(<h3[^>]*>\s*Index:\s*(\d+)\s*&#8212;.*?</h3>)\s*(```html\s*(.*?)\s*```|<!DOCTYPE html>.*?</html>)',
+        re.DOTALL | re.IGNORECASE
+    )
+
+    matches = pattern.findall(content)
+    
+    # Fallback pattern if code fences aren't used
+    if not matches:
+        pattern = re.compile(
+            r'(<h3[^>]*>\s*Index:\s*(\d+)\s*&#8212;.*?</h3>)\s*(<!DOCTYPE html>.*?</html>)',
+            re.DOTALL | re.IGNORECASE
+        )
+        matches = pattern.findall(content)
+
+    total_found = len(matches)
+    logger.info(f"Total Indexes found: {total_found}")
+
+    if total_found == 0:
+        logger.warning("No matching index structures found. Please check your HTML input structure.")
+        return
+
+    items_per_split = math.ceil(total_found / total_splits)
+    logger.info(f"Calculated target capacity per split file: ~{items_per_split} items")
+
+    splits_content = {i: [] for i in range(total_splits)}
+    index_tracking = {i: [] for i in range(total_splits)}
+    error_count = 0
+
+    for match in matches:
+        try:
+            header_h3 = match[0]
+            item_index = int(match[1])
+            html_body = match[3] if len(match) > 3 and match[3] else match[2]
+
+            # Calculate target file partition
+            split_id = item_index // items_per_split
+            if split_id >= total_splits:
+                split_id = total_splits - 1  # Put remaining items in the last split group
+
+            combined_item = f"{header_h3}\n{html_body.strip()}\n"
+            splits_content[split_id].append(combined_item)
+            index_tracking[split_id].append(item_index)
+
+        except Exception as e:
+            error_count += 1
+            logger.error(f"Error parsing item starting around '{match[0][:40]}...': {e}")
+
+    # Output directory
+    output_dir = "split_html_outputs"
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Save output files and write logs
+    logger.info("--- Writing Split Output Files ---")
+    written_files_count = 0
+
+    for split_id, items in splits_content.items():
+        output_filepath = os.path.join(output_dir, f"part_{split_id + 1}_of_{total_splits}.html")
+        indices_list = index_tracking[split_id]
+
+        if items:
+            try:
+                with open(output_filepath, 'w', encoding='utf-8') as out_f:
+                    out_f.write("\n\n" + "-" * 50 + "\n\n".join(items))
+
+                written_files_count += 1
+                first_idx = indices_list[0] if indices_list else "N/A"
+                last_idx = indices_list[-1] if indices_list else "N/A"
+                
+                logger.info(
+                    f"File: {output_filepath} | "
+                    f"Inserted Data Count: {len(items)} items | "
+                    f"Index Range: [{first_idx} to {last_idx}]"
+                )
+            except Exception as e:
+                error_count += 1
+                logger.error(f"Error writing to file {output_filepath}: {e}")
+        else:
+            logger.warning(f"File: {output_filepath} | Inserted Data Count: 0 items (Split remained empty)")
+
+    logger.info("=== Process Summary ===")
+    logger.info(f"Total Indexes Found: {total_found}")
+    logger.info(f"Total Files Created: {written_files_count}/{total_splits}")
+    logger.info(f"Total Errors Encountered: {error_count}")
+    logger.info(f"Log written to: {os.path.abspath(log_filename)}")
+
+if __name__ == "__main__":
+    INPUT_FILE_PATH = "ogrodut__summary_.html"
+    N_SPLITS = 5  # Change this to your target number of splits
+
+    split_html_by_index(INPUT_FILE_PATH, N_SPLITS)
