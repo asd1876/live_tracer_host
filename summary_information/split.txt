@@ -7,13 +7,15 @@ def setup_logger(log_filename="split_process.log"):
     """Configures logging to both file and console."""
     logger = logging.getLogger("HTML_Splitter")
     logger.setLevel(logging.INFO)
-    logger.handlers = []  # Clear existing handlers
+    logger.handlers = [] # Clear existing handlers
 
+    # File Handler
     file_handler = logging.FileHandler(log_filename, mode='w', encoding='utf-8')
     file_format = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(file_format)
     logger.addHandler(file_handler)
 
+    # Console Handler
     console_handler = logging.StreamHandler()
     console_format = logging.Formatter('%(levelname)s: %(message)s')
     console_handler.setFormatter(console_format)
@@ -21,20 +23,16 @@ def setup_logger(log_filename="split_process.log"):
 
     return logger
 
-
-def split_html_table_by_rows(input_file, total_splits, log_filename="split_process.log"):
+def split_html_by_index(input_file, total_splits, log_filename="split_process.log"):
     """
-    Splits a single self-contained HTML page (with one <table><tbody>...</tbody></table>
-    of data rows) into N smaller, still-fully-working HTML files. Each output file keeps
-    the original <head> (styles) and <script> logic, but only contains a slice of the
-    table rows.
-
+    Splits a consolidated HTML file into N smaller HTML files and logs details.
+    
     :param input_file: Path to the input combined HTML file.
     :param total_splits: Number of output split files (N).
     :param log_filename: Path for the log file.
     """
     logger = setup_logger(log_filename)
-    logger.info("=== Starting HTML Table Split Process ===")
+    logger.info("=== Starting HTML Split Process ===")
     logger.info(f"Input file: {input_file}")
     logger.info(f"Target splits (N): {total_splits}")
 
@@ -55,77 +53,95 @@ def split_html_table_by_rows(input_file, total_splits, log_filename="split_proce
         logger.error(f"Failed to read input file: {e}")
         return
 
-    # Locate the single <tbody>...</tbody> block that holds the data rows
-    tbody_open_match = re.search(r'<tbody[^>]*>', content, re.IGNORECASE)
-    tbody_close_idx = content.lower().find('</tbody>')
+    # Pattern to match the <h3> tag containing the index and the HTML block following it
+    pattern = re.compile(
+        r'(<h3[^>]*>\s*Index:\s*(\d+)\s*&#8212;.*?</h3>)\s*(```html\s*(.*?)\s*```|<!DOCTYPE html>.*?</html>)',
+        re.DOTALL | re.IGNORECASE
+    )
 
-    if not tbody_open_match or tbody_close_idx == -1:
-        error_msg = "Could not find a <tbody>...</tbody> block in the input file."
-        logger.error(error_msg)
-        return
+    matches = pattern.findall(content)
+    
+    # Fallback pattern if code fences aren't used
+    if not matches:
+        pattern = re.compile(
+            r'(<h3[^>]*>\s*Index:\s*(\d+)\s*&#8212;.*?</h3>)\s*(<!DOCTYPE html>.*?</html>)',
+            re.DOTALL | re.IGNORECASE
+        )
+        matches = pattern.findall(content)
 
-    tbody_content_start = tbody_open_match.end()
-    tbody_content_end = tbody_close_idx
-
-    header_part = content[:tbody_content_start]      # everything up to & including <tbody>
-    footer_part = content[tbody_content_end:]         # </tbody> through end of file
-    rows_html = content[tbody_content_start:tbody_content_end]
-
-    # Extract each <tr ...>...</tr> row (rows don't nest, so this is safe)
-    rows = re.findall(r'<tr\b.*?</tr>', rows_html, re.DOTALL | re.IGNORECASE)
-
-    total_found = len(rows)
-    logger.info(f"Total rows found: {total_found}")
+    total_found = len(matches)
+    logger.info(f"Total Indexes found: {total_found}")
 
     if total_found == 0:
-        logger.warning("No <tr> rows found inside <tbody>. Please check your HTML input structure.")
+        logger.warning("No matching index structures found. Please check your HTML input structure.")
         return
 
     items_per_split = math.ceil(total_found / total_splits)
-    logger.info(f"Calculated target capacity per split file: ~{items_per_split} rows")
+    logger.info(f"Calculated target capacity per split file: ~{items_per_split} items")
 
+    splits_content = {i: [] for i in range(total_splits)}
+    index_tracking = {i: [] for i in range(total_splits)}
+    error_count = 0
+
+    for match in matches:
+        try:
+            header_h3 = match[0]
+            item_index = int(match[1])
+            html_body = match[3] if len(match) > 3 and match[3] else match[2]
+
+            # Calculate target file partition
+            split_id = item_index // items_per_split
+            if split_id >= total_splits:
+                split_id = total_splits - 1  # Put remaining items in the last split group
+
+            combined_item = f"{header_h3}\n{html_body.strip()}\n"
+            splits_content[split_id].append(combined_item)
+            index_tracking[split_id].append(item_index)
+
+        except Exception as e:
+            error_count += 1
+            logger.error(f"Error parsing item starting around '{match[0][:40]}...': {e}")
+
+    # Output directory
     output_dir = "split_html_outputs"
     os.makedirs(output_dir, exist_ok=True)
 
+    # Save output files and write logs
     logger.info("--- Writing Split Output Files ---")
     written_files_count = 0
-    error_count = 0
 
-    for split_id in range(total_splits):
-        start = split_id * items_per_split
-        end = min(start + items_per_split, total_found)
-        chunk_rows = rows[start:end]
-
+    for split_id, items in splits_content.items():
         output_filepath = os.path.join(output_dir, f"part_{split_id + 1}_of_{total_splits}.html")
+        indices_list = index_tracking[split_id]
 
-        if not chunk_rows:
-            logger.warning(f"File: {output_filepath} | Inserted Data Count: 0 rows (Split remained empty)")
-            continue
+        if items:
+            try:
+                with open(output_filepath, 'w', encoding='utf-8') as out_f:
+                    out_f.write("\n\n" + "-" * 50 + "\n\n".join(items))
 
-        try:
-            full_page = header_part + "\n" + "\n".join(chunk_rows) + "\n" + footer_part
-            with open(output_filepath, 'w', encoding='utf-8') as out_f:
-                out_f.write(full_page)
-
-            written_files_count += 1
-            logger.info(
-                f"File: {output_filepath} | "
-                f"Inserted Data Count: {len(chunk_rows)} rows | "
-                f"Row Range: [{start + 1} to {end}]"
-            )
-        except Exception as e:
-            error_count += 1
-            logger.error(f"Error writing to file {output_filepath}: {e}")
+                written_files_count += 1
+                first_idx = indices_list[0] if indices_list else "N/A"
+                last_idx = indices_list[-1] if indices_list else "N/A"
+                
+                logger.info(
+                    f"File: {output_filepath} | "
+                    f"Inserted Data Count: {len(items)} items | "
+                    f"Index Range: [{first_idx} to {last_idx}]"
+                )
+            except Exception as e:
+                error_count += 1
+                logger.error(f"Error writing to file {output_filepath}: {e}")
+        else:
+            logger.warning(f"File: {output_filepath} | Inserted Data Count: 0 items (Split remained empty)")
 
     logger.info("=== Process Summary ===")
-    logger.info(f"Total Rows Found: {total_found}")
+    logger.info(f"Total Indexes Found: {total_found}")
     logger.info(f"Total Files Created: {written_files_count}/{total_splits}")
     logger.info(f"Total Errors Encountered: {error_count}")
     logger.info(f"Log written to: {os.path.abspath(log_filename)}")
-
 
 if __name__ == "__main__":
     INPUT_FILE_PATH = "ogrodut__summary_.html"
     N_SPLITS = 6  # Change this to your target number of splits
 
-    split_html_table_by_rows(INPUT_FILE_PATH, N_SPLITS)
+    split_html_by_index(INPUT_FILE_PATH, N_SPLITS)

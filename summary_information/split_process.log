@@ -1,17 +1,17 @@
-2026-09-20 13:21:51,613 - INFO - === Starting HTML Table Split Process ===
-2026-09-20 13:21:51,613 - INFO - Input file: ogrodut__summary_.html
-2026-09-20 13:21:51,613 - INFO - Target splits (N): 6
-2026-09-20 13:21:51,879 - INFO - Total rows found: 1960
-2026-09-20 13:21:51,884 - INFO - Calculated target capacity per split file: ~327 rows
-2026-09-20 13:21:51,884 - INFO - --- Writing Split Output Files ---
-2026-09-20 13:21:51,884 - INFO - File: split_html_outputs\part_1_of_6.html | Inserted Data Count: 327 rows | Row Range: [1 to 327]
-2026-09-20 13:21:51,900 - INFO - File: split_html_outputs\part_2_of_6.html | Inserted Data Count: 327 rows | Row Range: [328 to 654]
-2026-09-20 13:21:51,946 - INFO - File: split_html_outputs\part_3_of_6.html | Inserted Data Count: 327 rows | Row Range: [655 to 981]
-2026-09-20 13:21:51,962 - INFO - File: split_html_outputs\part_4_of_6.html | Inserted Data Count: 327 rows | Row Range: [982 to 1308]
-2026-09-20 13:21:51,962 - INFO - File: split_html_outputs\part_5_of_6.html | Inserted Data Count: 327 rows | Row Range: [1309 to 1635]
-2026-09-20 13:21:51,978 - INFO - File: split_html_outputs\part_6_of_6.html | Inserted Data Count: 325 rows | Row Range: [1636 to 1960]
-2026-09-20 13:21:51,978 - INFO - === Process Summary ===
-2026-09-20 13:21:51,978 - INFO - Total Rows Found: 1960
-2026-09-20 13:21:51,978 - INFO - Total Files Created: 6/6
-2026-09-20 13:21:51,978 - INFO - Total Errors Encountered: 0
-2026-09-20 13:21:51,978 - INFO - Log written to: E:\temp\edge_vocab\final_version\github\live_tracer_host\summary_information\split_process.log
+2026-09-20 14:38:19,107 - INFO - === Starting HTML Split Process ===
+2026-09-20 14:38:19,107 - INFO - Input file: ogrodut__summary_.html
+2026-09-20 14:38:19,107 - INFO - Target splits (N): 6
+2026-09-20 14:38:20,169 - INFO - Total Indexes found: 1930
+2026-09-20 14:38:20,169 - INFO - Calculated target capacity per split file: ~322 items
+2026-09-20 14:38:20,185 - INFO - --- Writing Split Output Files ---
+2026-09-20 14:38:20,200 - INFO - File: split_html_outputs\part_1_of_6.html | Inserted Data Count: 319 items | Index Range: [0 to 321]
+2026-09-20 14:38:20,216 - INFO - File: split_html_outputs\part_2_of_6.html | Inserted Data Count: 315 items | Index Range: [322 to 643]
+2026-09-20 14:38:20,231 - INFO - File: split_html_outputs\part_3_of_6.html | Inserted Data Count: 314 items | Index Range: [644 to 965]
+2026-09-20 14:38:20,247 - INFO - File: split_html_outputs\part_4_of_6.html | Inserted Data Count: 321 items | Index Range: [966 to 1287]
+2026-09-20 14:38:20,263 - INFO - File: split_html_outputs\part_5_of_6.html | Inserted Data Count: 316 items | Index Range: [1288 to 1609]
+2026-09-20 14:38:20,278 - INFO - File: split_html_outputs\part_6_of_6.html | Inserted Data Count: 345 items | Index Range: [1610 to 1959]
+2026-09-20 14:38:20,278 - INFO - === Process Summary ===
+2026-09-20 14:38:20,278 - INFO - Total Indexes Found: 1930
+2026-09-20 14:38:20,278 - INFO - Total Files Created: 6/6
+2026-09-20 14:38:20,278 - INFO - Total Errors Encountered: 0
+2026-09-20 14:38:20,278 - INFO - Log written to: E:\temp\edge_vocab\final_version\github\live_tracer_host\summary_information\split_process.log
