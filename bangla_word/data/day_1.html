@@ -1,158 +1,96 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="generator" content="reformat_report_v2">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gemini Analysis Report (Dark)</title>
-<script>document.documentElement.className+=" js"</script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+    <meta charset="UTF-8">
+    <title>Gemini Analysis Report (Dark)</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap');
 
-html{scroll-padding-top:110px;scroll-behavior:smooth}
-html:not(.js) .js-only{display:none!important}
-*{box-sizing:border-box}
-body{margin:0;background:#0d0d0f}
-.sr{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
-.page{--bg:#0d0d0f;--fg:#e4e4e4;--card:#1a1a1d;--muted:#9a9a9a;--line:#2c2c30;--accent:#5cc2ff;--btnfg:#06121c;
-  --bar:#1f1f23;--label:rgba(0,210,255,.12);--orig:#141417;
-  --t-red:#4a1c1c;--t-yellow:#4a4010;--t-green:#1b3f25;--t-blue:#12324f;
-  background:var(--bg);color:var(--fg);min-height:100vh;line-height:1.8;
-  font-family:'Hind Siliguri','Noto Sans Bengali','Kalpurush','Nirmala UI','Segoe UI',sans-serif}
-#lm:checked ~ .page{--bg:#f4f4f4;--fg:#111;--card:#fff;--muted:#666;--line:#ddd;--accent:#1976d2;--btnfg:#fff;
-  --bar:#fff;--label:#e8f1fb;--orig:#fafafa;
-  --t-red:#ffebee;--t-yellow:#fff8e1;--t-green:#e8f5e9;--t-blue:#e3f2fd}
+		/* The Main Background - Pure Dark */
+		body { 
+			font-family: 'Hind Siliguri', sans-serif; 
+			background-color: #0d0d0d; /* Pitch black ground */
+			color: #e0e0e0; 
+			padding: 20px; 
+		}
 
-.btn,button{display:inline-block;padding:7px 12px;border:0;border-radius:6px;background:var(--accent);color:var(--btnfg);
-  cursor:pointer;font:inherit;font-size:14px;line-height:1.4;text-decoration:none;-webkit-appearance:none}
-.sm{padding:4px 8px;font-size:12px}
-.b-orange{background:#e67e22!important;color:#fff!important}
-.b-red{background:#d32f2f!important;color:#fff!important}
-.b-dark{background:#2b2b2b!important;color:#fff!important}
-.b-green{background:#2e7d32!important;color:#fff!important}
-select,input[type=search],input[type=number]{font:inherit;font-size:14px;background:var(--card);color:var(--fg);
-  border:1px solid var(--line);border-radius:6px;padding:6px 8px}
-input[type=number]{width:84px}input[type=search]{width:170px}
+		.container { 
+			max-width: 850px; 
+			margin: auto; 
+		}
 
-.topbar{position:-webkit-sticky;position:sticky;top:0;z-index:999;background:var(--bar);border-bottom:1px solid var(--line);
-  padding:8px 10px;transition:transform .3s ease;box-shadow:0 2px 8px rgba(0,0,0,.18)}
-.topbar>*{display:inline-block;vertical-align:middle;margin:3px 4px}
-.topbar.hide{-webkit-transform:translateY(-100%);transform:translateY(-100%)}
-.tracker{font-weight:bold}
-.tracker>*{margin-right:6px}
-.auto{font-size:13px;cursor:pointer}
-#progressWrap{position:fixed;left:0;top:0;height:3px;width:100%;z-index:1000}
-#progress{height:100%;width:0;background:#e67e22}
-.fab{position:fixed;right:12px;bottom:16px;z-index:998}
-.fab .btn{display:block;width:44px;height:44px;line-height:44px;padding:0;margin-top:8px;text-align:center;border-radius:50%;
-  font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+		.main-title { 
+			text-align: center; 
+			color: #3498db; 
+			margin-bottom: 30px; 
+			border-bottom: 2px solid #3498db; 
+			padding-bottom: 10px; 
+		}
 
-.container{max-width:1000px;margin:0 auto;padding:20px}
-.main-title{text-align:center;margin:10px 0 6px;font-size:1.7rem;line-height:1.4}
-#totalCount{text-align:center;font-weight:bold;font-style:italic;color:#e53935;font-size:18px;margin-bottom:14px}
-.toc{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:18px}
-.toc-h{font-weight:bold;margin-bottom:6px}
-.toclist{max-height:42vh;overflow:auto;-webkit-column-width:230px;column-width:230px;-webkit-column-gap:16px;column-gap:16px}
-.toclist a{display:block;color:var(--accent);text-decoration:none;font-size:14px;line-height:1.5;padding:2px 0;
-  -webkit-column-break-inside:avoid;break-inside:avoid;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+		/* The Card - No more white background */
+		.report-card { 
+			background: #161616; /* Deep charcoal ground */
+			padding: 25px; 
+			border-radius: 12px; 
+			box-shadow: 0 4px 15px rgba(0,0,0,0.6); 
+			margin-bottom: 40px; 
+			border: 1px solid #222; /* Subtle border for shape */
+			border-top: 5px solid #00b894; 
+		}
 
-.card{position:relative;z-index:0;background:var(--card);border:1px solid var(--line);border-radius:10px;
-  padding:16px 18px 12px 24px;margin-bottom:18px}
-.card:hover{box-shadow:0 4px 10px rgba(0,0,0,.18)}
-.card.resume{outline:2px solid #e67e22}
-.fr{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
-.tint{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;border-radius:10px;pointer-events:none}
-.fr-red:checked ~ .tint{background:var(--t-red);box-shadow:inset 8px 0 0 #e53935}
-.fr-yellow:checked ~ .tint{background:var(--t-yellow);box-shadow:inset 8px 0 0 #fbc02d}
-.fr-green:checked ~ .tint{background:var(--t-green);box-shadow:inset 8px 0 0 #43a047}
-.fr-blue:checked ~ .tint{background:var(--t-blue);box-shadow:inset 8px 0 0 #1e88e5}
-.cd>summary{cursor:pointer;list-style:none;outline:none}
-.cd>summary::-webkit-details-marker{display:none}
-.qnum{font-weight:bold;font-size:15px;color:var(--accent)}
-.genre{display:inline-block;margin-left:8px;font-size:12px;padding:0 8px;border-radius:10px;background:var(--label);color:var(--accent)}
-.ind{float:right;font-size:13px;color:var(--accent)}
-.cd[open] .ind::before{content:"▲ Hide"}
-.cd:not([open]) .ind::before{content:"▼ Show"}
-.head h2{font-size:1.15rem;margin:4px 0 0;line-height:1.5}
-.by{color:var(--muted);font-size:.95rem}
-.orig{background:var(--orig);border-left:4px solid var(--accent);border-radius:4px;padding:10px 14px;margin:8px 0;font-size:1.02rem}
-.orig strong{color:var(--accent)}
-.body{border-top:1px dashed var(--line);margin-top:12px;padding-top:10px}
-.body h1{font-size:1.15rem;margin:6px 0 8px;color:var(--accent)}
-.body h2{font-size:1.1rem;margin:16px 0 8px;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:4px}
-.body h3{font-size:1.05rem;margin:16px 0 8px;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:4px}
-.body h4{margin:10px 0 4px}
-.body p{margin:8px 0}
-.body ul,.body ol{margin:8px 0 8px 22px;padding:0 0 0 6px}
-.body li{margin-bottom:6px}
-.body strong,.body b{background:var(--label);padding:0 5px;border-radius:4px}
-.body em{color:var(--muted)}
-.body code{background:var(--label);padding:1px 6px;border-radius:4px}
-.body hr{border:0;border-top:1px dashed var(--line);margin:12px 0}
-.body table{width:100%;border-collapse:collapse;margin:10px 0;display:block;overflow-x:auto}
-.body th,.body td{border:1px solid var(--line);padding:6px 8px;text-align:left}
-.body th{background:var(--label)}
-.body details{margin:8px 0;padding:6px 10px;border:1px solid var(--line);border-radius:6px}
-.body .note,.body .clarification,.body .author-correction,.body .conclusion,.body .section-intro{
-  border-left:4px solid var(--accent);background:var(--orig);padding:6px 12px;margin:10px 0;border-radius:4px}
-.footer-mark{text-align:center;color:var(--muted);font-size:13px;margin-top:10px}
-.controls{margin-top:12px}
-.controls>*{display:inline-block;vertical-align:middle;margin:3px 5px 3px 0}
-.dot{width:28px;height:28px;border-radius:50%;border:2px solid #fff;cursor:pointer}
-.dot.red{background:#e53935}.dot.yellow{background:#fbc02d}.dot.green{background:#43a047}.dot.blue{background:#1e88e5}.dot.none{background:#777}
-.fr-red:checked ~ .controls .red,.fr-yellow:checked ~ .controls .yellow,.fr-green:checked ~ .controls .green,
-.fr-blue:checked ~ .controls .blue,.fr-none:checked ~ .controls .none{box-shadow:0 0 0 3px var(--fg)}
-.nav a{color:var(--accent);text-decoration:none;font-size:14px;margin-right:12px}
-.reordered .pn{display:none}
-#toast{position:fixed;left:50%;bottom:24px;-webkit-transform:translateX(-50%);transform:translateX(-50%);background:#333;color:#fff;
-  padding:8px 16px;border-radius:20px;z-index:1001;opacity:0;pointer-events:none;transition:opacity .3s}
-#toast.show{opacity:1}
-@media(max-width:700px){.container{padding:10px}input[type=search]{width:120px}.card{padding:12px 12px 8px 18px}}
+		.heading { 
+			color: #ff7675; 
+			font-size: 1.5rem; 
+			margin-top: 0; 
+		}
 
-</style>
+		/* The Quote Box - Darker than the card */
+		.original-box { 
+			background: #1e1e1e; 
+			padding: 15px; 
+			border-radius: 8px; 
+			margin: 15px 0; 
+			font-size: 1.2rem; 
+			border-left: 4px solid #3498db; /* Blue accent */
+			color: #3498db; /* High contrast blue text */
+			font-weight: 600;
+		}
+
+		/* Analysis items (Kartā, Karma, Kriyā) */
+		.analysis-content { 
+			line-height: 1.8; 
+			font-size: 1.05rem; 
+			color: #dfe6e9; /* Light silver text */
+		}
+
+		/* Labels - This makes 'কর্তা', 'কর্ম', 'ক্রিয়া' look sharp */
+		.analysis-content b, 
+		.analysis-content strong { 
+			color: #4facfe; /* Neon blue for labels */
+			font-weight: 600;
+			margin-right: 5px;
+		}
+
+		.footer-mark { 
+			text-align: center; 
+			margin-top: 25px; 
+			padding-top: 15px; 
+			border-top: 1px dashed #333; 
+			color: #636e72; 
+		}
+	</style>
 </head>
 <body>
-<a id="top"></a>
-<input type="checkbox" id="lm" class="sr" aria-label="Light mode">
-<div class="page">
-<div id="progressWrap" class="js-only"><div id="progress"></div></div>
+    <div class="container">
+        <h1 class="main-title">বাংলা ব্যাকরণ বিশ্লেষণ ........</h1>
 
-<div class="topbar" id="topbar">
-<a class="btn b-green" href="#top">↑ Top</a>
-<a class="btn b-green" href="#bottom">↓ Bottom</a>
-<a class="btn" href="#toc">☰ Index</a>
-<a class="btn b-orange js-only" id="resumeLink" href="#" onclick="return goToResume()">🔖 Go to Resume</a>
-<label class="btn b-dark" for="lm">🌓 Theme</label>
-<span class="tracker js-only">Resume: <span id="trackerValue">None</span>
-<button class="sm b-red" onclick="resetResume()">Reset</button>
-<label class="auto"><input type="checkbox" id="autoResume" onchange="toggleAuto(this)"> Auto-resume</label></span>
-<input type="search" id="searchBox" class="js-only" placeholder="Search ( / )" oninput="applyFilter()">
-
-<select id="filterColor" class="js-only" onchange="applyFilter()">
-<option value="all">All</option><option value="marked">Marked All</option><option value="red">Red</option>
-<option value="yellow">Yellow</option><option value="green">Green</option><option value="blue">Blue</option>
-<option value="none">No Color</option></select>
-<button class="js-only" onclick="jumpFlag(-1)" title="Prev flagged (P)">◀ Flag</button>
-<button class="js-only" onclick="jumpFlag(1)" title="Next flagged (N)">Flag ▶</button>
-<input type="number" id="gotoNum" class="js-only" min="1" placeholder="#" onkeydown="if(event.key==='Enter')goToNumber()">
-<button class="js-only" onclick="goToNumber()">Go</button>
-<button class="js-only b-dark" onclick="originalOrderQ()">Original</button>
-<button class="js-only" onclick="reverseQ()">Reverse</button>
-<button class="js-only" onclick="shuffleQ()">Shuffle</button>
-<button class="js-only b-red" onclick="resetColors()">Reset Colors</button>
-<button class="js-only" onclick="toggleAll()" id="toggleAllBtn">Collapse All</button>
-<button class="js-only" onclick="exportPage()">Export</button>
-</div>
-<div class="container">
-<h1 class="main-title">বাংলা ব্যাকরণ বিশ্লেষণ ........</h1>
-<div id="totalCount">Total Cards: 29</div>
-<div id="toc" class="toc"><div class="toc-h">☰ Index — 29</div><div class="toclist"><a href="#c1">#1 · বিশ্লেষণ: যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে...</a><a href="#c2">#2 · বিশ্লেষণ: সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর...</a><a href="#c3">#3 · বিশ্লেষণ: আগামী ২০২৬-২৭ অর্থবছরের বাজেটে...</a><a href="#c4">#4 · বিশ্লেষণ: আজ মঙ্গলবার ধানমন্ডিতে সিপিডির...</a><a href="#c5">#5 · বিশ্লেষণ: বর্তমানে দেশে ডিজেল, অকটেন...</a><a href="#c6">#6 · বিশ্লেষণ: সিপিডির এই সম্মাননীয় ফেলো...</a><a href="#c7">#7 · বিশ্লেষণ: মোস্তাফিজুর রহমান বলেন, জ্বালানি...</a><a href="#c8">#8 · বিশ্লেষণ: সিপিডির নির্বাহী পরিচালক ফাহমিদা...</a><a href="#c9">#9 · বিশ্লেষণ: ফাহমিদা খাতুন আরও বলেন,...</a><a href="#c10">#10 · বিশ্লেষণ: বাংলাদেশে যখন ক্ষমতার পটভূমি...</a><a href="#c11">#11 · বিশ্লেষণ: চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে...</a><a href="#c12">#12 · বিশ্লেষণ: চব্বিশের ৫ আগস্টে শেখ...</a><a href="#c13">#13 · বিশ্লেষণ: গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক...</a><a href="#c14">#14 · বিশ্লেষণ: বিএনপি নেতৃত্বাধীন সরকার গঠনের...</a><a href="#c15">#15 · বিশ্লেষণ: কিন্তু প্রশ্ন হলো, নিজেদের...</a><a href="#c16">#16 · বিশ্লেষণ: প্রথমত, দলীয়করণ প্রশাসন হলে...</a><a href="#c17">#17 · বিশ্লেষণ: অপর দিকে দলীয়করণ প্রশাসন...</a><a href="#c18">#18 · বিশ্লেষণ: এমন ঝুঁকি থেকে বের...</a><a href="#c19">#19 · বিশ্লেষণ: মূলত যোগ্য ব্যক্তিদের যোগ্যতা...</a><a href="#c20">#20 · বিশ্লেষণ: মনে রাখতে হবে, বাংলাদেশ...</a><a href="#c21">#21 · বিশ্লেষণ: হ্যাঁ, এই দেশে প্রশাসনকাঠামোয়...</a><a href="#c22">#22 · বিশ্লেষণ: দলীয় অনুগত কর্মকর্তাদের তালিকা...</a><a href="#c23">#23 · বিশ্লেষণ: একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি...</a><a href="#c24">#24 · বিশ্লেষণ: ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া...</a><a href="#c25">#25 · বিশ্লেষণ: মধ্যপ্রাচ্য সংকটে প্রবাসী আয়...</a><a href="#c26">#26 · বিশ্লেষণ: আজ সকালে এক আমদানিকারক...</a><a href="#c27">#27 · বিশ্লেষণ: ব্যাংকগুলোর সূত্রে জানা যায়,...</a><a href="#c28">#28 · বিশ্লেষণ: এদিকে বাংলাদেশ ব্যাংক প্রকাশিত...</a><a href="#c29">#29 · বিশ্লেষণ: বেসরকারি একটি ব্যাংকের একজন...</a></div></div>
-<div id="cards">
-<div class="card" id="c1" data-id="1" data-search="1 বিশ্লেষণ: যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে... মূল বাক্য: যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে ইরানের যুদ্ধের মধ্যে তেল-গ্যাসের উৎপাদন ও সরবরাহ বিঘ্নিত হচ্ছে। তাতে বিশ্ববাজারে অপরিশোধিত তেলের দাম প্রতি ব্যারেল এক শ ডলার ছাড়িয়ে গেছে। তবে দেশের জ্বালানি তেলের নিয়ন্ত্রণে সরকারের হাতে কিছু সুযোগ আছে। এ কথা জানিয়েছেন বেসরকারি গবেষণাপ্রতিষ্ঠান সেন্টার ফর পলিসি ডায়ালগের (সিপিডি) গবেষকেরা। ">
-<input type="radio" class="fr fr-red" name="f1" id="f1-red" value="red"><input type="radio" class="fr fr-yellow" name="f1" id="f1-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f1" id="f1-green" value="green"><input type="radio" class="fr fr-blue" name="f1" id="f1-blue" value="blue"><input type="radio" class="fr fr-none" name="f1" id="f1-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#1</span><h2><!--t-->বিশ্লেষণ: যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে ইরানের যুদ্ধের মধ্যে তেল-গ্যাসের উৎপাদন ও সরবরাহ বিঘ্নিত হচ্ছে। তাতে বিশ্ববাজারে অপরিশোধিত তেলের দাম প্রতি ব্যারেল এক শ ডলার ছাড়িয়ে গেছে। তবে দেশের জ্বালানি তেলের নিয়ন্ত্রণে সরকারের হাতে কিছু সুযোগ আছে। এ কথা জানিয়েছেন বেসরকারি গবেষণাপ্রতিষ্ঠান সেন্টার ফর পলিসি ডায়ালগের (সিপিডি) গবেষকেরা।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটির একটি বিস্তারিত বিশ্লেষণ নিচে তুলে ধরা হলো:</p>
+            <div class="report-card">
+                <h2 class="heading">1. বিশ্লেষণ: যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে ইরানের যুদ্ধের মধ্যে তেল-গ্যাসের উৎপাদন ও সরবরাহ বিঘ্নিত হচ্ছে। তাতে বিশ্ববাজারে অপরিশোধিত তেলের দাম প্রতি ব্যারেল এক শ ডলার ছাড়িয়ে গেছে। তবে দেশের জ্বালানি তেলের নিয়ন্ত্রণে সরকারের হাতে কিছু সুযোগ আছে। এ কথা জানিয়েছেন বেসরকারি গবেষণাপ্রতিষ্ঠান সেন্টার ফর পলিসি ডায়ালগের (সিপিডি) গবেষকেরা।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটির একটি বিস্তারিত বিশ্লেষণ নিচে তুলে ধরা হলো:</p>
 <p><strong>মূল বাক্য:</strong> "যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে ইরানের যুদ্ধের মধ্যে তেল-গ্যাসের উৎপাদন ও সরবরাহ বিঘ্নিত হচ্ছে। তাতে বিশ্ববাজারে অপরিশোধিত তেলের দাম প্রতি ব্যারেল এক শ ডলার ছাড়িয়ে গেছে। তবে দেশের জ্বালানি তেলের নিয়ন্ত্রণে সরকারের হাতে কিছু সুযোগ আছে। এ কথা জানিয়েছেন বেসরকারি গবেষণাপ্রতিষ্ঠান সেন্টার ফর পলিসি ডায়ালগের (সিপিডি) গবেষকেরা।"</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</h3>
@@ -410,19 +348,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         **উদাহরণ:** "যুক্তরাষ্ট্র ও ইসরায়েলের সঙ্গে ইরানের <strong>যুদ্ধ চলছে বলে</strong> তেল-গ্যাসের উৎপাদন ও সরবরাহে <strong>সমস্যা হচ্ছে</strong>। <strong>আর তাই</strong> বিশ্ববাজারে অপরিশোধিত তেলের দাম প্রতি ব্যারেল এক শ ডলার <strong>অনেক বেড়ে গেছে</strong>। তবে দেশের জ্বালানি তেলের নিয়ন্ত্রণে <strong>সরকারের হাতে কিছু উপায় আছে</strong>। <strong>সিপিডির গবেষকরা বলছেন</strong> এই কথা।"
     </dd>
 </dl>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f1-red" class="dot red"></label><label for="f1-yellow" class="dot yellow"></label><label for="f1-green" class="dot green"></label><label for="f1-blue" class="dot blue"></label><label for="f1-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c2">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c2" data-id="2" data-search="2 বিশ্লেষণ: সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর... মূল বাক্য: সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, আন্তর্জাতিক বাজারের তেলের দাম স্থানীয় বাজারে কতটুকু প্রতিফলিত হবে, সে ব্যাপারে সরকারের কাছে বিভিন্ন নীতি উপাদান (পলিসি ইনস্ট্রুমেন্ট) রয়েছে। বাংলাদেশ পেট্রোলিয়াম করপোরেশনের (বিপিসি) মুনাফার বাইরেও জ্বালানির ওপর দেশে প্রায় ২০-২৫ শতাংশ বিভিন্ন ধরনের কর রয়েছে। আন্তর্জাতিক বাজারে জ্বালানির দাম বাড়লে সরকার এই কর কমিয়ে দাম নিয়ন্ত্রণের সুযোগ পায় ">
-<input type="radio" class="fr fr-red" name="f2" id="f2-red" value="red"><input type="radio" class="fr fr-yellow" name="f2" id="f2-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f2" id="f2-green" value="green"><input type="radio" class="fr fr-blue" name="f2" id="f2-blue" value="blue"><input type="radio" class="fr fr-none" name="f2" id="f2-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#2</span><h2><!--t-->বিশ্লেষণ: সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, আন্তর্জাতিক বাজারের তেলের দাম স্থানীয় বাজারে কতটুকু প্রতিফলিত হবে, সে ব্যাপারে সরকারের কাছে বিভিন্ন নীতি উপাদান (পলিসি ইনস্ট্রুমেন্ট) রয়েছে। বাংলাদেশ পেট্রোলিয়াম করপোরেশনের (বিপিসি) মুনাফার বাইরেও জ্বালানির ওপর দেশে প্রায় ২০-২৫ শতাংশ বিভিন্ন ধরনের কর রয়েছে। আন্তর্জাতিক বাজারে জ্বালানির দাম বাড়লে সরকার এই কর কমিয়ে দাম নিয়ন্ত্রণের সুযোগ পায়। উদাহরণস্বরূপ, বিদায়ী অন্তর্বর্তী সরকারের সময় জ্বালানি আমদানিতে যে ২ শতাংশ অগ্রিম আয়কর ছিল, তা তুলে দেওয়া হয়েছে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া অনুচ্ছেদটির একটি বিস্তারিত বিশ্লেষণ নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">2. বিশ্লেষণ: সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, আন্তর্জাতিক বাজারের তেলের দাম স্থানীয় বাজারে কতটুকু প্রতিফলিত হবে, সে ব্যাপারে সরকারের কাছে বিভিন্ন নীতি উপাদান (পলিসি ইনস্ট্রুমেন্ট) রয়েছে। বাংলাদেশ পেট্রোলিয়াম করপোরেশনের (বিপিসি) মুনাফার বাইরেও জ্বালানির ওপর দেশে প্রায় ২০-২৫ শতাংশ বিভিন্ন ধরনের কর রয়েছে। আন্তর্জাতিক বাজারে জ্বালানির দাম বাড়লে সরকার এই কর কমিয়ে দাম নিয়ন্ত্রণের সুযোগ পায়। উদাহরণস্বরূপ, বিদায়ী অন্তর্বর্তী সরকারের সময় জ্বালানি আমদানিতে যে ২ শতাংশ অগ্রিম আয়কর ছিল, তা তুলে দেওয়া হয়েছে।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া অনুচ্ছেদটির একটি বিস্তারিত বিশ্লেষণ নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>অনুচ্ছেদ বিশ্লেষণ রিপোর্ট</strong></p>
 <p><strong>প্রদত্ত অনুচ্ছেদ:</strong> "সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, আন্তর্জাতিক বাজারের তেলের দাম স্থানীয় বাজারে কতটুকু প্রতিফলিত হবে, সে ব্যাপারে সরকারের কাছে বিভিন্ন নীতি উপাদান (পলিসি ইনস্ট্রুমেন্ট) রয়েছে। বাংলাদেশ পেট্রোলিয়াম করপোরেশনের (বিপিসি) মুনাফার বাইরেও জ্বালানির ওপর দেশে প্রায় ২০-২৫ শতাংশ বিভিন্ন ধরনের কর রয়েছে। আন্তর্জাতিক বাজারে জ্বালানির দাম বাড়লে সরকার এই কর কমিয়ে দাম নিয়ন্ত্রণের সুযোগ পায়। উদাহরণস্বরূপ, বিদায়ী অন্তর্বর্তী সরকারের সময় জ্বালানি আমদানিতে যে ২ শতাংশ অগ্রিম আয়কর ছিল, তা তুলে দেওয়া হয়েছে।"</p>
@@ -619,7 +557,39 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <!DOCTYPE html>
 <html>
 <head>
-
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  h3 {
+    color: #333;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+  .style-section {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  .style-section h4 {
+    color: #0056b3;
+    margin-top: 0;
+  }
+  .style-section p {
+    margin-bottom: 10px;
+  }
+</style>
 </head>
 <body>
 
@@ -692,19 +662,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 </body>
 </html>
 <p>```</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f2-red" class="dot red"></label><label for="f2-yellow" class="dot yellow"></label><label for="f2-green" class="dot green"></label><label for="f2-blue" class="dot blue"></label><label for="f2-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c1">← Prev</a><a href="#c3">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c3" data-id="3" data-search="3 বিশ্লেষণ: আগামী ২০২৬-২৭ অর্থবছরের বাজেটে... মূল বাক্য: আগামী ২০২৬-২৭ অর্থবছরের বাজেটে সিপিডির পরামর্শ শীর্ষক মিডিয়া ব্রিফিংয়ে সাংবাদিকদের প্রশ্নের জবাবে এ কথা বলেন সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান। ">
-<input type="radio" class="fr fr-red" name="f3" id="f3-red" value="red"><input type="radio" class="fr fr-yellow" name="f3" id="f3-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f3" id="f3-green" value="green"><input type="radio" class="fr fr-blue" name="f3" id="f3-blue" value="blue"><input type="radio" class="fr fr-none" name="f3" id="f3-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#3</span><h2><!--t-->বিশ্লেষণ: আগামী ২০২৬-২৭ অর্থবছরের বাজেটে...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> আগামী ২০২৬-২৭ অর্থবছরের বাজেটে সিপিডির পরামর্শ শীর্ষক মিডিয়া ব্রিফিংয়ে সাংবাদিকদের প্রশ্নের জবাবে এ কথা বলেন সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার প্রদত্ত বাক্যটি একটি সুন্দর এবং তথ্যবহুল উপস্থাপনা। এর বিস্তারিত বিশ্লেষণ নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">3. বিশ্লেষণ: আগামী ২০২৬-২৭ অর্থবছরের বাজেটে...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> আগামী ২০২৬-২৭ অর্থবছরের বাজেটে সিপিডির পরামর্শ শীর্ষক মিডিয়া ব্রিফিংয়ে সাংবাদিকদের প্রশ্নের জবাবে এ কথা বলেন সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার প্রদত্ত বাক্যটি একটি সুন্দর এবং তথ্যবহুল উপস্থাপনা। এর বিস্তারিত বিশ্লেষণ নিচে দেওয়া হলো:</p>
 <p><strong>মূল বাক্য:</strong> "আগামী ২০২৬-২৭ অর্থবছরের বাজেটে সিপিডির পরামর্শ শীর্ষক মিডিয়া ব্রিফিংয়ে সাংবাদিকদের প্রশ্নের জবাবে এ কথা বলেন সংস্থাটির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান।"</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</h3>
@@ -856,19 +826,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </ul>
     </dd>
 </dl>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f3-red" class="dot red"></label><label for="f3-yellow" class="dot yellow"></label><label for="f3-green" class="dot green"></label><label for="f3-blue" class="dot blue"></label><label for="f3-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c2">← Prev</a><a href="#c4">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c4" data-id="4" data-search="4 বিশ্লেষণ: আজ মঙ্গলবার ধানমন্ডিতে সিপিডির... মূল বাক্য: আজ মঙ্গলবার ধানমন্ডিতে সিপিডির নিজস্ব কার্যালয়ের মিলনায়তনের এই মিডিয়া ব্রিফিং অনুষ্ঠিত হয়। এতে সূচনা বক্তব্য ও মূল প্রবন্ধ উপস্থাপনা করেন সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন। আরও উপস্থিত ছিলেন সিপিডির গবেষণা পরিচালক খন্দকার গোলাম মোয়াজ্জেম। ">
-<input type="radio" class="fr fr-red" name="f4" id="f4-red" value="red"><input type="radio" class="fr fr-yellow" name="f4" id="f4-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f4" id="f4-green" value="green"><input type="radio" class="fr fr-blue" name="f4" id="f4-blue" value="blue"><input type="radio" class="fr fr-none" name="f4" id="f4-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#4</span><h2><!--t-->বিশ্লেষণ: আজ মঙ্গলবার ধানমন্ডিতে সিপিডির...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> আজ মঙ্গলবার ধানমন্ডিতে সিপিডির নিজস্ব কার্যালয়ের মিলনায়তনের এই মিডিয়া ব্রিফিং অনুষ্ঠিত হয়। এতে সূচনা বক্তব্য ও মূল প্রবন্ধ উপস্থাপনা করেন সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন। আরও উপস্থিত ছিলেন সিপিডির গবেষণা পরিচালক খন্দকার গোলাম মোয়াজ্জেম।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার প্রদত্ত বাক্যটি একটি সংবাদ প্রতিবেদন থেকে নেওয়া হয়েছে, যেখানে ঘটনা, সময়, স্থান এবং জড়িত ব্যক্তিদের তথ্য স্পষ্টভাবে উল্লেখ করা হয়েছে। নিচে প্রতিটি অংশের বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">4. বিশ্লেষণ: আজ মঙ্গলবার ধানমন্ডিতে সিপিডির...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> আজ মঙ্গলবার ধানমন্ডিতে সিপিডির নিজস্ব কার্যালয়ের মিলনায়তনের এই মিডিয়া ব্রিফিং অনুষ্ঠিত হয়। এতে সূচনা বক্তব্য ও মূল প্রবন্ধ উপস্থাপনা করেন সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন। আরও উপস্থিত ছিলেন সিপিডির গবেষণা পরিচালক খন্দকার গোলাম মোয়াজ্জেম।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার প্রদত্ত বাক্যটি একটি সংবাদ প্রতিবেদন থেকে নেওয়া হয়েছে, যেখানে ঘটনা, সময়, স্থান এবং জড়িত ব্যক্তিদের তথ্য স্পষ্টভাবে উল্লেখ করা হয়েছে। নিচে প্রতিটি অংশের বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
 <hr />
 <h3><strong>মূল বাক্য:</strong></h3>
 <p>"আজ মঙ্গলবার ধানমন্ডিতে সিপিডির নিজস্ব কার্যালয়ের মিলনায়তনের এই মিডিয়া ব্রিফিং অনুষ্ঠিত হয়। এতে সূচনা বক্তব্য ও মূল প্রবন্ধ উপস্থাপনা করেন সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন। আরও উপস্থিত ছিলেন সিপিডির গবেষণা পরিচালক খন্দকার গোলাম মোয়াজ্জেম।"</p>
@@ -1160,19 +1130,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
   </li>
 </ul>
 <p>```</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f4-red" class="dot red"></label><label for="f4-yellow" class="dot yellow"></label><label for="f4-green" class="dot green"></label><label for="f4-blue" class="dot blue"></label><label for="f4-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c3">← Prev</a><a href="#c5">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c5" data-id="5" data-search="5 বিশ্লেষণ: বর্তমানে দেশে ডিজেল, অকটেন... মূল বাক্য: বর্তমানে দেশে ডিজেল, অকটেন ও অন্যান্য জ্বালানির কয়েক সপ্তাহের মজুত রয়েছে উল্লেখ করে সিপিডির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, বাংলাদেশের বড় সমস্যা হলো, জ্বালানি তেলের কোনো স্থায়ী স্ট্র্যাটেজিক রিজার্ভ বা কৌশলগত মজুত নেই, যা কিনা পার্শ্ববর্তী দেশগুলোতে রয়েছে। এ ধরনের রিজার্ভ থাকলে সংকটের সময় বাজারে নিশ্চয়তা দেওয়া সম্ভব হয়। বর্তমানে প্যানিক বায়িং বা আতঙ্কে কেনাকাটার কারণে চাহিদার চেয় ">
-<input type="radio" class="fr fr-red" name="f5" id="f5-red" value="red"><input type="radio" class="fr fr-yellow" name="f5" id="f5-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f5" id="f5-green" value="green"><input type="radio" class="fr fr-blue" name="f5" id="f5-blue" value="blue"><input type="radio" class="fr fr-none" name="f5" id="f5-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#5</span><h2><!--t-->বিশ্লেষণ: বর্তমানে দেশে ডিজেল, অকটেন...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> বর্তমানে দেশে ডিজেল, অকটেন ও অন্যান্য জ্বালানির কয়েক সপ্তাহের মজুত রয়েছে উল্লেখ করে সিপিডির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, বাংলাদেশের বড় সমস্যা হলো, জ্বালানি তেলের কোনো স্থায়ী স্ট্র্যাটেজিক রিজার্ভ বা কৌশলগত মজুত নেই, যা কিনা পার্শ্ববর্তী দেশগুলোতে রয়েছে। এ ধরনের রিজার্ভ থাকলে সংকটের সময় বাজারে নিশ্চয়তা দেওয়া সম্ভব হয়। বর্তমানে প্যানিক বায়িং বা আতঙ্কে কেনাকাটার কারণে চাহিদার চেয়ে বেশি তেল সংগ্রহের প্রবণতা দেখা যাচ্ছে। এটি বেড়ে গেলে তাৎক্ষণিকভাবে মেটানো যেকোনো দেশের জন্যই কঠিন। তাই বাজারকে আস্থায় আনা ও নিশ্চয়তা দেওয়া জরুরি।<!--/s--></div></summary>
-<div class="body"><!--b--><p>অনুচ্ছেদটি একটি গুরুত্বপূর্ণ অর্থনৈতিক বিশ্লেষণ তুলে ধরেছে। নিচে এর বিস্তারিত রিপোর্ট দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">5. বিশ্লেষণ: বর্তমানে দেশে ডিজেল, অকটেন...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> বর্তমানে দেশে ডিজেল, অকটেন ও অন্যান্য জ্বালানির কয়েক সপ্তাহের মজুত রয়েছে উল্লেখ করে সিপিডির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, বাংলাদেশের বড় সমস্যা হলো, জ্বালানি তেলের কোনো স্থায়ী স্ট্র্যাটেজিক রিজার্ভ বা কৌশলগত মজুত নেই, যা কিনা পার্শ্ববর্তী দেশগুলোতে রয়েছে। এ ধরনের রিজার্ভ থাকলে সংকটের সময় বাজারে নিশ্চয়তা দেওয়া সম্ভব হয়। বর্তমানে প্যানিক বায়িং বা আতঙ্কে কেনাকাটার কারণে চাহিদার চেয়ে বেশি তেল সংগ্রহের প্রবণতা দেখা যাচ্ছে। এটি বেড়ে গেলে তাৎক্ষণিকভাবে মেটানো যেকোনো দেশের জন্যই কঠিন। তাই বাজারকে আস্থায় আনা ও নিশ্চয়তা দেওয়া জরুরি।
+                </div>
+                <div class="analysis-content">
+                    <p>অনুচ্ছেদটি একটি গুরুত্বপূর্ণ অর্থনৈতিক বিশ্লেষণ তুলে ধরেছে। নিচে এর বিস্তারিত রিপোর্ট দেওয়া হলো:</p>
 <hr />
 <p><strong>অনুচ্ছেদ বিশ্লেষণ রিপোর্ট</strong></p>
 <p><strong>অনুচ্ছেদ:</strong> "বর্তমানে দেশে ডিজেল, অকটেন ও অন্যান্য জ্বালানির কয়েক সপ্তাহের মজুত রয়েছে উল্লেখ করে সিপিডির সম্মাননীয় ফেলো মোস্তাফিজুর রহমান বলেন, বাংলাদেশের বড় সমস্যা হলো, জ্বালানি তেলের কোনো স্থায়ী স্ট্র্যাটেজিক রিজার্ভ বা কৌশলগত মজুত নেই, যা কিনা পার্শ্ববর্তী দেশগুলোতে রয়েছে। এ ধরনের রিজার্ভ থাকলে সংকটের সময় বাজারে নিশ্চয়তা দেওয়া সম্ভব হয়। বর্তমানে প্যানিক বায়িং বা আতঙ্কে কেনাকাটার কারণে চাহিদার চেয়ে বেশি তেল সংগ্রহের প্রবণতা দেখা যাচ্ছে। এটি বেড়ে গেলে তাৎক্ষণিকভাবে মেটানো যেকোনো দেশের জন্যই কঠিন। তাই বাজারকে আস্থায় আনা ও নিশ্চয়তা দেওয়া জরুরি।"</p>
@@ -1300,7 +1270,15 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <head>
     <meta charset="UTF-8">
     <title>ব্যতিক্রমী শব্দ ও শব্দগুচ্ছ</title>
-    
+    <style>
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        .word-list { list-style-type: none; padding: 0; }
+        .word-list li { margin-bottom: 15px; background-color: #f9f9f9; padding: 10px; border-left: 5px solid #007bff; }
+        .word-list li p { margin: 5px 0; }
+        .word-list li strong { color: #0056b3; }
+        .common { color: #555; }
+        .better { color: #28a745; }
+    </style>
 </head>
 <body>
     <ul class="word-list">
@@ -1402,7 +1380,15 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <head>
     <meta charset="UTF-8">
     <title>শৈলী পরিবর্তন</title>
-    
+    <style>
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        .style-section { margin-bottom: 30px; border: 1px solid #ccc; padding: 15px; border-radius: 8px; }
+        .style-section h3 { color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 5px; margin-top: 0; }
+        .style-list { list-style-type: none; padding: 0; }
+        .style-list li { margin-bottom: 10px; background-color: #f9f9f9; padding: 8px; border-left: 3px solid #6c757d; }
+        .style-list li strong { color: #dc3545; } /* Changed words in red */
+        .style-list li span { color: #28a745; } /* New words in green */
+    </style>
 </head>
 <body>
     <p class="style-section">
@@ -1485,19 +1471,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 </body>
 </html>
 <p>```</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f5-red" class="dot red"></label><label for="f5-yellow" class="dot yellow"></label><label for="f5-green" class="dot green"></label><label for="f5-blue" class="dot blue"></label><label for="f5-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c4">← Prev</a><a href="#c6">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c6" data-id="6" data-search="6 বিশ্লেষণ: সিপিডির এই সম্মাননীয় ফেলো... মূল বাক্য: সিপিডির এই সম্মাননীয় ফেলো বলেন, সরকার বর্তমানে জ্বালানি পরিস্থিতি সামাল দিতে স্পট বায়িং করছে। ভারতের সঙ্গে পাইপলাইনের মাধ্যমে ডিজেল আমদানির চুক্তিটি পুনরায় চালু করছে। এ ছাড়া প্রয়োজনে মালয়েশিয়াসহ অন্যান্য বিকল্প উৎস থেকেও জ্বালানি আনার ব্যবস্থা রয়েছে। এখানে মূল লক্ষ্য হলো, জ্বালানির প্রাপ্যতা নিশ্চিত করা। আবার বাড়তি দামে জ্বালানি কিনতে রিজার্ভের ওপর যেন চাপ না পড়ে, সেদিকেও সরকারকে নজর রা ">
-<input type="radio" class="fr fr-red" name="f6" id="f6-red" value="red"><input type="radio" class="fr fr-yellow" name="f6" id="f6-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f6" id="f6-green" value="green"><input type="radio" class="fr fr-blue" name="f6" id="f6-blue" value="blue"><input type="radio" class="fr fr-none" name="f6" id="f6-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#6</span><h2><!--t-->বিশ্লেষণ: সিপিডির এই সম্মাননীয় ফেলো...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> সিপিডির এই সম্মাননীয় ফেলো বলেন, সরকার বর্তমানে জ্বালানি পরিস্থিতি সামাল দিতে স্পট বায়িং করছে। ভারতের সঙ্গে পাইপলাইনের মাধ্যমে ডিজেল আমদানির চুক্তিটি পুনরায় চালু করছে। এ ছাড়া প্রয়োজনে মালয়েশিয়াসহ অন্যান্য বিকল্প উৎস থেকেও জ্বালানি আনার ব্যবস্থা রয়েছে। এখানে মূল লক্ষ্য হলো, জ্বালানির প্রাপ্যতা নিশ্চিত করা। আবার বাড়তি দামে জ্বালানি কিনতে রিজার্ভের ওপর যেন চাপ না পড়ে, সেদিকেও সরকারকে নজর রাখতে হবে। সে ক্ষেত্রে ইসলামিক ডেভেলপমেন্ট ব্যাংক (আইডিবি) থেকে ঋণ নেওয়া যেতে পারে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">6. বিশ্লেষণ: সিপিডির এই সম্মাননীয় ফেলো...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> সিপিডির এই সম্মাননীয় ফেলো বলেন, সরকার বর্তমানে জ্বালানি পরিস্থিতি সামাল দিতে স্পট বায়িং করছে। ভারতের সঙ্গে পাইপলাইনের মাধ্যমে ডিজেল আমদানির চুক্তিটি পুনরায় চালু করছে। এ ছাড়া প্রয়োজনে মালয়েশিয়াসহ অন্যান্য বিকল্প উৎস থেকেও জ্বালানি আনার ব্যবস্থা রয়েছে। এখানে মূল লক্ষ্য হলো, জ্বালানির প্রাপ্যতা নিশ্চিত করা। আবার বাড়তি দামে জ্বালানি কিনতে রিজার্ভের ওপর যেন চাপ না পড়ে, সেদিকেও সরকারকে নজর রাখতে হবে। সে ক্ষেত্রে ইসলামিক ডেভেলপমেন্ট ব্যাংক (আইডিবি) থেকে ঋণ নেওয়া যেতে পারে।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <h3>বাক্য বিশ্লেষণ রিপোর্ট</h3>
 <p><strong>প্রদত্ত বাক্য:</strong> "সিপিডির এই সম্মাননীয় ফেলো বলেন, সরকার বর্তমানে জ্বালানি পরিস্থিতি সামাল দিতে স্পট বায়িং করছে। ভারতের সঙ্গে পাইপলাইনের মাধ্যমে ডিজেল আমদানির চুক্তিটি পুনরায় চালু করছে। এ ছাড়া প্রয়োজনে মালয়েশিয়াসহ অন্যান্য বিকল্প উৎস থেকেও জ্বালানি আনার ব্যবস্থা রয়েছে। এখানে মূল লক্ষ্য হলো, জ্বালানির প্রাপ্যতা নিশ্চিত করা। আবার বাড়তি দামে জ্বালানি কিনতে রিজার্ভের ওপর যেন চাপ না পড়ে, সেদিকেও সরকারকে নজর রাখতে হবে। সে ক্ষেত্রে ইসলামিক ডেভেলপমেন্ট ব্যাংক (আইডিবি) থেকে ঋণ নেওয়া যেতে পারে।"</p>
@@ -1673,19 +1659,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <h3>৪. কনভার্সেশনাল (Conversational) - কথ্য শৈলী</h3>
 <p>এই শৈলীতে লেখাকে আরও সহজ, অনানুষ্ঠানিক ও কথোপকথনমূলক করা হয়, যেন পাঠক বন্ধুর সাথে কথা বলার মতো অনুভব করেন। সাধারণ ভাষা, ছোট বাক্য এবং সরাসরি সম্বোধন (যদি প্রযোজ্য হয়) ব্যবহার করা হয়।</p>
 <p>সিপিডির <strong>এই স্যার বলছেন</strong>, সরকার এখন <strong>জ্বালানির যা অবস্থা, সেটা ঠিক করতে</strong> <strong>সরাসরি কিনছে</strong>। ভারতের সাথে পাইপলাইনের মাধ্যমে ডিজেল <strong>আমদানির ডিলটা আবার চালু করছে</strong>। <strong>আর দরকার হলে মালয়েশিয়া বা অন্য জায়গা থেকেও তেল আনার ব্যবস্থা আছে</strong>। <strong>আসলে মূল কথা হলো, তেল যেন পাওয়া যায়</strong>। তবে <strong>বেশি দামে তেল কিনতে গিয়ে যেন দেশের জমানো টাকায় টান না পড়ে</strong>, <strong>সেটাও সরকারকে দেখতে হবে</strong>। <strong>তখন আইডিবি থেকে লোন নেওয়া যেতে পারে</strong>।</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f6-red" class="dot red"></label><label for="f6-yellow" class="dot yellow"></label><label for="f6-green" class="dot green"></label><label for="f6-blue" class="dot blue"></label><label for="f6-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c5">← Prev</a><a href="#c7">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c7" data-id="7" data-search="7 বিশ্লেষণ: মোস্তাফিজুর রহমান বলেন, জ্বালানি... মূল বাক্য: মোস্তাফিজুর রহমান বলেন, জ্বালানি তেল কিনতে রিজার্ভের ওপর চাপ কমানো জরুরি। তার কারণ রিজার্ভের ওপর খাদ্যনিরাপত্তা ও সার আমদানির মতো গুরুত্বপূর্ণ বিষয় নির্ভর করে। বর্তমান পরিস্থিতি মোকাবিলায় একটি স্বল্পমেয়াদি সমন্বিত পরিকল্পনার পাশাপাশি মধ্য মেয়াদে জ্বালানি তেলের একটি স্ট্র্যাটেজিক রিজার্ভ গড়ে তোলা প্রয়োজন, যা বাজারকে নিশ্চয়তা দেবে। এমনকি ভবিষ্যতে প্যানিক বায়িং থেকে নিষ্কৃতি দেবে। ">
-<input type="radio" class="fr fr-red" name="f7" id="f7-red" value="red"><input type="radio" class="fr fr-yellow" name="f7" id="f7-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f7" id="f7-green" value="green"><input type="radio" class="fr fr-blue" name="f7" id="f7-blue" value="blue"><input type="radio" class="fr fr-none" name="f7" id="f7-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#7</span><h2><!--t-->বিশ্লেষণ: মোস্তাফিজুর রহমান বলেন, জ্বালানি...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> মোস্তাফিজুর রহমান বলেন, জ্বালানি তেল কিনতে রিজার্ভের ওপর চাপ কমানো জরুরি। তার কারণ রিজার্ভের ওপর খাদ্যনিরাপত্তা ও সার আমদানির মতো গুরুত্বপূর্ণ বিষয় নির্ভর করে। বর্তমান পরিস্থিতি মোকাবিলায় একটি স্বল্পমেয়াদি সমন্বিত পরিকল্পনার পাশাপাশি মধ্য মেয়াদে জ্বালানি তেলের একটি স্ট্র্যাটেজিক রিজার্ভ গড়ে তোলা প্রয়োজন, যা বাজারকে নিশ্চয়তা দেবে। এমনকি ভবিষ্যতে প্যানিক বায়িং থেকে নিষ্কৃতি দেবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>মোস্তাফিজুর রহমানের বক্তব্যটি একটি বিশ্লেষণাত্মক এবং প্রস্তাবনামূলক। নিচে এর বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">7. বিশ্লেষণ: মোস্তাফিজুর রহমান বলেন, জ্বালানি...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> মোস্তাফিজুর রহমান বলেন, জ্বালানি তেল কিনতে রিজার্ভের ওপর চাপ কমানো জরুরি। তার কারণ রিজার্ভের ওপর খাদ্যনিরাপত্তা ও সার আমদানির মতো গুরুত্বপূর্ণ বিষয় নির্ভর করে। বর্তমান পরিস্থিতি মোকাবিলায় একটি স্বল্পমেয়াদি সমন্বিত পরিকল্পনার পাশাপাশি মধ্য মেয়াদে জ্বালানি তেলের একটি স্ট্র্যাটেজিক রিজার্ভ গড়ে তোলা প্রয়োজন, যা বাজারকে নিশ্চয়তা দেবে। এমনকি ভবিষ্যতে প্যানিক বায়িং থেকে নিষ্কৃতি দেবে।
+                </div>
+                <div class="analysis-content">
+                    <p>মোস্তাফিজুর রহমানের বক্তব্যটি একটি বিশ্লেষণাত্মক এবং প্রস্তাবনামূলক। নিচে এর বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
 <hr />
 <h3><strong>বিশ্লেষণমূলক রিপোর্ট</strong></h3>
 <p><strong>মূল বক্তব্য:</strong> মোস্তাফিজুর রহমান জ্বালানি তেল ক্রয়ের কারণে দেশের রিজার্ভের ওপর চাপ কমানোর প্রয়োজনীয়তা তুলে ধরেছেন। এর কারণ হিসেবে তিনি রিজার্ভের ওপর খাদ্যনিরাপত্তা ও সার আমদানির মতো গুরুত্বপূর্ণ বিষয়ের নির্ভরশীলতার কথা উল্লেখ করেছেন। বর্তমান পরিস্থিতি মোকাবিলায় তিনি একটি স্বল্পমেয়াদি সমন্বিত পরিকল্পনা এবং মধ্য মেয়াদে একটি কৌশলগত জ্বালানি তেলের মজুদ গড়ে তোলার প্রস্তাব করেছেন, যা বাজার স্থিতিশীল রাখবে এবং ভবিষ্যতের আতঙ্কিত ক্রয় পরিস্থিতি থেকে মুক্তি দেবে।</p>
@@ -1785,7 +1771,26 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <h4><strong>৩. ব্যতিক্রমী শব্দ ও শব্দগুচ্ছের বিশ্লেষণ</strong></h4>
 <p>এই লেখায় কিছু শব্দ ও শব্দগুচ্ছ ব্যবহার করা হয়েছে যা সাধারণ কথ্য ভাষার চেয়ে কিছুটা আনুষ্ঠানিক বা কারিগরি। আকর্ষণীয় লেখার জন্য এগুলো ব্যবহার করা হয়েছে, এবং এর পরিবর্তে সাধারণ কী শব্দ ব্যবহার করা যায় এবং আরও সুন্দর লেখার জন্য বিকল্প কী কী ব্যবহার করা যায় তার একটি তালিকা নিচে দেওয়া হলো:</p>
 <p><strong>HTML List:</strong></p>
-
+<style>
+  .report-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .report-list li {
+    margin-bottom: 10px;
+  }
+  .report-list strong {
+    color: #333;
+  }
+  .report-list ul {
+    list-style-type: disc;
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  .report-list ul li {
+    margin-bottom: 3px;
+  }
+</style>
 
 <ul class="report-list">
   <li>
@@ -2044,19 +2049,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     </ul>
   </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f7-red" class="dot red"></label><label for="f7-yellow" class="dot yellow"></label><label for="f7-green" class="dot green"></label><label for="f7-blue" class="dot blue"></label><label for="f7-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c6">← Prev</a><a href="#c8">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c8" data-id="8" data-search="8 বিশ্লেষণ: সিপিডির নির্বাহী পরিচালক ফাহমিদা... মূল বাক্য: সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন বলেন, বর্তমান সময়ে দেশের ভেতরে-বাইরে চ্যালেঞ্জ রয়েছে। এ পরিস্থিতিতে সুনির্দিষ্ট ও কৌশলগত নীতিগত পদক্ষেপ গ্রহণ করাটা অত্যন্ত প্রয়োজন। নীতিনির্ধারকদের জন্য প্রধান অগ্রাধিকার এখন হওয়া উচিত, সামষ্টিক অর্থনৈতিক স্থিতিশীলতা প্রতিষ্ঠা করা। এর জন্য মূল্যস্ফীতি নিয়ন্ত্রণ, রাজস্বব্যবস্থায় শৃঙ্খলা, বিনিয়োগ বৃদ্ধি ও কর্মসংস্থান সৃষ্টির লক্ষ্যে সুনির্দিষ্ট উদ্য ">
-<input type="radio" class="fr fr-red" name="f8" id="f8-red" value="red"><input type="radio" class="fr fr-yellow" name="f8" id="f8-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f8" id="f8-green" value="green"><input type="radio" class="fr fr-blue" name="f8" id="f8-blue" value="blue"><input type="radio" class="fr fr-none" name="f8" id="f8-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#8</span><h2><!--t-->বিশ্লেষণ: সিপিডির নির্বাহী পরিচালক ফাহমিদা...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন বলেন, বর্তমান সময়ে দেশের ভেতরে-বাইরে চ্যালেঞ্জ রয়েছে। এ পরিস্থিতিতে সুনির্দিষ্ট ও কৌশলগত নীতিগত পদক্ষেপ গ্রহণ করাটা অত্যন্ত প্রয়োজন। নীতিনির্ধারকদের জন্য প্রধান অগ্রাধিকার এখন হওয়া উচিত, সামষ্টিক অর্থনৈতিক স্থিতিশীলতা প্রতিষ্ঠা করা। এর জন্য মূল্যস্ফীতি নিয়ন্ত্রণ, রাজস্বব্যবস্থায় শৃঙ্খলা, বিনিয়োগ বৃদ্ধি ও কর্মসংস্থান সৃষ্টির লক্ষ্যে সুনির্দিষ্ট উদ্যোগ লাগবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটির বিস্তারিত বিশ্লেষণ নিচে একটি রিপোর্ট আকারে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">8. বিশ্লেষণ: সিপিডির নির্বাহী পরিচালক ফাহমিদা...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন বলেন, বর্তমান সময়ে দেশের ভেতরে-বাইরে চ্যালেঞ্জ রয়েছে। এ পরিস্থিতিতে সুনির্দিষ্ট ও কৌশলগত নীতিগত পদক্ষেপ গ্রহণ করাটা অত্যন্ত প্রয়োজন। নীতিনির্ধারকদের জন্য প্রধান অগ্রাধিকার এখন হওয়া উচিত, সামষ্টিক অর্থনৈতিক স্থিতিশীলতা প্রতিষ্ঠা করা। এর জন্য মূল্যস্ফীতি নিয়ন্ত্রণ, রাজস্বব্যবস্থায় শৃঙ্খলা, বিনিয়োগ বৃদ্ধি ও কর্মসংস্থান সৃষ্টির লক্ষ্যে সুনির্দিষ্ট উদ্যোগ লাগবে।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটির বিস্তারিত বিশ্লেষণ নিচে একটি রিপোর্ট আকারে দেওয়া হলো:</p>
 <hr />
 <p><strong>সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন বলেন, বর্তমান সময়ে দেশের ভেতরে-বাইরে চ্যালেঞ্জ রয়েছে। এ পরিস্থিতিতে সুনির্দিষ্ট ও কৌশলগত নীতিগত পদক্ষেপ গ্রহণ করাটা অত্যন্ত প্রয়োজন। নীতিনির্ধারকদের জন্য প্রধান অগ্রাধিকার এখন হওয়া উচিত, সামষ্টিক অর্থনৈতিক স্থিতিশীলতা প্রতিষ্ঠা করা। এর জন্য মূল্যস্ফীতি নিয়ন্ত্রণ, রাজস্বব্যবস্থায় শৃঙ্খলা, বিনিয়োগ বৃদ্ধি ও কর্মসংস্থান সৃষ্টির লক্ষ্যে সুনির্দিষ্ট উদ্যোগ লাগবে।</strong></p>
 <hr />
@@ -2376,19 +2381,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     সিপিডির নির্বাহী পরিচালক ফাহমিদা খাতুন <strong style="color: #5a6268;">বলছেন</strong>, <strong style="color: #5a6268;">এখন আমাদের দেশের ভেতরে-বাইরে বেশ কিছু সমস্যা আছে</strong>। এই অবস্থায় <strong style="color: #5a6268;">বিশেষ আর বুদ্ধিদীপ্ত কিছু নীতিগত কাজ করাটা খুব জরুরি</strong>। যারা নীতি ঠিক করেন, তাদের <strong style="color: #5a6268;">প্রথম কাজ হওয়া উচিত</strong> দেশের অর্থনীতিকে ঠিক রাখা। আর এর জন্য <strong style="color: #5a6268;">জিনিসের দাম কমানো, সরকারি আয়ে শৃঙ্খলা আনা, বিনিয়োগ বাড়ানো আর মানুষের জন্য কাজের ব্যবস্থা করতে কিছু উদ্যোগ নিতে হবে</strong>।
 </p>
 <p style="font-size: 0.9em; color: #555;"><strong>পরিবর্তনের ব্যাখ্যা:</strong> 'বলেন' এর বদলে 'বলছেন' ব্যবহার করা হয়েছে। 'চ্যালেঞ্জ' এর বদলে 'সমস্যা' বা 'জটিলতা' ব্যবহার করা হয়েছে। 'সুনির্দিষ্ট ও কৌশলগত নীতিগত পদক্ষেপ' এর বদলে 'বিশেষ আর বুদ্ধিদীপ্ত কিছু নীতিগত কাজ' ব্যবহার করা হয়েছে। 'অত্যন্ত প্রয়োজন' এর বদলে 'খুব জরুরি' বা 'খুব দরকারি' ব্যবহার করা হয়েছে। 'সামষ্টিক অর্থনৈতিক স্থিতিশীলতা প্রতিষ্ঠা করা' এর বদলে 'দেশের অর্থনীতিকে ঠিক রাখা' বা 'অর্থনীতির ভারসাম্য আনা' ব্যবহার করা হয়েছে। 'মূল্যস্ফীতি নিয়ন্ত্রণ' এর বদলে 'জিনিসের দাম কমানো' বা 'দ্রব্যমূল্য বৃদ্ধি ঠেকানো' এবং 'রাজস্বব্যবস্থায় শৃঙ্খলা' এর বদলে 'সরকারি আয়ে শৃঙ্খলা আনা' ব্যবহার করা হয়েছে। 'লাগবে' এর বদলে 'নিতে হবে' বা 'করতে হবে' ব্যবহার করা হয়েছে।</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f8-red" class="dot red"></label><label for="f8-yellow" class="dot yellow"></label><label for="f8-green" class="dot green"></label><label for="f8-blue" class="dot blue"></label><label for="f8-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c7">← Prev</a><a href="#c9">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c9" data-id="9" data-search="9 বিশ্লেষণ: ফাহমিদা খাতুন আরও বলেন,... মূল বাক্য: ফাহমিদা খাতুন আরও বলেন, আগামী অর্থবছরের বাজেটটি নবনির্বাচিত বিএনপি সরকারের প্রথম বাজেট। এটা সরকারের জন্য একটা গুরুত্বপূর্ণ সুযোগ, যার মাধ্যমে তারা তাদের নির্বাচনী অঙ্গীকার বাস্তবায়নের সূচনা করতে পারে এবং রাজস্ব ব্যবস্থাপনা ও সরকারি ব্যয়ের দক্ষতার ক্ষেত্রে কার্যকর একটা নেতৃত্ব প্রদর্শন করতে পারে। তিনি আরও বলেন, বর্তমান অস্থিরতা মোকাবিলা করার জন্য অর্থনৈতিক স্থিতিশীলতা অর্জনের পাশাপাশি অর ">
-<input type="radio" class="fr fr-red" name="f9" id="f9-red" value="red"><input type="radio" class="fr fr-yellow" name="f9" id="f9-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f9" id="f9-green" value="green"><input type="radio" class="fr fr-blue" name="f9" id="f9-blue" value="blue"><input type="radio" class="fr fr-none" name="f9" id="f9-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#9</span><h2><!--t-->বিশ্লেষণ: ফাহমিদা খাতুন আরও বলেন,...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> ফাহমিদা খাতুন আরও বলেন, আগামী অর্থবছরের বাজেটটি নবনির্বাচিত বিএনপি সরকারের প্রথম বাজেট। এটা সরকারের জন্য একটা গুরুত্বপূর্ণ সুযোগ, যার মাধ্যমে তারা তাদের নির্বাচনী অঙ্গীকার বাস্তবায়নের সূচনা করতে পারে এবং রাজস্ব ব্যবস্থাপনা ও সরকারি ব্যয়ের দক্ষতার ক্ষেত্রে কার্যকর একটা নেতৃত্ব প্রদর্শন করতে পারে। তিনি আরও বলেন, বর্তমান অস্থিরতা মোকাবিলা করার জন্য অর্থনৈতিক স্থিতিশীলতা অর্জনের পাশাপাশি অর্থনীতির দীর্ঘমেয়াদি ভিত্তিটা শক্তিশালী করার জন্য প্রয়োজনীয় সংস্কার কার্যক্রম অব্যাহত রাখতে হবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>নিচের বাক্যটির বিস্তারিত বিশ্লেষণ করে একটি রিপোর্ট প্রস্তুত করা হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">9. বিশ্লেষণ: ফাহমিদা খাতুন আরও বলেন,...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> ফাহমিদা খাতুন আরও বলেন, আগামী অর্থবছরের বাজেটটি নবনির্বাচিত বিএনপি সরকারের প্রথম বাজেট। এটা সরকারের জন্য একটা গুরুত্বপূর্ণ সুযোগ, যার মাধ্যমে তারা তাদের নির্বাচনী অঙ্গীকার বাস্তবায়নের সূচনা করতে পারে এবং রাজস্ব ব্যবস্থাপনা ও সরকারি ব্যয়ের দক্ষতার ক্ষেত্রে কার্যকর একটা নেতৃত্ব প্রদর্শন করতে পারে। তিনি আরও বলেন, বর্তমান অস্থিরতা মোকাবিলা করার জন্য অর্থনৈতিক স্থিতিশীলতা অর্জনের পাশাপাশি অর্থনীতির দীর্ঘমেয়াদি ভিত্তিটা শক্তিশালী করার জন্য প্রয়োজনীয় সংস্কার কার্যক্রম অব্যাহত রাখতে হবে।
+                </div>
+                <div class="analysis-content">
+                    <p>নিচের বাক্যটির বিস্তারিত বিশ্লেষণ করে একটি রিপোর্ট প্রস্তুত করা হলো:</p>
 <p><strong>মূল বাক্য:</strong> "ফাহমিদা খাতুন আরও বলেন, আগামী অর্থবছরের বাজেটটি নবনির্বাচিত বিএনপি সরকারের প্রথম বাজেট। এটা সরকারের জন্য একটা গুরুত্বপূর্ণ সুযোগ, যার মাধ্যমে তারা তাদের নির্বাচনী অঙ্গীকার বাস্তবায়নের সূচনা করতে পারে এবং রাজস্ব ব্যবস্থাপনা ও সরকারি ব্যয়ের দক্ষতার ক্ষেত্রে কার্যকর একটা নেতৃত্ব প্রদর্শন করতে পারে। তিনি আরও বলেন, বর্তমান অস্থিরতা মোকাবিলা করার জন্য অর্থনৈতিক স্থিতিশীলতা অর্জনের পাশাপাশি অর্থনীতির দীর্ঘমেয়াদি ভিত্তিটা শক্তিশালী করার জন্য প্রয়োজনীয় সংস্কার কার্যক্রম অব্যাহত রাখতে হবে।"</p>
 <hr />
 <h3><strong>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</strong></h3>
@@ -2673,19 +2678,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <li><code>এটা তাদের জন্য একটা দারুণ সুযোগ, যেখানে তারা ভোটে জেতার আগে যে প্রতিশ্রুতিগুলো দিয়েছিল, সেগুলো কাজ শুরু করতে পারে আর টাকা-পয়সা আর খরচের ব্যাপারে কতটা ভালো, সেটা দেখাতে পারে।</code> (এটা সরকারের জন্য একটা গুরুত্বপূর্ণ সুযোগ...নেতৃত্ব প্রদর্শন করতে পারে এর পরিবর্তে)</li>
 <li><code>উনি আরও বললেন, এখনকার যে সমস্যাগুলো চলছে, সেগুলো সামলানোর জন্য একদিকে যেমন অর্থনীতিকে ঠিকঠাক রাখতে হবে, তেমনই অন্যদিকে অর্থনীতির দীর্ঘমেয়াদি ভিতটা মজবুত করার জন্য জরুরি কিছু পরিবর্তন চালিয়ে যেতে হবে।</code> (বর্তমান অস্থিরতা মোকাবিলা করার জন্য... অব্যাহত রাখতে হবে এর পরিবর্তে)</li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f9-red" class="dot red"></label><label for="f9-yellow" class="dot yellow"></label><label for="f9-green" class="dot green"></label><label for="f9-blue" class="dot blue"></label><label for="f9-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c8">← Prev</a><a href="#c10">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c10" data-id="10" data-search="10 বিশ্লেষণ: বাংলাদেশে যখন ক্ষমতার পটভূমি... মূল বাক্য: বাংলাদেশে যখন ক্ষমতার পটভূমি পরিবর্তিত হয়েছে, এরপরই পছন্দের ব্যক্তিদের দিয়ে প্রশাসন সাজানোর সংস্কৃতি চর্চিত হয়ে আসছে। মেধানির্ভরতা কিংবা যোগ্যতানির্ভরতাকে পাশ কাটিয়ে রাজনৈতিক দলীয় অনুগতদের দিয়ে রাষ্ট্রীয় প্রশাসনকাঠামো ক্ষমতাসীনদের শাসনব্যবস্থায় ‘প্রভুত্বশীল’ মনস্তত্ত্ব তৈরি করলেও এ ব্যবস্থা থেকে এবারও মুক্তি মিলছে না। ">
-<input type="radio" class="fr fr-red" name="f10" id="f10-red" value="red"><input type="radio" class="fr fr-yellow" name="f10" id="f10-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f10" id="f10-green" value="green"><input type="radio" class="fr fr-blue" name="f10" id="f10-blue" value="blue"><input type="radio" class="fr fr-none" name="f10" id="f10-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#10</span><h2><!--t-->বিশ্লেষণ: বাংলাদেশে যখন ক্ষমতার পটভূমি...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> বাংলাদেশে যখন ক্ষমতার পটভূমি পরিবর্তিত হয়েছে, এরপরই পছন্দের ব্যক্তিদের দিয়ে প্রশাসন সাজানোর সংস্কৃতি চর্চিত হয়ে আসছে। মেধানির্ভরতা কিংবা যোগ্যতানির্ভরতাকে পাশ কাটিয়ে রাজনৈতিক দলীয় অনুগতদের দিয়ে রাষ্ট্রীয় প্রশাসনকাঠামো ক্ষমতাসীনদের শাসনব্যবস্থায় ‘প্রভুত্বশীল’ মনস্তত্ত্ব তৈরি করলেও এ ব্যবস্থা থেকে এবারও মুক্তি মিলছে না।<!--/s--></div></summary>
-<div class="body"><!--b--><p>নিচের বাক্যটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">10. বিশ্লেষণ: বাংলাদেশে যখন ক্ষমতার পটভূমি...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> বাংলাদেশে যখন ক্ষমতার পটভূমি পরিবর্তিত হয়েছে, এরপরই পছন্দের ব্যক্তিদের দিয়ে প্রশাসন সাজানোর সংস্কৃতি চর্চিত হয়ে আসছে। মেধানির্ভরতা কিংবা যোগ্যতানির্ভরতাকে পাশ কাটিয়ে রাজনৈতিক দলীয় অনুগতদের দিয়ে রাষ্ট্রীয় প্রশাসনকাঠামো ক্ষমতাসীনদের শাসনব্যবস্থায় ‘প্রভুত্বশীল’ মনস্তত্ত্ব তৈরি করলেও এ ব্যবস্থা থেকে এবারও মুক্তি মিলছে না।
+                </div>
+                <div class="analysis-content">
+                    <p>নিচের বাক্যটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
 <p><strong>মূল বাক্য:</strong> "বাংলাদেশে যখন ক্ষমতার পটভূমি পরিবর্তিত হয়েছে, এরপরই পছন্দের ব্যক্তিদের দিয়ে প্রশাসন সাজানোর সংস্কৃতি চর্চিত হয়ে আসছে। মেধানির্ভরতা কিংবা যোগ্যতানির্ভরতাকে পাশ কাটিয়ে রাজনৈতিক দলীয় অনুগতদের দিয়ে রাষ্ট্রীয় প্রশাসনকাঠামো ক্ষমতাসীনদের শাসনব্যবস্থায় ‘প্রভুত্বশীল’ মনস্তত্ত্ব তৈরি করলেও এ ব্যবস্থা থেকে এবারও মুক্তি মিলছে না।"</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</h3>
@@ -2938,19 +2943,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </p>
     </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f10-red" class="dot red"></label><label for="f10-yellow" class="dot yellow"></label><label for="f10-green" class="dot green"></label><label for="f10-blue" class="dot blue"></label><label for="f10-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c9">← Prev</a><a href="#c11">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c11" data-id="11" data-search="11 বিশ্লেষণ: চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে... মূল বাক্য: চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে তৈরি হওয়া ‘বৈষম্যহীন বাংলাদেশ’ গড়ার প্রত্যয় নিয়ে দেশের মানুষ যখন ভোটাধিকার প্রয়োগ করল, নতুন সরকার গঠন করল, এর পর থেকে আমরা সেই পুরোনো কাঠামোয় দেশ পরিচালনার দৃশ্যায়ন দেখতে শুরু করেছি। সাংবিধানিক পদ থেকে শুরু করে চুক্তিভিত্তিক নিয়োগগুলোতে আবার দলীয়করণের খবরাখবর পত্রপত্রিকায় প্রকাশিত হচ্ছে। কোথাও মব করে আবার কোথাও প্রত্যক্ষ বা পরোক্ষ চাপ প্রয়োগ করে,  ">
-<input type="radio" class="fr fr-red" name="f11" id="f11-red" value="red"><input type="radio" class="fr fr-yellow" name="f11" id="f11-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f11" id="f11-green" value="green"><input type="radio" class="fr fr-blue" name="f11" id="f11-blue" value="blue"><input type="radio" class="fr fr-none" name="f11" id="f11-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#11</span><h2><!--t-->বিশ্লেষণ: চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে তৈরি হওয়া ‘বৈষম্যহীন বাংলাদেশ’ গড়ার প্রত্যয় নিয়ে দেশের মানুষ যখন ভোটাধিকার প্রয়োগ করল, নতুন সরকার গঠন করল, এর পর থেকে আমরা সেই পুরোনো কাঠামোয় দেশ পরিচালনার দৃশ্যায়ন দেখতে শুরু করেছি। সাংবিধানিক পদ থেকে শুরু করে চুক্তিভিত্তিক নিয়োগগুলোতে আবার দলীয়করণের খবরাখবর পত্রপত্রিকায় প্রকাশিত হচ্ছে। কোথাও মব করে আবার কোথাও প্রত্যক্ষ বা পরোক্ষ চাপ প্রয়োগ করে, বিভিন্ন সংস্থা, দপ্তরে বদলি, চাকরিচ্যুতির ঘটনা চব্বিশের গণ-অভ্যুত্থানের চেতনাকেই প্রশ্নবিদ্ধ করেছে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটি বিশদভাবে বিশ্লেষণ করে একটি রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">11. বিশ্লেষণ: চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে তৈরি হওয়া ‘বৈষম্যহীন বাংলাদেশ’ গড়ার প্রত্যয় নিয়ে দেশের মানুষ যখন ভোটাধিকার প্রয়োগ করল, নতুন সরকার গঠন করল, এর পর থেকে আমরা সেই পুরোনো কাঠামোয় দেশ পরিচালনার দৃশ্যায়ন দেখতে শুরু করেছি। সাংবিধানিক পদ থেকে শুরু করে চুক্তিভিত্তিক নিয়োগগুলোতে আবার দলীয়করণের খবরাখবর পত্রপত্রিকায় প্রকাশিত হচ্ছে। কোথাও মব করে আবার কোথাও প্রত্যক্ষ বা পরোক্ষ চাপ প্রয়োগ করে, বিভিন্ন সংস্থা, দপ্তরে বদলি, চাকরিচ্যুতির ঘটনা চব্বিশের গণ-অভ্যুত্থানের চেতনাকেই প্রশ্নবিদ্ধ করেছে।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটি বিশদভাবে বিশ্লেষণ করে একটি রিপোর্ট নিচে দেওয়া হলো:</p>
 <p>প্রদত্ত বাক্য:
 "চব্বিশের গণ-অভ্যুত্থানের আকাঙ্ক্ষা থেকে তৈরি হওয়া ‘বৈষম্যহীন বাংলাদেশ’ গড়ার প্রত্যয় নিয়ে দেশের মানুষ যখন ভোটাধিকার প্রয়োগ করল, নতুন সরকার গঠন করল, এর পর থেকে আমরা সেই পুরোনো কাঠামোয় দেশ পরিচালনার দৃশ্যায়ন দেখতে শুরু করেছি। সাংবিধানিক পদ থেকে শুরু করে চুক্তিভিত্তিক নিয়োগগুলোতে আবার দলীয়করণের খবরাখবর পত্রপত্রিকায় প্রকাশিত হচ্ছে। কোথাও মব করে আবার কোথাও প্রত্যক্ষ বা পরোক্ষ চাপ প্রয়োগ করে, বিভিন্ন সংস্থা, দপ্তরে বদলি, চাকরিচ্যুতির ঘটনা চব্বিশের গণ-অভ্যুত্থানের চেতনাকেই প্রশ্নবিদ্ধ করেছে।"</p>
 <hr />
@@ -3142,19 +3147,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     <li><b>মূল:</b> কোথাও মব করে আবার কোথাও প্রত্যক্ষ বা পরোক্ষ চাপ প্রয়োগ করে, বিভিন্ন সংস্থা, দপ্তরে বদলি, চাকরিচ্যুতির ঘটনা চব্বিশের গণ-অভ্যুত্থানের চেতনাকেই প্রশ্নবিদ্ধ করেছে।</li>
     <li><b>পরিবর্তিত:</b> কোথাও তো আবার লোক জড়ো করে, বা চাপ দিয়ে বদলি বা চাকরি থেকে সরিয়ে দিচ্ছে। এটা '২৪-এর সেই চেতনার সঙ্গেই তো বেমানান, তাই না?</li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f11-red" class="dot red"></label><label for="f11-yellow" class="dot yellow"></label><label for="f11-green" class="dot green"></label><label for="f11-blue" class="dot blue"></label><label for="f11-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c10">← Prev</a><a href="#c12">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c12" data-id="12" data-search="12 বিশ্লেষণ: চব্বিশের ৫ আগস্টে শেখ... মূল বাক্য: চব্বিশের ৫ আগস্টে শেখ হাসিনার নেতৃত্বাধীন সরকারের পতনের পর ৮ আগস্ট যে অন্তর্বর্তীকালীন সরকার গঠন করা হলো, সেই সরকার গঠনের পরও আমরা ঠিক একই প্রবণতা দেখলাম। দেশজুড়ে বিশ্ববিদ্যালয়গুলোর উপাচার্যদের পদত্যাগ করতে বাধ্য করানো হলো, মবের মুখে বিচারকদের পদত্যাগ থেকে শুরু করে প্রশাসনের অনেক কিছুতে পরিবর্তন আনা হলো। ">
-<input type="radio" class="fr fr-red" name="f12" id="f12-red" value="red"><input type="radio" class="fr fr-yellow" name="f12" id="f12-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f12" id="f12-green" value="green"><input type="radio" class="fr fr-blue" name="f12" id="f12-blue" value="blue"><input type="radio" class="fr fr-none" name="f12" id="f12-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#12</span><h2><!--t-->বিশ্লেষণ: চব্বিশের ৫ আগস্টে শেখ...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> চব্বিশের ৫ আগস্টে শেখ হাসিনার নেতৃত্বাধীন সরকারের পতনের পর ৮ আগস্ট যে অন্তর্বর্তীকালীন সরকার গঠন করা হলো, সেই সরকার গঠনের পরও আমরা ঠিক একই প্রবণতা দেখলাম। দেশজুড়ে বিশ্ববিদ্যালয়গুলোর উপাচার্যদের পদত্যাগ করতে বাধ্য করানো হলো, মবের মুখে বিচারকদের পদত্যাগ থেকে শুরু করে প্রশাসনের অনেক কিছুতে পরিবর্তন আনা হলো।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি একটি বিশ্লেষণমূলক এবং তথ্যবহুল লেখা। নিচে এর বিস্তারিত রিপোর্ট দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">12. বিশ্লেষণ: চব্বিশের ৫ আগস্টে শেখ...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> চব্বিশের ৫ আগস্টে শেখ হাসিনার নেতৃত্বাধীন সরকারের পতনের পর ৮ আগস্ট যে অন্তর্বর্তীকালীন সরকার গঠন করা হলো, সেই সরকার গঠনের পরও আমরা ঠিক একই প্রবণতা দেখলাম। দেশজুড়ে বিশ্ববিদ্যালয়গুলোর উপাচার্যদের পদত্যাগ করতে বাধ্য করানো হলো, মবের মুখে বিচারকদের পদত্যাগ থেকে শুরু করে প্রশাসনের অনেক কিছুতে পরিবর্তন আনা হলো।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি একটি বিশ্লেষণমূলক এবং তথ্যবহুল লেখা। নিচে এর বিস্তারিত রিপোর্ট দেওয়া হলো:</p>
 <p><strong>মূল বাক্য:</strong> "চব্বিশের ৫ আগস্টে শেখ হাসিনার নেতৃত্বাধীন সরকারের পতনের পর ৮ আগস্ট যে অন্তর্বর্তীকালীন সরকার গঠন করা হলো, সেই সরকার গঠনের পরও আমরা ঠিক একই প্রবণতা দেখলাম। দেশজুড়ে বিশ্ববিদ্যালয়গুলোর উপাচার্যদের পদত্যাগ করতে বাধ্য করানো হলো, মবের মুখে বিচারকদের পদত্যাগ থেকে শুরু করে প্রশাসনের অনেক কিছুতে পরিবর্তন আনা হলো।"</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</h3>
@@ -3434,19 +3439,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         <p>"জানেন তো, চব্বিশের ৫ আগস্টে তো শেখ হাসিনার সরকারটা পড়ে গেল, তারপর ৮ আগস্ট একটা অস্থায়ী সরকার এলো। কিন্তু মজার ব্যাপার কী, তারপরও আমরা একই জিনিস দেখলাম! সারা দেশের ভিসিদের জোর করে পদত্যাগ করানো হলো। মবের চাপে বিচারকরাও পদত্যাগ করলেন, আর প্রশাসনের তো কত কী পাল্টে গেল!"</p>
     </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f12-red" class="dot red"></label><label for="f12-yellow" class="dot yellow"></label><label for="f12-green" class="dot green"></label><label for="f12-blue" class="dot blue"></label><label for="f12-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c11">← Prev</a><a href="#c13">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c13" data-id="13" data-search="13 বিশ্লেষণ: গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক... মূল বাক্য: গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক মনে করা হলেও সেটি যে সেই পুরোনো কাঠামোর আদলেই ‘সরকারের’ পছন্দনীয় গোষ্ঠী কিংবা সরকারের ভেতর প্রভাব বিস্তারকারী কোনো কোনো রাজনৈতিক দলের পছন্দের ব্যক্তিদের পদায়ন দিয়ে পুরো প্রশাসনব্যবস্থাকে ঢেলে সাজানো হয়েছিল। সে সময়ও মেধাভিত্তিক ও যোগ্যতাভিত্তিক প্রশাসক, সচিব কিংবা আইনশৃঙ্খলা রক্ষাকারী বাহিনীর শীর্ষ পর্যায়ে কর্মকর্তাদের নিয়োগে গুরুত্ব দেওয়া হয় ">
-<input type="radio" class="fr fr-red" name="f13" id="f13-red" value="red"><input type="radio" class="fr fr-yellow" name="f13" id="f13-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f13" id="f13-green" value="green"><input type="radio" class="fr fr-blue" name="f13" id="f13-blue" value="blue"><input type="radio" class="fr fr-none" name="f13" id="f13-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#13</span><h2><!--t-->বিশ্লেষণ: গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক মনে করা হলেও সেটি যে সেই পুরোনো কাঠামোর আদলেই ‘সরকারের’ পছন্দনীয় গোষ্ঠী কিংবা সরকারের ভেতর প্রভাব বিস্তারকারী কোনো কোনো রাজনৈতিক দলের পছন্দের ব্যক্তিদের পদায়ন দিয়ে পুরো প্রশাসনব্যবস্থাকে ঢেলে সাজানো হয়েছিল। সে সময়ও মেধাভিত্তিক ও যোগ্যতাভিত্তিক প্রশাসক, সচিব কিংবা আইনশৃঙ্খলা রক্ষাকারী বাহিনীর শীর্ষ পর্যায়ে কর্মকর্তাদের নিয়োগে গুরুত্ব দেওয়া হয়নি; বরং গুরুত্ব দেওয়া হয়েছিল, কে কে আওয়ামী লীগবিরোধী ছিলেন। কে কে আওয়ামী লীগ সরকারের সুবিধাভোগী কর্মকর্তা-কর্মচারী ছিলেন, তাঁদের ছেঁটে ফেলে নতুনদের নিয়োগে জনপ্রশাসন মন্ত্রণালয়ে ইতিরকম ভিড় লেগে গিয়েছিল। পদায়নবঞ্চিত কিংবা ভিন্নমতাদর্শদের মৌখিক, কাগুজে সনদে অধ্যাপক ইউনূস সরকারের সরকারকাঠামো রচিত হয়েছিল। দিন শেষে দেখা গেল, ওই প্রশাসনই ইউনূস সরকারের কাঁধে চেপে সরকারের গতিপথ মন্থর করে ফেলেছিল।<!--/s--></div></summary>
-<div class="body"><!--b--><p>প্রদত্ত অনুচ্ছেদটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">13. বিশ্লেষণ: গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> গণ-অভ্যুত্থান–পরবর্তী সময়ে বিষয়টিকে স্বাভাবিক মনে করা হলেও সেটি যে সেই পুরোনো কাঠামোর আদলেই ‘সরকারের’ পছন্দনীয় গোষ্ঠী কিংবা সরকারের ভেতর প্রভাব বিস্তারকারী কোনো কোনো রাজনৈতিক দলের পছন্দের ব্যক্তিদের পদায়ন দিয়ে পুরো প্রশাসনব্যবস্থাকে ঢেলে সাজানো হয়েছিল। সে সময়ও মেধাভিত্তিক ও যোগ্যতাভিত্তিক প্রশাসক, সচিব কিংবা আইনশৃঙ্খলা রক্ষাকারী বাহিনীর শীর্ষ পর্যায়ে কর্মকর্তাদের নিয়োগে গুরুত্ব দেওয়া হয়নি; বরং গুরুত্ব দেওয়া হয়েছিল, কে কে আওয়ামী লীগবিরোধী ছিলেন। কে কে আওয়ামী লীগ সরকারের সুবিধাভোগী কর্মকর্তা-কর্মচারী ছিলেন, তাঁদের ছেঁটে ফেলে নতুনদের নিয়োগে জনপ্রশাসন মন্ত্রণালয়ে ইতিরকম ভিড় লেগে গিয়েছিল। পদায়নবঞ্চিত কিংবা ভিন্নমতাদর্শদের মৌখিক, কাগুজে সনদে অধ্যাপক ইউনূস সরকারের সরকারকাঠামো রচিত হয়েছিল। দিন শেষে দেখা গেল, ওই প্রশাসনই ইউনূস সরকারের কাঁধে চেপে সরকারের গতিপথ মন্থর করে ফেলেছিল।
+                </div>
+                <div class="analysis-content">
+                    <p>প্রদত্ত অনুচ্ছেদটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>অনুচ্ছেদ বিশ্লেষণ রিপোর্ট</strong></p>
 <p><strong>প্রদত্ত অনুচ্ছেদ:</strong>
@@ -3803,19 +3808,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 </p>
 
 <hr />
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f13-red" class="dot red"></label><label for="f13-yellow" class="dot yellow"></label><label for="f13-green" class="dot green"></label><label for="f13-blue" class="dot blue"></label><label for="f13-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c12">← Prev</a><a href="#c14">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c14" data-id="14" data-search="14 বিশ্লেষণ: বিএনপি নেতৃত্বাধীন সরকার গঠনের... মূল বাক্য: বিএনপি নেতৃত্বাধীন সরকার গঠনের পর এরই মধ্যে প্রশাসনে ব্যাপক রদবদল শুরু হয়েছে। বাংলাদেশ ব্যাংকের গর্ভনরকে ‘মব করিয়ে’ সরিয়ে দেওয়া হয়েছে, যেটিকে চাকরিচ্যুত করাই বলা যায়। দুর্নীতি দমন কমিশনের চেয়ারম্যানসহ পুরো কমিশন এক দিনে পদত্যাগ করেছে। বিভিন্ন মন্ত্রাণালয়ে সচিব পরিবর্তন হচ্ছে, কাউকে কাউকে ২৫ বছর চাকরি পূর্ণ হওয়ার আইন দেখিয়ে চাকরিচ্যুত করা হচ্ছে। এই সরকার চাইছে তাদের পছন্দের ব্যক্তিদের নি ">
-<input type="radio" class="fr fr-red" name="f14" id="f14-red" value="red"><input type="radio" class="fr fr-yellow" name="f14" id="f14-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f14" id="f14-green" value="green"><input type="radio" class="fr fr-blue" name="f14" id="f14-blue" value="blue"><input type="radio" class="fr fr-none" name="f14" id="f14-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#14</span><h2><!--t-->বিশ্লেষণ: বিএনপি নেতৃত্বাধীন সরকার গঠনের...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> বিএনপি নেতৃত্বাধীন সরকার গঠনের পর এরই মধ্যে প্রশাসনে ব্যাপক রদবদল শুরু হয়েছে। বাংলাদেশ ব্যাংকের গর্ভনরকে ‘মব করিয়ে’ সরিয়ে দেওয়া হয়েছে, যেটিকে চাকরিচ্যুত করাই বলা যায়। দুর্নীতি দমন কমিশনের চেয়ারম্যানসহ পুরো কমিশন এক দিনে পদত্যাগ করেছে। বিভিন্ন মন্ত্রাণালয়ে সচিব পরিবর্তন হচ্ছে, কাউকে কাউকে ২৫ বছর চাকরি পূর্ণ হওয়ার আইন দেখিয়ে চাকরিচ্যুত করা হচ্ছে। এই সরকার চাইছে তাদের পছন্দের ব্যক্তিদের নিয়ে সরকার পরিচালনা করতে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>অনুচ্ছেদটির একটি বিস্তারিত বিশ্লেষণ নিচে প্রদান করা হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">14. বিশ্লেষণ: বিএনপি নেতৃত্বাধীন সরকার গঠনের...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> বিএনপি নেতৃত্বাধীন সরকার গঠনের পর এরই মধ্যে প্রশাসনে ব্যাপক রদবদল শুরু হয়েছে। বাংলাদেশ ব্যাংকের গর্ভনরকে ‘মব করিয়ে’ সরিয়ে দেওয়া হয়েছে, যেটিকে চাকরিচ্যুত করাই বলা যায়। দুর্নীতি দমন কমিশনের চেয়ারম্যানসহ পুরো কমিশন এক দিনে পদত্যাগ করেছে। বিভিন্ন মন্ত্রাণালয়ে সচিব পরিবর্তন হচ্ছে, কাউকে কাউকে ২৫ বছর চাকরি পূর্ণ হওয়ার আইন দেখিয়ে চাকরিচ্যুত করা হচ্ছে। এই সরকার চাইছে তাদের পছন্দের ব্যক্তিদের নিয়ে সরকার পরিচালনা করতে।
+                </div>
+                <div class="analysis-content">
+                    <p>অনুচ্ছেদটির একটি বিস্তারিত বিশ্লেষণ নিচে প্রদান করা হলো:</p>
 <p><strong>অনুচ্ছেদ:</strong>
 "বিএনপি নেতৃত্বাধীন সরকার গঠনের পর এরই মধ্যে প্রশাসনে ব্যাপক রদবদল শুরু হয়েছে। বাংলাদেশ ব্যাংকের গর্ভনরকে ‘মব করিয়ে’ সরিয়ে দেওয়া হয়েছে, যেটিকে চাকরিচ্যুত করাই বলা যায়। দুর্নীতি দমন কমিশনের চেয়ারম্যানসহ পুরো কমিশন এক দিনে পদত্যাগ করেছে। বিভিন্ন মন্ত্রাণালয়ে সচিব পরিবর্তন হচ্ছে, কাউকে কাউকে ২৫ বছর চাকরি পূর্ণ হওয়ার আইন দেখিয়ে চাকরিচ্যুত করা হচ্ছে। এই সরকার চাইছে তাদের পছন্দের ব্যক্তিদের নিয়ে সরকার পরিচালনা করতে।"</p>
 <hr />
@@ -4090,19 +4095,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     <li><b>বিভিন্ন মন্ত্রাণালয়ে সচিব পরিবর্তন হচ্ছে, কাউকে কাউকে ২৫ বছর চাকরি পূর্ণ হওয়ার আইন দেখিয়ে চাকরিচ্যুত করা হচ্ছে:</b> বিভিন্ন মন্ত্রণালয়ের সচিবরা বদলে যাচ্ছেন, কাউকে কাউকে তো সেই ২৫ বছর পুরোনো আইন দেখিয়ে বিদায় করা হচ্ছে।</li>
     <li><b>এই সরকার চাইছে তাদের পছন্দের ব্যক্তিদের নিয়ে সরকার পরিচালনা করতে:</b> কী আর বলবেন, এই সরকার আসলে চায় তাদের নিজেদের লোক দিয়ে সব কাজ চালাতে।</li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f14-red" class="dot red"></label><label for="f14-yellow" class="dot yellow"></label><label for="f14-green" class="dot green"></label><label for="f14-blue" class="dot blue"></label><label for="f14-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c13">← Prev</a><a href="#c15">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c15" data-id="15" data-search="15 বিশ্লেষণ: কিন্তু প্রশ্ন হলো, নিজেদের... মূল বাক্য: কিন্তু প্রশ্ন হলো, নিজেদের অনুগত দলীয় আদর্শের লোকবল দিয়ে সরকার পরিচালনা করলে কি সরকার ভালোভাবে পরিচালিত হবে? মেরোটোক্রেসি কিংবা কম্পিটেন্সির বৈচিত্র্য না থাকলে আদৌ কি আমরা দেশের গুণগত পরিবর্তন করতে পারব? এ প্রশ্নের উত্তর জানার আগে জানতে হবে, ক্ষমতাসীনেরা কেন দলীয়করণ প্রশাসনকে পছন্দ করে। ">
-<input type="radio" class="fr fr-red" name="f15" id="f15-red" value="red"><input type="radio" class="fr fr-yellow" name="f15" id="f15-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f15" id="f15-green" value="green"><input type="radio" class="fr fr-blue" name="f15" id="f15-blue" value="blue"><input type="radio" class="fr fr-none" name="f15" id="f15-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#15</span><h2><!--t-->বিশ্লেষণ: কিন্তু প্রশ্ন হলো, নিজেদের...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> কিন্তু প্রশ্ন হলো, নিজেদের অনুগত দলীয় আদর্শের লোকবল দিয়ে সরকার পরিচালনা করলে কি সরকার ভালোভাবে পরিচালিত হবে? মেরোটোক্রেসি কিংবা কম্পিটেন্সির বৈচিত্র্য না থাকলে আদৌ কি আমরা দেশের গুণগত পরিবর্তন করতে পারব? এ প্রশ্নের উত্তর জানার আগে জানতে হবে, ক্ষমতাসীনেরা কেন দলীয়করণ প্রশাসনকে পছন্দ করে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি একটি বিশ্লেষণমূলক এবং প্রশ্নবোধক অনুচ্ছেদ, যেখানে বাংলাদেশের শাসনব্যবস্থা ও এর গুণগত পরিবর্তন নিয়ে গভীর প্রশ্ন উত্থাপন করা হয়েছে। নিচে এর বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">15. বিশ্লেষণ: কিন্তু প্রশ্ন হলো, নিজেদের...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> কিন্তু প্রশ্ন হলো, নিজেদের অনুগত দলীয় আদর্শের লোকবল দিয়ে সরকার পরিচালনা করলে কি সরকার ভালোভাবে পরিচালিত হবে? মেরোটোক্রেসি কিংবা কম্পিটেন্সির বৈচিত্র্য না থাকলে আদৌ কি আমরা দেশের গুণগত পরিবর্তন করতে পারব? এ প্রশ্নের উত্তর জানার আগে জানতে হবে, ক্ষমতাসীনেরা কেন দলীয়করণ প্রশাসনকে পছন্দ করে।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি একটি বিশ্লেষণমূলক এবং প্রশ্নবোধক অনুচ্ছেদ, যেখানে বাংলাদেশের শাসনব্যবস্থা ও এর গুণগত পরিবর্তন নিয়ে গভীর প্রশ্ন উত্থাপন করা হয়েছে। নিচে এর বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
 <p><strong>মূল বাক্য/অনুচ্ছেদ:</strong>
 "কিন্তু প্রশ্ন হলো, নিজেদের অনুগত দলীয় আদর্শের লোকবল দিয়ে সরকার পরিচালনা করলে কি সরকার ভালোভাবে পরিচালিত হবে? মেরিটোক্রেসি কিংবা কম্পিটেন্সির বৈচিত্র্য না থাকলে আদৌ কি আমরা দেশের গুণগত পরিবর্তন করতে পারব? এ প্রশ্নের উত্তর জানার আগে জানতে হবে, ক্ষমতাসীনেরা কেন দলীয়করণ প্রশাসনকে পছন্দ করে।"</p>
 <hr />
@@ -4359,19 +4364,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <li><strong>"এ প্রশ্নের উত্তর জানার আগে জানতে হবে," → "এই সব প্রশ্নের উত্তর খোঁজার আগে আমাদের তো জানতে হবে,"</strong>: 'এই সব' এবং 'আমাদের তো' কথ্য সংযোজন।</li>
 <li><strong>"ক্ষমতাসীনেরা কেন দলীয়করণ প্রশাসনকে পছন্দ করে।" → "নেতারা কেন শুধু নিজেদের পছন্দের লোক দিয়ে প্রশাসনকে সাজাতে চায়।"</strong>: 'ক্ষমতাসীনেরা' থেকে 'নেতারা' এবং 'দলীয়করণ প্রশাসন' থেকে 'নিজেদের পছন্দের লোক দিয়ে প্রশাসনকে সাজানো' আরও পরিচিত এবং সহজবোধ্য।</li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f15-red" class="dot red"></label><label for="f15-yellow" class="dot yellow"></label><label for="f15-green" class="dot green"></label><label for="f15-blue" class="dot blue"></label><label for="f15-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c14">← Prev</a><a href="#c16">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c16" data-id="16" data-search="16 বিশ্লেষণ: প্রথমত, দলীয়করণ প্রশাসন হলে... মূল বাক্য: প্রথমত, দলীয়করণ প্রশাসন হলে সরকারের নীতিনির্ধারকদের মধ্যে মতৈক্য তৈরিতে সুবিধা হয়। দ্বিতীয়ত, নিজ দলীয় এজেন্ডা কিংবা নির্বাচনী ইশতেহার প্রতিপালন করতে গলদঘর্ম হতে হয় না। তৃতীয়ত, দলীয়করণ প্রশাসন থাকলে কেন্দ্রীয় নিদের্শনা অনুযায়ী নেটওয়ার্কিং বিশ্বাসযোগ্যতা তৈরি হয়। ">
-<input type="radio" class="fr fr-red" name="f16" id="f16-red" value="red"><input type="radio" class="fr fr-yellow" name="f16" id="f16-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f16" id="f16-green" value="green"><input type="radio" class="fr fr-blue" name="f16" id="f16-blue" value="blue"><input type="radio" class="fr fr-none" name="f16" id="f16-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#16</span><h2><!--t-->বিশ্লেষণ: প্রথমত, দলীয়করণ প্রশাসন হলে...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> প্রথমত, দলীয়করণ প্রশাসন হলে সরকারের নীতিনির্ধারকদের মধ্যে মতৈক্য তৈরিতে সুবিধা হয়। দ্বিতীয়ত, নিজ দলীয় এজেন্ডা কিংবা নির্বাচনী ইশতেহার প্রতিপালন করতে গলদঘর্ম হতে হয় না। তৃতীয়ত, দলীয়করণ প্রশাসন থাকলে কেন্দ্রীয় নিদের্শনা অনুযায়ী নেটওয়ার্কিং বিশ্বাসযোগ্যতা তৈরি হয়।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">16. বিশ্লেষণ: প্রথমত, দলীয়করণ প্রশাসন হলে...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> প্রথমত, দলীয়করণ প্রশাসন হলে সরকারের নীতিনির্ধারকদের মধ্যে মতৈক্য তৈরিতে সুবিধা হয়। দ্বিতীয়ত, নিজ দলীয় এজেন্ডা কিংবা নির্বাচনী ইশতেহার প্রতিপালন করতে গলদঘর্ম হতে হয় না। তৃতীয়ত, দলীয়করণ প্রশাসন থাকলে কেন্দ্রীয় নিদের্শনা অনুযায়ী নেটওয়ার্কিং বিশ্বাসযোগ্যতা তৈরি হয়।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>প্রদত্ত বাক্য:</strong> "প্রথমত, দলীয়করণ প্রশাসন হলে সরকারের নীতিনির্ধারকদের মধ্যে মতৈক্য তৈরিতে সুবিধা হয়। দ্বিতীয়ত, নিজ দলীয় এজেন্ডা কিংবা নির্বাচনী ইশতেহার প্রতিপালন করতে গলদঘর্ম হতে হয় না। তৃতীয়ত, দলীয়করণ প্রশাসন থাকলে কেন্দ্রীয় নিদের্শনা অনুযায়ী নেটওয়ার্কিং বিশ্বাসযোগ্যতা তৈরি হয়।"</p>
 <hr />
@@ -4566,19 +4571,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     </li>
 </ul>
 <p>```</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f16-red" class="dot red"></label><label for="f16-yellow" class="dot yellow"></label><label for="f16-green" class="dot green"></label><label for="f16-blue" class="dot blue"></label><label for="f16-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c15">← Prev</a><a href="#c17">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c17" data-id="17" data-search="17 বিশ্লেষণ: অপর দিকে দলীয়করণ প্রশাসন... মূল বাক্য: অপর দিকে দলীয়করণ প্রশাসন কার্যকরের ফলে দেশে নতুন করে ‘অনুগত’ কিংবা গৃহপালিত প্রতিষ্ঠান তৈরি হয়, যেখানে ভিন্নমতের কিংবা আইডিয়ার প্রতি শ্রদ্ধাবোধ ও বাস্তবায়নের সুযোগ মেলে না। ফলে ‘স্তুতিকর’ সম্প্রদায়ের দাপটে পুরো প্রশাসনকাঠামো কিংবা ক্ষমতার চুম্বকত্ব এক ব্যক্তিকেন্দ্রিক হওয়ার আশঙ্কা তৈরি হয়। স্বৈরাচারের কাঠামোয় প্রবেশের ঝুঁকি থাকে। প্রজন্মের মেধার সঠিক ব্যবহার বাধাগ্রস্ত হয়। ">
-<input type="radio" class="fr fr-red" name="f17" id="f17-red" value="red"><input type="radio" class="fr fr-yellow" name="f17" id="f17-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f17" id="f17-green" value="green"><input type="radio" class="fr fr-blue" name="f17" id="f17-blue" value="blue"><input type="radio" class="fr fr-none" name="f17" id="f17-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#17</span><h2><!--t-->বিশ্লেষণ: অপর দিকে দলীয়করণ প্রশাসন...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> অপর দিকে দলীয়করণ প্রশাসন কার্যকরের ফলে দেশে নতুন করে ‘অনুগত’ কিংবা গৃহপালিত প্রতিষ্ঠান তৈরি হয়, যেখানে ভিন্নমতের কিংবা আইডিয়ার প্রতি শ্রদ্ধাবোধ ও বাস্তবায়নের সুযোগ মেলে না। ফলে ‘স্তুতিকর’ সম্প্রদায়ের দাপটে পুরো প্রশাসনকাঠামো কিংবা ক্ষমতার চুম্বকত্ব এক ব্যক্তিকেন্দ্রিক হওয়ার আশঙ্কা তৈরি হয়। স্বৈরাচারের কাঠামোয় প্রবেশের ঝুঁকি থাকে। প্রজন্মের মেধার সঠিক ব্যবহার বাধাগ্রস্ত হয়।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">17. বিশ্লেষণ: অপর দিকে দলীয়করণ প্রশাসন...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> অপর দিকে দলীয়করণ প্রশাসন কার্যকরের ফলে দেশে নতুন করে ‘অনুগত’ কিংবা গৃহপালিত প্রতিষ্ঠান তৈরি হয়, যেখানে ভিন্নমতের কিংবা আইডিয়ার প্রতি শ্রদ্ধাবোধ ও বাস্তবায়নের সুযোগ মেলে না। ফলে ‘স্তুতিকর’ সম্প্রদায়ের দাপটে পুরো প্রশাসনকাঠামো কিংবা ক্ষমতার চুম্বকত্ব এক ব্যক্তিকেন্দ্রিক হওয়ার আশঙ্কা তৈরি হয়। স্বৈরাচারের কাঠামোয় প্রবেশের ঝুঁকি থাকে। প্রজন্মের মেধার সঠিক ব্যবহার বাধাগ্রস্ত হয়।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <h3>বাক্য বিশ্লেষণ রিপোর্ট</h3>
 <p><strong>প্রদত্ত বাক্য:</strong> "অপর দিকে দলীয়করণ প্রশাসন কার্যকরের ফলে দেশে নতুন করে ‘অনুগত’ কিংবা গৃহপালিত প্রতিষ্ঠান তৈরি হয়, যেখানে ভিন্নমতের কিংবা আইডিয়ার প্রতি শ্রদ্ধাবোধ ও বাস্তবায়নের সুযোগ মেলে না। ফলে ‘স্তুতিকর’ সম্প্রদায়ের দাপটে পুরো প্রশাসনকাঠামো কিংবা ক্ষমতার চুম্বকত্ব এক ব্যক্তিকেন্দ্রিক হওয়ার আশঙ্কা তৈরি হয়। স্বৈরাচারের কাঠামোয় প্রবেশের ঝুঁকি থাকে। প্রজন্মের মেধার সঠিক ব্যবহার বাধাগ্রস্ত হয়।"</p>
@@ -4871,19 +4876,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 </li>
 </ul>
 <hr />
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f17-red" class="dot red"></label><label for="f17-yellow" class="dot yellow"></label><label for="f17-green" class="dot green"></label><label for="f17-blue" class="dot blue"></label><label for="f17-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c16">← Prev</a><a href="#c18">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c18" data-id="18" data-search="18 বিশ্লেষণ: এমন ঝুঁকি থেকে বের... মূল বাক্য: এমন ঝুঁকি থেকে বের হওয়ার জন্য অধ্যাপক ইউনূস সরকার নানা ধরনের সংস্কার সুপারিশের কথা বললেও বাস্তবতার নিরিখে তারা যেমন প্রয়োগ করতে পিছিয়ে ছিল, তেমনি প্রধানমন্ত্রী তারেক রহমানের নেতৃত্বে সরকার ঠিক একই পথে পা বাড়াচ্ছে।একটি দেশের সার্বিক উন্নয়নকাঠামোর কথা চিন্তা করলে সব শ্রেণির মানুষের অংশগ্রহণে দেশ এগিয়ে যাবে। পাহাড় থেকে সমতল কিংবা আঞ্চলিকতার চক্র থেকে বের হতে হবে। ">
-<input type="radio" class="fr fr-red" name="f18" id="f18-red" value="red"><input type="radio" class="fr fr-yellow" name="f18" id="f18-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f18" id="f18-green" value="green"><input type="radio" class="fr fr-blue" name="f18" id="f18-blue" value="blue"><input type="radio" class="fr fr-none" name="f18" id="f18-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#18</span><h2><!--t-->বিশ্লেষণ: এমন ঝুঁকি থেকে বের...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> এমন ঝুঁকি থেকে বের হওয়ার জন্য অধ্যাপক ইউনূস সরকার নানা ধরনের সংস্কার সুপারিশের কথা বললেও বাস্তবতার নিরিখে তারা যেমন প্রয়োগ করতে পিছিয়ে ছিল, তেমনি প্রধানমন্ত্রী তারেক রহমানের নেতৃত্বে সরকার ঠিক একই পথে পা বাড়াচ্ছে।একটি দেশের সার্বিক উন্নয়নকাঠামোর কথা চিন্তা করলে সব শ্রেণির মানুষের অংশগ্রহণে দেশ এগিয়ে যাবে। পাহাড় থেকে সমতল কিংবা আঞ্চলিকতার চক্র থেকে বের হতে হবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটির একটি বিস্তারিত বিশ্লেষণ নিচে প্রদান করা হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">18. বিশ্লেষণ: এমন ঝুঁকি থেকে বের...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> এমন ঝুঁকি থেকে বের হওয়ার জন্য অধ্যাপক ইউনূস সরকার নানা ধরনের সংস্কার সুপারিশের কথা বললেও বাস্তবতার নিরিখে তারা যেমন প্রয়োগ করতে পিছিয়ে ছিল, তেমনি প্রধানমন্ত্রী তারেক রহমানের নেতৃত্বে সরকার ঠিক একই পথে পা বাড়াচ্ছে।একটি দেশের সার্বিক উন্নয়নকাঠামোর কথা চিন্তা করলে সব শ্রেণির মানুষের অংশগ্রহণে দেশ এগিয়ে যাবে। পাহাড় থেকে সমতল কিংবা আঞ্চলিকতার চক্র থেকে বের হতে হবে।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটির একটি বিস্তারিত বিশ্লেষণ নিচে প্রদান করা হলো:</p>
 <hr />
 <p><strong>বিশ্লেষণ রিপোর্ট</strong></p>
 <p><strong>প্রদত্ত বাক্য:</strong> "এমন ঝুঁকি থেকে বের হওয়ার জন্য অধ্যাপক ইউনূস সরকার নানা ধরনের সংস্কার সুপারিশের কথা বললেও বাস্তবতার নিরিখে তারা যেমন প্রয়োগ করতে পিছিয়ে ছিল, তেমনি প্রধানমন্ত্রী তারেক রহমানের নেতৃত্বে সরকার ঠিক একই পথে পা বাড়াচ্ছে। একটি দেশের সার্বিক উন্নয়নকাঠামোর কথা চিন্তা করলে সব শ্রেণির মানুষের অংশগ্রহণে দেশ এগিয়ে যাবে। পাহাড় থেকে সমতল কিংবা আঞ্চলিকতার চক্র থেকে বের হতে হবে।"</p>
@@ -5145,19 +5150,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         <li><b>"পাহাড় থেকে সমতল কিংবা আঞ্চলিকতার চক্র থেকে বের হতে হবে"</b> কে <b>"পাহাড় থেকে সমতল, কিংবা নিজেদের মধ্যে এই আঞ্চলিকতার ভেদাভেদ থেকে আমাদের বের হয়ে আসতে হবে।"</b> করে 'আমরা' ও 'আমাদের' ব্যবহার করে পাঠককে সরাসরি অন্তর্ভুক্ত করা হয়েছে।</li>
     </ul>
 </p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f18-red" class="dot red"></label><label for="f18-yellow" class="dot yellow"></label><label for="f18-green" class="dot green"></label><label for="f18-blue" class="dot blue"></label><label for="f18-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c17">← Prev</a><a href="#c19">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c19" data-id="19" data-search="19 বিশ্লেষণ: মূলত যোগ্য ব্যক্তিদের যোগ্যতা... মূল বাক্য: মূলত যোগ্য ব্যক্তিদের যোগ্যতা অনুযায়ী সঠিক স্থানে পদায়নের মাধ্যমে দেশের অর্থনৈতিক ও সামাজিক কাঠামোর পরিবর্তন সম্ভবপর হবে। আমাদের মনে রাখতে হবে, একজন ব্যক্তির মেধা অবশ্যই যেকোনো রাজনৈতিক পরিচয়ের ঊর্ধ্বে। ব্যক্তির রাজনৈতিক কিংবা ধর্মীয় পছন্দ ও অপছন্দের প্রভাব কর্মক্ষেত্রে যেন না পড়ে, সে সংস্কৃতির বিকাশ আনতে হলে সরকারকে নতুন করে সুযোগ ও সম্ভাবনার পথ উন্মুক্ত করতেই হবে। ">
-<input type="radio" class="fr fr-red" name="f19" id="f19-red" value="red"><input type="radio" class="fr fr-yellow" name="f19" id="f19-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f19" id="f19-green" value="green"><input type="radio" class="fr fr-blue" name="f19" id="f19-blue" value="blue"><input type="radio" class="fr fr-none" name="f19" id="f19-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#19</span><h2><!--t-->বিশ্লেষণ: মূলত যোগ্য ব্যক্তিদের যোগ্যতা...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> মূলত যোগ্য ব্যক্তিদের যোগ্যতা অনুযায়ী সঠিক স্থানে পদায়নের মাধ্যমে দেশের অর্থনৈতিক ও সামাজিক কাঠামোর পরিবর্তন সম্ভবপর হবে। আমাদের মনে রাখতে হবে, একজন ব্যক্তির মেধা অবশ্যই যেকোনো রাজনৈতিক পরিচয়ের ঊর্ধ্বে। ব্যক্তির রাজনৈতিক কিংবা ধর্মীয় পছন্দ ও অপছন্দের প্রভাব কর্মক্ষেত্রে যেন না পড়ে, সে সংস্কৃতির বিকাশ আনতে হলে সরকারকে নতুন করে সুযোগ ও সম্ভাবনার পথ উন্মুক্ত করতেই হবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">19. বিশ্লেষণ: মূলত যোগ্য ব্যক্তিদের যোগ্যতা...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> মূলত যোগ্য ব্যক্তিদের যোগ্যতা অনুযায়ী সঠিক স্থানে পদায়নের মাধ্যমে দেশের অর্থনৈতিক ও সামাজিক কাঠামোর পরিবর্তন সম্ভবপর হবে। আমাদের মনে রাখতে হবে, একজন ব্যক্তির মেধা অবশ্যই যেকোনো রাজনৈতিক পরিচয়ের ঊর্ধ্বে। ব্যক্তির রাজনৈতিক কিংবা ধর্মীয় পছন্দ ও অপছন্দের প্রভাব কর্মক্ষেত্রে যেন না পড়ে, সে সংস্কৃতির বিকাশ আনতে হলে সরকারকে নতুন করে সুযোগ ও সম্ভাবনার পথ উন্মুক্ত করতেই হবে।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>প্রদত্ত বাক্য:</strong>
 "মূলত যোগ্য ব্যক্তিদের যোগ্যতা অনুযায়ী সঠিক স্থানে পদায়নের মাধ্যমে দেশের অর্থনৈতিক ও সামাজিক কাঠামোর পরিবর্তন সম্ভবপর হবে। আমাদের মনে রাখতে হবে, একজন ব্যক্তির মেধা অবশ্যই যেকোনো রাজনৈতিক পরিচয়ের ঊর্ধ্বে। ব্যক্তির রাজনৈতিক কিংবা ধর্মীয় পছন্দ ও অপছন্দের প্রভাব কর্মক্ষেত্রে যেন না পড়ে, সে সংস্কৃতির বিকাশ আনতে হলে সরকারকে নতুন করে সুযোগ ও সম্ভাবনার পথ উন্মুক্ত করতেই হবে।"</p>
@@ -5373,19 +5378,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     <p><b>আসলে, যদি যোগ্য লোকেদের ঠিক জায়গায় বসানো যায়, তাহলেই দেশের অর্থনীতি আর সমাজে একটা ভালো পরিবর্তন আসবে</b>। <b>আর আমাদের এটা মনে রাখতেই হবে যে</b>, <b>একজন মানুষ কতটা মেধাবী, সেটা তার রাজনৈতিক পরিচয়ের চেয়ে অনেক বড়</b>। <b>এখন কথা হলো, কর্মক্ষেত্রে যেন কারও ব্যক্তিগত রাজনৈতিক বা ধর্মীয় পছন্দের প্রভাব না পড়ে, এমন একটা ভালো সংস্কৃতি তৈরি করতে হলে কিন্তু</b> সরকারকে <b>নতুন নতুন সুযোগের রাস্তা খুলে দিতেই হবে</b>।</p>
   </dd>
 </dl>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f19-red" class="dot red"></label><label for="f19-yellow" class="dot yellow"></label><label for="f19-green" class="dot green"></label><label for="f19-blue" class="dot blue"></label><label for="f19-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c18">← Prev</a><a href="#c20">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c20" data-id="20" data-search="20 বিশ্লেষণ: মনে রাখতে হবে, বাংলাদেশ... মূল বাক্য: মনে রাখতে হবে, বাংলাদেশ সবার। বাংলাদেশ সরকারি কর্ম কমিশনের পরীক্ষা উত্তীর্ণ হওয়া ব্যক্তিরা নিশ্চয় রাজনৈতিক, লিঙ্গ কিংবা ধর্মের পরিচয়ে পাস করেন না। বরং নিজেদের যোগ্যতার মাধ্যমে তাঁরা দেশ পরিচালনার সুযোগ পান। তাই ব্যক্তির পরিচয় কেবল অভিজ্ঞতা, যোগ্যতা ও মেধানির্ভর হতে হবে। ">
-<input type="radio" class="fr fr-red" name="f20" id="f20-red" value="red"><input type="radio" class="fr fr-yellow" name="f20" id="f20-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f20" id="f20-green" value="green"><input type="radio" class="fr fr-blue" name="f20" id="f20-blue" value="blue"><input type="radio" class="fr fr-none" name="f20" id="f20-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#20</span><h2><!--t-->বিশ্লেষণ: মনে রাখতে হবে, বাংলাদেশ...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> মনে রাখতে হবে, বাংলাদেশ সবার। বাংলাদেশ সরকারি কর্ম কমিশনের পরীক্ষা উত্তীর্ণ হওয়া ব্যক্তিরা নিশ্চয় রাজনৈতিক, লিঙ্গ কিংবা ধর্মের পরিচয়ে পাস করেন না। বরং নিজেদের যোগ্যতার মাধ্যমে তাঁরা দেশ পরিচালনার সুযোগ পান। তাই ব্যক্তির পরিচয় কেবল অভিজ্ঞতা, যোগ্যতা ও মেধানির্ভর হতে হবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে দেওয়া বাক্যটি একটি গুরুত্বপূর্ণ বার্তা বহন করে এবং এর বিশ্লেষণ নিচে ধাপে ধাপে উপস্থাপন করা হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">20. বিশ্লেষণ: মনে রাখতে হবে, বাংলাদেশ...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> মনে রাখতে হবে, বাংলাদেশ সবার। বাংলাদেশ সরকারি কর্ম কমিশনের পরীক্ষা উত্তীর্ণ হওয়া ব্যক্তিরা নিশ্চয় রাজনৈতিক, লিঙ্গ কিংবা ধর্মের পরিচয়ে পাস করেন না। বরং নিজেদের যোগ্যতার মাধ্যমে তাঁরা দেশ পরিচালনার সুযোগ পান। তাই ব্যক্তির পরিচয় কেবল অভিজ্ঞতা, যোগ্যতা ও মেধানির্ভর হতে হবে।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে দেওয়া বাক্যটি একটি গুরুত্বপূর্ণ বার্তা বহন করে এবং এর বিশ্লেষণ নিচে ধাপে ধাপে উপস্থাপন করা হলো:</p>
 <hr />
 <p><strong>প্রতিবেদন: অনুচ্ছেদ বিশ্লেষণ</strong></p>
 <p><strong>প্রদত্ত অনুচ্ছেদ:</strong>
@@ -5645,19 +5650,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         <p>"আরে ভাই, এটা তো মনে রাখতেই হবে যে বাংলাদেশটা আমাদের সবার। যারা বিপিএসসি পরীক্ষাটা পাস করে, তারা কি আর রাজনীতি, লিঙ্গ বা ধর্ম দেখে পাস করে? একদমই না! নিজেদের যোগ্যতার জোরেই তো তারা দেশ চালানোর সুযোগটা পায়। তাই আসল কথা হলো, কার পরিচয় কী, সেটা নির্ভর করবে তার অভিজ্ঞতা, যোগ্যতা আর মেধার ওপর, তাই না?"</p>
     </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f20-red" class="dot red"></label><label for="f20-yellow" class="dot yellow"></label><label for="f20-green" class="dot green"></label><label for="f20-blue" class="dot blue"></label><label for="f20-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c19">← Prev</a><a href="#c21">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c21" data-id="21" data-search="21 বিশ্লেষণ: হ্যাঁ, এই দেশে প্রশাসনকাঠামোয়... মূল বাক্য: হ্যাঁ, এই দেশে প্রশাসনকাঠামোয় অবৈধ সুযোগ–সুবিধা, বিশেষ করে নিয়োগ ও পদোন্নতির জন্য সুবিধাবাদী কর্মকর্তারা ক্ষমতাসীন রাজনৈতিক দলের কর্মকর্তা-কর্মচারী শাখায় নাম লেখেন, এটিও হয়েছে মূলত সরকারকাঠামো কিংবা দৃষ্টিভঙ্গির পরিবর্তন না হওয়ার জায়গা থেকে। ফলে কে কোন দলীয় বিশ্বাসী কর্মকর্তা, তা মন্ত্রী, এমপি কিংবা প্রধানমন্ত্রীর নখদর্পণে চলে যায়। ">
-<input type="radio" class="fr fr-red" name="f21" id="f21-red" value="red"><input type="radio" class="fr fr-yellow" name="f21" id="f21-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f21" id="f21-green" value="green"><input type="radio" class="fr fr-blue" name="f21" id="f21-blue" value="blue"><input type="radio" class="fr fr-none" name="f21" id="f21-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#21</span><h2><!--t-->বিশ্লেষণ: হ্যাঁ, এই দেশে প্রশাসনকাঠামোয়...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> হ্যাঁ, এই দেশে প্রশাসনকাঠামোয় অবৈধ সুযোগ–সুবিধা, বিশেষ করে নিয়োগ ও পদোন্নতির জন্য সুবিধাবাদী কর্মকর্তারা ক্ষমতাসীন রাজনৈতিক দলের কর্মকর্তা-কর্মচারী শাখায় নাম লেখেন, এটিও হয়েছে মূলত সরকারকাঠামো কিংবা দৃষ্টিভঙ্গির পরিবর্তন না হওয়ার জায়গা থেকে। ফলে কে কোন দলীয় বিশ্বাসী কর্মকর্তা, তা মন্ত্রী, এমপি কিংবা প্রধানমন্ত্রীর নখদর্পণে চলে যায়।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি একটি বিশ্লেষণাত্মক এবং তথ্যপূর্ণ বাক্য, যা বাংলাদেশের প্রশাসনিক প্রেক্ষাপটে একটি জটিল সামাজিক-রাজনৈতিক সমস্যা তুলে ধরেছে। নিচে বাক্যটির বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">21. বিশ্লেষণ: হ্যাঁ, এই দেশে প্রশাসনকাঠামোয়...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> হ্যাঁ, এই দেশে প্রশাসনকাঠামোয় অবৈধ সুযোগ–সুবিধা, বিশেষ করে নিয়োগ ও পদোন্নতির জন্য সুবিধাবাদী কর্মকর্তারা ক্ষমতাসীন রাজনৈতিক দলের কর্মকর্তা-কর্মচারী শাখায় নাম লেখেন, এটিও হয়েছে মূলত সরকারকাঠামো কিংবা দৃষ্টিভঙ্গির পরিবর্তন না হওয়ার জায়গা থেকে। ফলে কে কোন দলীয় বিশ্বাসী কর্মকর্তা, তা মন্ত্রী, এমপি কিংবা প্রধানমন্ত্রীর নখদর্পণে চলে যায়।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি একটি বিশ্লেষণাত্মক এবং তথ্যপূর্ণ বাক্য, যা বাংলাদেশের প্রশাসনিক প্রেক্ষাপটে একটি জটিল সামাজিক-রাজনৈতিক সমস্যা তুলে ধরেছে। নিচে বাক্যটির বিস্তারিত বিশ্লেষণ দেওয়া হলো:</p>
 <p><strong>মূল বাক্য:</strong> "হ্যাঁ, এই দেশে প্রশাসনকাঠামোয় অবৈধ সুযোগ–সুবিধা, বিশেষ করে নিয়োগ ও পদোন্নতির জন্য সুবিধাবাদী কর্মকর্তারা ক্ষমতাসীন রাজনৈতিক দলের কর্মকর্তা-কর্মচারী শাখায় নাম লেখেন, এটিও হয়েছে মূলত সরকারকাঠামো কিংবা দৃষ্টিভঙ্গির পরিবর্তন না হওয়ার জায়গা থেকে। ফলে কে কোন দলীয় বিশ্বাসী কর্মকর্তা, তা মন্ত্রী, এমপি কিংবা প্রধানমন্ত্রীর নখদর্পণে চলে যায়।"</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</h3>
@@ -5924,19 +5929,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </Ul>
     </Li>
 </Ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f21-red" class="dot red"></label><label for="f21-yellow" class="dot yellow"></label><label for="f21-green" class="dot green"></label><label for="f21-blue" class="dot blue"></label><label for="f21-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c20">← Prev</a><a href="#c22">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c22" data-id="22" data-search="22 বিশ্লেষণ: দলীয় অনুগত কর্মকর্তাদের তালিকা... মূল বাক্য: দলীয় অনুগত কর্মকর্তাদের তালিকা থেকে বেছে বেছে প্রশাসন সাজানোর এই সেকেলে নিয়মের কারণে সরকারব্যবস্থা শক্তিশালী হতে পারে না। একজন মন্ত্রী কিংবা এমপি ভুল, অনিয়ম কিংবা দুর্নীতি করার পরও দায়িত্বপ্রাপ্ত কর্মকর্তারা রাও করার সুযোগ পান না। আইন অনুযায়ী চলার চেষ্টা করলে পরে তাঁরাও হেনেস্তার শিকার হন। মূলত এসব কারণে সরকারি কর্মকর্তা, প্রতিষ্ঠান কিংবা বিশ্ববিদ্যালয়গুলোর নিয়োগকর্ম চলে পছন্দের ব্যক্তি ">
-<input type="radio" class="fr fr-red" name="f22" id="f22-red" value="red"><input type="radio" class="fr fr-yellow" name="f22" id="f22-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f22" id="f22-green" value="green"><input type="radio" class="fr fr-blue" name="f22" id="f22-blue" value="blue"><input type="radio" class="fr fr-none" name="f22" id="f22-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#22</span><h2><!--t-->বিশ্লেষণ: দলীয় অনুগত কর্মকর্তাদের তালিকা...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> দলীয় অনুগত কর্মকর্তাদের তালিকা থেকে বেছে বেছে প্রশাসন সাজানোর এই সেকেলে নিয়মের কারণে সরকারব্যবস্থা শক্তিশালী হতে পারে না। একজন মন্ত্রী কিংবা এমপি ভুল, অনিয়ম কিংবা দুর্নীতি করার পরও দায়িত্বপ্রাপ্ত কর্মকর্তারা রাও করার সুযোগ পান না। আইন অনুযায়ী চলার চেষ্টা করলে পরে তাঁরাও হেনেস্তার শিকার হন। মূলত এসব কারণে সরকারি কর্মকর্তা, প্রতিষ্ঠান কিংবা বিশ্ববিদ্যালয়গুলোর নিয়োগকর্ম চলে পছন্দের ব্যক্তিদের মাধ্যমে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">22. বিশ্লেষণ: দলীয় অনুগত কর্মকর্তাদের তালিকা...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> দলীয় অনুগত কর্মকর্তাদের তালিকা থেকে বেছে বেছে প্রশাসন সাজানোর এই সেকেলে নিয়মের কারণে সরকারব্যবস্থা শক্তিশালী হতে পারে না। একজন মন্ত্রী কিংবা এমপি ভুল, অনিয়ম কিংবা দুর্নীতি করার পরও দায়িত্বপ্রাপ্ত কর্মকর্তারা রাও করার সুযোগ পান না। আইন অনুযায়ী চলার চেষ্টা করলে পরে তাঁরাও হেনেস্তার শিকার হন। মূলত এসব কারণে সরকারি কর্মকর্তা, প্রতিষ্ঠান কিংবা বিশ্ববিদ্যালয়গুলোর নিয়োগকর্ম চলে পছন্দের ব্যক্তিদের মাধ্যমে।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>প্রদত্ত বাক্য:</strong>
 "দলীয় অনুগত কর্মকর্তাদের তালিকা থেকে বেছে বেছে প্রশাসন সাজানোর এই সেকেলে নিয়মের কারণে সরকারব্যবস্থা শক্তিশালী হতে পারে না। একজন মন্ত্রী কিংবা এমপি ভুল, অনিয়ম কিংবা দুর্নীতি করার পরও দায়িত্বপ্রাপ্ত কর্মকর্তারা রাও করার সুযোগ পান না। আইন অনুযায়ী চলার চেষ্টা করলে পরে তাঁরাও হেনেস্তার শিকার হন। মূলত এসব কারণে সরকারি কর্মকর্তা, প্রতিষ্ঠান কিংবা বিশ্ববিদ্যালয়গুলোর নিয়োগকর্ম চলে পছন্দের ব্যক্তিদের মাধ্যমে।"</p>
@@ -6216,19 +6221,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 </li>
 </ul>
 <hr />
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f22-red" class="dot red"></label><label for="f22-yellow" class="dot yellow"></label><label for="f22-green" class="dot green"></label><label for="f22-blue" class="dot blue"></label><label for="f22-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c21">← Prev</a><a href="#c23">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c23" data-id="23" data-search="23 বিশ্লেষণ: একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি... মূল বাক্য: একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি গঠন করতে হলে ভিন্নমতাদর্শের পদ-পদায়নে যেমন বাধা প্রদান করা যাবে না, তেমনি পছন্দের রাজনৈতিক দলের সরকার না থাকায় সরকারবিরোধী কর্মকাণ্ডে জড়িয়ে পড়াও সরকারি কর্মকর্তাদের উচিত হবে না। মনে রাখতে হবে, সবার আগে দেশ, তারপর ব্যক্তি, এরপরও রাজনৈতিক পছন্দ-অপছন্দের বিষয় থাকতে পারে। এটি করতে ব্যর্থতার পরিচয় দিলে, এভাবে সরকার পরিবর্তিত হলে নতুন সরকারের সময় হুমকি দিয়ে প ">
-<input type="radio" class="fr fr-red" name="f23" id="f23-red" value="red"><input type="radio" class="fr fr-yellow" name="f23" id="f23-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f23" id="f23-green" value="green"><input type="radio" class="fr fr-blue" name="f23" id="f23-blue" value="blue"><input type="radio" class="fr fr-none" name="f23" id="f23-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#23</span><h2><!--t-->বিশ্লেষণ: একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি গঠন করতে হলে ভিন্নমতাদর্শের পদ-পদায়নে যেমন বাধা প্রদান করা যাবে না, তেমনি পছন্দের রাজনৈতিক দলের সরকার না থাকায় সরকারবিরোধী কর্মকাণ্ডে জড়িয়ে পড়াও সরকারি কর্মকর্তাদের উচিত হবে না। মনে রাখতে হবে, সবার আগে দেশ, তারপর ব্যক্তি, এরপরও রাজনৈতিক পছন্দ-অপছন্দের বিষয় থাকতে পারে। এটি করতে ব্যর্থতার পরিচয় দিলে, এভাবে সরকার পরিবর্তিত হলে নতুন সরকারের সময় হুমকি দিয়ে পদচ্যুতির রেওয়াজ কখনোই থামবে না। রাষ্ট্র পরিচালনায় একধরনের প্রভুত্ব এসে ভর করবে। দলীয়করণের বিষে নীল হয়ে যাবে বাংলাদেশের এগিয়ে চলার স্বপ্ন। তাই নতুন সরকারকে অনুরোধ করব, মেধা ও যোগ্যতাভিত্তিক নিয়োগব্যবস্থা সচল করুন।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">23. বিশ্লেষণ: একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি গঠন করতে হলে ভিন্নমতাদর্শের পদ-পদায়নে যেমন বাধা প্রদান করা যাবে না, তেমনি পছন্দের রাজনৈতিক দলের সরকার না থাকায় সরকারবিরোধী কর্মকাণ্ডে জড়িয়ে পড়াও সরকারি কর্মকর্তাদের উচিত হবে না। মনে রাখতে হবে, সবার আগে দেশ, তারপর ব্যক্তি, এরপরও রাজনৈতিক পছন্দ-অপছন্দের বিষয় থাকতে পারে। এটি করতে ব্যর্থতার পরিচয় দিলে, এভাবে সরকার পরিবর্তিত হলে নতুন সরকারের সময় হুমকি দিয়ে পদচ্যুতির রেওয়াজ কখনোই থামবে না। রাষ্ট্র পরিচালনায় একধরনের প্রভুত্ব এসে ভর করবে। দলীয়করণের বিষে নীল হয়ে যাবে বাংলাদেশের এগিয়ে চলার স্বপ্ন। তাই নতুন সরকারকে অনুরোধ করব, মেধা ও যোগ্যতাভিত্তিক নিয়োগব্যবস্থা সচল করুন।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটির একটি বিস্তারিত বিশ্লেষণাত্মক রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>প্রদত্ত বাক্য:</strong>
 "একটি শক্তিশালী মেরুদণ্ডওয়ালা জাতি গঠন করতে হলে ভিন্নমতাদর্শের পদ-পদায়নে যেমন বাধা প্রদান করা যাবে না, তেমনি পছন্দের রাজনৈতিক দলের সরকার না থাকায় সরকারবিরোধী কর্মকাণ্ডে জড়িয়ে পড়াও সরকারি কর্মকর্তাদের উচিত হবে না। মনে রাখতে হবে, সবার আগে দেশ, তারপর ব্যক্তি, এরপরও রাজনৈতিক পছন্দ-অপছন্দের বিষয় থাকতে পারে। এটি করতে ব্যর্থতার পরিচয় দিলে, এভাবে সরকার পরিবর্তিত হলে নতুন সরকারের সময় হুমকি দিয়ে পদচ্যুতির রেওয়াজ কখনোই থামবে না। রাষ্ট্র পরিচালনায় একধরনের প্রভুত্ব এসে ভর করবে। দলীয়করণের বিষে নীল হয়ে যাবে বাংলাদেশের এগিয়ে চলার স্বপ্ন। তাই নতুন সরকারকে অনুরোধ করব, মেধা ও যোগ্যতাভিত্তিক নিয়োগব্যবস্থা সচল করুন।"</p>
@@ -6323,7 +6328,37 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <hr />
 <h3>৩. ব্যতিক্রমী শব্দ ও শব্দগুচ্ছের ব্যবহার</h3>
 <p>লেখকের আকর্ষণীয় লিখনশৈলীর জন্য এখানে কিছু ব্যতিক্রমী ও শক্তিশালী শব্দ ও শব্দগুচ্ছ ব্যবহার করা হয়েছে।</p>
-
+<style>
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .report-table th, .report-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .report-table th {
+    background-color: #f2f2f2;
+  }
+  .html-list-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .html-list-container li {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #007bff;
+  }
+  .html-list-container strong {
+    color: #333;
+  }
+  .html-list-container li p {
+    margin: 5px 0 0 0;
+  }
+</style>
 
 <p class="html-list-container">
 <ul>
@@ -6549,19 +6584,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </li>
     </ul>
 </p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f23-red" class="dot red"></label><label for="f23-yellow" class="dot yellow"></label><label for="f23-green" class="dot green"></label><label for="f23-blue" class="dot blue"></label><label for="f23-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c22">← Prev</a><a href="#c24">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c24" data-id="24" data-search="24 বিশ্লেষণ: ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া... মূল বাক্য: ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া বিশ্ববিদ্যালয়। ই–মেইল:[email protected]মতামত লেখকের নিজস্ব ">
-<input type="radio" class="fr fr-red" name="f24" id="f24-red" value="red"><input type="radio" class="fr fr-yellow" name="f24" id="f24-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f24" id="f24-green" value="green"><input type="radio" class="fr fr-blue" name="f24" id="f24-blue" value="blue"><input type="radio" class="fr fr-none" name="f24" id="f24-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#24</span><h2><!--t-->বিশ্লেষণ: ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া বিশ্ববিদ্যালয়। ই–মেইল:[email protected]মতামত লেখকের নিজস্ব<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটি একটি একক সুসংহত বাক্য নয়, বরং এটি কয়েকটি তথ্যমূলক বাক্যাংশের সমষ্টি। প্রতিটি অংশ লেখকের পরিচয়, যোগাযোগ এবং একটি দাবিত্যাগমূলক ঘোষণা প্রদান করছে। নিচে বাক্যটির বিশদ বিশ্লেষণ করা হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">24. বিশ্লেষণ: ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> ড. নাদিম মাহমুদগবেষক, ক্যালিফোর্নিয়া বিশ্ববিদ্যালয়। ই–মেইল:[email protected]মতামত লেখকের নিজস্ব
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটি একটি একক সুসংহত বাক্য নয়, বরং এটি কয়েকটি তথ্যমূলক বাক্যাংশের সমষ্টি। প্রতিটি অংশ লেখকের পরিচয়, যোগাযোগ এবং একটি দাবিত্যাগমূলক ঘোষণা প্রদান করছে। নিচে বাক্যটির বিশদ বিশ্লেষণ করা হলো:</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্ত করো।</h3>
 <p>প্রদত্ত বাক্যে কোনো সুস্পষ্ট কর্তা (Subject), কর্ম (Object) বা ক্রিয়া (Verb) পদ সরাসরি ব্যবহার করা হয়নি। বাক্যটি আসলে কয়েকটি তথ্যমূলক বাক্যাংশের সমষ্টি যা ইংরেজিতে "nominal sentences" বা "fragmented sentences" এর মতো, যেখানে 'হওয়া' (to be) ক্রিয়াটি উহ্য থাকে।</p>
@@ -6771,19 +6806,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </ul>
     </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f24-red" class="dot red"></label><label for="f24-yellow" class="dot yellow"></label><label for="f24-green" class="dot green"></label><label for="f24-blue" class="dot blue"></label><label for="f24-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c23">← Prev</a><a href="#c25">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c25" data-id="25" data-search="25 বিশ্লেষণ: মধ্যপ্রাচ্য সংকটে প্রবাসী আয়... মূল বাক্য: মধ্যপ্রাচ্য সংকটে প্রবাসী আয় কেনায় ডলারের দাম বেড়ে গেছে। আজ মঙ্গলবার ১২২ টাকা ৯০ পয়সা পর্যন্ত দামে প্রবাসী আয় কিনছে ব্যাংকগুলো। এর ফলে আমদানিতে ডলারের দাম ১২৩ টাকা পর্যন্ত উঠে গেছে। এক সপ্তাহ আগেও আমদানিতে ১২২ টাকা ৫০ পয়সা পর্যন্ত দাম নিয়েছিল ব্যাংকগুলো। বাণিজ্যিক ব্যাংকগুলোর সূত্রে এ তথ্য পাওয়া গেছে। ">
-<input type="radio" class="fr fr-red" name="f25" id="f25-red" value="red"><input type="radio" class="fr fr-yellow" name="f25" id="f25-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f25" id="f25-green" value="green"><input type="radio" class="fr fr-blue" name="f25" id="f25-blue" value="blue"><input type="radio" class="fr fr-none" name="f25" id="f25-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#25</span><h2><!--t-->বিশ্লেষণ: মধ্যপ্রাচ্য সংকটে প্রবাসী আয়...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> মধ্যপ্রাচ্য সংকটে প্রবাসী আয় কেনায় ডলারের দাম বেড়ে গেছে। আজ মঙ্গলবার ১২২ টাকা ৯০ পয়সা পর্যন্ত দামে প্রবাসী আয় কিনছে ব্যাংকগুলো। এর ফলে আমদানিতে ডলারের দাম ১২৩ টাকা পর্যন্ত উঠে গেছে। এক সপ্তাহ আগেও আমদানিতে ১২২ টাকা ৫০ পয়সা পর্যন্ত দাম নিয়েছিল ব্যাংকগুলো। বাণিজ্যিক ব্যাংকগুলোর সূত্রে এ তথ্য পাওয়া গেছে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>এখানে প্রদত্ত বাক্যটি একটি সংবাদ প্রতিবেদন থেকে নেওয়া হয়েছে এবং এর বিশ্লেষণ নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">25. বিশ্লেষণ: মধ্যপ্রাচ্য সংকটে প্রবাসী আয়...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> মধ্যপ্রাচ্য সংকটে প্রবাসী আয় কেনায় ডলারের দাম বেড়ে গেছে। আজ মঙ্গলবার ১২২ টাকা ৯০ পয়সা পর্যন্ত দামে প্রবাসী আয় কিনছে ব্যাংকগুলো। এর ফলে আমদানিতে ডলারের দাম ১২৩ টাকা পর্যন্ত উঠে গেছে। এক সপ্তাহ আগেও আমদানিতে ১২২ টাকা ৫০ পয়সা পর্যন্ত দাম নিয়েছিল ব্যাংকগুলো। বাণিজ্যিক ব্যাংকগুলোর সূত্রে এ তথ্য পাওয়া গেছে।
+                </div>
+                <div class="analysis-content">
+                    <p>এখানে প্রদত্ত বাক্যটি একটি সংবাদ প্রতিবেদন থেকে নেওয়া হয়েছে এবং এর বিশ্লেষণ নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>প্রদত্ত বাক্য:</strong> "মধ্যপ্রাচ্য সংকটে প্রবাসী আয় কেনায় ডলারের দাম বেড়ে গেছে। আজ মঙ্গলবার ১২২ টাকা ৯০ পয়সা পর্যন্ত দামে প্রবাসী আয় কিনছে ব্যাংকগুলো। এর ফলে আমদানিতে ডলারের দাম ১২৩ টাকা পর্যন্ত উঠে গেছে। এক সপ্তাহ আগেও আমদানিতে ১২২ টাকা ৫০ পয়সা পর্যন্ত দাম নিয়েছিল ব্যাংকগুলো। বাণিজ্যিক ব্যাংকগুলোর সূত্রে এ তথ্য পাওয়া গেছে।"</p>
 <hr />
@@ -6995,19 +7030,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     <li><strong>"বাণিজ্যিক ব্যাংকগুলোর সূত্রে এ তথ্য পাওয়া গেছে" এর বদলে:</strong> <em>"বাণিজ্যিক ব্যাংকগুলোই এই খবর জানিয়েছে।", "ব্যাংকের লোকেরা এসব কথা বলছে।", "ব্যাংকের সূত্রগুলোই বলছে"</em></li>
 </ul>
 <p>```</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f25-red" class="dot red"></label><label for="f25-yellow" class="dot yellow"></label><label for="f25-green" class="dot green"></label><label for="f25-blue" class="dot blue"></label><label for="f25-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c24">← Prev</a><a href="#c26">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c26" data-id="26" data-search="26 বিশ্লেষণ: আজ সকালে এক আমদানিকারক... মূল বাক্য: আজ সকালে এক আমদানিকারক প্রথম আলোকে বলেন, ব্যাংকগুলো মধ্যপ্রাচ্যের যুদ্ধের সুযোগ নিচ্ছে। হঠাৎ করে আমদানিতে ডলারের দাম ৫০ পয়সা বাড়িয়ে দিয়েছে। এতে আমদানি খরচ বেড়ে যাচ্ছে। এখন ভোক্তাপর্যায়ে দাম বেড়ে যাবে। ">
-<input type="radio" class="fr fr-red" name="f26" id="f26-red" value="red"><input type="radio" class="fr fr-yellow" name="f26" id="f26-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f26" id="f26-green" value="green"><input type="radio" class="fr fr-blue" name="f26" id="f26-blue" value="blue"><input type="radio" class="fr fr-none" name="f26" id="f26-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#26</span><h2><!--t-->বিশ্লেষণ: আজ সকালে এক আমদানিকারক...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> আজ সকালে এক আমদানিকারক প্রথম আলোকে বলেন, ব্যাংকগুলো মধ্যপ্রাচ্যের যুদ্ধের সুযোগ নিচ্ছে। হঠাৎ করে আমদানিতে ডলারের দাম ৫০ পয়সা বাড়িয়ে দিয়েছে। এতে আমদানি খরচ বেড়ে যাচ্ছে। এখন ভোক্তাপর্যায়ে দাম বেড়ে যাবে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি ("আজ সকালে এক আমদানিকারক প্রথম আলোকে বলেন, ব্যাংকগুলো মধ্যপ্রাচ্যের যুদ্ধের সুযোগ নিচ্ছে। হঠাৎ করে আমদানিতে ডলারের দাম ৫০ পয়সা বাড়িয়ে দিয়েছে। এতে আমদানি খরচ বেড়ে যাচ্ছে। এখন ভোক্তাপর্যায়ে দাম বেড়ে যাবে।") বিশ্লেষণ করে একটি রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">26. বিশ্লেষণ: আজ সকালে এক আমদানিকারক...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> আজ সকালে এক আমদানিকারক প্রথম আলোকে বলেন, ব্যাংকগুলো মধ্যপ্রাচ্যের যুদ্ধের সুযোগ নিচ্ছে। হঠাৎ করে আমদানিতে ডলারের দাম ৫০ পয়সা বাড়িয়ে দিয়েছে। এতে আমদানি খরচ বেড়ে যাচ্ছে। এখন ভোক্তাপর্যায়ে দাম বেড়ে যাবে।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি ("আজ সকালে এক আমদানিকারক প্রথম আলোকে বলেন, ব্যাংকগুলো মধ্যপ্রাচ্যের যুদ্ধের সুযোগ নিচ্ছে। হঠাৎ করে আমদানিতে ডলারের দাম ৫০ পয়সা বাড়িয়ে দিয়েছে। এতে আমদানি খরচ বেড়ে যাচ্ছে। এখন ভোক্তাপর্যায়ে দাম বেড়ে যাবে।") বিশ্লেষণ করে একটি রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <p><strong>বাক্য বিশ্লেষণ রিপোর্ট</strong></p>
 <p><strong>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ:</strong></p>
@@ -7325,19 +7360,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
     </ul></p>
 </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f26-red" class="dot red"></label><label for="f26-yellow" class="dot yellow"></label><label for="f26-green" class="dot green"></label><label for="f26-blue" class="dot blue"></label><label for="f26-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c25">← Prev</a><a href="#c27">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c27" data-id="27" data-search="27 বিশ্লেষণ: ব্যাংকগুলোর সূত্রে জানা যায়,... মূল বাক্য: ব্যাংকগুলোর সূত্রে জানা যায়, যুদ্ধের কারণে অনিশ্চয়তা সৃস্টি হওয়ায় বিদেশি রেমিট্যান্স হাউসগুলো ডলারের দাম বেশি প্রস্তাব করছে। আগে ১২২ টাকা দরে ডলার প্রবাসী আয়ের ডলার কেনা যেত। সেটা বেড়ে এখন ১২৩ টাকার কাছাকাছি পৌঁছে গেছে। এতে আমদানিতে ডলারের দাম বেড়ে গেছে। ">
-<input type="radio" class="fr fr-red" name="f27" id="f27-red" value="red"><input type="radio" class="fr fr-yellow" name="f27" id="f27-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f27" id="f27-green" value="green"><input type="radio" class="fr fr-blue" name="f27" id="f27-blue" value="blue"><input type="radio" class="fr fr-none" name="f27" id="f27-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#27</span><h2><!--t-->বিশ্লেষণ: ব্যাংকগুলোর সূত্রে জানা যায়,...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> ব্যাংকগুলোর সূত্রে জানা যায়, যুদ্ধের কারণে অনিশ্চয়তা সৃস্টি হওয়ায় বিদেশি রেমিট্যান্স হাউসগুলো ডলারের দাম বেশি প্রস্তাব করছে। আগে ১২২ টাকা দরে ডলার প্রবাসী আয়ের ডলার কেনা যেত। সেটা বেড়ে এখন ১২৩ টাকার কাছাকাছি পৌঁছে গেছে। এতে আমদানিতে ডলারের দাম বেড়ে গেছে।<!--/s--></div></summary>
-<div class="body"><!--b--><p>নিচের বাক্যটি বিশ্লেষণ করে একটি রিপোর্ট দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">27. বিশ্লেষণ: ব্যাংকগুলোর সূত্রে জানা যায়,...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> ব্যাংকগুলোর সূত্রে জানা যায়, যুদ্ধের কারণে অনিশ্চয়তা সৃস্টি হওয়ায় বিদেশি রেমিট্যান্স হাউসগুলো ডলারের দাম বেশি প্রস্তাব করছে। আগে ১২২ টাকা দরে ডলার প্রবাসী আয়ের ডলার কেনা যেত। সেটা বেড়ে এখন ১২৩ টাকার কাছাকাছি পৌঁছে গেছে। এতে আমদানিতে ডলারের দাম বেড়ে গেছে।
+                </div>
+                <div class="analysis-content">
+                    <p>নিচের বাক্যটি বিশ্লেষণ করে একটি রিপোর্ট দেওয়া হলো:</p>
 <p><strong>মূল বাক্য:</strong>
 "ব্যাংকগুলোর সূত্রে জানা যায়, যুদ্ধের কারণে অনিশ্চয়তা সৃস্টি হওয়ায় বিদেশি রেমিট্যান্স হাউসগুলো ডলারের দাম বেশি প্রস্তাব করছে। আগে ১২২ টাকা দরে ডলার প্রবাসী আয়ের ডলার কেনা যেত। সেটা বেড়ে এখন ১২৩ টাকার কাছাকাছি পৌঁছে গেছে। এতে আমদানিতে ডলারের দাম বেড়ে গেছে।"</p>
 <hr />
@@ -7781,19 +7816,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </ul>
     </li>
 </ul>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f27-red" class="dot red"></label><label for="f27-yellow" class="dot yellow"></label><label for="f27-green" class="dot green"></label><label for="f27-blue" class="dot blue"></label><label for="f27-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c26">← Prev</a><a href="#c28">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c28" data-id="28" data-search="28 বিশ্লেষণ: এদিকে বাংলাদেশ ব্যাংক প্রকাশিত... মূল বাক্য: এদিকে বাংলাদেশ ব্যাংক প্রকাশিত মুদ্রার হারসংক্রান্ত প্রতিবেদনে দেখা গেছে, সেখানেও ডলারের দাম ২৫ পয়সা বেড়ে গেছে। ৩ মার্চ ডলারের গড় দাম ছিল ১২২ টাকা ৩৩ পয়সা, এখন তা বেড়ে হয়েছে ১২২ টাকা ৫৮ পয়সা। ">
-<input type="radio" class="fr fr-red" name="f28" id="f28-red" value="red"><input type="radio" class="fr fr-yellow" name="f28" id="f28-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f28" id="f28-green" value="green"><input type="radio" class="fr fr-blue" name="f28" id="f28-blue" value="blue"><input type="radio" class="fr fr-none" name="f28" id="f28-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#28</span><h2><!--t-->বিশ্লেষণ: এদিকে বাংলাদেশ ব্যাংক প্রকাশিত...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> এদিকে বাংলাদেশ ব্যাংক প্রকাশিত মুদ্রার হারসংক্রান্ত প্রতিবেদনে দেখা গেছে, সেখানেও ডলারের দাম ২৫ পয়সা বেড়ে গেছে। ৩ মার্চ ডলারের গড় দাম ছিল ১২২ টাকা ৩৩ পয়সা, এখন তা বেড়ে হয়েছে ১২২ টাকা ৫৮ পয়সা।<!--/s--></div></summary>
-<div class="body"><!--b--><p>আপনার দেওয়া বাক্যটি ("এদিকে বাংলাদেশ ব্যাংক প্রকাশিত মুদ্রার হারসংক্রান্ত প্রতিবেদনে দেখা গেছে, সেখানেও ডলারের দাম ২৫ পয়সা বেড়ে গেছে। ৩ মার্চ ডলারের গড় দাম ছিল ১২২ টাকা ৩৩ পয়সা, এখন তা বেড়ে হয়েছে ১২২ টাকা ৫৮ পয়সা।") বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">28. বিশ্লেষণ: এদিকে বাংলাদেশ ব্যাংক প্রকাশিত...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> এদিকে বাংলাদেশ ব্যাংক প্রকাশিত মুদ্রার হারসংক্রান্ত প্রতিবেদনে দেখা গেছে, সেখানেও ডলারের দাম ২৫ পয়সা বেড়ে গেছে। ৩ মার্চ ডলারের গড় দাম ছিল ১২২ টাকা ৩৩ পয়সা, এখন তা বেড়ে হয়েছে ১২২ টাকা ৫৮ পয়সা।
+                </div>
+                <div class="analysis-content">
+                    <p>আপনার দেওয়া বাক্যটি ("এদিকে বাংলাদেশ ব্যাংক প্রকাশিত মুদ্রার হারসংক্রান্ত প্রতিবেদনে দেখা গেছে, সেখানেও ডলারের দাম ২৫ পয়সা বেড়ে গেছে। ৩ মার্চ ডলারের গড় দাম ছিল ১২২ টাকা ৩৩ পয়সা, এখন তা বেড়ে হয়েছে ১২২ টাকা ৫৮ পয়সা।") বিশ্লেষণ করে একটি বিস্তারিত রিপোর্ট নিচে দেওয়া হলো:</p>
 <hr />
 <h3><strong>বাক্য বিশ্লেষণ রিপোর্ট</strong></h3>
 <p><strong>মূল বাক্য:</strong> "এদিকে বাংলাদেশ ব্যাংক প্রকাশিত মুদ্রার হারসংক্রান্ত প্রতিবেদনে দেখা গেছে, সেখানেও ডলারের দাম ২৫ পয়সা বেড়ে গেছে। ৩ মার্চ ডলারের গড় দাম ছিল ১২২ টাকা ৩৩ পয়সা, এখন তা বেড়ে হয়েছে ১২২ টাকা ৫৮ পয়সা।"</p>
@@ -8059,19 +8094,19 @@ input[type=number]{width:84px}input[type=search]{width:170px}
         </li>
     </ul>
 </p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f28-red" class="dot red"></label><label for="f28-yellow" class="dot yellow"></label><label for="f28-green" class="dot green"></label><label for="f28-blue" class="dot blue"></label><label for="f28-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c27">← Prev</a><a href="#c29">Next →</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-<div class="card" id="c29" data-id="29" data-search="29 বিশ্লেষণ: বেসরকারি একটি ব্যাংকের একজন... মূল বাক্য: বেসরকারি একটি ব্যাংকের একজন শীর্ষ পর্যায়ের কর্মকর্তা প্রথম আলোকে বলেন, ডলারের দাম ১২৩ টাকার বেশি বাড়বে না, এমন বার্তা বাংলাদেশ ব্যাংক থেকে দেওয়া হয়েছে। এর ফলে দাম এখনো ১২৩ টাকার ওপরে ওঠেনি। তবে আমদানি দায় মেটানোর চাপ ও সরবরাহ কমে গেলে দাম বাড়বেই। তখন রিজার্ভ থেকেও ডলার–সহায়তা দিতে হবে। তাই ভালো হয় ডলারের দাম বাজারভিত্তিক করে দিয়ে সরবরাহ বাড়ানোর উদ্যোগ নেওয়া। ">
-<input type="radio" class="fr fr-red" name="f29" id="f29-red" value="red"><input type="radio" class="fr fr-yellow" name="f29" id="f29-yellow" value="yellow"><input type="radio" class="fr fr-green" name="f29" id="f29-green" value="green"><input type="radio" class="fr fr-blue" name="f29" id="f29-blue" value="blue"><input type="radio" class="fr fr-none" name="f29" id="f29-none" value="none" checked><span class="tint"></span>
-<details class="cd" open>
-<summary class="head"><span class="ind"></span><span class="qnum">#29</span><h2><!--t-->বিশ্লেষণ: বেসরকারি একটি ব্যাংকের একজন...<!--/t--></h2><div class="orig"><!--s--><strong>মূল বাক্য:</strong> বেসরকারি একটি ব্যাংকের একজন শীর্ষ পর্যায়ের কর্মকর্তা প্রথম আলোকে বলেন, ডলারের দাম ১২৩ টাকার বেশি বাড়বে না, এমন বার্তা বাংলাদেশ ব্যাংক থেকে দেওয়া হয়েছে। এর ফলে দাম এখনো ১২৩ টাকার ওপরে ওঠেনি। তবে আমদানি দায় মেটানোর চাপ ও সরবরাহ কমে গেলে দাম বাড়বেই। তখন রিজার্ভ থেকেও ডলার–সহায়তা দিতে হবে। তাই ভালো হয় ডলারের দাম বাজারভিত্তিক করে দিয়ে সরবরাহ বাড়ানোর উদ্যোগ নেওয়া।<!--/s--></div></summary>
-<div class="body"><!--b--><p>প্রদত্ত বাক্যটি একটি বিস্তারিত ও তথ্যপূর্ণ অর্থনৈতিক বিশ্লেষণ উপস্থাপন করে। নিচে এর প্রতিটি অংশের বিশ্লেষণ দেওয়া হলো:</p>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h2 class="heading">29. বিশ্লেষণ: বেসরকারি একটি ব্যাংকের একজন...</h2>
+                <div class="original-box">
+                    <strong>মূল বাক্য:</strong> বেসরকারি একটি ব্যাংকের একজন শীর্ষ পর্যায়ের কর্মকর্তা প্রথম আলোকে বলেন, ডলারের দাম ১২৩ টাকার বেশি বাড়বে না, এমন বার্তা বাংলাদেশ ব্যাংক থেকে দেওয়া হয়েছে। এর ফলে দাম এখনো ১২৩ টাকার ওপরে ওঠেনি। তবে আমদানি দায় মেটানোর চাপ ও সরবরাহ কমে গেলে দাম বাড়বেই। তখন রিজার্ভ থেকেও ডলার–সহায়তা দিতে হবে। তাই ভালো হয় ডলারের দাম বাজারভিত্তিক করে দিয়ে সরবরাহ বাড়ানোর উদ্যোগ নেওয়া।
+                </div>
+                <div class="analysis-content">
+                    <p>প্রদত্ত বাক্যটি একটি বিস্তারিত ও তথ্যপূর্ণ অর্থনৈতিক বিশ্লেষণ উপস্থাপন করে। নিচে এর প্রতিটি অংশের বিশ্লেষণ দেওয়া হলো:</p>
 <p><strong>মূল বাক্য:</strong> "বেসরকারি একটি ব্যাংকের একজন শীর্ষ পর্যায়ের কর্মকর্তা প্রথম আলোকে বলেন, ডলারের দাম ১২৩ টাকার বেশি বাড়বে না, এমন বার্তা বাংলাদেশ ব্যাংক থেকে দেওয়া হয়েছে। এর ফলে দাম এখনো ১২৩ টাকার ওপরে ওঠেনি। তবে আমদানি দায় মেটানোর চাপ ও সরবরাহ কমে গেলে দাম বাড়বেই। তখন রিজার্ভ থেকেও ডলার–সহায়তা দিতে হবে। তাই ভালো হয় ডলারের দাম বাজারভিত্তিক করে দিয়ে সরবরাহ বাড়ানোর উদ্যোগ নেওয়া।"</p>
 <hr />
 <h3>১. কর্তা, কর্ম ও ক্রিয়া শনাক্তকরণ</h3>
@@ -8168,7 +8203,29 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <!DOCTYPE html>
 <html>
 <head>
-
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 5px;
+  }
+</style>
 </head>
 <body>
 
@@ -8310,7 +8367,62 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 <!DOCTYPE html>
 <html>
 <head>
-
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  .style-section h4 {
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 20px;
+  }
+  .original-sentence {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  .style-box {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  .style-box strong {
+    color: #0056b3;
+  }
+  .word-change-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  .word-change-list li {
+    background-color: #e0f7fa;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-left: 5px solid #00bcd4;
+  }
+  .word-change-list li span {
+    font-weight: bold;
+    color: #c2185b; /* Original word color */
+  }
+  .word-change-list li::before {
+    content: "→ ";
+    color: #0056b3;
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
 
@@ -8391,172 +8503,10 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 </body>
 </html>
 <p>```</p>
-<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div><!--/b--></div>
-</details>
-<div class="controls">
-<label for="f29-red" class="dot red"></label><label for="f29-yellow" class="dot yellow"></label><label for="f29-green" class="dot green"></label><label for="f29-blue" class="dot blue"></label><label for="f29-none" class="dot none"></label>
-<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
-<span class="nav"><span class="pn"><a href="#c28">← Prev</a></span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
-</div>
-</div>
-</div>
-<a id="bottom"></a>
-</div>
-<div class="fab"><a class="btn" href="#top" title="Top">↑</a><a class="btn" href="#bottom" title="Bottom">↓</a></div>
-<div id="toast"></div>
-</div>
-<script>
-(function(){
-var PREFIX="rpt_fccc24bb_";
-function $(s){return document.querySelector(s)}
-function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
-var container=$("#cards"),lm=$("#lm"),allExpanded=true,hovered=null;
-var originalOrder=$$("#cards > .card");
-var COLS=["red","yellow","green","blue"];
-function toast(m){var t=$("#toast");t.textContent=m;t.className="show";clearTimeout(toast._t);toast._t=setTimeout(function(){t.className=""},1600)}
-var ls={get:function(k){try{return localStorage.getItem(PREFIX+k)}catch(e){return null}},
- set:function(k,v){try{localStorage.setItem(PREFIX+k,v)}catch(e){}},
- del:function(k){try{localStorage.removeItem(PREFIX+k)}catch(e){}}};
-
-/* ---- flags (radio buttons; CSS rang dey) ---- */
-function applyColor(card,color){
-  var id=card.getAttribute("data-id");
-  COLS.concat(["none"]).forEach(function(c){
-    var r=document.getElementById("f"+id+"-"+c);if(!r)return;
-    if(c===color){r.checked=true;r.setAttribute("checked","")}else{r.checked=false;r.removeAttribute("checked")}
-  });
-  if(color==="none")card.removeAttribute("data-flag");else card.setAttribute("data-flag",color);
-}
-container.addEventListener("change",function(e){
-  var r=e.target;if(!r.classList||!r.classList.contains("fr"))return;
-  var card=r.closest(".card");applyColor(card,r.value);ls.set("color_"+card.getAttribute("data-id"),r.value);
-});
-window.resetColors=function(){
-  if(!confirm("সব flag/color মুছে ফেলবেন?"))return;
-  $$(".card").forEach(function(c){applyColor(c,"none");ls.set("color_"+c.getAttribute("data-id"),"none")});
-  applyFilter();
-};
-
-/* ---- filter / search ---- */
-function applyFilter(){
-  var sel=$("#filterColor").value,gs=$("#filterGenre"),g=gs?gs.value:"all",q=$("#searchBox").value.trim().toLowerCase(),shown=0;
-  $$(".card").forEach(function(c){
-    var col=c.getAttribute("data-flag")||"none";
-    var okC=sel==="all"||(sel==="marked"&&col!=="none")||col===sel;
-    var okG=g==="all"||c.getAttribute("data-genre")===g;
-    var okQ=!q||(c.getAttribute("data-search")||"").indexOf(q)>-1;
-    var ok=okC&&okG&&okQ;c.style.display=ok?"":"none";if(ok)shown++;
-  });
-  $("#totalCount").textContent="Showing "+shown+" / "+$$(".card").length+" cards";
-}
-window.applyFilter=applyFilter;
-function focusCard(card){
-  card.scrollIntoView({behavior:"smooth",block:"center"});
-  var o=card.style.boxShadow;card.style.boxShadow="0 0 22px #e67e22";setTimeout(function(){card.style.boxShadow=o},1800);
-}
-window.jumpFlag=function(dir){
-  var list=$$(".card").filter(function(c){return c.style.display!=="none"&&c.getAttribute("data-flag")});
-  if(!list.length){toast("কোনো flagged card নেই");return}
-  var mid=innerHeight/2,idx=-1,i;
-  if(dir>0){for(i=0;i<list.length;i++){if(list[i].getBoundingClientRect().top>mid-10){idx=i;break}}if(idx<0)idx=0}
-  else{for(i=list.length-1;i>=0;i--){if(list[i].getBoundingClientRect().top<mid-10){idx=i;break}}if(idx<0)idx=list.length-1}
-  focusCard(list[idx]);
-};
-
-/* ---- resume ---- */
-function currentResume(){
-  var v=ls.get("resume");if(v==="none")return null;if(v)return v;
-  var c=$(".card[data-resume]");return c?c.getAttribute("data-id"):null;
-}
-function paintResume(id){
-  $$(".card").forEach(function(c){c.classList.remove("resume");c.removeAttribute("data-resume")});
-  var a=$("#resumeLink");
-  if(id){var c=$('.card[data-id="'+id+'"]');if(c){c.classList.add("resume");c.setAttribute("data-resume","")}a.setAttribute("href","#c"+id)}
-  else a.setAttribute("href","#");
-  $("#trackerValue").textContent=id?"#"+id:"None";
-}
-window.saveResume=function(btn){
-  var id=btn.closest(".card").getAttribute("data-id");ls.set("resume",id);paintResume(id);toast("Resume saved: #"+id);
-};
-window.resetResume=function(){if(!confirm("Resume position মুছবেন?"))return;ls.set("resume","none");paintResume(null)};
-window.goToResume=function(){
-  var id=currentResume();if(!id){toast("কোনো Resume position সেভ করা নেই");return false}
-  var c=$('.card[data-id="'+id+'"]');if(!c)return true;c.style.display="";focusCard(c);return false;
-};
-window.goToNumber=function(){
-  var n=$("#gotoNum").value;if(!n)return;
-  var c=$('.card[data-id="'+n+'"]');if(c){c.style.display="";focusCard(c)}else toast(n+" পাওয়া যায়নি");
-};
-window.toggleAuto=function(cb){ls.set("autoResume",cb.checked?"true":"false")};
-
-/* ---- order ---- */
-function rebuild(a,re){container.innerHTML="";a.forEach(function(c){container.appendChild(c)});
-  if(re)container.classList.add("reordered");else container.classList.remove("reordered")}
-window.originalOrderQ=function(){rebuild(originalOrder,false)};
-window.reverseQ=function(){rebuild($$("#cards > .card").reverse(),true)};
-window.shuffleQ=function(){var a=$$("#cards > .card");for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}rebuild(a,true)};
-
-/* ---- expand / collapse ---- */
-window.toggleAll=function(){
-  allExpanded=!allExpanded;
-  $$("details.cd").forEach(function(d){d.open=allExpanded});
-  $("#toggleAllBtn").textContent=allExpanded?"Collapse All":"Expand All";
-};
-container.addEventListener("mouseover",function(e){hovered=e.target.closest(".card")});
-
-/* ---- top/bottom/theme ---- */
-window.goBottom=function(){scrollTo({top:document.documentElement.scrollHeight,behavior:"smooth"})};
-lm.addEventListener("change",function(){
-  if(lm.checked)lm.setAttribute("checked","");else lm.removeAttribute("checked");ls.set("light",lm.checked?"true":"false");
-});
-
-/* ---- reverse scroll => topbar ashe ---- */
-var lastY=0,ticking=false,bar=$(".topbar");
-addEventListener("scroll",function(){
-  if(ticking)return;ticking=true;
-  (window.requestAnimationFrame||function(f){setTimeout(f,16)})(function(){
-    var y=Math.max(window.pageYOffset||0,0);
-    if(y<80||y<lastY-4)bar.classList.remove("hide");else if(y>lastY+4)bar.classList.add("hide");
-    lastY=y;
-    var h=document.documentElement.scrollHeight-innerHeight;
-    $("#progress").style.width=(h>0?y/h*100:0)+"%";
-    ticking=false;
-  });
-},{passive:true});
-
-/* ---- keys ---- */
-addEventListener("keydown",function(e){
-  if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
-  var k=(e.key||"").toLowerCase();
-  if(k==="a")scrollBy({top:-300,behavior:"smooth"});
-  else if(k==="d")scrollBy({top:300,behavior:"smooth"});
-  else if(k==="w"&&hovered){e.preventDefault();var d=hovered.querySelector("details.cd");d.open=!d.open}
-  else if(k==="r")goToResume();
-  else if(k==="n")jumpFlag(1);
-  else if(k==="p")jumpFlag(-1);
-  else if(k==="/"){e.preventDefault();$("#searchBox").focus()}
-});
-
-/* ---- export (flag/resume page e baked hoye jay -> JS chhara viewer e-o thake) ---- */
-window.exportPage=function(){
-  var clone=document.documentElement.cloneNode(true);
-  clone.className=clone.className.replace(/\bjs\b/,"").trim();
-  var tb=clone.querySelector(".topbar");if(tb)tb.classList.remove("hide");
-  var ct=clone.querySelector("#cards");if(ct)ct.classList.remove("reordered");
-  var blob=new Blob(["<!DOCTYPE html>\n"+clone.outerHTML],{type:"text/html"});
-  var a=document.createElement("a");a.href=URL.createObjectURL(blob);
-  var n=decodeURIComponent(location.pathname.split("/").pop()||"page.html");
-  a.download=n.replace(/(\.[^.]+)?$/,"_marked$1");a.click();
-};
-
-/* ---- init (load event er opor nirbhor kore na) ---- */
-var L=ls.get("light");if(L!==null){lm.checked=(L==="true");if(lm.checked)lm.setAttribute("checked","");else lm.removeAttribute("checked")}
-var auto=ls.get("autoResume")!=="false";$("#autoResume").checked=auto;
-$$(".card").forEach(function(c){var col=ls.get("color_"+c.getAttribute("data-id"));if(col)applyColor(c,col)});
-$("#totalCount").textContent="Total Cards: "+$$(".card").length;
-var rid=currentResume();paintResume(rid);
-if(auto&&rid&&!location.hash){setTimeout(function(){var c=$('.card[data-id="'+rid+'"]');if(c){c.scrollIntoView({block:"center"});toast("Auto-resumed at #"+rid)}},150)}
-})();
-</script>
-</body>
-</html>
+                </div>
+                <div class="footer-mark">
+                    <span>✦ বিশ্লেষণ সমাপ্ত ✦</span>
+                </div>
+            </div>
+            
+</div></body></html>

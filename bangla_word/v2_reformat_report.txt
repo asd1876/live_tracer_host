@@ -1,0 +1,676 @@
+#!/usr/bin/env python3
+"""
+reformat_report.py   (v2 - normal HTML viewer friendly)
+------------------------------------------------------
+Gemini analysis report HTML (<div class="report-card"> ... onek ta) ke study-friendly
+single page e rupantor kore.
+
+PURE HTML + CSS BASELINE  ->  JavaScript chhara-o (normal/simple viewer, Drive/email preview,
+file-manager viewer) kaj kore:
+  * Sticky topbar: Top / Bottom / Index(TOC) / Go to Resume / Theme(dark-light)
+  * Floating Top/Bottom button, prottek card e Prev / Next / Index / Top link
+  * Shob card default e expanded; click korle <details> diye collapse (JS lage na)
+  * Flag (red/yellow/green/blue) - CSS radio diye, JS lage na
+  * Resume / flag file er vitore "bake" kora jay (--set-resume / --set-flag) ba JS Export diye
+
+JavaScript chalu thakle extra:
+  * Niche scroll e topbar lukay, reverse scroll e ashe
+  * Resume Here (auto-resume), flag/resume localStorage e save, filter, search, Next/Prev flag,
+    Go-to number, Original/Reverse/Shuffle, Expand/Collapse All, Export, hotkeys (A D W R N P /)
+
+Usage (folder mode - shob .html in-place update, kono notun file hoy na):
+    python reformat_report.py                  # current folder
+    python reformat_report.py path/to/dir      # specific folder
+    python reformat_report.py path/to/dir -r   # subfolder soho
+    python reformat_report.py dir --dry-run    # kichu na likhe shudhu dekhabe
+    python reformat_report.py dir --backup     # (optional) .bak rekhe update
+
+Single file e state bake kora (JS chhara viewer e resume/flag thakbe):
+    python reformat_report.py file.html --set-resume 25 --set-flag 3=red --set-flag 9=green
+
+Abar run korle latest template diye refresh hoy (flag/resume/baked state thake); kichu change
+na hole file touch kora hoy na. Je file e report-card nei seta skip hoy.
+Sudhu standard library lage.
+"""
+import argparse
+import hashlib
+import html
+import re
+import shutil
+import sys
+from pathlib import Path
+
+COLORS = ("red", "yellow", "green", "blue")
+DIV_TOK = re.compile(r'<(/?)div\b[^>]*>', re.I)
+TITLE = re.compile(r'<title>(.*?)</title>', re.S | re.I)
+H1_MAIN = re.compile(r'<h1\s+class="main-title"\s*>(.*?)</h1>', re.S | re.I)
+CARD_TAG = re.compile(r'<div class="card[^"]*" id="c([^"]*)"([^>]*)>')
+
+
+def esc(s):
+    return html.escape(s, quote=True)
+
+
+def strip_tags(s):
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]*>', ' ', s))).strip()
+
+
+def div_inner(text, start_pat, from_pos=0):
+    """start_pat er prothom match er <div> er balanced vitorer html + end index."""
+    m = re.compile(start_pat, re.S | re.I).search(text, from_pos)
+    if not m:
+        return None, from_pos
+    depth, pos = 1, m.end()
+    for t in DIV_TOK.finditer(text, pos):
+        depth += -1 if t.group(1) else 1
+        if depth == 0:
+            return text[pos:t.start()], t.end()
+    return text[pos:], len(text)
+
+
+def balance_divs(s):
+    """Stray </div> bad dey, ghaton thakle shesh e bondho kore (page vange na)."""
+    out, pos, depth = [], 0, 0
+    for m in DIV_TOK.finditer(s):
+        if m.group(1):
+            if depth == 0:
+                out.append(s[pos:m.start()])
+                pos = m.end()
+                continue
+            depth -= 1
+        else:
+            depth += 1
+    out.append(s[pos:])
+    return "".join(out) + "</div>" * depth
+
+
+# =====================================================================
+#  TEMPLATE  (pure HTML + CSS baseline  ->  JS thakle extra feature)
+# =====================================================================
+CSS = r"""
+html{scroll-padding-top:110px;scroll-behavior:smooth}
+html:not(.js) .js-only{display:none!important}
+*{box-sizing:border-box}
+body{margin:0;background:#0d0d0f}
+.sr{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.page{--bg:#0d0d0f;--fg:#e4e4e4;--card:#1a1a1d;--muted:#9a9a9a;--line:#2c2c30;--accent:#5cc2ff;--btnfg:#06121c;
+  --bar:#1f1f23;--label:rgba(0,210,255,.12);--orig:#141417;
+  --t-red:#4a1c1c;--t-yellow:#4a4010;--t-green:#1b3f25;--t-blue:#12324f;
+  background:var(--bg);color:var(--fg);min-height:100vh;line-height:1.8;
+  font-family:'Hind Siliguri','Noto Sans Bengali','Kalpurush','Nirmala UI','Segoe UI',sans-serif}
+#lm:checked ~ .page{--bg:#f4f4f4;--fg:#111;--card:#fff;--muted:#666;--line:#ddd;--accent:#1976d2;--btnfg:#fff;
+  --bar:#fff;--label:#e8f1fb;--orig:#fafafa;
+  --t-red:#ffebee;--t-yellow:#fff8e1;--t-green:#e8f5e9;--t-blue:#e3f2fd}
+
+.btn,button{display:inline-block;padding:7px 12px;border:0;border-radius:6px;background:var(--accent);color:var(--btnfg);
+  cursor:pointer;font:inherit;font-size:14px;line-height:1.4;text-decoration:none;-webkit-appearance:none}
+.sm{padding:4px 8px;font-size:12px}
+.b-orange{background:#e67e22!important;color:#fff!important}
+.b-red{background:#d32f2f!important;color:#fff!important}
+.b-dark{background:#2b2b2b!important;color:#fff!important}
+.b-green{background:#2e7d32!important;color:#fff!important}
+select,input[type=search],input[type=number]{font:inherit;font-size:14px;background:var(--card);color:var(--fg);
+  border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+input[type=number]{width:84px}input[type=search]{width:170px}
+
+.topbar{position:-webkit-sticky;position:sticky;top:0;z-index:999;background:var(--bar);border-bottom:1px solid var(--line);
+  padding:8px 10px;transition:transform .3s ease;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.topbar>*{display:inline-block;vertical-align:middle;margin:3px 4px}
+.topbar.hide{-webkit-transform:translateY(-100%);transform:translateY(-100%)}
+.tracker{font-weight:bold}
+.tracker>*{margin-right:6px}
+.auto{font-size:13px;cursor:pointer}
+#progressWrap{position:fixed;left:0;top:0;height:3px;width:100%;z-index:1000}
+#progress{height:100%;width:0;background:#e67e22}
+.fab{position:fixed;right:12px;bottom:16px;z-index:998}
+.fab .btn{display:block;width:44px;height:44px;line-height:44px;padding:0;margin-top:8px;text-align:center;border-radius:50%;
+  font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.main-title{text-align:center;margin:10px 0 6px;font-size:1.7rem;line-height:1.4}
+#totalCount{text-align:center;font-weight:bold;font-style:italic;color:#e53935;font-size:18px;margin-bottom:14px}
+.toc{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:18px}
+.toc-h{font-weight:bold;margin-bottom:6px}
+.toclist{max-height:42vh;overflow:auto;-webkit-column-width:230px;column-width:230px;-webkit-column-gap:16px;column-gap:16px}
+.toclist a{display:block;color:var(--accent);text-decoration:none;font-size:14px;line-height:1.5;padding:2px 0;
+  -webkit-column-break-inside:avoid;break-inside:avoid;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.card{position:relative;z-index:0;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:16px 18px 12px 24px;margin-bottom:18px}
+.card:hover{box-shadow:0 4px 10px rgba(0,0,0,.18)}
+.card.resume{outline:2px solid #e67e22}
+.fr{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.tint{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;border-radius:10px;pointer-events:none}
+.fr-red:checked ~ .tint{background:var(--t-red);box-shadow:inset 8px 0 0 #e53935}
+.fr-yellow:checked ~ .tint{background:var(--t-yellow);box-shadow:inset 8px 0 0 #fbc02d}
+.fr-green:checked ~ .tint{background:var(--t-green);box-shadow:inset 8px 0 0 #43a047}
+.fr-blue:checked ~ .tint{background:var(--t-blue);box-shadow:inset 8px 0 0 #1e88e5}
+.cd>summary{cursor:pointer;list-style:none;outline:none}
+.cd>summary::-webkit-details-marker{display:none}
+.qnum{font-weight:bold;font-size:15px;color:var(--accent)}
+.genre{display:inline-block;margin-left:8px;font-size:12px;padding:0 8px;border-radius:10px;background:var(--label);color:var(--accent)}
+.ind{float:right;font-size:13px;color:var(--accent)}
+.cd[open] .ind::before{content:"▲ Hide"}
+.cd:not([open]) .ind::before{content:"▼ Show"}
+.head h2{font-size:1.15rem;margin:4px 0 0;line-height:1.5}
+.by{color:var(--muted);font-size:.95rem}
+.orig{background:var(--orig);border-left:4px solid var(--accent);border-radius:4px;padding:10px 14px;margin:8px 0;font-size:1.02rem}
+.orig strong{color:var(--accent)}
+.body{border-top:1px dashed var(--line);margin-top:12px;padding-top:10px}
+.body h1{font-size:1.15rem;margin:6px 0 8px;color:var(--accent)}
+.body h2{font-size:1.1rem;margin:16px 0 8px;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:4px}
+.body h3{font-size:1.05rem;margin:16px 0 8px;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:4px}
+.body h4{margin:10px 0 4px}
+.body p{margin:8px 0}
+.body ul,.body ol{margin:8px 0 8px 22px;padding:0 0 0 6px}
+.body li{margin-bottom:6px}
+.body strong,.body b{background:var(--label);padding:0 5px;border-radius:4px}
+.body em{color:var(--muted)}
+.body code{background:var(--label);padding:1px 6px;border-radius:4px}
+.body hr{border:0;border-top:1px dashed var(--line);margin:12px 0}
+.body table{width:100%;border-collapse:collapse;margin:10px 0;display:block;overflow-x:auto}
+.body th,.body td{border:1px solid var(--line);padding:6px 8px;text-align:left}
+.body th{background:var(--label)}
+.body details{margin:8px 0;padding:6px 10px;border:1px solid var(--line);border-radius:6px}
+.body .note,.body .clarification,.body .author-correction,.body .conclusion,.body .section-intro{
+  border-left:4px solid var(--accent);background:var(--orig);padding:6px 12px;margin:10px 0;border-radius:4px}
+.footer-mark{text-align:center;color:var(--muted);font-size:13px;margin-top:10px}
+.controls{margin-top:12px}
+.controls>*{display:inline-block;vertical-align:middle;margin:3px 5px 3px 0}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #fff;cursor:pointer}
+.dot.red{background:#e53935}.dot.yellow{background:#fbc02d}.dot.green{background:#43a047}.dot.blue{background:#1e88e5}.dot.none{background:#777}
+.fr-red:checked ~ .controls .red,.fr-yellow:checked ~ .controls .yellow,.fr-green:checked ~ .controls .green,
+.fr-blue:checked ~ .controls .blue,.fr-none:checked ~ .controls .none{box-shadow:0 0 0 3px var(--fg)}
+.nav a{color:var(--accent);text-decoration:none;font-size:14px;margin-right:12px}
+.reordered .pn{display:none}
+#toast{position:fixed;left:50%;bottom:24px;-webkit-transform:translateX(-50%);transform:translateX(-50%);background:#333;color:#fff;
+  padding:8px 16px;border-radius:20px;z-index:1001;opacity:0;pointer-events:none;transition:opacity .3s}
+#toast.show{opacity:1}
+@media(max-width:700px){.container{padding:10px}input[type=search]{width:120px}.card{padding:12px 12px 8px 18px}}
+"""
+
+JS = r"""
+(function(){
+var PREFIX="__PREFIX__";
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
+var container=$("#cards"),lm=$("#lm"),allExpanded=true,hovered=null;
+var originalOrder=$$("#cards > .card");
+var COLS=["red","yellow","green","blue"];
+function toast(m){var t=$("#toast");t.textContent=m;t.className="show";clearTimeout(toast._t);toast._t=setTimeout(function(){t.className=""},1600)}
+var ls={get:function(k){try{return localStorage.getItem(PREFIX+k)}catch(e){return null}},
+ set:function(k,v){try{localStorage.setItem(PREFIX+k,v)}catch(e){}},
+ del:function(k){try{localStorage.removeItem(PREFIX+k)}catch(e){}}};
+
+/* ---- flags (radio buttons; CSS rang dey) ---- */
+function applyColor(card,color){
+  var id=card.getAttribute("data-id");
+  COLS.concat(["none"]).forEach(function(c){
+    var r=document.getElementById("f"+id+"-"+c);if(!r)return;
+    if(c===color){r.checked=true;r.setAttribute("checked","")}else{r.checked=false;r.removeAttribute("checked")}
+  });
+  if(color==="none")card.removeAttribute("data-flag");else card.setAttribute("data-flag",color);
+}
+container.addEventListener("change",function(e){
+  var r=e.target;if(!r.classList||!r.classList.contains("fr"))return;
+  var card=r.closest(".card");applyColor(card,r.value);ls.set("color_"+card.getAttribute("data-id"),r.value);
+});
+window.resetColors=function(){
+  if(!confirm("সব flag/color মুছে ফেলবেন?"))return;
+  $$(".card").forEach(function(c){applyColor(c,"none");ls.set("color_"+c.getAttribute("data-id"),"none")});
+  applyFilter();
+};
+
+/* ---- filter / search ---- */
+function applyFilter(){
+  var sel=$("#filterColor").value,gs=$("#filterGenre"),g=gs?gs.value:"all",q=$("#searchBox").value.trim().toLowerCase(),shown=0;
+  $$(".card").forEach(function(c){
+    var col=c.getAttribute("data-flag")||"none";
+    var okC=sel==="all"||(sel==="marked"&&col!=="none")||col===sel;
+    var okG=g==="all"||c.getAttribute("data-genre")===g;
+    var okQ=!q||(c.getAttribute("data-search")||"").indexOf(q)>-1;
+    var ok=okC&&okG&&okQ;c.style.display=ok?"":"none";if(ok)shown++;
+  });
+  $("#totalCount").textContent="Showing "+shown+" / "+$$(".card").length+" cards";
+}
+window.applyFilter=applyFilter;
+function focusCard(card){
+  card.scrollIntoView({behavior:"smooth",block:"center"});
+  var o=card.style.boxShadow;card.style.boxShadow="0 0 22px #e67e22";setTimeout(function(){card.style.boxShadow=o},1800);
+}
+window.jumpFlag=function(dir){
+  var list=$$(".card").filter(function(c){return c.style.display!=="none"&&c.getAttribute("data-flag")});
+  if(!list.length){toast("কোনো flagged card নেই");return}
+  var mid=innerHeight/2,idx=-1,i;
+  if(dir>0){for(i=0;i<list.length;i++){if(list[i].getBoundingClientRect().top>mid-10){idx=i;break}}if(idx<0)idx=0}
+  else{for(i=list.length-1;i>=0;i--){if(list[i].getBoundingClientRect().top<mid-10){idx=i;break}}if(idx<0)idx=list.length-1}
+  focusCard(list[idx]);
+};
+
+/* ---- resume ---- */
+function currentResume(){
+  var v=ls.get("resume");if(v==="none")return null;if(v)return v;
+  var c=$(".card[data-resume]");return c?c.getAttribute("data-id"):null;
+}
+function paintResume(id){
+  $$(".card").forEach(function(c){c.classList.remove("resume");c.removeAttribute("data-resume")});
+  var a=$("#resumeLink");
+  if(id){var c=$('.card[data-id="'+id+'"]');if(c){c.classList.add("resume");c.setAttribute("data-resume","")}a.setAttribute("href","#c"+id)}
+  else a.setAttribute("href","#");
+  $("#trackerValue").textContent=id?"#"+id:"None";
+}
+window.saveResume=function(btn){
+  var id=btn.closest(".card").getAttribute("data-id");ls.set("resume",id);paintResume(id);toast("Resume saved: #"+id);
+};
+window.resetResume=function(){if(!confirm("Resume position মুছবেন?"))return;ls.set("resume","none");paintResume(null)};
+window.goToResume=function(){
+  var id=currentResume();if(!id){toast("কোনো Resume position সেভ করা নেই");return false}
+  var c=$('.card[data-id="'+id+'"]');if(!c)return true;c.style.display="";focusCard(c);return false;
+};
+window.goToNumber=function(){
+  var n=$("#gotoNum").value;if(!n)return;
+  var c=$('.card[data-id="'+n+'"]');if(c){c.style.display="";focusCard(c)}else toast(n+" পাওয়া যায়নি");
+};
+window.toggleAuto=function(cb){ls.set("autoResume",cb.checked?"true":"false")};
+
+/* ---- order ---- */
+function rebuild(a,re){container.innerHTML="";a.forEach(function(c){container.appendChild(c)});
+  if(re)container.classList.add("reordered");else container.classList.remove("reordered")}
+window.originalOrderQ=function(){rebuild(originalOrder,false)};
+window.reverseQ=function(){rebuild($$("#cards > .card").reverse(),true)};
+window.shuffleQ=function(){var a=$$("#cards > .card");for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}rebuild(a,true)};
+
+/* ---- expand / collapse ---- */
+window.toggleAll=function(){
+  allExpanded=!allExpanded;
+  $$("details.cd").forEach(function(d){d.open=allExpanded});
+  $("#toggleAllBtn").textContent=allExpanded?"Collapse All":"Expand All";
+};
+container.addEventListener("mouseover",function(e){hovered=e.target.closest(".card")});
+
+/* ---- top/bottom/theme ---- */
+window.goBottom=function(){scrollTo({top:document.documentElement.scrollHeight,behavior:"smooth"})};
+lm.addEventListener("change",function(){
+  if(lm.checked)lm.setAttribute("checked","");else lm.removeAttribute("checked");ls.set("light",lm.checked?"true":"false");
+});
+
+/* ---- reverse scroll => topbar ashe ---- */
+var lastY=0,ticking=false,bar=$(".topbar");
+addEventListener("scroll",function(){
+  if(ticking)return;ticking=true;
+  (window.requestAnimationFrame||function(f){setTimeout(f,16)})(function(){
+    var y=Math.max(window.pageYOffset||0,0);
+    if(y<80||y<lastY-4)bar.classList.remove("hide");else if(y>lastY+4)bar.classList.add("hide");
+    lastY=y;
+    var h=document.documentElement.scrollHeight-innerHeight;
+    $("#progress").style.width=(h>0?y/h*100:0)+"%";
+    ticking=false;
+  });
+},{passive:true});
+
+/* ---- keys ---- */
+addEventListener("keydown",function(e){
+  if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+  var k=(e.key||"").toLowerCase();
+  if(k==="a")scrollBy({top:-300,behavior:"smooth"});
+  else if(k==="d")scrollBy({top:300,behavior:"smooth"});
+  else if(k==="w"&&hovered){e.preventDefault();var d=hovered.querySelector("details.cd");d.open=!d.open}
+  else if(k==="r")goToResume();
+  else if(k==="n")jumpFlag(1);
+  else if(k==="p")jumpFlag(-1);
+  else if(k==="/"){e.preventDefault();$("#searchBox").focus()}
+});
+
+/* ---- export (flag/resume page e baked hoye jay -> JS chhara viewer e-o thake) ---- */
+window.exportPage=function(){
+  var clone=document.documentElement.cloneNode(true);
+  clone.className=clone.className.replace(/\bjs\b/,"").trim();
+  var tb=clone.querySelector(".topbar");if(tb)tb.classList.remove("hide");
+  var ct=clone.querySelector("#cards");if(ct)ct.classList.remove("reordered");
+  var blob=new Blob(["<!DOCTYPE html>\n"+clone.outerHTML],{type:"text/html"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  var n=decodeURIComponent(location.pathname.split("/").pop()||"page.html");
+  a.download=n.replace(/(\.[^.]+)?$/,"_marked$1");a.click();
+};
+
+/* ---- init (load event er opor nirbhor kore na) ---- */
+var L=ls.get("light");if(L!==null){lm.checked=(L==="true");if(lm.checked)lm.setAttribute("checked","");else lm.removeAttribute("checked")}
+var auto=ls.get("autoResume")!=="false";$("#autoResume").checked=auto;
+$$(".card").forEach(function(c){var col=ls.get("color_"+c.getAttribute("data-id"));if(col)applyColor(c,col)});
+$("#totalCount").textContent="Total Cards: "+$$(".card").length;
+var rid=currentResume();paintResume(rid);
+if(auto&&rid&&!location.hash){setTimeout(function(){var c=$('.card[data-id="'+rid+'"]');if(c){c.scrollIntoView({block:"center"});toast("Auto-resumed at #"+rid)}},150)}
+})();
+"""
+
+
+def build_card(c, prev_id, next_id):
+    cid = esc(c["id"])
+    flag = c.get("flag", "") if c.get("flag", "") in COLORS else ""
+    attrs = f' data-flag="{flag}"' if flag else ""
+    if c.get("resume"):
+        attrs += ' data-resume=""'
+    if c.get("genre"):
+        attrs += f' data-genre="{esc(c["genre"])}"'
+    search = esc((c["id"] + " " + strip_tags(c["title_html"]) + " " + strip_tags(c["sub_html"])[:400]
+                  + " " + c.get("genre", "")).lower())
+    cls = "card resume" if c.get("resume") else "card"
+    radios = "".join(
+        f'<input type="radio" class="fr fr-{col}" name="f{cid}" id="f{cid}-{col}" value="{col}"'
+        f'{" checked" if (flag or "none") == col else ""}>'
+        for col in COLORS + ("none",))
+    genre = f'<span class="genre">{esc(c["genre"])}</span>' if c.get("genre") else ""
+    sub = f'<div class="{c["sub_class"]}"><!--s-->{c["sub_html"]}<!--/s--></div>' if c["sub_html"] else ""
+    pn = ""
+    if prev_id:
+        pn += f'<a href="#c{esc(prev_id)}">← Prev</a>'
+    if next_id:
+        pn += f'<a href="#c{esc(next_id)}">Next →</a>'
+    return f"""
+<div class="{cls}" id="c{cid}" data-id="{cid}" data-search="{search}"{attrs}>
+{radios}<span class="tint"></span>
+<details class="cd" open>
+<summary class="head"><span class="ind"></span><span class="qnum">{esc(c["label"])}</span>{genre}<h2><!--t-->{c["title_html"]}<!--/t--></h2>{sub}</summary>
+<div class="body"><!--b-->{c["body"]}<!--/b--></div>
+</details>
+<div class="controls">
+<label for="f{cid}-red" class="dot red"></label><label for="f{cid}-yellow" class="dot yellow"></label><label for="f{cid}-green" class="dot green"></label><label for="f{cid}-blue" class="dot blue"></label><label for="f{cid}-none" class="dot none"></label>
+<button class="b-orange js-only" onclick="saveResume(this)">Resume Here</button>
+<span class="nav"><span class="pn">{pn}</span><a href="#toc">☰ Index</a><a href="#top">↑ Top</a></span>
+</div>
+</div>"""
+
+
+def build_page(cards, page_title, h1_html, prefix, light=False):
+    genres = sorted({c["genre"] for c in cards if c.get("genre")})
+    gsel = ""
+    if genres:
+        gsel = ('<select id="filterGenre" class="js-only" onchange="applyFilter()"><option value="all">All Genres</option>'
+                + "".join(f'<option value="{esc(g)}">{esc(g)}</option>' for g in genres) + "</select>")
+    resume = next((c for c in cards if c.get("resume")), None)
+    rhref = f'#c{esc(resume["id"])}' if resume else "#"
+    rcls = "" if resume else " js-only"
+
+    body_cards = []
+    for i, c in enumerate(cards):
+        prev_id = cards[i - 1]["id"] if i > 0 else ""
+        next_id = cards[i + 1]["id"] if i + 1 < len(cards) else ""
+        body_cards.append(build_card(c, prev_id, next_id))
+
+    toc = "".join(
+        f'<a href="#c{esc(c["id"])}">{esc(c["label"])} · {esc(strip_tags(c["title_html"])[:70])}</a>' for c in cards)
+
+    topbar = f"""
+<div class="topbar" id="topbar">
+<a class="btn b-green" href="#top">↑ Top</a>
+<a class="btn b-green" href="#bottom">↓ Bottom</a>
+<a class="btn" href="#toc">☰ Index</a>
+<a class="btn b-orange{rcls}" id="resumeLink" href="{rhref}" onclick="return goToResume()">🔖 Go to Resume</a>
+<label class="btn b-dark" for="lm">🌓 Theme</label>
+<span class="tracker js-only">Resume: <span id="trackerValue">None</span>
+<button class="sm b-red" onclick="resetResume()">Reset</button>
+<label class="auto"><input type="checkbox" id="autoResume" onchange="toggleAuto(this)"> Auto-resume</label></span>
+<input type="search" id="searchBox" class="js-only" placeholder="Search ( / )" oninput="applyFilter()">
+{gsel}
+<select id="filterColor" class="js-only" onchange="applyFilter()">
+<option value="all">All</option><option value="marked">Marked All</option><option value="red">Red</option>
+<option value="yellow">Yellow</option><option value="green">Green</option><option value="blue">Blue</option>
+<option value="none">No Color</option></select>
+<button class="js-only" onclick="jumpFlag(-1)" title="Prev flagged (P)">◀ Flag</button>
+<button class="js-only" onclick="jumpFlag(1)" title="Next flagged (N)">Flag ▶</button>
+<input type="number" id="gotoNum" class="js-only" min="1" placeholder="__GOTO__" onkeydown="if(event.key==='Enter')goToNumber()">
+<button class="js-only" onclick="goToNumber()">Go</button>
+<button class="js-only b-dark" onclick="originalOrderQ()">Original</button>
+<button class="js-only" onclick="reverseQ()">Reverse</button>
+<button class="js-only" onclick="shuffleQ()">Shuffle</button>
+<button class="js-only b-red" onclick="resetColors()">Reset Colors</button>
+<button class="js-only" onclick="toggleAll()" id="toggleAllBtn">Collapse All</button>
+<button class="js-only" onclick="exportPage()">Export</button>
+</div>""".replace("__GOTO__", GOTO_PH)
+
+    js = JS.replace("__PREFIX__", prefix)
+    return f"""<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="{GENERATOR}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(page_title)}</title>
+<script>document.documentElement.className+=" js"</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+{CSS}
+</style>
+</head>
+<body>
+<a id="top"></a>
+<input type="checkbox" id="lm" class="sr" aria-label="Light mode"{" checked" if light else ""}>
+<div class="page">
+<div id="progressWrap" class="js-only"><div id="progress"></div></div>
+{topbar}
+<div class="container">
+<h1 class="main-title">{h1_html}</h1>
+<div id="totalCount">Total Cards: {len(cards)}</div>
+<div id="toc" class="toc"><div class="toc-h">☰ Index — {len(cards)}</div><div class="toclist">{toc}</div></div>
+<div id="cards">{"".join(body_cards)}
+</div>
+<a id="bottom"></a>
+</div>
+<div class="fab"><a class="btn" href="#top" title="Top">↑</a><a class="btn" href="#bottom" title="Bottom">↓</a></div>
+<div id="toast"></div>
+</div>
+<script>{js}</script>
+</body>
+</html>
+"""
+
+
+# =====================================================================
+#  v2 page theke abar card ber kora (refresh / idempotent run er jonno)
+# =====================================================================
+def _between(seg, k):
+    m = re.search(rf'<!--{k}-->(.*?)<!--/{k}-->', seg, re.S)
+    return m.group(1) if m else ""
+
+
+def parse_v2(src):
+    tags = list(CARD_TAG.finditer(src))
+    cards = []
+    for i, m in enumerate(tags):
+        end = tags[i + 1].start() if i + 1 < len(tags) else len(src)
+        seg = src[m.end():end]
+        attrs = dict(re.findall(r'data-([a-z]+)="([^"]*)"', m.group(2)))
+        lab = re.search(r'<span class="qnum">(.*?)</span>', seg, re.S)
+        sc = re.search(r'<div class="(orig|by)"><!--s-->', seg)
+        cards.append(dict(
+            id=html.unescape(m.group(1)),
+            label=html.unescape(lab.group(1)) if lab else "#" + m.group(1),
+            title_html=_between(seg, "t"),
+            sub_html=_between(seg, "s"),
+            sub_class=sc.group(1) if sc else "by",
+            genre=html.unescape(attrs.get("genre", "")),
+            body=_between(seg, "b"),
+            flag=attrs.get("flag", ""),
+            resume="resume" in attrs))
+    return cards
+
+
+# =====================================================================
+#  driver
+# =====================================================================
+def apply_edits(cards, edits):
+    if edits.get("resume") is not None:
+        hit = False
+        for c in cards:
+            c["resume"] = (c["id"] == edits["resume"])
+            hit = hit or c["resume"]
+        if not hit:
+            print(f"  ! resume id {edits['resume']} paoa jayni")
+    for cid, col in edits.get("flags", {}).items():
+        for c in cards:
+            if c["id"] == cid:
+                c["flag"] = "" if col == "none" else col
+                break
+        else:
+            print(f"  ! flag id {cid} paoa jayni")
+
+
+def convert(src, path, edits):
+    r = load(src, path)
+    if r is None:
+        return None, 0
+    cards, page_title, h1_html = r
+    if not cards:
+        return None, 0
+    apply_edits(cards, edits)
+    prefix = PREFIX_TAG + hashlib.md5(path.name.encode("utf-8")).hexdigest()[:8] + "_"
+    light = bool(re.search(r'<input[^>]*\bid="lm"[^>]*\bchecked', src))   # baked theme thake
+    return build_page(cards, page_title, h1_html, prefix, light), len(cards)
+
+
+def process_file(path, dry, backup, edits):
+    try:
+        src = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return "SKIP (utf-8 noy)", 0
+    page, n = convert(src, path, edits)
+    if page is None:
+        return "SKIP (format mile ni)", 0
+    if page == src:
+        return "UNCHANGED", n
+    if dry:
+        return "WOULD UPDATE", n
+    if backup:
+        shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
+    tmp = path.with_name(path.name + ".tmp~")   # atomic in-place write, kono extra file thake na
+    try:
+        tmp.write_text(page, encoding="utf-8")
+        tmp.replace(path)
+    finally:
+        if tmp.exists():
+            tmp.unlink()
+    return "UPDATED", n
+
+
+def main():
+    ap = argparse.ArgumentParser(description=DESCRIPTION)
+    ap.add_argument("target", nargs="?", default=".", help="folder (default: current) ba single .html file")
+    ap.add_argument("-r", "--recursive", action="store_true", help="subfolder gulo-o scan koro")
+    ap.add_argument("--dry-run", action="store_true", help="kichu likhbe na, shudhu ki hobe dekhabe")
+    ap.add_argument("--backup", action="store_true", help="update er age .bak rakho (default: kono backup/notun file na)")
+    ap.add_argument("--set-resume", metavar="ID", help="(single file) resume position file er vitore bake kore dao")
+    ap.add_argument("--set-flag", metavar="ID=COLOR", action="append", default=[],
+                    help="(single file) flag bake koro, jemon 12=red (red/yellow/green/blue/none); bar bar deya jay")
+    args = ap.parse_args()
+
+    edits = {}
+    if args.set_resume is not None:
+        edits["resume"] = args.set_resume
+    flags = {}
+    for item in args.set_flag:
+        k, _, v = item.partition("=")
+        if v not in COLORS + ("none",):
+            sys.exit(f"--set-flag: ভুল color '{v}' (red/yellow/green/blue/none)")
+        flags[k.strip()] = v
+    if flags:
+        edits["flags"] = flags
+
+    target = Path(args.target)
+    if edits and not target.is_file():
+        sys.exit("--set-resume / --set-flag shudhu single file er sathe kaj kore.")
+    if target.is_file():
+        files = [target]
+    elif target.is_dir():
+        pat = "**/*" if args.recursive else "*"
+        files = sorted(p for p in target.glob(pat) if p.is_file() and p.suffix.lower() in (".html", ".htm"))
+    else:
+        sys.exit(f"Path paoa jayni: {target}")
+    if not files:
+        sys.exit("Kono .html file paoa jayni.")
+
+    counts = {}
+    for f in files:
+        status, n = process_file(f, args.dry_run, args.backup, edits)
+        key = status.split()[0]
+        counts[key] = counts.get(key, 0) + 1
+        print(f"[{status}] {f}" + (f" ({n} cards)" if n else ""))
+    print("\nSummary:", ", ".join(f"{k}={v}" for k, v in counts.items()))
+
+# =====================================================================
+#  TYPE: report-card  (<div class="report-card"> ... </div> onek ta)
+# =====================================================================
+GENERATOR = "reformat_report_v2"
+PREFIX_TAG = "rpt_"
+GOTO_PH = "#"
+DESCRIPTION = "Gemini analysis report HTML (report-card) - folder-wide in-place reformat"
+
+CARD_START = re.compile(r'<div\s+class="report-card"\s*>', re.I)
+H2 = re.compile(r'<h2\b[^>]*>(.*?)</h2>', re.S | re.I)
+STYLE = re.compile(r'<style\b.*?</style>', re.S | re.I)
+FOOTER = re.compile(r'\s*<div\s+class="footer-mark"\s*>.*?</div>\s*$', re.S | re.I)
+FOOTER_HTML = '\n<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div>'
+LEGACY_TAG = re.compile(r'<div\s+class="card[^"]*"\s+data-id="(\d+)"[^>]*>', re.I)
+
+
+def split_cards(src):
+    cards, pos = [], 0
+    while True:
+        m = CARD_START.search(src, pos)
+        if not m:
+            break
+        inner, end = div_inner(src, r'<div\s+class="report-card"\s*>', m.start())
+        cards.append(inner)
+        pos = end
+    return cards
+
+
+def card_from_parts(i, heading, orig, body):
+    heading = re.sub(r'^\s*\d+\s*[.)]\s*', '', heading.strip())     # purano "N." number bad
+    return dict(id=str(i), label=f"#{i}", title_html=heading, sub_html=orig.strip(), sub_class="orig",
+                genre="", body=body.strip() + FOOTER_HTML, flag="", resume=False)
+
+
+def parse_original(src):
+    out = []
+    for i, inner in enumerate(split_cards(src), 1):
+        h = H2.search(inner)
+        heading = h.group(1) if h else f"{i}. বিশ্লেষণ"
+        orig, _ = div_inner(inner, r'<div\s+class="original-box"\s*>')
+        body, _ = div_inner(inner, r'<div\s+class="analysis-content"\s*>')
+        out.append(card_from_parts(i, heading, STYLE.sub("", orig or ""), STYLE.sub("", body or "")))
+    return out
+
+
+def parse_legacy(src):
+    """Ager version (card expanded / data-id, .orig, .details) theke migrate."""
+    out, tags = [], list(LEGACY_TAG.finditer(src))
+    for m in tags:
+        inner, _ = div_inner(src, re.escape(m.group(0)), m.start())
+        h = H2.search(inner or "")
+        orig, _ = div_inner(inner or "", r'<div\s+class="orig"\s*>')
+        body, _ = div_inner(inner or "", r'<div\s+class="details"\s*>')
+        body = FOOTER.sub("", body or "")
+        c = card_from_parts(m.group(1), h.group(1) if h else m.group(1), orig or "", body)
+        c["id"], c["label"] = m.group(1), "#" + m.group(1)
+        out.append(c)
+    return out
+
+
+def load(src, path):
+    if f'name="generator" content="{GENERATOR}"' in src:
+        cards = parse_v2(src)
+    elif LEGACY_TAG.search(src) and 'class="orig"' in src and 'class="details"' in src:
+        cards = parse_legacy(src)
+    else:
+        cards = parse_original(src)
+    if not cards:
+        return None
+    tm = TITLE.search(src)
+    title = html.unescape(strip_tags(tm.group(1))) if tm else path.stem
+    mm = H1_MAIN.search(src)
+    h1 = mm.group(1).strip() if mm else esc(title)
+    return cards, title, h1
+
+
+if __name__ == "__main__":
+    main()
