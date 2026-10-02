@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f5fb;--card:#fff;--ink:#1d2033;--mute:#6b7089;--line:#e3e5f0;--brand:#5560c0;--brand-ink:#fff;--ok:#1f9d6b;--okbg:#e2f5ec;--row:#f8f9fd}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13141f;--card:#1c1e2e;--ink:#eceefa;--mute:#9a9fba;--line:#2c2f45;--brand:#7d88ee;--brand-ink:#10112a;--ok:#4cc79a;--okbg:#17332b;--row:#212338}}
+:root[data-theme="dark"]{--bg:#13141f;--card:#1c1e2e;--ink:#eceefa;--mute:#9a9fba;--line:#2c2f45;--brand:#7d88ee;--brand-ink:#10112a;--ok:#4cc79a;--okbg:#17332b;--row:#212338}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.5rem;margin:0 0 14px;font-weight:700}
+nav{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:16px}
+nav button{flex:1;border:0;background:none;color:var(--mute);font:inherit;font-weight:600;padding:8px;border-radius:7px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--brand);color:var(--brand-ink)}
+button,input,select{font:inherit;color:inherit}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.datebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:7px 12px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--brand)}
+.btn.pri{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.btn.del{color:#d0453f}
+input[type=date],input[type=text]{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:7px 10px;min-width:0}
+.dayname{font-weight:600;color:var(--mute);margin-left:auto}
+.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ring{position:relative;width:128px;height:128px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-size:1.9rem;font-weight:700}
+.sum{flex:1;min-width:200px}
+.sum b{font-size:1.15rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:.85rem;padding:2px 10px;border-radius:99px;background:var(--row);border:1px solid var(--line)}
+.chip.ok{background:var(--okbg);border-color:transparent;color:var(--ok)}
+table{width:100%;border-collapse:collapse}
+th{background:var(--brand);color:var(--brand-ink);text-align:left;padding:10px 12px;font-weight:600}
+th:first-child{border-radius:10px 0 0 0}th:last-child{border-radius:0 10px 0 0;text-align:center}
+td{padding:10px 12px;vertical-align:middle}
+tbody tr:nth-child(even){background:var(--row)}
+tbody tr.done td:not(:last-child){color:var(--mute);text-decoration:line-through}
+td.c{text-align:center;width:90px}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--brand);cursor:pointer}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.sub{font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat b{display:block;font-size:1.6rem;line-height:1.2}
+.stat span{color:var(--mute);font-size:.9rem}
+.bars{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:8px;overflow-x:auto}
+.bar{flex:1;min-width:26px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;cursor:pointer;border:0;background:none;padding:0}
+.bar i{display:block;width:100%;background:var(--brand);border-radius:5px 5px 0 0;min-height:3px;opacity:.9}
+.bar.full i{background:var(--ok)}
+.bar.sel i{outline:2px solid var(--ink);outline-offset:1px}
+.bar small{font-size:.7rem;color:var(--mute);margin-top:4px}
+.sbar{margin:10px 0}
+.sbar .t{display:flex;justify-content:space-between;font-weight:500}
+.track{height:10px;background:var(--row);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:4px}
+.track i{display:block;height:100%;background:var(--brand)}
+h2{font-size:1.05rem;margin:0 0 8px}
+.mrow{display:grid;grid-template-columns:1fr 1fr 1.6fr auto;gap:8px;margin-bottom:8px}
+.mrow.add{margin-top:12px}
+.note{color:var(--mute);font-size:.9rem;margin:6px 0 0}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:620px){.mrow{grid-template-columns:1fr 1fr}.mrow input:nth-child(3){grid-column:1/-1}.dayname{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Study Tracker</h1>
+  <nav role="tablist">
+    <button role="tab" data-tab="today">Day</button>
+    <button role="tab" data-tab="overview">Progress</button>
+    <button role="tab" data-tab="manage">Tasks</button>
+  </nav>
+  <main id="app"></main>
+</div>
+<script>
+const LS = 'studytracker.v1';
+const DEFAULT_TASKS = [
+  ['Bangla','Literature','bangla lit'],
+  ['Bangla','Grammar','chapter wise'],
+  ['English','Grammar','mukosto grammar [number, gender, preposition, group v] + rev grammar'],
+  ['English','Birochon','one word, idioms, spelling'],
+  ['English','Literature','eng lit'],
+  ['English','Word Practice','eng word prac'],
+  ['Math','Chapter Wise','math chapter wise'],
+  ['General Knowledge','GK','gk']
+].map((t,i)=>({id:'t'+i,subject:t[0],topic:t[1],details:t[2]}));
+
+let S = load(), tab = 'today', cur = ymd(new Date());
+
+function load(){
+  try{ const s = JSON.parse(localStorage.getItem(LS)); if(s && s.tasks) return s; }catch(e){}
+  return {tasks:DEFAULT_TASKS, days:{}, seq:100};
+}
+function save(){ try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){} }
+function ymd(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function parse(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+function shift(s,n){ const d=parse(s); d.setDate(d.getDate()+n); return ymd(d); }
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function doneOn(day){ const m=S.days[day]||{}; return S.tasks.filter(t=>m[t.id]).length; }
+function pctOn(day){ return S.tasks.length ? Math.round(doneOn(day)/S.tasks.length*100) : 0; }
+const $ = s => document.querySelector(s);
+
+function render(){
+  document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-selected', b.dataset.tab===tab));
+  $('#app').innerHTML = tab==='today' ? vDay() : tab==='overview' ? vOverview() : vManage();
+}
+
+function vDay(){
+  const m = S.days[cur]||{}, total=S.tasks.length, done=doneOn(cur), p=pctOn(cur);
+  const C = 2*Math.PI*52, off = C*(1-p/100);
+  const left = S.tasks.filter(t=>!m[t.id]);
+  const dn = parse(cur).toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'short',year:'numeric'});
+  return `
+  <div class="card">
+    <div class="datebar">
+      <button class="btn" data-act="prev" aria-label="Previous day">&lsaquo;</button>
+      <input type="date" id="dp" value="${cur}">
+      <button class="btn" data-act="next" aria-label="Next day">&rsaquo;</button>
+      <button class="btn" data-act="today">Today</button>
+      <span class="dayname">${esc(dn)}</span>
+    </div>
+  </div>
+  <div class="card hero">
+    <div class="ring"><svg width="128" height="128" viewBox="0 0 128 128" aria-hidden="true">
+      <circle cx="64" cy="64" r="52" fill="none" stroke="var(--line)" stroke-width="12"/>
+      <circle cx="64" cy="64" r="52" fill="none" stroke="${p===100?'var(--ok)':'var(--brand)'}" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${off}"/></svg>
+      <div class="pct">${p}%</div></div>
+    <div class="sum">
+      <b>${done} of ${total} done</b>
+      <div style="color:var(--mute)">${left.length ? left.length+' remaining' : 'All finished for this day'}</div>
+      <div class="chips">${left.map(t=>`<span class="chip">${esc(t.subject)} · ${esc(t.topic)}</span>`).join('') || '<span class="chip ok">Everything completed</span>'}</div>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Subject</th><th>Topic / Task</th><th>Details</th><th>Completed</th></tr></thead>
+    <tbody>${S.tasks.map(t=>`<tr class="${m[t.id]?'done':''}">
+      <td class="sub">${esc(t.subject)}</td><td>${esc(t.topic)}</td><td>${esc(t.details)}</td>
+      <td class="c"><input type="checkbox" data-id="${t.id}" ${m[t.id]?'checked':''} aria-label="Mark ${esc(t.topic)} complete"></td></tr>`).join('')}
+    </tbody></table></div>
+  <div class="acts" style="margin-top:12px">
+    <button class="btn" data-act="all">Mark all done</button>
+    <button class="btn" data-act="none">Clear day</button>
+  </div>`;
+}
+
+function vOverview(){
+  const today = ymd(new Date());
+  const keys = Object.keys(S.days).filter(k=>doneOn(k)>0).sort();
+  const days14 = Array.from({length:14},(_,i)=>shift(today,i-13));
+  // streak of days with 100%
+  let streak=0, d=today; if(pctOn(d)<100) d=shift(d,-1);
+  while(S.tasks.length && pctOn(d)===100){ streak++; d=shift(d,-1); }
+  // range for stats: from first logged day (max 30 days) to today
+  const first = keys[0];
+  const start = first ? (first > shift(today,-29) ? first : shift(today,-29)) : today;
+  const range=[]; for(let x=start; x<=today; x=shift(x,1)) range.push(x);
+  const poss = range.length*S.tasks.length;
+  const got = range.reduce((a,x)=>a+doneOn(x),0);
+  const avg = poss && first ? Math.round(got/poss*100) : 0;
+  const full = range.filter(x=>pctOn(x)===100).length;
+  const subs = [...new Set(S.tasks.map(t=>t.subject))];
+  const sub = subs.map(s=>{
+    const ts=S.tasks.filter(t=>t.subject===s);
+    const g=range.reduce((a,x)=>a+ts.filter(t=>(S.days[x]||{})[t.id]).length,0);
+    const pp = first ? Math.round(g/(ts.length*range.length)*100) : 0;
+    return {s,pp};
+  });
+  const tp = pctOn(today);
+  return `
+  <div class="stats">
+    <div class="stat"><b>${tp}%</b><span>Today</span></div>
+    <div class="stat"><b>${avg}%</b><span>Average (last ${range.length} day${range.length>1?'s':''})</span></div>
+    <div class="stat"><b>${streak}</b><span>Day streak (100%)</span></div>
+    <div class="stat"><b>${full}</b><span>Fully completed days</span></div>
+  </div>
+  <div class="card"><h2>Last 14 days</h2>
+    <div class="bars">${days14.map(x=>{const p=pctOn(x);return `<button class="bar ${p===100?'full':''} ${x===cur?'sel':''}" data-go="${x}" title="${x}: ${p}%"><i style="height:${p}%"></i><small>${parse(x).getDate()}</small></button>`}).join('')}</div>
+    <p class="note">Tap a bar to open that day.</p></div>
+  <div class="card"><h2>By subject</h2>
+    ${sub.map(o=>`<div class="sbar"><div class="t"><span>${esc(o.s)}</span><span>${o.pp}%</span></div><div class="track"><i style="width:${o.pp}%"></i></div></div>`).join('') || '<p class="note">No tasks yet.</p>'}
+  </div>`;
+}
+
+function vManage(){
+  return `
+  <div class="card"><h2>Your task list</h2>
+    <p class="note" style="margin-top:0">This list repeats every day. Edit, add or remove tasks to reuse the tracker for any routine.</p>
+    <div style="margin-top:12px">${S.tasks.map(t=>`<div class="mrow" data-tid="${t.id}">
+      <input type="text" data-f="subject" value="${esc(t.subject)}" aria-label="Subject">
+      <input type="text" data-f="topic" value="${esc(t.topic)}" aria-label="Topic">
+      <input type="text" data-f="details" value="${esc(t.details)}" aria-label="Details">
+      <button class="btn del" data-del="${t.id}" aria-label="Delete task">Delete</button></div>`).join('')}</div>
+    <div class="mrow add">
+      <input type="text" id="n-s" placeholder="Subject"><input type="text" id="n-t" placeholder="Topic / Task"><input type="text" id="n-d" placeholder="Details">
+      <button class="btn pri" data-act="add">Add</button></div>
+  </div>
+  <div class="card"><h2>Backup</h2>
+    <div class="acts">
+      <button class="btn" data-act="export">Copy backup</button>
+      <button class="btn" data-act="import">Restore from backup</button>
+      <button class="btn del" data-act="reset">Reset everything</button>
+    </div>
+    <p class="note">Progress is saved in this browser. Copy a backup to move it to another device.</p>
+  </div>`;
+}
+
+document.addEventListener('click', e=>{
+  const t = e.target.closest('button'); if(!t) return;
+  if(t.dataset.tab){ tab=t.dataset.tab; return render(); }
+  if(t.dataset.go){ cur=t.dataset.go; tab='today'; return render(); }
+  if(t.dataset.del){ if(confirm('Delete this task?')){ S.tasks=S.tasks.filter(x=>x.id!==t.dataset.del); save(); render(); } return; }
+  const a=t.dataset.act; if(!a) return;
+  const m = S.days[cur] = S.days[cur]||{};
+  if(a==='prev'){cur=shift(cur,-1);}
+  else if(a==='next'){cur=shift(cur,1);}
+  else if(a==='today'){cur=ymd(new Date());}
+  else if(a==='all'){S.tasks.forEach(x=>m[x.id]=true);save();}
+  else if(a==='none'){S.days[cur]={};save();}
+  else if(a==='add'){
+    const s=$('#n-s').value.trim(), tp=$('#n-t').value.trim(), d=$('#n-d').value.trim();
+    if(!s && !tp) return;
+    S.tasks.push({id:'t'+(S.seq=(S.seq||100)+1),subject:s||'General',topic:tp,details:d}); save();
+  }
+  else if(a==='export'){
+    const txt=JSON.stringify(S);
+    (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>alert('Backup copied to clipboard.')).catch(()=>prompt('Copy this backup:',txt));
+    return;
+  }
+  else if(a==='import'){
+    const txt=prompt('Paste your backup here:'); if(!txt) return;
+    try{ const o=JSON.parse(txt); if(!o.tasks||!o.days) throw 0; S=o; save(); }catch(err){ alert('That backup could not be read.'); return; }
+  }
+  else if(a==='reset'){ if(!confirm('Delete all tasks and progress?')) return; S={tasks:DEFAULT_TASKS,days:{},seq:100}; save(); }
+  render();
+});
+document.addEventListener('change', e=>{
+  const el=e.target;
+  if(el.id==='dp' && el.value){ cur=el.value; return render(); }
+  if(el.type==='checkbox' && el.dataset.id){
+    const m = S.days[cur] = S.days[cur]||{};
+    m[el.dataset.id]=el.checked; save(); return render();
+  }
+  if(el.dataset.f){
+    const row=el.closest('[data-tid]'); const t=S.tasks.find(x=>x.id===row.dataset.tid);
+    if(t){ t[el.dataset.f]=el.value.trim(); save(); }
+  }
+});
+render();
+</script>
+</body>
+</html>
