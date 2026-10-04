@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>সদর দপ্তর ও নোবেল: রিভিশন</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAF1F3;--card:#fff;--ink:#10263A;--mute:#5A6E7E;--line:#C9D8DE;--teal:#0B7A85;--tealbg:#D5ECEE;--amber:#B8650E;--amberbg:#F8E6CF;--ok:#1F7A4D;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1B26;--card:#16293A;--ink:#E6EEF2;--mute:#97ABB8;--line:#2A4256;--teal:#4CC3CE;--tealbg:#16424B;--amber:#F0A55A;--amberbg:#4A3319;--ok:#5FD39A}}
+:root[data-theme="dark"]{--bg:#0E1B26;--card:#16293A;--ink:#E6EEF2;--mute:#97ABB8;--line:#2A4256;--teal:#4CC3CE;--tealbg:#16424B;--amber:#F0A55A;--amberbg:#4A3319;--ok:#5FD39A}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.7 "Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px 16px 48px}
+h1{font:800 26px/1.3 "Noto Serif Bengali",serif;margin:8px 0 2px}
+.sub{color:var(--mute);margin:0 0 14px;font-size:15px}
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
+nav button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:15px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.seg{display:flex;gap:6px;margin-bottom:12px}
+.seg button{flex:1;border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:10px;padding:6px;font:inherit;font-size:15px;cursor:pointer}
+.seg button[aria-pressed=true]{border-color:var(--teal);color:var(--teal);background:var(--tealbg);font-weight:600}
+.stats{display:flex;gap:4px;margin:0 0 12px}
+.stats div{flex:1;text-align:center;font-size:13px;color:var(--mute);border-top:4px solid var(--line);padding-top:2px}
+.stats b{display:block;font-size:18px;color:var(--ink)}
+.stats .b1{border-color:var(--amber)}.stats .b4{border-color:var(--ok)}.stats .b2,.stats .b3{border-color:var(--teal)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 20px;min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer}
+.code{font:800 34px/1.2 "Noto Serif Bengali",serif;margin:0}
+.q{color:var(--mute);margin:4px 0 0}
+.ans{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.city{font:800 26px/1.3 "Noto Serif Bengali",serif;color:var(--teal);margin:0}
+.hint{color:var(--mute);font-size:15px;margin:6px 0 0}
+.tap{color:var(--mute);font-size:14px;margin-top:18px}
+.row{display:flex;gap:10px;margin-top:12px}
+.row button,.btn{flex:1;border:0;border-radius:12px;padding:12px;font:600 17px "Hind Siliguri",sans-serif;cursor:pointer}
+.no{background:var(--amberbg);color:var(--amber)}.yes{background:var(--tealbg);color:var(--teal)}
+.btn{background:var(--ink);color:var(--bg);margin-top:12px;width:100%}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:10px 14px;font:inherit;cursor:pointer}
+.opt.right{border-color:var(--ok);background:var(--tealbg)}.opt.wrong{border-color:var(--amber);background:var(--amberbg)}
+.grp{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--teal);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.grp h3{font:800 19px "Noto Serif Bengali",serif;margin:0}
+.grp p{margin:2px 0 8px;color:var(--mute);font-size:15px}
+.chip{display:inline-block;background:var(--tealbg);color:var(--teal);border-radius:8px;padding:0 8px;margin:2px 4px 2px 0;font-size:15px;font-weight:600}
+.tl{border-left:3px solid var(--line);margin-left:6px}
+.tl div{position:relative;padding:4px 0 10px 16px}
+.tl div:before{content:"";position:absolute;left:-8px;top:12px;width:13px;height:13px;border-radius:50%;background:var(--teal)}
+.tl b{font-family:"Noto Serif Bengali",serif}
+.note{background:var(--amberbg);color:var(--ink);border-radius:12px;padding:10px 14px;font-size:15px;margin-top:14px}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:2px 0 12px}
+.bar i{display:block;height:100%;background:var(--ok)}
+.fl{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.fl button{border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:999px;padding:3px 12px;font:inherit;font-size:14px;cursor:pointer}
+.fl button[aria-pressed=true]{border-color:var(--teal);color:var(--teal);background:var(--tealbg)}
+.li{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 12px;margin-bottom:8px;font:inherit;cursor:pointer}
+.li span.t{flex:1}.li small{display:block;color:var(--mute);font-size:14px;line-height:1.4}
+.bd{flex:none;font-size:13px;border-radius:8px;padding:0 8px;background:var(--line);color:var(--mute)}
+.bd.on{background:var(--tealbg);color:var(--teal);font-weight:600}
+.rd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 8px}
+.rd h2{font:800 28px/1.3 "Noto Serif Bengali",serif;margin:0}
+.rd h3{font:600 15px "Hind Siliguri",sans-serif;color:var(--teal);margin:16px 0 0}
+.rd p{margin:2px 0 0;font-size:var(--fs,18px);line-height:1.85}
+.why{background:var(--tealbg);border-radius:12px;padding:6px 14px 10px;margin:14px 0 8px}
+.tb{display:flex;gap:6px;align-items:center;margin-bottom:10px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:6px 0}
+.tb .x{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.tb button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:4px 12px;font:inherit;font-size:15px;cursor:pointer}
+.tb .sp{flex:1}
+.fb[aria-pressed=true]{background:var(--amberbg);color:var(--amber);border-color:var(--amber)}
+@media(prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:active{transform:scale(.99)}}
+</style>
+</head>
+<body>
+<main>
+<h1>সদর দপ্তর ও নোবেল রিভিশন</h1>
+<p class="sub">বারবার দেখো, ভুলগুলো ঘুরে ঘুরে আসবে, জানাগুলো দূরে সরে যাবে।</p>
+<nav role="tablist" id="nav"></nav>
+<div id="v"></div>
+</main>
+<script>
+const CITY={ny:["নিউইয়র্ক","যুক্তরাষ্ট্র","জাতিসংঘের মূল কেন্দ্র: নীতি, শিশু, নারী, জনসংখ্যা, উন্নয়ন"],
+ge:["জেনেভা","সুইজারল্যান্ড","নিরপেক্ষ দেশ: স্বাস্থ্য, শ্রম, বাণিজ্য, শরণার্থী, মানবাধিকার, যোগাযোগ"],
+ro:["রোম","ইতালি","খাদ্য ও কৃষি: FAO, IFAD, WFP"],
+dc:["ওয়াশিংটন ডিসি","যুক্তরাষ্ট্র","টাকা ও ব্যাংক: ব্রেটন উডস (১৯৪৪) প্রতিষ্ঠান"],
+vi:["ভিয়েনা","অস্ট্রিয়া","শিল্প ও পরমাণু: UNIDO, IAEA, CTBTO"],
+gl:["গ্ল্যান্ড","সুইজারল্যান্ড","প্রকৃতি ও বন্যপ্রাণী: পাহাড়-হ্রদ ঘেরা শান্ত শহর"],
+na:["নাইরোবি","কেনিয়া","পরিবেশ ও বসতি: গ্লোবাল সাউথে জাতিসংঘের কার্যালয়"],
+pa:["প্যারিস","ফ্রান্স","শিক্ষা, বিজ্ঞান, সংস্কৃতি: UNESCO"],
+lo:["লন্ডন","যুক্তরাজ্য","সমুদ্র ও জাহাজ: IMO"],
+be:["বার্ন","সুইজারল্যান্ড","ডাক ব্যবস্থা: UPU"],
+in:["ইনচিয়ান","দক্ষিণ কোরিয়া","সবুজ জলবায়ু তহবিল: GCF"]};
+const H=[["UNFPA","জনসংখ্যা তহবিল","ny"],["UNICEF","শিশু তহবিল","ny"],["UNIFEM","নারী উন্নয়ন তহবিল","ny"],["UNDP","উন্নয়ন কর্মসূচি","ny"],["UN Women","জাতিসংঘ নারী","ny"],["UNCDF","মূলধন উন্নয়ন তহবিল","ny"],["CEDAW","নারী বৈষম্য দূরীকরণ কমিটি","ny"],["UNRPA","জনসংখ্যা ও প্রজনন স্বাস্থ্য তহবিল","ny"],
+["ITU","আন্তর্জাতিক টেলিযোগাযোগ ইউনিয়ন","ge"],["WTO","বিশ্ব বাণিজ্য সংস্থা","ge"],["UNCTAD","বাণিজ্য ও উন্নয়ন কনফারেন্স","ge"],["UNHCR","শরণার্থী হাইকমিশন","ge"],["UNHRC","মানবাধিকার পরিষদ","ge"],["IOM","আন্তর্জাতিক অভিবাসন সংস্থা","ge"],["WIPO","বিশ্ব মেধা সম্পদ সংস্থা","ge"],["ILO","আন্তর্জাতিক শ্রম সংস্থা","ge"],["WMO","বিশ্ব আবহাওয়া সংস্থা","ge"],["WHO","বিশ্ব স্বাস্থ্য সংস্থা","ge"],
+["FAO","খাদ্য ও কৃষি সংস্থা","ro"],["IFAD","কৃষি উন্নয়ন তহবিল","ro"],["WFP","বিশ্ব খাদ্য কর্মসূচি","ro"],
+["World Bank","বিশ্বব্যাংক গ্রুপ","dc"],["IMF","আন্তর্জাতিক মুদ্রা তহবিল","dc"],["GEF","বৈশ্বিক পরিবেশ সুবিধা","dc"],
+["UNIDO","শিল্প উন্নয়ন সংস্থা","vi"],["IAEA","আন্তর্জাতিক পারমাণবিক শক্তি সংস্থা","vi"],["CTBTO","পরমাণু পরীক্ষা নিষিদ্ধকরণ সংস্থা","vi"],
+["WWF","বিশ্ব বন্যপ্রাণী তহবিল","gl"],["IUCN","আন্তর্জাতিক প্রকৃতি সংরক্ষণ সংঘ","gl"],
+["UNEP","জাতিসংঘ পরিবেশ কর্মসূচি","na"],["UN-Habitat","মানব বসতি কর্মসূচি","na"],
+["UNESCO","শিক্ষা, বিজ্ঞান ও সংস্কৃতি সংস্থা","pa"],["IMO","আন্তর্জাতিক সামুদ্রিক সংস্থা","lo"],["UPU","সার্বজনীন ডাক ইউনিয়ন","be"],["GCF","সবুজ জলবায়ু তহবিল","in"]];
+const N=[["UNHCR","১৯৫৪, ১৯৮১","শরণার্থী","একমাত্র সংস্থা যে দুইবার পেয়েছে"],["UNICEF","১৯৬৫","শিশুকল্যাণ","শিশু সুস্থ হলে সমাজ শান্ত"],["ILO","১৯৬৯","শ্রমিক অধিকার","সামাজিক ন্যায় ছাড়া শান্তি নেই"],["শান্তিরক্ষী বাহিনী","১৯৮৮","সংঘাত নিরসন","নীল হেলমেট; বাংলাদেশ শীর্ষ প্রেরণকারী"],["UNO ও কফি আনান","২০০১","বৈশ্বিক শান্তি","নোবেলের শততম বছর"],["IAEA","২০০৫","পরমাণু নিয়ন্ত্রণ","প্রধান: মোহাম্মদ এলবারাদি"],["IPCC","২০০৭","জলবায়ু পরিবর্তন","আল গোরের সঙ্গে যৌথ"],["OPCW","২০১৩","রাসায়নিক অস্ত্র নির্মূল","সদর দপ্তর হেগ"],["WFP","২০২০","ক্ষুধা মোকাবিলা","কোভিড-১৯ মহামারির বছর"]];
+const D={hq:H.map(([c,n,k])=>({id:"h"+c,q:c,s:n,a:CITY[k][0]+", "+CITY[k][1],h:CITY[k][2],pool:CITY[k][0]})),
+nb:N.map(([c,y,f,t])=>({id:"n"+c,q:c,s:"কত সালে নোবেল শান্তি পুরস্কার?",a:y,h:f+": "+t,pool:y}))};
+const GW={ny:"নিউইয়র্ক জাতিসংঘের মূল সচিবালয় ও প্রশাসনিক প্রাণকেন্দ্র। যেসব সংস্থা বৈশ্বিক নীতি, কেন্দ্রীয় বাজেট ও সাধারণ পরিষদের সঙ্গে ওতপ্রোতভাবে জড়িত, তাদের প্রধান কার্যালয় এখানে।",
+ge:"জেনেভা কূটনীতি ও মানবিক কাজের বৈশ্বিক কেন্দ্র। সুইজারল্যান্ড রাজনৈতিকভাবে নিরপেক্ষ, তাই প্রথম বিশ্বযুদ্ধের পর থেকে শান্তি, স্বাস্থ্য, শ্রম অধিকার ও বাণিজ্য সুরক্ষার নিরপেক্ষ প্ল্যাটফর্মগুলো এখানে গড়ে ওঠে।",
+ro:"খাদ্য ও কৃষির তিন সংস্থা (FAO, IFAD, WFP) রোমে। ইতালি ও ভূমধ্যসাগরীয় অঞ্চল ঐতিহাসিকভাবে কৃষি ও খাদ্য উৎপাদনের গুরুত্বপূর্ণ কেন্দ্র।",
+dc:"দ্বিতীয় বিশ্বযুদ্ধের পর ব্রেটন উডস চুক্তির মাধ্যমে বিশ্ব অর্থনীতি ও উন্নয়ন-অর্থায়নের নিয়ন্ত্রণ মার্কিন নেতৃত্বে আসে। তাই অর্থ ও তহবিলের সংস্থাগুলো মার্কিন রাজধানীতে। সূত্র: টাকা-পয়সা, ব্যাংক, তহবিল মানে ওয়াশিংটন ডিসি।",
+vi:"নিউইয়র্ক (প্রশাসন) ও জেনেভা (মানবিক-বাণিজ্যিক) এর পর ভিয়েনা জাতিসংঘের তৃতীয় প্রধান কেন্দ্র, বিশেষত শিল্পায়ন, পারমাণবিক শক্তি ও প্রযুক্তিগত কূটনীতির জন্য।",
+gl:"গ্ল্যান্ড জেনেভা লেকের তীরের শান্ত শহর। সুইজারল্যান্ড পরিবেশ আন্দোলনের বড় কেন্দ্র। সূত্র: প্রকৃতি ও বন্যপ্রাণী রক্ষা মানে গ্ল্যান্ড। পরীক্ষায় প্রায়ই আসে।",
+na:"উন্নত বিশ্বের বাইরে, গ্লোবাল সাউথে জাতিসংঘের পরিবেশ-সংক্রান্ত প্রধান কার্যালয় স্থাপনের উদ্দেশ্যে পূর্ব আফ্রিকার কেনিয়ার রাজধানী নাইরোবি বেছে নেওয়া হয়।",
+pa:"প্যারিস দীর্ঘকাল ধরে শিল্প, সাহিত্য, দর্শন ও বুদ্ধিবৃত্তিক চর্চার ঐতিহাসিক কেন্দ্র; শিক্ষা ও সংস্কৃতির বৈশ্বিক প্রসারের আদর্শ পরিবেশ।",
+lo:"যুক্তরাজ্য ঐতিহাসিকভাবে নৌ-বাণিজ্য ও সমুদ্রাভিযানের কেন্দ্র। জাহাজ চলাচল, সামুদ্রিক নিরাপত্তা ও দূষণ রোধের নিয়মে দীর্ঘ ঐতিহ্য আছে।",
+be:"বার্ন সুইজারল্যান্ডের রাজধানী। উনিশ শতকে আন্তর্জাতিক ডাক সেবা নিয়মতান্ত্রিক করতে ইউরোপীয় দেশগুলোর মধ্যে চুক্তি হয়; মধ্য ইউরোপের নিরপেক্ষ দেশ হিসেবে বার্ন ডাক যোগাযোগের কেন্দ্র হয়।",
+in:"এশীয় অঞ্চলে জলবায়ু পরিবর্তনের ঝুঁকি মোকাবিলা ও উন্নয়নশীল দেশগুলোকে সহজে সহায়তা দেওয়ার প্রেক্ষাপটে দক্ষিণ কোরিয়ার ইনচিয়ানে।"};
+const DT={
+"UNFPA":["জনসংখ্যা, মাতৃস্বাস্থ্য ও প্রজনন স্বাস্থ্য নিয়ে নীতি ও সহায়তা।","বৈশ্বিক জনমিতির তথ্য জাতিসংঘের কেন্দ্রীয় নীতিনির্ধারণী দলের কাছে পৌঁছাতে হয়, তাই নিউইয়র্ক সবচেয়ে উপযুক্ত।"],
+"UNICEF":["১৯৪৬ সালে যুদ্ধবিধ্বস্ত ইউরোপ ও চীনের ক্ষুধার্ত শিশুদের খাবার ও ওষুধ দিতে যাত্রা শুরু। পরে সারা বিশ্বের শিশুর স্বাস্থ্য, শিক্ষা ও সুরক্ষায় কাজ ছড়ায়।","শিশু ও মানবকল্যাণ তহবিলের প্রধান কার্যালয় জাতিসংঘের মূল কেন্দ্রে।"],
+"UNIFEM":["উন্নয়নশীল দেশের নারীদের অর্থনৈতিক ও রাজনৈতিক ক্ষমতায়নের প্রকল্পে অনুদান ও কারিগরি সহায়তা। পরে অন্যান্য নারী সংস্থার সঙ্গে একীভূত হয়ে UN Women হয়।","জাতিসংঘের কেন্দ্রীয় তহবিল ও বাজেট ব্যবস্থাপনার কেন্দ্র নিউইয়র্ক, তাই বিশেষ তহবিল সংগ্রহ ও বণ্টনের প্রশাসনিক সুবিধা।"],
+"UNDP":["বৈশ্বিক দারিদ্র্য বিমোচন, বৈষম্য হ্রাস ও টেকসই উন্নয়নের প্রধান সমন্বয়ক; জাতিসংঘের বৈশ্বিক উন্নয়ন নেটওয়ার্ক।","সাধারণ পরিষদ ও ECOSOC-এর সরাসরি তত্ত্বাবধানে চলে। প্রকল্পের প্রশাসনিক সমন্বয়, নীতি ও বাজেট কেন্দ্রীয় নেতৃত্বের সঙ্গে মিলিয়ে করা সুবিধাজনক।"],
+"UN Women":["জেন্ডার সমতা, নারীর অধিকার ও ক্ষমতায়নের প্রধান বৈশ্বিক সংস্থা।","নারী অধিকারের বৈশ্বিক আইন, নীতি ও সনদ জাতিসংঘের মূল ফোরামে আলোচিত ও পাস হয়। বিশ্বনেতাদের সঙ্গে সরাসরি যোগাযোগ রাখা সহজ।"],
+"CEDAW":["নারীর বিরুদ্ধে সকল প্রকার বৈষম্য বিলোপ সনদ বাস্তবায়নের তদারকি ও পর্যালোচনা করা স্বাধীন বিশেষজ্ঞ কমিটি।","ফাইল অনুযায়ী UN Women-এর কেন্দ্রীয় কার্যক্রমের সঙ্গে সমন্বয়ের জন্য নিউইয়র্কভিত্তিক। নোট: ফাইলে কিছু কার্যক্রম জেনেভায় হয় বলেও আছে, আর আমার জানা মতে কমিটির অধিবেশন জেনেভায় বসে। নিজের বইয়ের সঙ্গে মিলিয়ে নাও।"],
+"UNCDF":["স্বল্পোন্নত দেশে (LDC) ক্ষুদ্রঋণ ও মূলধন সহায়তা, পাবলিক ও প্রাইভেট ফাইন্যান্স দিয়ে স্থানীয় প্রবৃদ্ধি ও জনকল্যাণমূলক অবকাঠামো গড়ে তোলে।","UNDP-এর অধিভুক্ত এবং জাতিসংঘের কেন্দ্রীয় অর্থনৈতিক কাঠামোর অংশ। আর্থিক প্রতিষ্ঠানের সঙ্গে যোগাযোগের সুবিধা।"],
+"UNRPA":["জনসংখ্যা নিয়ন্ত্রণ, মাতৃস্বাস্থ্য ও প্রজনন স্বাস্থ্য নিয়ে নীতি ও গবেষণা। ফাইলে লেখা আছে এটি UNFPA-এর সংশ্লিষ্ট বা পূর্ববর্তী রূপ।","জনমিতির ডেটা সংগ্রহ করে সাধারণ পরিষদে উপস্থাপন করতে হয়, তাই কেন্দ্রীয় গবেষণা দলের কাছাকাছি নিউইয়র্ক।"],
+"ITU":["টেলিযোগাযোগ এবং তারযুক্ত/তারহীন যোগাযোগের মান নির্ধারণের প্রাচীনতম প্রতিষ্ঠান।","ইউরোপের কেন্দ্রে অবস্থান; ১৯ শতক থেকেই সুইজারল্যান্ড আন্তর্জাতিক যোগাযোগের নিরপেক্ষ কেন্দ্র।"],
+"WTO":["আন্তর্জাতিক বাণিজ্যের নিয়মকানুন ও বিরোধ নিষ্পত্তির প্রধান কেন্দ্র।","জেনেভা বহুদিন ধরে বাণিজ্য-কূটনীতির নিরপেক্ষ ও নিরাপদ মিলনমেলা, সব দেশের জন্য সমান সুযোগ নিশ্চিত করতে সাহায্য করে।"],
+"UNCTAD":["১৯৬৪ সালে গঠিত। উন্নয়নশীল দেশের অর্থনৈতিক বিকাশ ও বৈশ্বিক বাণিজ্যে অংশীদারিত্ব বাড়ানো।","যুক্তরাষ্ট্রে নয় কেন, তিনটি কারণ: (১) পরাশক্তির প্রভাবমুক্ত নিরপেক্ষ প্ল্যাটফর্ম দরকার ছিল। (২) ১৯৪৮ থেকে GATT সহ বাণিজ্য-সংস্থা আগে থেকেই জেনেভায়, সমন্বয় সহজ। (৩) World Bank ও IMF আগেই যুক্তরাষ্ট্রে, তাই বৈশ্বিক ফোরামগুলোকে বিভিন্ন শহরে ছড়িয়ে দেওয়ার নীতি।"],
+"UNHCR":["যুদ্ধ, সংঘাত ও নিপীড়নের শিকার শরণার্থীদের সুরক্ষা ও পুনর্বাসন। ১৯৫০ সালে গঠিত।","দ্বিতীয় বিশ্বযুদ্ধ-পরবর্তী ইউরোপীয় সংকট এবং সুইজারল্যান্ডের ঐতিহাসিক মানবিক নিরপেক্ষতার প্রতি সম্মান।"],
+"UNHRC":["বৈশ্বিক মানবাধিকার রক্ষা ও লঙ্ঘন রোধের প্রধান আন্তঃসরকারি সংস্থা।","নিরপেক্ষ মানবাধিকার আলোচনার কেন্দ্র হিসেবে জেনেভা উপযোগী।"],
+"IOM":["অভিবাসীদের কল্যাণ ও সুশৃঙ্খল অভিবাসন নিশ্চিত করে।","শরণার্থী ও অভিবাসনের কাজ ঘনিষ্ঠ, তাই UNHCR-এর সঙ্গে সমন্বয়ের সুবিধার্থে জেনেভায়।"],
+"WIPO":["বৈশ্বিক উদ্ভাবন, কপিরাইট ও মেধাস্বত্ব সুরক্ষা।","আন্তর্জাতিক আইন ও মেধাস্বত্ব বিষয়ক চুক্তি স্বাক্ষরের কেন্দ্র হিসেবে সুইজারল্যান্ড ও জেনেভার ঐতিহাসিক খ্যাতি।"],
+"ILO":["শ্রমিকের অধিকার, নিরাপদ কর্মপরিবেশ ও ন্যায্য মজুরি। ১৯১৯ সালে ভার্সাই চুক্তির মধ্য দিয়ে গঠিত।","তখন শ্রম অধিকারের আন্দোলন ইউরোপকেন্দ্রিক ছিল এবং সুইজারল্যান্ড নিরপেক্ষ। শিল্পবিপ্লবের পর শ্রমিক শোষণই ছিল পটভূমি।"],
+"WMO":["আবহাওয়া, জলবায়ু ও পানি সম্পদ নিয়ে বৈশ্বিক বৈজ্ঞানিক তথ্য আদান-প্রদান ও গবেষণা।","বিভিন্ন দেশের আবহাওয়া গবেষণা প্রতিষ্ঠানের সঙ্গে বৈজ্ঞানিক সহযোগিতা ও যোগাযোগের সুবিধা।"],
+"WHO":["বিশ্বব্যাপী জনস্বাস্থ্য সুরক্ষা ও মহামারী প্রতিরোধের প্রধান দায়িত্ব।","আন্তর্জাতিক স্বাস্থ্য-কূটনীতি, নিরপেক্ষ চিকিৎসা গবেষণা ও জরুরি সংকট মোকাবেলায় সবচেয়ে নিরাপদ ও সুবিধাজনক স্থান।"],
+"FAO":["বিশ্ব খাদ্য নিরাপত্তা, কৃষি উন্নয়ন ও ক্ষুধা নিবারণ।",""],
+"IFAD":["কৃষি উন্নয়নে আন্তর্জাতিক তহবিল।",""],
+"WFP":["১৯৬১ সালে প্রতিষ্ঠিত, বিশ্বের সবচেয়ে বড় মানবিক খাদ্য সহায়তা সংস্থা। ২০২০ সালে নোবেল শান্তি পুরস্কার পায়।",""],
+"World Bank":["১৯৪৪ সালের জুলাইয়ে ব্রেটন উডস সম্মেলনে (তখনকার নাম IBRD) IMF-এর পাশাপাশি প্রতিষ্ঠিত; ১৯৪৫-এ কার্যক্রম শুরু। এজন্য দুটিকে একত্রে 'ব্রেটন উডস ইনস্টিটিউশন' বলে। কাজ: দারিদ্র্য বিমোচন, অবকাঠামো ও দীর্ঘমেয়াদি প্রবৃদ্ধির জন্য ঋণ ও অনুদান।","বিশ্ব অর্থনীতির নীতিনির্ধারক প্রতিষ্ঠানের কেন্দ্র মার্কিন প্রশাসনিক রাজধানী ওয়াশিংটন ডিসি।"],
+"IMF":["১৯৪৪ সালের ব্রেটন উডসে গঠনের সিদ্ধান্ত, ১৯৪৫-এ যাত্রা। কাজ: বৈশ্বিক আর্থিক স্থিতিশীলতা, বাণিজ্যের প্রসার, বৈদেশিক মুদ্রা সংকট বা ভারসাম্যহীনতায় জরুরি আর্থিক সহায়তা।","যুক্তরাষ্ট্র বিশ্ব অর্থনীতির প্রধান চালিকাশক্তি। সূত্র: IMF হলো বৈশ্বিক অর্থনীতির 'জরুরি তহবিল', বিশ্বব্যাংকের কাছাকাছিই।"],
+"GEF":["রিও ধরিত্রী সম্মেলনের (১৯৯২) আগে ১৯৯১ সালে গঠিত। জীববৈচিত্র্য, জলবায়ু পরিবর্তন, আন্তর্জাতিক জলসীমা ও ভূমি অবক্ষয় রোধের প্রকল্পে অনুদান।","নিজস্ব স্বাধীন সচিবালয় আছে, তবে বিশ্বব্যাংকের ছাতার নিচে, বিশ্বব্যাংক এর ট্রাস্টি। সচিবালয় বিশ্বব্যাংক ভবনেই।"],
+"UNIDO":["বিশ্বব্যাপী শিল্পায়ন, দারিদ্র্য বিমোচন, অন্তর্ভুক্তিমূলক ও পরিবেশবান্ধব শিল্প উন্নয়ন।","দ্বিতীয় বিশ্বযুদ্ধের পর ইউরোপ পুনর্গঠন ও মধ্য-পূর্ব ইউরোপে শিল্পায়নের প্রয়োজন; ইউরোপীয় ও উন্নয়নশীল দেশের শিল্প উন্নয়নে সমন্বয়ের জন্য ইউরোপের মধ্যভাগে ভিয়েনা।"],
+"IAEA":["পারমাণবিক শক্তির শান্তিপূর্ণ ব্যবহার নিশ্চিত করা এবং অস্ত্র তৈরিতে অপব্যবহার রোধ। ১৯৫৭ সালে গঠিত; ২০০৫ সালে নোবেল শান্তি পুরস্কার।","স্নায়ুযুদ্ধের সময় পরাশক্তির প্রভাবমুক্ত, বৈজ্ঞানিকভাবে উন্নত নিরপেক্ষ ইউরোপীয় শহর দরকার ছিল।"],
+"CTBTO":["সব ধরনের পারমাণবিক অস্ত্র পরীক্ষা নিষিদ্ধকরণ ও আন্তর্জাতিক পরিবীক্ষণ ব্যবস্থা পরিচালনা।","পারমাণবিক নিয়ন্ত্রক IAEA আগে থেকেই ভিয়েনায়, প্রযুক্তিগত ও লজিস্টিক সমন্বয়ের জন্য কাছাকাছি।"],
+"WWF":["১৯৬১ সালের ২৯ এপ্রিল সুইজারল্যান্ডের জুরিখে প্রতিষ্ঠিত (তখনকার নাম World Wildlife Fund)। লোগো জায়ান্ট পান্ডা। কাজ: বন্যপ্রাণী ও আবাসস্থল রক্ষা, বিপন্ন প্রজাতি সংরক্ষণ, জলবায়ু সচেতনতা ও তহবিল।","কার্যক্রম বিশ্বব্যাপী বাড়লে সদর দপ্তর গ্ল্যান্ডে আসে, IUCN-এর কাছাকাছি।"],
+"IUCN":["১৯৪৮ সালের ৫ অক্টোবর ফ্রান্সের ফন্টেইনব্লোতে প্রতিষ্ঠিত। কাজ: প্রকৃতি সংরক্ষণ, জীববৈচিত্র্য ও প্রাকৃতিক সম্পদের টেকসই ব্যবহার। বিপন্ন প্রাণী ও উদ্ভিদের তালিকা 'রেড লিস্ট' প্রকাশ করে।","পরে সদর দপ্তর জেনেভা থেকে গ্ল্যান্ডে সরানো হয়। WWF ও IUCN একে অপরের পরিপূরক, তাই পাশাপাশি।"],
+"UNEP":["জাতিসংঘের পরিবেশ কর্মসূচি; পরিবেশ ও টেকসই উন্নয়ন নিয়ে কাজ। ১৯৮৮ সালে WMO-র সঙ্গে মিলে IPCC গঠন করে।",""],
+"UN-Habitat":["মানব বসতি ও টেকসই নগর উন্নয়ন নিয়ে কাজ।",""],
+"UNESCO":["শিক্ষা, বিজ্ঞান ও সংস্কৃতির প্রসারে কাজ।",""],
+"IMO":["সামুদ্রিক নিরাপত্তা, জাহাজ চলাচল ও দূষণ রোধের আন্তর্জাতিক নিয়ম প্রণয়ন।",""],
+"UPU":["আন্তর্জাতিক ডাক ব্যবস্থার সমন্বয়।",""],
+"GCF":["পরিবেশ ও জলবায়ু পরিবর্তন মোকাবিলায় অর্থায়ন।",""]};
+const ND={
+"UNHCR":["যুদ্ধের পর ইউরোপে লাখ লাখ মানুষ বাস্তুহারা হয়; ১৯৫০ সালে UNHCR গড়ে ওঠে। ১৯৫৪: ইউরোপের শরণার্থী পুনর্বাসনের স্বীকৃতিতে প্রথম নোবেল। ১৯৮১: এশিয়া-আফ্রিকার নতুন সংঘাত, ভিয়েতনামের বোট পিপল, আফগান শরণার্থী; দ্বিতীয়বার নোবেল।","মানবাধিকার রক্ষা ও শরণার্থীর নিরাপত্তা। বাস্তুচ্যুতি থেকেই নতুন সংঘাত জন্মায়, তাই এটি শান্তির কাজ।"],
+"UNICEF":["১৯৪৬ সালে যুদ্ধবিধ্বস্ত ইউরোপ ও চীনের ক্ষুধার্ত শিশুদের খাবার ও ওষুধ দিতে যাত্রা।","কাজ বিশ্বের শিশুর স্বাস্থ্য, শিক্ষা, সুরক্ষায় ছড়ায়। নোবেল কমিটি মনে করে শিশুকে সাহায্য মানে দেশে দেশে ভ্রাতৃত্ব গড়া; আজকের সুস্থ শিশু আগামীর শান্ত সমাজ।"],
+"ILO":["জন্ম ১৯১৯ সালে ভার্সাই চুক্তির মধ্য দিয়ে। শিল্পবিপ্লবের পর শ্রমিক শোষণ সামাজিক অসন্তোষ ও বিপ্লবের কারণ হচ্ছিল।","বিশ্বাস: সামাজিক ন্যায়বিচার ছাড়া স্থায়ী শান্তি নেই। ৫০ বছর ধরে কর্মঘণ্টা, মজুরি ও নিরাপত্তার মান উন্নয়নের জন্য ১৯৬৯ সালে নোবেল।"],
+"শান্তিরক্ষী বাহিনী":["১৯৪৮ সাল থেকে জাতিসংঘ সংঘাতপ্রবণ অঞ্চলে শান্তিরক্ষী পাঠায়। তারা যুদ্ধ করে না, দুই পক্ষের মাঝখানে দাঁড়িয়ে যুদ্ধবিরতি পাহারা দেয়।","শান্তিপূর্ণ উপায়ে সংঘাত থামানো ও আলোচনার পরিবেশ তৈরির জন্য ১৯৮৮ সালে পুরস্কার। বাংলাদেশ শীর্ষ শান্তিরক্ষী-প্রেরণকারী দেশগুলোর একটি, তাই গর্বের।"],
+"UNO ও কফি আনান":["নোবেল পুরস্কারের শততম বছরে জাতিসংঘ ও তখনকার মহাসচিব কফি আনান যৌথভাবে পুরস্কার পান।","'আরও সুসংগঠিত ও শান্তিপূর্ণ বিশ্ব' গড়ার প্রচেষ্টা: মানবাধিকার রক্ষা, এইচআইভি/এইডসের বিরুদ্ধে লড়াই, সন্ত্রাসের বিরুদ্ধে বৈশ্বিক ঐক্য।"],
+"IAEA":["হিরোশিমা-নাগাসাকির পর পরমাণুর ভয়ংকর রূপ দেখা যায়। ১৯৫৩ সালে প্রেসিডেন্ট আইজেনহাওয়ার 'Atoms for Peace' ধারণা দেন; ১৯৫৭ সালে IAEA গঠিত।","পরমাণু শক্তি যেন বিদ্যুৎ, চিকিৎসা ও শান্তিপূর্ণ কাজে ব্যবহৃত হয়, অস্ত্রে নয়, তা তদারকির জন্য ২০০৫ সালে সংস্থা ও প্রধান মোহাম্মদ এলবারাদি নোবেল পান।"],
+"IPCC":["১৯৮৮ সালে WMO ও UNEP মিলে জলবায়ু বিষয়ক আন্তঃসরকার প্যানেল (IPCC) গঠন করে। বিজ্ঞানীরা দেখান মানুষের কর্মকাণ্ডেই পৃথিবী উষ্ণ হচ্ছে।","জলবায়ু পরিবর্তন মানে খরা, বন্যা, খাদ্যসংকট ও জলবায়ু শরণার্থী, অর্থাৎ ভবিষ্যৎ সংঘাতের বীজ। মানবসৃষ্ট জলবায়ু পরিবর্তনের জ্ঞান ছড়ানোর জন্য ২০০৭ সালে আল গোরের সঙ্গে যৌথভাবে।"],
+"OPCW":["প্রথম বিশ্বযুদ্ধে বিষাক্ত গ্যাসের ভয়াবহতা দেখা যায়। ১৯৯৩ সালে রাসায়নিক অস্ত্র কনভেনশন (CWC) স্বাক্ষরিত, ১৯৯৭ সালে কার্যকর হলে OPCW গঠিত। সদর দপ্তর হেগ।","২০১৩ সালে সিরিয়ায় রাসায়নিক হামলার সময় অস্ত্র ধ্বংসের দায়িত্ব নেয়; রাসায়নিক অস্ত্র নির্মূলে কাজের জন্য সেই বছরই নোবেল।"],
+"WFP":["১৯৬১ সালে প্রতিষ্ঠিত, বিশ্বের সবচেয়ে বড় মানবিক খাদ্য সহায়তা সংস্থা।","ক্ষুধা ও সংঘাত একে অপরকে বাড়ায়, যুদ্ধে অনেক সময় ক্ষুধাকেও অস্ত্র বানানো হয়। ২০২০ সালে কোভিড-১৯ মহামারির সময় ক্ষুধার বিরুদ্ধে লড়াই ও সংঘাতপ্রবণ এলাকায় শান্তির পরিবেশ তৈরির জন্য নোবেল।"]};
+const GAP=[0,0,1,3,7,14];
+let S={box:{},due:{},rd:{},fs:18},R={id:null,f:"all"},deck="hq",tab="fc",Q=[],cur=null,show=false,all=false,quiz=null;
+try{S=JSON.parse(localStorage.getItem("rev1"))||S}catch(e){}
+S.rd=S.rd||{};S.fs=S.fs||18;
+const save=()=>{try{localStorage.setItem("rev1",JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const dueList=()=>D[deck].filter(c=>all||!S.due[c.id]||S.due[c.id]<=Date.now());
+function nav(){const T=[["fc","ফ্ল্যাশকার্ড"],["qz","কুইজ"],["ct","শহর অনুযায়ী"],["dt","বিস্তারিত পড়া"],["nt","নোবেল ক্রম"]];
+$("nav").innerHTML=T.map(([k,l])=>`<button role="tab" aria-selected="${tab==k}" onclick="go('${k}')">${l}</button>`).join("")}
+function go(t){tab=t;R.id=null;Q=[];cur=null;quiz=null;nav();render()}
+function seg(){return`<div class="seg"><button aria-pressed="${deck=='hq'}" onclick="setDeck('hq')">সদর দপ্তর</button><button aria-pressed="${deck=='nb'}" onclick="setDeck('nb')">নোবেল শান্তি</button></div>`}
+function setDeck(d){deck=d;R.id=null;Q=[];cur=null;quiz=null;all=false;render()}
+function render(){tab=="fc"?fc():tab=="qz"?qz():tab=="ct"?ct():tab=="dt"?dt():nt()}
+function stats(){const n=[0,0,0,0,0];D[deck].forEach(c=>n[S.box[c.id]||0]++);
+return`<div class="stats"><div>নতুন<b>${n[0]}</b></div><div class="b1">ভুল<b>${n[1]}</b></div><div class="b2">চলছে<b>${n[2]}</b></div><div class="b3">ভালো<b>${n[3]}</b></div><div class="b4">পাকা<b>${n[4]}</b></div></div>`}
+function fc(){let h=seg()+stats();
+if(!cur&&!Q.length){Q=shuf(dueList().map(c=>c.id))}
+if(!cur&&Q.length){cur=D[deck].find(c=>c.id==Q.shift());show=false}
+if(!cur){$("v").innerHTML=h+`<div class="card" style="cursor:default"><p class="city">আজকের রিভিশন শেষ</p><p class="hint">পাকা কার্ড কয়েক দিন পর নিজে থেকেই ফিরে আসবে।</p></div><button class="btn" onclick="all=true;render()">তবুও সব কার্ড আবার দেখো</button>`;return}
+h+=`<div class="card" onclick="flip()" tabindex="0"><p class="code">${cur.q}</p><p class="q">${cur.s}</p>`+(show?`<div class="ans"><p class="city">${cur.a}</p><p class="hint">${cur.h}</p></div>`:`<p class="tap">আগে মনে করার চেষ্টা করো, তারপর ট্যাপ করো</p>`)+`</div>`;
+if(show)h+=`<div class="row"><button class="no" onclick="rate(0)">ভুলে গেছি</button><button class="yes" onclick="rate(1)">মনে ছিল</button></div>`;
+h+=`<p class="sub" style="text-align:center;margin-top:10px">বাকি ${Q.length}টি</p>`;$("v").innerHTML=h}
+function flip(){show=true;fc()}
+function rate(ok){const id=cur.id,b=S.box[id]||0;
+if(ok){const nb=Math.min(b+1,5);S.box[id]=Math.min(nb,4);S.due[id]=Date.now()+GAP[nb]*864e5}
+else{S.box[id]=1;S.due[id]=Date.now();Q.push(id)}
+save();cur=null;fc()}
+function qz(){if(!quiz){quiz={i:0,s:0,Q:shuf(D[deck]).slice(0,10),done:false}}
+const z=quiz;let h=seg();
+if(z.i>=z.Q.length){h+=`<div class="card" style="cursor:default"><p class="code">${z.s}/${z.Q.length}</p><p class="hint">ভুল উত্তরের কার্ড ফ্ল্যাশকার্ডে আগে আসবে।</p></div><button class="btn" onclick="quiz=null;render()">আবার কুইজ দাও</button>`;$("v").innerHTML=h;return}
+const c=z.Q[z.i];if(!z.o){const others=[...new Set(D[deck].map(x=>x.a))].filter(a=>a!=c.a);z.o=shuf([c.a,...shuf(others).slice(0,3)])}
+const qt=deck=="hq"?`${c.q}-এর সদর দপ্তর কোথায়?`:`${c.q} কোন সালে নোবেল শান্তি পুরস্কার পেয়েছে?`;
+h+=`<p class="sub">প্রশ্ন ${z.i+1}/${z.Q.length}</p><div class="card" style="cursor:default;min-height:120px"><p class="code" style="font-size:24px">${qt}</p></div>`+z.o.map(o=>`<button class="opt" onclick="pick(this,'${o}')">${o}</button>`).join("");
+$("v").innerHTML=h}
+function pick(el,o){const c=quiz.Q[quiz.i];const ok=o==c.a;
+document.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(b.textContent==c.a)b.classList.add("right")});
+if(!ok)el.classList.add("wrong");
+if(ok)quiz.s++;else{S.box[c.id]=1;S.due[c.id]=Date.now();save()}
+$("v").insertAdjacentHTML("beforeend",`<button class="btn" onclick="quiz.i++;quiz.o=null;qz()">${quiz.i+1>=quiz.Q.length?"ফলাফল দেখো":"পরের প্রশ্ন"}</button>`)}
+function ct(){let h=`<p class="sub">এক নজরে পুরো তালিকা। প্রথমে চেপে ধরো শহরের সূত্রটা।</p>`;
+for(const k in CITY){const l=H.filter(x=>x[2]==k);if(!l.length)continue;
+h+=`<div class="grp"><h3>${CITY[k][0]}, ${CITY[k][1]}</h3><p>${CITY[k][2]}</p>${l.map(x=>`<span class="chip">${x[0]}</span>`).join("")}</div>`}
+h+=`<div class="note">সূত্র: টাকা-পয়সা ও ব্যাংক ওয়াশিংটন ডিসিতে, জাতিসংঘ ও মানবকল্যাণ তহবিল নিউইয়র্কে, প্রকৃতি রক্ষা (IUCN, WWF) গ্ল্যান্ডে।</div>`;$("v").innerHTML=h}
+function nt(){$("v").innerHTML=`<p class="sub">ক্রম: শরণার্থী → শিশু → শ্রমিক → শান্তিরক্ষী → জাতিসংঘ → পরমাণু → জলবায়ু → রাসায়নিক → খাদ্য</p><div class="tl">`+N.map(x=>`<div><b>${x[1]}</b> ${x[0]}<br><span class="hint">${x[2]}: ${x[3]}</span></div>`).join("")+`</div><div class="note">IAEA (২০০৫), IPCC (২০০৭), OPCW (২০১৩) তিনটিই অস্ত্র ও পরিবেশের আধুনিক সংকটের উদাহরণ।</div>`}
+
+const rdo=id=>S.rd[id]||{n:0,t:0,f:0};
+const ago=t=>{if(!t)return"পড়া হয়নি";const d=Math.floor((Date.now()-t)/864e5);return d<1?"আজ পড়েছো":d+" দিন আগে পড়েছো"};
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+function dlist(){let L=D[deck].slice();
+if(R.f=="less")L.sort((a,b)=>rdo(a.id).n-rdo(b.id).n||rdo(a.id).t-rdo(b.id).t);
+if(R.f=="flag")L=L.filter(c=>rdo(c.id).f);return L}
+function dt(){if(R.id)return reader();
+const A=D[deck],done=A.filter(c=>rdo(c.id).n>0).length,fl=A.filter(c=>rdo(c.id).f).length,L=dlist();
+let h=seg()+`<p class="sub">পড়া হয়েছে ${bn(done)}/${bn(A.length)}টি</p><div class="bar"><i style="width:${done/A.length*100}%"></i></div>
+<div class="fl"><button aria-pressed="${R.f=='all'}" onclick="R.f='all';dt()">তালিকা ক্রমে</button><button aria-pressed="${R.f=='less'}" onclick="R.f='less';dt()">কম পড়া আগে</button><button aria-pressed="${R.f=='flag'}" onclick="R.f='flag';dt()">আবার পড়বো (${bn(fl)})</button></div>`;
+if(!L.length)h+=`<p class="sub">কোনো কার্ড চিহ্নিত নেই। পড়ার সময় "আবার পড়বো" চাপলে এখানে জমবে।</p>`;
+h+=L.map(c=>{const r=rdo(c.id),loc=deck=="hq"?c.a:c.a;return`<button class="li" onclick="R.id='${c.id}';dt()"><span class="t"><b>${c.q}</b>${r.f?" ⚑":""}<small>${deck=="hq"?c.s+" · "+loc:loc+" · "+c.h.split(":")[0]}</small><small>${ago(r.t)}</small></span><span class="bd ${r.n?"on":""}">${bn(r.n)} বার</span></button>`}).join("");
+$("v").innerHTML=h}
+function reader(){const L=dlist(),i=L.findIndex(c=>c.id==R.id);
+if(i<0){R.id=null;return dt()}
+const c=L[i],r=rdo(c.id);let a,b,w="",title2;
+if(deck=="hq"){[a,b]=DT[c.q];const k=H.find(x=>x[0]==c.q)[2];title2=CITY[k][0]+", "+CITY[k][1];
+w=`<div class="why"><h3>${CITY[k][0]} কেন?</h3><p>${GW[k]}</p></div>`}
+else{[a,b]=ND[c.q];title2=c.a+" · "+c.h.split(":")[0]}
+let body=deck=="hq"?`<h3>কাজ ও প্রেক্ষাপট</h3><p>${a}</p>${b?`<h3>এই শহরে কেন</h3><p>${b}</p>`:""}${w}`:`<h3>পটভূমি</h3><p>${a}</p><h3>কেন নোবেল</h3><p>${b}</p>`;
+$("v").innerHTML=`<div class="tb"><button class="x" onclick="closeR()">✕ বন্ধ করো</button><span class="sp"></span><button onclick="fz(-1)" aria-label="ছোট করো">ক-</button><button onclick="fz(1)" aria-label="বড় করো">ক+</button></div>
+<div class="rd" style="--fs:${S.fs}px"><h2>${c.q}</h2><p class="hint">${c.s}</p><p style="color:var(--teal);font-weight:600;margin-top:6px">${title2}</p>${body}<p class="hint" style="margin:14px 0 6px">${bn(r.n)} বার পড়া হয়েছে · ${ago(r.t)}</p></div>
+<div class="row"><button class="no fb" aria-pressed="${!!r.f}" onclick="flag('${c.id}')">${r.f?"চিহ্নিত ⚑":"আবার পড়বো"}</button><button class="yes" onclick="markRead('${c.id}',${i})">পড়া হলো, পরেরটা</button></div>
+<div class="row"><button class="btn" style="margin:0;background:var(--card);color:var(--ink);border:1px solid var(--line)" onclick="nx(${i},-1)">আগেরটা</button><button class="btn" style="margin:0;background:var(--card);color:var(--ink);border:1px solid var(--line)" onclick="nx(${i},1)">পরেরটা</button></div><button class="btn" style="background:var(--tealbg);color:var(--teal)" onclick="closeR()">✕ বন্ধ করো, তালিকায় ফিরে যাও</button>`;
+window.scrollTo(0,0)}
+function closeR(){R.id=null;dt();window.scrollTo(0,0)}
+function fz(d){S.fs=Math.max(15,Math.min(26,S.fs+d*2));save();reader()}
+function flag(id){const r=S.rd[id]||(S.rd[id]={n:0,t:0,f:0});r.f=r.f?0:1;save();reader()}
+function nx(i,d){const L=dlist();R.id=L[(i+d+L.length)%L.length].id;reader()}
+function markRead(id,i){const r=S.rd[id]||(S.rd[id]={n:0,t:0,f:0});r.n++;r.t=Date.now();save();nx(i,1)}
+addEventListener("keydown",e=>{if(e.key=="Escape"&&tab=="dt"&&R.id){closeR();return}if(tab!="fc"||!cur)return;if(!show&&(e.key==" "||e.key=="Enter")){e.preventDefault();flip()}else if(show&&e.key=="ArrowLeft")rate(0);else if(show&&e.key=="ArrowRight")rate(1)});
+nav();render();
+</script>
+</body>
+</html>

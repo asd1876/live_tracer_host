@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>আন্তর্জাতিক সংস্থা — রিভিশন স্টুডিও</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#E9EEF0; --surface:#FFFFFF; --ink:#15212C; --muted:#56656F; --line:#CBD5DA;
+  --accent:#0E6F64; --accent-soft:#D5ECE8; --stamp:#A8323F; --stamp-soft:#F6DDE0;
+  --gold:#A87A0C; --gold-soft:#F7ECCB; --blue:#1F4E79; --blue-soft:#DCE7F2;
+  --serif:"Tiro Bangla","Noto Serif Bengali",Georgia,serif;
+  --sans:"Hind Siliguri","Noto Sans Bengali","Segoe UI",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#0F171D; --surface:#17222B; --ink:#E4ECEF; --muted:#9AAAB4; --line:#2B3A45;
+  --accent:#4FC2B2; --accent-soft:#163A36; --stamp:#E57B87; --stamp-soft:#3D1E23;
+  --gold:#E2B84A; --gold-soft:#3A3018; --blue:#86B4E0; --blue-soft:#1A2D40;
+}}
+:root[data-theme="dark"]{
+  --bg:#0F171D; --surface:#17222B; --ink:#E4ECEF; --muted:#9AAAB4; --line:#2B3A45;
+  --accent:#4FC2B2; --accent-soft:#163A36; --stamp:#E57B87; --stamp-soft:#3D1E23;
+  --gold:#E2B84A; --gold-soft:#3A3018; --blue:#86B4E0; --blue-soft:#1A2D40;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.75}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 0 6px}
+.brand h1{font-family:var(--serif);font-weight:400;font-size:1.45rem;margin:0;line-height:1.3}
+.brand small{color:var(--muted);font-size:.85rem}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+nav.tabs button{border:0;background:transparent;padding:6px 14px;border-radius:999px;white-space:nowrap;color:var(--muted);font-weight:500}
+nav.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+main{padding:22px 0 60px}
+h2{font-family:var(--serif);font-weight:400;font-size:1.7rem;line-height:1.35;margin:0 0 8px}
+h3{font-size:1.1rem;margin:28px 0 10px}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+
+/* journey route */
+.route{display:flex;gap:6px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:thin}
+.stop{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:5px 11px;font-size:.92rem;display:flex;align-items:center;gap:6px}
+.stop.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.stop .dot{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.stop.done .dot{background:var(--accent)}
+
+/* chapter head — passport stamp */
+.chead{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;margin:8px 0 18px}
+.stampbox{width:92px;height:92px;border:3px double var(--stamp);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--stamp);transform:rotate(-8deg);font-family:var(--serif);font-size:.82rem;line-height:1.2;padding:8px}
+.stampbox b{display:block;font-size:1.35rem;font-weight:400}
+.intro{background:var(--surface);border-left:4px solid var(--blue);padding:16px 18px;border-radius:0 12px 12px 0;margin-bottom:22px;font-size:1.02rem}
+
+/* org entries */
+.org{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.org-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.abbr{font-family:var(--serif);font-size:1.75rem;line-height:1.1}
+.bnname{font-weight:600}
+.full{color:var(--muted);font-size:.93rem;font-style:italic;margin:2px 0 10px}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.fact{background:var(--blue-soft);color:var(--ink);border-radius:8px;padding:2px 10px;font-size:.9rem}
+.fact.nb{background:var(--gold-soft);color:var(--gold);font-weight:600}
+.fact.bd{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.tip{margin-top:10px;padding:8px 12px;border:1px dashed var(--accent);border-radius:10px;font-size:.95rem}
+.tip::before{content:"মনে রাখার কৌশল: ";font-weight:700;color:var(--accent)}
+.navrow{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{border:1px solid var(--ink);background:transparent;border-radius:10px;padding:8px 16px;font-weight:600}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.good{border-color:var(--accent);background:var(--accent);color:#fff}
+.btn.bad{border-color:var(--stamp);background:var(--stamp);color:#fff}
+.btn.mid{border-color:var(--gold);color:var(--gold)}
+.btn:disabled{opacity:.4;cursor:default}
+
+/* flashcards */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 18px}
+select,input[type=search]{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:7px 12px;max-width:100%}
+.card{perspective:1200px;min-height:300px;cursor:pointer;margin-bottom:14px}
+.card-in{position:relative;min-height:300px;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .card-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:center;overflow:auto}
+.face.front{align-items:center;text-align:center}
+.face.front .abbr{font-size:3rem}
+.face.back{transform:rotateY(180deg);font-size:.97rem}
+.boxes{display:flex;gap:4px;justify-content:center;margin-top:16px}
+.boxes span{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.boxes span.f{background:var(--accent)}
+.rate{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media (prefers-reduced-motion:reduce){.card-in{transition:none}}
+
+/* quiz */
+.q{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.q .qtext{font-size:1.2rem;font-weight:600;margin-bottom:14px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 14px}
+.opt.right{border-color:var(--accent);background:var(--accent-soft)}
+.opt.wrong{border-color:var(--stamp);background:var(--stamp-soft)}
+.fb{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--bg);font-size:.95rem}
+.meter{height:6px;background:var(--line);border-radius:3px;margin-bottom:14px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent)}
+
+/* sheet */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--bg);font-weight:600;position:sticky;top:0}
+td.ab{font-family:var(--serif);font-size:1.05rem;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.panel h4{margin:0 0 8px;font-size:1rem}
+.panel ul{margin:0;padding-left:20px}
+.ladder li{margin-bottom:2px}
+
+/* progress */
+.bar{height:12px;background:var(--line);border-radius:6px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.88rem;margin-top:8px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;background:var(--c)}
+.plan li{margin-bottom:6px}
+
+/* ===== v2 ===== */
+body{padding-bottom:96px;background:radial-gradient(900px 380px at 50% -160px,var(--accent-soft),transparent),var(--bg)}
+header.top{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px)}
+.brand{padding:10px 0}
+.brand h1{font-size:1.2rem}
+.hr{display:flex;align-items:center;gap:10px}
+.pill{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.84rem;color:var(--muted);white-space:nowrap}
+.ic{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface)}
+.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding:22px;border-radius:24px;color:#fff;background:linear-gradient(135deg,#0E6F64,#1F4E79);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-50px;top:-50px;width:190px;height:190px;border:3px double rgba(255,255,255,.28);border-radius:50%;transform:rotate(-12deg)}
+.hero h2{color:#fff;margin:0 0 4px}
+.hero p{margin:0 0 12px;opacity:.9}
+.hero .btn{background:#fff;color:#0E3F4E;border-color:#fff}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.ring{position:relative;width:104px;height:104px;flex:0 0 auto}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:1.5rem;font-weight:400}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin:14px 0}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.stat b{display:block;font-family:var(--serif);font-weight:400;font-size:1.8rem;line-height:1.2}
+.stat small{color:var(--muted)}
+.heat{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px}
+.tile{position:relative;overflow:hidden;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px 14px;line-height:1.4}
+.tile small{display:block;color:var(--muted)}
+.tile i{position:absolute;left:0;bottom:0;height:5px;background:var(--accent)}
+.fc{display:flex;gap:6px;align-items:flex-end;height:70px;margin-top:6px}
+.fc div{flex:1;text-align:center;font-size:.76rem;color:var(--muted)}
+.fc i{display:block;background:var(--blue);border-radius:6px 6px 0 0;min-height:3px;margin-bottom:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 12px;font-size:.92rem}
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
+.bnav div{display:flex;gap:2px;width:100%;max-width:560px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:4px;box-shadow:0 8px 28px rgba(0,0,0,.16)}
+.bnav button{flex:1;border:0;background:transparent;border-radius:18px;padding:6px 2px;font-size:.74rem;line-height:1.35;color:var(--muted);display:flex;flex-direction:column;align-items:center}
+.bnav button span{font-size:1.2rem}
+.bnav button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.star{margin-left:auto;border:0;background:transparent;font-size:1.5rem;line-height:1;color:var(--gold)}
+.tg{display:flex;gap:8px;align-items:center;margin:0 0 14px;color:var(--muted);font-size:.93rem}
+.cl .mask,.mask{transition:filter .25s}
+.cl-on .mask{filter:blur(7px);cursor:pointer;user-select:none}
+.rate4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rate4 .btn{padding:8px 4px;font-size:.92rem}
+.btn.easy{border-color:var(--blue);background:var(--blue);color:var(--bg)}
+.face .top2{position:absolute;top:12px;left:16px;right:12px;display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted)}
+.face.back{padding-top:44px}
+.kb{color:var(--muted);font-size:.82rem;text-align:center;margin-top:10px}
+.done{text-align:center;padding:36px 16px}
+.done .abbr{font-size:2.6rem}
+@media (max-width:480px){.brand h1{font-size:1rem}.hero{padding:18px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="brand"><h1>আন্তর্জাতিক সংস্থা · রিভিশন স্টুডিও</h1><div class="hr"><span class="pill" id="hdrStat"></span><button class="ic" id="theme" aria-label="থিম বদলাও">◐</button></div></div></div></header>
+<main class="wrap" id="app"></main>
+<nav class="bnav" id="bnav"><div></div></nav>
+<script>
+/* ===================== অধ্যায় (শহরভিত্তিক যাত্রা) ===================== */
+const CH=[
+{id:"geneva",name:"জেনেভা",sub:"সুইজারল্যান্ড",intro:"ধরো, তুমি জেনেভা লেকের পাড়ে দাঁড়িয়ে। দুই বিশ্বযুদ্ধেই নিরপেক্ষ থাকা সুইজারল্যান্ড ছিল সবার কাছে নিরাপদ আলোচনার টেবিল, তাই ১৯২০ সালে লীগ অব নেশনসের সদর দপ্তর বসেছিল এখানেই। লীগ ভেঙে গেলেও তার ভবন 'প্যালে দে নাসিওঁ' হয়ে যায় জাতিসংঘের ইউরোপীয় দপ্তর, আর তাকে ঘিরে জমে ওঠে একের পর এক সংস্থা। গল্পের সূত্র দুটো: 'মানুষ' (মানবাধিকার, শরণার্থী, অভিবাসন, শ্রম, স্বাস্থ্য, রেড ক্রস) আর 'নিয়ম' (বাণিজ্য, মেধাস্বত্ব, টেলিযোগাযোগ, আবহাওয়া)। দুটোরই রাজধানী জেনেভা।"},
+{id:"swiss",name:"লুজান-জুরিখ-গ্ল্যান্ড-বার্ন",sub:"সুইজারল্যান্ড",intro:"জেনেভা থেকে ট্রেনে উঠলে একের পর এক শহর। নিরপেক্ষতা, আইনি স্থিতিশীলতা আর করসুবিধার জন্য ক্রীড়া ও বেসরকারি আন্তর্জাতিক সংস্থাগুলো সুইজারল্যান্ড বেছে নিয়েছে। ছড়া করে মনে রাখো: লুজানে লাফ (অলিম্পিক), জুরিখে গোল (ফিফা), গ্ল্যান্ডে গাছ (WWF, IUCN), বার্নে চিঠি (UPU)।"},
+{id:"hague",name:"হেগ",sub:"নেদারল্যান্ডস",intro:"হেগকে বলা হয় শান্তি ও ন্যায়ের আন্তর্জাতিক নগরী। ১৮৯৯ ও ১৯০৭ সালের হেগ শান্তি সম্মেলন থেকে এর যাত্রা; অ্যান্ড্রু কার্নেগির অর্থে তৈরি 'পিস প্যালেস' (১৯১৩)-এ বসে PCA ও ICJ। পরে ICC ও OPCW-ও এখানে আসে। সূত্র: হেগ = আদালত + অস্ত্র নিষেধ।"},
+{id:"brussels",name:"ব্রাসেলস",sub:"বেলজিয়াম",intro:"ব্রাসেলস ইউরোপের ঠিক মাঝখানে, ফ্রান্স-জার্মানি-নেদারল্যান্ডসের সংযোগস্থলে। ছোট দেশ বলে কোনো বড় শক্তির একক আধিপত্যের ভয় নেই, তাই ইউরোপের রাজনীতি (EU) আর সামরিক জোট (NATO) দুটোই এখানে।"},
+{id:"france",name:"প্যারিস ও লিঁও",sub:"ফ্রান্স",intro:"ফ্রান্সে দুই শহর, দুই কাজ। প্যারিসে জ্ঞান-বিজ্ঞান-সংস্কৃতি (UNESCO), আর লিঁওতে অপরাধী ধরার নেটওয়ার্ক (Interpol)। সূত্র: প্যারিসে পড়াশোনা, লিঁওতে পুলিশ।"},
+{id:"germany",name:"বন ও বার্লিন",sub:"জার্মানি",intro:"দুই জার্মানির পুনর্মিলনের পর রাজধানী বার্লিনে চলে গেলে পুরোনো রাজধানী বন ফাঁকা হয়ে পড়ে। সরকার তখন জাতিসংঘ সংস্থাগুলোকে সেখানে আমন্ত্রণ জানায়, বন হয়ে ওঠে 'জাতিসংঘ শহর'। সূত্র: বনে জলবায়ু ও স্বেচ্ছাসেবক, বার্লিনে দুর্নীতির হিসাব।"},
+{id:"rome",name:"রোম",sub:"ইতালি",intro:"রোম জাতিসংঘের খাদ্য রাজধানী। ১৯৫১ সালে ইতালি সরকার FAO-কে ওয়াশিংটন থেকে রোমে নিয়ে আসে; পরে খাদ্যবিষয়ক আরও দুই সংস্থা তার পাশে বসে। তিন ভাই: নীতি ও জ্ঞান (FAO), জরুরি খাবার (WFP), কৃষকের জন্য টাকা (IFAD)।"},
+{id:"london",name:"লন্ডন ও অক্সফোর্ড",sub:"যুক্তরাজ্য",intro:"এক সময়ের সমুদ্রশাসক ব্রিটিশ সাম্রাজ্যের রাজধানীতে তাই সমুদ্রবিষয়ক সংস্থা IMO, আর সাম্রাজ্যের উত্তরাধিকার কমনওয়েলথ। পাশের বিশ্ববিদ্যালয় শহর অক্সফোর্ডে জন্ম অক্সফ্যামের।"},
+{id:"vienna",name:"ভিয়েনা",sub:"অস্ট্রিয়া",intro:"ভিয়েনা জাতিসংঘের চার প্রধান দপ্তরের একটি (নিউইয়র্ক, জেনেভা, ভিয়েনা, নাইরোবি)। স্নায়ুযুদ্ধে পূর্ব-পশ্চিমের মাঝে নিরপেক্ষ অস্ট্রিয়া ছিল পরমাণু আলোচনার আদর্শ জায়গা। সূত্র: ভিয়েনা = পরমাণু। (OPEC ও UNIDO-ও এখানে।)"},
+{id:"othereu",name:"মাদ্রিদ-কোপেনহেগেন-মাল্টা",sub:"ইউরোপ",intro:"ইউরোপের আরও তিনটি থামার জায়গা: স্পেনের মাদ্রিদে পর্যটন, ডেনমার্কের কোপেনহেগেনে জাতিসংঘের প্রকল্প সেবা, আর ভূমধ্যসাগরের দ্বীপরাষ্ট্র মাল্টায় বার্ধক্য গবেষণা।"},
+{id:"americas",name:"মন্ট্রিয়েল-মন্টেভিডিও-ইভানস্টন",sub:"আমেরিকা মহাদেশ",intro:"আটলান্টিক পেরিয়ে (ওয়াশিংটন ও নিউইয়র্ক বাদে) তিন শহর: কানাডার মন্ট্রিয়েলে আকাশপথ, উরুগুয়ের মন্টেভিডিওতে দক্ষিণ আমেরিকার অভিন্ন বাজার, আর শিকাগোর পাশে ইভানস্টনে রোটারি। জোড়া সূত্র: লন্ডনে সমুদ্র (IMO), মন্ট্রিয়েলে আকাশ (ICAO)।"},
+{id:"washington",name:"ওয়াশিংটন ডিসি",sub:"যুক্তরাষ্ট্র",intro:"১৯৪৪ সালে যুদ্ধ শেষ হওয়ার আগেই যুক্তরাষ্ট্র ব্রেটন উডসে ৪৪টি দেশকে ডেকে যুদ্ধোত্তর অর্থব্যবস্থার নকশা আঁকে। সবচেয়ে বড় অর্থদাতা হিসেবে সে চাইল সংস্থাগুলো তার রাজধানীতেই থাকুক। সূত্র: ওয়াশিংটন = টাকা (বিশ্বব্যাংক, IMF) + আমেরিকা মহাদেশের রাজনীতি (OAS)।"},
+{id:"newyork",name:"নিউইয়র্ক",sub:"যুক্তরাষ্ট্র",intro:"ম্যানহাটনে জাতিসংঘ সদর দপ্তর; জমি কেনার অর্থ দিয়েছিলেন জন ডি. রকফেলার জুনিয়র (১৯৪৬)। মহাসচিবের কাছাকাছি থাকতে হয় এমন 'তহবিল ও কর্মসূচি'গুলো এখানে: শিশু, উন্নয়ন, জনসংখ্যা, নারী, নিরস্ত্রীকরণ। সূত্র: নিউইয়র্ক = UN-এর Fund ও Programme।"},
+{id:"southasia",name:"ঢাকা ও কাঠমান্ডু",sub:"দক্ষিণ এশিয়া",intro:"এবার নিজের ঘরে। দক্ষিণ এশিয়ায় আঞ্চলিক সহযোগিতার ধারণা প্রথম এসেছিল বাংলাদেশ থেকেই, আর ঢাকায় আছে দুটি আন্তর্জাতিক সংস্থার সদর দপ্তর: BIMSTEC ও CIRDAP। বাংলাদেশসংশ্লিষ্ট প্রশ্ন সবচেয়ে বেশি আসে এই অধ্যায় থেকে।"},
+{id:"eastasia",name:"পূর্ব ও দক্ষিণ-পূর্ব এশিয়া",sub:"ম্যানিলা থেকে বেইজিং",intro:"এশিয়া এখন বিশ্ব অর্থনীতির ইঞ্জিন। ম্যানিলা (ADB), জাকার্তা (ASEAN), ব্যাংকক (ESCAP), সিঙ্গাপুর (APEC), টোকিও (UNU), সিউল-সংডো (IVI, GCF), আর চীনের উত্থানের প্রতীক বেইজিং (AIIB, SCO) ও সাংহাই (NDB)। চীনা সংস্থাগুলোর পেছনের গল্প একটাই: পশ্চিমা নিয়ন্ত্রিত বিশ্বব্যাংক-IMF-এর বিকল্প তৈরি।"},
+{id:"mideast",name:"জেদ্দা-রিয়াদ-তেহরান",sub:"মধ্যপ্রাচ্য ও তুরস্ক",intro:"তেল-গ্যাস আর মুসলিম বিশ্বের কেন্দ্র। সৌদি আরবে দুই শহরের ভাগ: জেদ্দায় ইসলামি সহযোগিতা ও ব্যাংক (OIC, IsDB), রিয়াদে উপসাগরীয় রাজনীতি ও সামরিক জোট (GCC, IMCTC)। এরপর দোহায় গ্যাস, তেহরানে অর্থনীতি-লেনদেন-সংসদ (ECO, ACU, APA), ইস্তাম্বুলে D-8।"},
+{id:"africa",name:"নাইরোবি-আদ্দিস আবাবা",sub:"আফ্রিকা ও ভারত মহাসাগর",intro:"আফ্রিকায় জাতিসংঘের একমাত্র প্রধান দপ্তর কেনিয়ার নাইরোবিতে: পরিবেশ ও বসতি। ইথিওপিয়ার আদ্দিস আবাবা আফ্রিকার কূটনৈতিক রাজধানী (AU), নাইজেরিয়ার আবুজায় পশ্চিম আফ্রিকার জোট, আর মরিশাসে IORA।"},
+{id:"blocs",name:"সদর দপ্তরহীন জোট",sub:"শীর্ষ সম্মেলননির্ভর",intro:"কিছু জোটের স্থায়ী সদর দপ্তর নেই; সভাপতি দেশ পালাক্রমে বদলায় আর সেই দেশ শীর্ষ সম্মেলন আয়োজন করে। এদের বেলায় পরীক্ষায় আসে প্রতিষ্ঠাকাল, সদস্য আর প্রেক্ষাপট। গল্পের সূত্র: স্নায়ুযুদ্ধ (NAM, ANZUS), অর্থনৈতিক সংকট (G-7, G-20), নতুন শক্তির উত্থান (BRICS, G-4), জলবায়ু ঝুঁকি (CVF, V20, AOSIS), মুক্ত বাণিজ্য (NAFTA/USMCA)।"}
+];
+
+/* ===================== সংস্থার তথ্য ===================== */
+const D=[
+// GENEVA
+{a:"OHCHR",f:"Office of the High Commissioner for Human Rights",n:"জাতিসংঘ মানবাধিকার হাইকমিশনারের কার্যালয়",c:"geneva",city:"জেনেভা",y:1993,yr:"১৯৯৩",s:"১৯৯৩ সালের ভিয়েনা বিশ্ব মানবাধিকার সম্মেলনে দাবি ওঠে, মানবাধিকার দেখভালের জন্য জাতিসংঘে একজন স্থায়ী অভিভাবক দরকার। সেই বছরের ডিসেম্বরেই সাধারণ পরিষদ এই পদ সৃষ্টি করে। হাইকমিশনারকে নিয়োগ দেন জাতিসংঘ মহাসচিব, অনুমোদন দেয় সাধারণ পরিষদ।",t:"৯৩-এর ভিয়েনা সম্মেলন থেকে OHCHR। হাইকমিশনার = মহাসচিবের নিয়োগ।"},
+{a:"UNHRC",f:"United Nations Human Rights Council",n:"জাতিসংঘ মানবাধিকার পরিষদ",c:"geneva",city:"জেনেভা",y:2006,yr:"২০০৬",m:"৪৭",s:"আগে ছিল 'মানবাধিকার কমিশন' (১৯৪৬), যেটা মানবাধিকার লঙ্ঘনকারী দেশগুলোর সদস্যপদের কারণে ব্যাপক সমালোচিত হয়। সংস্কারের অংশ হিসেবে ২০০৬ সালে কমিশন বিলুপ্ত করে পরিষদ গঠন করা হয়। সাধারণ পরিষদ ৩ বছরের মেয়াদে ৪৭টি সদস্য দেশ নির্বাচন করে।",t:"২০০৬ + ৪৭ সদস্য। কমিশন থেকে কাউন্সিল।"},
+{a:"UNHCR",f:"United Nations High Commissioner for Refugees",n:"জাতিসংঘ শরণার্থী বিষয়ক হাইকমিশনার",c:"geneva",city:"জেনেভা",y:1950,yr:"১৪ ডিসেম্বর ১৯৫০",nb:"১৯৫৪, ১৯৮১",bd:1,s:"দ্বিতীয় বিশ্বযুদ্ধের পর ইউরোপে লাখ লাখ মানুষ ঘরছাড়া। তাদের জন্য ১৯৫০ সালে সাধারণ পরিষদ এই সংস্থা গঠন করে, প্রথমে মাত্র ৩ বছরের জন্য! কিন্তু শরণার্থী সমস্যা থামেনি, তাই সংস্থাটি স্থায়ী হয়ে যায়। প্যারেন্ট: UNGA ও ECOSOC। বাংলাদেশে রোহিঙ্গা শরণার্থী ব্যবস্থাপনায় এর বড় ভূমিকা। দুইবার নোবেল শান্তি পুরস্কার পেয়েছে।",t:"৩ বছরের অস্থায়ী সংস্থা হয়ে গেল স্থায়ী, পেল ২টি নোবেল।"},
+{a:"UNCTAD",f:"United Nations Conference on Trade and Development",n:"জাতিসংঘ বাণিজ্য ও উন্নয়ন সম্মেলন",c:"geneva",city:"জেনেভা",y:1964,yr:"৩০ ডিসেম্বর ১৯৬৪",m:"১৯৫",s:"ষাটের দশকে সদ্য স্বাধীন দেশগুলো দেখল, বিশ্ব বাণিজ্যের নিয়ম ধনী দেশের পক্ষে। তাদের দাবিতে ১৯৬৪ সালে জেনেভায় প্রথম সম্মেলন হয় এবং বছরের শেষে UNCTAD স্থায়ী সংস্থা হয়। উন্নয়নশীল বিশ্বে বাণিজ্য সম্প্রসারণে সাহায্য করাই এর কাজ। এই সম্মেলনেই G-77 জোটের জন্ম।",t:"UNCTAD আর G-77 যমজ, দুজনেরই জন্ম ১৯৬৪।"},
+{a:"ICRC",f:"International Committee of the Red Cross",n:"আন্তর্জাতিক রেড ক্রস কমিটি",c:"geneva",city:"জেনেভা",y:1863,yr:"১৭ ফেব্রুয়ারি ১৮৬৩",nb:"১৯১৭, ১৯৪৪, ১৯৬৩",s:"১৮৫৯ সালে ইতালির সলফেরিনো যুদ্ধক্ষেত্রে হাজারো আহত সৈনিককে বিনা চিকিৎসায় মরতে দেখেন সুইস ব্যবসায়ী হেনরি ডুনান্ট। সেই অভিজ্ঞতা নিয়ে তিনি বই লেখেন, যার প্রভাবে ১৮৬৩ সালে জেনেভায় কমিটির জন্ম; পরে জেনেভা কনভেনশন (১৮৬৪)। ডুনান্ট ১৯০১ সালে প্রথম নোবেল শান্তি পুরস্কার পান, আর ICRC নিজে পেয়েছে ৩ বার।",t:"সবচেয়ে বেশি (৩ বার) নোবেলজয়ী সংস্থা। সুইস পতাকার রং উল্টালেই রেড ক্রস প্রতীক।"},
+{a:"IPCC",f:"Intergovernmental Panel on Climate Change",n:"জলবায়ু পরিবর্তন বিষয়ক আন্তঃসরকার প্যানেল",c:"geneva",city:"জেনেভা",y:1988,yr:"১৯৮৮",m:"১৯৫",nb:"২০০৭",s:"মানবসৃষ্ট জলবায়ু পরিবর্তন নিয়ে বিজ্ঞানীরা নানা মত দিচ্ছিলেন, নীতিনির্ধারকরা কার কথা শুনবেন? তাই ১৯৮৮ সালে UNEP ও WMO মিলে IPCC গঠন করে। এটি নিজে গবেষণা করে না, বিশ্বের সব গবেষণা মূল্যায়ন করে রিপোর্ট দেয়। ২০০৭ সালে আল গোরের সাথে যৌথভাবে নোবেল শান্তি পুরস্কার।",t:"দুই অভিভাবক: UNEP + WMO।"},
+{a:"ITU",f:"International Telecommunication Union",n:"আন্তর্জাতিক টেলিযোগাযোগ ইউনিয়ন",c:"geneva",city:"জেনেভা",y:1865,yr:"১৭ মে ১৮৬৫",m:"১৯৩",s:"টেলিগ্রাফ যখন দেশের সীমানা পেরোতে শুরু করল, তখন প্রতিটি দেশের আলাদা নিয়ম ঝামেলা বাধাল। তাই ১৮৬৫ সালে প্যারিসে 'আন্তর্জাতিক টেলিগ্রাফ ইউনিয়ন' গঠিত হয়। এটি জাতিসংঘের সবচেয়ে পুরোনো বিশেষায়িত সংস্থা। প্রতিষ্ঠার দিন ১৭ মে এখন বিশ্ব টেলিযোগাযোগ ও তথ্য সমাজ দিবস।",t:"সবচেয়ে প্রাচীন UN সংস্থা = ITU (১৮৬৫), দ্বিতীয় = UPU (১৮৭৪)।"},
+{a:"IOM",f:"International Organization for Migration",n:"আন্তর্জাতিক অভিবাসন সংস্থা",c:"geneva",city:"জেনেভা",y:1951,yr:"৬ ডিসেম্বর ১৯৫১",m:"১৭৫",bd:1,s:"যুদ্ধবিধ্বস্ত ইউরোপের বাস্তুচ্যুত মানুষদের নতুন দেশে পাঠাতে ১৯৫১ সালে ব্রাসেলস সম্মেলনে এর জন্ম। দীর্ঘদিন জাতিসংঘের বাইরে থাকার পর ২০১৬ সালে জাতিসংঘের 'সম্পর্কিত সংস্থা' হয়। বাংলাদেশ সদস্য; প্রবাসী শ্রমিক ও রোহিঙ্গা কার্যক্রমে সক্রিয়।",t:"শরণার্থী = UNHCR, অভিবাসী = IOM। দুজনেই জেনেভায়।"},
+{a:"ILO",f:"International Labour Organization",n:"আন্তর্জাতিক শ্রম সংস্থা",c:"geneva",city:"জেনেভা",y:1919,yr:"১১ এপ্রিল ১৯১৯",m:"১৮৭",nb:"১৯৬৯",s:"প্রথম বিশ্বযুদ্ধের পর ভার্সাই চুক্তির মাধ্যমে ১৯১৯ সালে এর জন্ম; বিশ্বাস ছিল সামাজিক ন্যায়বিচার ছাড়া স্থায়ী শান্তি সম্ভব নয়। লীগ অব নেশনস ভেঙে গেলেও ILO টিকে যায় এবং ১৯৪৬ সালে জাতিসংঘের প্রথম বিশেষায়িত সংস্থা হয়। বৈশিষ্ট্য ত্রিপক্ষীয় কাঠামো: সরকার, মালিক ও শ্রমিক প্রতিনিধি একসাথে। ৫০ বছর পূর্তিতে (১৯৬৯) নোবেল।",t:"ভার্সাই চুক্তির সন্তান; ত্রিপক্ষীয়; জাতিসংঘের প্রথম বিশেষায়িত সংস্থা।"},
+{a:"WEF",f:"World Economic Forum",n:"বিশ্ব অর্থনৈতিক ফোরাম",c:"geneva",city:"জেনেভা",hq:"কোলোনি, জেনেভা",y:1971,yr:"২৪ জানুয়ারি ১৯৭১",s:"জার্মান অধ্যাপক ক্লাউস শোয়াব ১৯৭১ সালে 'ইউরোপিয়ান ম্যানেজমেন্ট ফোরাম' নামে এটি শুরু করেন; ১৯৮৭ সালে নাম হয় WEF। এটি জাতিসংঘের সাথে সম্পর্কিত নয়, একটি বেসরকারি অলাভজনক ফাউন্ডেশন। প্রতি জানুয়ারিতে দাভোসে বার্ষিক সম্মেলন হয়; Global Competitiveness ও Global Gender Gap রিপোর্ট প্রকাশ করে।",t:"সম্মেলন দাভোসে, কিন্তু সদর দপ্তর জেনেভার কোলোনিতে। জাতিসংঘের অংশ নয়।"},
+{a:"WOSM",f:"World Organization of the Scout Movement",n:"বিশ্ব স্কাউট আন্দোলন সংস্থা",c:"geneva",city:"জেনেভা",hq:"জেনেভা ও কুয়ালালামপুর",y:1922,yr:"১৯২২",s:"১৯০৭ সালে লর্ড ব্যাডেন-পাওয়েল ইংল্যান্ডের ব্রাউনসি দ্বীপে প্রথম স্কাউট ক্যাম্প করেন। আন্দোলন বিশ্বজুড়ে ছড়িয়ে পড়লে ১৯২২ সালে বিশ্ব সংস্থা গঠিত হয়। এর ওয়ার্ল্ড স্কাউট ব্যুরোর দপ্তর জেনেভা ও কুয়ালালামপুরে।",t:"স্কাউট আন্দোলন ১৯০৭, বিশ্ব সংস্থা ১৯২২।"},
+{a:"WIPO",f:"World Intellectual Property Organization",n:"বিশ্ব মেধাসম্পদ সংস্থা",c:"geneva",city:"জেনেভা",y:1967,yr:"১৪ জুলাই ১৯৬৭",m:"১৯৩",s:"আবিষ্কার, বই আর ট্রেডমার্কের মালিকানা রক্ষায় আগে থেকেই প্যারিস কনভেনশন (১৮৮৩) ও বার্ন কনভেনশন (১৮৮৬) ছিল। এগুলো পরিচালনার জন্য ১৯৬৭ সালের স্টকহোম কনভেনশনে WIPO গঠিত হয় (কার্যকর ১৯৭০); ১৯৭৪ সালে জাতিসংঘের বিশেষায়িত সংস্থা হয়। ২৬ এপ্রিল বিশ্ব মেধাসম্পদ দিবস।",t:"স্টকহোমে চুক্তি (১৯৬৭), জেনেভায় ঘর।"},
+{a:"WTO",f:"World Trade Organization",n:"বিশ্ব বাণিজ্য সংস্থা",c:"geneva",city:"জেনেভা",y:1995,yr:"১ জানুয়ারি ১৯৯৫",m:"১৬৬",bd:1,s:"১৯৪৭ সালের GATT ছিল কেবল একটি চুক্তি, কোনো সংস্থা নয়। উরুগুয়ে রাউন্ড আলোচনা (১৯৮৬-৯৪) শেষে মরক্কোর মারাকেশ চুক্তির মাধ্যমে ১৯৯৫ সালের প্রথম দিনে WTO যাত্রা শুরু করে। এর বিরোধ নিষ্পত্তি ব্যবস্থা আছে। বাংলাদেশ প্রতিষ্ঠাতা সদস্য।",t:"পূর্বসূরি GATT (১৯৪৭) থেকে WTO (১৯৯৫), মারাকেশ চুক্তি।"},
+{a:"WMO",f:"World Meteorological Organization",n:"বিশ্ব আবহাওয়া সংস্থা",c:"geneva",city:"জেনেভা",y:1950,yr:"২৩ মার্চ ১৯৫০",m:"১৯৩",s:"আবহাওয়া সীমানা মানে না, তাই ১৮৭৩ সালেই 'আন্তর্জাতিক আবহাওয়া সংস্থা' তৈরি হয়েছিল। এর উত্তরসূরি হিসেবে ১৯৫০ সালে WMO গঠিত হয় এবং ১৯৫১ সালে জাতিসংঘের বিশেষায়িত সংস্থা হয়। ২৩ মার্চ বিশ্ব আবহাওয়া দিবস। IPCC-এর দুই অভিভাবকের একজন।",t:"২৩ মার্চ = বিশ্ব আবহাওয়া দিবস = WMO-র জন্মদিন।"},
+{a:"WHO",f:"World Health Organization",n:"বিশ্ব স্বাস্থ্য সংস্থা",c:"geneva",city:"জেনেভা",y:1948,yr:"৭ এপ্রিল ১৯৪৮",m:"১৯৪*",s:"১৯৪৫ সালের সান ফ্রান্সিসকো সম্মেলনে ব্রাজিল ও চীনের প্রতিনিধিরা একটি বৈশ্বিক স্বাস্থ্য সংস্থার প্রস্তাব দেন। ১৯৪৮ সালের ৭ এপ্রিল এর সংবিধান কার্যকর হয়, সেদিন থেকেই বিশ্ব স্বাস্থ্য দিবস। গুটিবসন্ত নির্মূল (১৯৮০) এর সবচেয়ে বড় সাফল্য। *যুক্তরাষ্ট্রের প্রত্যাহারের কারণে সদস্যসংখ্যা বদলেছে; পরীক্ষার আগে সর্বশেষ সংখ্যা মিলিয়ে নিও।",t:"৭ এপ্রিল = বিশ্ব স্বাস্থ্য দিবস = WHO-র জন্মদিন।"},
+{a:"IPU",f:"Inter-Parliamentary Union",n:"আন্তঃসংসদীয় ইউনিয়ন",c:"geneva",city:"জেনেভা",y:1889,yr:"১৮৮৯",bd:1,s:"১৮৮৯ সালে ব্রিটিশ সংসদ সদস্য উইলিয়াম র‍্যান্ডাল ক্রেমার ও ফরাসি ফ্রেদেরিক পাসি যুদ্ধের বদলে সালিশের মাধ্যমে বিরোধ মেটানোর লক্ষ্যে প্যারিসে এটি গড়েন; দুজনই পরে নোবেল পান। এটি বিশ্বের প্রাচীনতম বহুপাক্ষিক রাজনৈতিক সংস্থা, সদর দপ্তর এখন জেনেভায়। ২০১৭ সালে ঢাকায় এর ১৩৬তম সম্মেলন হয়।",t:"প্রাচীনতম রাজনৈতিক সংস্থা (১৮৮৯)। ঢাকায় সম্মেলন ২০১৭।"},
+{a:"CARE",f:"Cooperative for Assistance and Relief Everywhere",n:"কেয়ার",c:"geneva",city:"জেনেভা",hq:"জেনেভা (CARE International)",y:1945,yr:"১৯৪৫",s:"১৯৪৫ সালে যুদ্ধবিধ্বস্ত ইউরোপে খাবারের প্যাকেট পাঠাতে ২২টি মার্কিন সংগঠন মিলে 'Cooperative for American Remittances to Europe' গঠন করে; সেই বিখ্যাত 'CARE Package'। কাজ বিশ্বজুড়ে ছড়ালে নাম বদলে বর্তমান রূপ পায়, সংক্ষেপ একই থাকে। CARE International-এর সচিবালয় জেনেভায় (কিছু বইয়ে ওয়াশিংটন ডিসিও উল্লেখ থাকে)।",t:"CARE Package: যুদ্ধের পর খাবারের বাক্স।"},
+{a:"REAP",f:"Risk-informed Early Action Partnership",n:"ঝুঁকিভিত্তিক আগাম পদক্ষেপ অংশীদারিত্ব",c:"geneva",city:"জেনেভা",y:2019,yr:"২০১৯",s:"২০১৯ সালের জাতিসংঘ জলবায়ু অ্যাকশন সামিটে চালু হয়। লক্ষ্য: দুর্যোগ আঘাত হানার আগেই আগাম পদক্ষেপ নিয়ে বিশ্বের ১০০ কোটি মানুষকে ঝুঁকি থেকে রক্ষা করা। সচিবালয় জেনেভায়, রেড ক্রস ফেডারেশন (IFRC) পরিচালনা করে।",t:"REAP = ১০০ কোটি মানুষ, আগাম পদক্ষেপ।"},
+// SWISS
+{a:"IOC",f:"International Olympic Committee",n:"আন্তর্জাতিক অলিম্পিক কমিটি",c:"swiss",city:"লুজান",y:1894,yr:"২৩ জুন ১৮৯৪",m:"২০৬",s:"ফরাসি ব্যারন পিয়েরে দ্য কুবার্তাঁ প্রাচীন গ্রিক অলিম্পিক ফিরিয়ে আনতে চাইলেন। ১৮৯৪ সালের ২৩ জুন প্যারিসের সোরবোন সম্মেলনে IOC গঠিত হয়; ১৮৯৬ সালে এথেন্সে প্রথম আধুনিক অলিম্পিক। প্রথম বিশ্বযুদ্ধের সময় ১৯১৫ সালে নিরপেক্ষ সুইজারল্যান্ডের লুজানে সদর দপ্তর সরানো হয়, তাই লুজানকে বলে অলিম্পিক রাজধানী। (তোমার নোটে ২৪ জুন লেখা; সঠিক তারিখ ২৩ জুন, যা অলিম্পিক দিবস।)",t:"২৩ জুন = অলিম্পিক দিবস = IOC-র জন্ম।"},
+{a:"FIFA",f:"Fédération Internationale de Football Association",n:"আন্তর্জাতিক ফুটবল ফেডারেশন",c:"swiss",city:"জুরিখ",y:1904,yr:"২১ মে ১৯০৪",m:"২১১",s:"১৯০৪ সালে প্যারিসে ফ্রান্স, বেলজিয়াম, ডেনমার্কসহ ৭টি দেশ মিলে ফিফা গঠন করে। মজার ব্যাপার, ফুটবলের জন্মভূমি ইংল্যান্ড শুরুতে যোগ দেয়নি। ১৯৩০ সালে উরুগুয়েতে প্রথম বিশ্বকাপ। সদস্য ২১১, জাতিসংঘের চেয়েও বেশি!",t:"ফিফা (২১১) > IOC (২০৬) > জাতিসংঘ (১৯৩)।"},
+{a:"WWF",f:"World Wide Fund for Nature",n:"বিশ্ব প্রকৃতি তহবিল",c:"swiss",city:"গ্ল্যান্ড",y:1961,yr:"২৯ এপ্রিল ১৯৬১",s:"IUCN-এর তহবিল সংকট মেটাতে ১৯৬১ সালে জীববিজ্ঞানী জুলিয়ান হাক্সলিসহ কয়েকজন প্রকৃতিপ্রেমী বন্যপ্রাণী রক্ষার তহবিল গড়েন; প্রথম নাম World Wildlife Fund। লন্ডন চিড়িয়াখানার পান্ডা 'চি চি' থেকে লোগো নেওয়া, প্রতীক জায়ান্ট পান্ডা। আর্থ আওয়ার এদেরই উদ্যোগ।",t:"পান্ডা লোগো; IUCN-এর ছোট ভাই।"},
+{a:"IUCN",f:"International Union for Conservation of Nature",n:"আন্তর্জাতিক প্রকৃতি সংরক্ষণ ইউনিয়ন",c:"swiss",city:"গ্ল্যান্ড",y:1948,yr:"১৯৪৮",s:"১৯৪৮ সালে ফ্রান্সের ফন্তেনব্লোতে প্রথম বৈশ্বিক পরিবেশ সংগঠন হিসেবে IUCN গঠিত হয়; এতে সরকার ও বেসরকারি সংস্থা দুটোই সদস্য। প্রকৃতি ও প্রাকৃতিক সম্পদ সংরক্ষণে কাজ করে এবং বিপন্ন প্রাণীর 'লাল তালিকা' (Red List) প্রকাশ করে।",t:"গ্ল্যান্ডে দুই প্রকৃতিবন্ধু: বড় ভাই IUCN (১৯৪৮), ছোট ভাই WWF (১৯৬১)।"},
+{a:"UPU",f:"Universal Postal Union",n:"বিশ্ব ডাক ইউনিয়ন",c:"swiss",city:"বার্ন",y:1874,yr:"৯ অক্টোবর ১৮৭৪",m:"১৯২",s:"আগে এক দেশ থেকে আরেক দেশে চিঠি পাঠাতে প্রতিটি দেশের সাথে আলাদা চুক্তি লাগত। ১৮৭৪ সালের বার্ন চুক্তি সারা বিশ্বকে একটি একক ডাক এলাকা ঘোষণা করে, জন্ম নেয় UPU। ৯ অক্টোবর বিশ্ব ডাক দিবস। ITU-এর পর দ্বিতীয় প্রাচীন জাতিসংঘ সংস্থা।",t:"বার্নে চিঠি; ৯ অক্টোবর বিশ্ব ডাক দিবস।"},
+// HAGUE
+{a:"PCA",f:"Permanent Court of Arbitration",n:"স্থায়ী সালিশি আদালত",c:"hague",city:"হেগ",y:1899,yr:"১৮৯৯",bd:1,s:"১৮৯৯ সালে রুশ জার দ্বিতীয় নিকোলাসের আহ্বানে প্রথম হেগ শান্তি সম্মেলনে যুদ্ধের বদলে সালিশে বিরোধ মেটাতে এটি গঠিত হয়; বিশ্বের প্রথম স্থায়ী আন্তর্জাতিক বিরোধ নিষ্পত্তি প্রতিষ্ঠান। ২০১৪ সালে বাংলাদেশ-ভারত সমুদ্রসীমা মামলার সালিশ এর মাধ্যমে হয়, বাংলাদেশ পায় ১৯,৪৬৭ বর্গকিমি এলাকা। (বাংলাদেশ-মিয়ানমার মামলা ২০১২ সালে হয়েছিল ITLOS-এ, হামবুর্গে।)",t:"হেগের সবচেয়ে পুরোনো আদালত (১৮৯৯)। ভারতের সাথে সমুদ্রজয় ২০১৪।"},
+{a:"ICJ",f:"International Court of Justice",n:"আন্তর্জাতিক বিচার আদালত",c:"hague",city:"হেগ",y:1945,yr:"১৯৪৫ (কার্যক্রম ১৯৪৬)",s:"লীগ অব নেশনসের স্থায়ী আন্তর্জাতিক বিচার আদালতের (PCIJ) উত্তরসূরি হিসেবে জাতিসংঘ সনদের মাধ্যমে ১৯৪৫ সালে গঠিত। এটি জাতিসংঘের প্রধান বিচার বিভাগ, এবং ৬টি প্রধান অঙ্গের মধ্যে একমাত্র এটিই নিউইয়র্কের বাইরে। বিচারক ১৫ জন, মেয়াদ ৯ বছর। কেবল রাষ্ট্র বনাম রাষ্ট্র মামলা শোনে, যেমন রোহিঙ্গা গণহত্যা নিয়ে গাম্বিয়া বনাম মিয়ানমার (২০১৯)।",t:"ICJ = রাষ্ট্রের বিচার; ICC = ব্যক্তির বিচার। ICJ-র ১৫ বিচারক, ৯ বছর।"},
+{a:"ICC",f:"International Criminal Court",n:"আন্তর্জাতিক অপরাধ আদালত",c:"hague",city:"হেগ",y:2002,yr:"১ জুলাই ২০০২",m:"১২৫*",bd:1,s:"নুরেমবার্গ, রুয়ান্ডা ও যুগোস্লাভিয়ার অস্থায়ী ট্রাইব্যুনালের পর একটি স্থায়ী আদালতের দাবি ওঠে। ১৯৯৮ সালের রোম সংবিধি অনুযায়ী ২০০২ সালের ১ জুলাই এটি কার্যকর হয়। গণহত্যা, যুদ্ধাপরাধ, মানবতাবিরোধী অপরাধ ও আগ্রাসনের জন্য ব্যক্তির বিচার করে। যুক্তরাষ্ট্র, চীন, ভারত সদস্য নয়; বাংলাদেশ সদস্য (২০১০), তাই রোহিঙ্গা বিতাড়ন নিয়ে ICC তদন্ত চালাতে পারছে। *সদস্যসংখ্যা যোগদান-প্রত্যাহারে বদলায়।",t:"রোম সংবিধি (১৯৯৮) থেকে হেগের আদালত (২০০২)।"},
+{a:"OPCW",f:"Organisation for the Prohibition of Chemical Weapons",n:"রাসায়নিক অস্ত্র নিষিদ্ধকরণ সংস্থা",c:"hague",city:"হেগ",y:1997,yr:"২৯ এপ্রিল ১৯৯৭",m:"১৯৩",nb:"২০১৩",s:"প্রথম বিশ্বযুদ্ধে ক্লোরিন ও মাস্টার্ড গ্যাসের বিভীষিকা আর ইরাক-ইরান যুদ্ধের অভিজ্ঞতা থেকে রাসায়নিক অস্ত্র নিষিদ্ধ করার চুক্তি (CWC) হয়। চুক্তি কার্যকর হওয়ার দিন ১৯৯৭ সালের ২৯ এপ্রিল OPCW যাত্রা শুরু করে। সিরিয়ার রাসায়নিক অস্ত্র ধ্বংস তদারকির জন্য ২০১৩ সালে নোবেল শান্তি পুরস্কার।",t:"হেগে আদালত ছাড়া একমাত্র 'অস্ত্র' সংস্থা; নোবেল ২০১৩।"},
+// BRUSSELS
+{a:"BENELUX",f:"Belgium, Netherlands, Luxembourg",n:"বেনেলাক্স",c:"brussels",city:"ব্রাসেলস",y:1944,yr:"১৯৪৪",s:"দ্বিতীয় বিশ্বযুদ্ধ চলাকালে লন্ডনে নির্বাসিত বেলজিয়াম, নেদারল্যান্ডস ও লুক্সেমবার্গের সরকার ১৯৪৪ সালে শুল্ক ইউনিয়নের চুক্তি করে। তিন দেশের নামের প্রথম অংশ মিলে BeNeLux। এই ছোট্ট জোটই পরে ইউরোপীয় ইউনিয়নের মডেল হয়।",t:"Be + Ne + Lux = তিন দেশ।"},
+{a:"NATO",f:"North Atlantic Treaty Organization",n:"উত্তর আটলান্টিক নিরাপত্তা জোট",c:"brussels",city:"ব্রাসেলস",y:1949,yr:"৪ এপ্রিল ১৯৪৯",m:"৩২",s:"দ্বিতীয় বিশ্বযুদ্ধের পর সোভিয়েত প্রভাব ঠেকাতে ১৯৪৯ সালে ওয়াশিংটন চুক্তিতে ১২টি দেশ নিয়ে এই সামরিক জোট গঠিত হয়। মূলনীতি অনুচ্ছেদ ৫: একজনের ওপর আক্রমণ মানে সবার ওপর আক্রমণ। জবাবে ১৯৫৫ সালে সোভিয়েতরা ওয়ারশ চুক্তি করে। রাশিয়া-ইউক্রেন যুদ্ধের পর ফিনল্যান্ড (২০২৩) ও সুইডেন (২০২৪) যোগ দিয়ে সদস্য ৩২।",t:"চুক্তি ওয়াশিংটনে, ঘর ব্রাসেলসে। অনুচ্ছেদ ৫।"},
+{a:"EU",f:"European Union",n:"ইউরোপীয় ইউনিয়ন",c:"brussels",city:"ব্রাসেলস",y:1993,yr:"১ নভেম্বর ১৯৯৩",m:"২৭",nb:"২০১২",s:"আর যেন যুদ্ধ না হয়, এই ভাবনা থেকে ১৯৫১ সালে কয়লা-ইস্পাত সম্প্রদায়, ১৯৫৭ সালে রোম চুক্তিতে EEC। এরপর ম্যাস্ট্রিখট চুক্তি কার্যকর হলে ১৯৯৩ সালের ১ নভেম্বর EU জন্ম নেয়। ব্রেক্সিটে যুক্তরাজ্য বেরিয়ে যায় (৩১ জানুয়ারি ২০২০), সদস্য এখন ২৭। ইউরোপে শান্তি প্রতিষ্ঠায় অবদানের জন্য ২০১২ সালে নোবেল।",t:"ম্যাস্ট্রিখট চুক্তি থেকে EU (১৯৯৩); ২৭ সদস্য।"},
+// FRANCE
+{a:"UNESCO",f:"United Nations Educational, Scientific and Cultural Organization",n:"জাতিসংঘ শিক্ষা, বিজ্ঞান ও সংস্কৃতি সংস্থা",c:"france",city:"প্যারিস",y:1945,yr:"১৬ নভেম্বর ১৯৪৫",m:"১৯৪*",bd:1,s:"যুদ্ধের শুরু মানুষের মনে, তাই শান্তির ভিতও গড়তে হবে মনে; এই দর্শনে ১৯৪৫ সালে লন্ডনে এর সংবিধান গৃহীত হয় (কার্যকর ১৯৪৬)। বিশ্ব ঐতিহ্য তালিকা করে, যাতে বাংলাদেশের সুন্দরবন, ষাট গম্বুজ মসজিদ ও পাহাড়পুর বিহার আছে। ১৯৯৯ সালের ১৭ নভেম্বর ইউনেস্কো ২১ ফেব্রুয়ারিকে আন্তর্জাতিক মাতৃভাষা দিবস ঘোষণা করে। *যুক্তরাষ্ট্র আবার সদস্যপদ ছাড়ার ঘোষণা দিয়েছে, সর্বশেষ সংখ্যা মিলিয়ে নিও।",t:"২১ ফেব্রুয়ারির স্বীকৃতি = ইউনেস্কো, ১৭ নভেম্বর ১৯৯৯।"},
+{a:"Interpol",f:"International Criminal Police Organization",n:"আন্তর্জাতিক অপরাধ পুলিশ সংস্থা",c:"france",city:"লিঁও",y:1923,yr:"১৯২৩",m:"১৯৬",s:"১৯২৩ সালে ভিয়েনায় 'আন্তর্জাতিক অপরাধ পুলিশ কমিশন' নামে যাত্রা। ১৯৫৬ সালে নাম হয় ইন্টারপোল, ১৯৮৯ থেকে সদর দপ্তর ফ্রান্সের লিঁও শহরে। এটি নিজে গ্রেপ্তার করে না; সদস্য দেশের পুলিশের মধ্যে তথ্য আদান-প্রদান করে এবং পলাতক আসামি ধরতে 'রেড নোটিশ' জারি করে।",t:"জন্ম ভিয়েনায়, ঘর লিঁওতে। সদস্য ১৯৬, জাতিসংঘের চেয়েও বেশি।"},
+// GERMANY
+{a:"UNV",f:"United Nations Volunteers",n:"জাতিসংঘ স্বেচ্ছাসেবক কর্মসূচি",c:"germany",city:"বন",y:1970,yr:"১৯৭০",s:"১৯৭০ সালে সাধারণ পরিষদ বিশ্বজুড়ে স্বেচ্ছাসেবক পাঠিয়ে উন্নয়ন ও শান্তির কাজে সহায়তার জন্য UNV গঠন করে; এটি UNDP পরিচালিত। ১৯৯৬ সালে জেনেভা থেকে বনে সদর দপ্তর সরে, বনে আসা প্রথম জাতিসংঘ সংস্থা এটিই।",t:"বনে প্রথম এসেছিল স্বেচ্ছাসেবকরা।"},
+{a:"TI",f:"Transparency International",n:"ট্রান্সপারেন্সি ইন্টারন্যাশনাল",c:"germany",city:"বার্লিন",y:1993,yr:"১৯৯৩",bd:1,s:"বিশ্বব্যাংকের সাবেক কর্মকর্তা পিটার আইগেন আফ্রিকায় কাজ করতে গিয়ে দেখেন দুর্নীতি উন্নয়ন খেয়ে ফেলছে। ১৯৯৩ সালে বার্লিনে তিনি এই দুর্নীতিবিরোধী সংস্থা প্রতিষ্ঠা করেন। ১৯৯৫ থেকে দুর্নীতির ধারণা সূচক (CPI) প্রকাশ করে; ২০০১-২০০৫ টানা পাঁচবার বাংলাদেশ শীর্ষ দুর্নীতিগ্রস্ত তালিকায় ছিল। বাংলাদেশ শাখা TIB।",t:"বার্লিন থেকে CPI; বাংলাদেশে TIB।"},
+{a:"UNFCCC",f:"United Nations Framework Convention on Climate Change",n:"জলবায়ু পরিবর্তন বিষয়ক জাতিসংঘ কাঠামো সনদ",c:"germany",city:"বন",y:1992,yr:"১৯৯২",m:"১৯৮",s:"১৯৯২ সালে রিও ডি জেনিরোর ধরিত্রী সম্মেলনে জলবায়ু পরিবর্তন মোকাবিলার কাঠামো চুক্তি স্বাক্ষরিত হয় (কার্যকর ১৯৯৪)। এর পক্ষগুলোর বার্ষিক সম্মেলনই COP; কিয়োটো প্রটোকল (১৯৯৭) ও প্যারিস চুক্তি (২০১৫) এখান থেকেই। সচিবালয় বনে।",t:"সবচেয়ে বেশি সদস্য: UNFCCC (১৯৮)। COP-এর মালিক।"},
+// ROME
+{a:"FAO",f:"Food and Agriculture Organization of the United Nations",n:"জাতিসংঘ খাদ্য ও কৃষি সংস্থা",c:"rome",city:"রোম",y:1945,yr:"১৬ অক্টোবর ১৯৪৫",m:"১৯৫",s:"১৯৪৩ সালে যুক্তরাষ্ট্রের হট স্প্রিংসে খাদ্য সম্মেলনের পর ১৯৪৫ সালের ১৬ অক্টোবর কানাডার কুইবেকে FAO গঠিত হয়, জাতিসংঘের (২৪ অক্টোবর) চেয়েও কয়েক দিন আগে! ১৯৫১ সালে ওয়াশিংটন থেকে রোমে সদর দপ্তর আসে। ১৬ অক্টোবর বিশ্ব খাদ্য দিবস। মূলমন্ত্র 'Fiat Panis' (সবার জন্য রুটি)।",t:"জাতিসংঘের চেয়ে বড় (৮ দিন আগে জন্ম)। ১৬ অক্টোবর খাদ্য দিবস।"},
+{a:"WFP",f:"World Food Programme",n:"বিশ্ব খাদ্য কর্মসূচি",c:"rome",city:"রোম",y:1961,yr:"১৯৬১",nb:"২০২০",s:"১৯৬১ সালে FAO ও জাতিসংঘ সাধারণ পরিষদ পরীক্ষামূলকভাবে খাদ্য সহায়তা কর্মসূচি শুরু করে; পরের বছরই ইরানের ভূমিকম্পে কাজ করে নিজের প্রয়োজনীয়তা প্রমাণ করে। এখন বিশ্বের সবচেয়ে বড় মানবিক সংস্থা, ক্ষুধা নিরসনে কাজ করে। ক্ষুধাকে যুদ্ধের অস্ত্র হিসেবে ব্যবহার ঠেকানোর প্রচেষ্টার জন্য ২০২০ সালে নোবেল শান্তি পুরস্কার।",t:"করোনার বছরে (২০২০) খাবার পৌঁছে দিয়ে নোবেল।"},
+{a:"IFAD",f:"International Fund for Agricultural Development",n:"আন্তর্জাতিক কৃষি উন্নয়ন তহবিল",c:"rome",city:"রোম",y:1977,yr:"১৯৭৭",s:"১৯৭৪ সালে আফ্রিকার সাহেল অঞ্চলের দুর্ভিক্ষ ও বিশ্ব খাদ্য সংকটের প্রেক্ষাপটে রোমে বিশ্ব খাদ্য সম্মেলন হয়। সেখানে সিদ্ধান্ত হয়, দরিদ্র গ্রামীণ কৃষকদের জন্য বিশেষ তহবিল চাই। তেলসমৃদ্ধ OPEC দেশগুলোর বড় অর্থায়নে ১৯৭৭ সালে IFAD গঠিত হয়।",t:"রোমের খাদ্য-ত্রয়ী: FAO (১৯৪৫), WFP (১৯৬১), IFAD (১৯৭৭)।"},
+// LONDON
+{a:"IMO",f:"International Maritime Organization",n:"আন্তর্জাতিক নৌ সংস্থা",c:"london",city:"লন্ডন",y:1948,yr:"১৯৪৮ (কার্যকর ১৯৫৮)",m:"১৭৬",s:"টাইটানিক ডুবির (১৯১২) পর সমুদ্র নিরাপত্তার আন্তর্জাতিক নিয়ম জরুরি হয়ে পড়ে। ১৯৪৮ সালে জেনেভা সম্মেলনে কনভেনশন গৃহীত হয়, ১৯৫৮ সালে 'IMCO' নামে কার্যকর; ১৯৮২ সালে নাম হয় IMO। জাতিসংঘের একমাত্র বিশেষায়িত সংস্থা যার সদর দপ্তর যুক্তরাজ্যে।",t:"লন্ডনে সমুদ্র (IMO), মন্ট্রিয়েলে আকাশ (ICAO)।"},
+{a:"Commonwealth",f:"Commonwealth of Nations",n:"কমনওয়েলথ",c:"london",city:"লন্ডন",y:1931,yr:"১৯৩১",m:"৫৬",bd:1,s:"ব্রিটিশ সাম্রাজ্য ভাঙতে শুরু করলে সাবেক উপনিবেশগুলোর সাথে সম্পর্ক টিকিয়ে রাখতে ১৯৩১ সালের ওয়েস্টমিনস্টার সংবিধির মাধ্যমে কমনওয়েলথের যাত্রা; ১৯৪৯ সালের লন্ডন ঘোষণায় আধুনিক রূপ। প্রধান ব্রিটিশ রাজা (বর্তমানে রাজা তৃতীয় চার্লস)। বাংলাদেশ যোগ দেয় ১৯৭২ সালে; ২০২২ সালে গ্যাবন ও টোগো যোগ দিয়ে সদস্য ৫৬, যারা কখনো ব্রিটিশ উপনিবেশ ছিল না।",t:"ওয়েস্টমিনস্টার সংবিধি ১৯৩১; সদস্য ৫৬।"},
+{a:"OXFAM",f:"Oxford Committee for Famine Relief",n:"অক্সফ্যাম",c:"london",city:"অক্সফোর্ড",hq:"অক্সফোর্ড (Oxfam International-এর সচিবালয় এখন নাইরোবি)",y:1942,yr:"১৯৪২",s:"দ্বিতীয় বিশ্বযুদ্ধে নাৎসি দখলকৃত গ্রিসে মিত্রবাহিনীর অবরোধে দুর্ভিক্ষ চলছিল। ১৯৪২ সালে অক্সফোর্ডের কয়েকজন নাগরিক সেখানে খাবার পাঠাতে এই কমিটি গঠন করেন। এখন এটি দারিদ্র্য বিমোচনে কাজ করা ২০টির বেশি সংস্থার জোট Oxfam International, যার সচিবালয় ২০১৭ সাল থেকে কেনিয়ার নাইরোবিতে।",t:"OX-ford + FAM-ine = OXFAM।"},
+// VIENNA
+{a:"IAEA",f:"International Atomic Energy Agency",n:"আন্তর্জাতিক পরমাণু শক্তি সংস্থা",c:"vienna",city:"ভিয়েনা",y:1957,yr:"২৯ জুলাই ১৯৫৭",m:"১৭৮",nb:"২০০৫",bd:1,s:"১৯৫৩ সালে মার্কিন প্রেসিডেন্ট আইজেনহাওয়ার জাতিসংঘে 'Atoms for Peace' ভাষণ দেন: পরমাণু শক্তি যেন বোমায় নয়, বিদ্যুৎ ও চিকিৎসায় ব্যবহৃত হয়। সেই ধারণা থেকে ১৯৫৭ সালে IAEA গঠিত। ২০০৫ সালে মহাপরিচালক মোহাম্মদ এলবারাদেইর সাথে যৌথভাবে নোবেল। রূপপুর পারমাণবিক বিদ্যুৎকেন্দ্রের নিরাপত্তা তদারকিতে যুক্ত।",t:"Atoms for Peace; ভিয়েনা = পরমাণু।"},
+{a:"CTBTO",f:"Comprehensive Nuclear-Test-Ban Treaty Organization",n:"পারমাণবিক পরীক্ষা নিষিদ্ধকরণ চুক্তি সংস্থা",c:"vienna",city:"ভিয়েনা",y:1996,yr:"১৯৯৬",m:"১৮৭",s:"১৯৯৬ সালে সব ধরনের পারমাণবিক বিস্ফোরণ নিষিদ্ধ করতে CTBT চুক্তি স্বাক্ষরের জন্য উন্মুক্ত হয়। যুক্তরাষ্ট্র, চীন, ভারত, পাকিস্তানসহ কয়েকটি গুরুত্বপূর্ণ দেশ অনুসমর্থন বা স্বাক্ষর না করায় চুক্তি এখনো কার্যকর হয়নি, তাই এর প্রস্তুতি কমিশন ভিয়েনায় কাজ করছে। বিশ্বজুড়ে ভূকম্পন স্টেশন দিয়ে গোপন পরীক্ষা শনাক্ত করে।",t:"চুক্তি এখনো কার্যকর হয়নি, তাই সংস্থাটি 'প্রস্তুতি কমিশন'।"},
+// OTHER EUROPE
+{a:"UNWTO",f:"United Nations World Tourism Organization (UN Tourism)",n:"বিশ্ব পর্যটন সংস্থা",c:"othereu",city:"মাদ্রিদ",y:1975,yr:"১৯৭৫ (কিছু বইয়ে ১৯৭৪)",m:"১৬০",s:"১৯২৫ সালে সরকারি পর্যটন সংস্থাগুলোর একটি জোট ছিল, যা ১৯৭৫ সালে আন্তঃসরকার সংস্থা হয় এবং ২০০৩ সালে জাতিসংঘের বিশেষায়িত সংস্থা। ১৯৭০ সালের ২৭ সেপ্টেম্বর এর সংবিধি গৃহীত হয়েছিল, সেদিনটিই বিশ্ব পর্যটন দিবস। ২০২৪ সালে নতুন নাম 'UN Tourism'।",t:"মাদ্রিদে বেড়ানো; ২৭ সেপ্টেম্বর পর্যটন দিবস।"},
+{a:"UNOPS",f:"United Nations Office for Project Services",n:"জাতিসংঘ প্রকল্প সেবা কার্যালয়",c:"othereu",city:"কোপেনহেগেন",y:1973,yr:"১৯৭৩ (স্বাধীন ১৯৯৫)",s:"১৯৭৩ সালে UNDP-র একটি অংশ হিসেবে শুরু, ১৯৯৫ সালে আলাদা সংস্থা হয়। জাতিসংঘের অন্য সংস্থা ও সরকারের হয়ে অবকাঠামো নির্মাণ, কেনাকাটা ও প্রকল্প বাস্তবায়ন করে। সদর দপ্তর কোপেনহেগেনের UN City-তে।",t:"কোপেনহেগেনে কাজের ঠিকাদার।"},
+{a:"INIA",f:"International Institute on Ageing",n:"আন্তর্জাতিক বার্ধক্য ইনস্টিটিউট",c:"othereu",city:"মাল্টা",hq:"ভ্যালেটা, মাল্টা",y:1988,yr:"১৯৮৮",s:"১৯৮২ সালে ভিয়েনায় প্রথম বিশ্ব বার্ধক্য সম্মেলনের পর বয়স্ক জনগোষ্ঠী নিয়ে প্রশিক্ষণ ও গবেষণার জন্য ১৯৮৮ সালে জাতিসংঘ ও মাল্টা সরকারের চুক্তিতে এটি গঠিত হয়। (তোমার তালিকায় NIA লেখা; সঠিক সংক্ষেপ INIA।)",t:"মাল্টায় বার্ধক্য।"},
+// AMERICAS
+{a:"ICAO",f:"International Civil Aviation Organization",n:"আন্তর্জাতিক বেসামরিক বিমান চলাচল সংস্থা",c:"americas",city:"মন্ট্রিয়েল",y:1944,yr:"৭ ডিসেম্বর ১৯৪৪",m:"১৯৩",s:"দ্বিতীয় বিশ্বযুদ্ধের শেষদিকে বোঝা গেল যুদ্ধের পর বেসামরিক বিমান চলাচল দ্রুত বাড়বে। ১৯৪৪ সালের ৭ ডিসেম্বর শিকাগো কনভেনশন স্বাক্ষরিত হয়, ১৯৪৭ সালে ICAO কার্যকর হয়। ৭ ডিসেম্বর আন্তর্জাতিক বেসামরিক বিমান চলাচল দিবস। কানাডায় সদর দপ্তর থাকা একমাত্র জাতিসংঘ বিশেষায়িত সংস্থা।",t:"শিকাগোতে চুক্তি, মন্ট্রিয়েলে ঘর।"},
+{a:"MERCOSUR",f:"Mercado Común del Sur (Southern Common Market)",n:"দক্ষিণ আমেরিকার অভিন্ন বাজার",c:"americas",city:"মন্টেভিডিও",y:1991,yr:"২৬ মার্চ ১৯৯১",s:"১৯৯১ সালে আসুনসিয়ন চুক্তির মাধ্যমে আর্জেন্টিনা, ব্রাজিল, প্যারাগুয়ে ও উরুগুয়ে মিলে দক্ষিণ আমেরিকার মুক্ত বাণিজ্য গোষ্ঠী গড়ে। ভেনেজুয়েলা পরে সদস্য হয়ে স্থগিত হয়েছে, বলিভিয়া যোগ দিয়েছে। সদর দপ্তর উরুগুয়ের মন্টেভিডিও।",t:"স্প্যানিশ নাম: Mercado = বাজার, Sur = দক্ষিণ।"},
+{a:"Rotary",f:"Rotary International",n:"রোটারি ইন্টারন্যাশনাল",c:"americas",city:"ইভানস্টন",hq:"ইভানস্টন, ইলিনয় (যুক্তরাষ্ট্র)",y:1905,yr:"২৩ ফেব্রুয়ারি ১৯০৫",s:"১৯০৫ সালের ২৩ ফেব্রুয়ারি শিকাগোর আইনজীবী পল হ্যারিস তিন বন্ধুকে নিয়ে প্রথম ক্লাব গড়েন। সদস্যদের অফিসে পালাক্রমে (rotate করে) সভা হতো, তাই নাম রোটারি। বিশ্বব্যাপী পোলিও নির্মূল অভিযানে বড় ভূমিকা রেখেছে।",t:"ঘুরে ঘুরে সভা, তাই 'রোটারি'।"},
+// WASHINGTON
+{a:"World Bank",f:"World Bank (IBRD)",n:"বিশ্বব্যাংক",c:"washington",city:"ওয়াশিংটন ডিসি",y:1944,yr:"১৯৪৪",m:"১৮৯",bd:1,s:"১৯৪৪ সালের জুলাইয়ে ব্রেটন উডস সম্মেলনে যুদ্ধবিধ্বস্ত ইউরোপ পুনর্গঠনের জন্য IBRD গঠিত হয়, এটাই বিশ্বব্যাংক। পরে এর কাজ উন্নয়নশীল দেশের দারিদ্র্য বিমোচনে সরে আসে। বিশ্বব্যাংক গ্রুপে ৫টি সংস্থা: IBRD, IDA, IFC, MIGA, ICSID। মূলমন্ত্র: Working for a world free of poverty। পদ্মা সেতু প্রকল্প থেকে সরে যাওয়া (২০১২) বাংলাদেশের আলোচিত ঘটনা।",t:"ব্রেটন উডস যমজের একজন; গ্রুপে ৫ সংস্থা।"},
+{a:"IMF",f:"International Monetary Fund",n:"আন্তর্জাতিক মুদ্রা তহবিল",c:"washington",city:"ওয়াশিংটন ডিসি",y:1944,yr:"১৯৪৪ (কার্যক্রম ১৯৪৫)",m:"১৯১",bd:1,s:"একই ব্রেটন উডস সম্মেলনে জন্ম, বিশ্বব্যাংকের যমজ। ১৯৩০-এর মহামন্দার মুদ্রাযুদ্ধ যেন আর না হয়, তাই বিনিময় হার স্থিতিশীল রাখা ও লেনদেন ভারসাম্য সংকটে দেশকে ঋণ দেওয়াই এর কাজ। ১৯৬৯ সালে নিজস্ব রিজার্ভ সম্পদ SDR (Special Drawing Rights) চালু করে; ঋণের শর্ত হিসেবে SAP (Structural Adjustment Programs)-এর জন্য সমালোচিত।",t:"প্রথা: বিশ্বব্যাংক প্রধান মার্কিন, IMF প্রধান ইউরোপীয়।"},
+{a:"OAS",f:"Organization of American States",n:"আমেরিকান রাষ্ট্রসমূহের সংস্থা",c:"washington",city:"ওয়াশিংটন ডিসি",y:1948,yr:"১৯৪৮",m:"৩৫",s:"১৮৯০ সালে গঠিত আমেরিকান প্রজাতন্ত্রগুলোর আন্তর্জাতিক ইউনিয়ন এর পূর্বসূরি, তাই একে প্রাচীনতম আঞ্চলিক সংস্থা ধরা হয়। ১৯৪৮ সালে কলম্বিয়ার বোগোটায় সনদ স্বাক্ষরের মাধ্যমে OAS গঠিত হয়; উত্তর ও দক্ষিণ আমেরিকার ৩৫টি দেশ সদস্য।",t:"সনদ বোগোটায়, ঘর ওয়াশিংটনে।"},
+{a:"USAID",f:"United States Agency for International Development",n:"মার্কিন আন্তর্জাতিক উন্নয়ন সংস্থা",c:"washington",city:"ওয়াশিংটন ডিসি",y:1961,yr:"১৯৬১",bd:1,s:"১৯৬১ সালে প্রেসিডেন্ট জন এফ কেনেডি বিদেশি সাহায্য কর্মসূচিগুলো এক ছাতার নিচে আনতে USAID গঠন করেন। বাংলাদেশে স্বাস্থ্য, কৃষি ও গণতন্ত্র খাতে দীর্ঘদিন কাজ করেছে। ২০২৫ সালে ট্রাম্প প্রশাসন এর বেশিরভাগ কার্যক্রম বন্ধ করে বাকি অংশ পররাষ্ট্র দপ্তরের অধীনে নিয়ে যায়।",t:"কেনেডির সংস্থা (১৯৬১); ২০২৫-এ কার্যত বিলুপ্ত।"},
+{a:"Worldwatch",f:"Worldwatch Institute",n:"ওয়ার্ল্ডওয়াচ ইনস্টিটিউট",c:"washington",city:"ওয়াশিংটন ডিসি",y:1974,yr:"১৯৭৪",s:"পরিবেশবিদ লেস্টার ব্রাউন ১৯৭৪ সালে ওয়াশিংটনে এই স্বাধীন পরিবেশ গবেষণা প্রতিষ্ঠান গড়েন। বার্ষিক 'State of the World' প্রতিবেদনের জন্য বিখ্যাত ছিল।",t:"World Watch (১৯৭৪, গবেষণা প্রতিষ্ঠান) আর Earth Watch (১৯৭২, UNEP কর্মসূচি) আলাদা।"},
+// NEW YORK
+{a:"UNICEF",f:"United Nations Children's Fund",n:"জাতিসংঘ শিশু তহবিল",c:"newyork",city:"নিউইয়র্ক",y:1946,yr:"১১ ডিসেম্বর ১৯৪৬",nb:"১৯৬৫",s:"দ্বিতীয় বিশ্বযুদ্ধের পর ইউরোপ ও চীনের ক্ষুধার্ত শিশুদের জরুরি সহায়তার জন্য ১৯৪৬ সালে গঠিত হয়, নাম ছিল 'United Nations International Children's Emergency Fund'। ১৯৫৩ সালে স্থায়ী হলে নাম থেকে International ও Emergency বাদ পড়ে, কিন্তু সংক্ষেপ UNICEF থেকে যায়। ১৯৬৫ সালে নোবেল শান্তি পুরস্কার।",t:"নাম বদলেছে, সংক্ষেপ বদলায়নি।"},
+{a:"UNDP",f:"United Nations Development Programme",n:"জাতিসংঘ উন্নয়ন কর্মসূচি",c:"newyork",city:"নিউইয়র্ক",y:1965,yr:"১৯৬৫",s:"১৯৬৫ সালে দুটি কর্মসূচি (কারিগরি সহায়তা কর্মসূচি EPTA ও Special Fund) মিলিয়ে UNDP গঠিত হয়। ১৯৯০ সাল থেকে মাহবুবুল হক ও অমর্ত্য সেনের ধারণায় মানব উন্নয়ন সূচক (HDI) প্রকাশ করে। জাতিসংঘের উন্নয়ন কার্যক্রমের মূল সমন্বয়কারী।",t:"HDI-এর প্রকাশক = UNDP।"},
+{a:"UNFPA",f:"United Nations Population Fund",n:"জাতিসংঘ জনসংখ্যা তহবিল",c:"newyork",city:"নিউইয়র্ক",y:1969,yr:"১৯৬৯",s:"ষাটের দশকে দ্রুত জনসংখ্যা বৃদ্ধি উদ্বেগ তৈরি করলে ১৯৬৯ সালে 'UN Fund for Population Activities' নামে যাত্রা। নাম বদলালেও সংক্ষেপ UNFPA রয়ে গেছে। প্রজনন ও মাতৃস্বাস্থ্যে কাজ করে, 'বিশ্ব জনসংখ্যা পরিস্থিতি' প্রতিবেদন প্রকাশ করে। ১১ জুলাই বিশ্ব জনসংখ্যা দিবস।",t:"P = Population; ১১ জুলাই জনসংখ্যা দিবস।"},
+{a:"UN Women",f:"United Nations Entity for Gender Equality and the Empowerment of Women",n:"জাতিসংঘ নারী সংস্থা",c:"newyork",city:"নিউইয়র্ক",y:2010,yr:"২০১০",s:"নারীবিষয়ক কাজ জাতিসংঘের চারটি আলাদা প্রতিষ্ঠানে ছড়িয়ে ছিল (UNIFEM, DAW, OSAGI, INSTRAW)। ২০১০ সালের জুলাইয়ে সাধারণ পরিষদ এগুলো একীভূত করে UN Women গঠন করে, কার্যক্রম শুরু ২০১১ সালে। নারীর ক্ষমতায়ন ও লিঙ্গ সমতা নিয়ে কাজ করে।",t:"৪ সংস্থা মিলে ১ (২০১০)।"},
+{a:"UNIFEM",f:"United Nations Development Fund for Women",n:"জাতিসংঘ নারী উন্নয়ন তহবিল",c:"newyork",city:"নিউইয়র্ক",y:1976,yr:"১৯৭৬",s:"১৯৭৫ সালের মেক্সিকো সিটির প্রথম বিশ্ব নারী সম্মেলন ও জাতিসংঘ নারী দশকের (১৯৭৬-৮৫) সূচনায় ১৯৭৬ সালে এই তহবিল গঠিত হয়। ২০১০-১১ সালে এটি UN Women-এ বিলীন হয়ে যায়, তাই এখন আর আলাদা সংস্থা নেই।",t:"UNIFEM (১৯৭৬) হলো UN Women-এর পূর্বসূরি।"},
+{a:"UNODA",f:"United Nations Office for Disarmament Affairs",n:"জাতিসংঘ নিরস্ত্রীকরণ বিষয়ক কার্যালয়",c:"newyork",city:"নিউইয়র্ক",y:1998,yr:"১৯৯৮",s:"১৯৯৮ সালে নিরস্ত্রীকরণ বিষয়ক বিভাগ হিসেবে প্রতিষ্ঠিত, ২০০৭ সালে বর্তমান কার্যালয়ের রূপ পায়। পারমাণবিক ও প্রচলিত অস্ত্র নিয়ন্ত্রণ চুক্তিগুলোর সমন্বয় করে। (তোমার তালিকায় UNDOA লেখা; সঠিক সংক্ষেপ UNODA।)",t:"O = Office, D = Disarmament।"},
+{a:"HRW",f:"Human Rights Watch",n:"হিউম্যান রাইটস ওয়াচ",c:"newyork",city:"নিউইয়র্ক",y:1978,yr:"১৯৭৮",s:"স্নায়ুযুদ্ধের সময় ১৯৭৫ সালের হেলসিঙ্কি চুক্তি সোভিয়েত ব্লক মানছে কিনা তা পর্যবেক্ষণে ১৯৭৮ সালে 'Helsinki Watch' গঠিত হয়। পরে আমেরিকা, এশিয়াসহ অন্য অঞ্চলের ওয়াচ কমিটিগুলো মিলে ১৯৮৮ সালে নাম হয় Human Rights Watch। প্রতি বছর World Report প্রকাশ করে।",t:"প্রথম নাম Helsinki Watch।"},
+{a:"G-77",f:"The Group of 77",n:"৭৭ জাতি গ্রুপ",c:"newyork",city:"নিউইয়র্ক",y:1964,yr:"১৫ জুন ১৯৬৪",m:"১৩৪",bd:1,s:"১৯৬৪ সালের প্রথম UNCTAD সম্মেলনের শেষে ৭৭টি উন্নয়নশীল দেশ যৌথ ঘোষণা দেয়, সেখান থেকেই নাম। সদস্য এখন ১৩০-এর বেশি হলেও নাম বদলায়নি। জাতিসংঘে উন্নয়নশীল দেশগুলোর সম্মিলিত কণ্ঠ; সংশ্লিষ্ট ECOSOC ও UNCTAD। বাংলাদেশ সদস্য।",t:"নামে ৭৭, আসলে ১৩৪।"},
+// SOUTH ASIA
+{a:"SAARC",f:"South Asian Association for Regional Cooperation",n:"দক্ষিণ এশীয় আঞ্চলিক সহযোগিতা সংস্থা",c:"southasia",city:"কাঠমান্ডু",y:1985,yr:"৮ ডিসেম্বর ১৯৮৫",m:"৮",bd:1,s:"আঞ্চলিক সহযোগিতার প্রথম প্রস্তাব দেন বাংলাদেশের রাষ্ট্রপতি জিয়াউর রহমান (১৯৮০)। ১৯৮৫ সালের ৮ ডিসেম্বর ঢাকায় প্রথম শীর্ষ সম্মেলনে ৭ দেশ নিয়ে সার্কের জন্ম; ২০০৭ সালে আফগানিস্তান যোগ দিলে সদস্য ৮। সচিবালয় কাঠমান্ডুতে (১৯৮৭)। ভারত-পাকিস্তান টানাপোড়েনে ২০১৪ সালের পর আর শীর্ষ সম্মেলন হয়নি।",t:"জন্ম ঢাকায়, ঘর কাঠমান্ডুতে।"},
+{a:"BIMSTEC",f:"Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation",n:"বিমসটেক",c:"southasia",city:"ঢাকা",y:1997,yr:"৬ জুন ১৯৯৭",m:"৭",bd:1,s:"১৯৯৭ সালের ব্যাংকক ঘোষণায় বাংলাদেশ, ভারত, শ্রীলঙ্কা ও থাইল্যান্ড মিলে 'BIST-EC' গঠন করে; মিয়ানমার যোগ দিলে 'BIMST-EC', আর ২০০৪ সালে নেপাল ও ভুটান যোগ দিলে বর্তমান নাম। সার্ক অচল হওয়ায় দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার সেতু হিসেবে গুরুত্ব বেড়েছে। ২০১৪ সাল থেকে সচিবালয় ঢাকায়। সংশ্লিষ্ট চুক্তি BIMSTEC Free Trade Area Framework Agreement (BFTAA)।",t:"বঙ্গোপসাগরের ৭ দেশ; ঘর ঢাকায়।"},
+{a:"CIRDAP",f:"Centre on Integrated Rural Development for Asia and the Pacific",n:"এশিয়া-প্রশান্ত সমন্বিত পল্লী উন্নয়ন কেন্দ্র",c:"southasia",city:"ঢাকা",y:1979,yr:"৬ জুলাই ১৯৭৯",bd:1,s:"এশিয়া-প্রশান্ত অঞ্চলে গ্রামীণ দারিদ্র্য দূর করতে FAO-র উদ্যোগে ১৯৭৯ সালে এটি গঠিত হয়, সদর দপ্তর ঢাকার চামেলী হাউসে। ঢাকায় সদর দপ্তর থাকা প্রথম আন্তঃসরকার সংস্থাগুলোর একটি।",t:"Rural = পল্লী; ঢাকার প্রথম আন্তর্জাতিক অতিথি।"},
+{a:"SASEC",f:"South Asia Subregional Economic Cooperation",n:"দক্ষিণ এশিয়া উপ-আঞ্চলিক অর্থনৈতিক সহযোগিতা",c:"southasia",city:"",hq:"নির্দিষ্ট নেই (ADB সচিবালয়ের সহায়তা)",y:2001,yr:"২০০১",bd:1,s:"২০০১ সালে ADB-র সহায়তায় বাংলাদেশ, ভুটান, ভারত ও নেপাল (BBIN) উপ-আঞ্চলিক কর্মসূচি শুরু করে; পরে মালদ্বীপ, শ্রীলঙ্কা ও মিয়ানমার যোগ দেয়। সড়ক, বিদ্যুৎ ও বাণিজ্য সংযোগ প্রকল্পে অর্থায়ন করে।",t:"BBIN দিয়ে শুরু, ADB-র ছাতা।"},
+{a:"BCIM",f:"Bangladesh-China-India-Myanmar Forum for Economic Cooperation",n:"বিসিআইএম অর্থনৈতিক করিডর ফোরাম",c:"southasia",city:"",hq:"নির্দিষ্ট নেই",y:1999,yr:"১৯৯৯",bd:1,s:"১৯৯৯ সালে চীনের কুনমিংয়ে 'কুনমিং উদ্যোগ' নামে যাত্রা; লক্ষ্য কুনমিং থেকে কলকাতা পর্যন্ত সড়ক ও অর্থনৈতিক করিডর। চীনের বেল্ট অ্যান্ড রোড উদ্যোগ নিয়ে ভারতের আপত্তিতে এটি কার্যত স্থবির।",t:"কুনমিং থেকে কলকাতা, মাঝে ঢাকা ও মান্দালয়।"},
+// EAST ASIA
+{a:"ADB",f:"Asian Development Bank",n:"এশীয় উন্নয়ন ব্যাংক",c:"eastasia",city:"ম্যানিলা",y:1966,yr:"১৯ ডিসেম্বর ১৯৬৬",m:"৬৯",bd:1,s:"এশিয়ার দরিদ্র দেশগুলোর জন্য একটি আঞ্চলিক উন্নয়ন ব্যাংকের ধারণায় জাপানের নেতৃত্বে ১৯৬৬ সালে ADB গঠিত হয়। সবচেয়ে বড় শেয়ারহোল্ডার জাপান ও যুক্তরাষ্ট্র, প্রেসিডেন্ট প্রথাগতভাবে জাপানি। সদস্য ৬৯ (৪৯টি এশিয়া অঞ্চলের)। বাংলাদেশ ১৯৭৩ সালে সদস্য হয়।",t:"ম্যানিলায় ব্যাংক, চালায় জাপান।"},
+{a:"ASEAN",f:"Association of Southeast Asian Nations",n:"দক্ষিণ-পূর্ব এশীয় জাতিসমূহের সংস্থা",c:"eastasia",city:"জাকার্তা",y:1967,yr:"৮ আগস্ট ১৯৬৭",m:"১১",s:"ভিয়েতনাম যুদ্ধ ও কমিউনিজম বিস্তারের আশঙ্কার মধ্যে ১৯৬৭ সালের ৮ আগস্ট ব্যাংকক ঘোষণায় ইন্দোনেশিয়া, মালয়েশিয়া, ফিলিপাইন, সিঙ্গাপুর ও থাইল্যান্ড আসিয়ান গঠন করে। পরে ব্রুনাই, ভিয়েতনাম, লাওস, মিয়ানমার ও কম্বোডিয়া যোগ দিয়ে সদস্য হয় ১০; ২০২৫ সালের অক্টোবরে তিমুর-লেস্তে ১১তম সদস্য হয়েছে (পুরোনো বইয়ে ১০ লেখা)।",t:"জন্ম ব্যাংককে, ঘর জাকার্তায়।"},
+{a:"APEC",f:"Asia-Pacific Economic Cooperation",n:"এশিয়া-প্রশান্ত মহাসাগরীয় অর্থনৈতিক সহযোগিতা",c:"eastasia",city:"সিঙ্গাপুর",y:1989,yr:"১৯৮৯",m:"২১",s:"১৯৮৯ সালে অস্ট্রেলিয়ার প্রধানমন্ত্রী বব হকের প্রস্তাবে ক্যানবেরায় ১২টি অর্থনীতি নিয়ে যাত্রা। সদস্যদের 'দেশ' নয়, 'অর্থনীতি' বলা হয়, কারণ তাইওয়ান ও হংকংও সদস্য। সচিবালয় সিঙ্গাপুরে (১৯৯৩)।",t:"সদস্য = অর্থনীতি, দেশ নয়।"},
+{a:"ESCAP",f:"United Nations Economic and Social Commission for Asia and the Pacific",n:"এশিয়া-প্রশান্ত অর্থনৈতিক ও সামাজিক কমিশন",c:"eastasia",city:"ব্যাংকক",y:1947,yr:"১৯৪৭",s:"১৯৪৭ সালে যুদ্ধবিধ্বস্ত এশিয়ার পুনর্গঠনে ECOSOC 'ECAFE' গঠন করে, প্রথম দপ্তর ছিল সাংহাইয়ে। ১৯৪৯ সালে ব্যাংককে আসে, ১৯৭৪ সালে নাম হয় ESCAP। এটি ECOSOC-এর অঙ্গ প্রতিষ্ঠান, জাতিসংঘের ৫টি আঞ্চলিক কমিশনের একটি।",t:"পুরোনো নাম ECAFE; ব্যাংককে ঘর।"},
+{a:"ARF",f:"ASEAN Regional Forum",n:"আসিয়ান আঞ্চলিক ফোরাম",c:"eastasia",city:"",hq:"নির্দিষ্ট নেই (আসিয়ান সভাপতি দেশ)",y:1994,yr:"১৯৯৪",bd:1,s:"স্নায়ুযুদ্ধের পর এশিয়া-প্রশান্ত অঞ্চলে নিরাপত্তা সংলাপের জন্য আসিয়ানের উদ্যোগে ১৯৯৪ সালে ব্যাংককে প্রথম বৈঠক হয়। বাংলাদেশ ২০০৬ সালে যোগ দেয়। (তোমার তালিকায় Asian Regional Forum লেখা; সঠিক নাম ASEAN Regional Forum।)",t:"আসিয়ানের নিরাপত্তা আড্ডা।"},
+{a:"RCEP",f:"Regional Comprehensive Economic Partnership",n:"আঞ্চলিক সমন্বিত অর্থনৈতিক অংশীদারিত্ব",c:"eastasia",city:"",hq:"নির্দিষ্ট নেই",y:2020,yr:"১৫ নভেম্বর ২০২০",m:"১৫",s:"২০১২ সালে আসিয়ানের উদ্যোগে আলোচনা শুরু; ২০২০ সালে ১৫টি দেশ (আসিয়ান ১০ + চীন, জাপান, দক্ষিণ কোরিয়া, অস্ট্রেলিয়া, নিউজিল্যান্ড) স্বাক্ষর করে, কার্যকর ২০২২। বিশ্বের সবচেয়ে বড় মুক্ত বাণিজ্য চুক্তি; ভারত শেষ মুহূর্তে সরে দাঁড়ায়।",t:"আসিয়ান + ৫ = ১৫, ভারত নেই।"},
+{a:"UNU",f:"United Nations University",n:"জাতিসংঘ বিশ্ববিদ্যালয়",c:"eastasia",city:"টোকিও",y:1973,yr:"১৯৭৩",s:"১৯৬৯ সালে মহাসচিব উ থান্ট জাতিসংঘের নিজস্ব বিশ্ববিদ্যালয়ের প্রস্তাব দেন; ১৯৭৩ সালে প্রতিষ্ঠিত, কার্যক্রম ১৯৭৫। এটি মূলত গবেষণা ও নীতি পরামর্শের থিংক ট্যাংক; বিশ্বজুড়ে এর গবেষণা প্রতিষ্ঠান আছে।",t:"টোকিওতে জাতিসংঘের ক্লাসরুম।"},
+{a:"GCF",f:"Green Climate Fund",n:"সবুজ জলবায়ু তহবিল",c:"eastasia",city:"সংডো",hq:"সংডো, ইনচন, দক্ষিণ কোরিয়া",y:2010,yr:"২০১০",s:"২০১০ সালে মেক্সিকোর কানকুনে জলবায়ু সম্মেলনে (COP16) উন্নয়নশীল দেশকে জলবায়ু অভিযোজন ও প্রশমনে অর্থ দিতে এটি গঠিত হয়, UNFCCC-র অধীনে। সদর দপ্তর দক্ষিণ কোরিয়ার সংডোতে।",t:"কানকুনে জন্ম, কোরিয়ায় ঘর; সংশ্লিষ্ট UNFCCC।"},
+{a:"IVI",f:"International Vaccine Institute",n:"আন্তর্জাতিক টিকা ইনস্টিটিউট",c:"eastasia",city:"সিউল",y:1997,yr:"১৯৯৭",s:"উন্নয়নশীল দেশের জন্য সাশ্রয়ী টিকা উদ্ভাবনে UNDP-র উদ্যোগে ১৯৯৭ সালে সিউলে এটি প্রতিষ্ঠিত হয়। মুখে খাওয়ার কলেরা টিকা সহজলভ্য করায় বড় ভূমিকা রেখেছে।",t:"কোরিয়ায় দুই প্রতিষ্ঠান: সিউলে টিকা (IVI), সংডোতে জলবায়ু তহবিল (GCF)।"},
+{a:"SCO",f:"Shanghai Cooperation Organisation",n:"সাংহাই সহযোগিতা সংস্থা",c:"eastasia",city:"বেইজিং",y:2001,yr:"১৫ জুন ২০০১",m:"১০",s:"১৯৯৬ সালে চীন, রাশিয়া, কাজাখস্তান, কিরগিজস্তান ও তাজিকিস্তান সীমান্ত বিরোধ মেটাতে 'সাংহাই ফাইভ' গঠন করে। ২০০১ সালে উজবেকিস্তান যোগ দিলে সাংহাইয়ে SCO-র আনুষ্ঠানিক জন্ম। পরে ভারত ও পাকিস্তান (২০১৭), ইরান (২০২৩), বেলারুশ (২০২৪) যোগ দেয়। আঞ্চলিক নিরাপত্তা সংস্থা। নাম সাংহাই হলেও সচিবালয় বেইজিংয়ে! (তোমার তালিকায় সাংহাই লেখা।)",t:"ফাঁদ: SCO-র জন্ম সাংহাইয়ে, ঘর বেইজিংয়ে; NDB-র ঘরই সাংহাই।"},
+{a:"AIIB",f:"Asian Infrastructure Investment Bank",n:"এশীয় অবকাঠামো বিনিয়োগ ব্যাংক",c:"eastasia",city:"বেইজিং",y:2016,yr:"২০১৬ (চুক্তি ২০১৫)",bd:1,s:"এশিয়ায় অবকাঠামো ঘাটতি বিশাল, অথচ বিশ্বব্যাংক ও ADB-তে পশ্চিমা ও জাপানি প্রভাব। চীনের প্রস্তাবে ২০১৫ সালে চুক্তি স্বাক্ষরিত হয়, ২০১৬ সালের জানুয়ারিতে কার্যক্রম শুরু। বাংলাদেশ প্রতিষ্ঠাতা সদস্য।",t:"চীনের ADB-বিকল্প, বেইজিংয়ে।"},
+{a:"NDB",f:"New Development Bank",n:"নিউ ডেভেলপমেন্ট ব্যাংক (BRICS ব্যাংক)",c:"eastasia",city:"সাংহাই",y:2014,yr:"২০১৪",bd:1,s:"২০১৪ সালে ব্রাজিলের ফোর্তালেজায় BRICS শীর্ষ সম্মেলনে বিশ্বব্যাংকের বিকল্প হিসেবে এই ব্যাংক গঠনের চুক্তি হয়, কার্যক্রম ২০১৫। বাংলাদেশ ২০২১ সালে সদস্য হয়।",t:"BRICS ব্যাংক = সাংহাই।"},
+// MIDEAST
+{a:"OIC",f:"Organisation of Islamic Cooperation",n:"ইসলামি সহযোগিতা সংস্থা",c:"mideast",city:"জেদ্দা",y:1969,yr:"২৫ সেপ্টেম্বর ১৯৬৯",m:"৫৭",bd:1,s:"১৯৬৯ সালের আগস্টে জেরুজালেমের আল-আকসা মসজিদে অগ্নিসংযোগের প্রতিক্রিয়ায় মরক্কোর রাবাতে মুসলিম দেশগুলোর শীর্ষ সম্মেলন হয়, সেখানেই OIC-এর জন্ম। জাতিসংঘের পর দ্বিতীয় বৃহত্তম আন্তঃসরকার সংস্থা। ২০১১ সালে নাম 'Islamic Conference' থেকে 'Islamic Cooperation' হয়। বাংলাদেশ ১৯৭৪ সালের লাহোর সম্মেলনে সদস্য হয়।",t:"জন্ম রাবাতে, ঘর জেদ্দায়; ৫৭ সদস্য।"},
+{a:"IsDB",f:"Islamic Development Bank",n:"ইসলামি উন্নয়ন ব্যাংক",c:"mideast",city:"জেদ্দা",y:1973,yr:"১৯৭৩ (কার্যক্রম ১৯৭৫)",bd:1,s:"১৯৭৩ সালে OIC অর্থমন্ত্রীদের সম্মেলনে শরিয়াহসম্মত উন্নয়ন অর্থায়নের জন্য এই ব্যাংকের ঘোষণা আসে; ১৯৭৫ সালে কার্যক্রম শুরু। প্রতিষ্ঠাতা OIC, বৃহত্তম শেয়ারহোল্ডার সৌদি আরব।",t:"জেদ্দায় মা (OIC) ও সন্তান (IsDB)।"},
+{a:"GCC",f:"Gulf Cooperation Council",n:"উপসাগরীয় সহযোগিতা পরিষদ",c:"mideast",city:"রিয়াদ",y:1981,yr:"২৫ মে ১৯৮১",m:"৬",s:"১৯৭৯ সালের ইরানি বিপ্লব ও ১৯৮০ সালে শুরু হওয়া ইরাক-ইরান যুদ্ধে আতঙ্কিত উপসাগরীয় রাজতন্ত্রগুলো ১৯৮১ সালে আবুধাবিতে GCC গঠন করে। সদস্য ৬: সৌদি আরব, কুয়েত, বাহরাইন, কাতার, সংযুক্ত আরব আমিরাত, ওমান।",t:"৬ রাজতন্ত্র; জন্ম আবুধাবিতে, ঘর রিয়াদে।"},
+{a:"IMCTC",f:"Islamic Military Counter Terrorism Coalition",n:"ইসলামি সামরিক সন্ত্রাসবিরোধী জোট",c:"mideast",city:"রিয়াদ",y:2015,yr:"২০১৫",bd:1,s:"আইএসের উত্থানের প্রেক্ষাপটে ২০১৫ সালের ডিসেম্বরে সৌদি আরবের নেতৃত্বে মুসলিম দেশগুলোর সন্ত্রাসবিরোধী সামরিক জোট ঘোষিত হয়। ইরান, ইরাক ও সিরিয়া এতে নেই, তাই একে সুন্নি মুসলিম দেশগুলোর জোট বলা হয়। বাংলাদেশ সদস্য।",t:"রিয়াদে দুই জোট: রাজনীতি (GCC), সামরিক (IMCTC)।"},
+{a:"GECF",f:"Gas Exporting Countries Forum",n:"গ্যাস রপ্তানিকারক দেশসমূহের ফোরাম",c:"mideast",city:"দোহা",y:2001,yr:"২০০১",s:"তেলের যেমন OPEC, গ্যাসের তেমন একটি ফোরামের ধারণায় ২০০১ সালে তেহরানে প্রথম বৈঠক। ২০০৮ সালে আনুষ্ঠানিক সংস্থা হয়, সচিবালয় কাতারের দোহায়।",t:"গ্যাসের OPEC, দোহায়।"},
+{a:"D-8",f:"Developing-8 (Organization for Economic Cooperation)",n:"উন্নয়নশীল-৮",c:"mideast",city:"ইস্তাম্বুল",y:1997,yr:"১৫ জুন ১৯৯৭",m:"৯",bd:1,s:"তুরস্কের প্রধানমন্ত্রী নাজমুদ্দিন এরবাকানের উদ্যোগে ১৯৯৭ সালে ইস্তাম্বুলে ৮টি মুসলিম উন্নয়নশীল দেশ অর্থনৈতিক জোট গড়ে: বাংলাদেশ, মিসর, ইন্দোনেশিয়া, ইরান, মালয়েশিয়া, নাইজেরিয়া, পাকিস্তান, তুরস্ক। ২০২৪ সালে আজারবাইজান যোগ দেয়। বাংলাদেশ প্রতিষ্ঠাতা সদস্য।",t:"নামে ৮, এখন ৯; ঘর ইস্তাম্বুলে।"},
+{a:"ECO",f:"Economic Cooperation Organization",n:"অর্থনৈতিক সহযোগিতা সংস্থা",c:"mideast",city:"তেহরান",y:1985,yr:"১৯৮৫",m:"১০",s:"১৯৬৪ সালে ইরান, পাকিস্তান ও তুরস্ক 'আঞ্চলিক উন্নয়ন সহযোগিতা' (RCD) গড়েছিল। ১৯৮৫ সালে এটিই ECO নামে নবজন্ম পায়; ১৯৯২ সালে আফগানিস্তান ও মধ্য এশিয়ার সদ্য স্বাধীন দেশগুলো যোগ দিলে সদস্য ১০।",t:"RCD থেকে ECO; ইরান-পাকিস্তান-তুরস্ক।"},
+{a:"ACU",f:"Asian Clearing Union",n:"এশীয় ক্লিয়ারিং ইউনিয়ন (আকু)",c:"mideast",city:"তেহরান",y:1974,yr:"৯ ডিসেম্বর ১৯৭৪",bd:1,s:"এশিয়ার দেশগুলো একে অন্যের সাথে বাণিজ্যে প্রতিবার ডলার খরচ না করে, দুই মাস পরপর হিসাব মিলিয়ে কেবল নিট পার্থক্য পরিশোধ করবে; এই ধারণায় ESCAP-এর উদ্যোগে ১৯৭৪ সালে ACU গঠিত হয়। বাংলাদেশ সদস্য; রিজার্ভ থেকে 'আকুর বিল' পরিশোধের খবর প্রায়ই পত্রিকায় আসে।",t:"আকুর বিল = দুই মাস পরপর লেনদেন মেটানো।"},
+{a:"APA",f:"Asian Parliamentary Assembly",n:"এশীয় সংসদীয় পরিষদ",c:"mideast",city:"তেহরান",y:2006,yr:"২০০৬ (পূর্বসূরি ১৯৯৯)",bd:1,s:"১৯৯৯ সালে ঢাকায় 'Association of Asian Parliaments for Peace' (AAPP) গঠিত হয়। ২০০৬ সালে এটি পূর্ণাঙ্গ এশীয় সংসদীয় পরিষদে রূপ নেয়, সচিবালয় তেহরানে।",t:"ঢাকায় জন্ম (AAPP), তেহরানে ঘর (APA)।"},
+// AFRICA
+{a:"AU",f:"African Union",n:"আফ্রিকান ইউনিয়ন",c:"africa",city:"আদ্দিস আবাবা",y:2001,yr:"২৬ মে ২০০১ (যাত্রা ২০০২)",m:"৫৫",s:"উপনিবেশবাদের অবসান ঘটাতে ১৯৬৩ সালের ২৫ মে আদ্দিস আবাবায় OAU গঠিত হয়। উপনিবেশমুক্তির পর অর্থনৈতিক সংহতি ও সুশাসনের নতুন লক্ষ্য নিয়ে ২০০১ সালে AU-এর সংবিধান কার্যকর হয়, ২০০২ সালে দক্ষিণ আফ্রিকার ডারবানে আনুষ্ঠানিক যাত্রা। ২০২৩ সালে G-20-এর স্থায়ী সদস্য হয়।",t:"পূর্বসূরি OAU (১৯৬৩); দুজনেরই ঘর আদ্দিস আবাবা।"},
+{a:"UNEP",f:"United Nations Environment Programme",n:"জাতিসংঘ পরিবেশ কর্মসূচি",c:"africa",city:"নাইরোবি",y:1972,yr:"৫ জুন ১৯৭২",s:"১৯৭২ সালের জুনে সুইডেনের স্টকহোমে প্রথম জাতিসংঘ মানব পরিবেশ সম্মেলন হয়। সেখান থেকে UNEP-এর জন্ম, আর সম্মেলনের প্রথম দিন ৫ জুন হয় বিশ্ব পরিবেশ দিবস। উন্নয়নশীল বিশ্বে সদর দপ্তর থাকা প্রথম জাতিসংঘ সংস্থা। IPCC-এর এক অভিভাবক।",t:"স্টকহোম ১৯৭২ থেকে UNEP; ৫ জুন পরিবেশ দিবস।"},
+{a:"UN-HABITAT",f:"United Nations Human Settlements Programme",n:"জাতিসংঘ মানব বসতি কর্মসূচি",c:"africa",city:"নাইরোবি",y:1978,yr:"১৯৭৮",s:"১৯৭৬ সালে কানাডার ভ্যাঙ্কুভারে প্রথম মানব বসতি সম্মেলন (Habitat I) হয়। দ্রুত নগরায়ণ ও বস্তি সমস্যা মোকাবিলায় ১৯৭৮ সালে এটি গঠিত। অক্টোবরের প্রথম সোমবার বিশ্ব বসতি দিবস।",t:"নাইরোবিতে জাতিসংঘের দুই কর্মসূচি: পরিবেশ (UNEP) ও বসতি (HABITAT)।"},
+{a:"ECOWAS",f:"Economic Community of West African States",n:"পশ্চিম আফ্রিকান রাষ্ট্রসমূহের অর্থনৈতিক সম্প্রদায়",c:"africa",city:"আবুজা",y:1975,yr:"২৮ মে ১৯৭৫",s:"১৯৭৫ সালে নাইজেরিয়ার লাগোস চুক্তিতে পশ্চিম আফ্রিকার ১৫টি দেশ অর্থনৈতিক জোট গড়ে। এর শান্তিরক্ষী বাহিনী ECOMOG লাইবেরিয়া ও সিয়েরা লিওনের গৃহযুদ্ধে কাজ করেছে। ২০২৫ সালে সামরিক সরকারশাসিত মালি, বুরকিনা ফাসো ও নাইজার জোট ছেড়ে যায়।",t:"লাগোসে চুক্তি, আবুজায় ঘর।"},
+{a:"IORA",f:"Indian Ocean Rim Association",n:"ভারত মহাসাগরীয় রিম অ্যাসোসিয়েশন",c:"africa",city:"এবেন",hq:"এবেন, মরিশাস",y:1997,yr:"১৯৯৭",m:"২৩",bd:1,s:"১৯৯৫ সালে মরিশাসে ভারত মহাসাগর তীরবর্তী দেশগুলোর সহযোগিতার ধারণা আসে, ১৯৯৭ সালে আনুষ্ঠানিক গঠন। সদস্য ২৩; বাংলাদেশ সদস্য এবং ২০১৯-২০২১ সালে সভাপতি ছিল। সচিবালয় মরিশাসের এবেনে।",t:"ভারত মহাসাগরের মাঝখানে মরিশাস।"},
+// BLOCS
+{a:"NAM",f:"Non-Aligned Movement",n:"জোটনিরপেক্ষ আন্দোলন",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:1961,yr:"১৯৬১",m:"১২০",bd:1,s:"স্নায়ুযুদ্ধে বিশ্ব যখন মার্কিন ও সোভিয়েত শিবিরে ভাগ, তখন সদ্য স্বাধীন দেশগুলো কোনো পক্ষে না যাওয়ার নীতি নেয়। ১৯৫৫ সালের বান্দুং সম্মেলনের ধারাবাহিকতায় ১৯৬১ সালে বেলগ্রেডে প্রথম শীর্ষ সম্মেলন। প্রধান রূপকার নেহরু, নাসের, টিটো, সুকর্ন ও এনক্রুমা। বাংলাদেশ ১৯৭৩ সালের আলজিয়ার্স সম্মেলনে যোগ দেয়।",t:"বান্দুং (১৯৫৫) থেকে বেলগ্রেড (১৯৬১)।"},
+{a:"G-7",f:"Group of Seven",n:"শিল্পোন্নত সাত দেশের জোট",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:1975,yr:"১৯৭৫",m:"৭",s:"১৯৭৩ সালের তেল সংকটের পর ১৯৭৫ সালে ফ্রান্সের র‍্যাম্বুইয়েতে ৬টি শিল্পোন্নত দেশ বৈঠকে বসে; ১৯৭৬ সালে কানাডা যোগ দিয়ে G-7: যুক্তরাষ্ট্র, যুক্তরাজ্য, ফ্রান্স, জার্মানি, ইতালি, জাপান, কানাডা। রাশিয়া ১৯৯৭-২০১৪ যুক্ত থেকে G-8 হয়েছিল; ক্রিমিয়া দখলের পর বাদ পড়ে।",t:"তেল সংকট থেকে জন্ম; রাশিয়া এসেছিল, চলে গেছে।"},
+{a:"G-20",f:"Group of Twenty",n:"শীর্ষ অর্থনীতির ২০ জোট",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:1999,yr:"১৯৯৯",s:"১৯৯৭-৯৮ সালের এশীয় আর্থিক সংকটের পর বোঝা গেল শুধু G-7 দিয়ে বিশ্ব অর্থনীতি সামলানো যাবে না। ১৯৯৯ সালে অর্থমন্ত্রীদের ফোরাম হিসেবে G-20; ২০০৮ সালের বৈশ্বিক মন্দায় এটি রাষ্ট্রপ্রধানদের শীর্ষ সম্মেলনে উন্নীত হয়। ১৯টি দেশ + ইউরোপীয় ইউনিয়ন + আফ্রিকান ইউনিয়ন (২০২৩ থেকে)।",t:"এশীয় সংকটে (১৯৯৯) জন্ম, বৈশ্বিক মন্দায় (২০০৮) বড় হওয়া।"},
+{a:"G-4",f:"G-4 Nations",n:"জি-৪",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:2004,yr:"২০০৪",m:"৪",s:"জাতিসংঘ নিরাপত্তা পরিষদের স্থায়ী সদস্যপদ পেতে ২০০৪ সালে ভারত, ব্রাজিল, জার্মানি ও জাপান একে অন্যকে সমর্থনের জোট গড়ে। এর বিরোধী জোট 'Uniting for Consensus' (পাকিস্তান, ইতালি প্রমুখ)।",t:"IBGJ: India, Brazil, Germany, Japan।"},
+{a:"BRICS",f:"Brazil, Russia, India, China, South Africa (+ নতুন সদস্য)",n:"ব্রিকস",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:2009,yr:"২০০৯",s:"২০০১ সালে গোল্ডম্যান স্যাকসের অর্থনীতিবিদ জিম ও'নিল উদীয়মান অর্থনীতি বোঝাতে 'BRIC' শব্দটি তৈরি করেন। ২০০৯ সালে রাশিয়ার ইয়েকাতেরিনবার্গে প্রথম শীর্ষ সম্মেলন; ২০১০ সালে দক্ষিণ আফ্রিকা যোগ দিয়ে BRICS। ২০২৪ সালে মিসর, ইথিওপিয়া, ইরান ও সংযুক্ত আরব আমিরাত এবং ২০২৫ সালে ইন্দোনেশিয়া যোগ দেয়। নিজস্ব ব্যাংক NDB।",t:"শব্দ ২০০১, সম্মেলন ২০০৯, S যোগ ২০১০।"},
+{a:"ANZUS",f:"Australia, New Zealand, United States Security Treaty",n:"আনজুস চুক্তি",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:1951,yr:"১৯৫১",m:"৩",s:"১৯৫১ সালে প্রশান্ত মহাসাগরীয় নিরাপত্তায় অস্ট্রেলিয়া, নিউজিল্যান্ড ও যুক্তরাষ্ট্র এই ত্রিপক্ষীয় চুক্তি করে। ১৯৮৫ সালে নিউজিল্যান্ড পারমাণবিক জাহাজ বন্দরে ঢুকতে না দিলে পরের বছর যুক্তরাষ্ট্র নিউজিল্যান্ডের প্রতি দায়িত্ব স্থগিত করে।",t:"A + NZ + US।"},
+{a:"CVF",f:"Climate Vulnerable Forum",n:"জলবায়ু ঝুঁকিপূর্ণ ফোরাম",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:2009,yr:"২০০৯",bd:1,s:"২০০৯ সালে মালদ্বীপের উদ্যোগে জলবায়ু পরিবর্তনে সবচেয়ে ঝুঁকিপূর্ণ দেশগুলোর জোট হিসেবে গঠিত। বাংলাদেশ দুবার সভাপতি ছিল (২০১১-১৩ ও ২০২০-২২)।",t:"মালদ্বীপে জন্ম; বাংলাদেশ দুবার সভাপতি।"},
+{a:"V20",f:"Vulnerable Twenty Group",n:"ঝুঁকিপূর্ণ ২০ দেশের জোট",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:2015,yr:"২০১৫",bd:1,s:"২০১৫ সালে পেরুর লিমায় IMF-বিশ্বব্যাংকের বার্ষিক সভার সময় CVF-এর অর্থমন্ত্রীরা মিলে V20 গঠন করেন; জলবায়ু অর্থায়ন আদায়ের অর্থনৈতিক কণ্ঠস্বর। শুরুতে ২০ দেশ, এখন ৬০-এর বেশি। বাংলাদেশ প্রতিষ্ঠাতা সদস্য।",t:"CVF-এর অর্থমন্ত্রী শাখা = V20।"},
+{a:"AOSIS",f:"Alliance of Small Island States",n:"ক্ষুদ্র দ্বীপরাষ্ট্র জোট",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:1990,yr:"১৯৯০",s:"সমুদ্রপৃষ্ঠের উচ্চতা বাড়লে যাদের অস্তিত্বই হুমকিতে, সেই ক্ষুদ্র দ্বীপরাষ্ট্রগুলো ১৯৯০ সালে জোট বাঁধে। জলবায়ু আলোচনায় ১.৫° সেলসিয়াস লক্ষ্যের সবচেয়ে বড় প্রবক্তা।",t:"ডুবে যাওয়ার ভয়ে একজোট (১৯৯০)।"},
+{a:"ESSI",f:"European Sky Shield Initiative",n:"ইউরোপীয় আকাশ প্রতিরক্ষা উদ্যোগ",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:2022,yr:"২০২২",s:"রাশিয়া-ইউক্রেন যুদ্ধে ক্ষেপণাস্ত্র হামলার প্রেক্ষাপটে ২০২২ সালে জার্মানির উদ্যোগে ইউরোপীয় দেশগুলো সমন্বিত আকাশ ও ক্ষেপণাস্ত্র প্রতিরক্ষা গড়তে এই উদ্যোগ নেয়।",t:"ইউক্রেন যুদ্ধের পর ইউরোপের আকাশে ঢাল।"},
+{a:"NAFTA/USMCA",f:"North American Free Trade Agreement / United States-Mexico-Canada Agreement",n:"উত্তর আমেরিকা মুক্ত বাণিজ্য চুক্তি",c:"blocs",city:"",hq:"স্থায়ী সদর দপ্তর নেই",y:1994,yr:"১৯৯৪",m:"৩",s:"১৯৯৪ সালে যুক্তরাষ্ট্র, কানাডা ও মেক্সিকো মুক্ত বাণিজ্য চুক্তি NAFTA কার্যকর করে। ট্রাম্প প্রশাসনের চাপে নতুন চুক্তি USMCA হয়, যা ২০২০ সালের ১ জুলাই NAFTA-র স্থলাভিষিক্ত হয়।",t:"NAFTA (১৯৯৪) থেকে USMCA (২০২০)।"},
+{a:"Earthwatch",f:"Earthwatch (UNEP programme)",n:"আর্থওয়াচ",c:"blocs",city:"",hq:"UNEP পরিচালিত",y:1972,yr:"১৯৭২",s:"১৯৭২ সালের স্টকহোম সম্মেলনে বিশ্বের পরিবেশ পর্যবেক্ষণ ও তথ্য সমন্বয়ের জন্য 'Earthwatch' কর্মসূচি নেওয়া হয়, যা UNEP পরিচালনা করে।",t:"Earth Watch ১৯৭২ (স্টকহোম, UNEP) বনাম World Watch ১৯৭৪ (ওয়াশিংটন)।"}
+];
+
+
+/* ===================== সহায়ক ===================== */
+const K="intlOrgRevision_v2",OLD="intlOrgRevision_v1";
+const BN="০১২৩৪৫৬৭৮৯";
+const bn=x=>String(x).replace(/\d/g,d=>BN[d]);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const chName=id=>(CH.find(c=>c.id===id)||{}).name||"";
+const hqOf=o=>o.hq||(o.city?o.city:"নির্দিষ্ট নেই");
+const T=(d=0)=>{const x=new Date();x.setDate(x.getDate()+d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+let S,cur="home";
+function load(){let r=null;try{r=JSON.parse(localStorage.getItem(K)||localStorage.getItem(OLD))}catch(e){}
+  S=r||{};S.box=S.box||{};S.due=S.due||{};S.read=S.read||{};S.quiz=S.quiz||[];S.log=S.log||{};S.star=S.star||{};S.ch=S.ch||"geneva"}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}hdr()}
+const box=a=>S.box[a]||0;
+const act=()=>{S.log[T()]=(S.log[T()]||0)+1};
+const dueOf=o=>S.due[o.a]||T();
+const isDue=o=>box(o.a)>0&&dueOf(o)<=T();
+const isNew=o=>!box(o.a);
+function streak(){let n=0,d=S.log[T()]?0:-1;while(S.log[T(d)]){n++;d--}return n}
+function hdr(){const m=D.filter(o=>box(o.a)>=4).length;document.getElementById("hdrStat").textContent="🔥 "+bn(streak())+" দিন · "+bn(m)+"/"+bn(D.length)+" আয়ত্তে"}
+function go(t){cur=t;document.querySelectorAll("#bnav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===t?"true":"false"));R[t]();window.scrollTo(0,0)}
+
+/* ===================== হোম ===================== */
+function renderHome(){
+  const m=D.filter(o=>box(o.a)>=4).length,pct=Math.round(m/D.length*100);
+  const due=D.filter(isDue).length,nw=Math.min(5,D.filter(isNew).length),today=S.log[T()]||0,tot=due+nw;
+  const C=2*Math.PI*44,readN=CH.filter(c=>S.read[c.id]).length;
+  const fc=[0,1,2,3,4,5,6].map(k=>D.filter(o=>box(o.a)>0&&(k?dueOf(o)===T(k):dueOf(o)<=T())).length),mx=Math.max(1,...fc);
+  const wk=D.filter(o=>box(o.a)>0&&box(o.a)<=2).slice(0,8);
+  const msg=tot?`আজ ${bn(due)}টি রিভিশন বাকি${nw?` + ${bn(nw)}টি নতুন কার্ড`:""}। ১০–১৫ মিনিটেই হয়ে যাবে।`:"আজকের রিভিশন শেষ! কুইজ দিয়ে নিজেকে যাচাই করতে পারো।";
+  app.innerHTML=`<div class="hero"><div class="ring"><svg width="104" height="104"><circle cx="52" cy="52" r="44" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="9"/><circle cx="52" cy="52" r="44" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C*pct/100} ${C}"/></svg><b>${bn(pct)}%</b></div>
+  <div style="flex:1;min-width:200px"><h2>${today?"চালিয়ে যাও!":"আজকের যাত্রা শুরু করো"}</h2><p>${msg}</p><button class="btn" id="goToday">${tot?"আজকের রিভিশন শুরু":"সব কার্ড ঘুরে দেখো"}</button> <button class="btn ghost" data-open="story">গল্পে পড়ো</button></div></div>
+  <div class="stats"><div class="stat"><b>${bn(streak())}</b><small>দিনের ধারা 🔥</small></div><div class="stat"><b>${bn(today)}/${bn(20)}</b><small>আজকের লক্ষ্য (কার্ড)</small></div><div class="stat"><b>${bn(m)}</b><small>আয়ত্তে (${bn(D.length)}-এর মধ্যে)</small></div><div class="stat"><b>${bn(readN)}/${bn(CH.length)}</b><small>অধ্যায় পড়া</small></div></div>
+  <h3>আগামী ৭ দিনের রিভিশন ভার</h3><div class="fc">${fc.map((n,k)=>`<div><i style="height:${n/mx*50}px"></i>${bn(n)}<br>${k?bn(k)+"দি":"আজ"}</div>`).join("")}</div>
+  <h3>অধ্যায়ের মানচিত্র (ট্যাপ করে পড়ো)</h3><div class="heat">${CH.map((c,k)=>{const os=D.filter(o=>o.c===c.id),p=os.reduce((a,o)=>a+Math.min(box(o.a),5),0)/(os.length*5)*100;return `<button class="tile" data-ch="${c.id}"><b>${bn(k+1)}. ${esc(c.name)}</b><small>${esc(c.sub)} · ${bn(os.length)}টি ${S.read[c.id]?"· ✓ পড়া":""}</small><i style="width:${p}%"></i></button>`}).join("")}</div>
+  ${wk.length?`<h3>এগুলো আবার দেখো</h3><div class="chips">${wk.map(o=>`<span class="chip">${esc(o.a)}</span>`).join("")}</div>`:""}`;
+  document.getElementById("goToday").onclick=()=>{F.f=tot?"today":"all";F.q=null;go("flash")};
+  app.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>go(b.dataset.open));
+  app.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{S.ch=b.dataset.ch;save();go("story")});
+}
+
+/* ===================== গল্প ===================== */
+let CL=false;
+function orgHTML(o,m){
+  const k=m?" mask":"";
+  return `<article class="org" id="o-${esc(o.a)}"><div class="org-h"><span class="abbr">${esc(o.a)}</span><span class="bnname">${esc(o.n)}</span><button class="star" data-star="${esc(o.a)}" aria-label="তারকা দাও">${S.star[o.a]?"★":"☆"}</button></div>
+  <div class="full">${esc(o.f)}</div>
+  <div class="facts${k}"><span class="fact">সদর দপ্তর: ${esc(hqOf(o))}</span><span class="fact">প্রতিষ্ঠা: ${esc(o.yr)}</span>${o.m?`<span class="fact">সদস্য: ${esc(o.m)}</span>`:""}${o.nb?`<span class="fact nb">নোবেল ${esc(o.nb)}</span>`:""}${o.bd?`<span class="fact bd">বাংলাদেশ সংযোগ</span>`:""}</div>
+  <p class="${k}">${esc(o.s)}</p><div class="tip${k}">${esc(o.t)}</div></article>`;
+}
+function renderStory(){
+  const i=CH.findIndex(c=>c.id===S.ch),c=CH[i]||CH[0],orgs=D.filter(o=>o.c===c.id);
+  let h=`<div class="route">${CH.map((x,k)=>`<button class="stop ${x.id===c.id?"on":""} ${S.read[x.id]?"done":""}" data-ch="${x.id}"><span class="dot"></span>${bn(k+1)}. ${esc(x.name)}</button>`).join("")}</div>
+  <div class="chead"><div class="stampbox"><div>যাত্রাবিরতি<b>${bn(i+1)}</b>${bn(orgs.length)}টি সংস্থা</div></div><div><h2>${esc(c.name)}</h2><div class="muted">${esc(c.sub)}</div></div></div>
+  <div class="intro">${esc(c.intro)}</div>
+  <label class="tg"><input type="checkbox" id="cl" ${CL?"checked":""}> রিকল মোড: তথ্য ঝাপসা থাকবে, আগে মনে করো, তারপর ট্যাপ করে মিলিয়ে নাও</label>
+  <div id="orgs" class="${CL?"cl-on":""}">${orgs.map(o=>orgHTML(o,true)).join("")}</div>
+  <div class="navrow"><button class="btn" data-go="${i-1}" ${i===0?"disabled":""}>আগের অধ্যায়</button>
+  <button class="btn ${S.read[c.id]?"":"solid"}" id="markRead">${S.read[c.id]?"পড়া হয়েছে ✓ (আবার অপঠিত করো)":"এই অধ্যায় পড়া শেষ"}</button>
+  <button class="btn" data-go="${i+1}" ${i===CH.length-1?"disabled":""}>পরের অধ্যায়</button></div>`;
+  app.innerHTML=h;
+  app.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{S.ch=b.dataset.ch;save();renderStory();window.scrollTo(0,0)});
+  app.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{const k=+b.dataset.go;if(CH[k]){S.ch=CH[k].id;save();renderStory();window.scrollTo(0,0)}});
+  document.getElementById("markRead").onclick=()=>{S.read[c.id]=!S.read[c.id];if(S.read[c.id])act();save();renderStory()};
+  document.getElementById("cl").onchange=e=>{CL=e.target.checked;renderStory()};
+}
+
+/* ===================== ফ্ল্যাশকার্ড (স্পেসড রিপিটিশন) ===================== */
+const INT=[0,1,2,4,9,21];
+let F={f:"today",q:null,i:0,n:0,flip:false};
+function buildQ(){
+  const f=F.f;let p;
+  if(f==="today")p=[...shuffle(D.filter(isDue)),...D.filter(isNew).slice(0,5)];
+  else if(f==="all")p=shuffle(D);
+  else if(f==="star")p=shuffle(D.filter(o=>S.star[o.a]));
+  else if(f==="weak")p=shuffle(D.filter(o=>box(o.a)>0&&box(o.a)<=2));
+  else p=shuffle(D.filter(o=>o.c===f));
+  F.q=p;F.i=0;F.n=p.length;F.flip=false;
+}
+function rate(r){
+  const o=F.q[F.i],b=box(o.a),nb=r===0?1:r===1?Math.max(1,b):Math.min(5,b+(r===3?2:1));
+  S.box[o.a]=nb;S.due[o.a]=T(r===0?0:r===1?1:INT[nb]);act();
+  if(r===0)F.q.push(o);
+  save();F.i++;F.flip=false;renderFlash();
+}
+function renderFlash(){
+  if(!F.q)buildQ();
+  let h=`<h2>ফ্ল্যাশকার্ড</h2><div class="toolbar"><label>তালিকা: <select id="fsel"><option value="today">আজকের রিভিশন</option><option value="all">সব সংস্থা</option><option value="star">★ তারকা দেওয়া</option><option value="weak">দুর্বলগুলো</option>${CH.map((c,k)=>`<option value="${c.id}">${bn(k+1)}. ${esc(c.name)}</option>`).join("")}</select></label><span class="muted">${bn(Math.min(F.i,F.q.length))}/${bn(F.q.length)}</span></div>
+  <div class="meter"><i style="width:${F.q.length?F.i/F.q.length*100:0}%"></i></div>`;
+  if(F.i>=F.q.length){
+    h+=F.n?`<div class="org done"><div class="abbr">সেশন শেষ ✓</div><p>${bn(F.n)}টি কার্ড দেখা হলো। কাল আবার এসো, ধারা ধরে রাখো।</p><div class="navrow" style="justify-content:center"><button class="btn solid" id="again">আবার শুরু</button><button class="btn" id="home">হোমে ফিরো</button></div></div>`:`<div class="org">এই তালিকায় এখন কোনো কার্ড নেই। অন্য তালিকা বেছে নাও।</div>`;
+    app.innerHTML=h;bindF();
+    const a=document.getElementById("again");if(a)a.onclick=()=>{F.q=null;renderFlash()};
+    const hm=document.getElementById("home");if(hm)hm.onclick=()=>go("home");return;
+  }
+  const o=F.q[F.i],b=box(o.a);
+  h+=`<div class="card ${F.flip?"flip":""}" id="card" tabindex="0" role="button" aria-label="কার্ড উল্টাও"><div class="card-in">
+   <div class="face front"><div class="top2"><span>${esc(chName(o.c))}</span><span>${isNew(o)?"নতুন":"বাক্স "+bn(b)}</span></div><div class="abbr">${esc(o.a)}</div><p class="muted" style="margin-top:12px">পূর্ণরূপ, সদর দপ্তর, সাল আর পটভূমি মুখে বলো, তারপর উল্টাও</p><div class="boxes">${[1,2,3,4,5].map(k=>`<span class="${k<=b?"f":""}"></span>`).join("")}</div></div>
+   <div class="face back"><div class="top2"><span>${esc(o.a)}</span><button class="star" data-star="${esc(o.a)}" aria-label="তারকা দাও">${S.star[o.a]?"★":"☆"}</button></div><div class="bnname">${esc(o.n)}</div><div class="full">${esc(o.f)}</div>
+   <div class="facts"><span class="fact">সদর দপ্তর: ${esc(hqOf(o))}</span><span class="fact">প্রতিষ্ঠা: ${esc(o.yr)}</span>${o.m?`<span class="fact">সদস্য: ${esc(o.m)}</span>`:""}${o.nb?`<span class="fact nb">নোবেল ${esc(o.nb)}</span>`:""}</div>
+   <p>${esc(o.s)}</p><div class="tip">${esc(o.t)}</div></div></div></div>
+  <div class="rate4"><button class="btn bad" data-r="0">ভুলে গেছি</button><button class="btn mid" data-r="1">কঠিন</button><button class="btn good" data-r="2">ঠিক</button><button class="btn easy" data-r="3">সহজ</button></div>
+  <div class="kb">কিবোর্ড: স্পেস = উল্টাও · ১ ২ ৩ ৪ = রেটিং</div>`;
+  app.innerHTML=h;bindF();
+  const card=document.getElementById("card");
+  const flip=()=>{F.flip=!F.flip;card.classList.toggle("flip")};
+  card.onclick=e=>{if(!e.target.closest(".star"))flip()};
+  card.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}};
+  app.querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>rate(+x.dataset.r));
+}
+function bindF(){const s=document.getElementById("fsel");s.value=F.f;s.onchange=()=>{F.f=s.value;F.q=null;renderFlash()}}
+
+/* ===================== কুইজ ===================== */
+let Q=null;
+const CITIES=[...new Set(D.filter(o=>o.city).map(o=>o.city))];
+function makeQ(o){
+  const types=[];
+  if(o.city)types.push("hq","rev");
+  types.push("year","full");
+  const t=types[Math.floor(Math.random()*types.length)];
+  if(t==="hq"){const opts=shuffle([o.city,...shuffle(CITIES.filter(c=>c!==o.city)).slice(0,3)]);return{o,text:`${o.a}-এর সদর দপ্তর কোথায়?`,opts,ans:o.city}}
+  if(t==="rev"){const others=shuffle(D.filter(x=>x.city&&x.city!==o.city)).slice(0,3).map(x=>x.a);const opts=shuffle([o.a,...others]);return{o,text:`কোন সংস্থার সদর দপ্তর ${o.city}-এ?`,opts,ans:o.a}}
+  if(t==="year"){const set=new Set([o.y]);const offs=shuffle([-12,-7,-4,-2,2,3,5,9,11]);for(const d of offs){if(set.size>=4)break;const v=o.y+d;if(v<=2026)set.add(v)}const opts=shuffle([...set]).map(bn);return{o,text:`${o.a} কত সালে প্রতিষ্ঠিত?`,opts,ans:bn(o.y)}}
+  const others=shuffle(D.filter(x=>x.a!==o.a)).slice(0,3).map(x=>x.f);
+  return{o,text:`${o.a}-এর পূর্ণরূপ কোনটি?`,opts:shuffle([o.f,...others]),ans:o.f};
+}
+function renderQuiz(){
+  if(!Q){
+    app.innerHTML=`<h2>কুইজ</h2><p class="muted">প্রশ্ন আসবে সদর দপ্তর, প্রতিষ্ঠাকাল আর পূর্ণরূপ থেকে। ভুল উত্তর দেওয়া সংস্থা সরাসরি ফ্ল্যাশকার্ডের 'দুর্বল' তালিকায় চলে যাবে।</p>
+    <div class="toolbar"><label>বিষয়: <select id="qsel"><option value="all">সব অধ্যায়</option><option value="weak">শুধু দুর্বলগুলো</option>${CH.map((c,k)=>`<option value="${c.id}">${bn(k+1)}. ${esc(c.name)}</option>`).join("")}</select></label>
+    <label>প্রশ্ন: <select id="qn"><option>10</option><option>20</option><option>30</option></select></label>
+    <button class="btn solid" id="qgo">কুইজ শুরু করো</button></div><div id="qmsg"></div>`;
+    app.querySelectorAll("#qn option").forEach(op=>op.textContent=bn(op.value)+"টি");
+    document.getElementById("qgo").onclick=()=>{
+      const sel=document.getElementById("qsel").value, n=+document.getElementById("qn").value;
+      let pool=sel==="all"?D:sel==="weak"?D.filter(o=>box(o.a)<=1):D.filter(o=>o.c===sel);
+      if(!pool.length){document.getElementById("qmsg").innerHTML=`<p class="muted">এই তালিকায় কোনো সংস্থা নেই। আগে ফ্ল্যাশকার্ড বা অন্য অধ্যায় থেকে কুইজ দাও।</p>`;return}
+      const picks=[];while(picks.length<n){picks.push(...shuffle(pool))}
+      Q={qs:picks.slice(0,n).map(makeQ),i:0,score:0,wrong:[],done:false,answered:false};renderQuiz();
+    };return;
+  }
+  if(Q.done){
+    const pct=Math.round(Q.score/Q.qs.length*100);
+    app.innerHTML=`<h2>ফলাফল: ${bn(Q.score)}/${bn(Q.qs.length)} (${bn(pct)}%)</h2>
+    <p>${pct>=80?"চমৎকার! এবার দুর্বলগুলোয় একবার চোখ বুলিয়ে নাও।":pct>=50?"ভালো এগোচ্ছ। নিচের ভুলগুলো গল্পে আবার পড়ে নাও।":"চিন্তা নেই, ভুলগুলোই শেখার আসল জায়গা। নিচের সংস্থাগুলোর গল্প আরেকবার পড়ো।"}</p>
+    ${Q.wrong.length?`<h3>যেগুলো ভুল হয়েছে</h3>${[...new Set(Q.wrong)].map(a=>orgHTML(D.find(o=>o.a===a))).join("")}`:""}
+    <div class="navrow"><button class="btn solid" id="qagain">আবার কুইজ দাও</button></div>`;
+    document.getElementById("qagain").onclick=()=>{Q=null;renderQuiz()};return;
+  }
+  const q=Q.qs[Q.i];
+  app.innerHTML=`<div class="meter"><i style="width:${Q.i/Q.qs.length*100}%"></i></div>
+  <div class="q"><div class="muted">প্রশ্ন ${bn(Q.i+1)}/${bn(Q.qs.length)}, সঠিক ${bn(Q.score)}</div><div class="qtext">${esc(q.text)}</div>
+  <div class="opts">${q.opts.map((op,k)=>`<button class="opt" data-k="${k}">${esc(op)}</button>`).join("")}</div><div id="fb"></div></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    if(Q.answered)return; Q.answered=true;
+    const pickd=q.opts[+b.dataset.k], ok=pickd===q.ans;
+    app.querySelectorAll(".opt").forEach(x=>{const v=q.opts[+x.dataset.k];if(v===q.ans)x.classList.add("right");else if(x===b)x.classList.add("wrong")});
+    act();if(ok){Q.score++;if(!S.box[q.o.a])S.box[q.o.a]=1}else{Q.wrong.push(q.o.a);S.box[q.o.a]=1;S.due[q.o.a]=T()}
+    save();
+    document.getElementById("fb").innerHTML=`<div class="fb"><b>${ok?"ঠিক!":"সঠিক উত্তর: "+esc(q.ans)}</b><br>${esc(q.o.a)}: সদর দপ্তর ${esc(hqOf(q.o))}, প্রতিষ্ঠা ${esc(q.o.yr)}।<br>${esc(q.o.t)}</div><div class="navrow"><span></span><button class="btn solid" id="qnext">${Q.i+1<Q.qs.length?"পরের প্রশ্ন":"ফলাফল দেখো"}</button></div>`;
+    document.getElementById("qnext").onclick=()=>{Q.i++;Q.answered=false;if(Q.i>=Q.qs.length){Q.done=true;S.quiz.push({s:Q.score,n:Q.qs.length,d:new Date().toISOString().slice(0,10)});save()}renderQuiz()};
+  });
+}
+
+
+/* ===================== রিভিশন শিট ===================== */
+const LADDER=[["১২৫","ICC"],["১৬০","UNWTO"],["১৬৬","WTO"],["১৭৬","IMO"],["১৭৮","IAEA"],["১৮৭","CTBTO, ILO"],["১৮৯","বিশ্বব্যাংক"],["১৯১","IMF"],["১৯২","UNICEF, UPU"],["১৯৩","WMO, WIPO, ITU, ICAO, UNEP, OPCW"],["১৯৪","WHO, UNESCO"],["১৯৫","UNCTAD, IPCC, FAO"],["১৯৬","Interpol"],["১৯৮","UNFCCC"],["২০৬","IOC"],["২১১","FIFA"]];
+const DAYS=[["২১ ফেব্রুয়ারি","আন্তর্জাতিক মাতৃভাষা দিবস (UNESCO, ১৯৯৯)"],["২৩ মার্চ","বিশ্ব আবহাওয়া দিবস (WMO)"],["৭ এপ্রিল","বিশ্ব স্বাস্থ্য দিবস (WHO)"],["২৬ এপ্রিল","বিশ্ব মেধাসম্পদ দিবস (WIPO)"],["১৭ মে","বিশ্ব টেলিযোগাযোগ দিবস (ITU)"],["৫ জুন","বিশ্ব পরিবেশ দিবস (UNEP)"],["২৩ জুন","অলিম্পিক দিবস (IOC)"],["১১ জুলাই","বিশ্ব জনসংখ্যা দিবস (UNFPA)"],["২৭ সেপ্টেম্বর","বিশ্ব পর্যটন দিবস (UNWTO)"],["৯ অক্টোবর","বিশ্ব ডাক দিবস (UPU)"],["১৬ অক্টোবর","বিশ্ব খাদ্য দিবস (FAO)"],["২৪ অক্টোবর","জাতিসংঘ দিবস"],["৭ ডিসেম্বর","বেসামরিক বিমান চলাচল দিবস (ICAO)"]];
+const RENAMED=[["GATT (১৯৪৭)","WTO (১৯৯৫)"],["আন্তর্জাতিক টেলিগ্রাফ ইউনিয়ন","ITU"],["মানবাধিকার কমিশন (১৯৪৬)","UNHRC (২০০৬)"],["PCIJ (১৯২২)","ICJ (১৯৪৫)"],["IMCO","IMO (১৯৮২)"],["ECAFE","ESCAP (১৯৭৪)"],["OAU (১৯৬৩)","AU (২০০২)"],["RCD (১৯৬৪)","ECO (১৯৮৫)"],["Helsinki Watch","HRW (১৯৮৮)"],["UNIFEM + আরও ৩","UN Women (২০১০)"],["AAPP (১৯৯৯, ঢাকা)","APA (২০০৬)"],["BIST-EC → BIMST-EC","BIMSTEC (২০০৪)"],["Shanghai Five","SCO (২০০১)"],["European Management Forum","WEF (১৯৮৭)"],["World Wildlife Fund","World Wide Fund for Nature"],["NAFTA","USMCA (২০২০)"],["Islamic Conference","Islamic Cooperation (২০১১)"]];
+let sq="";
+function renderSheet(){
+  const nb=D.filter(o=>o.nb), bdl=D.filter(o=>o.bd);
+  const cityMap={};D.filter(o=>o.city).forEach(o=>{(cityMap[o.city]=cityMap[o.city]||[]).push(o.a)});
+  const multi=Object.entries(cityMap).filter(([,v])=>v.length>1).sort((a,b)=>b[1].length-a[1].length);
+  app.innerHTML=`<h2>দ্রুত রিভিশন শিট</h2><p class="muted">পরীক্ষার আগের রাতের জন্য। সংক্ষেপ, বাংলা নাম, শহর বা সাল লিখে খুঁজতে পারো।</p>
+  <div class="toolbar"><input type="search" id="sq" placeholder="যেমন: জেনেভা, ১৯৪৫, WHO" style="flex:1;min-width:200px"></div>
+  <div class="tablewrap" style="max-height:60vh"><table><thead><tr><th>সংক্ষেপ</th><th>বাংলা নাম</th><th>সদর দপ্তর</th><th>প্রতিষ্ঠা</th><th>সদস্য</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <h3>একই শহরে একাধিক সংস্থা</h3><div class="grid2">${multi.map(([c,v])=>`<div class="panel"><h4>${esc(c)} (${bn(v.length)})</h4>${esc(v.join(", "))}</div>`).join("")}</div>
+  <h3>সদস্যসংখ্যার সিঁড়ি (তোমার তালিকা অনুযায়ী)</h3><div class="panel"><ul class="ladder">${LADDER.map(([n,a])=>`<li><b>${n}</b>: ${esc(a)}</li>`).join("")}</ul><p class="muted" style="margin:8px 0 0">সদস্যসংখ্যা যোগদান-প্রত্যাহারে বদলায়; পরীক্ষার আগে সাম্প্রতিক সংখ্যা মিলিয়ে নিও।</p></div>
+  <div class="grid2" style="margin-top:12px">
+   <div class="panel"><h4>নোবেলজয়ী সংস্থা</h4><ul>${nb.map(o=>`<li>${esc(o.a)}: ${esc(o.nb)}</li>`).join("")}</ul></div>
+   <div class="panel"><h4>সংস্থার জন্মদিন = আন্তর্জাতিক দিবস</h4><ul>${DAYS.map(([d,t])=>`<li><b>${d}</b>: ${esc(t)}</li>`).join("")}</ul></div>
+   <div class="panel"><h4>আগের নাম থেকে বর্তমান নাম</h4><ul>${RENAMED.map(([a,b])=>`<li>${esc(a)} → ${esc(b)}</li>`).join("")}</ul></div>
+   <div class="panel"><h4>বাংলাদেশ সংযোগ (${bn(bdl.length)})</h4>${esc(bdl.map(o=>o.a).join(", "))}<p class="muted" style="margin:8px 0 0">ঢাকায় সদর দপ্তর: BIMSTEC, CIRDAP। ঢাকায় জন্ম: SAARC (প্রথম সম্মেলন), AAPP/APA।</p></div>
+  </div>`;
+  const input=document.getElementById("sq"); input.value=sq;
+  const draw=()=>{sq=input.value.trim().toLowerCase();
+    const rows=D.filter(o=>!sq||[o.a,o.n,o.f,hqOf(o),o.yr,bn(o.y),String(o.y),chName(o.c)].join(" ").toLowerCase().includes(sq));
+    document.getElementById("tb").innerHTML=rows.map(o=>`<tr><td class="ab">${esc(o.a)}</td><td>${esc(o.n)}</td><td>${esc(hqOf(o))}</td><td>${esc(o.yr)}</td><td>${esc(o.m||"")}</td></tr>`).join("")||`<tr><td colspan="5" class="muted">কিছু পাওয়া যায়নি। বানান বদলে দেখো।</td></tr>`};
+  input.oninput=draw; draw();
+}
+
+
+/* ===================== অগ্রগতি ===================== */
+function renderProg(){
+  const cnt=[0,0,0,0,0,0];D.forEach(o=>cnt[Math.min(box(o.a),5)]++);
+  const cols=["var(--line)","var(--stamp)","#C8762A","var(--gold)","var(--blue)","var(--accent)"];
+  const labels=["দেখা হয়নি","বাক্স ১ (দুর্বল)","বাক্স ২","বাক্স ৩","বাক্স ৪","বাক্স ৫ (পাকা)"];
+  const readN=CH.filter(c=>S.read[c.id]).length;
+  const last=S.quiz.slice(-8).reverse();
+  app.innerHTML=`<h2>অগ্রগতি ও রুটিন</h2>
+  <h3>ফ্ল্যাশকার্ড বাক্স</h3><div class="bar">${cnt.map((n,k)=>`<i style="width:${n/D.length*100}%;background:${cols[k]}"></i>`).join("")}</div>
+  <div class="legend">${cnt.map((n,k)=>`<span style="--c:${cols[k]}">${labels[k]}: ${bn(n)}</span>`).join("")}</div>
+  <h3>গল্পের অধ্যায়: ${bn(readN)}/${bn(CH.length)} পড়া শেষ</h3>
+  <div class="bar"><i style="width:${readN/CH.length*100}%;background:var(--accent)"></i></div>
+  <h3>সাম্প্রতিক কুইজ</h3>${last.length?`<div class="panel"><ul>${last.map(q=>`<li>${bn(q.d)}: ${bn(q.s)}/${bn(q.n)}</li>`).join("")}</ul></div>`:`<p class="muted">এখনো কোনো কুইজ দেওয়া হয়নি। 'কুইজ' ট্যাব থেকে শুরু করো।</p>`}
+  <h3>৭ দিনের রিভিশন রুটিন</h3><div class="panel"><ol class="plan">
+   <li>দিন ১: গল্প অধ্যায় ১-৪ (সুইজারল্যান্ড, হেগ, ব্রাসেলস)। পড়ার পর ঐ অধ্যায়গুলোর ফ্ল্যাশকার্ড একবার।</li>
+   <li>দিন ২: অধ্যায় ৫-১১ (বাকি ইউরোপ ও আমেরিকা)। তারপর দিন ১-এর অধ্যায় থেকে ১০ প্রশ্নের কুইজ।</li>
+   <li>দিন ৩: অধ্যায় ১২-১৩ (ওয়াশিংটন, নিউইয়র্ক)। ফ্ল্যাশকার্ডে 'দুর্বলগুলো'।</li>
+   <li>দিন ৪: অধ্যায় ১৪-১৫ (দক্ষিণ ও পূর্ব এশিয়া)। বাংলাদেশ সংযোগ তালিকা মুখস্থ।</li>
+   <li>দিন ৫: অধ্যায় ১৬-১৮ (মধ্যপ্রাচ্য, আফ্রিকা, জোট)। সব অধ্যায় থেকে ২০ প্রশ্নের কুইজ।</li>
+   <li>দিন ৬: রিভিশন শিট: একই শহর, সদস্যসংখ্যা, নোবেল, দিবস, নাম বদল। তারপর 'দুর্বলগুলো' কুইজ।</li>
+   <li>দিন ৭: ৩০ প্রশ্নের কুইজ দুবার। ভুলগুলোর গল্প আবার পড়ো। এরপর প্রতি ৩ দিনে একবার ১০ মিনিট ফ্ল্যাশকার্ড।</li>
+  </ol></div>
+  <div class="navrow"><span></span><button class="btn" id="reset">সব অগ্রগতি মুছে নতুন করে শুরু করো</button></div>`;
+  document.getElementById("reset").onclick=()=>{if(confirm("সব অগ্রগতি মুছে যাবে। নিশ্চিত?")){S={};try{localStorage.removeItem(K)}catch(e){}load();save();renderProg()}};
+}
+
+
+const _rp=renderProg;
+renderProg=function(){
+  _rp();
+  app.insertAdjacentHTML("beforeend",`<h3>ব্যাকআপ</h3><p class="muted">অগ্রগতি এই ব্রাউজারে জমা থাকে। ফোন বা ব্রাউজার বদলালে ব্যাকআপ কপি করে অন্য জায়গায় পুনরুদ্ধার করো।</p><div class="navrow" style="justify-content:flex-start"><button class="btn" id="bk">ব্যাকআপ কপি করো</button><button class="btn" id="rs">ব্যাকআপ পুনরুদ্ধার</button></div>`);
+  document.getElementById("bk").onclick=()=>{const t=JSON.stringify(S);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>alert("কপি হয়েছে। কোথাও সংরক্ষণ করে রাখো।"),()=>prompt("এই লেখাটা কপি করে রাখো:",t))};
+  document.getElementById("rs").onclick=()=>{const t=prompt("ব্যাকআপের লেখাটা এখানে পেস্ট করো:");if(!t)return;try{S=JSON.parse(t);localStorage.setItem(K,t);load();save();renderProg()}catch(e){alert("লেখাটা ঠিক নেই।")}};
+};
+
+/* ===================== চালু ===================== */
+const app=document.getElementById("app");
+const R={home:renderHome,story:renderStory,flash:renderFlash,quiz:renderQuiz,sheet:renderSheet,prog:renderProg};
+const NAV=[["home","🏠","হোম"],["story","📖","গল্প"],["flash","🗂️","কার্ড"],["quiz","✍️","কুইজ"],["sheet","📋","শিট"],["prog","📈","অগ্রগতি"]];
+document.querySelector("#bnav div").innerHTML=NAV.map(([t,i,n])=>`<button data-t="${t}" aria-selected="${t==="home"}"><span>${i}</span>${n}</button>`).join("");
+document.querySelectorAll("#bnav button").forEach(b=>b.onclick=()=>go(b.dataset.t));
+app.addEventListener("click",e=>{
+  const m=e.target.closest(".cl-on .mask");if(m){m.classList.remove("mask");return}
+  const s=e.target.closest("[data-star]");if(s){const a=s.dataset.star;S.star[a]?delete S.star[a]:S.star[a]=1;s.textContent=S.star[a]?"★":"☆";save()}
+});
+document.addEventListener("keydown",e=>{
+  if(cur!=="flash"||!F.q||F.i>=F.q.length||/SELECT|INPUT|TEXTAREA/.test(e.target.tagName))return;
+  if(e.key===" "){e.preventDefault();document.getElementById("card").click()}
+  else if(F.flip&&"1234".includes(e.key))rate(+e.key-1);
+});
+const th=document.getElementById("theme");
+th.onclick=()=>{const dk=document.documentElement.dataset.theme?document.documentElement.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;const n=dk?"light":"dark";document.documentElement.dataset.theme=n;S.theme=n;save()};
+load();if(S.theme)document.documentElement.dataset.theme=S.theme;hdr();renderHome();
+</script>
+</body>
+</html>
