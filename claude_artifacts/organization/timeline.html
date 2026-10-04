@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>আন্তর্জাতিক সংস্থা ও জোট — সময়ের ধারায়</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f2; --card:#ffffff; --text:#2b2420; --muted:#7a6f63;
+  --line:#d8cdbe; --accent:#a8452f; --accent2:#2f6b5e; --badge:#e8ddc9;
+  --shadow: 0 1px 3px rgba(0,0,0,.06);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1c1815; --card:#262019; --text:#ede4d8; --muted:#a89a89;
+    --line:#4a4038; --accent:#e18a6f; --accent2:#6fbfa8; --badge:#3a3128;
+    --shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1c1815; --card:#262019; --text:#ede4d8; --muted:#a89a89;
+  --line:#4a4038; --accent:#e18a6f; --accent2:#6fbfa8; --badge:#3a3128;
+  --shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Noto Sans Bengali','Noto Serif Bengali',serif;
+  line-height:1.7;
+}
+header{
+  padding:2rem 1.25rem 1.25rem; text-align:center;
+  border-bottom:1px solid var(--line);
+}
+header h1{
+  font-family:'Noto Serif Bengali',serif; font-weight:700;
+  font-size:1.5rem; margin:0 0 .4rem;
+}
+header p{color:var(--muted); font-size:.92rem; margin:0; max-width:640px; margin:0 auto;}
+main{max-width:760px; margin:0 auto; padding:1.5rem 1rem 3rem;}
+
+.decade{margin-top:2.4rem;}
+.decade-head{
+  display:flex; align-items:baseline; gap:.6rem; margin-bottom:1rem;
+  position:sticky; top:env(safe-area-inset-top, 0px); background:var(--bg);
+  padding:.4rem 0; z-index:2;
+}
+.decade-head h2{
+  font-family:'Noto Serif Bengali',serif; font-size:1.15rem; color:var(--accent);
+  margin:0; font-weight:700;
+}
+.decade-head .yr{font-size:.85rem; color:var(--muted); font-weight:500;}
+.decade-sub{color:var(--muted); font-size:.88rem; margin:0 0 1rem; font-style:italic;}
+
+.timeline{position:relative; padding-right:1.6rem; border-right:2px solid var(--line);}
+.event{position:relative; padding:0 1.6rem 1.2rem 0; margin-right:-1px;}
+.event::before{
+  content:''; position:absolute; right:-6px; top:.35rem;
+  width:11px; height:11px; border-radius:50%;
+  background:var(--accent2); border:2px solid var(--bg);
+}
+.event .yb{
+  display:inline-block; background:var(--badge); color:var(--text);
+  font-size:.78rem; font-weight:600; padding:.12rem .55rem; border-radius:999px;
+  margin-bottom:.35rem;
+}
+.event .body{
+  background:var(--card); border-radius:10px; padding:.7rem .9rem;
+  box-shadow:var(--shadow); font-size:.92rem;
+}
+.event .body b{color:var(--accent);}
+
+footer{
+  max-width:760px; margin:2rem auto 3rem; padding:1.25rem;
+  background:var(--card); border-radius:12px; box-shadow:var(--shadow);
+  font-size:.9rem;
+}
+footer h3{margin-top:0; font-family:'Noto Serif Bengali',serif; color:var(--accent2); font-size:1.05rem;}
+footer ul{margin:.4rem 0 0; padding-right:1.2rem;}
+footer li{margin-bottom:.3rem;}
+
+@media (max-width:480px){
+  .timeline{padding-right:1.1rem;}
+  .event{padding-right:1.1rem;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>আন্তর্জাতিক সংস্থা ও জোট — সময়ের ধারায়</h1>
+  <p>১৮৮৯ সাল থেকে আজ পর্যন্ত হাঁটতে হাঁটতে দেখা, কীভাবে এক দশকের ঘটনা পরের দশকের সংস্থা জন্ম দিয়েছে।</p>
+</header>
+<main id="root"></main>
+
+<footer>
+  <h3>প্যাটার্নটা মনে রাখার সূত্র</h3>
+  <ul id="pattern"></ul>
+</footer>
+
+<script>
+const data = [
+{decade:"১৮৮৯–১৯৩০", sub:"শুরুর দিককার কয়েকটা বীজ", events:[
+  ["১৮৮৯","<b>IPU</b> — ফ্রেডেরিক পাসি ও উইলিয়াম র‍্যান্ডাল ক্রিমারের উদ্যোগে সংসদ সদস্যদের আলোচনার মাধ্যমে যুদ্ধ এড়ানোর চিন্তা থেকে জন্ম।"],
+  ["১৯০৫","<b>Rotary International</b> — শিকাগোয় পল হ্যারিস ও বন্ধুদের পালাক্রমে অফিসে 'ঘুরে ঘুরে' বৈঠক থেকে নাম।"],
+  ["১৯২৩","<b>International Criminal Police Commission</b> (পরে ১৯৫৬-তে Interpol) — ভিয়েনায় বিশ্ব পুলিশ প্রধানদের উদ্যোগ।"],
+  ["১৯৩১","<b>স্ট্যাটাস অব ওয়েস্টমিনস্টার</b> (১১ ডিসেম্বর) — কমনওয়েলথের ভিত গড়ে দেয়।"],
+]},
+{decade:"১৯৪০-এর দশক", sub:"দ্বিতীয় বিশ্বযুদ্ধ ও তার ছাই থেকে নতুন বিশ্বব্যবস্থা", events:[
+  ["১৯৪২","<b>Oxfam</b> — গ্রিসের দুর্ভিক্ষে অক্সফোর্ডের ত্রাণ কমিটি থেকে।"],
+  ["১৯৪৪","আলেকজান্দ্রিয়া প্রটোকল (আরব লিগের ভিত্তি) ও ব্রেটন উডস সম্মেলন — <b>বিশ্বব্যাংক ও IMF</b>-এর ধারণা জন্ম (পূর্ণ কার্যক্রম ১৯৪৮)।"],
+  ["১৯৪৫","<b>আরব লিগ</b> (২২ মার্চ, কায়রো), <b>FAO</b> (১৬ অক্টোবর, বিশ্ব খাদ্য দিবস), <b>ইউনেস্কো</b> (১৬ নভেম্বর, লন্ডন)।"],
+  ["১৯৪৬","<b>ইউনিসেফ</b> (১১ ডিসেম্বর) — শিশুদের জরুরি তহবিল হিসেবে।"],
+  ["১৯৪৭","<b>ICAO</b> (শিকাগো কনভেনশনের ভিত্তিতে) ও <b>ESCAP</b> (এশিয়া-প্রশান্ত পুনর্গঠনে)।"],
+  ["১৯৪৮","<b>IMO</b> (তখন IMCO), <b>OAS</b> (৩০ এপ্রিল, বোগোটা), বিশ্বব্যাংক-IMF পূর্ণ কার্যক্রম শুরু।"],
+  ["১৯৪৯","আধুনিক <b>কমনওয়েলথ অব নেশনস</b> — লন্ডন ঘোষণা।"],
+]},
+{decade:"১৯৫০-এর দশক", sub:"স্নায়ুযুদ্ধের প্রথম ধাক্কা", events:[
+  ["১৯৫০","জ্যঁ মনের যৌথ ইউরোপীয় প্রতিরক্ষা বাহিনীর (EDC) প্রস্তাব।"],
+  ["১৯৫১–৫২","<b>ANZUS</b> — সানফ্রান্সিসকো চুক্তি (কার্যকর ১৯৫২); EDC চুক্তি সই (পরে ফরাসি পার্লামেন্টে আটকে যায়)।"],
+  ["১৯৫৫","<b>বান্দুং সম্মেলন</b> — জোট নিরপেক্ষ আন্দোলনের বীজ।"],
+]},
+{decade:"১৯৬০-এর দশক", sub:"উপনিবেশমুক্তি, তৃতীয় বিশ্বের কণ্ঠস্বর ও মানবাধিকারের সূচনা", events:[
+  ["১৯৬১","<b>NAM</b> (বেলগ্রেড শীর্ষ সম্মেলন), <b>Amnesty International</b> (পিটার বেনেনসন), <b>WFP</b> (১৯ ডিসেম্বর, পরীক্ষামূলক), <b>USAID</b>।"],
+  ["১৯৬৩","<b>OAU</b> (২৫ মে) — আফ্রিকান ইউনিয়নের পূর্বসূরি।"],
+  ["১৯৬৪","<b>G-77</b> (১৫ জুন, জেনেভা UNCTAD), <b>RCD</b> (তুরস্ক-ইরান-পাকিস্তান, পরে ECO)।"],
+  ["১৯৬৫","<b>UNDP</b> (২২ নভেম্বর)।"],
+  ["১৯৬৬","<b>ADB</b> (১৯ ডিসেম্বর)।"],
+  ["১৯৬৭","<b>ASEAN</b> (৮ আগস্ট, ব্যাংকক ঘোষণা)।"],
+  ["১৯৬৮","ইরানের শাহের হার্ভার্ড ভাষণ — আন্তর্জাতিক স্বেচ্ছাসেবক বাহিনীর প্রস্তাব।"],
+  ["১৯৬৯","<b>UNFPA</b>, <b>OIC</b> (আল-আকসা অগ্নিসংযোগের পর, রাবাত), IMF-এর <b>SDR</b> চালু।"],
+]},
+{decade:"১৯৭০-এর দশক", sub:"তেল সংকট, খাদ্য সংকট ও পরিবেশ-সচেতনতার জন্ম", events:[
+  ["১৯৭০","<b>UNV</b> (৭ ডিসেম্বর)।"],
+  ["১৯৭১","<b>Earthwatch</b> (বোস্টন)।"],
+  ["১৯৭২","<b>UNEP</b> (৫ জুন, স্টকহোম — বিশ্ব পরিবেশ দিবস), <b>UNU</b>।"],
+  ["১৯৭৩","<b>UNOPS</b> (UNDP-র অংশ), <b>IsDB</b> (OIC-র শাখা), বাংলাদেশ ADB-তে যোগ।"],
+  ["১৯৭৪","খরা ও সার-সংকটে খাদ্য সংকট — <b>ACU</b>, Worldwatch Institute, বিশ্ব খাদ্য সম্মেলন (রোম)।"],
+  ["১৯৭৫","<b>UNWTO</b> (২ জানুয়ারি, মাদ্রিদ — বাংলাদেশ সদস্য একই বছর), <b>G-6→G-7</b> (১৫ নভেম্বর), <b>ECOWAS</b> (লাগোস চুক্তি), নারী তহবিল (পরে UNIFEM)।"],
+  ["১৯৭৬","প্রথম মানববসতি সম্মেলন (ভ্যানকুভার) — UN-HABITAT-এর ভিত।"],
+  ["১৯৭৭","<b>IFAD</b>, ওয়াংগারি মাথাইয়ের <b>Green Belt Movement</b> (কেনিয়া)।"],
+  ["১৯৭৮","Helsinki Watch (পরে HRW), <b>UNCHS</b> (পরে UN-HABITAT)।"],
+  ["১৯৭৯","<b>CIRDAP</b> (৬ জুলাই, ঢাকা সদর দপ্তর) — বাংলাদেশের গর্বের অধ্যায়।"],
+]},
+{decade:"১৯৮০-এর দশক", sub:"মধ্যপ্রাচ্যের অস্থিরতা ও দক্ষিণ এশিয়ার নিজস্ব জোট", events:[
+  ["১৯৮০","ইরান-ইরাক যুদ্ধ শুরু।"],
+  ["১৯৮১","<b>GCC</b> (মে, সৌদি-আমিরাতসহ ৬ দেশ)।"],
+  ["১৯৮২","<b>Orbis International</b> (উড়ন্ত চক্ষু হাসপাতাল)।"],
+  ["১৯৮৫","RCD পুনর্গঠিত হয়ে <b>ECO</b>; <b>SAARC</b> (৮ ডিসেম্বর, ঢাকা — জিয়াউর রহমানের প্রস্তাব)।"],
+  ["১৯৮৮","<b>INIA</b> (১৫ এপ্রিল, ভ্যালেটা)।"],
+  ["১৯৮৯","<b>APEC</b> (অস্ট্রেলিয়া-জাপানের উদ্যোগে)।"],
+]},
+{decade:"১৯৯০-এর দশক", sub:"সোভিয়েত পতন, বিশ্বায়ন ও জলবায়ু কূটনীতির সূচনা", events:[
+  ["১৯৯০","<b>AOSIS</b> — ছোট দ্বীপরাষ্ট্রগুলোর জোট।"],
+  ["১৯৯১","সোভিয়েত পতন — <b>CIS</b> (ডিসেম্বর); Germanwatch; <b>MERCOSUR</b> (আসুনসিওন চুক্তি)।"],
+  ["১৯৯৩","<b>Transparency International</b> (বার্লিন); মাস্ত্রিখট চুক্তিতে EU-র CFSP।"],
+  ["১৯৯৪","<b>NAFTA</b>; MERCOSUR পূর্ণাঙ্গ কাস্টমস ইউনিয়ন (ওউরো প্রেইতু)।"],
+  ["১৯৯৫","'বার্সেলোনা প্রক্রিয়া' শুরু; ম্যান্ডেলার ভারত সফরে ভারত মহাসাগরীয় জোটের ধারণা।"],
+  ["১৯৯৭","<b>BIST-EC</b> (পরে BIMSTEC, ৬ জুন), <b>D-8</b> (১৫ জুন, এরবাকান), <b>IORA</b> (মরিশাস), <b>IVI</b> (৯ অক্টোবর, সিউল)।"],
+  ["১৯৯৮","<b>UNODA</b> (কফি আনানের সংস্কার)।"],
+  ["১৯৯৯","এশীয় আর্থিক সংকটের জেরে <b>G-20</b>; <b>AAPP</b> (পরে APA)।"],
+]},
+{decade:"২০০০-এর দশক", sub:"সন্ত্রাসবিরোধী নিরাপত্তা ও উদীয়মান শক্তির উত্থান", events:[
+  ["২০০১","'সাংহাই ফাইভ' পূর্ণাঙ্গ <b>SCO</b>-তে রূপ নেয়; <b>GECF</b> (দোহা); <b>SASEC</b>।"],
+  ["২০০২","OAU পুনর্গঠিত হয়ে <b>African Union</b>; UNCHS পূর্ণাঙ্গ <b>UN-HABITAT</b>।"],
+  ["২০০৩","EU-র প্রথম সামরিক মিশন।"],
+  ["২০০৬","জাতিসংঘের ফাঁকে ব্রাজিল-রাশিয়া-ভারত-চীনের বৈঠক — <b>BRICS</b>-এর অনানুষ্ঠানিক সূচনা; AAPP নাম পায় APA।"],
+  ["২০০৮","<b>Union for the Mediterranean</b> (প্যারিস, সারকোজি); <b>USAN/UNASUR</b> (ব্রাজিলিয়া)।"],
+  ["২০০৯","BRICS-এর প্রথম আনুষ্ঠানিক শীর্ষ সম্মেলন; COP15-এর প্রাক্কালে <b>CVF</b> (বাংলাদেশ সক্রিয়)।"],
+]},
+{decade:"২০১০-এর দশক", sub:"জলবায়ু অর্থায়ন, বিকল্প উন্নয়ন ব্যাংক ও নতুন নিরাপত্তা জোট", events:[
+  ["২০১০","দক্ষিণ আফ্রিকা যোগে <b>BRICS</b> পূর্ণ; <b>UN Women</b>; <b>GCF</b>।"],
+  ["২০১১","<b>SEACO</b> (OIC ও IsDB-র সহায়তায়)।"],
+  ["২০১৫","<b>NDB</b> (সাংহাই, BRICS ব্যাংক); <b>V-20</b> (লিমা); <b>IMCTC</b> (১৯ ডিসেম্বর, সৌদি নেতৃত্বে)।"],
+  ["২০১৬","<b>AIIB</b> (বেইজিং)।"],
+]},
+{decade:"২০২০-এর দশক", sub:"বর্তমান সময়ের ঘটনাপ্রবাহ", events:[
+  ["২০২০","<b>USMCA</b> পূর্ণাঙ্গ কার্যকর; <b>RCEP</b> সই (১৫ নভেম্বর, হ্যানয় — বিশ্বের বৃহত্তম বাণিজ্য জোট)।"],
+  ["২০২২","রুশ আগ্রাসনের পর জার্মান চ্যান্সেলর শলৎসের উদ্যোগে <b>ESSI</b> (২২ দেশ)।"],
+]},
+];
+
+const pattern = [
+  "১৯৪০-এর দশক → দ্বিতীয় বিশ্বযুদ্ধ শেষ, জাতিসংঘ-পরিবার জন্ম নিল",
+  "১৯৬০-এর দশক → উপনিবেশ ভেঙে নতুন রাষ্ট্র, তৃতীয় বিশ্বের কণ্ঠস্বর তৈরি হলো",
+  "১৯৭০-এর দশক → তেল-খাদ্য সংকট আর পরিবেশ-সচেতনতা",
+  "১৯৯০-এর দশক → সোভিয়েত পতন, বিশ্বায়ন, জলবায়ু কূটনীতির শুরু",
+  "২০০০-১০-এর দশক → সন্ত্রাসবাদ, উদীয়মান অর্থনীতি, জলবায়ু অর্থায়ন",
+];
+
+const root = document.getElementById('root');
+data.forEach(d=>{
+  const sec = document.createElement('section');
+  sec.className='decade';
+  sec.innerHTML = `
+    <div class="decade-head"><h2>${d.decade}</h2></div>
+    <p class="decade-sub">${d.sub}</p>
+    <div class="timeline">
+      ${d.events.map(([y,t])=>`
+        <div class="event">
+          <span class="yb">${y}</span>
+          <div class="body">${t}</div>
+        </div>`).join('')}
+    </div>`;
+  root.appendChild(sec);
+});
+
+const pl = document.getElementById('pattern');
+pattern.forEach(p=>{
+  const li = document.createElement('li');
+  li.textContent = p;
+  pl.appendChild(li);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ব্রেটন উডসের পরিবার — একটি স্থাপত্য নকশা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e2438;
+    --bg-2: #0a1c2c;
+    --grid: rgba(255,255,255,0.055);
+    --line: #5c93ae;
+    --node-bg: #143b58;
+    --node-bg-hover: #1c4c6f;
+    --node-bg-active: #1f5a80;
+    --node-border: #4c85a0;
+    --amber: #ffb454;
+    --amber-soft: #ffd9a0;
+    --paper: #f4f1e6;
+    --ink: #23272a;
+    --ink-soft: #5a5748;
+    --text: #d8e6ee;
+    --text-dim: #7f9cae;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/34px 34px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/34px 34px,
+      var(--bg);
+    color: var(--text);
+    font-family:'Noto Sans Bengali', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  header{
+    text-align:center; padding: 64px 20px 40px;
+    border-bottom: 1px dashed rgba(255,255,255,0.14);
+  }
+  .kicker{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+    letter-spacing:0.08em; color: var(--amber-soft); margin-bottom:14px;
+  }
+  h1{
+    font-family:'Noto Serif Bengali', serif; font-weight:700;
+    font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+    margin: 0 0 14px; color:#fff;
+  }
+  header p{
+    max-width:600px; margin:0 auto; color: var(--text-dim);
+    font-size:1rem; line-height:1.8;
+  }
+  .hint{ margin-top:18px; font-size:0.86rem; color: var(--amber-soft); }
+
+  .stage{ max-width: 1020px; margin: 0 auto; padding: 50px 16px 30px; }
+
+  /* ---------------- ORG CHART (pure-CSS tree) ---------------- */
+  .tree, .tree ul, .tree li{
+    list-style:none; margin:0; padding:0; position:relative;
+  }
+  .tree{ text-align:center; }
+  .tree ul{ display:flex; padding-top: 34px; }
+  .tree li{
+    flex:1; display:flex; flex-direction:column; align-items:center;
+    padding: 34px 10px 0;
+    position:relative;
+  }
+  .tree li::before, .tree li::after{
+    content:''; position:absolute; top:0; right:50%;
+    border-top:1px solid var(--line); width:50%; height:34px;
+  }
+  .tree li::after{ right:auto; left:50%; border-left:1px solid var(--line); }
+  .tree li:only-child::before, .tree li:only-child::after{ display:none; }
+  .tree li:only-child{ padding-top:0; }
+  .tree li:first-child::before, .tree li:last-child::after{ border:0 none; }
+  .tree li:last-child::before{ border-right:1px solid var(--line); }
+  .tree li:first-child::after{ }
+  .tree ul ul::before{
+    content:''; position:absolute; top:0; left:50%;
+    border-left:1px solid var(--line); width:0; height:34px;
+  }
+
+  .node{
+    display:inline-flex; flex-direction:column; align-items:center; gap:3px;
+    background: var(--node-bg);
+    border: 1px solid var(--node-border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    cursor:pointer;
+    transition: background .18s ease, transform .15s ease, border-color .18s ease;
+    position:relative; z-index:2;
+    min-width: 108px;
+  }
+  .node:hover{ background: var(--node-bg-hover); transform: translateY(-2px); }
+  .node.active{ background: var(--node-bg-active); border-color: var(--amber); }
+  .node .acr{ font-family:'JetBrains Mono', monospace; font-weight:600; font-size:0.98rem; color:#fff; }
+  .node .yr{ font-size:0.72rem; color: var(--text-dim); }
+  .node.root{
+    background: var(--amber); border-color: var(--amber); color:#1a1200;
+  }
+  .node.root .acr{ color:#1a1200; font-size:1.02rem; }
+  .node.root .yr{ color:#4a3b18; }
+  .node.group{
+    background: transparent; border: 1px dashed var(--node-border);
+  }
+  .node.group .acr{ font-family:'Noto Serif Bengali', serif; font-size:0.92rem; color: var(--amber-soft); }
+
+  /* detail panel */
+  .panel{
+    margin-top: 46px;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 4px;
+    padding: 26px 28px;
+    max-width: 680px;
+    margin-left:auto; margin-right:auto;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+    display:none;
+  }
+  .panel.show{ display:block; animation: rise .25s ease; }
+  @keyframes rise{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+  .panel .ph{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;
+  }
+  .panel .p-acr{
+    font-family:'JetBrains Mono', monospace; font-weight:700; font-size:1.3rem;
+  }
+  .panel .p-year{ font-size:0.85rem; color: var(--ink-soft); }
+  .panel .p-title{
+    font-family:'Noto Serif Bengali', serif; font-weight:600; font-size:1.12rem;
+    margin: 6px 0 12px;
+  }
+  .panel .p-body{ font-size:0.95rem; line-height:1.85; color:#3a362a; margin:0 0 14px; }
+  .panel .p-meta{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 10px 22px;
+    font-size:0.85rem; border-top:1px dashed rgba(0,0,0,0.18); padding-top:14px;
+    margin-bottom:14px;
+  }
+  .panel .p-meta div b{ display:block; color: var(--ink-soft); font-weight:600; font-size:0.75rem; margin-bottom:2px; }
+  .panel .p-hook{
+    font-size:0.87rem; font-style:italic; color:#5a4a28;
+    background: rgba(255,180,84,0.18); padding:10px 14px; border-radius:3px;
+    border-inline-start: 3px solid var(--amber);
+  }
+  .placeholder{
+    text-align:center; color: var(--text-dim); margin-top:46px; font-size:0.92rem;
+  }
+
+  /* ---------------- SEPARATE LINEAGE: GATT -> WTO ---------------- */
+  .divider{
+    max-width:1020px; margin: 70px auto 10px; padding: 0 16px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .divider .l{ flex:1; height:1px; background: rgba(255,255,255,0.16); }
+  .divider span{ font-family:'JetBrains Mono', monospace; font-size:0.76rem; color: var(--text-dim); white-space:nowrap; }
+
+  .flow{
+    max-width:1020px; margin:34px auto 60px; padding: 0 16px;
+    display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap;
+  }
+  .flow .node{ min-width:120px; }
+  .flow .arrow{
+    color: var(--text-dim); font-size:1.3rem; padding: 0 14px; font-family:'JetBrains Mono',monospace;
+  }
+
+  footer{
+    text-align:center; padding: 30px 20px 60px; color: var(--text-dim); font-size:0.84rem;
+  }
+
+  /* -------- mobile fallback: vertical indented tree -------- */
+  @media (max-width: 760px){
+    .tree ul{ display:block; padding-top:0; }
+    .tree li{
+      display:block; padding: 16px 0 0 26px; text-align:left; border-left: 1px solid var(--line);
+      margin-left: 10px;
+    }
+    .tree li::before, .tree li::after{ display:none; }
+    .tree > li{ border-left:none; margin-left:0; padding-left:0; }
+    .tree ul ul::before{ display:none; }
+    .node{ align-items:flex-start; }
+    .flow{ flex-direction:column; }
+    .flow .arrow{ transform: rotate(90deg); padding: 6px 0; }
+    .panel .p-meta{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">১৯৪৪ — নিউ হ্যাম্পশায়ারের এক ছোট্ট শহর থেকে</p>
+  <h1>ব্রেটন উডসের পরিবার</h1>
+  <p>একটাই সম্মেলন থেকে জন্ম নেওয়া দুই যমজ প্রতিষ্ঠান, আর তাদের চারপাশে গড়ে ওঠা এক গোটা আর্থিক স্থাপত্য। নিচের যেকোনো বাক্সে ক্লিক করে দেখো প্রতিটির নিজস্ব গল্প।</p>
+  <p class="hint">↓ যেকোনো নোডে ক্লিক করো</p>
+</header>
+
+<div class="stage">
+  <ul class="tree" id="tree">
+    <li>
+      <div class="node root" data-key="bw">
+        <span class="acr">ব্রেটন উডস</span>
+        <span class="yr">জুলাই, ১৯৪৪</span>
+      </div>
+      <ul>
+        <li>
+          <div class="node" data-key="imf">
+            <span class="acr">IMF</span>
+            <span class="yr">কার্যক্রম শুরু ১৯৪৭</span>
+          </div>
+        </li>
+        <li>
+          <div class="node group" data-key="wbg">
+            <span class="acr">বিশ্বব্যাংক গ্রুপ</span>
+            <span class="yr">৫টি অঙ্গ-প্রতিষ্ঠান</span>
+          </div>
+          <ul>
+            <li><div class="node" data-key="ibrd"><span class="acr">IBRD</span><span class="yr">১৯৪৪</span></div></li>
+            <li><div class="node" data-key="ifc"><span class="acr">IFC</span><span class="yr">১৯৫৬</span></div></li>
+            <li><div class="node" data-key="ida"><span class="acr">IDA</span><span class="yr">১৯৬০</span></div></li>
+            <li><div class="node" data-key="icsid"><span class="acr">ICSID</span><span class="yr">১৯৬৬</span></div></li>
+            <li><div class="node" data-key="miga"><span class="acr">MIGA</span><span class="yr">১৯৮৮</span></div></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="panel" id="panel">
+    <div class="ph">
+      <span class="p-acr" id="p-acr"></span>
+      <span class="p-year" id="p-year"></span>
+    </div>
+    <div class="p-title" id="p-title"></div>
+    <p class="p-body" id="p-body"></p>
+    <div class="p-meta" id="p-meta"></div>
+    <div class="p-hook" id="p-hook"></div>
+  </div>
+  <p class="placeholder" id="placeholder">একটা বাক্সে ক্লিক করে দেখো — প্রতিটির নিজস্ব ভূমিকা, সদস্য সংখ্যা আর মনে রাখার সূত্র এখানে ফুটে উঠবে।</p>
+</div>
+
+<div class="divider"><div class="l"></div><span>ব্রেটন উডসের বাইরে জন্ম নেওয়া তৃতীয় স্তম্ভ</span><div class="l"></div></div>
+
+<div class="flow">
+  <div class="node" data-key="gatt"><span class="acr">GATT</span><span class="yr">১৯৪৭</span></div>
+  <span class="arrow">➝</span>
+  <div class="node" data-key="wto"><span class="acr">WTO</span><span class="yr">১৯৯৫</span></div>
+</div>
+
+<footer>প্রতিটি প্রতিষ্ঠানের জন্মই কোনো না কোনো সংকটের জবাব — একসাথে এরা তৈরি করে আজকের বৈশ্বিক আর্থিক স্থাপত্য।</footer>
+
+<script>
+const data = {
+  bw: {
+    acr: "ব্রেটন উডস সম্মেলন", year: "১-২২ জুলাই, ১৯৪৪",
+    title: "৪৪টি দেশ, একটা ছোট্ট হোটেল, একটা নতুন বিশ্বব্যবস্থার নকশা",
+    body: "যুক্তরাষ্ট্রের নিউ হ্যাম্পশায়ারের ব্রেটন উডস শহরে দ্বিতীয় বিশ্বযুদ্ধ তখনও শেষ হয়নি, কিন্তু বিশ্বনেতারা ইতিমধ্যে ভাবছেন যুদ্ধ-পরবর্তী অর্থনৈতিক বিশৃঙ্খলা কীভাবে ঠেকানো যায় — ১৯৩০-এর মহামন্দার স্মৃতি তখনও তাজা। এই এক সম্মেলন থেকেই জন্ম নেয় দুই ভিন্ন দায়িত্বের দুই প্রতিষ্ঠান।",
+    meta: [["অংশগ্রহণকারী দেশ","৪৪টি"], ["ফলাফল","IBRD ও IMF-এর ভিত্তি"]],
+    hook: "একটাই সম্মেলন, কিন্তু দুই ভিন্ন সন্তান — একজন তাৎক্ষণিক সংকট সামলায়, আরেকজন দীর্ঘমেয়াদী গড়ে তোলে।"
+  },
+  imf: {
+    acr: "IMF", year: "প্রতিষ্ঠা ১৯৪৫ · কার্যক্রম ১৯৪৭",
+    title: "জরুরি অবস্থার ডাক্তার",
+    body: "কোনো দেশের বৈদেশিক মুদ্রার রিজার্ভ ফুরিয়ে গেলে, লেনদেনের ভারসাম্য (balance of payments) সংকটে পড়লে IMF তাৎক্ষণিক ঋণ দেয় — তবে শর্তসাপেক্ষে। এর নিজস্ব রিজার্ভ সম্পদের একক হলো SDR (Special Drawing Rights), যা ১৯৬৯ সালে চালু হয়। বাংলাদেশ সদস্যপদ পায় ১৯৭২ সালের ১৭ আগস্ট।",
+    meta: [["নিয়ন্ত্রক সংস্থা","ECOSOC"], ["সদর দপ্তর","ওয়াশিংটন ডিসি"], ["স্থায়ী সদস্য","৮টি"], ["সর্বোচ্চ ভোটাধিকার","যুক্তরাষ্ট্র (১৫.৭৪%)"]],
+    hook: "IMF আগুন নেভায় — তাৎক্ষণিক মুদ্রা সংকট সামলায়, দীর্ঘমেয়াদী উন্নয়ন পরিকল্পনা করে না।"
+  },
+  wbg: {
+    acr: "বিশ্বব্যাংক গ্রুপ", year: "মূল প্রতিষ্ঠান IBRD, ১৯৪৪",
+    title: "একটা পরিবার, পাঁচটা ভিন্ন দায়িত্ব",
+    body: "বিশ্বব্যাংক বলতে আসলে একক কোনো প্রতিষ্ঠান বোঝায় না — এটা পাঁচটা ভিন্ন প্রতিষ্ঠানের একটা পরিবার, যাদের প্রত্যেকের কাজের ধরন আলাদা। সময়ের সাথে সাথে নতুন নতুন প্রয়োজন দেখা দিলে একে একে যোগ হয়েছে এই সদস্যরা। মূলনীতি: \"Working for a World free of Poverty\"।",
+    meta: [["নিয়ন্ত্রক সংস্থা","ECOSOC"], ["সদর দপ্তর","ওয়াশিংটন ডিসি"], ["বাংলাদেশ যোগ দেয়","১৯৭২ সালের ১৭ আগস্ট"], ["মূল প্রতিষ্ঠান দুটি","IBRD ও IDA"]],
+    hook: "প্রতিটা নতুন প্রতিষ্ঠান জন্ম নিয়েছে আগেরটার একটা নির্দিষ্ট দুর্বলতা পূরণ করতে — নিচের পাঁচটা বাক্সে ক্লিক করে সেই ক্রমটা দেখো।"
+  },
+  ibrd: {
+    acr: "IBRD", year: "১৯৪৪",
+    title: "পুনর্গঠন থেকে উন্নয়নে — মূল কাণ্ড",
+    body: "International Bank for Reconstruction and Development। প্রথমে যুদ্ধবিধ্বস্ত ইউরোপ পুনর্গঠনে ঋণ দেওয়ার জন্য তৈরি, কিন্তু ইউরোপ সেরে ওঠার পর এর মনোযোগ সরে যায় উন্নয়নশীল বিশ্বের দিকে। এটাই বিশ্বব্যাংকের মূল কার্যক্রম পরিচালনা করে, মধ্যম আয়ের ও ঋণযোগ্য দরিদ্র দেশগুলোকে বাণিজ্যিক শর্তে ঋণ দেয়।",
+    meta: [["সদস্য সংখ্যা","১৮৯টি"], ["ঋণের ধরন","বাণিজ্যিক শর্তে"], ["সর্বশেষ সদস্য","নাউরু"]],
+    hook: "নাম বদলায় না, তবে মিশন বদলে গেছে — যুদ্ধ-পুনর্গঠনের ব্যাংক আজ উন্নয়নশীল বিশ্বের মূল ঋণদাতা।"
+  },
+  ifc: {
+    acr: "IFC", year: "১৯৫৬",
+    title: "সরকারের বাইরে, বেসরকারি খাতের ভরসা",
+    body: "International Finance Corporation। IBRD শুধু সরকারকে ঋণ দিতে পারত, কিন্তু উন্নয়নশীল দেশের বেসরকারি খাত (ব্যবসা, শিল্প) বেড়ে না উঠলে প্রকৃত উন্নয়ন অসম্ভব — এই উপলব্ধি থেকেই জন্ম IFC-র, যা সরাসরি বেসরকারি কোম্পানিতে ঋণ ও বিনিয়োগ করে।",
+    meta: [["সদস্য সংখ্যা","১৮৬টি"], ["কাজ","বেসরকারি খাতে বিনিয়োগ"], ["সর্বশেষ সদস্য","ব্রুনাই"]],
+    hook: "সরকার নয়, ব্যবসা — IFC হলো বিশ্বব্যাংক পরিবারের একমাত্র সদস্য যে সরাসরি বেসরকারি কোম্পানিতে টাকা ঢালে।"
+  },
+  ida: {
+    acr: "IDA", year: "১৯৬০",
+    title: "সবচেয়ে গরিব দেশগুলোর জন্য নরম শর্তের জানালা",
+    body: "International Development Association। IBRD-র ঋণ বাণিজ্যিক সুদে দেওয়া হতো, কিন্তু বিশ্বের সবচেয়ে দরিদ্র দেশগুলো সেই শর্তে ঋণ শোধ করতে পারত না। তাই তৈরি হয় IDA — প্রায় সুদবিহীন, দীর্ঘমেয়াদী সহজ শর্তের ঋণ দেয় বলে একে বলা হয় \"Soft Loan Window\"।",
+    meta: [["সদস্য সংখ্যা","১৭৫টি"], ["পরিচিতি","International Soft Loan Window"], ["সর্বশেষ সদস্য","সুরিনাম"]],
+    hook: "কঠিন শর্তের বিপরীতে নরম জানালা — IDA মানেই দরিদ্রতম দেশের জন্য সহজ শর্তের সহায়তা।"
+  },
+  icsid: {
+    acr: "ICSID", year: "১৯৬৬",
+    title: "বিনিয়োগ বিরোধের নিরপেক্ষ আদালত",
+    body: "International Centre for Settlement of Investment Disputes। কোনো দেশে বিদেশি বিনিয়োগকারী ও স্বাগতিক সরকারের মধ্যে বিরোধ বাধলে (যেমন জাতীয়করণ বা চুক্তিভঙ্গ), সেটা মেটানোর জন্য একটা নিরপেক্ষ, আইনি প্ল্যাটফর্ম দরকার ছিল — যাতে বিনিয়োগকারীরা উন্নয়নশীল দেশে টাকা ঢালতে ভরসা পায়।",
+    meta: [["চুক্তি অনুমোদনকারী","১৫৮টি দেশ"], ["কাজ","বিনিয়োগ বিরোধ মীমাংসা"], ["সর্বশেষ সদস্য","হন্ডুরাস (বের হয়ে যায়, ২০২৪)"]],
+    hook: "টাকা ঢালার আগে ভরসা লাগে — ICSID সেই ভরসার আইনি নিশ্চয়তা দেয়।"
+  },
+  miga: {
+    acr: "MIGA", year: "১৯৮৮",
+    title: "ঝুঁকির বিরুদ্ধে বিমার প্রতিষ্ঠান",
+    body: "Multilateral Investment Guarantee Agency। পরিবারের সবচেয়ে ছোট ও সর্বশেষ সদস্য — কাজ হলো রাজনৈতিক অস্থিরতা, যুদ্ধ বা সরকার পরিবর্তনের ঝুঁকি থেকে বিদেশি বিনিয়োগকারীদের সুরক্ষা (গ্যারান্টি) দেওয়া, যাতে তারা অস্থিতিশীল অঞ্চলেও বিনিয়োগে সাহস পায়।",
+    meta: [["সদস্য সংখ্যা","১৮২টি"], ["কাজ","বিনিয়োগ গ্যারান্টি প্রদান"], ["সর্বশেষ সদস্য","সোমালিয়া"]],
+    hook: "সবচেয়ে ছোট ভাই, কিন্তু কাজটা সবচেয়ে বীমা-সদৃশ — ঝুঁকি ঢাকে, বিনিয়োগে সাহস জোগায়।"
+  },
+  gatt: {
+    acr: "GATT", year: "১৯৪৭",
+    title: "শুধু একটা চুক্তি, কোনো প্রতিষ্ঠান নয়",
+    body: "General Agreement on Tariffs and Trade। ব্রেটন উডসের একই সময়ে বাণিজ্য নিয়েও একটা পূর্ণাঙ্গ সংস্থা (ITO) তৈরির চেষ্টা হয়েছিল, কিন্তু তা ব্যর্থ হয়। তার বদলে ২৩টি দেশ একটা সাময়িক \"চুক্তি\" স্বাক্ষর করে, যা দীর্ঘ ৪৭ বছর ধরে বিশ্ব বাণিজ্যের অলিখিত নিয়ন্ত্রক হিসেবে কাজ চালিয়ে যায়।",
+    meta: [["স্বাক্ষরকারী","২৩টি দেশ"], ["চরিত্র","চুক্তি, প্রতিষ্ঠান নয়"], ["শেষ বড় আলোচনা","উরুগুয়ে রাউন্ড (১৯৮৬-৯৪)"]],
+    hook: "যা প্রতিষ্ঠান হতে পারেনি, তাই-ই ৫০ বছর ধরে বিশ্ব বাণিজ্য চালিয়েছে — GATT-এর সবচেয়ে বড় প্যারাডক্স এটাই।"
+  },
+  wto: {
+    acr: "WTO", year: "১ জানুয়ারি, ১৯৯৫",
+    title: "অবশেষে পূর্ণাঙ্গ প্রতিষ্ঠান",
+    body: "দীর্ঘ ৮ বছরের (১৯৮৬-৯৪) উরুগুয়ে রাউন্ড আলোচনার পর GATT বিলুপ্ত হয়ে জন্ম নেয় পূর্ণাঙ্গ প্রাতিষ্ঠানিক কাঠামোর World Trade Organization — যাকে বলা হয় \"the Watchdog of International Trade\"। ব্রেটন উডসের ৫০ বছর পর এসে বিশ্ব বাণিজ্যও অবশেষে তার নিজস্ব স্থায়ী ঘর পায়।",
+    meta: [["সদর দপ্তর","জেনেভা"], ["বর্তমান সদস্য","১৬৬টি দেশ"], ["প্রথম নারী মহাসচিব","এনগোজি ওকোনজো-ইওয়েলা"]],
+    hook: "IMF ও বিশ্বব্যাংক জন্মায় ১৯৪৪-এ, কিন্তু বাণিজ্যের ঘর বাঁধতে লেগে যায় আরও ৫০ বছর — WTO এই বিলম্বিত তৃতীয় স্তম্ভ।"
+  }
+};
+
+document.querySelectorAll('.node[data-key]').forEach(node => {
+  node.addEventListener('click', () => {
+    document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+    node.classList.add('active');
+    const key = node.dataset.key;
+    const d = data[key];
+    if(!d) return;
+    document.getElementById('placeholder').style.display = 'none';
+    const panel = document.getElementById('panel');
+    panel.classList.add('show');
+    document.getElementById('p-acr').textContent = d.acr;
+    document.getElementById('p-year').textContent = d.year;
+    document.getElementById('p-title').textContent = d.title;
+    document.getElementById('p-body').textContent = d.body;
+    document.getElementById('p-hook').textContent = "💡 " + d.hook;
+    const metaEl = document.getElementById('p-meta');
+    metaEl.innerHTML = d.meta.map(([k,v]) => `<div><b>${k}</b>${v}</div>`).join('');
+    panel.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+});
+</script>
+
+</body>
+</html>

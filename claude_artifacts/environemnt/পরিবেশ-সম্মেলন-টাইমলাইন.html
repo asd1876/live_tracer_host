@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>পরিবেশ সম্মেলন ও চুক্তির টাইমলাইন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF1E9;
+    --paper: #FBFCF9;
+    --ink: #17241C;
+    --ink-soft: #45524A;
+    --forest: #1F3B30;
+    --forest-2: #2B5642;
+    --sage: #7E9A85;
+    --sage-line: #C6D2C1;
+    --gold: #B9862F;
+    --gold-soft: #E9D8B6;
+    --radius: 3px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0; padding:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Hind Siliguri', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold-soft); }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:64px 24px 120px;
+  }
+
+  header.page{
+    margin-bottom:56px;
+  }
+
+  .kicker{
+    font-family:'Tiro Bangla', serif;
+    font-style:italic;
+    color:var(--sage);
+    font-size:15px;
+    margin:0 0 10px;
+    letter-spacing:.02em;
+  }
+
+  h1{
+    font-family:'Tiro Bangla', serif;
+    font-weight:400;
+    font-size:clamp(30px, 5vw, 42px);
+    line-height:1.25;
+    margin:0 0 18px;
+    color:var(--forest);
+  }
+
+  .lede{
+    font-size:16.5px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    max-width:58ch;
+    margin:0 0 24px;
+  }
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    align-items:center;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    padding-top:18px;
+    border-top:1px solid var(--sage-line);
+  }
+  .legend button{
+    font-family:'Hind Siliguri', sans-serif;
+    font-size:13.5px;
+    background:transparent;
+    border:1px solid var(--sage-line);
+    color:var(--forest-2);
+    padding:6px 14px;
+    border-radius:999px;
+    cursor:pointer;
+  }
+  .legend button:hover{ border-color:var(--forest-2); background:var(--paper); }
+  .legend .hint{ color:var(--sage); font-style:italic; font-family:'Tiro Bangla', serif;}
+
+  .era{
+    margin-top:56px;
+  }
+  .era-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+  }
+  .era-num{
+    font-family:'Tiro Bangla', serif;
+    font-size:14px;
+    color:var(--gold);
+    min-width:26px;
+  }
+  .era-title{
+    font-family:'Tiro Bangla', serif;
+    font-size:22px;
+    color:var(--forest);
+    margin:0;
+  }
+  .era-range{
+    font-size:13px;
+    color:var(--sage);
+    margin-left:auto;
+    white-space:nowrap;
+  }
+  .era-note{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin:6px 0 22px 40px;
+    line-height:1.6;
+    max-width:56ch;
+  }
+
+  .rail{
+    position:relative;
+    margin-left:8px;
+    padding-left:32px;
+    border-left:1.5px solid var(--sage-line);
+  }
+
+  details.item{
+    position:relative;
+    margin-bottom:2px;
+  }
+  details.item::before{
+    content:"";
+    position:absolute;
+    left:-37.5px;
+    top:13px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--paper);
+    border:1.5px solid var(--sage);
+  }
+  details.item[open]::before{
+    background:var(--gold);
+    border-color:var(--gold);
+  }
+
+  details.item summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding:11px 12px;
+    border-radius:var(--radius);
+    transition:background .12s ease;
+  }
+  details.item summary::-webkit-details-marker{ display:none; }
+  details.item summary:hover{ background:var(--paper); }
+  details.item[open] > summary{ background:var(--paper); }
+
+  .date{
+    font-family:'Tiro Bangla', serif;
+    font-size:14px;
+    color:var(--gold);
+    white-space:nowrap;
+    min-width:118px;
+  }
+  .title{
+    font-size:15.5px;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .tag{
+    font-size:11px;
+    color:var(--sage);
+    border:1px solid var(--sage-line);
+    padding:1px 8px;
+    border-radius:999px;
+    margin-left:auto;
+    white-space:nowrap;
+    align-self:center;
+  }
+
+  .detail{
+    padding:2px 12px 18px 12px;
+    margin-left:132px;
+    font-size:14.5px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    max-width:52ch;
+  }
+  .detail b{ color:var(--forest-2); font-weight:600; }
+
+  @media (max-width:600px){
+    .wrap{ padding:44px 16px 100px; }
+    .date{ min-width:auto; font-size:13px; }
+    summary{ flex-wrap:wrap; }
+    .tag{ display:none; }
+    .detail{ margin-left:0; }
+    .era-range{ display:none; }
+    .era-note{ margin-left:0; }
+  }
+
+  footer.page{
+    margin-top:70px;
+    padding-top:20px;
+    border-top:1px solid var(--sage-line);
+    font-size:12.5px;
+    color:var(--sage);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="page">
+    <p class="kicker">এক নজরে পরিবেশ কূটনীতির ইতিহাস</p>
+    <h1>স্টকহোম থেকে বেলেম — ৫৭ বছরের পরিবেশ সম্মেলন ও চুক্তির টাইমলাইন</h1>
+    <p class="lede">১৯৬৮ সালের একটি প্রস্তাব থেকে শুরু করে ২০২৫ সালের COP-30 পর্যন্ত সব বড় সম্মেলন, কনভেনশন, প্রোটোকল ও সংস্থা কালানুক্রমে সাজানো। প্রতিটি ঘটনায় ক্লিক বা হোভার করলে বিস্তারিত তথ্য দেখা যাবে।</p>
+    <div class="legend">
+      <button id="openAll">সব খুলুন</button>
+      <button id="closeAll">সব বন্ধ করুন</button>
+      <span class="hint">— ডেস্কটপে হোভার করলেই বিস্তারিত দেখা যাবে, মোবাইলে ট্যাপ করুন</span>
+    </div>
+  </header>
+
+  <!-- ERA 1 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০১</span>
+      <h2 class="era-title">উৎস ও ভিত্তি</h2>
+      <span class="era-range">১৯৪৭–১৯৬৮</span>
+    </div>
+    <p class="era-note">পরিবেশ আন্দোলনের প্রাতিষ্ঠানিক ভিত্তি তৈরি হয় এই সময়ে — আবহাওয়া থেকে শুরু করে বন্যপ্রাণী সংরক্ষণ পর্যন্ত।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">১৯৪৭</span><span class="title">আবহাওয়া কনভেনশন</span><span class="tag">প্রেক্ষাপট</span></summary>
+        <div class="detail">এই কনভেনশনই পরবর্তীতে <b>WMO</b> ও <b>IUCN</b> — দুটি ভিন্ন সংস্থা গঠনের প্রেক্ষাপট তৈরি করে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৪৮</span><span class="title">IUCN প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">ফ্রান্সে প্রতিষ্ঠিত, প্রকৃতি ও প্রাকৃতিক সম্পদ সংরক্ষণে কাজ করা বেসরকারি সংস্থা। সদর দপ্তর <b>গ্ল্যান্ড, সুইজারল্যান্ড</b> — যা পরে WWF-এরও সদর দপ্তর হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৫০</span><span class="title">WMO গঠন</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">জাতিসংঘের আবহাওয়া সংস্থা। সদর দপ্তর জেনেভা। সদস্য ১৯৩ (১৮৭টি দেশ + ৬টি অঞ্চল)।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৬১</span><span class="title">WWF প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">তৎকালীন নাম <b>World Wildlife Fund</b>, বর্তমান নাম <b>Worldwide Fund for Nature</b>। সদর দপ্তর গ্ল্যান্ড, সুইজারল্যান্ড (IUCN-এর মতোই)।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৩ ডিসে, ১৯৬৮</span><span class="title">আন্তর্জাতিক পরিবেশ সম্মেলনের প্রস্তাব</span><span class="tag">প্রস্তাব</span></summary>
+        <div class="detail">জাতিসংঘ সাধারণ পরিষদের ২৩তম অধিবেশনে গৃহীত এই প্রস্তাব থেকেই জন্ম নেয় বিশ্বের প্রথম পরিবেশ সম্মেলন — <b>স্টকহোম সামিট</b>।</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ERA 2 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০২</span>
+      <h2 class="era-title">স্টকহোম যুগ</h2>
+      <span class="era-range">১৯৬৯–১৯৭৯</span>
+    </div>
+    <p class="era-note">প্রথম বৈশ্বিক পরিবেশ সম্মেলন, UNEP-র জন্ম এবং প্রথম বেসরকারি পরিবেশ আন্দোলনগুলোর সূচনা।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">১৯৬৯–৭২</span><span class="title">Greenpeace-এর সূচনা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">শুরুতে নাম ছিল <b>"Don't Make a Wave Committee"</b>, ভ্যাঙ্কুভার, কানাডায়। ১৯৭১ সালে আনুষ্ঠানিকভাবে Greenpeace নামে প্রতিষ্ঠিত হয়। প্রতিষ্ঠাতাদের মধ্যে প্যাট্রিক মোর, রবার্ট হান্টার, ডেভিড ম্যাকট্যাগার্ট। সদর দপ্তর আমস্টারডাম, ৫৫টি দেশে অফিস। বিখ্যাত জাহাজ রেইনবো ওয়ারিয়র — বাংলাদেশে এর নাম "রংধনু"।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৭১</span><span class="title">রামসার কনভেনশন স্বাক্ষর</span><span class="tag">কনভেনশন</span></summary>
+        <div class="detail">জলাশয় ও জলাভূমি সংরক্ষণে সবচেয়ে পুরনো কনভেনশন। স্বাক্ষরিত হয় <b>ইরানের রামসার</b> শহরে — স্টকহোম সামিটেরও আগে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৭১</span><span class="title">Earth Watch প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">প্রতিষ্ঠাতা মহাকাশযান প্রকৌশলী রবার্ট এ. সাইটুন। সদর দপ্তর বোস্টন, ম্যাসাচুসেটস।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৫–১৬ জুন, ১৯৭২</span><span class="title">স্টকহোম সামিট (UNCHE)</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">পূর্ণ নাম United Nations Conference on the Human Environment। স্থান স্টকহোম, সুইডেন। দুটি গুরুত্বপূর্ণ সিদ্ধান্ত — (১) ৫ জুনকে বিশ্ব পরিবেশ দিবস ঘোষণা, (২) নাইরোবিতে UNEP প্রতিষ্ঠার সিদ্ধান্ত।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৫ জুন, ১৯৭২</span><span class="title">UNEP গঠিত</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">স্টকহোম সামিটের সরাসরি ফসল। সদর দপ্তর নাইরোবি, কেনিয়া। বর্তমান সদস্য ১৯৩টি। ১৯৯৭ সালে কফি আনানের গঠিত UN Development Group-এর সদস্যও হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৭৪</span><span class="title">World Watch প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">ওয়াশিংটনভিত্তিক বিশ্ব পরিবেশ সংস্থা। সদর দপ্তর ওয়াশিংটন ডিসি।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৭৫</span><span class="title">রামসার কনভেনশন কার্যকর</span><span class="tag">কার্যকর</span></summary>
+        <div class="detail">১৯৭১ সালে স্বাক্ষরিত কনভেনশন এই বছর কার্যকর হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৭৭</span><span class="title">Green Belt Movement প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">প্রতিষ্ঠাতা ২০০৪ সালের নোবেলজয়ী <b>ওয়াঙ্গারি মাথাই</b>। প্রধান কাজ নারী কর্মীদের মাধ্যমে বৃক্ষরোপণ, খাদ্য উৎপাদন ও মৌমাছি পালন। সদর দপ্তর নাইরোবি।</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ERA 3 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০৩</span>
+      <h2 class="era-title">ওজোন যুগ</h2>
+      <span class="era-range">১৯৮৫–১৯৮৯</span>
+    </div>
+    <p class="era-note">ওজোন স্তর ক্ষয় নিয়ে বৈশ্বিক উদ্বেগ থেকে জন্ম নেয় ভিয়েনা কনভেনশন, মন্ট্রিল প্রোটোকল ও IPCC।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">২২ মার্চ, ১৯৮৫</span><span class="title">ভিয়েনা কনভেনশন গৃহীত</span><span class="tag">কনভেনশন</span></summary>
+        <div class="detail">পূর্ণ নাম Vienna Convention for the Protection of the Ozone Layer। ভিয়েনা, অস্ট্রিয়ায় গৃহীত। লক্ষ্য ক্রমহ্রাসমান ওজোন স্তর সুরক্ষা।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৬ সেপ্টে, ১৯৮৭</span><span class="title">মন্ট্রিল প্রোটোকল স্বাক্ষর</span><span class="tag">প্রোটোকল</span></summary>
+        <div class="detail">মন্ট্রিল, কানাডায় স্বাক্ষরিত। লক্ষ্য ওজোনস্তর ক্ষয়কারী বস্তুর উৎপাদন, বিপণন ও ব্যবহার বন্ধ করা। ভিয়েনা কনভেনশন কার্যকর হওয়ারও আগে এর বাস্তবায়ন-হাতিয়ার তৈরি হয়ে যায়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">সেপ্টে, ১৯৮৮</span><span class="title">ভিয়েনা কনভেনশন কার্যকর</span><span class="tag">কার্যকর</span></summary>
+        <div class="detail">২২ সেপ্টেম্বর, ১৯৮৮ থেকে কার্যকর। বাংলাদেশ সমর্থন করে ২ আগস্ট, ১৯৯০।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৮৮</span><span class="title">IPCC গঠিত</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail"><b>UNEP ও WMO</b> যৌথভাবে গঠন করে। সদর দপ্তর জেনেভায়, WMO ভবনেই। মানবসৃষ্ট জলবায়ু পরিবর্তন নিয়ে বিজ্ঞানভিত্তিক প্রতিবেদন তৈরি করে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৮৯</span><span class="title">বাসেল কনভেনশন গৃহীত</span><span class="tag">কনভেনশন</span></summary>
+        <div class="detail">সুইজারল্যান্ডের বাসেল শহরে গৃহীত। লক্ষ্য বিপজ্জনক বর্জ্যের পরিমাণ ও বিষাক্ততা কমানো, সীমানার বাইরে বর্জ্য নিক্ষেপ নিয়ন্ত্রণ। কার্যকর হয় ১৯৯২ সালে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১ জানু, ১৯৮৯</span><span class="title">মন্ট্রিল প্রোটোকল কার্যকর</span><span class="tag">কার্যকর</span></summary>
+        <div class="detail">সদস্য ১৯৬টি দেশ + EU। পরবর্তীতে মোট ৫ বার সংশোধিত হয় (১৯৯০, ১৯৯২, ১৯৯৭, ১৯৯৯, ২০১৬)।</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ERA 4 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০৪</span>
+      <h2 class="era-title">রিও যুগ</h2>
+      <span class="era-range">১৯৯০–১৯৯৯</span>
+    </div>
+    <p class="era-note">১৯৯২ সালের ধরিত্রী সম্মেলন থেকে একসাথে জন্ম নেয় Agenda-21, UNFCCC ও CBD — এই দশকের কেন্দ্রবিন্দু।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">১৯৯০</span><span class="title">EEA চুক্তি স্বাক্ষর</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">European Environment Agency। সদর দপ্তর কোপেনহেগেন, ডেনমার্ক।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২ আগস্ট, ১৯৯০</span><span class="title">বাংলাদেশের সমর্থন</span><span class="tag">বাংলাদেশ</span></summary>
+        <div class="detail">বাংলাদেশ ভিয়েনা কনভেনশন ও মন্ট্রিল প্রোটোকল — দুটিতেই সমর্থন জানায়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯১</span><span class="title">Germanwatch প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">শিল্পোন্নত উত্তর ও অনুন্নত দক্ষিণের দেশগুলোর সম্পর্ক স্থাপনে অলাভজনক সংস্থা। সদর দপ্তর বন, জার্মানি। প্রতিবছর "বৈশ্বিক জলবায়ু ঝুঁকি সূচক" প্রকাশ করে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৯ মে, ১৯৯২</span><span class="title">UNFCCC প্রণীত</span><span class="tag">কনভেনশন</span></summary>
+        <div class="detail">নিউইয়র্কে প্রণীত, পরে রিও সম্মেলনে স্বাক্ষরিত হয়। মূল কাজ প্রতি বছর COP আয়োজন, উদ্দেশ্য গ্রিনহাউজ গ্যাস হ্রাস।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৩–১৪ জুন, ১৯৯২</span><span class="title">ধরিত্রী সম্মেলন (Earth Summit)</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">রিও ডি জেনেরিও, ব্রাজিল — Rio Conference-ও বলা হয়। ১৭২টি দেশের প্রতিনিধি অংশ নেয়। এখানেই গৃহীত হয় <b>Agenda-21</b> (বাংলাদেশের ফারাক্কা বাঁধ ইস্যু এর অন্তর্ভুক্ত) এবং স্বাক্ষরিত হয় <b>UNFCCC</b>।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৫ জুন, ১৯৯২</span><span class="title">CBD স্বাক্ষর</span><span class="tag">কনভেনশন</span></summary>
+        <div class="detail">Convention on Biological Diversity, রিও-তে স্বাক্ষরিত। এই কনভেনশন থেকেই পরে কার্টাগেনা (২০০০) ও নাগোয়া (২০১০) প্রোটোকল জন্ম নেয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯২</span><span class="title">GEF গঠিত</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">Global Environment Facility, রিও কনফারেন্সের প্রেক্ষাপটে গঠিত। সদর দপ্তর ওয়াশিংটন।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯২</span><span class="title">বাংলাদেশ ও সুন্দরবন</span><span class="tag">বাংলাদেশ</span></summary>
+        <div class="detail">বাংলাদেশ UNFCCC স্বাক্ষর করে; একই বছর সুন্দরবন রামসার সাইট হিসেবে ঘোষিত হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯৩</span><span class="title">CBD কার্যকর</span><span class="tag">কার্যকর</span></summary>
+        <div class="detail">বাংলাদেশ CBD অনুমোদন করে ১৯৯৪ সালে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯৪</span><span class="title">UNFCCC কার্যকর</span><span class="tag">কার্যকর</span></summary>
+        <div class="detail">বাংলাদেশ UNFCCC অনুমোদন করে ১৯৯৪ সালে (স্বাক্ষর ১৯৯২ সালে)। স্বাক্ষরকারী পক্ষ মোট ১৯৮টি (১৯৩ জাতিসংঘ সদস্য + ফিলিস্তিন + ভ্যাটিকান + নিউজিল্যান্ড + কুক দ্বীপপুঞ্জ + EU)।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯৫</span><span class="title">COP-01, বার্লিন</span><span class="tag">COP</span></summary>
+        <div class="detail">UNFCCC-ভুক্ত দেশগুলোর বার্ষিক জলবায়ু সম্মেলনের যাত্রা শুরু।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯৬</span><span class="title">Arctic Council প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">সদর দপ্তর ট্রুমসো, নরওয়ে। সদস্য ৮টি দেশ: আইসল্যান্ড, সুইডেন, ডেনমার্ক (গ্রিনল্যান্ডের মাধ্যমে), ফিনল্যান্ড, নরওয়ে, রাশিয়া, যুক্তরাষ্ট্র (আলাস্কা) ও কানাডা। এর আগে ১৯৯১ সালে হয়েছিল Arctic Council Summit।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২৩–২৭ জুন, ১৯৯৭</span><span class="title">Rio+5 সম্মেলন</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">নিউইয়র্কে অনুষ্ঠিত, লক্ষ্য ছিল ১৯৯২ সালের অগ্রগতি পর্যালোচনা করা।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯৯৭</span><span class="title">UNDG গঠন</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">জাতিসংঘের ৭ম মহাসচিব কফি আনান ৩৩টি সংস্থা নিয়ে UN Development Group গঠন করেন; UNEP এই গ্রুপেরও সদস্য হয়ে যায়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১১ ডিসে, ১৯৯৭</span><span class="title">কিয়োটো প্রোটোকল স্বাক্ষর</span><span class="tag">প্রোটোকল</span></summary>
+        <div class="detail">জাপানের কিয়োটোতে স্বাক্ষরিত। লক্ষ্য ১৯৯০ সালকে ভিত্তি ধরে উন্নত দেশগুলোর গ্রিনহাউজ গ্যাস নিঃসরণ ৫.২% হ্রাস। দেশগুলোকে Annex-I, Annex-II ও Non-Annex — এই তিন ভাগে ভাগ করে। এখান থেকেই জন্ম নেয় <b>Carbon Trade</b> ধারণা (১৭ অনুচ্ছেদ)। প্রথম মেয়াদ ১৯৯৭–২০১২।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০০</span><span class="title">কার্টাগেনা প্রোটোকল স্বাক্ষর</span><span class="tag">প্রোটোকল</span></summary>
+        <div class="detail">জৈব নিরাপত্তা বিষয়ক প্রোটোকল, স্বাক্ষরিত হয় মন্ট্রিলে (মূল পরিকল্পনা ছিল ১৯৯৯ সালে কলম্বিয়ার কার্টাগেনায়, তাই নাম থেকে গেছে)। বাংলাদেশ একই বছর স্বাক্ষর করে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০০</span><span class="title">টাঙ্গুয়ার হাওর</span><span class="tag">বাংলাদেশ</span></summary>
+        <div class="detail">বাংলাদেশের দ্বিতীয় রামসার সাইট হিসেবে ঘোষিত হয় (প্রথমটি সুন্দরবন, ১৯৯২)।</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ERA 5 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০৫</span>
+      <h2 class="era-title">টেকসই উন্নয়নের দশক</h2>
+      <span class="era-range">২০০০–২০০৯</span>
+    </div>
+    <p class="era-note">জোহানেসবার্গে টেকসই উন্নয়নের সংজ্ঞা স্পষ্ট হয়, আর কোপেনহেগেনে প্রথমবার তাপমাত্রা সীমা নিয়ে আলোচনা শুরু হয়।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">২৬ আগ–৪ সেপ্টে, ২০০২</span><span class="title">WSSD / জোহানেসবার্গ সামিট</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">বিশ্বের প্রথম টেকসই উন্নয়ন সম্মেলন এবং একই সাথে দ্বিতীয় ধরিত্রী সম্মেলন — তাই একে Earth Summit+10 বা Rio+10-ও বলা হয়। এখানেই টেকসই উন্নয়নের সংজ্ঞা স্পষ্ট হয়: বর্তমানের চাহিদা পূরণ করে ভবিষ্যতের জন্য রিজার্ভ রাখা।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০২</span><span class="title">Ocean Foundation প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">প্রতিষ্ঠাতা উইলকট হেনরি, সদর দপ্তর ওয়াশিংটন। প্রথমে নাম ছিল "Coral Reef Foundation"। কাজের ক্ষেত্র সামুদ্রিক প্লাস্টিক দূষণ, নীল কার্বন ও সমুদ্র অম্লীকরণ।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০৩</span><span class="title">নাম পরিবর্তন ও কার্যকর</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">Coral Reef Foundation-এর নাম বদলে হয় Ocean Foundation। একই বছর কার্টাগেনা প্রোটোকল কার্যকর হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০৪</span><span class="title">বাংলাদেশ ও নোবেল</span><span class="tag">বাংলাদেশ</span></summary>
+        <div class="detail">বাংলাদেশ কার্টাগেনা প্রোটোকল অনুমোদন করে। একই বছর ওয়াঙ্গারি মাথাই শান্তিতে নোবেল পুরস্কার পান।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০৭</span><span class="title">IPCC-র নোবেল ও Earth Hour</span><span class="tag">পুরস্কার</span></summary>
+        <div class="detail">IPCC নোবেল শান্তি পুরস্কার পায়, তৎকালীন প্রধান আল গোর (সাবেক মার্কিন ভাইস প্রেসিডেন্ট)। একই বছর WWF-এর আয়োজনে প্রথম Earth Hour পালিত হয় সিডনিতে, রাত ৮:৩০–৯:৩০।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০০৯</span><span class="title">COP-15, কোপেনহেগেন</span><span class="tag">COP</span></summary>
+        <div class="detail">তাপমাত্রা ২ ডিগ্রির নিচে রাখার এবং <b>Green Climate Fund</b> গঠনের প্রস্তাব ওঠে।</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ERA 6 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০৬</span>
+      <h2 class="era-title">প্যারিস যুগ</h2>
+      <span class="era-range">২০১০–২০১৯</span>
+    </div>
+    <p class="era-note">এই দশকেই তৈরি হয় ইতিহাসের সবচেয়ে আলোচিত পরিবেশ চুক্তি — প্যারিস চুক্তি — এবং কিগালি সংশোধনী।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">২০১০</span><span class="title">BCCTF ও GCF</span><span class="tag">তহবিল</span></summary>
+        <div class="detail">বাংলাদেশ বিশ্বের প্রথম দেশ হিসেবে নিজস্ব তহবিলে <b>BCCTF</b> গঠন করে — কোপেনহেগেন প্রস্তাবনার মাত্র এক বছর পর, এমনকি এর আগেই উদ্যোগ শুরু হয়েছিল। একই বছর UNFCCC-র অধীনে <b>GCF</b> গঠিত হয়, সদর দপ্তর ইনচন, দক্ষিণ কোরিয়া।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০১০</span><span class="title">নাগোয়া প্রোটোকল স্বাক্ষর</span><span class="tag">প্রোটোকল</span></summary>
+        <div class="detail">জাপানের নাগোয়ায় স্বাক্ষরিত, বন্যপ্রাণী সংরক্ষণ বিষয়ক, CBD বাস্তবায়নের অংশ। কার্যকর হয় ২০১৪ সালে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০–২২ জুন, ২০১২</span><span class="title">Rio+20 সম্মেলন</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">আবার রিও ডি জেনেরিওতে। "কী ভবিষ্যত আমরা চাই" অঙ্গীকারপত্র গৃহীত হয়, এখান থেকেই গ্রিন ইকোনমি ধারণার যাত্রা শুরু।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০১২</span><span class="title">দোহা বৈঠক ও কানাডার প্রস্থান</span><span class="tag">প্রোটোকল</span></summary>
+        <div class="detail">কাতারের দোহা বৈঠকে কিয়োটো প্রোটোকলের মেয়াদ বাড়িয়ে ৩১ ডিসেম্বর ২০২০ পর্যন্ত করা হয়। একই বছর কানাডা প্রোটোকল ত্যাগ করে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২৫–২৭ সেপ্টে, ২০১৫</span><span class="title">SDG সম্মেলন</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">নিউইয়র্কে টেকসই উন্নয়ন লক্ষ্যমাত্রা (SDG) নিয়ে সম্মেলন — "টেকসই উন্নয়ন" শব্দটি ব্যবহার শুরু ১৯৯২ থেকেই, প্রথম সম্মেলন ২০০২ জোহানেসবার্গে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৩০ নভে–১২ ডিসে, ২০১৫</span><span class="title">COP-21, প্যারিস</span><span class="tag">COP</span></summary>
+        <div class="detail">পূর্ণ নাম United Nations Climate Change Conference, একে CMP-11-ও বলা হয়। ১৯৭টি দেশ ও EU অংশ নেয়। ১২ ডিসেম্বর <b>প্যারিস চুক্তি</b> গৃহীত হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২২ এপ্রিল, ২০১৬</span><span class="title">প্যারিস চুক্তি স্বাক্ষর</span><span class="tag">চুক্তি</span></summary>
+        <div class="detail">নিউইয়র্কের জাতিসংঘ সদর দপ্তরে স্বাক্ষরিত — তারিখটি ইচ্ছাকৃতভাবে ধরিত্রী দিবসে বেছে নেওয়া। বাংলাদেশ একই দিনে স্বাক্ষর করে। প্রথম স্বাক্ষরকারী দেশ ফিজি, সর্বশেষ ইরান। লক্ষ্য: বৈশ্বিক উষ্ণতা ২ ডিগ্রির নিচে, বিশেষভাবে ১.৫ ডিগ্রিতে সীমাবদ্ধ রাখার চেষ্টা; প্রতি ৫ বছরে NDC উপস্থাপন।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">অক্টো, ২০১৬</span><span class="title">কিগালি সংশোধনী</span><span class="tag">সংশোধনী</span></summary>
+        <div class="detail">মন্ট্রিল প্রোটোকলের ২৮তম সভায়, রুয়ান্ডার কিগালিতে সিদ্ধান্ত হয় — ২০৪৭ সালের মধ্যে হাইড্রোফ্লোরোকার্বনের ব্যবহার ৮০% কমানো হবে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৪ নভে, ২০১৬</span><span class="title">প্যারিস চুক্তি কার্যকর</span><span class="tag">কার্যকর</span></summary>
+        <div class="detail">জলবায়ু বিষয়ে ইতিহাসের প্রথম সার্বজনীন চুক্তি, অনুসমর্থিত দেশ ১৯৪টি।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১ জুন, ২০১৭</span><span class="title">ট্রাম্প প্রশাসনের প্রস্থান ঘোষণা</span><span class="tag">যুক্তরাষ্ট্র</span></summary>
+        <div class="detail">যুক্তরাষ্ট্র প্যারিস চুক্তি ত্যাগের ঘোষণা দেয়। পরে ১৯ ফেব্রুয়ারি ২০২১ বাইডেন প্রশাসন পুনরায় ফিরে আসে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০১৮</span><span class="title">GCA প্রতিষ্ঠা</span><span class="tag">সংস্থা</span></summary>
+        <div class="detail">Global Center on Adaptation, সদর দপ্তর হেগ, নেদারল্যান্ডস। চেয়ারম্যান সাবেক জাতিসংঘ মহাসচিব বান কি মুন। প্রথম আঞ্চলিক কেন্দ্র বেইজিং।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০১৯</span><span class="title">GCA ঢাকা কেন্দ্র উদ্বোধন</span><span class="tag">বাংলাদেশ</span></summary>
+        <div class="detail">দক্ষিণ এশিয়ায় প্রথম ও দ্বিতীয় আঞ্চলিক কেন্দ্র — আগারগাঁওয়ের পরিবেশ অধিদপ্তর ভবনে। বান কি মুন মন্তব্য করেন, "জলবায়ু পরিবর্তন মোকাবিলায় শিক্ষার ক্ষেত্রে বাংলাদেশই সবচেয়ে ভালো শিক্ষক।"</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ERA 7 -->
+  <section class="era">
+    <div class="era-head">
+      <span class="era-num">০৭</span>
+      <h2 class="era-title">সাম্প্রতিক দশক</h2>
+      <span class="era-range">২০২০–২০২৫</span>
+    </div>
+    <p class="era-note">EU-র Green Deal থেকে শুরু করে প্লাস্টিক দূষণ চুক্তি ও CBD Treaty পর্যন্ত — সবচেয়ে সাম্প্রতিক অধ্যায়।</p>
+    <div class="rail">
+
+      <details class="item">
+        <summary><span class="date">২০ জানু, ২০২০</span><span class="title">EU Green Deal প্রস্তাব</span><span class="tag">চুক্তি</span></summary>
+        <div class="detail">ইউরোপীয় পার্লামেন্টে, স্ট্রাসবার্গ, ফ্রান্সে প্রস্তাবিত। লক্ষ্য ২০৫০ সালের মধ্যে পুরো EU অঞ্চলকে কার্বন-নিরপেক্ষ করা। পোল্যান্ড এই লক্ষ্যে রাজি হয়নি।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১৯ ফেব্রু, ২০২১</span><span class="title">বাইডেন প্রশাসনের প্রত্যাবর্তন</span><span class="tag">যুক্তরাষ্ট্র</span></summary>
+        <div class="detail">যুক্তরাষ্ট্র পুনরায় প্যারিস চুক্তিতে ফিরে আসে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২ মার্চ, ২০২২</span><span class="title">প্লাস্টিক চুক্তির যাত্রা শুরু</span><span class="tag">চুক্তি</span></summary>
+        <div class="detail">UNEA-5.2 সম্মেলনে জাতিসংঘ সদস্য দেশগুলো একটি আন্তঃসরকারি আলোচনা কমিটি (INC) গঠনে সম্মত হয়। লক্ষ্য "End plastic pollution" — ২০৪০ সালের মধ্যে প্লাস্টিক দূষণ বন্ধ।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০২২</span><span class="title">Stockholm+50</span><span class="tag">সম্মেলন</span></summary>
+        <div class="detail">ধরিত্রী সম্মেলনের ধারাবাহিকতায় চতুর্থ আসর, স্টকহোমে — মূল ১৯৭২ সম্মেলনের ৫০ বছর পূর্তিতে।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২৮ নভে–২ ডিসে, ২০২২</span><span class="title">INC-এর প্রথম বৈঠক</span><span class="tag">বৈঠক</span></summary>
+        <div class="detail">উরুগুয়ের পুন্তা দেল এস্তেতে অনুষ্ঠিত।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">৭–১৯ ডিসে, ২০২২</span><span class="title">CBD Treaty গৃহীত</span><span class="tag">চুক্তি</span></summary>
+        <div class="detail">১৫তম বিশ্ব জীববৈচিত্র্য শীর্ষ সম্মেলনে ১৯ ডিসেম্বর গৃহীত ও অনুমোদিত হয়। স্বাক্ষরকারী ১৯৬টি দেশ + EU। মূল লক্ষ্য — ২০৩০ সালের মধ্যে ভূমি ও সমুদ্রের ৩০% সুরক্ষিত এলাকা ঘোষণা, এবং ধনী দেশগুলোর অর্থায়ন। তহবিল বণ্টন নিয়ে সমালোচনা থেকেই উঠে আসে <b>"সবুজ উপনিবেশবাদ (Green Colonialism)"</b> ধারণা।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২৩–২৯ এপ্রিল, ২০২৪</span><span class="title">INC-4 বৈঠক</span><span class="tag">বৈঠক</span></summary>
+        <div class="detail">কানাডার অটোয়ায় অনুষ্ঠিত, প্লাস্টিক চুক্তি নিয়ে আলোচনার চতুর্থ ধাপ।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১ নভে, ২০২৪</span><span class="title">COP-16 (জীববৈচিত্র্য)</span><span class="tag">COP</span></summary>
+        <div class="detail">CBD Treaty-র ধারাবাহিকতায় পরবর্তী জীববৈচিত্র্য সম্মেলন শুরু হয়।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">১১–২২ নভে, ২০২৪</span><span class="title">COP-29, বাকু</span><span class="tag">COP</span></summary>
+        <div class="detail">আজারবাইজানের বাকুতে অনুষ্ঠিত।</div>
+      </details>
+
+      <details class="item">
+        <summary><span class="date">২০২৫</span><span class="title">COP-30, বেলেম</span><span class="tag">COP</span></summary>
+        <div class="detail">ব্রাজিলের বেলেমে অনুষ্ঠিত — এখন পর্যন্ত সর্বশেষ COP।</div>
+      </details>
+
+    </div>
+  </section>
+
+  <footer class="page">
+    আপনার পাঠানো ১১টি ছবির তথ্য কালানুক্রমে সাজানো। CVF ও V20 অংশের বাকি তথ্য পাঠালে এখানে যোগ করা যাবে।
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('openAll').addEventListener('click', () => {
+    document.querySelectorAll('details.item').forEach(d => d.open = true);
+  });
+  document.getElementById('closeAll').addEventListener('click', () => {
+    document.querySelectorAll('details.item').forEach(d => d.open = false);
+  });
+
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('details.item').forEach(d => {
+      d.addEventListener('mouseenter', () => { d.open = true; });
+      d.addEventListener('mouseleave', () => { d.open = false; });
+    });
+  }
+</script>
+
+</body>
+</html>

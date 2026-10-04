@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>পরিবেশ রিভিশন সিস্টেম</title>
+<style>
+:root{--bg:#f3f6f1;--card:#fff;--ink:#17301f;--mut:#5d7366;--ac:#1f6b45;--ac2:#e7f1ea;--bad:#b3402f;--ln:#d3dfd6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a14;--card:#182720;--ink:#e6efe8;--mut:#9bb3a3;--ac:#5fc08a;--ac2:#1f3629;--bad:#e8806e;--ln:#2c4234}}
+:root[data-theme="dark"]{--bg:#101a14;--card:#182720;--ink:#e6efe8;--mut:#9bb3a3;--ac:#5fc08a;--ac2:#1f3629;--bad:#e8806e;--ln:#2c4234}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Noto Sans Bengali","Hind Siliguri",system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:14px}
+h1{font-size:20px;margin:4px 0 10px}
+nav{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}
+nav button,.chip{border:1px solid var(--ln);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:20px;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+nav button.on,.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.stat{display:flex;gap:4px;margin:8px 0 14px}
+.stat div{flex:1;background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:6px 2px;text-align:center;font-size:12px;color:var(--mut)}
+.stat b{display:block;font-size:18px;color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:22px 18px;min-height:210px;cursor:pointer}
+.card small{color:var(--mut)}
+.q{font-size:24px;font-weight:700;margin:10px 0}
+.a{font-size:17px;border-top:2px dashed var(--ln);padding-top:12px;margin-top:12px}
+.t{background:var(--ac2);border-radius:8px;padding:8px 10px;margin-top:10px;font-size:15px}
+.btns{display:flex;gap:8px;margin-top:12px}
+.btns button,.go{flex:1;padding:13px;border-radius:10px;border:0;font:inherit;font-weight:700;cursor:pointer;color:#fff}
+.no{background:var(--bad)}.yes{background:var(--ac)}.go{background:var(--ac);flex:none;width:100%}
+.opt{display:block;width:100%;text-align:left;margin:7px 0;padding:11px 13px;border-radius:10px;border:1px solid var(--ln);background:var(--card);color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.opt.r{border-color:var(--ac);background:var(--ac2)}.opt.w{border-color:var(--bad)}
+.tl{border-left:3px solid var(--ac);margin-left:8px;padding-left:14px}
+.tl div{margin:0 0 12px;position:relative}.tl div:before{content:"";position:absolute;left:-21px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--ac)}
+.tl b{color:var(--ac)}.mut{color:var(--mut);font-size:14px}
+button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+</style></head><body><main>
+<h1>পরিবেশ রিভিশন সিস্টেম</h1>
+<nav id="nav"></nav>
+<div id="v"></div>
+</main>
+<script>
+// [গ্রুপ, সাল, নাম, তথ্য, কৌশল]
+const C=[
+["কনভেনশন",1971,"রামসার কনভেনশন","কারণ: জলাভূমি ভরাট হচ্ছিল, অথচ জলাভূমি পরিযায়ী পাখি ও মাছের আশ্রয়|লক্ষ্য: জলাশয় ও জলাভূমি সংরক্ষণ|স্বাক্ষর: ২ ফেব্রুয়ারি ১৯৭১, রামসার শহর, ইরান|কার্যকর: ১৯৭৫ (৪ বছর পর)|পূর্ণ নাম: Convention on Wetlands of International Importance especially as Waterfowl Habitat|২ ফেব্রুয়ারি বিশ্ব জলাভূমি দিবস|Global Wetland Outlook ২০১৮: ১৯৭০–২০১৫ সালে বিশ্বের প্রায় ৩৫% জলাভূমি হারিয়েছে (সাধারণ জ্ঞান)|পাখি সীমানা মানে না, তাই চুক্তি আন্তর্জাতিক","রামসার = জল, ইরান। ৭১ সালে আমরা স্বাধীন, ওই বছরই পানির চুক্তি"],
+["কনভেনশন",1992,"বাংলাদেশের রামসার সাইট","মোট ২টি|সুন্দরবন: ১৯৯২ (ম্যানগ্রোভ, প্রথম সাইট), বাংলাদেশ ১৯৯২ সালে রামসারে যোগ দেয়|টাঙ্গুয়ার হাওর: ২০০০ (মিঠাপানির জলাভূমি, প্রচুর পরিযায়ী পাখি)","সুন্দরবন ৯২ (রিও সাল), হাওর ২০০০ (নতুন শতক)"],
+["কনভেনশন",1985,"ভিয়েনা কনভেনশন","পূর্ণ নাম: Vienna Convention for the Protection of the Ozone Layer|কারণ: CFC গ্যাসে ওজোন স্তর পাতলা হচ্ছিল; এই স্তর সূর্যের অতিবেগুনি রশ্মি আটকায়|এটি কাঠামোগত চুক্তি, কঠোর বাধ্যবাধকতা ছিল না|স্থান: ভিয়েনা, অস্ট্রিয়া|গৃহীত: ২২ মার্চ ১৯৮৫|কার্যকর: ২২ সেপ্টেম্বর ১৯৮৮|বাংলাদেশ সমর্থন: ২ আগস্ট ১৯৯০","ভিয়েনা = সমস্যা স্বীকার"],
+["কনভেনশন",1987,"মন্ট্রিল প্রটোকল","ভিয়েনার বাস্তবায়ন প্রটোকল (কনভেনশন দ্রুত বাস্তবায়নের জন্য)|লক্ষ্য: ওজোন ক্ষয়কারী বস্তুর উৎপাদন, বিপণন ও ব্যবহার বন্ধ|স্থান: মন্ট্রিল, কানাডা|স্বাক্ষর: ১৬ সেপ্টেম্বর ১৯৮৭|কার্যকর: ১ জানুয়ারি ১৯৮৯|বাংলাদেশ: ২ আগস্ট ১৯৯০ (ভিয়েনার সঙ্গে একই দিনে)|সদস্য: ১৯৬টি দেশ ও ইউরোপীয় ইউনিয়ন|সংশোধন ৫ বার: ১৯৯০, ১৯৯২, ১৯৯৭, ১৯৯৯, ২০১৬|সাফল্য: প্রায় ৯৯% ওজোন-ক্ষয়কারী বস্তু বন্ধ; জাতিসংঘের প্রথম চুক্তি যা সব সদস্য অনুমোদন করেছে (সাধারণ জ্ঞান)","ভিয়েনা ৮৫ → মন্ট্রিল ৮৭ (২ বছর)। কার্যকর ৮৮, ৮৯ পরপর"],
+["কনভেনশন",2016,"কিগালি সংশোধনী","মন্ট্রিল প্রটোকলের ২৮তম সভা, অক্টোবর ২০১৬, কিগালি, রুয়ান্ডা|সিদ্ধান্ত: ২০৪৭ সালের মধ্যে হাইড্রোফ্লোরো কার্বন (HFC) ৮০% কমানো|পটভূমি: CFC-র বিকল্প HFC ওজোন নষ্ট করে না, কিন্তু শক্তিশালী গ্রিনহাউস গ্যাস (সাধারণ জ্ঞান)",""],
+["কনভেনশন",1985,"ওজোন সমস্যার ক্রম (পটভূমি)","CFC: ফ্রিজ, এসি, স্প্রে, ফোমে ব্যবহৃত; ১৯২০-এর শেষে আবিষ্কার, নাম ফ্রিয়ন|১৯৭৪: মোলিনা ও রোল্যান্ডের তত্ত্ব (১৯৯৫ সালে নোবেল, ক্রুটজেনসহ)|১৯৭৮: যুক্তরাষ্ট্র, কানাডা, সুইডেন, নরওয়ে এরোসলে CFC নিষিদ্ধ করে|মে ১৯৮৫: ব্রিটিশ অ্যান্টার্কটিক সার্ভে অ্যান্টার্কটিকায় প্রায় ৪০% ওজোন কমার প্রমাণ দেয় (ওজোন হোল)|ওজোন কমলে: ত্বকের ক্যান্সার, ছানি, ফসল কমা, ফাইটোপ্ল্যাঙ্কটন নষ্ট|আনুমানিক পুনরুদ্ধার: বেশিরভাগ অংশে ২০৪০, অ্যান্টার্কটিকায় ২০৬০-এর দশক",""],
+["কনভেনশন",1989,"বাসেল কনভেনশন","পূর্ণ নাম: Basel Convention on the Control of Transboundary Movements of Hazardous Wastes and their Disposal|কারণ: ধনী দেশ বিষাক্ত বর্জ্য গরিব দেশে পাঠাচ্ছিল (টক্সিক কলোনিয়ালিজম)|গৃহীত: ১৯৮৯ (২২ মার্চ), বাসেল, সুইজারল্যান্ড|কার্যকর: ১৯৯২|লক্ষ্য ১: বিপজ্জনক বর্জ্যের পরিমাণ ও বিষাক্ততা কমানো|লক্ষ্য ২: বর্জ্য পরিবহন নিয়ন্ত্রণ করে সীমানার বাইরে সমুদ্রে ফেলার প্রবণতা কমানো|লক্ষ্য ৩: উৎপাদনস্থলের যত কাছে সম্ভব নিষ্কাশন|সীমানা পার করতে আগাম লিখিত সম্মতি (PIC) লাগে|ঘটনা: কোকো (নাইজেরিয়া ১৯৮৭–৮৮), খিয়ান সি জাহাজ (১৯৮৬–৮৮), গিনি-বিসাউ (১৯৮৮)|বাসেল নিষেধাজ্ঞা সংশোধনী ১৯৯৫ (কার্যকর ২০১৯); বামাকো কনভেনশন ১৯৯১ (আফ্রিকা); যুক্তরাষ্ট্র সই করেছে, অনুমোদন করেনি|বাংলাদেশ: সীতাকুণ্ডের জাহাজ-ভাঙা শিল্প প্রাসঙ্গিক","Basel = Border। ৮৯ গৃহীত, ৯২ কার্যকর"],
+["কনভেনশন",1992,"রিও আর্থ সামিট ১৯৯২","ব্রাজিলের রিও ডি জেনিরোতে বিশ্বনেতাদের সম্মেলন|দুটি সমস্যা: প্রকৃতি ও প্রাণ হারানো, পৃথিবী গরম হওয়া|ফল: দুটি কনভেনশন: CBD ও UNFCCC|এই বছরই GEF গঠিত|মন্ট্রিল ও বাসেলের মতো এখানেও আগে কাঠামো, পরে প্রটোকল","রিও = ৯২ = দুই যমজ"],
+["কনভেনশন",1993,"CBD (জীববৈচিত্র্য কনভেনশন)","পূর্ণ নাম: Convention on Biological Diversity|স্বাক্ষর: ৫ জুন ১৯৯২, রিও কনফারেন্সে (বিশ্ব পরিবেশ দিবসের তারিখ)|কার্যকর: ১৯৯৩|বাংলাদেশ অনুমোদন: ১৯৯৪|পরে প্রটোকল: কার্টাগেনা ও নাগোয়া","CBD আগে (৯৩), UNFCCC পরে (৯৪)"],
+["কনভেনশন",1994,"UNFCCC","পূর্ণ নাম: United Nations Framework Convention on Climate Change|প্রণীত: ৯ মে ১৯৯২, নিউইয়র্ক, যুক্তরাষ্ট্র|স্বাক্ষর: ১৯৯২ ধরিত্রী সম্মেলনে (রিও ডি জেনিরো, ব্রাজিল)|কার্যকর: ১৯৯৪|বাংলাদেশ: স্বাক্ষর ১৯৯২, অনুমোদন ১৯৯৪|মূল কাজ: বার্ষিক জলবায়ু সম্মেলন (COP) আয়োজন|উদ্দেশ্য: গ্রিনহাউস গ্যাস হ্রাস|পক্ষ: ১৯৮টি (১৯৩ সদস্য + ফিলিস্তিন + ভ্যাটিকান + নিউ ও কুক দ্বীপপুঞ্জ + EU)|নিউ ও কুক দ্বীপপুঞ্জ: দক্ষিণ প্রশান্ত মহাসাগরে, নিউজিল্যান্ডের অধীন|পরে প্রটোকল: কিয়োটো","UNFCCC = মা, কিয়োটো = সন্তান। BD দুটোতেই ৯৪"],
+["কনভেনশন",1997,"কিয়োটো প্রটোকল","UNFCCC-এর দাঁতওয়ালা রূপ (UNFCCC শুধু ইচ্ছা প্রকাশ করেছিল)|পূর্ণ নাম: Kyoto Protocol to the UNFCCC|স্বাক্ষর: ১১ ডিসেম্বর ১৯৯৭, কিয়োটো, জাপান|লক্ষ্য: ১৯৯০ ভিত্তি ধরে উন্নত দেশ ৬টি গ্রিনহাউস গ্যাসের যৌথ নিঃসরণ ৫.২% কমাবে|সদস্য: ১৯২টি|কার্যকর: ২০০৫ (নোটে নেই, সাধারণ জ্ঞান)","৫.২ = পাঁচ দুই। রিও থেকে ৫ বছর পর"],
+["কনভেনশন",2012,"কিয়োটোর মেয়াদ, সদস্য ও শাস্তি","প্রথম মেয়াদ: ১৫ বছর (১৯৯৭–২০১২)|মেয়াদ বাড়ে: দোহা, কাতার, ২০১২, ৩১ ডিসেম্বর ২০২০ পর্যন্ত|শাস্তি: লক্ষ্য পূরণ না করলে পরবর্তী মেয়াদে আরও ৩০% কমাতে হবে|অন্তর্ভুক্ত নয়: যুক্তরাষ্ট্র, কানাডা, দক্ষিণ সুদান, অ্যান্ডোরা|ত্যাগকারী: কানাডা (২০১২)","৯৭ + ১৫ = ২০১২"],
+["কনভেনশন",1997,"কিয়োটোর তিন শ্রেণি","Annex-I: শিল্পপ্রধান ৪২টি দেশ ও EU (বেশি কার্বন ছাড়ে, কমাতে হবে)|Annex-II: উন্নয়নশীল দেশ, অপেক্ষাকৃত কম নিঃসরণ (এক নোটে ২৮টি, অন্যটিতে ২৪টি লেখা, বইয়ে মিলিয়ে নিন)|Non-Annex: বৈশ্বিক উষ্ণায়নের জন্য দায়ী নয়, কোনো বাধ্যবাধকতা নেই (যেমন বাংলাদেশ)","Annex-I = শিল্পোন্নত, উল্টে ফেলবেন না"],
+["কনভেনশন",1997,"কার্বন ট্রেড ও কার্বন ট্যাক্স","কার্বন ট্রেড: কম নিঃসরণকারী দেশ অতিরিক্ত কার্বন অধিকার বেশি নিঃসরণকারীর কাছে বিক্রি করে; ধারণা কিয়োটো প্রটোকলের ১৭ অনুচ্ছেদে|উদাহরণ: A-র কোটা ১০০, ব্যবহার ৮০; বাকি ২০ একক সে B-কে বেচে, যার ব্যবহার ১২০|কার্বন ট্যাক্স: প্রথম চালু ফিনল্যান্ড, ১৯৯০-এর দশকে|বর্তমানে ২৭টি দেশে (EU ও অস্ট্রেলিয়াসহ)","কিয়োটো মানেই কার্বন ট্রেড"],
+["কনভেনশন",2003,"কার্টাগেনা প্রটোকল","CBD-র নিরাপত্তা শাখা। নোটে অপর নাম: জৈব জ্বালানি নিরাপত্তা (সাধারণত Biosafety প্রটোকল)|কারণ: GMO প্রকৃতির জন্য ঝুঁকিপূর্ণ হতে পারে|স্বাক্ষর: ২০০০, মন্ট্রিল, কানাডা (কথা ছিল ১৯৯৯ সালে কলম্বিয়ার কার্টাগেনায়)|কার্যকর: ২০০৩|বাংলাদেশ: স্বাক্ষর ২০০০, অনুমোদন ২০০৪","২০০০ → ০৩ → ০৪। স্বাক্ষর কানাডায়, কলম্বিয়ায় নয়"],
+["কনভেনশন",2010,"নাগোয়া প্রটোকল","CBD-র ন্যায্য ভাগাভাগি শাখা|নোটে লক্ষ্য: বন্য প্রাণী সংরক্ষণ|কারণ: বায়োপাইরেসি, ধনী কোম্পানি গরিব দেশের প্রাকৃতিক সম্পদে মুনাফা করত|স্বাক্ষর: ২০১০, নাগোয়া, জাপান|কার্যকর: ২০১৪|১৯৯২ সালের CBD বাস্তবায়নের জন্য","জাপানে দুটি: কিয়োটো ৯৭, নাগোয়া ২০১০"],
+["ছক",0,"স্থান ও দেশ জোড়া","রামসার: ইরান|ভিয়েনা: অস্ট্রিয়া|মন্ট্রিল: কানাডা|বাসেল: সুইজারল্যান্ড|CBD: রিও, ব্রাজিল|UNFCCC: নিউইয়র্ক (প্রণীত), রিও (স্বাক্ষর)|কিয়োটো ও নাগোয়া: জাপান|কার্টাগেনা: কানাডার মন্ট্রিল|কিগালি: রুয়ান্ডা","কানাডায় দুটি, জাপানে দুটি"],
+["ছক",0,"বাংলাদেশ-সংক্রান্ত তারিখ","ভিয়েনা ও মন্ট্রিল: ২ আগস্ট ১৯৯০|রামসার সাইট: সুন্দরবন ৯২, টাঙ্গুয়া ২০০০|CBD: অনুমোদন ১৯৯৪|UNFCCC: স্বাক্ষর ১৯৯২, অনুমোদন ১৯৯৪|কার্টাগেনা: স্বাক্ষর ২০০০, অনুমোদন ২০০৪","৯০, ৯৪, ০৪"],
+["ছক",0,"কার্যকরের ব্যবধান ও সংশোধন","রামসার ৭১ → ৭৫|ভিয়েনা ৮৫ → ৮৮|মন্ট্রিল ৮৭ → ৮৯|বাসেল ৮৯ → ৯২|CBD ৯২ → ৯৩|UNFCCC ৯২ → ৯৪|কার্টাগেনা ২০০০ → ০৩|নাগোয়া ২০১০ → ১৪|মন্ট্রিল সংশোধন: ৯০, ৯২, ৯৭, ৯৯, ২০১৬","সাল ছন্দ: ৭১, ৮৫, ৮৭, ৮৯, ৯২, ৯৭, ২০০০, ২০১০"],
+["ছক",0,"পরীক্ষায় সাধারণ ভুল","কিয়োটো ও নাগোয়া দুটোই জাপানে|কার্টাগেনা স্বাক্ষর কানাডায়, কলম্বিয়ায় নয়|মন্ট্রিল প্রটোকল ওজোন নিয়ে, কিয়োটো জলবায়ু নিয়ে|৮৭ (মন্ট্রিল) ও ৯৭ (কিয়োটো) আলাদা রাখুন|Annex-I শিল্পোন্নত, Annex-II উন্নয়নশীল|Earth Watch সংস্থা (১৯৭১), Earth Hour WWF-এর কর্মসূচি (২০০৭)",""],
+["সংস্থা",1950,"WMO","বিশ্ব আবহাওয়া সংস্থা (World Meteorological Organization)|প্রেক্ষাপট: ১৯৪৭ সালের আবহাওয়া কনভেনশন|গঠন: ১৯৫০|সদর দপ্তর: জেনেভা|সদস্য: ১৯৩ (১৮৭টি দেশ + ৬টি অঞ্চল)","৪৭ কনভেনশন → ৫০ সংস্থা"],
+["সংস্থা",1972,"UNEP","United Nations Environment Programme|১৯৭২, স্টকহোম, সুইডেনে জাতিসংঘের প্রথম পরিবেশ সম্মেলন|জন্ম: ৫ জুন ১৯৭২ (তাই ৫ জুন বিশ্ব পরিবেশ দিবস)|সদর দপ্তর: নাইরোবি, কেনিয়া|১৯৯৭ সালে UNDG-র সদস্য হয় (বইয়ের তথ্য)","স্টকহোম → ৭২ → ৫ জুন → নাইরোবি"],
+["সংস্থা",1988,"IPCC","Intergovernmental Panel on Climate Change|গঠন: ১৯৮৮, UNEP ও WMO যৌথভাবে|কাজ: কয়েকশ বিজ্ঞানী মানবসৃষ্ট জলবায়ু পরিবর্তন ও প্রভাব নিয়ে প্রতিবেদন করেন|সদর দপ্তর: জেনেভা, WMO ভবনে|সদস্য: ১৯৫|নোবেল শান্তি পুরস্কার: ২০০৭ (বইয়ে প্রধান আল গোর; বাস্তবে IPCC ও আল গোর যৌথ, চেয়ারম্যান রাজেন্দ্র পাচৌরি; পরীক্ষায় বইয়ের উত্তর)|বর্তমান প্রধান: জিম স্কিয়া (যুক্তরাজ্য)","UNEP + WMO = IPCC (বাবা-মা)"],
+["সংস্থা",1992,"GEF","Global Environment Facility, বৈশ্বিক পরিবেশ নেটওয়ার্ক|গঠন: ১৯৯২, রিও কনফারেন্সের প্রেক্ষাপটে|সদর দপ্তর: ওয়াশিংটন, যুক্তরাষ্ট্র","GEF = ৯২ = রিও = ওয়াশিংটন"],
+["সংস্থা",1997,"UNDG","UN Development Group|গঠন: ১৯৯৭, ৭ম মহাসচিব কফি আনান|৩৩টি সংস্থা নিয়ে|বইয়ের তথ্য: UNEP এই ১৯৯৭ সালেই সদস্য হয়",""],
+["সংস্থা",2010,"GCF","Green Climate Fund, জাতিসংঘের জলবায়ু পরিবর্তন তহবিল|গঠন: ২০১০, UNFCCC|সদর দপ্তর: সংদো, ইনচিয়ন, দক্ষিণ কোরিয়া|বাংলাদেশ: ২৫০ মিলিয়ন ডলার (২৫ কোটি) প্রকল্প সহায়তা","GEF = ৯২ = ওয়াশিংটন; GCF = ২০১০ = কোরিয়া"],
+["সংস্থা",1948,"IUCN","International Union for Conservation of Nature and Natural Resources|প্রেক্ষাপট: ১৯৪৭ আবহাওয়া কনভেনশন|গঠন: ১৯৪৮, ফ্রান্সে|প্রকৃতি ও প্রাকৃতিক সম্পদ সংরক্ষণের বেসরকারি সংস্থা|সদর দপ্তর: গ্ল্যান্ড, সুইজারল্যান্ড","IUCN বড় ভাই, WWF ছোট ভাই"],
+["সংস্থা",1961,"WWF","পূর্ণ নাম: Worldwide Fund for Nature; আগের নাম: World Wildlife Fund (যুক্তরাষ্ট্র-কানাডায় এখনও পুরোনো নাম)|গঠন: ১৯৬১|প্রকৃতি সংরক্ষণে বেসরকারি ফাউন্ডেশন|সদর দপ্তর: গ্ল্যান্ড, সুইজারল্যান্ড (IUCN-এর শহরে)|প্রতীক: পান্ডা (সাধারণ জ্ঞান)|বিখ্যাত উদ্যোগ: Earth Hour","Wildlife (শুধু প্রাণী) → Nature (পুরো প্রকৃতি)"],
+["সংস্থা",2007,"Earth Hour","আয়োজক: WWF|প্রথম: ২০০৭, সিডনি, অস্ট্রেলিয়া|উদ্দেশ্য: পরিবেশ দূষণ রোধে উৎসাহ সৃষ্টি|১ ঘণ্টা বৈদ্যুতিক বাতি বন্ধ|সময়: রাত ৮:৩০ থেকে ৯:৩০|কবে: প্রতি বছর মার্চের শেষ শনিবার","WWF ১৯৬১ → Earth Hour ২০০৭"],
+["সংস্থা",1971,"Greenpeace","জন্ম: ১৯৭১, ভ্যাঙ্কুভার, কানাডা|আগের নাম: Don't make a Wave Committee (১৯৬৯–৭২, মার্কিন পারমাণবিক পরীক্ষার বিরুদ্ধে)|প্রতিষ্ঠাতা: প্যাট্রিক মোর, রবার্ট হান্টার, ডেভিড ম্যাকটাগার্ড ও অন্যরা|বিখ্যাত জাহাজ: রেইনবো ওয়ারিয়র (বাংলায় রংধনু)|অফিস: ৫৫টি দেশে|বর্তমান সদর দপ্তর: আমস্টারডাম, নেদারল্যান্ডস","জন্ম কানাডায়, ঠিকানা আমস্টারডামে"],
+["সংস্থা",1971,"Earth Watch","পরিবেশবিষয়ক আন্তর্জাতিক দাতব্য সংস্থা|প্রতিষ্ঠা: ১৯৭১|সদর দপ্তর: বোস্টন, ম্যাসাচুসেটস, যুক্তরাষ্ট্র|প্রতিষ্ঠাতা: রবার্ট এ. সাইট্রন (মহাকাশযান প্রকৌশলী)|ধারণা: স্বেচ্ছাসেবীরা বিজ্ঞানীদের সঙ্গে মাঠ গবেষণায় (সাধারণ জ্ঞান)","Earth Watch আগে (৭১, বোস্টন)"],
+["সংস্থা",1974,"World Watch","ওয়াশিংটনভিত্তিক বিশ্ব পরিবেশ সংস্থা|প্রতিষ্ঠা: ১৯৭৪|সদর দপ্তর: ওয়াশিংটন ডিসি|সাধারণ জ্ঞান: প্রতিষ্ঠাতা লেস্টার ব্রাউন, বার্ষিক প্রতিবেদন State of the World","World Watch = ওয়াশিংটন, পরে (৭৪)"],
+["সংস্থা",1977,"Green Belt Movement","পরিবেশ উন্নয়নবিষয়ক বেসরকারি সংস্থা|প্রতিষ্ঠা: ১৯৭৭, নাইরোবি, কেনিয়া|কাজ: নারী কর্মীদের বৃক্ষরোপণ, খাদ্য উৎপাদন, মৌমাছি আহরণ; নারীদের আয়|প্রতিষ্ঠাতা ওয়াঙ্গেরি মাথাই: ২০০৪ সালে শান্তিতে নোবেল","৭৭ নাইরোবি, ২০০৪ নোবেল"],
+["সংস্থা",1990,"EEA","European Environment Agency (চুক্তি স্বাক্ষর ১৯৯০)|সদর দপ্তর: কোপেনহেগেন, ডেনমার্ক",""],
+["সংস্থা",1991,"Germanwatch (***)","প্রতিষ্ঠা: ১৯৯১, জার্মানি|অলাভজনক বেসরকারি পরিবেশ ও বাণিজ্য সংস্থা|উদ্দেশ্য: শিল্পোন্নত উত্তর ও অনুন্নত দক্ষিণের সম্পর্ক স্থাপন|লক্ষ্য: বৈশ্বিক সমতা ও জীবিকা সংরক্ষণ|সদর দপ্তর: বন, জার্মানি|প্রতি বছর বৈশ্বিক জলবায়ু ঝুঁকি সূচক (Global Climate Risk Index) প্রকাশ|ছবিতে *** চিহ্ন, সবচেয়ে বেশি আসে","জার্মানি + বন + জলবায়ু ঝুঁকি সূচক"],
+["সংস্থা",2018,"Fridays for Future","২০১৮ (সাধারণ জ্ঞান), সুইডেন|প্রতিষ্ঠাতা: গ্রেটা থুনবার্গ (১৬ বছর), সংসদের সামনে একা প্রতিবাদ|স্কুল শিক্ষার্থীদের জন্য সপ্তাহে ১ দিনের পরিবেশ কর্মসূচি","শুক্রবার, ১৬ বছর, সুইডেন, গ্রেটা"],
+["জোট",1996,"Arctic Council","১৯৯১: আটটি আর্কটিক দেশের প্রথম Arctic Council Summit|১৯৯৬: আনুষ্ঠানিক প্রতিষ্ঠা|সদর দপ্তর: ট্রমসো, নরওয়ে|সদস্য ৮: আইসল্যান্ড, সুইডেন, ডেনমার্ক, ফিনল্যান্ড, নরওয়ে, রাশিয়া, যুক্তরাষ্ট্র, কানাডা","আর্কটিক ৯৬"],
+["জোট",2009,"CVF","Climate Vulnerable Forum|গঠন: ২০০৯, উদ্যোগ মালদ্বীপের|শুরুতে ১১ দেশ (বাংলাদেশের নেতৃত্বে প্রথম গৃহীত, নোটের ভাষা)|এখন সদস্য প্রায় ৭০|সভাপতি (২০২৪–২৬): বার্বাডোসের প্রধানমন্ত্রী মিয়া আমর মোতলি","০৯, মালদ্বীপ"],
+["জোট",2015,"V-20","Vulnerable 20, CVF-ভুক্ত দেশগুলোর অর্থমন্ত্রীদের জোট|গঠন: ২০১৫, লিমা, পেরু|উদ্যোগ: ফিলিপাইন|প্রতিষ্ঠাকালে ২০ সদস্য (তাই নাম), এখন প্রায় ৭০|সভাপতি (২০২৪–২৬): বার্বাডোসের অর্থমন্ত্রী","১৫, ফিলিপাইন, অর্থ"],
+["জোট",2018,"GCA","Global Center on Adaptation (অভিযোজন)|যাত্রা: ২০১৮|সদর দপ্তর: হেগ, নেদারল্যান্ডস|চেয়ারম্যান: বান কি মুন|প্রথম আঞ্চলিক কেন্দ্র: বেইজিং, চীন|দক্ষিণ এশিয়ায় প্রথম (বিশ্বে দ্বিতীয়) কেন্দ্র: ঢাকা, আগারগাঁও, পরিবেশ অধিদপ্তর ভবন|২০১৯ ঢাকা সম্মেলনে বান কি মুন: অভিযোজনে বাংলাদেশ সবচেয়ে ভালো শিক্ষক","১৮, হেগ"],
+["জোট",2021,"REAP","Risk-informed Early Action Partnership (আগাম সতর্কতা)|চালু: COP26, গ্লাসগো (২০২১, সাধারণ জ্ঞান)|উদ্যোক্তা: যুক্তরাজ্য, ফিনল্যান্ড, IFRC|সদর দপ্তর: জেনেভা|প্রতিষ্ঠাকালীন সদস্য: বাংলাদেশসহ ১৫টি দেশ|লক্ষ্য: ২০২৫ সালের মধ্যে ১০০ কোটি মানুষকে দুর্যোগ থেকে রক্ষা","আর্কটিক → CVF → V-20 → GCA → REAP"]
+];
+const G=["সব","কনভেনশন","সংস্থা","জোট","ছক"],DAY=[0,1,3,7,14];
+let S={},tab="f",grp="সব",cur=null,flip=false,qs=null,qd=null;
+try{S=JSON.parse(localStorage.getItem("rv")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("rv",JSON.stringify(S))}catch(e){}};
+const today=()=>Math.floor(Date.now()/864e5);
+const st=n=>S[n]||(S[n]={b:0,d:0});
+const pool=()=>C.filter(c=>grp=="সব"||c[0]==grp);
+const due=()=>pool().filter(c=>st(c[2]).d<=today());
+const $=id=>document.getElementById(id),v=$("v");
+function nav(){$("nav").innerHTML=[["f","ফ্ল্যাশকার্ড"],["q","কুইজ"],["t","টাইমলাইন"],["p","অগ্রগতি"]].map(([k,n])=>`<button class="${tab==k?"on":""}" onclick="tab='${k}';cur=null;qd=null;draw()">${n}</button>`).join("")}
+function chips(){return `<div class="row">${G.map(g=>`<button class="chip ${grp==g?"on":""}" onclick="grp='${g}';cur=null;qd=null;draw()">${g}</button>`).join("")}</div>`}
+function stats(){const p=pool(),b=[0,1,2,3,4].map(i=>p.filter(c=>st(c[2]).b==i).length);return `<div class="stat">${b.map((n,i)=>`<div><b>${n}</b>বক্স ${i+1}</div>`).join("")}</div>`}
+function draw(){nav();({f:fc,q:qz,t:tlx,p:pg})[tab]()}
+function fc(){
+const d=due();
+if(!cur||!d.includes(cur))cur=d.sort(()=>Math.random()-.5)[0];
+let h=chips()+stats();
+if(!cur){v.innerHTML=h+`<div class="card"><div class="q">আজকের রিভিশন শেষ ✅</div><p class="mut">সব কার্ড আজকের জন্য সম্পন্ন। কুইজ দিয়ে নিজেকে যাচাই করো, অথবা কাল আবার এসো।</p></div>`;return}
+h+=`<p class="mut">আজ বাকি: ${d.length}টি</p><div class="card" onclick="flip=!flip;draw()"><small>${cur[0]} · ${cur[1]}</small><div class="q">${cur[2]}</div>`;
+h+=flip?`<div class="a">${cur[3]}${cur[4]?`<div class="t">🧠 ${cur[4]}</div>`:""}</div>`:`<p class="mut">মনে করো, তারপর কার্ডে ট্যাপ করো</p>`;
+h+=`</div>`;
+if(flip)h+=`<div class="btns"><button class="no" onclick="rate(0)">মনে ছিল না</button><button class="yes" onclick="rate(1)">মনে ছিল</button></div>`;
+v.innerHTML=h}
+function rate(ok){const s=st(cur[2]);s.b=ok?Math.min(4,s.b+1):0;s.d=today()+DAY[s.b]+(ok?0:0);if(!ok)s.d=today();save();flip=false;cur=null;draw()}
+function qz(){
+let h=chips();
+if(!qd){const p=pool();const c=p[Math.floor(Math.random()*p.length)];
+const wr=C.filter(x=>x[0]==c[0]&&x[2]!=c[2]).sort(()=>Math.random()-.5).slice(0,3).map(x=>x[3]);
+qd={c,o:[...wr,c[3]].sort(()=>Math.random()-.5),done:false}}
+const c=qd.c;
+h+=`<div class="card" style="cursor:default"><small>${qs||0}</small><div class="q" style="font-size:20px">"${c[2]}"-এর সঠিক তথ্য কোনটি?</div>`+qd.o.map((o,i)=>`<button class="opt" id="o${i}" onclick="pick(${i})">${o}</button>`).join("")+`<div id="fb"></div></div>`;
+v.innerHTML=h}
+function pick(i){if(qd.done)return;qd.done=true;const ok=qd.o[i]==qd.c[3];
+qd.o.forEach((o,j)=>{if(o==qd.c[3])$("o"+j).classList.add("r")});
+if(!ok)$("o"+i).classList.add("w");
+const s=st(qd.c[2]);if(ok){qs=(qs||0)+1}else{qs=0;s.b=0;s.d=today();save()}
+$("fb").innerHTML=(ok?`<p><b>ঠিক!</b> স্ট্রিক ${qs}</p>`:`<p><b style="color:var(--bad)">ভুল।</b> ভুল কার্ড আজকের ফ্ল্যাশকার্ডে ফিরে গেছে।</p>`)+(qd.c[4]?`<div class="t">🧠 ${qd.c[4]}</div>`:"")+`<button class="go" style="margin-top:10px" onclick="qd=null;draw()">পরের প্রশ্ন</button>`}
+function tlx(){
+const p=pool().slice().sort((a,b)=>a[1]-b[1]);
+v.innerHTML=chips()+`<p class="mut">সালের ক্রমে গল্প। নিজে ঢেকে সাল বলার চেষ্টা করো।</p><div class="tl">${p.map(c=>`<div><b>${c[1]}</b> · ${c[2]}<br><span class="mut">${c[3]}</span></div>`).join("")}</div>`}
+function pg(){
+const p=C,m=p.filter(c=>st(c[2]).b>=3).length,w=p.filter(c=>st(c[2]).b==0&&st(c[2]).d>0).length;
+v.innerHTML=chips()+stats()+`<div class="card" style="cursor:default"><div class="q">${m}/${p.length} আয়ত্তে</div><p>বক্স ৪–৫-এ পৌঁছালে কার্ড আয়ত্তে ধরা হয়।</p><p class="mut">বক্স ১ = প্রতিদিন, বক্স ২ = ১ দিন পর, বক্স ৩ = ৩ দিন পর, বক্স ৪ = ৭ দিন পর, বক্স ৫ = ১৪ দিন পর।</p><p><b>দৈনিক নিয়ম:</b> ফ্ল্যাশকার্ডে আজকের সব কার্ড শেষ করো, তারপর ৫টি কুইজ দাও।</p><button class="go" onclick="if(confirm('সব অগ্রগতি মুছবে?')){S={};save();draw()}" style="background:var(--bad)">অগ্রগতি রিসেট</button></div>`}
+const rl=a=>a.split("|");
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+function fc(){
+const d=due();
+if(!cur||!d.includes(cur))cur=d.sort(()=>Math.random()-.5)[0];
+let h=chips()+stats();
+if(!cur){v.innerHTML=h+`<div class="card"><div class="q">আজকের রিভিশন শেষ ✅</div><p class="mut">সব কার্ড আজকের জন্য সম্পন্ন। কুইজ দাও, অথবা কাল আবার এসো।</p></div>`;return}
+h+=`<p class="mut">আজ বাকি: ${d.length}টি</p><div class="card" onclick="flip=!flip;draw()"><small>${cur[0]}${cur[1]?" · "+cur[1]:""}</small><div class="q">${cur[2]}</div>`;
+h+=flip?`<div class="a">${rl(cur[3]).map(x=>"• "+x).join("<br>")}${cur[4]?`<div class="t">🧠 ${cur[4]}</div>`:""}</div>`:`<p class="mut">যা যা মনে আছে বলো, তারপর ট্যাপ করো</p>`;
+h+=`</div>`;
+if(flip)h+=`<div class="btns"><button class="no" onclick="rate(0)">সব মনে ছিল না</button><button class="yes" onclick="rate(1)">সব মনে ছিল</button></div>`;
+v.innerHTML=h}
+function qz(){
+let h=chips();
+if(!qd){const p=pool();const c=rnd(p);const t=rnd(rl(c[3]));
+const wr=C.filter(x=>x[0]==c[0]&&x[2]!=c[2]).sort(()=>Math.random()-.5).slice(0,3).map(x=>rnd(rl(x[3])));
+qd={c,t,o:[...wr,t].sort(()=>Math.random()-.5),done:false}}
+const c=qd.c;
+h+=`<div class="card" style="cursor:default"><small>স্ট্রিক ${qs||0}</small><div class="q" style="font-size:20px">"${c[2]}"-এর সঙ্গে কোন তথ্যটি মেলে?</div>`+qd.o.map((o,i)=>`<button class="opt" id="o${i}" onclick="pick(${i})">${o}</button>`).join("")+`<div id="fb"></div></div>`;
+v.innerHTML=h}
+function pick(i){if(qd.done)return;qd.done=true;const ok=qd.o[i]==qd.t;
+qd.o.forEach((o,j)=>{if(o==qd.t)$("o"+j).classList.add("r")});
+if(!ok)$("o"+i).classList.add("w");
+const s=st(qd.c[2]);if(ok){qs=(qs||0)+1}else{qs=0;s.b=0;s.d=today();save()}
+$("fb").innerHTML=(ok?`<p><b>ঠিক!</b></p>`:`<p><b style="color:var(--bad)">ভুল।</b> কার্ডটি আজকের ফ্ল্যাশকার্ডে ফিরেছে।</p>`)+`<div class="mut">${rl(qd.c[3]).map(x=>"• "+x).join("<br>")}</div>`+(qd.c[4]?`<div class="t">🧠 ${qd.c[4]}</div>`:"")+`<button class="go" style="margin-top:10px" onclick="qd=null;draw()">পরের প্রশ্ন</button>`}
+function tlx(){
+const p=pool().filter(c=>c[1]).sort((a,b)=>a[1]-b[1]);
+v.innerHTML=chips()+`<p class="mut">সালের ক্রমে সব। সাল ঢেকে নিজে বলার চেষ্টা করো।</p><div class="tl">${p.map(c=>`<div><b>${c[1]}</b> · ${c[2]}<br><span class="mut">${rl(c[3]).join("; ")}</span></div>`).join("")}</div>`}
+draw();
+</script></body></html>

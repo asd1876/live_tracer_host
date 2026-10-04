@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>পরিবেশ রিভিশন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f0;--card:#fff;--ink:#12302b;--mute:#5b736d;--line:#cfdcd6;--acc:#1f7a5c;--accink:#fff;--bad:#b8402a;--mid:#b07d00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1c19;--card:#172824;--ink:#e3efe9;--mute:#8fa8a0;--line:#2b423c;--acc:#4cc59a;--accink:#06221a;--bad:#ee8a73;--mid:#e0b53a}}
+:root[data-theme="dark"]{--bg:#0f1c19;--card:#172824;--ink:#e3efe9;--mute:#8fa8a0;--line:#2b423c;--acc:#4cc59a;--accink:#06221a;--bad:#ee8a73;--mid:#e0b53a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali","Kalpurush",system-ui,sans-serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:1.5rem;margin:0 0 2px}
+.sub{color:var(--mute);margin:0 0 14px;font-size:.95rem}
+.stats{display:flex;gap:8px;margin-bottom:8px}
+.stats div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:.85rem;color:var(--mute)}
+.stats b{display:block;font-size:1.25rem;color:var(--ink)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:14px;display:flex}
+.bar i{display:block;height:100%}
+.chips,.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+button{font:inherit;cursor:pointer;color:var(--ink)}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:3px 12px;font-size:.88rem}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--accink)}
+.tabs{border-bottom:1px solid var(--line);gap:18px}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:6px 0;font-weight:500;color:var(--mute)}
+.tab[aria-selected=true]{color:var(--ink);border-color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;min-height:230px;display:flex;flex-direction:column;justify-content:center;cursor:pointer}
+.meta{color:var(--mute);font-size:.85rem;margin-bottom:10px}
+.q{font-size:1.3rem;font-weight:700}
+.a{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:1.08rem;white-space:pre-line}
+.hint{color:var(--mute);font-size:.88rem;margin-top:16px}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.acts button{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 4px;font-weight:500}
+.acts .r0{color:var(--bad)}.acts .r1{color:var(--mid)}.acts .r2{background:var(--acc);border-color:var(--acc);color:var(--accink)}
+.empty{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 20px;text-align:center}
+.pri{background:var(--acc);color:var(--accink);border:0;border-radius:10px;padding:8px 18px;font-weight:500;margin-top:8px}
+.row{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row .y{font-weight:700;color:var(--acc);font-size:1.05rem}
+.row .n{font-weight:500}.row .t{color:var(--mute);font-size:.95rem;white-space:pre-line}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--line)}
+.d1,.d2{background:var(--bad)}.d3{background:var(--mid)}.d4,.d5{background:var(--acc)}
+.foot{margin-top:22px;text-align:center}
+.foot button{background:none;border:0;color:var(--mute);text-decoration:underline;font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+<h1>পরিবেশ রিভিশন</h1>
+<p class="sub">কনভেনশন, জাতিসংঘের সংস্থা, NGO ও জোট। বারবার পড়ুন, ভুলে গেলে আবার সামনে আসবে।</p>
+<div class="stats" id="stats"></div>
+<div class="bar" id="bar"></div>
+<div class="chips" id="chips"></div>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" id="t0" aria-selected="true">অনুশীলন</button>
+<button class="tab" role="tab" id="t1" aria-selected="false">সালের ক্রম</button>
+</div>
+<section id="view"></section>
+<div class="foot"><button id="reset">অগ্রগতি মুছে নতুন করে শুরু</button></div>
+</main>
+<script>
+const D=[
+["কনভেনশন",1971,"রামসার কনভেনশন: কবে, কোথায়, বিষয় কী?","জলাভূমি সংরক্ষণ। স্বাক্ষর ১৯৭১, রামসার, ইরান। কার্যকর ১৯৭৫।"],
+["কনভেনশন",1992,"বাংলাদেশের রামসার সাইট কয়টি?","২টি: সুন্দরবন (১৯৯২) ও টাঙ্গুয়ার হাওর (২০০০)।"],
+["কনভেনশন",1985,"ভিয়েনা কনভেনশন: গৃহীত, কার্যকর, বাংলাদেশ?","গৃহীত ২২ মার্চ ১৯৮৫ (অস্ট্রিয়া)। কার্যকর ২২ সেপ্টেম্বর ১৯৮৮। বাংলাদেশ ২ আগস্ট ১৯৯০। বিষয়: ওজোন স্তর।"],
+["কনভেনশন",1987,"মন্ট্রিল প্রটোকলের তথ্য?","স্বাক্ষর ১৬ সেপ্টেম্বর ১৯৮৭ (কানাডা)। কার্যকর ১ জানুয়ারি ১৯৮৯। বাংলাদেশ ২ আগস্ট ১৯৯০। ওজোন ক্ষয়কারী বস্তুর উৎপাদন ও ব্যবহার বন্ধ। সদস্য ১৯৬ দেশ + EU।"],
+["কনভেনশন",1990,"মন্ট্রিল প্রটোকল কোন কোন সালে সংশোধিত হয়?","মোট ৫ বার: ১৯৯০, ৯২, ৯৭, ৯৯, ২০১৬।"],
+["কনভেনশন",2016,"কিগালি সংশোধনী কী?","২০১৬, কিগালি, রুয়ান্ডা। মন্ট্রিল প্রটোকলের ২৮তম সভা। ২০৪৭ সালের মধ্যে HFC ৮০% কমানো।"],
+["কনভেনশন",1989,"বাসেল কনভেনশন: কবে, কোথায়, বিষয়?","বিষাক্ত বর্জ্যের সীমানা পার চলাচল নিয়ন্ত্রণ। গৃহীত ১৯৮৯ (সুইজারল্যান্ড), কার্যকর ১৯৯২।"],
+["কনভেনশন",1992,"জীববৈচিত্র্য কনভেনশন (CBD)?","স্বাক্ষর ৫ জুন ১৯৯২, রিও। কার্যকর ১৯৯৩। বাংলাদেশ অনুমোদন ১৯৯৪।"],
+["কনভেনশন",1992,"UNFCCC-এর তথ্য?","প্রণীত ৯ মে ১৯৯২, নিউইয়র্ক। স্বাক্ষর রিও, ১৯৯২। কার্যকর ১৯৯৪। বাংলাদেশ স্বাক্ষর ১৯৯২, অনুমোদন ১৯৯৪। কাজ: বার্ষিক COP আয়োজন।"],
+["কনভেনশন",1997,"কিয়োটো প্রটোকলের মূল লক্ষ্য?","১১ ডিসেম্বর ১৯৯৭, জাপান। ১৯৯০ ভিত্তি ধরে উন্নত দেশগুলো ৬টি গ্রিনহাউস গ্যাস ৫.২% কমাবে। সদস্য ১৯২।"],
+["কনভেনশন",2012,"কিয়োটোর মেয়াদ ও কানাডা?","প্রথম মেয়াদ ১৫ বছর (১৯৯৭–২০১২)। দোহা বৈঠকে (২০১২) বেড়ে ৩১ ডিসেম্বর ২০২০। কানাডা ত্যাগ করে ২০১২-তে। লক্ষ্য পূরণ না হলে পরের মেয়াদে ৩০% বেশি কমাতে হবে।"],
+["কনভেনশন",1998,"কিয়োটোর তিন শ্রেণি?","Annex-I: শিল্পোন্নত ৪২টি দেশ ও EU।\nAnnex-II: উন্নয়নশীল ২৪টি দেশ (বইয়ের এক জায়গায় ২৮ আছে, মিলিয়ে নিন)।\nNon-Annex: দায়ী নয়, বাধ্যবাধকতা নেই (বাংলাদেশ)।"],
+["কনভেনশন",1999,"কার্বন ট্রেড ও কার্বন ট্যাক্স?","ট্রেড: কিয়োটোর ১৭ অনুচ্ছেদ, কম নিঃসরণকারী কোটা বিক্রি করে। ট্যাক্স: প্রথম ফিনল্যান্ড (১৯৯০-এর দশক), এখন ২৭ দেশে।"],
+["কনভেনশন",2000,"কার্টাগেনা প্রটোকল?","CBD-র জৈব নিরাপত্তা প্রটোকল (GMO)। স্বাক্ষর ২০০০ (মন্ট্রিল, কানাডা), কার্যকর ২০০৩, বাংলাদেশ অনুমোদন ২০০৪। কথা ছিল কলম্বিয়ার কার্টাগেনায়।"],
+["কনভেনশন",2010,"নাগোয়া প্রটোকল?","CBD-র শাখা। স্বাক্ষর ২০১০, নাগোয়া, জাপান। কার্যকর ২০১৪।"],
+["কনভেনশন",1993,"মা-সন্তান: কোন কনভেনশনের কোন প্রটোকল?","ভিয়েনা → মন্ট্রিল\nUNFCCC → কিয়োটো\nCBD → কার্টাগেনা, নাগোয়া"],
+["কনভেনশন",1994,"বাংলাদেশের গুরুত্বপূর্ণ সাল (পরিবেশ চুক্তি)?","৯০: ভিয়েনা ও মন্ট্রিল। ৯৪: CBD ও UNFCCC অনুমোদন। ০৪: কার্টাগেনা অনুমোদন।"],
+["কনভেনশন",1995,"জাপানে হওয়া দুই চুক্তি কোনগুলো?","কিয়োটো (১৯৯৭) ও নাগোয়া (২০১০)।"],
+["জাতিসংঘ",1950,"WMO: গঠন, সদর দপ্তর, সদস্য?","১৯৫০ (প্রেক্ষাপট ১৯৪৭ আবহাওয়া কনভেনশন)। জেনেভা। সদস্য ১৯৩।"],
+["জাতিসংঘ",1972,"UNEP: কবে, কোথা থেকে, সদর দপ্তর?","১৯৭২, স্টকহোম সম্মেলন, ৫ জুন (বিশ্ব পরিবেশ দিবস)। সদর দপ্তর নাইরোবি, কেনিয়া।"],
+["জাতিসংঘ",1988,"IPCC: কারা গড়ল, কোথায়, সদস্য?","১৯৮৮, UNEP + WMO যৌথভাবে। জেনেভা। সদস্য ১৯৫। নোবেল শান্তি ২০০৭।"],
+["জাতিসংঘ",1993,"GEF: সাল ও সদর দপ্তর?","১৯৯২, রিও সম্মেলনের প্রেক্ষাপটে। ওয়াশিংটন, যুক্তরাষ্ট্র।"],
+["জাতিসংঘ",1997,"UNDG কে গড়েন?","কফি আনান, ১৯৯৭, ৩৩টি সংস্থা নিয়ে। UNEP ওই বছরই সদস্য হয়।"],
+["জাতিসংঘ",2010,"GCF: সাল, সদর দপ্তর, বাংলাদেশ?","২০১০, UNFCCC গঠন করে। ইনচিয়ন, দক্ষিণ কোরিয়া। বাংলাদেশ ২৫ কোটি ডলারের প্রকল্প সহায়তা পেয়েছে।"],
+["জাতিসংঘ",2011,"GEF বনাম GCF কীভাবে আলাদা করবেন?","GEF = ৯২ = রিও = ওয়াশিংটন।\nGCF = ২০১০ = UNFCCC = কোরিয়া।"],
+["NGO",1948,"IUCN: সাল ও সদর দপ্তর?","১৯৪৮, ফ্রান্সে গঠিত। সদর দপ্তর গ্ল্যান্ড, সুইজারল্যান্ড।"],
+["NGO",1961,"WWF: সাল, পূর্ব নাম, সদর দপ্তর?","১৯৬১। পূর্ব নাম World Wildlife Fund, এখন Worldwide Fund for Nature। গ্ল্যান্ড, সুইজারল্যান্ড। বিখ্যাত উদ্যোগ Earth Hour।"],
+["NGO",1971,"গ্রিনপিস: জন্ম, জাহাজ, এখনকার সদর দপ্তর?","১৯৭১, ভ্যাঙ্কুভার, কানাডা (আগের নাম Don't make a Wave Committee)। জাহাজ রেইনবো ওয়ারিয়র (রংধনু)। সদর দপ্তর আমস্টারডাম। ৫৫ দেশে অফিস।"],
+["NGO",1971,"Earth Watch: সাল, শহর, প্রতিষ্ঠাতা?","১৯৭১, বোস্টন, যুক্তরাষ্ট্র। রবার্ট এ. সাইট্রন (মহাকাশযান প্রকৌশলী)।"],
+["NGO",1974,"World Watch: সাল ও শহর?","১৯৭৪, ওয়াশিংটন ডিসি।"],
+["NGO",1977,"Green Belt Movement?","১৯৭৭, নাইরোবি, কেনিয়া। নারীদের বৃক্ষরোপণ। প্রতিষ্ঠাতা ওয়াঙ্গেরি মাথাই, নোবেল শান্তি ২০০৪।"],
+["NGO",1990,"EEA: সাল ও সদর দপ্তর?","১৯৯০, কোপেনহেগেন, ডেনমার্ক।"],
+["NGO",1991,"Germanwatch (***)?","১৯৯১, বন, জার্মানি। উত্তর-দক্ষিণ সম্পর্ক। প্রতি বছর বৈশ্বিক জলবায়ু ঝুঁকি সূচক প্রকাশ করে।"],
+["NGO",2007,"Earth Hour: কবে, কোথায়, কখন?","প্রথম ২০০৭, সিডনি, WWF-এর উদ্যোগ। মার্চের শেষ শনিবার, রাত ৮:৩০–৯:৩০।"],
+["NGO",2018,"Fridays for Future?","২০১৮, সুইডেন। প্রতিষ্ঠাতা গ্রেটা থুনবার্গ (১৬ বছর)।"],
+["জোট",1996,"Arctic Council?","সম্মেলন ১৯৯১, গঠন ১৯৯৬। ট্রমসো, নরওয়ে। সদস্য ৮: আইসল্যান্ড, সুইডেন, ডেনমার্ক, ফিনল্যান্ড, নরওয়ে, রাশিয়া, যুক্তরাষ্ট্র, কানাডা।"],
+["জোট",2009,"CVF (Climate Vulnerable Forum)?","২০০৯, মালদ্বীপের উদ্যোগে। শুরুতে ১১ দেশ, এখন প্রায় ৭০।"],
+["জোট",2015,"V-20?","২০১৫, লিমা, পেরু। ফিলিপাইনের উদ্যোগে। শুরুতে ২০ দেশ। CVF দেশগুলোর অর্থমন্ত্রীদের জোট।"],
+["জোট",2018,"GCA (Global Center on Adaptation)?","২০১৮। সদর দপ্তর হেগ, নেদারল্যান্ডস। চেয়ারম্যান বান কি মুন। ঢাকা কেন্দ্র: আগারগাঁও, পরিবেশ অধিদপ্তর ভবন।"],
+["জোট",2021,"REAP?","২০২১, COP26, গ্লাসগো। সদর দপ্তর জেনেভা। প্রতিষ্ঠাকালে ১৫ দেশ (বাংলাদেশসহ)। লক্ষ্য ২০২৫ সালের মধ্যে ১০০ কোটি মানুষকে রক্ষা।"]
+];
+const IV=[0,0,1,3,7,16],KEY="poribesh-rev-v1",DAY=864e5;
+let S={},mem=null,topic="সব",tab=0,queue=[],shown=false;
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){S={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const box=i=>(S[i]&&S[i].b)||0;
+const topics=["সব",...new Set(D.map(c=>c[0]))];
+const pool=()=>D.map((c,i)=>i).filter(i=>topic==="সব"||D[i][0]===topic);
+function buildQueue(all){const now=Date.now();queue=pool().filter(i=>all||!S[i]||S[i].d<=now).sort((a,b)=>box(a)-box(b)||a-b)}
+const $=id=>document.getElementById(id);
+function head(){
+ const p=pool(),nw=p.filter(i=>!box(i)).length,mas=p.filter(i=>box(i)>=4).length,lr=p.length-nw-mas;
+ $("stats").innerHTML=`<div><b>${bn(nw)}</b>নতুন</div><div><b>${bn(lr)}</b>শিখছি</div><div><b>${bn(mas)}</b>পাকা</div>`;
+ const w=n=>(n/p.length*100)+"%";
+ $("bar").innerHTML=`<i style="width:${w(mas)};background:var(--acc)"></i><i style="width:${w(lr)};background:var(--mid)"></i>`;
+ $("chips").innerHTML=topics.map(t=>`<button class="chip" aria-pressed="${t===topic}" data-t="${t}">${t}</button>`).join("");
+}
+function practice(){
+ const v=$("view");
+ if(!queue.length){
+  const p=pool().map(i=>S[i]&&S[i].d).filter(Boolean),nx=p.length?Math.min(...p):0;
+  const when=nx>Date.now()?`পরের রিভিশন: ${bn(Math.max(1,Math.round((nx-Date.now())/DAY)))} দিন পরে।`:"";
+  v.innerHTML=`<div class="empty"><div class="q">আজকের রিভিশন শেষ</div><p class="hint">${when}</p><button class="pri" id="all">সব কার্ড আবার পড়ুন</button></div>`;
+  $("all").onclick=()=>{buildQueue(true);shown=false;practice()};return;
+ }
+ const i=queue[0],c=D[i];
+ v.innerHTML=`<div class="card" id="cd" tabindex="0"><div class="meta">${c[0]} · বাকি ${bn(queue.length)}টি · ধাপ ${bn(box(i))}</div><div class="q">${c[2]}</div>${shown?`<div class="a">${c[3]}</div>`:`<div class="hint">উত্তর ভাবুন, তারপর ট্যাপ করুন</div>`}</div>
+ ${shown?`<div class="acts"><button class="r0" data-r="0">ভুলে গেছি</button><button class="r1" data-r="1">কষ্ট হলো</button><button class="r2" data-r="2">মনে ছিল</button></div>`:""}`;
+ $("cd").onclick=()=>{if(!shown){shown=true;practice()}};
+ v.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>rate(+b.dataset.r));
+}
+function rate(r){
+ const i=queue.shift(),b=box(i);
+ const nb=r===0?1:r===1?Math.max(1,b):Math.min(5,b+1);
+ S[i]={b:nb,d:Date.now()+(r===0?0:IV[nb]*DAY)};
+ if(r===0)queue.push(i);
+ save();shown=false;head();practice();
+}
+function timeline(){
+ const idx=pool().sort((a,b)=>D[a][1]-D[b][1]||a-b);
+ $("view").innerHTML=idx.map(i=>{const c=D[i];return `<div class="row"><div class="y">${bn(c[1])}</div><div><div class="n"><span class="dot d${box(i)}"></span>${c[2]}</div><div class="t">${c[3]}</div></div></div>`}).join("");
+}
+function render(){head();tab?timeline():practice()}
+$("chips").onclick=e=>{const t=e.target.dataset.t;if(t){topic=t;shown=false;buildQueue();render()}};
+[0,1].forEach(n=>$("t"+n).onclick=()=>{tab=n;$("t0").setAttribute("aria-selected",n===0);$("t1").setAttribute("aria-selected",n===1);render()});
+$("reset").onclick=()=>{if(confirm("সব অগ্রগতি মুছে যাবে। নিশ্চিত?")){S={};save();buildQueue();shown=false;render()}};
+document.addEventListener("keydown",e=>{if(tab)return;if(e.key===" "&&!shown&&queue.length){e.preventDefault();shown=true;practice()}else if(shown&&"123".includes(e.key))rate(+e.key-1)});
+buildQueue();render();
+</script>
+</body>
+</html>

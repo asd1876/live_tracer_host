@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>নিরাপত্তা ও নিরস্ত্রীকরণের দলিল — একটি সময়রেখা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151c;
+    --bg-2: #191d26;
+    --paper: #f6f1e4;
+    --paper-2: #efe8d6;
+    --ink: #241f18;
+    --ink-soft: #56503f;
+    --cream: #e9e3d2;
+    --muted: #8b93a6;
+    --line: #3a4152;
+    --gold: #c9a054;
+    --gold-soft: #ddc078;
+    --c-humanitarian: #6f8f6a;
+    --c-disarm: #c9a054;
+    --c-alliance: #5c7fa1;
+    --c-rights: #a1483f;
+    --rule: rgba(201,160,84,0.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top, #1b202b 0%, var(--bg) 55%),
+      var(--bg);
+    color: var(--cream);
+    font-family:'Hind Siliguri', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-color-scheme: dark){ body{ background: radial-gradient(ellipse at top, #1b202b 0%, var(--bg) 55%), var(--bg); } }
+
+  .wrap{max-width:980px; margin:0 auto; padding: 0 20px 100px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 76px 20px 56px;
+    text-align:center;
+    border-bottom: 1px solid var(--rule);
+    position:relative;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; left:50%; top:28px; transform:translateX(-50%);
+    width:44px; height:2px; background:var(--gold);
+  }
+  .eyebrow{
+    font-size:0.85rem; color:var(--gold-soft); letter-spacing:0.04em;
+    margin: 0 0 18px;
+  }
+  h1{
+    font-family:'Noto Serif Bengali', serif;
+    font-weight:700;
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    line-height:1.25;
+    margin: 0 0 16px;
+    color: var(--paper);
+  }
+  .hero p{
+    max-width: 620px; margin: 0 auto;
+    color: var(--muted);
+    font-size: 1.05rem; line-height:1.8;
+  }
+  .hero-span{
+    display:block; margin-top: 22px;
+    font-family:'Noto Serif Bengali', serif;
+    font-size: 1.35rem; color: var(--gold-soft);
+  }
+
+  /* ---------- FILTERS ---------- */
+  .filters{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    padding: 34px 20px 8px;
+  }
+  .chip{
+    appearance:none; border:1px solid var(--line);
+    background: var(--bg-2); color: var(--cream);
+    padding: 9px 18px; border-radius: 999px;
+    font-family:'Hind Siliguri', sans-serif; font-size:0.92rem; font-weight:500;
+    cursor:pointer; display:flex; align-items:center; gap:8px;
+    transition: border-color .2s ease, background .2s ease, transform .15s ease;
+  }
+  .chip .dot{width:8px; height:8px; border-radius:50%; flex:none;}
+  .chip:hover{ transform: translateY(-1px); border-color: var(--gold); }
+  .chip.active{ background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .chip.active .dot{ box-shadow:none; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{ position:relative; padding-top: 40px; }
+  .spine{
+    position:absolute; left:50%; top:0; bottom:0; width:2px;
+    background: linear-gradient(to bottom, transparent, var(--line) 4%, var(--line) 96%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .era-label{
+    position:relative; text-align:center; margin: 58px 0 30px;
+  }
+  .era-label span{
+    background: var(--bg);
+    padding: 0 18px;
+    font-family:'Noto Serif Bengali', serif;
+    font-size: 1.05rem; color: var(--gold-soft); font-weight:600;
+    position:relative; z-index:2;
+  }
+  .era-label small{
+    display:block; color:var(--muted); font-size:0.82rem; margin-top:4px; font-weight:400;
+  }
+
+  .event{
+    position:relative;
+    width: 46%;
+    margin-bottom: 30px;
+    opacity: 1;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .event.left{ left:0; text-align:right; }
+  .event.right{ left:54%; text-align:left; }
+
+  .event.hide{ display:none; }
+
+  .node{
+    position:absolute; top: 6px;
+    width:14px; height:14px; border-radius:50%;
+    background: var(--bg);
+    border: 2px solid var(--gold);
+    z-index:3;
+  }
+  .event.left .node{ right:-31px; }
+  .event.right .node{ left:-31px; }
+
+  .card{
+    display:inline-block; text-align:right;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 18px 22px;
+    max-width: 420px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    position:relative;
+  }
+  .event.right .card{ text-align:left; }
+  .card::before{
+    content:"";
+    position:absolute; top:14px; width:0; height:0;
+    border: 8px solid transparent;
+  }
+  .event.left .card::before{ right:-16px; border-left-color: var(--paper); }
+  .event.right .card::before{ left:-16px; border-right-color: var(--paper); }
+
+  .year{
+    font-family:'Noto Serif Bengali', serif; font-weight:700;
+    font-size:1.5rem; color: var(--ink);
+    display:block; margin-bottom:6px;
+  }
+  .year .sub{ font-size:0.85rem; font-weight:400; color: var(--ink-soft); margin-inline-start:6px; }
+
+  .title{
+    font-family:'Noto Serif Bengali', serif; font-weight:600;
+    font-size:1.08rem; margin: 0 0 8px; color: var(--ink);
+  }
+  .desc{
+    font-size: 0.93rem; line-height:1.75; color: var(--ink-soft); margin:0;
+  }
+  .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.76rem; color: var(--ink-soft);
+    margin-top:10px; padding-top:10px; border-top:1px dashed rgba(0,0,0,0.15);
+  }
+  .event.left .tag{ justify-content:flex-end; width:100%; }
+  .tag .dot{ width:7px; height:7px; border-radius:50%; }
+
+  /* mobile */
+  @media (max-width: 720px){
+    .spine{ left: 18px; }
+    .event, .event.left, .event.right{
+      width: calc(100% - 46px); left: 46px !important; text-align:left !important;
+    }
+    .event .card{ text-align:left !important; }
+    .event .node{ left: -34px !important; right:auto !important; }
+    .card::before{ display:none; }
+    .event .tag{ justify-content:flex-start !important; }
+  }
+
+  footer{
+    text-align:center; padding: 50px 20px 10px; color: var(--muted); font-size:0.85rem;
+    border-top: 1px solid var(--rule); margin-top: 40px;
+  }
+  footer strong{ color: var(--gold-soft); font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">১৮৬৪ থেকে বর্তমান পর্যন্ত</p>
+  <h1>বিশ্বাস, ভয় ও ভাঙনের সময়রেখা</h1>
+  <p>যুদ্ধক্ষেত্রের মানবিকতা থেকে শুরু করে পারমাণবিক ভারসাম্যের রাজনীতি — এই সময়রেখা দেখায় কীভাবে একটার পর একটা চুক্তি জন্ম নিয়েছে আগেরটার শিক্ষা থেকে, আর কীভাবে অনেকগুলোই পরে ভেঙে পড়েছে।</p>
+  <span class="hero-span">নিচে স্ক্রল করুন, অথবা বিষয় অনুযায়ী ফিল্টার করুন</span>
+</header>
+
+<div class="filters" id="filters">
+  <button class="chip active" data-filter="all"><span class="dot" style="background:var(--gold)"></span>সব</button>
+  <button class="chip" data-filter="humanitarian"><span class="dot" style="background:var(--c-humanitarian)"></span>মানবিক আইন</button>
+  <button class="chip" data-filter="disarm"><span class="dot" style="background:var(--c-disarm)"></span>নিরস্ত্রীকরণ</button>
+  <button class="chip" data-filter="alliance"><span class="dot" style="background:var(--c-alliance)"></span>জোট ও কূটনীতি</button>
+  <button class="chip" data-filter="rights"><span class="dot" style="background:var(--c-rights)"></span>মানবাধিকার</button>
+</div>
+
+<div class="wrap">
+  <div class="timeline" id="timeline">
+    <div class="spine"></div>
+    <!-- events injected by JS -->
+  </div>
+</div>
+
+<footer>
+  প্রতিটি ঘটনার রঙিন বিন্দু তার বিষয়শ্রেণি বোঝায় — <strong>সবুজ</strong> মানবিক আইন, <strong>সোনালি</strong> নিরস্ত্রীকরণ, <strong>নীল</strong> জোট-কূটনীতি, <strong>লাল</strong> মানবাধিকার।
+</footer>
+
+<script>
+const events = [
+  {era:"যুদ্ধের নিয়ম তৈরির যুগ", eraNote:"১৮৬৪ – ১৯৪৯", year:"১৮৬৪", sub:"প্রথম জেনেভা কনভেনশন", cat:"humanitarian",
+   title:"সলফেরিনোর যুদ্ধক্ষেত্র থেকে প্রথম আইন",
+   desc:"সুইস ব্যবসায়ী অঁরি ড্যুনা যুদ্ধাহতদের করুণ অবস্থা দেখে প্রথম আন্তর্জাতিক মানবিক আইন প্রণয়নে উদ্যোগী হন — এখান থেকেই রেড ক্রসের জন্ম।"},
+  {year:"১৮৯৯–১৯০৭", sub:"হেগ সম্মেলনসমূহ", cat:"alliance",
+   title:"প্রথম বৈশ্বিক নিরস্ত্রীকরণ সংলাপ",
+   desc:"রাশিয়ার জার নিকোলাস-২ এর উদ্যোগে অনুষ্ঠিত দুটি সম্মেলন — বিধ্বংসী অস্ত্র ব্যবহার সীমিত করার প্রথম বৈশ্বিক প্রচেষ্টা, যা পরে লিগ অব নেশনস গঠনের প্রেরণা জোগায়।"},
+  {year:"১৯২৮", sub:"প্যারিস প্যাক্ট", cat:"alliance",
+   title:"যুদ্ধকে অবৈধ ঘোষণা করার সাহসী চেষ্টা",
+   desc:"ফ্রান্সের আগ্রাসন-বিরোধী চুক্তি — যদিও বাস্তবে ব্যর্থ হয়, তবু এটাই প্রথম যখন বিশ্ব আনুষ্ঠানিকভাবে যুদ্ধকে নীতিগতভাবে প্রত্যাখ্যান করে।"},
+  {year:"১৯৪৮", sub:"গণহত্যা সনদ ও UDHR", cat:"rights",
+   title:"হলোকাস্টের ছাই থেকে \"আর কখনো নয়\"",
+   desc:"মাত্র দুদিনের ব্যবধানে জন্ম নেয় গণহত্যা প্রতিরোধ সনদ ও সার্বজনীন মানবাধিকার ঘোষণা — মানব ইতিহাসে প্রথমবার অধিকারকে লিখিতভাবে সংজ্ঞায়িত করা হয়।"},
+  {year:"১৯৪৯", sub:"চতুর্থ জেনেভা কনভেনশন ও ন্যাটো", cat:"alliance",
+   title:"বেসামরিক সুরক্ষা ও পশ্চিমা প্রতিরক্ষা জোট",
+   desc:"একই বছরে দুটি ভিন্নমুখী ঘটনা — যুদ্ধে বেসামরিক মানুষের সুরক্ষায় জেনেভা কনভেনশনের সম্প্রসারণ, আর সোভিয়েত হুমকি ঠেকাতে ১২ দেশ নিয়ে ন্যাটো গঠন।"},
+
+  {era:"স্নায়ুযুদ্ধের অস্ত্র নিয়ন্ত্রণ", eraNote:"১৯৫৯ – ১৯৯১", year:"১৯৫৯", sub:"অ্যান্টার্কটিকা চুক্তি", cat:"disarm",
+   title:"শীতল যুদ্ধেও একটি নিরপেক্ষ মহাদেশ",
+   desc:"স্নায়ুযুদ্ধের উত্তাপের মধ্যেই ১২টি দেশ সিদ্ধান্ত নেয় — অ্যান্টার্কটিকায় কোনো সামরিক কার্যক্রম চলবে না, শুধু বিজ্ঞান ও শান্তি।"},
+  {year:"১৯৬৮", sub:"NPT স্বাক্ষর", cat:"disarm",
+   title:"পাঁচ শক্তির প্রতিশ্রুতি, বাকিদের দায়বদ্ধতা",
+   desc:"পারমাণবিক অস্ত্র বিস্তার রোধে চুক্তি — যাদের কাছে অস্ত্র ছিল তারা রাখবে, বাকিরা অর্জন করবে না। ১৯৭০ সালে কার্যকর হয়।"},
+  {year:"১৯৭২", sub:"SALT-1 ও ABM চুক্তি, মস্কো", cat:"disarm",
+   title:"নিক্সন-ব্রেজনেভের ঐতিহাসিক করমর্দন",
+   desc:"কৌশলগত অস্ত্র সীমিতকরণের পাশাপাশি প্রতিরক্ষা ক্ষেপণাস্ত্র ব্যবস্থাও সীমিত করা হয় — যুক্তি ছিল, প্রতিরক্ষা যত শক্তিশালী হবে, আক্রমণাত্মক প্রতিযোগিতাও তত বাড়বে।"},
+  {year:"১৯৭৯", sub:"SALT-2, ভিয়েনা", cat:"disarm",
+   title:"চুক্তি হলো, কিন্তু সিনেট থামিয়ে দিল",
+   desc:"কার্টার-ব্রেজনেভের আরেক ধাপ এগোনো চুক্তি, তবে মার্কিন সিনেট কখনো এটি অনুমোদন করেনি — রাজনীতি কীভাবে কূটনীতিকে থামাতে পারে তার উদাহরণ।"},
+  {year:"১৯৮৭", sub:"INF চুক্তি", cat:"disarm",
+   title:"রিগ্যান-গর্বাচেভের বরফ গলানো সিদ্ধান্ত",
+   desc:"মাঝারি পাল্লার পারমাণবিক ক্ষেপণাস্ত্র সম্পূর্ণ নিষিদ্ধ করার ঐতিহাসিক সিদ্ধান্ত — স্নায়ুযুদ্ধ নরম হওয়ার সবচেয়ে বড় প্রতীক।"},
+  {year:"১৯৯১", sub:"START-1", cat:"disarm",
+   title:"সোভিয়েত ভাঙনের প্রাক্কালে শেষ বড় চুক্তি",
+   desc:"বুশ ও গর্বাচেভ মস্কোতে গভীরতর অস্ত্র হ্রাসে সম্মত হন, ঠিক সোভিয়েত ইউনিয়ন ভেঙে পড়ার কয়েক মাস আগে।"},
+
+  {era:"নতুন বিশ্বব্যবস্থা ও পুনরায় ভাঙন", eraNote:"১৯৯২ – বর্তমান", year:"১৯৯২", sub:"মুক্ত আকাশ চুক্তি", cat:"alliance",
+   title:"একে অপরকে দেখার অনুমতি",
+   desc:"আস্থা তৈরির অংশ হিসেবে দেশগুলো একে অপরের ওপর দিয়ে পর্যবেক্ষণ বিমান চালানোর অনুমতি দেয় — স্বচ্ছতার প্রতীক হিসেবে।"},
+  {year:"১৯৯৩", sub:"START-2 ও রাসায়নিক অস্ত্র কনভেনশন", cat:"disarm",
+   title:"দুই ধরনের অস্ত্রের বিরুদ্ধে দুই সিদ্ধান্ত",
+   desc:"একদিকে START-2 তে পারমাণবিক অস্ত্র আরও কমানোর প্রতিশ্রুতি, অন্যদিকে রাসায়নিক অস্ত্র সম্পূর্ণ নিষিদ্ধ করার সনদ স্বাক্ষরিত হয়।"},
+  {year:"১৯৯৬", sub:"CTBT স্বাক্ষরের জন্য উন্মুক্ত", cat:"disarm",
+   title:"পরীক্ষা চিরতরে থামানোর প্রতিশ্রুতি",
+   desc:"সার্বজনীন পারমাণবিক পরীক্ষা নিষিদ্ধকরণ চুক্তি — বাংলাদেশ একই বছর ১২৯তম দেশ হিসেবে স্বাক্ষর করে, তবে ভারত-পাকিস্তান-উত্তর কোরিয়ার অনুপস্থিতিতে চুক্তিটি আজও পূর্ণাঙ্গভাবে কার্যকর হয়নি।"},
+  {year:"১৯৯৭", sub:"অটোয়া চুক্তি", cat:"humanitarian",
+   title:"সংঘাত শেষেও যে অস্ত্র মানুষ মারে",
+   desc:"যুদ্ধ শেষ হওয়ার পরও বছরের পর বছর সাধারণ মানুষকে পঙ্গু করা স্থলমাইন সম্পূর্ণ নিষিদ্ধ করার মানবিক উদ্যোগ।"},
+  {year:"২০০২", sub:"ABM চুক্তি থেকে প্রত্যাহার", cat:"disarm",
+   title:"প্রথম বড় ফাটল",
+   desc:"যুক্তরাষ্ট্র একতরফাভাবে ১৯৭২ সালের ABM চুক্তি থেকে সরে আসে — তিন দশকের আস্থার কাঠামোয় প্রথম বড় চিড়।"},
+  {year:"২০০৬", sub:"গুমবিরোধী আন্তর্জাতিক সনদ (ICPPED)", cat:"rights",
+   title:"নিখোঁজ মানুষদের জন্য নতুন সুরক্ষা",
+   desc:"জাতিসংঘ সাধারণ পরিষদে গৃহীত হয় জোরপূর্বক গুম প্রতিরোধ সনদ — বাংলাদেশ পরে ২০২৪ সালে ৯৮তম দেশ হিসেবে স্বাক্ষর করে।"},
+  {year:"২০১০", sub:"New START", cat:"disarm",
+   title:"ওবামা যুগের নতুন করে শুরু",
+   desc:"ওবামা ও মেদভেদেভ কৌশলগত অস্ত্র আবার সীমিত করার চুক্তিতে সই করেন, যা ২০২৬ সাল পর্যন্ত কার্যকর থাকার কথা।"},
+  {year:"২০১৫", sub:"JCPOA, ভিয়েনা", cat:"disarm",
+   title:"ইরানের সাথে এক ঐতিহাসিক সমঝোতা",
+   desc:"পি-৫+১ ও ইরানের মধ্যে দীর্ঘ আলোচনার পর ইউরেনিয়াম সমৃদ্ধকরণ সীমিত রাখার বিনিময়ে নিষেধাজ্ঞা তোলার চুক্তি।"},
+  {year:"২০১৭", sub:"TPNW স্বাক্ষর", cat:"disarm",
+   title:"সম্পূর্ণ নিষিদ্ধের দাবি, কিন্তু বয়কট",
+   desc:"পারমাণবিক অস্ত্র পুরোপুরি নিষিদ্ধ করার চুক্তি জাতিসংঘে গৃহীত হয়, কিন্তু যুক্তরাষ্ট্র-যুক্তরাজ্য-ফ্রান্সসহ পারমাণবিক শক্তিধর দেশগুলো তা বয়কট করে।"},
+  {year:"২০১৮", sub:"যুক্তরাষ্ট্রের JCPOA ত্যাগ", cat:"disarm",
+   title:"এক স্বাক্ষরেই ভেঙে পড়ে বছরের আলোচনা",
+   desc:"যুক্তরাষ্ট্র একতরফাভাবে ইরান চুক্তি থেকে নাম প্রত্যাহার করে নেয় — দেখিয়ে দেয় রাজনৈতিক ইচ্ছার সামনে চুক্তি কতটা ভঙ্গুর।"},
+  {year:"২০১৯", sub:"INF চুক্তি বাতিল", cat:"disarm",
+   title:"বরফ গলানো চুক্তিরই সমাপ্তি",
+   desc:"যুক্তরাষ্ট্র ও রাশিয়া দুজনেই একে একে ১৯৮৭ সালের ঐতিহাসিক INF চুক্তি বাতিল ঘোষণা করে।"},
+  {year:"২০২০–২১", sub:"মুক্ত আকাশ চুক্তি ত্যাগ", cat:"alliance",
+   title:"স্বচ্ছতার প্রতীকও ভেঙে পড়ে",
+   desc:"যুক্তরাষ্ট্র ও রাশিয়া দুজনেই ১৯৯২ সালের Open Skies চুক্তি থেকে সরে আসে — আস্থা তৈরির শেষ স্তম্ভগুলোর একটি ভেঙে যায়।"},
+  {year:"২০২১", sub:"TPNW কার্যকর", cat:"disarm",
+   title:"অস্বীকৃত হয়েও বলবৎ",
+   desc:"বড় শক্তিগুলোর বয়কট সত্ত্বেও পর্যাপ্ত অনুসমর্থনে পারমাণবিক অস্ত্র নিষিদ্ধকরণ চুক্তি আনুষ্ঠানিকভাবে কার্যকর হয়।"},
+  {year:"২০২৪", sub:"বাংলাদেশের ICPPED স্বাক্ষর", cat:"rights",
+   title:"নতুন প্রতিশ্রুতি, চলমান বাস্তবতা",
+   desc:"বাংলাদেশ ২৯ আগস্ট ২০২৪ তারিখে গুমবিরোধী সনদে স্বাক্ষর করে, ৯৮তম দেশ হিসেবে — একই সময়ে দেশে গুম সংক্রান্ত অনুসন্ধান চলছে।"},
+];
+
+const catColor = { humanitarian:"var(--c-humanitarian)", disarm:"var(--c-disarm)", alliance:"var(--c-alliance)", rights:"var(--c-rights)" };
+const catName = { humanitarian:"মানবিক আইন", disarm:"নিরস্ত্রীকরণ", alliance:"জোট ও কূটনীতি", rights:"মানবাধিকার" };
+
+const timeline = document.getElementById('timeline');
+let sideToggle = 0;
+
+events.forEach((e, i) => {
+  if(e.era){
+    const eraDiv = document.createElement('div');
+    eraDiv.className = 'era-label';
+    eraDiv.innerHTML = `<span>${e.era}<small>${e.eraNote}</small></span>`;
+    timeline.appendChild(eraDiv);
+  }
+  const side = sideToggle % 2 === 0 ? 'left' : 'right';
+  sideToggle++;
+  const div = document.createElement('div');
+  div.className = `event ${side}`;
+  div.dataset.cat = e.cat;
+  div.innerHTML = `
+    <div class="node" style="border-color:${catColor[e.cat]}"></div>
+    <div class="card">
+      <span class="year">${e.year}<span class="sub">— ${e.sub}</span></span>
+      <p class="title">${e.title}</p>
+      <p class="desc">${e.desc}</p>
+      <span class="tag"><span class="dot" style="background:${catColor[e.cat]}"></span>${catName[e.cat]}</span>
+    </div>
+  `;
+  timeline.appendChild(div);
+});
+
+document.getElementById('filters').addEventListener('click', (ev) => {
+  const btn = ev.target.closest('.chip');
+  if(!btn) return;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  document.querySelectorAll('.event').forEach(el => {
+    if(f === 'all' || el.dataset.cat === f){
+      el.classList.remove('hide');
+    } else {
+      el.classList.add('hide');
+    }
+  });
+  document.querySelectorAll('.era-label').forEach(el => {
+    el.style.display = f === 'all' ? '' : 'none';
+  });
+});
+</script>
+
+</body>
+</html>
