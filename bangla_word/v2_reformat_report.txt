@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-reformat_report.py   (v2 - normal HTML viewer friendly)
+reformat_report.py   (v3 - normal HTML viewer friendly)
 ------------------------------------------------------
 Gemini analysis report HTML (<div class="report-card"> ... onek ta) ke study-friendly
 single page e rupantor kore.
@@ -31,6 +31,13 @@ Single file e state bake kora (JS chhara viewer e resume/flag thakbe):
 Abar run korle latest template diye refresh hoy (flag/resume/baked state thake); kichu change
 na hole file touch kora hoy na. Je file e report-card nei seta skip hoy.
 Sudhu standard library lage.
+
+v3 (source URL support):
+  * Card er upore "source-box" (article title | date + URL) thakle seta ar harabe na -
+    rebuild er somoy save hoy, abar boshe, ar bar bar run korleo thake.
+  * --csv optional: original CSV (paragraph_text, date_time, heading_title, source_url) dile
+    prottek card er "মূল বাক্য" CSV er sathe milaye URL box nijei boshiye dey:
+        python reformat_report.py output_html.html --csv day_6_all_articles_data.csv
 """
 import argparse
 import hashlib
@@ -186,6 +193,10 @@ input[type=number]{width:84px}input[type=search]{width:170px}
 #toast{position:fixed;left:50%;bottom:24px;-webkit-transform:translateX(-50%);transform:translateX(-50%);background:#333;color:#fff;
   padding:8px 16px;border-radius:20px;z-index:1001;opacity:0;pointer-events:none;transition:opacity .3s}
 #toast.show{opacity:1}
+.srcbox{background:var(--orig);border:1px solid var(--line);border-left:4px solid #e67e22;border-radius:4px;padding:8px 14px;margin:0 0 10px;font-size:.95rem}
+.srcbox .src-title{display:block;color:#e67e22;font-weight:600;margin-bottom:2px}
+.srcbox a{color:var(--accent);word-break:break-all;text-decoration:none}
+.srcbox a:hover{text-decoration:underline}
 @media(max-width:700px){.container{padding:10px}input[type=search]{width:120px}.card{padding:12px 12px 8px 18px}}
 """
 
@@ -359,6 +370,7 @@ def build_card(c, prev_id, next_id):
         f'<input type="radio" class="fr fr-{col}" name="f{cid}" id="f{cid}-{col}" value="{col}"'
         f'{" checked" if (flag or "none") == col else ""}>'
         for col in COLORS + ("none",))
+    src = (f'<div class="srcbox"><!--u-->{c["src_html"]}<!--/u--></div>\n') if c.get("src_html") else ""
     genre = f'<span class="genre">{esc(c["genre"])}</span>' if c.get("genre") else ""
     sub = f'<div class="{c["sub_class"]}"><!--s-->{c["sub_html"]}<!--/s--></div>' if c["sub_html"] else ""
     pn = ""
@@ -369,7 +381,7 @@ def build_card(c, prev_id, next_id):
     return f"""
 <div class="{cls}" id="c{cid}" data-id="{cid}" data-search="{search}"{attrs}>
 {radios}<span class="tint"></span>
-<details class="cd" open>
+{src}<details class="cd" open>
 <summary class="head"><span class="ind"></span><span class="qnum">{esc(c["label"])}</span>{genre}<h2><!--t-->{c["title_html"]}<!--/t--></h2>{sub}</summary>
 <div class="body"><!--b-->{c["body"]}<!--/b--></div>
 </details>
@@ -488,6 +500,7 @@ def parse_v2(src):
             title_html=_between(seg, "t"),
             sub_html=_between(seg, "s"),
             sub_class=sc.group(1) if sc else "by",
+            src_html=_between(seg, "u"),
             genre=html.unescape(attrs.get("genre", "")),
             body=_between(seg, "b"),
             flag=attrs.get("flag", ""),
@@ -522,6 +535,8 @@ def convert(src, path, edits):
     cards, page_title, h1_html = r
     if not cards:
         return None, 0
+    if CSV_LOOKUP:
+        attach_urls(cards)
     apply_edits(cards, edits)
     prefix = PREFIX_TAG + hashlib.md5(path.name.encode("utf-8")).hexdigest()[:8] + "_"
     light = bool(re.search(r'<input[^>]*\bid="lm"[^>]*\bchecked', src))   # baked theme thake
@@ -561,7 +576,11 @@ def main():
     ap.add_argument("--set-resume", metavar="ID", help="(single file) resume position file er vitore bake kore dao")
     ap.add_argument("--set-flag", metavar="ID=COLOR", action="append", default=[],
                     help="(single file) flag bake koro, jemon 12=red (red/yellow/green/blue/none); bar bar deya jay")
+    ap.add_argument("--csv", metavar="FILE", help="source URL boshanor jonno original CSV (paragraph_text, date_time, heading_title, source_url)")
     args = ap.parse_args()
+    if args.csv:
+        global CSV_LOOKUP
+        CSV_LOOKUP = load_csv_lookup(args.csv)
 
     edits = {}
     if args.set_resume is not None:
@@ -599,7 +618,7 @@ def main():
 # =====================================================================
 #  TYPE: report-card  (<div class="report-card"> ... </div> onek ta)
 # =====================================================================
-GENERATOR = "reformat_report_v2"
+GENERATOR = "reformat_report_v3"
 PREFIX_TAG = "rpt_"
 GOTO_PH = "#"
 DESCRIPTION = "Gemini analysis report HTML (report-card) - folder-wide in-place reformat"
@@ -610,6 +629,40 @@ STYLE = re.compile(r'<style\b.*?</style>', re.S | re.I)
 FOOTER = re.compile(r'\s*<div\s+class="footer-mark"\s*>.*?</div>\s*$', re.S | re.I)
 FOOTER_HTML = '\n<div class="footer-mark">✦ বিশ্লেষণ সমাপ্ত ✦</div>'
 LEGACY_TAG = re.compile(r'<div\s+class="card[^"]*"\s+data-id="(\d+)"[^>]*>', re.I)
+
+
+CSV_LOOKUP = None   # --csv dile {normalized paragraph: (url, title, date)}
+
+
+def norm(t):
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def load_csv_lookup(path):
+    import csv
+    lk = {}
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            lk[norm(row["paragraph_text"])] = (row["source_url"], row["heading_title"], row["date_time"])
+    return lk
+
+
+def make_src_html(url, title, date):
+    return (f'<span class="src-title">{esc(title)} | {esc(date)}</span>'
+            f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(url)}</a>')
+
+
+def attach_urls(cards):
+    miss = 0
+    for c in cards:
+        t = norm(strip_tags(c["sub_html"])).replace("মূল বাক্য:", "", 1).strip()
+        hit = CSV_LOOKUP.get(t)
+        if hit:
+            c["src_html"] = make_src_html(*hit)
+        else:
+            miss += 1
+    if miss:
+        print(f"  ! {miss} ta card er URL CSV te paoa jayni")
 
 
 def split_cards(src):
@@ -624,10 +677,10 @@ def split_cards(src):
     return cards
 
 
-def card_from_parts(i, heading, orig, body):
+def card_from_parts(i, heading, orig, body, src=""):
     heading = re.sub(r'^\s*\d+\s*[.)]\s*', '', heading.strip())     # purano "N." number bad
     return dict(id=str(i), label=f"#{i}", title_html=heading, sub_html=orig.strip(), sub_class="orig",
-                genre="", body=body.strip() + FOOTER_HTML, flag="", resume=False)
+                genre="", body=body.strip() + FOOTER_HTML, flag="", resume=False, src_html=src.strip())
 
 
 def parse_original(src):
@@ -637,7 +690,8 @@ def parse_original(src):
         heading = h.group(1) if h else f"{i}. বিশ্লেষণ"
         orig, _ = div_inner(inner, r'<div\s+class="original-box"\s*>')
         body, _ = div_inner(inner, r'<div\s+class="analysis-content"\s*>')
-        out.append(card_from_parts(i, heading, STYLE.sub("", orig or ""), STYLE.sub("", body or "")))
+        src, _ = div_inner(inner, r'<div\s+class="source-box"\s*>')
+        out.append(card_from_parts(i, heading, STYLE.sub("", orig or ""), STYLE.sub("", body or ""), src or ""))
     return out
 
 
@@ -657,7 +711,7 @@ def parse_legacy(src):
 
 
 def load(src, path):
-    if f'name="generator" content="{GENERATOR}"' in src:
+    if re.search(r'name="generator" content="reformat_report_v\d+"', src):   # v2 ba v3 - duto-i chole
         cards = parse_v2(src)
     elif LEGACY_TAG.search(src) and 'class="orig"' in src and 'class="details"' in src:
         cards = parse_legacy(src)
