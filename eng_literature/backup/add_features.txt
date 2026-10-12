@@ -1,0 +1,486 @@
+#!/usr/bin/env python3
+"""
+add_features.py
+---------------
+english-literature-notes_merged.html ফাইলে নিচের ফিচারগুলো যোগ করে:
+
+  * Sticky topbar (স্ক্রল করে নামলে লুকায়, উপরে উঠলে ফিরে আসে)
+  * ↑ Top / ↓ Bottom বাটন
+  * অবস্থা (রং) ফিল্টার: সব / সব চিহ্নিত / ধূসর / লাল / টিল / চিহ্নহীন
+  * লেখক ফিল্টার প্যানেল (সার্চ, সব, কোনোটি না, "শুধু")
+  * লাইভ সার্চ (লেখক / রচনা / বিষয়বস্তু)
+  * Shuffle / Reverse / Original (প্রতিটি যুগের ভেতরে লেখকদের ক্রম)
+  * প্রতিটি রচনার পাশে ক্লিক-করা অবস্থা-ব্যাজ (○ → ধূসর → লাল → টিল),
+    localStorage-এ সংরক্ষিত
+  * Progress কাউন্টার, Print, Export (বর্তমান অবস্থাসহ HTML ডাউনলোড)
+  * Light/Dark থিম টগল, নিচে Reset বাটন
+
+ব্যবহার:
+    python add_features.py english-literature-notes_merged.html
+        -> english-literature-notes_merged_featured.html তৈরি করে
+    python add_features.py input.html -o output.html
+    python add_features.py input.html --inplace      (.bak ব্যাকআপসহ)
+
+স্ক্রিপ্টটি বারবার চালালেও নিরাপদ (আগের ইনজেক্ট করা কোড মুছে নতুন করে বসায়)।
+"""
+import argparse
+import re
+import shutil
+import sys
+from pathlib import Path
+
+CSS = r"""
+/*LIT-CSS-START*/
+nav.master{position:static !important}
+html{scroll-padding-top:90px}
+.lt-topbar{
+  position:sticky;top:0;z-index:9999;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  padding:10px 14px;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);box-shadow:0 6px 18px rgba(0,0,0,.18);
+  transition:top .3s ease-in-out;font-family:"Hind Siliguri",sans-serif;color:var(--ink);
+}
+.lt-topbar.lt-hide{top:-220px}
+.lt-topbar button,.lt-topbar select,.lt-topbar input[type=text]{
+  background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;
+  padding:7px 12px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;
+  outline:none;box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+.lt-topbar input[type=text]{cursor:text;min-width:150px}
+.lt-topbar button:hover,.lt-topbar select:hover{transform:translateY(-1px)}
+#ltProgress{margin-left:auto;font-weight:700;color:var(--blue);white-space:nowrap;font-size:14px}
+.lt-wf{position:relative}
+#ltWriterBtn.lt-active{border-color:#f1c40f !important;color:#c99a00 !important}
+.lt-panel{
+  display:none;position:absolute;top:115%;left:0;width:300px;max-height:340px;overflow-y:auto;
+  background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);z-index:10000;
+}
+.lt-panel.lt-open{display:block}
+.lt-panel-actions{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.lt-panel-actions input{flex:1;min-width:100px;padding:6px 8px !important;font-size:13px !important}
+.lt-panel-actions button{padding:6px 10px !important;font-size:12px !important}
+.lt-item{display:flex;align-items:center;gap:6px;padding:5px 4px;font-size:13px;cursor:pointer;border-radius:6px}
+.lt-item:hover{background:rgba(127,127,127,.15)}
+.lt-item .lt-name{flex:1}
+.lt-item .lt-count{color:var(--blue);font-size:11px;opacity:.8}
+.lt-item .lt-only{margin-left:auto;font-size:13px;font-weight:700;color:#c99a00;background:rgba(241,196,15,.15) !important;
+  border:1px solid rgba(241,196,15,.5) !important;box-shadow:none !important;padding:5px 10px !important;border-radius:8px !important;cursor:pointer;white-space:nowrap}
+.lt-panel-foot{position:sticky;bottom:-10px;display:flex;gap:8px;align-items:center;justify-content:space-between;
+  background:var(--bg);padding:8px 0 2px;margin-top:8px;border-top:1px solid var(--line)}
+.lt-auto{font-size:13px;display:flex;gap:6px;align-items:center;cursor:pointer}
+#ltApply{padding:6px 14px !important;font-size:13px !important}
+#ltApply.lt-pending{border-color:#f1c40f !important;color:#c99a00 !important}
+.lt-hidden{display:none !important}
+.lt-banner{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 12px;
+  background:#f1c40f;color:#222;font-weight:600;font-size:14px;font-family:"Hind Siliguri",sans-serif}
+.lt-banner button{background:#222;color:#fff;border:none;border-radius:8px;padding:5px 12px;cursor:pointer;font-family:inherit}
+.lt-focus nav.master,.lt-focus #p1 header.top,.lt-focus #p2 header,.lt-focus nav.toc,
+.lt-focus .era-note,.lt-focus .intro,.lt-focus #p2 main > p.n{display:none !important}
+.lt-err{position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#c0392b;color:#fff;padding:10px 14px;font:13px monospace}
+
+/* অবস্থা-ব্যাজ ও রচনার রং */
+.lt-st-btn{
+  margin-left:10px;vertical-align:middle;font-size:12px;font-weight:700;line-height:1;
+  padding:4px 10px;border-radius:999px;border:1px solid var(--line);cursor:pointer;
+  background:transparent;color:inherit;font-family:inherit;
+}
+.work[data-state="1"],.w[data-state="1"]{border-left:5px solid #808080 !important;background:rgba(128,128,128,.14) !important}
+.work[data-state="2"],.w[data-state="2"]{border-left:5px solid #F44336 !important;background:rgba(244,67,54,.13) !important}
+.work[data-state="3"],.w[data-state="3"]{border-left:5px solid #008080 !important;background:rgba(0,128,128,.14) !important}
+[data-state="1"] > h4 .lt-st-btn{background:#808080;color:#fff;border-color:#808080}
+[data-state="2"] > h4 .lt-st-btn{background:#F44336;color:#fff;border-color:#F44336}
+[data-state="3"] > h4 .lt-st-btn{background:#008080;color:#fff;border-color:#008080}
+.lt-reset{display:block;margin:30px auto;padding:12px 18px;background:#e74c3c;color:#fff;border:none;
+  border-radius:12px;cursor:pointer;font-weight:700;font-family:inherit}
+@media (max-width:600px){
+  .lt-panel{width:calc(100vw - 40px)}
+  #ltProgress{margin-left:0;width:100%;text-align:center}
+}
+@media print{
+  .lt-topbar,.lt-st-btn,.lt-reset{display:none !important}
+}
+/*LIT-CSS-END*/
+"""
+
+HTML = r"""
+<!--LIT-HTML-START-->
+<div class="lt-topbar" id="ltTopbar">
+  <button type="button" id="ltTop">↑ Top</button>
+  <button type="button" id="ltBottom">↓ Bottom</button>
+  <select id="ltColor" title="অবস্থা ফিল্টার">
+    <option value="all">সব</option>
+    <option value="allColored">সব চিহ্নিত</option>
+    <option value="1">ধূসর</option>
+    <option value="2">লাল</option>
+    <option value="3">টিল</option>
+    <option value="0">চিহ্নহীন</option>
+  </select>
+  <div class="lt-wf">
+    <button type="button" id="ltWriterBtn">লেখক ফিল্টার ▾</button>
+    <div class="lt-panel" id="ltPanel">
+      <div class="lt-panel-actions">
+        <input type="text" id="ltWriterSearch" placeholder="লেখক খুঁজুন">
+        <button type="button" id="ltAll">সব</button>
+        <button type="button" id="ltNone">কোনোটি না</button>
+      </div>
+      <div id="ltWriterList"></div>
+      <div class="lt-panel-foot">
+        <label class="lt-auto"><input type="checkbox" id="ltAuto" checked> অটো</label>
+        <button type="button" id="ltApply">প্রয়োগ করুন</button>
+      </div>
+    </div>
+  </div>
+  <input type="text" id="ltSearch" placeholder="খুঁজুন... (লেখক/রচনা/বিষয়)">
+  <button type="button" id="ltShuffle">Shuffle</button>
+  <button type="button" id="ltReverse">Reverse</button>
+  <button type="button" id="ltOriginal">Original</button>
+  <button type="button" id="ltTheme">◐ Theme</button>
+  <button type="button" id="ltPrint">Print</button>
+  <button type="button" id="ltExport">Export</button>
+  <span id="ltProgress"></span>
+</div>
+<div class="lt-banner" id="ltBanner" style="display:none">
+  <span id="ltBannerText"></span>
+  <button type="button" id="ltClear">✕ সব দেখান</button>
+</div>
+<!--LIT-HTML-END-->
+"""
+
+HTML_BOTTOM = r"""
+<!--LIT-BOTTOM-START-->
+<button type="button" class="lt-reset" id="ltReset">সব চিহ্ন রিসেট করুন</button>
+<!--LIT-BOTTOM-END-->
+"""
+
+JS = r"""
+<script id="lit-features-js">
+window.addEventListener('error', function(e){
+  var d = document.createElement('div'); d.className = 'lt-err';
+  d.textContent = 'JS error: ' + e.message + ' (line ' + e.lineno + ')';
+  document.body.appendChild(d);
+});
+(function(){
+  var LS = 'litnotes_state_v1';
+  var LABELS = ['○','ধূসর','লাল','টিল'];
+  var $ = function(id){ return document.getElementById(id); };
+
+  var authors = Array.prototype.slice.call(document.querySelectorAll('.author, article.au'));
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(LS) || '{}'); } catch(e){}
+
+  /* পুরোনো ইনজেক্ট করা অংশ (Export করা ফাইল থেকে) পরিষ্কার */
+  Array.prototype.forEach.call(document.querySelectorAll('.lt-st-btn'), function(b){ b.remove(); });
+  $('ltWriterList').innerHTML = '';
+  Array.prototype.forEach.call(document.querySelectorAll('.lt-err'), function(x){ x.remove(); });
+
+  /* ---------- ডেটা প্রস্তুত ---------- */
+  var workCounter = 0;
+  authors.forEach(function(a, i){
+    if (!a.hasAttribute('data-orig')) a.setAttribute('data-orig', i);
+    var h3 = a.querySelector('h3');
+    var nm = '';
+    if (h3) {
+      var c = h3.cloneNode(true);
+      Array.prototype.forEach.call(c.querySelectorAll('small'), function(s){ s.remove(); });
+      nm = c.textContent.trim()
+            .replace(/^[\d\u09E6-\u09EF]+[.)]\s*/, '')
+            .replace(/\s*\([^)]*\)\s*$/, '').trim();
+    }
+    a._name = nm || ('Author ' + (i+1));
+    a._works = Array.prototype.slice.call(a.querySelectorAll('.work, .w'));
+    a._text = Array.prototype.filter.call(a.children, function(ch){ return !ch.matches('.work, .w'); })
+                .map(function(ch){ return ch.textContent; }).join(' ').toLowerCase();
+    a._works.forEach(function(w){
+      var id = 'w' + (workCounter++);
+      w.setAttribute('data-id', id);
+      w._text = w.textContent.toLowerCase();
+      var st = saved[id] !== undefined ? +saved[id] : +(w.getAttribute('data-state') || 0);
+      setState(w, st, true);
+      var h4 = w.querySelector('h4');
+      if (h4) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'lt-st-btn';
+        b.title = 'ক্লিক করে অবস্থা বদলান';
+        b.textContent = LABELS[st];
+        b.addEventListener('click', function(e){
+          e.stopPropagation();
+          setState(w, (+w.getAttribute('data-state') + 1) % 4);
+          apply();
+        });
+        h4.appendChild(b);
+      }
+    });
+  });
+  var total = workCounter;
+
+  function setState(w, st, silent){
+    w.setAttribute('data-state', st);
+    var b = w.querySelector('.lt-st-btn');
+    if (b) b.textContent = LABELS[st];
+    if (!silent) {
+      saved[w.getAttribute('data-id')] = st;
+      try { localStorage.setItem(LS, JSON.stringify(saved)); } catch(e){}
+    }
+  }
+
+  /* ---------- লেখক ফিল্টার (বাটন চাপলে তালিকা লোড হয়) ---------- */
+  var groups = {}, order = [], listBuilt = false;
+  authors.forEach(function(a){
+    if (!groups[a._name]) { groups[a._name] = { works: 0, on: true, cb: null, label: null }; order.push(a._name); }
+    groups[a._name].works += a._works.length;
+  });
+  function syncChecks(){ order.forEach(function(k){ if (groups[k].cb) groups[k].cb.checked = groups[k].on; }); }
+  function filterList(){
+    var q = $('ltWriterSearch').value.trim().toLowerCase();
+    order.forEach(function(n){
+      if (groups[n].label) groups[n].label.style.display = (!q || n.toLowerCase().indexOf(q) > -1) ? '' : 'none';
+    });
+  }
+  function buildList(){
+    var list = $('ltWriterList'); list.innerHTML = '';
+    order.forEach(function(n){
+      var g = groups[n];
+      var lab = document.createElement('label'); lab.className = 'lt-item';
+      var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = g.on;
+      cb.addEventListener('change', function(){ g.on = cb.checked; changed(); });
+      var sp = document.createElement('span'); sp.className = 'lt-name';
+      sp.appendChild(document.createTextNode(n + ' '));
+      var cn = document.createElement('span'); cn.className = 'lt-count'; cn.textContent = '(' + g.works + ')';
+      sp.appendChild(cn);
+      var only = document.createElement('button'); only.type = 'button'; only.className = 'lt-only'; only.textContent = 'শুধু';
+      only.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        order.forEach(function(k){ groups[k].on = (k === n); });
+        syncChecks(); changed();
+      });
+      lab.appendChild(cb); lab.appendChild(sp); lab.appendChild(only);
+      list.appendChild(lab);
+      g.cb = cb; g.label = lab;
+    });
+    listBuilt = true; filterList();
+  }
+  $('ltWriterBtn').addEventListener('click', function(e){
+    e.stopPropagation();
+    if (!listBuilt) buildList();
+    $('ltPanel').classList.toggle('lt-open');
+  });
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.lt-wf')) $('ltPanel').classList.remove('lt-open');
+  });
+  $('ltWriterSearch').addEventListener('input', filterList);
+  $('ltAll').addEventListener('click', function(){ order.forEach(function(n){ groups[n].on = true; }); syncChecks(); changed(); });
+  $('ltNone').addEventListener('click', function(){ order.forEach(function(n){ groups[n].on = false; }); syncChecks(); changed(); });
+
+  /* অটো চালু থাকলে সঙ্গে সঙ্গে প্রয়োগ; বন্ধ থাকলে "প্রয়োগ করুন" চাপতে হবে */
+  function changed(){
+    if ($('ltAuto').checked) apply(); else $('ltApply').classList.add('lt-pending');
+  }
+  $('ltAuto').addEventListener('change', function(){ if (this.checked) apply(); });
+  $('ltApply').addEventListener('click', function(){
+    apply();
+    $('ltPanel').classList.remove('lt-open');
+    var first = authors.filter(function(a){ return !a.classList.contains('lt-hidden'); })[0];
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* ---------- ফিল্টার প্রয়োগ ---------- */
+  function apply(){
+    var q = $('ltSearch').value.trim().toLowerCase();
+    var cf = $('ltColor').value;
+    var shownWorks = 0, anyUnchecked = false;
+    var onCount = 0;
+    order.forEach(function(n){ if (!groups[n].on) anyUnchecked = true; else onCount++; });
+    $('ltWriterBtn').classList.toggle('lt-active', anyUnchecked);
+    $('ltApply').classList.remove('lt-pending');
+
+    authors.forEach(function(a){
+      var allowed = groups[a._name].on;
+      var aMatch = !!q && a._text.indexOf(q) > -1;
+      var vis = 0;
+      a._works.forEach(function(w){
+        var st = +w.getAttribute('data-state');
+        var cOk = cf === 'all' || (cf === 'allColored' && st > 0) || cf === String(st);
+        var sOk = !q || aMatch || w._text.indexOf(q) > -1;
+        var show = allowed && cOk && sOk;
+        w.classList.toggle('lt-hidden', !show);
+        if (show) vis++;
+      });
+      shownWorks += vis;
+      var showA = allowed && (vis > 0 || (a._works.length === 0 && cf === 'all' && (!q || aMatch)));
+      a.classList.toggle('lt-hidden', !showA);
+    });
+
+    /* যে যুগে কোনো লেখক দৃশ্যমান নেই, সেটি লুকাও (ফিল্টার সক্রিয় থাকলে) */
+    var filtering = anyUnchecked || q || cf !== 'all';
+    Array.prototype.forEach.call(document.querySelectorAll('section.era'), function(sec){
+      var as = sec.querySelectorAll('.author, article.au');
+      if (!as.length) return;
+      var any = Array.prototype.some.call(as, function(a){ return !a.classList.contains('lt-hidden'); });
+      sec.classList.toggle('lt-hidden', filtering && !any);
+    });
+    document.body.classList.toggle('lt-focus', !!filtering);
+    var visAuthors = authors.filter(function(a){ return !a.classList.contains('lt-hidden'); }).length;
+    $('ltWriterBtn').textContent = 'লেখক ফিল্টার (' + onCount + '/' + order.length + ') ▾';
+    $('ltBanner').style.display = filtering ? 'flex' : 'none';
+    $('ltBannerText').textContent = 'ফিল্টার সক্রিয় — ' + visAuthors + ' জন লেখক, ' + shownWorks + ' টি রচনা দেখানো হচ্ছে';
+    updateProgress(shownWorks);
+  }
+  $('ltClear').addEventListener('click', function(){
+    order.forEach(function(n){ groups[n].on = true; });
+    syncChecks();
+    $('ltSearch').value = ''; $('ltColor').value = 'all';
+    apply(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  function updateProgress(shown){
+    var marked = 0, done = 0;
+    authors.forEach(function(a){ a._works.forEach(function(w){
+      var s = +w.getAttribute('data-state'); if (s > 0) marked++; if (s === 3) done++;
+    }); });
+    if (shown === undefined) {
+      shown = 0;
+      authors.forEach(function(a){ a._works.forEach(function(w){ if (!w.classList.contains('lt-hidden')) shown++; }); });
+    }
+    $('ltProgress').textContent = 'দৃশ্যমান ' + shown + '/' + total + ' · চিহ্নিত ' + marked + ' · টিল ' + done;
+  }
+
+  $('ltSearch').addEventListener('input', apply);
+  $('ltColor').addEventListener('change', apply);
+
+  /* ---------- Top / Bottom ---------- */
+  $('ltTop').addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  $('ltBottom').addEventListener('click', function(){
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  });
+
+  /* ---------- Shuffle / Reverse / Original (প্রতিটি parent-এর ভেতরে) ---------- */
+  function reorder(fn){
+    var byParent = [];
+    authors.forEach(function(a){
+      var p = a.parentNode, g = null;
+      for (var i = 0; i < byParent.length; i++) if (byParent[i].p === p) { g = byParent[i]; break; }
+      if (!g) { g = { p: p, items: [] }; byParent.push(g); }
+      g.items.push(a);
+    });
+    byParent.forEach(function(g){
+      /* বর্তমান DOM ক্রম অনুযায়ী সাজাও */
+      var cur = Array.prototype.filter.call(g.p.children, function(c){ return g.items.indexOf(c) > -1; });
+      var marks = cur.map(function(a){ var m = document.createComment(''); a.parentNode.insertBefore(m, a); return m; });
+      var next = fn(cur.slice());
+      marks.forEach(function(m, i){ m.parentNode.replaceChild(next[i], m); });
+    });
+  }
+  $('ltShuffle').addEventListener('click', function(){
+    reorder(function(arr){
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1)), t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+      }
+      return arr;
+    });
+  });
+  $('ltReverse').addEventListener('click', function(){ reorder(function(arr){ return arr.reverse(); }); });
+  $('ltOriginal').addEventListener('click', function(){
+    reorder(function(arr){ return arr.sort(function(a, b){ return +a.getAttribute('data-orig') - +b.getAttribute('data-orig'); }); });
+  });
+
+  /* ---------- Theme ---------- */
+  $('ltTheme').addEventListener('click', function(){
+    var root = document.documentElement, cur = root.getAttribute('data-theme');
+    var dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var nxt = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', nxt);
+    try { localStorage.setItem('theme', nxt); } catch(e){}
+  });
+
+  /* ---------- Print / Export / Reset ---------- */
+  $('ltPrint').addEventListener('click', function(){ window.print(); });
+  $('ltExport').addEventListener('click', function(){
+    $('ltPanel').classList.remove('lt-open');
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'english-literature-notes_export.html';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+  $('ltReset').addEventListener('click', function(){
+    if (!confirm('সব চিহ্ন মুছে ফেলবেন?')) return;
+    authors.forEach(function(a){ a._works.forEach(function(w){ setState(w, 0, true); }); });
+    saved = {};
+    try { localStorage.removeItem(LS); } catch(e){}
+    apply();
+  });
+
+  /* ---------- স্ক্রলে topbar লুকানো/দেখানো ---------- */
+  var lastY = window.pageYOffset, bar = $('ltTopbar');
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset;
+    if ($('ltPanel').classList.contains('lt-open')) { bar.classList.remove('lt-hide'); lastY = y; return; }
+    if (y > lastY && y > 120) bar.classList.add('lt-hide'); else bar.classList.remove('lt-hide');
+    lastY = y;
+  }, { passive: true });
+
+  apply();
+})();
+</script>
+"""
+
+
+def strip_old(s):
+    # inject()-এ যোগ করা হুবহু whitespace সহ মুছে ফেলা হয়, যাতে বারবার চালালে ফাইল একই থাকে
+    s = re.sub(r"\n/\*LIT-CSS-START\*/.*?/\*LIT-CSS-END\*/\n", "", s, flags=re.S)
+    s = re.sub(r"\n\n<!--LIT-HTML-START-->.*?<!--LIT-HTML-END-->\n", "", s, flags=re.S)
+    s = re.sub(r"\n<!--LIT-BOTTOM-START-->.*?<!--LIT-BOTTOM-END-->\n", "", s, flags=re.S)
+    s = re.sub(r'\n<script id="lit-features-js">.*?</script>\n', "", s, flags=re.S)
+    return s
+
+
+def inject(s):
+    s = strip_old(s)
+
+    # 1) CSS: প্রথম </style>-এর আগে
+    i = s.find("</style>")
+    if i < 0:
+        sys.exit("ত্রুটি: </style> পাওয়া যায়নি")
+    s = s[:i] + CSS + s[i:]
+
+    # 2) Topbar: <body ...>-এর ঠিক পরে (nav.master-এর আগে)
+    m = re.search(r"<body[^>]*>", s, flags=re.I)
+    if not m:
+        sys.exit("ত্রুটি: <body> পাওয়া যায়নি")
+    s = s[: m.end()] + "\n" + HTML + s[m.end():]
+
+    # 3) Reset বাটন + JS: শেষ </body>-এর আগে
+    j = s.lower().rfind("</body>")
+    if j < 0:
+        sys.exit("ত্রুটি: </body> পাওয়া যায়নি")
+    s = s[:j] + HTML_BOTTOM + JS + s[j:]
+    return s
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("input", help="ইনপুট HTML ফাইল")
+    ap.add_argument("-o", "--output", help="আউটপুট ফাইল (ডিফল্ট: <নাম>_featured.html)")
+    ap.add_argument("--inplace", action="store_true", help="মূল ফাইলেই লিখুন (.bak ব্যাকআপ তৈরি হবে)")
+    args = ap.parse_args()
+
+    src = Path(args.input)
+    if not src.is_file():
+        sys.exit(f"ফাইল পাওয়া যায়নি: {src}")
+    html = src.read_text(encoding="utf-8")
+    out_html = inject(html)
+
+    if args.inplace:
+        shutil.copy2(src, src.with_suffix(src.suffix + ".bak"))
+        dst = src
+    else:
+        dst = Path(args.output) if args.output else src.with_name(src.stem + "_featured" + src.suffix)
+    dst.write_text(out_html, encoding="utf-8")
+    print(f"সম্পন্ন: {dst}  ({len(out_html):,} bytes)")
+
+
+if __name__ == "__main__":
+    main()
