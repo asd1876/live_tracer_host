@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>স্থলবন্দর গ্যালারি</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f4;--card:#fff;--ink:#17261f;--mute:#5d6f66;--line:#d3ddd7;--acc:#1c6b52;--acc2:#e8f2ed;--warn:#b4412b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1713;--card:#18231d;--ink:#e6efe9;--mute:#9bb0a5;--line:#2c3c33;--acc:#5fc79f;--acc2:#1d3028;--warn:#ef8a74;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1713;--card:#18231d;--ink:#e6efe9;--mute:#9bb0a5;--line:#2c3c33;--acc:#5fc79f;--acc2:#1d3028;--warn:#ef8a74;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.55}
+main{max-width:860px;margin:0 auto;padding:20px 14px 40px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--mute);margin:0 0 16px;font-size:.95rem}
+.bar{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.bar input{flex:1;min-width:160px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.prog{font-size:.9rem;color:var(--mute)}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{width:100%;border-collapse:collapse;min-width:600px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.85rem;color:var(--mute);font-weight:500;background:var(--acc2)}
+tr:last-child td{border-bottom:0}
+tr.done td.n{color:var(--mute)}
+.n{font-weight:700}
+.tag{display:inline-block;font-size:.75rem;padding:1px 8px;border-radius:99px;background:var(--acc);color:var(--card);margin-left:6px;font-weight:500}
+a{color:var(--acc)}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px}
+button.p{background:var(--acc);color:var(--card);border-color:var(--acc)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--acc)}
+.dlg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.dlg.on{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:760px;max-height:90vh;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.hd h2{margin:0;font-size:1.2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px}
+.th{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.th img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.th button{position:absolute;top:4px;right:4px;padding:1px 8px;color:var(--warn);font-size:.85rem}
+.empty{color:var(--mute);padding:24px 0;text-align:center}
+.big{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:30;padding:12px}
+.big.on{display:flex}
+.big img{max-width:100%;max-height:100%;border-radius:6px}
+</style>
+</head>
+<body>
+<main>
+<h1>বাংলাদেশের স্থলবন্দর</h1>
+<p class="sub">মোট ২৪টি · নিয়ন্ত্রক: নৌ-পরিবহন মন্ত্রণালয়। প্রতিটি বন্দরের ছবি জমিয়ে রাখুন, মুখস্থ হলে টিক দিন।</p>
+<div class="bar">
+<input id="q" type="search" placeholder="বন্দর বা জেলা খুঁজুন">
+<span class="prog" id="prog"></span>
+</div>
+<div class="wrap"><table>
+<thead><tr><th>মুখস্থ</th><th>বন্দর</th><th>অবস্থান</th><th>ম্যাপ</th><th>ছবি</th></tr></thead>
+<tbody id="tb"></tbody>
+</table></div>
+</main>
+
+<div class="dlg" id="dlg" role="dialog" aria-modal="true">
+<div class="sheet">
+<div class="hd"><h2 id="dt"></h2><button id="cl">বন্ধ করুন</button></div>
+<input type="file" id="fi" accept="image/*" multiple hidden>
+<button class="p" id="add">ছবি যোগ করুন</button>
+<div id="gr" class="grid"></div>
+</div>
+</div>
+<div class="big" id="big"><img id="bi" alt=""></div>
+
+<script>
+var PORTS=[
+["বেনাপোল","যশোর","Benapole+Land+Port+Jessore","বৃহত্তম"],
+["বুড়িমারী","লালমনিরহাট","Burimari+Land+Port+Lalmonirhat"],
+["ভোমরা","সাতক্ষীরা","Bhomra+Land+Port+Satkhira"],
+["তামাবিল","গোয়াইনঘাট, সিলেট","Tamabil+Land+Port+Sylhet"],
+["বিলোনিয়া","বিলোনিয়া, ফেনী","Belonia+Land+Port+Feni"],
+["রামগড়","খাগড়াছড়ি","Ramgarh+Land+Port+Khagrachhari","পার্বত্য এলাকায় প্রথম"],
+["চিলাহাটি","ডোমার, নীলফামারী","Chilahati+Land+Port+Nilphamari"],
+["বাল্লা","চুনারুঘাট, হবিগঞ্জ","Balla+Land+Port+Chunarughat+Habiganj"],
+["সোনা মসজিদ","চাঁপাইনবাবগঞ্জ","Sonamasjid+Land+Port+Chapainawabganj"],
+["হিলি","হাকিমপুর, দিনাজপুর","Hili+Land+Port+Dinajpur","দ্বিতীয় বৃহত্তম"],
+["বাংলাবান্ধা","তেঁতুলিয়া, পঞ্চগড়","Banglabandha+Land+Port+Panchagarh"],
+["বিরল","দিনাজপুর","Birol+Land+Port+Dinajpur"],
+["ভোলাগঞ্জ","ভোলাগঞ্জ, সিলেট","Bholaganj+Land+Port+Sylhet"]
+];
+var $=function(i){return document.getElementById(i)};
+var db=null,counts={},cur=null,urls=[],done={};
+try{done=JSON.parse(localStorage.getItem("done")||"{}")}catch(e){}
+function saveDone(){try{localStorage.setItem("done",JSON.stringify(done))}catch(e){}}
+
+function openDB(){return new Promise(function(res){
+try{var r=indexedDB.open("ports-gallery",1);
+r.onupgradeneeded=function(){var s=r.result.createObjectStore("img",{autoIncrement:true});s.createIndex("port","port")};
+r.onsuccess=function(){db=r.result;res()};r.onerror=function(){res()}}catch(e){res()}})}
+function all(port){return new Promise(function(res){
+if(!db)return res([]);
+var out=[],req=db.transaction("img").objectStore("img").index("port").openCursor(IDBKeyRange.only(port));
+req.onsuccess=function(){var c=req.result;if(c){out.push({id:c.primaryKey,blob:c.value.blob});c.continue()}else res(out)};
+req.onerror=function(){res(out)}})}
+function put(port,blob){return new Promise(function(res){
+if(!db)return res();
+var t=db.transaction("img","readwrite");t.objectStore("img").add({port:port,blob:blob});t.oncomplete=res;t.onerror=res})}
+function del(id){return new Promise(function(res){
+var t=db.transaction("img","readwrite");t.objectStore("img").delete(id);t.oncomplete=res;t.onerror=res})}
+
+function shrink(file){return new Promise(function(res){
+var u=URL.createObjectURL(file),im=new Image();
+im.onload=function(){var s=Math.min(1,1000/Math.max(im.width,im.height)),c=document.createElement("canvas");
+c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
+c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);
+c.toBlob(function(b){res(b||file)},"image/jpeg",.82)};
+im.onerror=function(){URL.revokeObjectURL(u);res(null)};im.src=u})}
+
+function render(){
+var f=$("q").value.trim(),h="",n=0;
+PORTS.forEach(function(p,i){
+if(f&&(p[0]+p[1]).indexOf(f)<0)return;
+var c=counts[i]||0;
+h+='<tr class="'+(done[i]?"done":"")+'"><td><input type="checkbox" data-i="'+i+'" aria-label="মুখস্থ"'+(done[i]?" checked":"")+'></td>'
++'<td class="n">'+p[0]+(p[3]?'<span class="tag">'+p[3]+'</span>':"")+'</td><td>'+p[1]+'</td>'
++'<td><a href="https://www.google.com/maps/search/?api=1&query='+p[2]+'" target="_blank" rel="noopener">দেখুন</a></td>'
++'<td><button data-g="'+i+'">'+(c?c+"টি ছবি":"ছবি যোগ")+'</button></td></tr>'});
+$("tb").innerHTML=h||'<tr><td colspan="5" class="empty">কিছু পাওয়া যায়নি</td></tr>';
+for(var k in done)if(done[k])n++;
+$("prog").textContent="মুখস্থ: "+n+"/"+PORTS.length}
+
+async function refreshCounts(){for(var i=0;i<PORTS.length;i++)counts[i]=(await all(i)).length;render()}
+
+async function gallery(){
+urls.forEach(function(u){URL.revokeObjectURL(u)});urls=[];
+var list=await all(cur);counts[cur]=list.length;
+$("gr").innerHTML=list.length?"":'<div class="empty" style="grid-column:1/-1">এখনো কোনো ছবি নেই। উপরের বোতামে চেপে ছবি বেছে নিন।</div>';
+list.forEach(function(it){
+var u=URL.createObjectURL(it.blob);urls.push(u);
+var d=document.createElement("div");d.className="th";
+var im=document.createElement("img");im.src=u;im.alt=PORTS[cur][0];
+im.onclick=function(){$("bi").src=u;$("big").classList.add("on")};
+var b=document.createElement("button");b.textContent="মুছুন";b.setAttribute("aria-label","ছবি মুছুন");
+b.onclick=async function(){if(confirm("এই ছবিটি মুছে ফেলবেন?")){await del(it.id);gallery();render()}};
+d.appendChild(im);d.appendChild(b);$("gr").appendChild(d)});
+render()}
+
+$("tb").addEventListener("click",function(e){
+var g=e.target.getAttribute("data-g");
+if(g!==null){cur=+g;$("dt").textContent=PORTS[cur][0]+" · ছবি";$("dlg").classList.add("on");gallery()}});
+$("tb").addEventListener("change",function(e){
+var i=e.target.getAttribute("data-i");
+if(i!==null){done[i]=e.target.checked;saveDone();render()}});
+$("q").addEventListener("input",render);
+$("cl").onclick=function(){$("dlg").classList.remove("on")};
+$("dlg").addEventListener("click",function(e){if(e.target===$("dlg"))$("dlg").classList.remove("on")});
+$("big").onclick=function(){$("big").classList.remove("on")};
+$("add").onclick=function(){$("fi").click()};
+$("fi").onchange=async function(){
+var fs=Array.prototype.slice.call($("fi").files);
+for(var i=0;i<fs.length;i++){var b=await shrink(fs[i]);if(b)await put(cur,b)}
+$("fi").value="";gallery()};
+
+render();
+openDB().then(function(){if(!db){$("prog").textContent="ছবি সংরক্ষণ এই ব্রাউজারে চলছে না"}refreshCounts()});
+</script>
+</body>
+</html>
