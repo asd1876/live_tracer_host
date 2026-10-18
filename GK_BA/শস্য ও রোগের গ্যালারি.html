@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>শস্য ও রোগের গ্যালারি</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#f3f6ee;--card:#fff;--ink:#1f2a1f;--mute:#5b6a5b;--line:#d5ddcb;--leaf:#2f5d3a;--leaf-bg:#e2eed9;--sick:#8a3b2a;--sick-bg:#f6e4dd;--btn:#2f5d3a;--btn-ink:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#141a14;--card:#1d261d;--ink:#e6eddf;--mute:#9fb09f;--line:#324032;--leaf:#a9d39a;--leaf-bg:#263a26;--sick:#f0a894;--sick-bg:#3a2520;--btn:#a9d39a;--btn-ink:#142014}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#141a14;--card:#1d261d;--ink:#e6eddf;--mute:#9fb09f;--line:#324032;--leaf:#a9d39a;--leaf-bg:#263a26;--sick:#f0a894;--sick-bg:#3a2520;--btn:#a9d39a;--btn-ink:#142014}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;line-height:1.6}
+main{max-width:960px;margin:0 auto;padding:28px 16px 48px}
+h1{font-size:28px;font-weight:600;margin:0 0 6px}
+.lead{color:var(--mute);margin:0 0 24px;max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.top{background:var(--leaf-bg);color:var(--leaf);padding:14px 16px 10px;display:flex;justify-content:space-between;align-items:baseline}
+.crop{font-size:20px;font-weight:600}
+.en{font-size:14px;color:var(--mute)}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.dis{display:inline-block;align-self:flex-start;background:var(--sick-bg);color:var(--sick);font-weight:600;font-size:17px;padding:2px 12px;border-radius:999px}
+.type{font-size:14px;color:var(--mute);margin:0}
+.sym{margin:0;font-size:15px;flex:1}
+a.btn{display:block;text-align:center;background:var(--btn);color:var(--btn-ink);text-decoration:none;font-weight:500;padding:9px 12px;border-radius:8px}
+a.btn:hover{opacity:.9}
+a.btn:focus-visible{outline:3px solid var(--sick);outline-offset:2px}
+.note{margin-top:24px;font-size:14px;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+<h1>শস্য ও রোগের গ্যালারি</h1>
+<p class="lead">প্রতিটি কার্ডের বাটনে চাপলে গুগল ইমেজে ওই রোগের ছবি নতুন ট্যাবে খুলবে। সেখান থেকে ছবি সেভ করে নিতে পারো।</p>
+<div class="grid">
+
+<article class="card"><div class="top"><span class="crop">ধান</span><span class="en">Rice</span></div><div class="body"><span class="dis">টুংরো</span><p class="type">Tungro · ভাইরাসজনিত</p><p class="sym">পাতা হলুদ বা কমলা হয়ে যায় এবং গাছ খাটো থেকে যায়।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=rice+tungro+disease+symptoms">ছবি দেখো</a></div></article>
+
+<article class="card"><div class="top"><span class="crop">ধান</span><span class="en">Rice</span></div><div class="body"><span class="dis">ব্লাইট</span><p class="type">Bacterial leaf blight · ব্যাকটেরিয়াজনিত</p><p class="sym">পাতার কিনারা থেকে শুকিয়ে ঝলসে যাওয়ার মতো দেখায়।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=rice+bacterial+leaf+blight+symptoms">ছবি দেখো</a></div></article>
+
+<article class="card"><div class="top"><span class="crop">তামাক</span><span class="en">Tobacco</span></div><div class="body"><span class="dis">মোজাইক</span><p class="type">Mosaic · ভাইরাসজনিত</p><p class="sym">পাতায় হালকা ও গাঢ় সবুজ ছোপ পড়ে, পাতা কুঁকড়ে যায়।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=tobacco+mosaic+virus+leaf+symptoms">ছবি দেখো</a></div></article>
+
+<article class="card"><div class="top"><span class="crop">গম</span><span class="en">Wheat</span></div><div class="body"><span class="dis">টুন্ডু</span><p class="type">Tundu · ব্যাকটেরিয়া ও কৃমি</p><p class="sym">শীষ বেঁকে যায় এবং দানার জায়গায় হলুদ আঠালো পদার্থ জমে।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=wheat+tundu+disease+Clavibacter+tritici">ছবি দেখো</a></div></article>
+
+<article class="card"><div class="top"><span class="crop">টমেটো</span><span class="en">Tomato</span></div><div class="body"><span class="dis">ক্যাংকার</span><p class="type">Bacterial canker · ব্যাকটেরিয়াজনিত</p><p class="sym">পাতার কিনারা শুকিয়ে যায়, ফলে ছোট দাগ পড়ে।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=tomato+bacterial+canker+symptoms">ছবি দেখো</a></div></article>
+
+<article class="card"><div class="top"><span class="crop">গোল আলু</span><span class="en">Potato</span></div><div class="body"><span class="dis">বাদামি পচা</span><p class="type">Brown rot · ব্যাকটেরিয়াজনিত</p><p class="sym">গাছ ঢলে পড়ে, আলু কাটলে ভেতরে বাদামি বলয় দেখা যায়।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=potato+brown+rot+tuber+symptoms">ছবি দেখো</a></div></article>
+
+<article class="card"><div class="top"><span class="crop">ভুট্টা</span><span class="en">Maize</span></div><div class="body"><span class="dis">বোঁটা পচা</span><p class="type">Stalk rot · জীবাণুজনিত</p><p class="sym">কাণ্ডের গোড়া পচে যায় এবং গাছ ভেঙে পড়ে।</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=maize+stalk+rot+disease+symptoms">ছবি দেখো</a></div></article>
+
+</div>
+<p class="note">লক্ষণগুলো সংক্ষিপ্ত পরিচয়ের জন্য। পরীক্ষার আগে পাঠ্যবইয়ের সাথে মিলিয়ে নিও।</p>
+</main>
+</body>
+</html>
