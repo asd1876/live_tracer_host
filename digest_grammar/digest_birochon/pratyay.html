@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>প্রত্যয়ের কারণ — কৃৎ ও তদ্ধিত সহজ ব্যাখ্যা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Serif+Bengali:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff7e0;--ink:#111;--y:#ffd23f;--p:#ff8fc2;--b:#6ec1ff;--g:#7ee2a0;--o:#ffa94d;--w:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali","Kalpurush",sans-serif;font-size:18px;line-height:1.7;
+background-image:radial-gradient(#11111118 1.5px,transparent 1.5px);background-size:22px 22px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 60px}
+h1,h2{font-family:"Noto Serif Bengali","Hind Siliguri",serif;font-weight:900;margin:0}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;background:var(--y);border:5px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:26px;border-radius:18px}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.25}
+.hero p{margin:12px 0 0;font-weight:600}
+.hero svg{width:100%;height:auto}
+.how{margin:34px 0;background:var(--w);border:5px solid var(--ink);box-shadow:8px 8px 0 var(--ink);border-radius:18px;padding:18px}
+.how h2{font-size:26px;margin-bottom:8px}
+.how svg{width:100%;height:auto;display:block}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button,input{font:inherit;font-weight:700;border:4px solid var(--ink);border-radius:12px;background:var(--w);color:var(--ink);padding:6px 16px;box-shadow:4px 4px 0 var(--ink)}
+button{cursor:pointer}button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+button.on{background:var(--p)}
+input{flex:1;min-width:160px;font-weight:600}
+.sec{margin:26px 0 12px;display:flex;align-items:center;gap:12px}
+.sec h2{font-size:30px;background:var(--b);border:4px solid var(--ink);padding:2px 18px;border-radius:12px;box-shadow:5px 5px 0 var(--ink)}
+.sec span{font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+.card{background:var(--w);border:4px solid var(--ink);border-radius:16px;box-shadow:7px 7px 0 var(--ink);padding:16px;position:relative}
+.no{position:absolute;top:-16px;left:-12px;width:44px;height:44px;border-radius:50%;background:var(--o);border:4px solid var(--ink);display:grid;place-items:center;font-weight:900;font-size:20px}
+.seen{margin:6px 0 2px 30px;font-size:14px;font-weight:700;opacity:.75}
+.big{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:2px 0 8px}
+.big b{font-family:"Noto Serif Bengali",serif;font-size:26px}
+.arrow{font-size:26px;font-weight:900}
+.root{background:var(--g);border:3px solid var(--ink);border-radius:10px;padding:0 12px;font-family:"Noto Serif Bengali",serif;font-weight:900;font-size:22px}
+.why{margin:0 0 10px;font-size:16px}
+.f{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}
+.chip{border:3px solid var(--ink);border-radius:9px;padding:0 9px;font-weight:700;background:#eef6ff;font-size:17px}
+.chip.p{background:var(--p)}.chip.w{background:var(--y);font-weight:900}
+.op{font-weight:900}
+.pad{display:inline-block;margin-top:8px;border:3px solid var(--ink);border-radius:999px;padding:0 14px;font-weight:900;font-size:15px}
+.pad.N{background:var(--b)}.pad.A{background:var(--p)}.pad.NA{background:var(--g)}
+.note{margin:6px 0 0;font-size:14px;background:#fff3b0;border-left:6px solid var(--ink);padding:2px 8px}
+.tips{margin-top:40px}
+.tips h2{font-size:30px;margin-bottom:14px}
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+.tip{border:4px solid var(--ink);border-radius:16px;box-shadow:7px 7px 0 var(--ink);padding:16px}
+.tip h3{margin:0 0 6px;font-size:21px}
+.tip table{width:100%;border-collapse:collapse;font-size:16px}
+.tip td,.tip th{border:3px solid var(--ink);padding:3px 8px;text-align:left;background:#ffffffb0}
+.empty{display:none;font-weight:700;padding:20px;border:4px dashed var(--ink);border-radius:14px}
+footer{margin-top:40px;font-size:14px;font-weight:600;opacity:.8}
+@media(max-width:720px){.hero{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <h1>প্রত্যয়ের কারণ,<br>একদম সহজে</h1>
+    <p>কৃৎ ও তদ্ধিত প্রত্যয়ের ২৮টি নিয়ম — কেন ‘অক’ আসলে ‘ণক’, কেন ‘মান’ কখনো ‘শানচ্’ আর কখনো ‘মতুপ্’, আর কেন কোনোটি বিশেষ্য ও কোনোটি বিশেষণ।</p>
+  </div>
+  <svg viewBox="0 0 320 240" role="img" aria-label="বই ও কলমের ছবি">
+    <rect x="30" y="150" width="260" height="62" rx="10" fill="#6ec1ff" stroke="#111" stroke-width="6"/>
+    <path d="M40 150 V60 Q100 30 160 62 Q220 30 280 60 V150 Z" fill="#fff" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+    <line x1="160" y1="62" x2="160" y2="150" stroke="#111" stroke-width="6"/>
+    <text x="100" y="112" font-size="34" font-weight="900" text-anchor="middle" fill="#111" font-family="Noto Serif Bengali,serif">ণক</text>
+    <text x="220" y="112" font-size="34" font-weight="900" text-anchor="middle" fill="#ff3d8b" font-family="Noto Serif Bengali,serif">অক</text>
+    <path d="M128 30 L152 8 L172 26 L148 48 Z" fill="#ff8fc2" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="276" cy="30" r="16" fill="#7ee2a0" stroke="#111" stroke-width="5"/>
+    <text x="276" y="37" font-size="20" font-weight="900" text-anchor="middle">?</text>
+  </svg>
+</header>
+
+<section class="how">
+  <h2>পুরো খেলাটা একনজরে</h2>
+  <svg viewBox="0 0 900 250" role="img" aria-label="ধাতু বা শব্দ থেকে প্রত্যয় যোগে নতুন পদ তৈরির ছবি">
+    <defs><marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#111"/></marker></defs>
+    <g font-family="Hind Siliguri,sans-serif" font-weight="700" text-anchor="middle" fill="#111">
+      <rect x="10" y="20" width="250" height="90" rx="14" fill="#7ee2a0" stroke="#111" stroke-width="5"/>
+      <text x="135" y="58" font-size="24">কৃৎ-প্রত্যয়</text><text x="135" y="92" font-size="19">ধাতু (কাজ) + প্রত্যয়</text>
+      <rect x="10" y="140" width="250" height="90" rx="14" fill="#6ec1ff" stroke="#111" stroke-width="5"/>
+      <text x="135" y="178" font-size="24">তদ্ধিত প্রত্যয়</text><text x="135" y="212" font-size="19">নাম শব্দ + প্রত্যয়</text>
+      <path d="M262 65 H330 M262 185 H330" stroke="#111" stroke-width="6" marker-end="url(#ah)"/>
+      <rect x="340" y="75" width="240" height="100" rx="14" fill="#ffd23f" stroke="#111" stroke-width="5"/>
+      <text x="460" y="118" font-size="23">লোপ · বৃদ্ধি · সন্ধি</text><text x="460" y="150" font-size="18">রূপ বদলে যায়</text>
+      <path d="M582 125 H640" stroke="#111" stroke-width="6" marker-end="url(#ah)"/>
+      <rect x="650" y="20" width="240" height="90" rx="14" fill="#6ec1ff" stroke="#111" stroke-width="5"/>
+      <text x="770" y="58" font-size="24">বিশেষ্য</text><text x="770" y="92" font-size="17">কর্তা · ভাব · নাম</text>
+      <rect x="650" y="140" width="240" height="90" rx="14" fill="#ff8fc2" stroke="#111" stroke-width="5"/>
+      <text x="770" y="178" font-size="24">বিশেষণ</text><text x="770" y="212" font-size="17">যোগ্যতা · অবস্থা · গুণ</text>
+    </g>
+  </svg>
+</section>
+
+<div class="bar">
+  <button data-k="all" class="on">সব</button>
+  <button data-k="krit">কৃৎ</button>
+  <button data-k="tad">তদ্ধিত</button>
+  <button data-p="N">বিশেষ্য</button>
+  <button data-p="A">বিশেষণ</button>
+  <input id="q" type="search" placeholder="শব্দ বা প্রত্যয় খুঁজুন, যেমন: গতি">
+</div>
+
+<div id="out"></div>
+<div class="empty" id="empty">কিছু পাওয়া যায়নি, অন্য কিছু লিখে দেখুন।</div>
+
+<section class="tips">
+  <h2>গুলিয়ে ফেলার জায়গাগুলো</h2>
+  <div class="tg">
+    <div class="tip" style="background:var(--g)"><h3>‘মান’ — কোনটা কী?</h3>
+      <table><tr><th>আগে কী?</th><th>প্রত্যয়</th><th>উদাহরণ</th></tr>
+      <tr><td>ধাতু (কাজ)</td><td>শানচ্</td><td>চল্ + শানচ্ = চলমান</td></tr>
+      <tr><td>নাম শব্দ</td><td>মতুপ্</td><td>বুদ্ধি + মতুপ্ = বুদ্ধিমান</td></tr></table></div>
+    <div class="tip" style="background:var(--b)"><h3>‘তা’ — কোনটা কী?</h3>
+      <table><tr><th>আগে কী?</th><th>প্রত্যয়</th><th>উদাহরণ</th></tr>
+      <tr><td>ধাতু (কৃৎ)</td><td>তৃ</td><td>দা + তৃ = দাতা</td></tr>
+      <tr><td>বিশেষণ/নাম (তদ্ধিত)</td><td>তা</td><td>মধুর + তা = মধুরতা</td></tr></table></div>
+    <div class="tip" style="background:var(--p)"><h3>‘য’ — কৃৎ না তদ্ধিত?</h3>
+      <table><tr><th>আগে কী?</th><th>ফল</th><th>উদাহরণ</th></tr>
+      <tr><td>ধাতু</td><td>বিশেষণ</td><td>ভুজ্ + য = ভোজ্য</td></tr>
+      <tr><td>বিশেষণ</td><td>বিশেষ্য</td><td>সুন্দর + য = সৌন্দর্য</td></tr></table></div>
+  </div>
+</section>
+
+<footer>এই পাতার ব্যাখ্যা একটি Gemini কথোপকথন থেকে গোছানো। পরীক্ষার আগে পাঠ্যবইয়ের সঙ্গে মিলিয়ে নিন।</footer>
+</div>
+
+<script>
+// [শব্দে যা দেখি, মূল প্রত্যয়, কারণ, "আগে|প্রত্যয়|ফল;…", পদ(N/A/NA), বাড়তি নোট]
+const KRIT=[
+["অক / ণক","ণক","‘ণক’-এর ‘ণ’ ও ‘ক’ লোপ পায়, বাকি থাকে ‘অ’। ধাতুর স্বরের বৃদ্ধি হয়, কর্তাকে বোঝায়।","কৃ|অক|কারক;নী|অক|নায়ক;পঠ্|অক|পাঠক","N"],
+["নীয় / নীয়া","অনীয়","সংস্কৃত ‘অনীয়র্’-এর ‘র্’ লোপ পায়। যোগ্য বা উচিত বোঝায়।","কৃ|অনীয়|করণীয়;দৃশ্|অনীয়|দর্শনীয়;শ্রু|অনীয়|শ্রবণীয়","A"],
+["তা","তৃ / তৃচ্","‘তৃ’ প্রথমা একবচনে ‘তা’ হয়ে যায়। কাজের কর্তাকে বোঝায়।","দা|তৃ|দাতা;কৃ|তৃ|কর্তা;জ্ঞা|তৃ|জ্ঞাতা","N"],
+["মান","শানচ্","‘শ্’ ও ‘চ্’ লোপ পেয়ে ‘আন’, তা থেকে ‘মান’। চলমান অবস্থা বোঝায়।","চল্|শানচ্|চলমান;বৃধ্|শানচ্|বর্ধমান;বৃত্|শানচ্|বর্তমান","NA","‘বর্তমান’ বাক্যভেদে বিশেষ্যও হয়: “বর্তমান নিয়ে ভাবো”।"],
+["র্য / য্য","য (ণ্যৎ / যৎ)","বাড়তি অংশ লোপ পেয়ে শুধু ‘য’ থাকে। যোগ্যতা বোঝায়।","কৃ|য|কার্য;ভুজ্|য|ভোজ্য;লভ্|য|লভ্য","A","ব্যতিক্রম: ‘বাচ্য’ (voice অর্থে) বিশেষ্য।"],
+["অয়","অ / অল্","‘ল্’ লোপ পায়। ই/ঈ-কারান্ত ধাতুতে ‘অ’ যোগে ‘অয়’ হয়।","জি|অ|জয়;ভী|অ|ভয়;বিনী|অ|বিনয়","N","ব্যতিক্রম: হন্ + অল্ = বধ।"],
+["ত / ক্ত / ন্ত / দ্ধ / গ্ধ","ক্ত","ধাতুর শেষ বর্ণের সঙ্গে মিলে নানা চেহারা নেয়। শেষ হয়ে যাওয়া অবস্থা বোঝায়।","গম্|ক্ত|গত;মুচ্|ক্ত|মুক্ত;শম্|ক্ত|শান্ত;যুধ্|ক্ত|যুদ্ধ;মুহ্|ক্ত|মুগ্ধ","A"],
+["তি / ক্তি / ন্তি / ষ্টি","ক্তি","৭ নম্বরের মতোই, তবে ই-কার যোগে কাজের ভাব বা নাম বোঝায়।","গম্|ক্তি|গতি;মুচ্|ক্তি|মুক্তি;শম্|ক্তি|শান্তি;দৃশ্|ক্তি|দৃষ্টি","N"],
+["অন","অন / অনট্","ক্রিয়াকে কাজ বা ভাবের নাম বানায়।","গম্|অনট্|গমন","N"],
+["তব্য","তব্য","অপরিবর্তিত থাকে। উচিত বা আবশ্যকতা বোঝায়।","কৃ|তব্য|কর্তব্য","A"],
+["ইষ্ণু","ইষ্ণু","অপরিবর্তিত থাকে। স্বভাব বা প্রবণতা বোঝায়।","সহ্|ইষ্ণু|সহিষ্ণু","A"],
+["বর","বরচ্","‘চ্’ লোপ পায়, ‘বর’ অপরিবর্তিত থাকে।","ঈশ্|বর|ঈশ্বর;নশ্|বর|নশ্বর","N"],
+["র","র / রচ্","ধাতুর শেষে সরাসরি ‘র’ (র-ফলা) বসে।","নম্|র|নম্র;হিন্স্|র|হিংস্র","A","‘হিংস্র’-এর ধাতু ‘হিন্স্’, তাই হিন্স্ + র।"],
+["বাস, ক্রোধ, ভেদ, যোগ","ঘঞ্","‘ঘ’ ও ‘ঞ’ লোপ পেয়ে ‘অ’ বাকি থাকে। ধাতুর স্বরের বৃদ্ধি বা গুণ হয়।","বস্|ঘঞ্|বাস;ক্রুধ্|ঘঞ্|ক্রোধ;ভিদ্|ঘঞ্|ভেদ;যুজ্|ঘঞ্|যোগ","N"]
+];
+const TAD=[
+["ইক","ইক / ষ্ণিক (ঠক্)","‘ষ্’ ও ‘ণ্’ লোপ পায়। প্রথম স্বরের বৃদ্ধি হয়। “তার সঙ্গে সম্পর্কিত” বোঝায়।","সমাজ|ইক|সামাজিক;দিন|ইক|দৈনিক;বিজ্ঞান|ইক|বৈজ্ঞানিক","A"],
+["এয়","এয় (ঢক্ / ষ্ণেয়)","বাড়তি বর্ণ লোপ পায়। প্রথম স্বরের বৃদ্ধি হয়। “তা থেকে জাত” বোঝায়।","অগ্নি|এয়|আগ্নেয়;গঙ্গা|এয়|গাঙ্গেয়;পথ|এয়|পাথেয়","A"],
+["অব / অ","ষ্ণ (অণ্)","‘ষ্’ ও ‘ণ্’ লোপ পায়। প্রথম স্বরের বৃদ্ধি হয়, শেষের উ-কার বদলে ‘অব’ হয়।","মনু|অ|মানব;গুরু|অ|গৌরব;শিব|অ|শৈব",""],
+["বী","বিন্","হ্রস্ব-ই যুক্ত ‘বিন্’ প্রথমা একবচনে ‘বী’ হয়। “যার আছে” বোঝায়।","মেধা|বিন্|মেধাবী;মায়া|বিন্|মায়াবী;যশঃ|বিন্|যশস্বী","A"],
+["বান","বতুপ্ / বৎ","‘প্’ লোপ পেয়ে ‘বৎ’, তা থেকে ‘বান’। “যার আছে” বোঝায়।","দয়া|বতুপ্|দয়াবান;ধন|বতুপ্|ধনবান","A"],
+["মান","মতুপ্ / মৎ","‘বান’-এর ভাই। “যার আছে” বোঝায়। মানের আগে নাম শব্দ থাকে।","বুদ্ধি|মতুপ্|বুদ্ধিমান;শক্তি|মতুপ্|শক্তিমান","A"],
+["র্য / ্য","ষ্যঞ্","‘ষ্’ ও ‘ঞ্’ লোপ পায়। প্রথম স্বরের বৃদ্ধি হয়। গুণকে ভাবের নাম বানায়।","সুন্দর|ষ্যঞ্|সৌন্দর্য;প্রচুর|ষ্যঞ্|প্রাচুর্য","N"],
+["্য (য-ফলা)","য (ষ্যঞ্ / যঞ্)","‘য’ আগের বর্ণে জুড়ে য-ফলা হয়। প্রথম স্বরের বৃদ্ধি হয়।","সম|য|সাম্য;তরল|য|তারল্য;কবি|য|কাব্য","N"],
+["ইমা","ইমন্","শেষের ‘ন্’ লোপ পেয়ে ‘ইমা’ হয়। ভাব বা সৌন্দর্যের নাম।","মহৎ|ইমন্|মহিমা;নীল|ইমন্|নীলিমা;গুরু|ইমন্|গরিমা","N"],
+["ইত","ইতচ্","‘চ্’ লোপ পায়, আর কোনো বদল নেই। “যুক্ত / প্রাপ্ত” বোঝায়।","ব্যথা|ইত|ব্যথিত;পুষ্প|ইত|পুষ্পিত","A"],
+["ইল","ইলচ্","‘চ্’ লোপ পায়, আর কোনো বদল নেই। “ভরা / যুক্ত” বোঝায়।","পঙ্ক|ইল|পঙ্কিল;ফেনা|ইল|ফেনিল;জটা|ইল|জটিল","A"],
+["তা","তা","অপরিবর্তিত থাকে। ভাব বা ধর্ম বোঝায়।","মধুর|তা|মধুরতা;সাধু|তা|সাধুতা","N"],
+["ত্ব","ত্ব","‘তা’-এর জোড়, একই অর্থ। বন্ধুতা ও বন্ধুত্ব দুটোই চলে।","কবি|ত্ব|কবিত্ব;মনুষ্য|ত্ব|মনুষ্যত্ব;বন্ধু|ত্ব|বন্ধুত্ব","N"],
+["অঞ্জলি","অঞ্জলি","পুরো শব্দই প্রত্যয়ের মতো বসে। সন্ধিতে আগের ‘অ/আ’ মিলে ‘আ’ হয়।","গীত|অঞ্জলি|গীতাঞ্জলি;শ্রদ্ধা|অঞ্জলি|শ্রদ্ধাঞ্জলি","N"]
+];
+const PAD={N:"বিশেষ্য",A:"বিশেষণ",NA:"বিশেষ্য ও বিশেষণ"};
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const out=document.getElementById("out"),empty=document.getElementById("empty");
+let kind="all",pad="",term="";
+
+function card(r,i){
+  const [seen,root,why,ex,p,note]=r;
+  const rows=ex.split(";").map(e=>{const [a,b,c]=e.split("|");
+    return `<div class="f"><span class="chip">${a}</span><span class="op">+</span><span class="chip p">${b}</span><span class="op">=</span><span class="chip w">${c}</span></div>`}).join("");
+  return `<article class="card" data-p="${p}" data-t="${seen} ${root} ${why} ${ex}">
+    <div class="no">${bn(i+1)}</div><div class="seen">শব্দের শেষে দেখি</div>
+    <div class="big"><b>${seen}</b><span class="arrow">→</span><span class="root">${root}</span></div>
+    <p class="why">${why}</p>${rows}
+    ${p?`<span class="pad ${p}">${PAD[p]}</span>`:""}
+    ${note?`<p class="note">${note}</p>`:""}</article>`;
+}
+function sec(id,title,sub,data){
+  return `<div class="sec" data-s="${id}"><h2>${title}</h2><span>${sub}</span></div><div class="grid" data-s="${id}">${data.map(card).join("")}</div>`;
+}
+out.innerHTML=sec("krit","কৃৎ-প্রত্যয়","ধাতুর (কাজের) শেষে বসে",KRIT)+sec("tad","তদ্ধিত প্রত্যয়","নাম শব্দের শেষে বসে",TAD);
+
+function apply(){
+  let shown=0;
+  document.querySelectorAll("[data-s]").forEach(el=>{
+    if(el.classList.contains("sec")) return;
+    const okS=kind==="all"||el.dataset.s===kind;
+    let n=0;
+    el.querySelectorAll(".card").forEach(c=>{
+      const ok=okS&&(!pad||c.dataset.p===pad||(c.dataset.p==="NA"&&pad))&&(!term||c.dataset.t.includes(term));
+      c.style.display=ok?"":"none"; if(ok)n++;
+    });
+    el.style.display=n?"":"none";
+    el.previousElementSibling.style.display=n?"":"none";
+    shown+=n;
+  });
+  empty.style.display=shown?"none":"block";
+}
+document.querySelectorAll(".bar button").forEach(b=>b.onclick=()=>{
+  if(b.dataset.k){kind=b.dataset.k;document.querySelectorAll("[data-k]").forEach(x=>x.classList.toggle("on",x===b));}
+  else{pad=pad===b.dataset.p?"":b.dataset.p;document.querySelectorAll("[data-p]").forEach(x=>{if(x.tagName==="BUTTON")x.classList.toggle("on",x.dataset.p===pad)});}
+  apply();
+});
+document.getElementById("q").oninput=e=>{term=e.target.value.trim();apply();};
+</script>
+</body>
+</html>
