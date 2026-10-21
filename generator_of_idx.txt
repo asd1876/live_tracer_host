@@ -1,134 +1,342 @@
-from pathlib import Path
+#!/usr/bin/env python3
+"""Generate a searchable, collapsible index.html for a folder tree.
+
+Examples:
+    python generate_index.py                      # index current folder
+    python generate_index.py -r docs -o docs/index.html -t "Docs"
+    python generate_index.py --open-depth 1 --ignore "*.tmp" --ignore drafts
+    python generate_index.py --show-hidden --no-sizes
+
+Extra ignore patterns can be put in a `.indexignore` file in the root
+(one glob per line, '#' for comments). Patterns match a file/folder name
+or its relative path, e.g.  *.log   build   docs/private
+"""
+import argparse
+import fnmatch
 import html
+import os
+from datetime import datetime
+from pathlib import Path
 from urllib.parse import quote
 
-# Directories or files to ignore during index generation
-IGNORE_LIST = {
-    ".git",
-    ".github",
-    ".gitignore",
-    "index.html",
-    "generate_index.py",
-    "__pycache__",
-    ".DS_Store",
-    "index_generator.txt",
-    "generator.txt",
-    "LICENSE",
-    "backup",
-    "data",
+DEFAULT_IGNORE = [
+    ".git", ".github", ".gitignore", ".DS_Store", "__pycache__", "node_modules",
+    "index.html", "generate_index.py", "index_generator.txt", "generator.txt",
+    "LICENSE", "backup", "data",
+]
+
+ICONS = {
+    "pdf": "📕", "doc": "📘", "docx": "📘", "txt": "📝", "md": "📝",
+    "xls": "📊", "xlsx": "📊", "csv": "📊", "ppt": "📙", "pptx": "📙",
+    "png": "🖼️", "jpg": "🖼️", "jpeg": "🖼️", "gif": "🖼️", "svg": "🖼️", "webp": "🖼️",
+    "mp3": "🎵", "wav": "🎵", "flac": "🎵", "mp4": "🎬", "mkv": "🎬", "mov": "🎬",
+    "zip": "🗜️", "gz": "🗜️", "tar": "🗜️", "7z": "🗜️", "rar": "🗜️",
+    "py": "🐍", "js": "📜", "ts": "📜", "json": "🧾", "html": "🌐", "css": "🎨",
+    "sh": "⚙️", "yml": "🧾", "yaml": "🧾", "xml": "🧾",
 }
 
 
-def build_tree(dir_path: Path, root_path: Path) -> str:
-    """Recursively builds an HTML nested list for directories and files."""
-    items = sorted(
-        dir_path.iterdir(), key=lambda x: (not x.is_dir(), x.name.lower())
-    )
-    html_out = ["<ul>"]
+def human_size(n):
+    for unit in ("B", "KB", "MB", "GB"):
+        if n < 1024 or unit == "GB":
+            return f"{n:.0f} {unit}" if unit == "B" else f"{n:.1f} {unit}"
+        n /= 1024
 
-    for item in items:
-        if item.name in IGNORE_LIST or item.name.startswith("."):
+
+def load_ignore(root, extra, use_default):
+    patterns = list(DEFAULT_IGNORE) if use_default else []
+    patterns += extra
+    ignore_file = root / ".indexignore"
+    if ignore_file.is_file():
+        for line in ignore_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                patterns.append(line.rstrip("/"))
+    return patterns
+
+
+def is_ignored(name, rel, patterns):
+    return any(fnmatch.fnmatch(name, p) or fnmatch.fnmatch(rel, p) for p in patterns)
+
+
+def scan(path, root, patterns, args, skip):
+    """Return {'dirs': [...], 'files': [...]} for a directory, or None if empty."""
+    try:
+        entries = list(path.iterdir())
+    except (PermissionError, OSError):
+        return None
+    dirs, files = [], []
+    for item in entries:
+        rel = item.relative_to(root).as_posix()
+        if item.resolve() in skip:
             continue
+        if is_ignored(item.name, rel, patterns):
+            continue
+        if item.name.startswith(".") and not args.show_hidden:
+            continue
+        try:
+            if item.is_dir():
+                if item.is_symlink() and not args.follow_symlinks:
+                    continue
+                sub = scan(item, root, patterns, args, skip)
+                if sub is None or (not sub["dirs"] and not sub["files"] and not args.keep_empty):
+                    continue
+                sub.update(name=item.name, path=item)
+                sub["count"] = len(sub["files"]) + sum(d["count"] for d in sub["dirs"])
+                sub["size"] = sum(f["size"] for f in sub["files"]) + sum(d["size"] for d in sub["dirs"])
+                sub["mtime"] = max([f["mtime"] for f in sub["files"]] + [d["mtime"] for d in sub["dirs"]] + [0])
+                dirs.append(sub)
+            elif item.is_file():
+                st = item.stat()
+                files.append({"name": item.name, "path": item, "size": st.st_size, "mtime": st.st_mtime})
+        except OSError:
+            continue
+    key = lambda x: x["name"].lower()
+    dirs.sort(key=key)
+    files.sort(key=key)
+    return {"dirs": dirs, "files": files}
 
-        rel_path = item.relative_to(root_path).as_posix()
-        # URL-encode the path so spaces/special characters work in links
-        href = quote(rel_path)
-        escaped_name = html.escape(item.name)
 
-        if item.is_dir():
-            html_out.append(
-                f'<li><span class="folder">📁 {escaped_name}</span>'
-            )
-            html_out.append(build_tree(item, root_path))
-            html_out.append("</li>")
-        else:
-            html_out.append(
-                f'<li class="file">'
-                f'<a href="{href}">📄 {escaped_name}</a>'
-                f'<a class="download" href="{href}" '
-                f'download="{escaped_name}" '
-                f'title="Download {escaped_name}" '
-                f'aria-label="Download {escaped_name}">⬇️</a>'
-                f'</li>'
-            )
+def render(node, out_dir, args, depth=0):
+    e = html.escape
+    out = ["<ul>"]
+    for d in node["dirs"]:
+        rel = e(os.path.relpath(d["path"], out_dir).replace(os.sep, "/"), quote=True)
+        is_open = " open" if depth < args.open_depth else ""
+        meta = f'<span class="badge">{d["count"]}</span>'
+        if args.sizes:
+            meta += f'<span class="size">{human_size(d["size"])}</span>'
+        out.append(
+            f'<li class="dir" data-name="{e(d["name"].lower(), quote=True)}" '
+            f'data-size="{d["size"]}" data-mtime="{d["mtime"]:.0f}" data-ext="">'
+            f'<details{is_open}><summary><span class="ico">📁</span>'
+            f'<span class="name">{e(d["name"])}</span>{meta}</summary>'
+        )
+        out.append(render(d, out_dir, args, depth + 1))
+        out.append("</details></li>")
+    for f in node["files"]:
+        rel = os.path.relpath(f["path"], out_dir).replace(os.sep, "/")
+        href = quote(rel)
+        ext = f["name"].rsplit(".", 1)[-1].lower() if "." in f["name"] else ""
+        icon = ICONS.get(ext, "📄")
+        date = datetime.fromtimestamp(f["mtime"]).strftime("%Y-%m-%d")
+        meta = ""
+        if args.sizes:
+            meta += f'<span class="size">{human_size(f["size"])}</span>'
+        if args.dates:
+            meta += f'<span class="date">{date}</span>'
+        dl = (
+            f'<a class="download" href="{href}" download="{e(f["name"], quote=True)}" '
+            f'title="Download {e(f["name"], quote=True)}" '
+            f'aria-label="Download {e(f["name"], quote=True)}">'
+            f'<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">'
+            f'<path fill="currentColor" d="M7.25 1.5h1.5v6.19l2.22-2.22 1.06 1.06L8 10.31 '
+            f'3.97 6.53l1.06-1.06 2.22 2.22zM2 12h12v1.5H2z"/></svg>'
+            f'<span>Download</span></a>'
+            if args.downloads else ""
+        )
+        out.append(
+            f'<li class="file" data-name="{e(f["name"].lower(), quote=True)}" '
+            f'data-path="{e(rel.lower(), quote=True)}" data-size="{f["size"]}" '
+            f'data-mtime="{f["mtime"]:.0f}" data-ext="{e(ext, quote=True)}">'
+            f'<a class="link" href="{href}"><span class="ico">{icon}</span>'
+            f'<span class="name">{e(f["name"])}</span></a>{meta}{dl}</li>'
+        )
+    out.append("</ul>")
+    return "\n".join(out)
 
-    html_out.append("</ul>")
-    return "\n".join(html_out)
 
-
-def generate_index_html(repo_root: str = "."):
-    root = Path(repo_root).resolve()
-    tree_html = build_tree(root, root)
-
-    html_content = f"""<!DOCTYPE html>
+TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repository Index</title>
-    <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #24292e;
-        }}
-        h1 {{
-            border-bottom: 1px solid #eaecef;
-            padding-bottom: 10px;
-        }}
-        ul {{
-            list-style-type: none;
-            padding-left: 20px;
-        }}
-        body > ul {{
-            padding-left: 0;
-        }}
-        li {{
-            margin: 4px 0;
-        }}
-        a {{
-            color: #0366d6;
-            text-decoration: none;
-        }}
-        a:hover {{
-            text-decoration: underline;
-        }}
-        .folder {{
-            font-weight: bold;
-            color: #586069;
-        }}
-        li.file {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }}
-        a.download {{
-            font-size: 0.9em;
-            opacity: 0.5;
-            transition: opacity 0.15s ease;
-        }}
-        a.download:hover {{
-            opacity: 1;
-            text-decoration: none;
-        }}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE__</title>
+<style>
+:root {
+  --bg:#fff; --fg:#1f2328; --muted:#656d76; --line:#d8dee4; --hover:#f3f6fa;
+  --accent:#0969da; --badge:#eaeef2; --mark:#fff3b0;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0f1318; --fg:#e6edf3; --muted:#8b949e; --line:#2d333b;
+          --hover:#171c23; --accent:#58a6ff; --badge:#222831; --mark:#5a4a00; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.5;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+main { max-width:960px; margin:0 auto; padding:24px 20px 80px; }
+h1 { font-size:1.5rem; margin:0 0 4px; }
+.sub { color:var(--muted); font-size:.875rem; margin-bottom:16px; }
+.bar { position:sticky; top:0; z-index:5; background:var(--bg); padding:10px 0;
+  border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.bar input[type=search] { flex:1 1 220px; min-width:0; padding:8px 12px; font-size:1rem;
+  color:var(--fg); background:var(--bg); border:1px solid var(--line); border-radius:6px; }
+.bar input:focus, .bar select:focus, .bar button:focus-visible, summary:focus-visible,
+a:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
+.bar select, .bar button { padding:8px 10px; font-size:.875rem; color:var(--fg);
+  background:var(--bg); border:1px solid var(--line); border-radius:6px; cursor:pointer; }
+.bar button:hover { background:var(--hover); }
+#status { color:var(--muted); font-size:.8125rem; width:100%; }
+ul { list-style:none; margin:0; padding-left:22px; }
+main > #tree > ul { padding-left:0; }
+li { margin:0; }
+summary, li.file { display:flex; align-items:center; gap:8px; padding:4px 8px;
+  border-radius:6px; cursor:pointer; }
+li.file { cursor:default; }
+summary:hover, li.file:hover { background:var(--hover); }
+summary { list-style:none; font-weight:600; }
+summary::-webkit-details-marker { display:none; }
+summary::before { content:"▸"; color:var(--muted); width:1ch; transition:transform .12s; }
+details[open] > summary::before { transform:rotate(90deg); }
+.name { overflow-wrap:anywhere; }
+a.link { display:flex; align-items:center; gap:8px; flex:1; min-width:0;
+  color:var(--accent); text-decoration:none; }
+a.link:hover .name { text-decoration:underline; }
+.badge, .size, .date { color:var(--muted); font-size:.75rem; white-space:nowrap; font-weight:400; }
+.badge { background:var(--badge); border-radius:10px; padding:0 7px; }
+summary .size, li.file .size { margin-left:auto; }
+summary .badge { margin-left:4px; }
+summary .size { margin-left:auto; }
+li.file .date { min-width:5.5rem; text-align:right; }
+a.download { display:inline-flex; align-items:center; gap:5px; flex-shrink:0;
+  padding:2px 9px; font-size:.75rem; color:var(--accent); text-decoration:none;
+  border:1px solid var(--line); border-radius:6px; }
+a.download:hover { background:var(--accent); border-color:var(--accent); color:var(--bg); }
+mark { background:var(--mark); color:inherit; border-radius:2px; }
+.empty { color:var(--muted); padding:24px 8px; display:none; }
+@media (max-width:560px) { .date, a.download span { display:none; } ul { padding-left:14px; } }
+@media (prefers-reduced-motion: reduce) { summary::before { transition:none; } }
+</style>
 </head>
 <body>
-    <h1>Repository Directory Index</h1>
-    {tree_html}
+<main>
+<h1>__TITLE__</h1>
+<div class="sub">__SUMMARY__</div>
+<div class="bar">
+  <input id="q" type="search" placeholder="Search files and folders (press / to focus)" aria-label="Search">
+  <select id="sort" aria-label="Sort by">
+    <option value="name">Sort: name</option>
+    <option value="size">Sort: size (largest)</option>
+    <option value="mtime">Sort: modified (newest)</option>
+    <option value="ext">Sort: type</option>
+  </select>
+  <button id="expand" type="button">Expand all</button>
+  <button id="collapse" type="button">Collapse all</button>
+  <div id="status" aria-live="polite"></div>
+</div>
+<div id="tree">__TREE__</div>
+<div class="empty" id="empty">No files match your search. Try a shorter term or clear the search box.</div>
+</main>
+<script>
+(function () {
+  const q = document.getElementById('q'), sortSel = document.getElementById('sort');
+  const status = document.getElementById('status'), empty = document.getElementById('empty');
+  const files = [...document.querySelectorAll('li.file')];
+  const dirs = [...document.querySelectorAll('li.dir')].reverse(); // deepest first
+  const total = files.length;
+  let saved = null, timer;
+
+  function setStatus(n, searching) {
+    status.textContent = searching ? n + ' of ' + total + ' files match' : total + ' files';
+  }
+
+  function filter() {
+    const term = q.value.trim().toLowerCase();
+    const words = term.split(/\\s+/).filter(Boolean);
+    if (words.length && !saved) saved = dirs.map(d => d.firstChild.open);
+    let shown = 0;
+    files.forEach(li => {
+      const ok = words.every(w => li.dataset.path.includes(w));
+      li.hidden = !ok; if (ok) shown++;
+    });
+    dirs.forEach(li => {
+      const has = !words.length || li.querySelector('li.file:not([hidden])');
+      li.hidden = !has;
+      if (words.length) li.firstChild.open = !!has;
+    });
+    if (!words.length && saved) { dirs.forEach((d, i) => d.firstChild.open = saved[i]); saved = null; }
+    empty.style.display = words.length && !shown ? 'block' : 'none';
+    setStatus(shown, !!words.length);
+  }
+
+  function sortTree() {
+    const key = sortSel.value;
+    document.querySelectorAll('#tree ul').forEach(ul => {
+      const items = [...ul.children];
+      items.sort((a, b) => {
+        const da = a.classList.contains('dir'), db = b.classList.contains('dir');
+        if (da !== db) return da ? -1 : 1;
+        if (key === 'size') return b.dataset.size - a.dataset.size;
+        if (key === 'mtime') return b.dataset.mtime - a.dataset.mtime;
+        if (key === 'ext' && !da && a.dataset.ext !== b.dataset.ext)
+          return a.dataset.ext.localeCompare(b.dataset.ext);
+        return a.dataset.name.localeCompare(b.dataset.name, undefined, {numeric: true});
+      });
+      items.forEach(i => ul.appendChild(i));
+    });
+  }
+
+  q.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(filter, 120); });
+  sortSel.addEventListener('change', sortTree);
+  document.getElementById('expand').onclick = () => dirs.forEach(d => { if (!d.hidden) d.firstChild.open = true; });
+  document.getElementById('collapse').onclick = () => dirs.forEach(d => d.firstChild.open = false);
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+    if (e.key === 'Escape' && document.activeElement === q) { q.value = ''; filter(); q.blur(); }
+  });
+  setStatus(total, false);
+})();
+</script>
 </body>
 </html>
 """
 
-    output_path = root / "index.html"
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(html_content)
 
-    print(f"Successfully generated {output_path}")
+def generate(args):
+    root = Path(args.root).resolve()
+    output = Path(args.output).resolve() if args.output else root / "index.html"
+    patterns = load_ignore(root, args.ignore, not args.no_default_ignore)
+    tree = scan(root, root, patterns, args, skip={output})
+    if tree is None:
+        raise SystemExit(f"Cannot read directory: {root}")
+    n_files = len(tree["files"]) + sum(d["count"] for d in tree["dirs"])
+    n_dirs = 0
+
+    def count_dirs(node):
+        return sum(1 + count_dirs(d) for d in node["dirs"])
+
+    n_dirs = count_dirs(tree)
+    title = args.title or f"{root.name} index"
+    summary = (f"{n_files} files in {n_dirs} folders · generated "
+               f"{datetime.now():%Y-%m-%d %H:%M}")
+    page = (TEMPLATE
+            .replace("__TITLE__", html.escape(title))
+            .replace("__SUMMARY__", html.escape(summary))
+            .replace("__TREE__", render(tree, output.parent, args)))
+    output.write_text(page, encoding="utf-8")
+    print(f"Wrote {output} ({n_files} files, {n_dirs} folders)")
+
+
+def main():
+    p = argparse.ArgumentParser(description="Generate a searchable HTML index of a folder.")
+    p.add_argument("-r", "--root", default=".", help="folder to index (default: .)")
+    p.add_argument("-o", "--output", help="output file (default: <root>/index.html)")
+    p.add_argument("-t", "--title", help="page title")
+    p.add_argument("-i", "--ignore", action="append", default=[],
+                   help="extra glob to ignore (repeatable)")
+    p.add_argument("--no-default-ignore", action="store_true",
+                   help="don't use the built-in ignore list")
+    p.add_argument("--show-hidden", action="store_true", help="include dotfiles")
+    p.add_argument("--keep-empty", action="store_true", help="show empty folders")
+    p.add_argument("--follow-symlinks", action="store_true", help="descend into symlinked folders")
+    p.add_argument("--open-depth", type=int, default=0,
+                   help="folder levels expanded on load (default: 0 = all collapsed)")
+    p.add_argument("--no-sizes", dest="sizes", action="store_false", help="hide file sizes")
+    p.add_argument("--no-dates", dest="dates", action="store_false", help="hide modified dates")
+    p.add_argument("--no-downloads", dest="downloads", action="store_false",
+                   help="hide download buttons")
+    generate(p.parse_args())
 
 
 if __name__ == "__main__":
-    generate_index_html()
+    main()
