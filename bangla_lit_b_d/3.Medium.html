@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বাংলা সাহিত্য · লেখক পরিচিতি</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e7; --paper:#fffdf8; --ink:#2a2420; --ink-soft:#5d544b; --muted:#8a7f73;
+  --line:#e7ddcc; --accent:#9c3d23; --accent-soft:#f6e3d8; --gold:#b8862b; --gold-soft:#f8eed5;
+  --teal:#2f6f6a; --teal-soft:#e2f0ee; --shadow:0 1px 2px rgba(60,40,20,.06),0 6px 22px rgba(60,40,20,.07);
+  --serif:'Noto Serif Bengali','SolaimanLipi','Kalpurush',serif;
+  --sans:'Hind Siliguri','SolaimanLipi','Kalpurush',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17140f; --paper:#201c16; --ink:#ece4d6; --ink-soft:#c3b8a6; --muted:#8f8575;
+  --line:#3a3328; --accent:#e58a6a; --accent-soft:#3a251c; --gold:#d9ab55; --gold-soft:#342a17;
+  --teal:#7cc3bb; --teal-soft:#1c2e2c; --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.25);}}
+:root[data-theme="dark"]{
+  --bg:#17140f; --paper:#201c16; --ink:#ece4d6; --ink-soft:#c3b8a6; --muted:#8f8575;
+  --line:#3a3328; --accent:#e58a6a; --accent-soft:#3a251c; --gold:#d9ab55; --gold-soft:#342a17;
+  --teal:#7cc3bb; --teal-soft:#1c2e2c; --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.25);}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:50}
+
+/* layout */
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);max-width:1240px;margin:0 auto;gap:36px;padding:0 24px}
+aside{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 0 28px;scrollbar-width:thin}
+main{padding:28px 0 80px;min-width:0}
+
+/* sidebar */
+.brand{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.35;margin:0 0 4px}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.02em}
+.search{width:100%;margin:16px 0 10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font:inherit;font-size:15px}
+.search:focus{outline:2px solid var(--accent);outline-offset:1px}
+.tools{display:flex;gap:8px;margin-bottom:14px}
+.btn{flex:1;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:10px;padding:8px 10px;font:inherit;font-size:14px;cursor:pointer;transition:.15s}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.toc{list-style:none;margin:0;padding:0}
+.toc a{display:grid;grid-template-columns:30px 1fr;column-gap:8px;padding:7px 10px;border-radius:9px;text-decoration:none;color:var(--ink-soft);line-height:1.4;transition:.12s}
+.toc a:hover{background:var(--paper);color:var(--ink)}
+.toc a.active{background:var(--accent-soft);color:var(--accent)}
+.t-num{grid-row:span 2;font-family:var(--serif);font-weight:700;color:var(--gold);font-size:15px;padding-top:1px}
+.toc a.active .t-num{color:var(--accent)}
+.t-name{font-weight:600;font-size:15px}
+.t-yrs{font-size:12px;color:var(--muted)}
+.toc li.hide{display:none}
+
+/* hero */
+.hero{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:34px 36px;box-shadow:var(--shadow);margin-bottom:34px;position:relative;overflow:hidden}
+.hero::after{content:"অ";position:absolute;right:-10px;top:-60px;font-family:var(--serif);font-size:260px;color:var(--gold-soft);line-height:1;pointer-events:none}
+.hero h1{font-family:var(--serif);font-size:34px;line-height:1.3;margin:0 0 8px;position:relative;z-index:1}
+.hero p{margin:0;color:var(--ink-soft);position:relative;z-index:1;max-width:60ch}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:18px;font-size:14px;color:var(--muted);position:relative;z-index:1}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+/* author section */
+.author{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:0 0 26px;margin-bottom:34px;overflow:hidden}
+.a-head{display:flex;gap:18px;align-items:center;padding:24px 32px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,var(--gold-soft),transparent 70%)}
+.a-num{flex:none;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:#fff;font-family:var(--serif);font-weight:700;font-size:24px}
+.a-name{font-family:var(--serif);font-size:28px;line-height:1.3;margin:0}
+.a-sub{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;font-size:14px}
+.a-years{color:var(--ink-soft);font-weight:600}
+.a-role{background:var(--teal-soft);color:var(--teal);padding:0 10px;border-radius:99px;font-weight:600}
+.author>*:not(.a-head){margin-left:32px;margin-right:32px}
+.lead{font-family:var(--serif);font-size:17.5px;line-height:1.95;color:var(--ink);margin-top:22px;margin-bottom:18px;text-align:justify}
+
+.box-label{font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--accent);margin-bottom:6px}
+.facts-box{background:var(--bg);border-radius:14px;padding:16px 20px 8px;margin-bottom:22px}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{position:relative;padding-left:22px;margin-bottom:8px}
+.facts li::before{content:"";position:absolute;left:3px;top:.8em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+
+.quote-box{border-left:3px solid var(--gold);padding:4px 0 4px 18px;margin-bottom:22px}
+.quote-box blockquote{margin:6px 0;font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
+
+/* Q&A */
+.qa{border:1px solid var(--line);border-radius:14px;margin-bottom:16px;overflow:hidden;background:var(--paper)}
+.q{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--accent-soft);font-weight:600;color:var(--ink);line-height:1.6}
+.q-badge{flex:none;width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;margin-top:1px}
+.q-text{flex:1}
+.a{padding:14px 20px 6px 58px;position:relative;text-align:justify}
+.a::before{content:"উ";position:absolute;left:18px;top:16px;width:28px;height:28px;border-radius:8px;border:1.5px solid var(--teal);color:var(--teal);display:grid;place-items:center;font-size:14px;font-weight:700}
+.a p,.a div{margin:0 0 10px}
+.a strong{color:var(--ink)}
+.a-sub-h{font-weight:700;color:var(--teal);margin:14px 0 4px!important}
+.works{list-style:none;margin:6px 0 12px;padding:0}
+.works li{padding:8px 0 8px 14px;border-left:2px solid var(--line);margin-bottom:4px}
+.works li:hover{border-left-color:var(--gold)}
+.works li strong:first-child{color:var(--accent);font-family:var(--serif)}
+.bcs{display:inline-block;font-size:12px;font-weight:600;background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);padding:0 9px;border-radius:99px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.chr{color:var(--teal);font-weight:700}
+.sub-h{font-family:var(--serif);font-size:20px;margin:26px 32px 12px;color:var(--accent)}
+
+/* compare tables */
+.compare{background:var(--teal-soft);border-radius:14px;padding:14px 18px;margin-bottom:18px}
+.compare .box-label{color:var(--teal)}
+.compare table{width:100%;border-collapse:collapse;font-size:15.5px}
+.compare td{padding:6px 10px;border-bottom:1px dashed color-mix(in srgb,var(--teal) 30%,transparent);vertical-align:top}
+.compare tr:last-child td{border-bottom:0}
+.compare td:last-child{color:var(--teal);font-weight:600}
+
+/* quote groups (Pramatha) */
+.quote-groups{display:grid;gap:14px;margin-bottom:10px}
+.qg{border:1px solid var(--line);border-radius:14px;padding:12px 18px}
+.qg-h{font-family:var(--serif);font-weight:700;color:var(--accent);margin-bottom:4px}
+.qg ul{margin:0;padding-left:20px}
+.qg li{margin:4px 0;font-family:var(--serif);color:var(--ink-soft)}
+
+/* quiz mode */
+body.quiz .a{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.quiz .a.shown{filter:none;user-select:auto}
+body.quiz .a::after{content:"দেখতে ক্লিক করুন";position:absolute;inset:0;display:grid;place-items:center;font-weight:700;color:var(--accent);filter:blur(0)}
+body.quiz .a.shown::after{display:none}
+
+.totop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:20px;box-shadow:var(--shadow);cursor:pointer;opacity:0;pointer-events:none;transition:.2s}
+.totop.show{opacity:1;pointer-events:auto}
+.menu-btn{display:none}
+.foot{color:var(--muted);font-size:13px;text-align:center;margin-top:20px}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;padding:0 16px;gap:0}
+  aside{position:fixed;inset:0 auto 0 0;width:300px;max-width:85vw;background:var(--bg);z-index:40;padding:24px 18px;transform:translateX(-105%);transition:transform .25s;box-shadow:var(--shadow)}
+  aside.open{transform:none}
+  .menu-btn{display:inline-flex;position:sticky;top:10px;z-index:30;margin:12px 0 0;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 14px;font:inherit;font-size:15px;box-shadow:var(--shadow)}
+  main{padding-top:14px}
+  .hero{padding:24px 20px}.hero h1{font-size:26px}
+  .a-head{padding:18px 18px}.a-name{font-size:23px}.a-num{width:44px;height:44px;font-size:20px}
+  .author>*:not(.a-head){margin-left:16px;margin-right:16px}
+  .sub-h{margin-left:16px;margin-right:16px}
+  .a{padding:12px 14px 4px 14px}.a::before{display:none}
+  body{font-size:16px}
+  .lead,.a{text-align:left}
+}
+@media print{
+  aside,.menu-btn,.totop,#progress{display:none!important}
+  .layout{display:block;max-width:none;padding:0}
+  body{background:#fff;font-size:12pt}
+  .author,.hero{box-shadow:none;break-inside:auto}
+  .author{page-break-before:always}
+  .qa{break-inside:avoid}
+  body.quiz .a{filter:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="layout">
+  <aside id="side">
+    <div class="brand">বাংলা সাহিত্য<small>লেখক পরিচিতি ও প্রশ্নোত্তর · ২৬ জন</small></div>
+    <input class="search" id="q" type="search" placeholder="লেখক খুঁজুন…" autocomplete="off">
+    <div class="tools">
+      <button class="btn" id="quiz" title="উত্তর লুকিয়ে নিজেকে যাচাই করুন">🧠 কুইজ মোড</button>
+      <button class="btn" id="theme" title="থিম পরিবর্তন">🌓 থিম</button>
+    </div>
+    <ul class="toc" id="toc">
+<li><a href="#a1" data-name="শরৎচন্দ্র চট্টোপাধ্যায়"><span class="t-num">১</span><span class="t-name">শরৎচন্দ্র চট্টোপাধ্যায়</span><span class="t-yrs">১৮৭৬-১৯৩৮</span></a></li>
+<li><a href="#a2" data-name="জীবনানন্দ দাশ"><span class="t-num">২</span><span class="t-name">জীবনানন্দ দাশ</span><span class="t-yrs">১৮৯৯-১৯৫৪</span></a></li>
+<li><a href="#a3" data-name="অমিয় চক্রবর্তী"><span class="t-num">৩</span><span class="t-name">অমিয় চক্রবর্তী</span><span class="t-yrs">১৯০১-১৯৮৬</span></a></li>
+<li><a href="#a4" data-name="আখতারুজ্জামান ইলিয়াস"><span class="t-num">৪</span><span class="t-name">আখতারুজ্জামান ইলিয়াস</span><span class="t-yrs">১৯৪৩-১৯৯৭</span></a></li>
+<li><a href="#a5" data-name="আবুল মনসুর আহমদ"><span class="t-num">৫</span><span class="t-name">আবুল মনসুর আহমদ</span><span class="t-yrs">১৮৯৮-১৯৭৯</span></a></li>
+<li><a href="#a6" data-name="আহমদ ছফা"><span class="t-num">৬</span><span class="t-name">আহমদ ছফা</span><span class="t-yrs">১৯৪৩-২০০১</span></a></li>
+<li><a href="#a7" data-name="জহির রায়হান"><span class="t-num">৭</span><span class="t-name">জহির রায়হান</span><span class="t-yrs">১৯৩৫-১৯৭২</span></a></li>
+<li><a href="#a8" data-name="নির্মলেন্দু গুণ"><span class="t-num">৮</span><span class="t-name">নির্মলেন্দু গুণ</span><span class="t-yrs">১৯৪৫-</span></a></li>
+<li><a href="#a9" data-name="নূরুল মোমেন"><span class="t-num">৯</span><span class="t-name">নূরুল মোমেন</span><span class="t-yrs">১৯০৬-১৯৮৯</span></a></li>
+<li><a href="#a10" data-name="প্রমথ চৌধুরী"><span class="t-num">১০</span><span class="t-name">প্রমথ চৌধুরী</span><span class="t-yrs">১৮৬৮-১৯৪৬</span></a></li>
+<li><a href="#a11" data-name="বিভূতিভূষণ বন্দ্যোপাধ্যায়"><span class="t-num">১১</span><span class="t-name">বিভূতিভূষণ বন্দ্যোপাধ্যায়</span><span class="t-yrs">১৮৯৪-১৯৫০</span></a></li>
+<li><a href="#a12" data-name="বুদ্ধদেব বসু"><span class="t-num">১২</span><span class="t-name">বুদ্ধদেব বসু</span><span class="t-yrs">১৯০৮-১৯৭৪</span></a></li>
+<li><a href="#a13" data-name="মানিক বন্দ্যোপাধ্যায়"><span class="t-num">১৩</span><span class="t-name">মানিক বন্দ্যোপাধ্যায়</span><span class="t-yrs">১৯০৮-১৯৫৬</span></a></li>
+<li><a href="#a14" data-name="মুনীর চৌধুরী"><span class="t-num">১৪</span><span class="t-name">মুনীর চৌধুরী</span><span class="t-yrs">১৯২৫-১৯৭১</span></a></li>
+<li><a href="#a15" data-name="ড. মুহম্মদ শহীদুল্লাহ্"><span class="t-num">১৫</span><span class="t-name">ড. মুহম্মদ শহীদুল্লাহ্</span><span class="t-yrs">১৮৮৫-১৯৬৯</span></a></li>
+<li><a href="#a16" data-name="শওকত ওসমান"><span class="t-num">১৬</span><span class="t-name">শওকত ওসমান</span><span class="t-yrs">১৯১৭-১৯৯৮</span></a></li>
+<li><a href="#a17" data-name="শহীদুল্লা কায়সার"><span class="t-num">১৭</span><span class="t-name">শহীদুল্লা কায়সার</span><span class="t-yrs">১৯২৭-১৯৭১</span></a></li>
+<li><a href="#a18" data-name="শামসুর রাহমান"><span class="t-num">১৮</span><span class="t-name">শামসুর রাহমান</span><span class="t-yrs">১৯২৯-২০০৬</span></a></li>
+<li><a href="#a19" data-name="সুকান্ত ভট্টাচার্য"><span class="t-num">১৯</span><span class="t-name">সুকান্ত ভট্টাচার্য</span><span class="t-yrs">১৯২৬-১৯৪৭</span></a></li>
+<li><a href="#a20" data-name="সেলিম আল দীন"><span class="t-num">২০</span><span class="t-name">সেলিম আল দীন</span><span class="t-yrs">১৯৪৯-২০০৮</span></a></li>
+<li><a href="#a21" data-name="সৈয়দ ওয়ালীউল্লাহ"><span class="t-num">২১</span><span class="t-name">সৈয়দ ওয়ালীউল্লাহ</span><span class="t-yrs">১৯২২-১৯৭১</span></a></li>
+<li><a href="#a22" data-name="সৈয়দ শামসুল হক"><span class="t-num">২২</span><span class="t-name">সৈয়দ শামসুল হক</span><span class="t-yrs">১৯৩৫-২০১৬</span></a></li>
+<li><a href="#a23" data-name="হুমায়ূন আহমেদ"><span class="t-num">২৩</span><span class="t-name">হুমায়ূন আহমেদ</span><span class="t-yrs">১৯৪৮-২০১২</span></a></li>
+<li><a href="#a24" data-name="বিহারীলাল চক্রবর্তী"><span class="t-num">২৪</span><span class="t-name">বিহারীলাল চক্রবর্তী</span><span class="t-yrs">১৮৩৫-১৮৯৪</span></a></li>
+<li><a href="#a25" data-name="সুফিয়া কামাল"><span class="t-num">২৫</span><span class="t-name">সুফিয়া কামাল</span><span class="t-yrs">১৯১১-১৯৯৯</span></a></li>
+<li><a href="#a26" data-name="প্রেমেন্দ্র মিত্র"><span class="t-num">২৬</span><span class="t-name">প্রেমেন্দ্র মিত্র</span><span class="t-yrs">১৯০৪-১৯৮৮</span></a></li>
+    </ul>
+  </aside>
+  <main>
+    <button class="menu-btn" id="menu">☰ সূচিপত্র</button>
+    <div class="hero">
+      <h1>বাংলা সাহিত্যের লেখক পরিচিতি</h1>
+      <p>২৬ জন কবি, কথাসাহিত্যিক, নাট্যকার ও প্রাবন্ধিকের জীবন, সাহিত্যকর্ম ও বিসিএস লিখিত পরীক্ষার গুরুত্বপূর্ণ প্রশ্নোত্তর — এক জায়গায়।</p>
+      <div class="legend">
+        <span><span class="bcs" style="margin:0">বিসিএস</span> পূর্বে লিখিত পরীক্ষায় এসেছে</span>
+        <span><b class="chr">চরিত্র:</b> গুরুত্বপূর্ণ চরিত্রের নাম</span>
+        <span>🧠 কুইজ মোডে উত্তর লুকানো থাকে</span>
+      </div>
+    </div>
+<section class="author" data-name="শরৎচন্দ্র চট্টোপাধ্যায়" id="a1">
+<header class="a-head">
+<div class="a-num">১</div>
+<div class="a-meta">
+<h2 class="a-name">শরৎচন্দ্র চট্টোপাধ্যায়</h2>
+<div class="a-sub"><span class="a-years">১৮৭৬-১৯৩৮</span><span class="a-role">কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">বাংলা সাহিত্যের অপরাজেয় কথাশিল্পী শরৎচন্দ্র চট্টোপাধ্যায়। তাঁর উপন্যাসে মানুষের অন্তরে তার ধর্মীয় ও সামাজিক বিশ্বাস-সংস্কারের সাথে প্রণয়াকাঙ্ক্ষার যে নিরন্তর দ্বন্দ্ব-সংঘাত, গার্হস্থ্য ও সমাজজীবনের প্রতিচ্ছবি অসাধারণভাবে শিল্প কুশলতার সাথে অঙ্কিত হয়েছে। বাঙালি সমাজে নারীর বঞ্চনা, নারীর দুঃখ তাঁর উপন্যাসের অন্যতম দিক।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>শরৎচন্দ্র চট্টোপাধ্যায় ১৫ সেপ্টেম্বর, ১৮৭৬ সালে (৩১ ভাদ্র, ১২৮৩ বঙ্গাব্দ) হুগলীর দেবানন্দপুর গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তিনি মাতৃবিয়োগের (১৮৯৫) কারণে চরম অর্থকষ্টে নিপতিত হন এবং ১৯০৩ সালে ভাগ্যান্বেষণে রেঙ্গুন (বর্মা) গমন করেন।</li>
+<li>তিনি ১৬ জানুয়ারি, ১৯৩৮ সালে (২ মাঘ, ১৩৪৪ বঙ্গাব্দ) পার্ক নার্সিংহোমে মৃত্যুবরণ করেন।</li>
+<li>তিনি মাঝে মাঝে অনিলা দেবী, অপরাজিতা দেবী, শ্রী চট্টোপাধ্যায়, অনুরূপা দেবী, পরশুরাম (এটি রাজশেখর বসুরও ছদ্মনাম), শ্রীকান্ত শর্মা ও সুরেন্দ্রনাথ গঙ্গোপাধ্যায় ছদ্মনামে লিখতেন।</li>
+<li>তিনি ১৯২৩ সালে কলকাতা বিশ্ববিদ্যালয় থেকে জগৎতারিণী স্বর্ণপদক এবং ১৯৩৬ সালে ঢাকা বিশ্ববিদ্যালয় থেকে ডি. লিট ডিগ্রি লাভ করেন।</li>
+<li>তাঁর রচিত উপন্যাসে প্লটের তুলনায় চরিত্রের প্রাধান্য দেখতে পাওয়া যায়। তিনি সমাজে প্রচলিত বর্ণ-বিভাজনকে তাঁর লেখায় প্রশ্রয় দেননি।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শরৎচন্দ্রের প্রথম প্রকাশিত গল্পের নাম কী?</div></div><div class="a"><p class="answer">'মন্দির': গল্পটি প্রথমে তাঁর মামা ও বাল্যবন্ধু সুরেন্দ্রনাথ গঙ্গোপাধ্যায়ের নামে 'কুন্তলীন' পত্রিকায় প্রকাশিত হয়। এটি ১৯০৩ সালে কুন্তলীন পুরস্কার পায়। <b class="chr">চরিত্র:</b> অমরনাথ, অপর্ণা, শক্তিমান।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শরৎচন্দ্রের উপন্যাসগুলো কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'বড়দিদি' (১৯০৭):</strong> এটি তাঁর প্রথম প্রকাশিত উপন্যাস। এটি সরলা দেবী সম্পাদিত 'ভারতী' পত্রিকায় প্রথম প্রকাশ পায়। প্রথমে এটির নাম ছিল 'শিশু'। মাধবীর নাম 'বড়দিদি'। <b class="chr">চরিত্র:</b> মাধবী, সুরেন্দ্রনাথ, ব্রজরাজ, প্রমীলা।</li>
+<li><strong>'বিরাজ বৌ' (১৯১৪):</strong> উপন্যাসটি 'ভারতবর্ষ' পত্রিকায় প্রথম প্রকাশিত হয়। সুন্দরী বিরাজ বৌয়ের নানাবিধ সমস্যা উপন্যাসের মূল বিষয়বস্তু। <b class="chr">চরিত্র:</b> বিরাজ, নীলাম্বর, পীতাম্বর।</li>
+<li><strong>'পরিণীতা' (১৯১৪):</strong> বিংশ শতাব্দীর প্রথম সময়ের ভারতের কলকাতার পটভূমিতে উপন্যাসটি রচিত। <b class="chr">চরিত্র:</b> ললিতা, গুরুচরণ, অন্নাকালী, চারু, শেখর রায়, মনোরমা, গিরীন।</li>
+<li><strong>'পল্লীসমাজ' (১৯১৬):</strong> উপন্যাসটি ১৯১৫ সালে 'ভারতবর্ষ' পত্রিকায় প্রথম প্রকাশিত হয়। ১৯১৬ সালে ১৯টি পরিচ্ছেদে 'ভারতবর্ষ' পত্রিকার মালিক গুরুদাস চট্টোপাধ্যায় অ্যান্ড সন্স উপন্যাসটি প্রকাশ করেন। 'কুঁয়াপুর' নামক গ্রামকে কেন্দ্র করে বাংলার সামন্ততান্ত্রিক সমাজ-ব্যবস্থা, পল্লীজীবনের নীচতা ও ক্ষুদ্র রাজনীতির পটভূমিতে এক আদর্শবাদী যুবক-যুবতীর সম্পর্ক ও বিশেষ করে তাদের অভিশপ্ত প্রেমকাহিনী এই উপন্যাসের মূল বিষয়। রমা ও রমেশের প্রেমের মাঝে এতো তিক্ততা ছিল যে, রমা মিথ্যা সাক্ষ্য দিয়ে রমেশকে জেলে পাঠাতেও দ্বিধা করেনি। এ উপন্যাসের নাট্যরূপ 'রমা' (১৯২৮)। <b class="chr">চরিত্র:</b> রমা, রমেশ, বেণীমাধব, বিশ্বেশ্বরী।</li>
+<li><strong>'নিষ্কৃতি' (১৯১৭):</strong> এ উপন্যাসের প্রথমাংশ 'ঘরভাঙা' নামে 'যমুনা' পত্রিকায় প্রকাশিত হয়। ভবানীপুরের চাটুয্যেদের একান্নবর্তী পরিবার এবং সেই পরিবারের সম্পর্কের জটিলতা এ উপন্যাসের মূল বিষয়। <b class="chr">চরিত্র:</b> গিরিশ, হরিশ, সিদ্ধেশ্বরী, শৈলজা, রমেশ, নয়নতারা। ১৯৪৪ সালে Deliverance নামে দিলীপকুমার রায়ের ইংরেজি অনুবাদ প্রকাশিত হয়। এটি গল্প আকারে রচিত হলেও পরবর্তীতে শরৎচন্দ্র পরিবর্ধিত করে উপন্যাস আকারে প্রকাশ করেন।</li>
+<li><strong>শ্রীকান্ত (১ম খণ্ড- ১৯১৭, ২য় খণ্ড- ১৯১৮, ৩য় খণ্ড- ১৯২৭, ৪র্থ খণ্ড- ১৯৩৩):</strong> এটি তাঁর আত্মজীবনীমূলক উপন্যাস। এ উপন্যাসে শরৎচন্দ্র 'শ্রীকান্ত শর্মা' ছদ্মনাম ব্যবহার করেছেন। <b class="chr">চরিত্র:</b> রাজলক্ষ্মী, ইন্দ্রনাথ, শ্রীকান্ত, অভয়া। ইন্দ্রনাথ বাংলা সাহিত্যের শ্রেষ্ঠ কিশোর চরিত্র।</li>
+<li><strong>দেবদাস (১৯১৭):</strong> দেবদাস, পার্বতী, চন্দ্রমুখী অন্যতম চরিত্র।</li>
+<li><strong>'চরিত্রহীন' (১৯১৭):</strong> এটি প্রথমে ধারাবাহিকভাবে 'যমুনা' পত্রিকায় প্রকাশিত হয়। প্রথা বহির্ভূত প্রেম ও নারী-পুরুষের সমাজ অননুমোদিত সম্পর্ক এ উপন্যাসের মূল বিষয়। <b class="chr">চরিত্র:</b> সতীশ, সাবিত্রী, দিবাকর, কিরণময়ী, সরোজিনী।</li>
+<li><strong>'দত্তা' (১৯১৮):</strong> উপন্যাসটি ১৩২৫-১৩২৫ বঙ্গাব্দে 'ভারতবর্ষ' পত্রিকায় প্রকাশিত হয়। <b class="chr">চরিত্র:</b> নরেন, বিজয়া, রাসবিহারী, বনমালী। এ উপন্যাসের নাট্যরূপ 'বিজয়া' (১৯৩৪)।</li>
+<li><strong>'গৃহদাহ' (১৯২০):</strong> এতে ত্রিভুজ প্রেমের চিত্র অঙ্কিত হয়েছে। <b class="chr">চরিত্র:</b> সুরেশ, অচলা, মহিম।</li>
+<li><strong>'বামুনের মেয়ে' (১৯২০):</strong> এ উপন্যাসে তৎকালীন সমাজের জাতিভেদ, কুসংস্কার ও আর্থিক বৈষম্যের বিষয় উপস্থাপিত হয়েছে। <b class="chr">চরিত্র:</b> রাসমণি, গোলক চাটুয্যে, জ্ঞানদা।</li>
+<li><strong>'দেনা-পাওনা' (১৯২৩):</strong> এ উপন্যাসের বিখ্যাত <b class="chr">চরিত্র:</b> জীবানন্দ, ষোড়শী। উপন্যাসটি 'ষোড়শী' নামে নাট্যরূপায়িত হয়।</li>
+<li><strong>'পথের দাবী' (১৯২৬):</strong> এটি রাজনৈতিক উপন্যাস যা সরকার কর্তৃক বাজেয়াপ্ত হয়। <b class="chr">চরিত্র:</b> সব্যসাচী।</li>
+<li><strong>'বিপ্রদাস' (১৯৩৫):</strong> এটি শরৎচন্দ্রের জীবদ্দশায় প্রকাশিত সর্বশেষ গ্রন্থ। উপন্যাসটি 'বিচিত্রা' পত্রিকায় প্রকাশিত হয়। <b class="chr">চরিত্র:</b> বিপ্রদাস, দ্বিজদাস, বন্দনা।</li>
+<li><strong>'শেষ প্রশ্ন' (১৯৩১):</strong> এটি শরৎচন্দ্র চট্টোপাধ্যায়ের বিতর্কপ্রধান ও সমস্যামূলক উপন্যাস। <b class="chr">উল্লেখযোগ্য চরিত্র:</b> শিবনাথ-মনোরমা, অজিত-কমল, নীলিমা-আশুবাবু।</li>
+<li><strong>'শেষের পরিচয়' (১৯৩৯):</strong> এটি তাঁর সর্বশেষ উপন্যাস। এটি শরৎচন্দ্র লেখা শেষ করে যেতে পারেননি। বাকী অংশ রাধারানী দেবী কর্তৃক রচিত। উপন্যাসটি 'ভারতবর্ষ' পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়।</li>
+<li><strong>'পণ্ডিত মশাই' (১৯১৪), 'বৈকুন্ঠের উইল' (১৯১৬), 'অরক্ষণীয়া' (১৯১৬), 'চন্দ্রনাথ' (১৯১৬), 'নববিধান' (১৯২৪)।</strong></li>
+</ul>
+</div></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>চন্দ্রনাথ (উপন্যাস)</td>
+<td>শরৎচন্দ্র চট্টোপাধ্যায়</td>
+</tr>
+<tr>
+<td>চন্দ্র দ্বীপের উপাখ্যান (উপন্যাস)</td>
+<td>আবদুল গাফ্ফার চৌধুরী</td>
+</tr>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'শ্রীকান্ত' উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">শরৎচন্দ্র চট্টোপাধ্যায়ের আত্মজীবনীমূলক উপন্যাস 'শ্রীকান্ত' (১ম খণ্ড- ১৯১৭, ২য় খণ্ড- ১৯১৮, ৩য় খণ্ড- ১৯২৭, ৪র্থ খণ্ড- ১৯৩৩)। ১ম খণ্ড মাসিক 'ভারতবর্ষ' পত্রিকায় 'শ্রীকান্তের ভ্রমণকাহিনী' নামে প্রকাশ পায়। এ পত্রিকায় লেখকের নাম ছাপা হয় 'শ্রীশ্রীকান্ত শর্মা'। ২য় ও ৩য় খণ্ড 'ভারতবর্ষ' পত্রিকায় প্রকাশিত হয়। এতে ঔপন্যাসিকের নাম ছিল 'শ্রীশরৎচন্দ্র চট্টোপাধ্যায়' নামে। ৪র্থ খণ্ড প্রকাশিত হয় 'বিচিত্রা' পত্রিকায়। এ উপন্যাসের প্রথম খণ্ডে বাল্য শ্রীকান্তের বিভিন্ন অভিজ্ঞতার মধ্য দিয়ে 'বড় প্রেম কেবল কাছেই টানে না, দূরেও ঠেলিয়া দেয়' উপলব্ধির মাধ্যমে শেষ হয়। দ্বিতীয় খণ্ডে শ্রীকান্তের রেঙ্গুন যাত্রার জীবন্ত উপস্থাপনা, শ্রীকান্ত ও রাজলক্ষ্মীর আন্তরিকতা আমাদের সামনে উন্মোচিত হয়। তৃতীয় খণ্ডে অসুস্থ শ্রীকান্তকে রাজলক্ষ্মী সেবা-শুশ্রূষা করে সুস্থ করে তুললেও তাদের মাঝে দূরত্ব সৃষ্টি হয়। ফলে শ্রীকান্ত আবার রেঙ্গুন যাওয়ার সিদ্ধান্ত নিয়ে বিদায় নিতে এসে দেখে রাজলক্ষ্মী সন্ন্যাসীর বেশ। চতুর্থ খণ্ডে শ্রীকান্তের সাথে পুটুর বিয়ের দিন ধার্য, রাজলক্ষ্মীর সন্ন্যাসীর বেশ ত্যাগ, কমললতা কর্তৃক শ্রীকান্তকে ভালোবাসার কথা প্রকাশ এবং মৃত্যু পথযাত্রী গহরকে সেবা করার কাহিনি এবং কমললতার নিরুদ্দেশ যাত্রার মধ্য দিয়ে উপন্যাসের সমাপ্তি ঘটেছে। এ উপন্যাসের অন্যতম <b class="chr">চরিত্র:</b> রাজলক্ষ্মী, ইন্দ্রনাথ, শ্রীকান্ত, অভয়া, কমললতা।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'দেবদাস' উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">সামাজিক প্রতিবন্ধকতায় দেবদাস তার বাল্যপ্রণয়ী পার্বতীকে (পারু) বিয়ে করতে ব্যর্থ হয়ে নিজেকে তিল তিল করে ক্ষয় করার বেদনাময় কাহিনীকে জীবন্ত করে অপরাজেয় কথাশিল্পী শরৎচন্দ্র চট্টোপাধ্যায় রচিত উপন্যাস 'দেবদাস' (১৯১৭)। দেবদাস ও পার্বতী আধুনিক সমাজের প্রেমিক-প্রেমিকার রূপকে পরিণত হয়েছে। এ উপন্যাসটি সম্পর্কে শরৎচন্দ্র তাঁর বন্ধু প্রমথনাথ ভট্টাচার্যকে লেখা চিঠিতে বলেন, 'ওই বইটা (দেবদাস) একেবারে মাতাল হইয়া বোতল খাইয়া লেখা।' <b class="chr">উল্লেখযোগ্য চরিত্র:</b> দেবদাস, পার্বতী (পারু), চন্দ্রমুখী, চুনীলাল, ধর্মদাস। এ উপন্যাসটি প্রথম 'ভারতবর্ষ' পত্রিকায় প্রকাশিত হয়। ২০০২ সালে সঞ্জয়লীলা বানশালী এ উপন্যাসের কাহিনী নিয়ে 'দেবদাস' নামে হিন্দি ভাষায় চলচ্চিত্রায়িত করেন। এ সিনেমায় পার্বতী চরিত্রে ঐশ্বর্য রাই, চন্দ্রমুখী চরিত্রে মাধুরী দীক্ষিত এবং দেবদাস চরিত্রে শাহরুখ খান অভিনয় করেন।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'গৃহদাহ' উপন্যাসের পরিচয় দাও। <span class="bcs">৩২তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">অপরাজেয় কথাশিল্পী শরৎচন্দ্র চট্টোপাধ্যায় রচিত উপন্যাস 'গৃহদাহ' (১৯২০)। এটি প্রথমে মাসিক 'ভারতবর্ষ' পত্রিকায় প্রকাশিত হয়। মহিম ও সুরেশ- এই দুই পুরুষের প্রতি অচলার আকর্ষণ-বিকর্ষণই এ উপন্যাসের মূল বিষয়। সুরেশ হচ্ছে অচলার স্বামী মহিমের বন্ধু। সুরেশের মাধ্যমে শরৎচন্দ্র এ উপন্যাসে প্রথা বহির্ভূত প্রেম ও নারী-পুরুষ সম্পর্কের এক ব্যতিক্রম বর্ণনা তুলে ধরেছেন। অচলা মহিমকে ভালোবেসেই বিয়ে করেছিল, কিন্তু নানা কারণে সুরেশকেও দূরে ঠেলে দেয়া তার পক্ষে সম্ভব হয়নি। স্বামীগৃহ ত্যাগ করে সুরেশের সঙ্গে চলে গিয়ে প্রথাগত সামাজিক আদর্শে অচলা চরম আঘাত হানে। ঔপন্যাসিক এখানে মৃণালকে আদর্শ হিন্দু বিধবা হিসেবে রূপায়িত করেছেন।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'পথের দাবী' উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">শরৎচন্দ্র চট্টোপাধ্যায় রচিত রাজনৈতিক উপন্যাস 'পথের দাবী' (১৯২৬)। স্বদেশী বিপ্লবীদের উদ্দীপনামূলক গ্রন্থ 'পথের দাবী' ভারতীয় রাজনৈতিক আন্দোলনের ইতিহাসে বিশেষ ভূমিকা রেখেছিল। ১৩২৯ বঙ্গাব্দের ফাল্গুন সংখ্যা থেকে উপন্যাসটি 'বঙ্গবাণী' পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়। ব্রহ্মদেশের এক গুপ্ত বিপ্লবী দলের নায়ক সব্যসাচী এ উপন্যাসের প্রধান চরিত্র। এ উপন্যাসের মাধ্যমে ব্রিটিশ শাসনের তীব্র সমালোচনা ও সশস্ত্র বিপ্লবকে সমর্থন করার কারণে ব্রিটিশ সরকার কর্তৃক নিষিদ্ধ হয়। 'আমি বিপ্লবী, ভারতের স্বাধীনতাই আমার একমাত্র কাম্য, আমার একটিমাত্র সাধনা' এ বিপ্লবাত্মক বক্তব্যের মধ্য দিয়ে উপন্যাসের সমাপ্তি ঘটে।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শরৎচন্দ্রের প্রবন্ধগুলো কী কী?</div></div><div class="a"><p class="answer">'নারীর মূল্য' (১৯২৩): এটি নারীর সামাজিক অধিকার ও সমাজে নারীর স্থান সম্পর্কিত প্রবন্ধ। এটি তিনি 'অনিলা দেবী' ছদ্মনামে রচনা করেন, যা 'যমুনা' পত্রিকায় প্রকাশিত হয়। অনিলা দেবী শরৎচন্দ্রের বড় বোনের নাম।<br/><br/>
+    'তরুণের বিদ্রোহ' (১৯২৯): এ প্রবন্ধটি ১৯২৯ সালের ৩০ মার্চ রংপুর বঙ্গীয় যুব সম্মিলনীর অধিবেশনে সভাপতির ভাষণ। এ গ্রন্থের দ্বিতীয় সংস্করণে 'সত্য ও মিথ্যা' নামে আরো একটি প্রবন্ধ অন্তর্ভুক্ত করা হয়।<br/><br/>
+    'স্বদেশ ও সাহিত্য' (১৯৩২)।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শরৎচন্দ্রের উল্লেখযোগ্য ছোটগল্পগুলো কী কী?</div></div><div class="a"><p class="answer">'কাশীনাথ' (১৯১৭): সতের বছর বয়সে তিনি সর্বপ্রথম পাঠশালার সহপাঠী কাশীনাথের নামে গল্পটি লেখেন।<br/><br/>
+    'বিলাসী': সাধু রীতিতে রচিত ন্যাড়া নামের এক যুবকের জবানিতে বিবৃত এ গল্পের কাহিনীতে শরৎচন্দ্রের প্রথম জীবনের ছায়াপাত ঘটেছে। গল্পটিতে বর্ণিত হয়েছে ব্যতিক্রমধর্মী দুই মানব-মানবীর চরিত্রের অসাধারণ প্রেমের মহিমা, যা ছাপিয়ে উঠেছে জাতিগত বিভেদের সংকীর্ণ সীমা। <b class="chr">চরিত্র:</b> বিলাসী, মৃত্যুঞ্জয়, খুড়া, ন্যাড়া।<br/><br/>
+    'মন্দির', 'মহেশ' (<b class="chr">চরিত্র:</b> গফুর, আমিনা), 'মামলার ফল', 'সতী', 'অনুরাধা', 'পরেশ', 'অভাগীর স্বর্গ', 'অতিথির স্মৃতি' (দেওঘরের স্মৃতি) ইত্যাদি।</p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>দেনা-পাওনা (ছোটগল্প)</td>
+<td>রবীন্দ্রনাথ ঠাকুর</td>
+</tr>
+<tr>
+<td>দেনা-পাওনা (উপন্যাস)</td>
+<td>শরৎচন্দ্র চট্টোপাধ্যায়</td>
+</tr>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শরৎচন্দ্রের উল্লেখযোগ্য বড় গল্পগুলো কী কী?</div></div><div class="a"><p class="answer">'বিন্দুর ছেলে ও অন্যান্য গল্প' (১৯১৪): এটি বিন্দুর ছেলে, রামের সুমতি ও পথনির্দেশ গল্পের সংকলন। এ গল্পগুলি 'যমুনা' পত্রিকায় প্রকাশিত হয়।<br/><br/>
+    'মেজদিদি' (১৯১৫): এটি মেজদিদি, দর্পচূর্ণ ও আঁধারে আলো গল্পের সংকলন। এ তিনটি গল্পই চলচ্চিত্রায়িত হয়েছে। 'মেজদিদি'র <b class="chr">চরিত্র:</b> হেমাঙ্গিনী, কেষ্ট, কাদম্বিনী।<br/><br/>
+    'ছবি' (১৯২০): এটি ছবি, বিলাসী ও মামলার ফল গল্পের সংকলন।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শরৎচন্দ্রের নাটকগুলো কী কী?</div></div><div class="a"><p class="answer">'ষোড়শী' (১৯২৮), 'রমা' (১৯২৮), 'বিজয়া' (১৯৩৪)।</p></div></article></section>
+<section class="author" data-name="জীবনানন্দ দাশ" id="a2">
+<header class="a-head">
+<div class="a-num">২</div>
+<div class="a-meta">
+<h2 class="a-name">জীবনানন্দ দাশ</h2>
+<div class="a-sub"><span class="a-years">১৮৯৯-১৯৫৪</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">তিরিশের দশকের তথাকথিত জনবিচ্ছিন্ন, রবীন্দ্র বলয় ছিন্নকারী ও উত্তরকালের কবিদের ওপর সর্বাপেক্ষা প্রভাববিস্তারকারী কবি জীবনানন্দ দাশগুপ্ত। তাঁর রচনায় গ্রাম বাংলার ঐতিহ্যময় প্রকৃতি কাব্যময় হয়ে উঠেছে। আধুনিক নাগরিক জীবনের হতাশা, নিঃসঙ্গতা, বিষাদ ও সংশয়ের চিত্র তাঁর কবিতায় দীপ্যমান। সাধু ও চলিত ভাষার মিশেল হলো তাঁর কাব্য ভাষার স্বকীয় বৈশিষ্ট্য। বিশ শতকের ষাটের দশকের বাঙালির জাতিসত্তা আন্দোলনে ও ১৯৭১ এর মহান মুক্তিযুদ্ধে তাঁর নিসর্গবিষয়ক কবিতা এদেশের সংগ্রামী জনতাকে অনুপ্রাণিত করেছে।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>জীবনানন্দ দাশ ১৭ ফেব্রুয়ারি, ১৮৯৯ সালে বরিশালের এক ব্রাহ্ম পরিবারে জন্মগ্রহণ করেন। (আদি নিবাস:গাঁওপাড়া গ্রাম, বিক্রমপুর)। ডাকনাম- মিলু।</li>
+<li>তাঁর মা কুসুমকুমারী দাশ (একজন মহিলা কবি)।</li>
+<li>১৯১৯ সালে ব্রাহ্মবাদী পত্রিকার বৈশাখ সংখ্যায় তাঁর প্রথম কবিতা 'বর্ষা আবাহন' প্রকাশিত হয়।</li>
+<li>তিনি ১৯৪৭ সালে 'দৈনিক স্বরাজ' পত্রিকার সাহিত্য বিভাগের সম্পাদক ছিলেন।</li>
+<li>তিনি বিশ্বভারতী বিশ্ববিদ্যালয় থেকে সম্মানসূচক ডি.লিট ডিগ্রি লাভ করেন।</li>
+<li>১৯২৫ সালে দেশবন্ধু চিত্তরঞ্জন দাশ মৃত্যুবরণ করলে তিনি 'দেশবন্ধুর প্রয়াণে' নামে একটি কবিতা লেখেন। এটি 'বঙ্গবাণী' পত্রিকায় প্রকাশিত হয়।</li>
+<li>তিনি ১৪ অক্টোবর, ১৯৫৪ সালে বালিগঞ্জে ট্রামের নিচে পড়ে আহত হন, পরে ২২ অক্টোবর শম্ভুনাথ পণ্ডিত হাসপাতালে মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">জীবনানন্দ দাশকে কোন ধরনের কবি বলা হয়?</div></div><div class="a"><p class="answer">রূপসী বাংলার কবি, ধূসরতার কবি, তিমিহননের কবি, নির্জনতার কবি, চিত্ররূপময় কবি। রবীন্দ্রনাথ তাঁর 'ধূসর পাণ্ডুলিপি'র কবিতা পাঠ করে বলেছেন 'চিত্ররূপময় কবিতা'; বুদ্ধদেব বসু জীবনানন্দ দাশকে 'নির্জনতম কবি' এবং অন্নদাশঙ্কর রায় 'শুদ্ধতম কবি' বলে আখ্যায়িত করেন।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">জীবনানন্দ দাশের ওপর কে গবেষণা করেন?</div></div><div class="a"><p class="answer">ক্লিনটন বি. সিলি।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">জীবনানন্দ দাশের কাব্যগ্রন্থগুলো কী কী? <span class="bcs">২২/২০তম বিসিএস লিখিত</span></div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'ঝরাপালক' (১৯২৭; বাংলা: ১৩৩৪):</strong> এটি তাঁর প্রথম প্রকাশিত কাব্য। এ কাব্য রচনায় তিনি রবীন্দ্রনাথ, নজরুল, সত্যেন্দ্রনাথ দত্তকে অনুকরণ করেছেন। এ কাব্যের মাধ্যমে নামের শেষে 'দাশগুপ্ত' এর পরিবর্তে 'দাশ' ব্যবহার করেন। এ কাব্যগ্রন্থে মোট ৩৫টি কবিতা অন্তর্ভুক্ত আছে।</li>
+<li><strong>'ধূসর পাণ্ডুলিপি' (১৯৩৬):</strong> এ কাব্যের বিখ্যাত কবিতা 'মৃত্যুর আগে'। এটি বুদ্ধদেব বসুর 'কবিতা' সাহিত্য পত্রিকার প্রথম সংখ্যায় ছাপা হয়। এ কবিতাটি পাঠ করে রবীন্দ্রনাথ ঠাকুর বুদ্ধদেব বসুকে লেখা এক চিঠিতে 'চিত্ররূপময়' বলে মন্তব্য করেন। কবিতাটির সাথে W. B Yeats এর The Falling of the Leaves's কবিতার মিল আছে।</li>
+<li><strong>'বনলতা সেন' (১৯৪২):</strong> ৩০টি কবিতার সমন্বয়ে রচিত এ কাব্য। ভারতীয় পুরাণের অন্তর্ভুক্ত বিষয় যেমন বিদিশা, শ্রাবস্তী উঠে এসেছে, তেমনি বেতের ফলের মতো বা পাখির নীড়ের মতো চোখ ইত্যাদি উপমাগুলোর সার্থক প্রয়োগ ঘটিয়েছেন এ কাব্যে। প্রেম ও প্রকৃতি, খণ্ড জীবন ও হতাশা, ক্লান্তি ও অবসাদ, ইতিহাসের বিশাল অনুভূতি ও বর্তমানের ছিন্নভিন্ন অস্তিত্ব, সব কিছুর সমাহার ঘটিয়েছেন তিনি এ কাব্যে। এ কাব্যের 'বনলতা সেন' কবিতাটি তিনি এডগার এলান পোর 'টু হেলেন' কবিতার অনুকরণে রচনা করেন। এ কাব্যের বিখ্যাত কবিতা: আমি যদি হতাম, হায় চিল, শঙ্খমালা, শিকার, সুদর্শনা, সুরঞ্জনা, সুচেতনা প্রভৃতি।
+                
+
+</li>
+<li><strong>'রূপসী বাংলা' (১৯৫৭):</strong> কবির মৃত্যুর পর এ কাব্যের পূর্ণাঙ্গ পাণ্ডুলিপি আবিষ্কৃত হয়। তিনি এ গ্রন্থটির প্রচ্ছদে নাম রেখেছিলেন 'বাংলার ত্রস্ত নীলিমা'। কিন্তু ১৯৫৭ সালে প্রকাশের সময় এর নামকরণ করা হয় 'রূপসী বাংলা'। কবির ছোটবোন সুচরিতা দাশের সহায়তায় লেখার খাতা থেকে প্রেসকপি তৈরি করেছিলেন কবি ভূমেন্দ্র গুহ। ৬২টি কবিতা সংবলিত এ কাব্যের বিষয় বাংলার গ্রাম, প্রকৃতি, নদী-নালা, পশু-পাখি, উৎসব ও অনুষ্ঠান। কবিতাগুলো সনেট আকারে লিখিত হলেও কবি তাঁর প্রিয় অক্ষরবৃত্ত ছন্দের প্রয়োগ ঘটিয়েছেন। এটি তাঁর স্বদেশপ্রীতি ও নিসর্গময়তার পরিচায়ক কাব্য। এ কাব্যের অন্যতম কবিতা 'এই পৃথিবীতে এক স্থান আছে'। এ কাব্যের অন্তর্গত 'আবার আসিব ফিরে' কবিতা:
+                
+</li>
+<li><strong>'মহাপৃথিবী' (১৯৪৪), 'সাতটি তারার তিমি' (১৯৪৮), 'বেলা অবেলা কালবেলা' (১৯৬১)।</strong></li>
+</ul>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">জীবনানন্দ দাশের কবিতায় প্রতিফলিত চিত্ররূপময়তার পরিচয় দাও। <span class="bcs">৩১তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">তিরিশের দশকের আধুনিক কবিদের মধ্যে অন্যতম কবি জীবনানন্দ দাশের কবিতায় প্রতিফলিত হয়েছে চিত্ররূপময়তা। রবীন্দ্রনাথ তাঁর কবিতা পাঠ করে বলেছেন 'চিত্ররূপময় কবিতা'। রবীন্দ্রনাথ জীবনানন্দ দাশকে দেয়া চিঠিতে বলেছেন, 'তোমার কবিতাগুলো পড়ে খুশি হয়েছি। তোমার লেখায় রস আছে, স্বকীয়তা আছে এবং তাকিয়ে দেখার আনন্দ আছে'। জীবনানন্দ দাশের কবিতায় ছবির পর ছবি দেখা যায়। এই ছবি কোনো সাদা-কালো ছবি নয়, যেন রঙিন চলচ্চিত্র। তাঁর কবিতা পড়তে পড়তে ইমপ্রেশনিস্টদের কথা মনে পড়ে। যেমন- <em>"চারিপাশে বনের বিস্ময় / চৈত্র্যের বাতাস / জ্যোৎস্নার শরীরের স্বাদ যেন।"</em> এই উদ্ধৃতি পাঠ করলেই চোখে ভেসে ওঠে একটি রঙিন ছবি। তাই জীবনানন্দ দাশকে চিত্ররূপময় কবি বলা হয়।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">জীবনানন্দ দাশের উপন্যাসসমূহ কী কী?</div></div><div class="a"><p class="answer">'মাল্যবান' (১৯৭৩): উপন্যাসটি কবির মৃত্যুর পর প্রকাশিত হয়। দাম্পত্য জীবনের নিষ্ঠুর কাহিনি, সম্পর্কের জটিলতা, পারস্পরিক বিচ্ছিন্নতাবোধের এক নিষ্ঠুর উপাখ্যানকে ঘিরে এ উপন্যাস রচিত।<br/>
+    'সুতীর্থ' (১৯৭৪), 'কল্যাণী' (১৯৯৯)। [সবকটি উপন্যাস কবির মৃত্যুর পর প্রকাশিত]</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">জীবনানন্দ দাশের প্রবন্ধ কোনটি?</div></div><div class="a"><p class="answer">'কবিতার কথা' (১৯৫৫): এ প্রবন্ধের বিখ্যাত উক্তি: <em>'সকলেই কবি নয়, কেউ কেউ কবি।'</em></p></div></article></section>
+<section class="author" data-name="অমিয় চক্রবর্তী" id="a3">
+<header class="a-head">
+<div class="a-num">৩</div>
+<div class="a-meta">
+<h2 class="a-name">অমিয় চক্রবর্তী</h2>
+<div class="a-sub"><span class="a-years">১৯০১-১৯৮৬</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">ত্রিশের দশকের শীর্ষস্থানীয় আধুনিক কবি অমিয় চক্রবর্তী। বাংলা কাব্যের ক্ষেত্রে তাঁর অবস্থান ছিল রবীন্দ্র প্রভাব বলয়ের বাইরে এবং কবিতা ছাড়াও তিনি পরিচিত ছিলেন গদ্যশিল্পী হিসেবে। আধুনিক ভাব, দর্শন ও রসের ক্ষেত্রে তিনি বিশেষ সংযোজন ঘটিয়েছেন। মরমী সুর ও আধ্যাত্মিকতাও তাঁর কবিতার অন্যতম বিষয়।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>অমিয় চক্রবর্তী ১০ এপ্রিল, ১৯০১ সালে হুগলীর শ্রীরামপুরে জন্মগ্রহণ করেন।</li>
+<li>তিনি পঞ্চপাণ্ডবদের একজন এবং রবীন্দ্রোত্তর যুগের অন্যতম আধুনিক কবি হিসেবে পরিচিত।</li>
+<li>তিনি রবীন্দ্রনাথের সাহিত্য সচিব (১৯২৬-৩৩) ছিলেন।</li>
+<li>তিনি ড্যানিশ কন্যা হিয়োর্ডিস সিগার্ডকে বিয়ে করেন। রবীন্দ্রনাথ ঠাকুর এ বিদেশিনী নববধূর নাম দিয়েছেন 'হেমন্তী'।</li>
+<li>তিনি ইউনেস্কো পুরস্কার (১৯৬০), পদ্মভূষণ উপাধি (১৯৭০) পান।</li>
+<li>তিনি ১২ জুন, ১৯৮৬ সালে শান্তিনিকেতনে মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর কাব্যগুলো কী কী?</div></div><div class="a"><p class="answer">'একমুঠো' (১৯৩৯): বিশ শতকের বিজ্ঞানের যুগে মানুষের ব্যবহারিক জীবনে যেমন জটিলতা বাড়ছে, তেমনি মানুষের মনোজাগতিক চিন্তাতেও বাড়ছে জটিলতা। কবি এ কাব্যে সময়কে বিবেচনায় এনে মানব-মানবীর অন্তর্গত সূক্ষ্ম সমস্যা তুলে ধরার চেষ্টা করেছেন।<br/><br/>
+    'কবিতাবলী' (১৯২৫), 'উপহার' (১৯২৭), 'খাসড়া' (১৯৩৮), 'মাটির দেয়াল' (১৯৪২), 'অভিজ্ঞান বসন্ত' (১৯৪৩), 'দূরবাণী' (১৯৪৩), 'পারাপার' (১৯৫৩), 'পালাবদল' (১৯৫৫), 'ঘরে ফেরার দিন' (১৯৬১), 'হারানো অর্কিড' (১৯৬৬), 'পুষ্পিত ইমেজ' (১৯৬৭), 'অনিঃশেষ' (১৯৭৬)।<br/><br/>
+<strong>গদ্য রচনা:</strong> 'চলো যাই' (১৯৬২), 'সাম্প্রতিক' (১৯৬৩), 'পুরবাসী', 'পথ অন্তহীন' ।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর বিখ্যাত কবিতা কোনটি?</div></div><div class="a"><p class="answer">'বাংলাদেশ': এটি 'অনিঃশেষ' কাব্যগ্রন্থের অন্তর্গত যা বাংলাদেশের স্বাধীনতা সংগ্রামের প্রেক্ষাপটে রচিত। এটি অক্ষরবৃত্ত ছন্দে রচিত। এতে উল্লেখ আছে পদ্মা, যমুনা নদী ও প্রকৃতির কথা।</p></div></article></section>
+<section class="author" data-name="আখতারুজ্জামান ইলিয়াস" id="a4">
+<header class="a-head">
+<div class="a-num">৪</div>
+<div class="a-meta">
+<h2 class="a-name">আখতারুজ্জামান ইলিয়াস</h2>
+<div class="a-sub"><span class="a-years">১৯৪৩-১৯৯৭</span><span class="a-role">কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">বাংলা সাহিত্যের অন্যতম শ্রেষ্ঠ কথাশিল্পী আখতারুজ্জামান ইলিয়াস মূলত নিরীক্ষাপ্রবণ শিল্পী। তাঁর গল্পগুলোতে পুরান ঢাকার প্রেক্ষাপটে দাঁড়িয়ে রচিত। অনাহার, অভাব, দারিদ্র্য ও শোষণের শিকার হয়ে যারা মানবেতর জীবন-যাপন করছে, সেসব অবহেলিত মানুষের জীবনাচরণ তাঁর গল্প ও উপন্যাসে উজ্জ্বলভাবে অঙ্কিত।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>আখতারুজ্জামান ইলিয়াস ১২ ফেব্রুয়ারি, ১৯৪৩ সালে গাইবান্ধা জেলার সাঘাটা থানার গোটিয়া গ্রামে (মাতুলালয়) জন্মগ্রহণ করেন।</li>
+<li>পৈতৃক নিবাস চেলাপাড়া, বগুড়া। ডাকনাম- মন্টু।</li>
+<li>তিনি বাংলা একাডেমি সাহিত্য পুরস্কার (১৯৮২), একুশে পদক (মরণোত্তর)- ১৯৯৯ পান।</li>
+<li>তিনি ১৯৬৫ সালে জগন্নাথ কলেজে বাংলা বিভাগের প্রভাষক হিসেবে কর্মজীবন শুরু করেন এবং ঢাকা কলেজে আমৃত্যু অধ্যাপনা করেন।</li>
+<li>তিনি ৪ জানুয়ারি, ১৯৯৭ সালে ক্যান্সার রোগে আক্রান্ত হয়ে মারা যান।</li>
+</ul></div><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>হুসনামা (কাব্যগ্রন্থ)</td>
+<td>দৌলত উজির বাহরাম খান</td>
+</tr>
+<tr>
+<td>নুরনামা (কাব্যগ্রন্থ)</td>
+<td>আবদুল হাকিম</td>
+</tr>
+<tr>
+<td>সিকান্দরনামা (কাব্যগ্রন্থ)</td>
+<td>আলাওল</td>
+</tr>
+<tr>
+<td>সফরনামা (প্রবন্ধ)</td>
+<td>আবুল ফজল</td>
+</tr>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'চিলেকোঠার সেপাই' উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">উনসত্তরের গণআন্দোলনের প্রেক্ষাপটে রচিত আখতারুজ্জামান ইলিয়াসের মহাকাব্যিক উপন্যাস 'চিলেকোঠার সেপাই' (১৯৮৬)। উপন্যাসের নায়ক ওসমান দেশবিভাগের কারণে উদ্বাস্তু হয়ে ঢাকায় এসেছে। সে এতটাই বিচ্ছিন্ন এবং ছিন্নমূল যে চিলেকোঠায় বাস করাই ছিল যেন তার নিয়তি। অথচ বামপন্থী ছাত্রনেতা, ছাত্রলীগ নেতা, শ্রমিক ও রিকশওয়ালা এমন কি বাড়িরওয়ালার মেয়রের সাথে তার বিচ্ছিন্নভাবে যোগাযোগ হয়েছে। ওসমান যেন ছোট ছোট কাহিনির সূত্রধর। কোনো বাড়ির চিলেকোঠায় বাস করেও স্বাধীনতার লক্ষ্যে গড়ে ওঠা বৃহত্তর আন্দোলনের জোয়ারে সেদিন মিলিত হয়েছিল ওসমান। ওসমানের মাধ্যমে ইতিবাচক রাজনীতির উপস্থাপনায় বাংলাদেশের স্বাধীনতা সংগ্রামের পূর্ববর্তী রূপটি ঔপন্যাসিক সার্থকভাবে তুলে এনেছেন। এ উপন্যাস অবলম্বনে চলচ্চিত্র নির্মিত হয়েছে।</p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>সাহিত্য সংস্কৃতি চিন্তা (প্রবন্ধ)</td>
+<td>আহমদ শরীফ</td>
+</tr>
+<tr>
+<td>সাহিত্য সংস্কৃতি জীবন (প্রবন্ধ)</td>
+<td>আবুল ফজল</td>
+</tr>
+<tr>
+<td>সাংস্কৃতিক সাম্প্রদায়িকতা (প্রবন্ধ)</td>
+<td>বদরুদ্দীন উমর</td>
+</tr>
+<tr>
+<td>সংস্কৃতির সংকট (প্রবন্ধ)</td>
+<td>বদরুদ্দীন উমর</td>
+</tr>
+<tr>
+<td>সভ্যতার সংকট (প্রবন্ধ)</td>
+<td>রবীন্দ্রনাথ ঠাকুর</td>
+</tr>
+</table></div><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>সংস্কৃতি কথা (প্রবন্ধ)</td>
+<td>মোতাহের হোসেন চৌধুরী</td>
+</tr>
+<tr>
+<td>সংস্কৃতির কথা (প্রবন্ধ)</td>
+<td>রাজী আহমেদ খন্দকার</td>
+</tr>
+<tr>
+<td>সংস্কৃতির চড়াই উতরাই (প্রবন্ধ)</td>
+<td>শওকত ওসমান</td>
+</tr>
+<tr>
+<td>সংস্কৃতির ভাঙ্গা সেতু (প্রবন্ধ)</td>
+<td>আখতারুজ্জামান ইলিয়াস</td>
+</tr>
+<tr>
+<td>সংস্কৃতির রূপান্তর (প্রবন্ধ)</td>
+<td>গোপাল হালদার</td>
+</tr>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাস দুটি কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'চিলেকোঠার সেপাই' (১৯৮৬):</strong> এটি তাঁর প্রথম প্রকাশিত উপন্যাস। এটি উনসত্তরের গণআন্দোলনের প্রেক্ষাপটে রচিত। <b class="chr">চরিত্র:</b> ওসমান, খিজির, আনোয়ার।</li>
+<li><strong>'খোয়াবনামা' (১৯৯৬):</strong> এতে গ্রাম বাংলার নিম্নবিত্ত প্রান্তিক মানুষের জীবনলেখ্যসহ তেভাগা আন্দোলন, ফকির-সন্ন্যাসী বিদ্রোহ, ১৯৪৩ এর মন্বন্তর, পাকিস্তান আন্দোলন, সাম্প্রদায়িক দাঙ্গা ইত্যাদি ঐতিহাসিক উপাদান নিখুঁতভাবে ফুটে উঠেছে। কাংলাহার বিলের দু'ধারের চাষী-মজুরের জীবনচরিত এ উপন্যাসের উপজীব্য।</li>
+</ul>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য গ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">
+<strong>গল্পগ্রন্থ:</strong><br/>
+        'অন্য ঘরে অন্য স্বর' (১৯৭৬): এটি তাঁর প্রথম প্রকাশিত গল্পগ্রন্থ। ১৯৬২ থেকে ১৯৭৬ সালে রচিত নিরুদ্দেশ যাত্রা, উৎসব, প্রতিশোধ, যোগাযোগ, ফেরারী, অন্য ঘরে অন্য স্বর ইত্যাদি গল্প নিয়ে তিনি এ গ্রন্থটি প্রকাশ করেন। এ গল্পে প্রথমবারের মতো পুরনো ঢাকার জনজীবন বিশেষত্ব পেয়েছে।<br/><br/>
+        'জাল স্বপ্ন স্বপ্নের জাল' (১৯৯৭): এটি মুক্তিযুদ্ধভিত্তিক গল্পগ্রন্থ। এ গ্রন্থের অন্তর্ভুক্ত মুক্তিযুদ্ধভিত্তিক গল্প 'রেইনকোট' (<b class="chr">চরিত্র:</b> মিন্টু, নূরুল হুদা, ইসহাক মিয়া, আসমা)।<br/><br/>
+        'দোয়ারী' (১৯৮২), 'দুধভাতে উৎপাত' (১৯৮৬), 'দোজখের ওম' (১৯৮৯)।<br/><br/>
+<strong>গল্প :</strong> 'রেইনকোট' (মুক্তিযুদ্ধভিত্তিক), 'ফোড়া' (মার্কসীয় তত্ত্বভিত্তিক), 'মিলির হাতে স্টেনগান' (স্বাধীনতা পরবর্তী বিশৃঙ্খল বাংলাদেশের প্রকৃত রূপ রূপায়িত)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর প্রবন্ধগ্রন্থটির নাম কী?</div></div><div class="a"><p class="answer">'সংস্কৃতির ভাঙ্গা সেতু' (১৯৮৮): এতে ২২টি প্রবন্ধ অন্তর্ভুক্ত আছে।</p></div></article></section>
+<section class="author" data-name="আবুল মনসুর আহমদ" id="a5">
+<header class="a-head">
+<div class="a-num">৫</div>
+<div class="a-meta">
+<h2 class="a-name">আবুল মনসুর আহমদ</h2>
+<div class="a-sub"><span class="a-years">১৮৯৮-১৯৭৯</span><span class="a-role">ব্যঙ্গ সাহিত্যিক</span></div>
+</div>
+</header><p class="lead">আবুল মনসুর আহমদ ছিলেন সাহিত্যিক ও সফল সাংবাদিক। খেলাফত ও অসহযোগ আন্দোলনের সক্রিয় কর্মী ছিলেন। দেশবন্ধু চিত্তরঞ্জন দাশের স্বরাজ দলের অন্যতম কর্মী ছিলেন। নেতাজী সুভাসচন্দ্র বসুর কংগ্রেসের আন্দোলনে যোগ দেন। পাকিস্তান সরকার বেতার ও টিভিতে রবীন্দ্রসংগীতকে পাকিস্তানের আদর্শের পরিপন্থী বলে প্রচার করলে তিনি সে সিদ্ধান্তের প্রতি সমর্থন করেন। সমকালীন সমাজজীবনে বিরাজমান অন্যায় অত্যাচারের চিত্র তিনি ব্যঙ্গাত্মক ভাষার মাধ্যমে উপস্থাপন করেন। তাঁর ব্যঙ্গধর্মীচনায় সমাজের মুখোশধারী মানুষের অন্তরের রূপ সার্থকভাবে উন্মোচিত হয়েছে।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>আবুল মনসুর আহমদ ৩ সেপ্টেম্বর, ১৮৯৮ সালে ময়মনসিংহের ত্রিশাল উপজেলার ধানিখোলা গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তিনি ইংরেজি দৈনিক The Daily Star পত্রিকার সম্পাদক মাহফুজ আনামের পিতা এবং 'A Golden Age' এর লেখিকা তাহমিমা আনামের দাদা।</li>
+<li>তিনি 'দৈনিক কৃষক' (১৯৩৮) ও 'দৈনিক ইত্তেহাদ' (১৯৪৬) পত্রিকার সম্পাদক ছিলেন এবং 'সোলতান' (১৯২৩) ও 'মোহাম্মদী' (১৯২৩) পত্রিকার সহকারী সম্পাদক ছিলেন।</li>
+<li>তিনি আওয়ামী মুসলিম লীগের সহ-সভাপতি (১৯৫৩-৫৮), যুক্তফ্রন্টের ২১ দফার প্রণেতা এবং স্বাস্থ্যমন্ত্রী (১৯৫৪) ছিলেন। ১৯৫৬ সালে আতাউর রহমান খানের মন্ত্রিসভায় শিক্ষামন্ত্রী ও ১৯৫৬-৫৭ সালে হোসেন শহীদ সোহরাওয়ার্দীর নেতৃত্বে কেন্দ্রীয় মন্ত্রিসভার বাণিজ্য ও শিল্পমন্ত্রী ছিলেন।</li>
+<li>ব্যঙ্গাত্মক রচনার জন্য তিনি বিখ্যাত।</li>
+<li>তিনি বাংলা একাডেমি পুরস্কার (১৯৬০) পান।</li>
+<li>তিনি ১৮ মার্চ, ১৯৭৯ সালে ঢাকায় মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">আবুল মনসুর আহমদের উপন্যাসসমূহ কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'সত্যমিথ্যা' (১৯৫০):</strong> এটি Johan Bojer এর 'The Power of a lie' গ্রন্থের বাংলা ভাবানুবাদ।</li>
+<li><strong>'জীবনক্ষুধা' (১৯৫৫):</strong> বিশ শতকের পঞ্চাশের দশকের শিক্ষিত বাঙালি মুসলমান মধ্যবিত্তের আত্মপ্রতিষ্ঠার সংগ্রাম ও লালিত আদর্শের সাথে বাস্তবতার যে দ্বন্দ্ব, তারই প্রতিফলন এ উপন্যাস। এ উপন্যাসের নায়ক হালিম মুসলিম মধ্যবিত্তের প্রতিনিধি।</li>
+<li><strong>'আবে হায়াত' (১৯৬৮):</strong> গ্রামের পির পরিবারের সন্তান হামিদ ডাক্তার হিসেবে উচ্চ শিক্ষা গ্রহণ করে শহরে প্রতিষ্ঠিত হয়। মুখে সে জনদরদী হলেও প্রকৃতপক্ষে সে অর্থলিপ্সু। বাইরে বিজ্ঞানমনস্ক হলেও ভিতরে সে আধ্যাত্মিকতায় বিশ্বাসী। প্রাক্তন বিবাহিত সহপাঠী রাজিয়াকে বিয়ে করার জন্য সে বিজ্ঞানের খোলস ছেড়ে আধ্যাত্মিকতার পথ বেছে নেয়, এখানেই তাঁর মুখোশ উন্মোচিত হয়। এ সব নিয়েই রচিত 'আবে-হায়াত'।</li>
+</ul>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">আবুল মনসুর আহমদের গল্পগ্রন্থসমূহ কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'আয়না' (১৯৩৫):</strong> এটির ভূমিকা লেখেন কাজী নজরুল ইসলাম। মুখবন্ধে নজরুল লেখেন, 'যে সমস্ত মানুষ হরেক রকমের মুখোশ পরে আমাদের সমাজে অবাধে বিচরণ করছে, আবুল মনসুরের আয়নার ভেতরে তাদের স্বরূপ-মূর্তি বন্য ভীষণতা নিয়ে ফুটে উঠেছে।' হুজুরে কেবলা, গো দেবতা-কা দেশ, নায়েবে নবী, লীডারকে কওম, মুজাহিদিন, বিদ্রোহী সংঘ, ধর্মরাজ্য- এই সাতটি গল্প নিয়ে রচিত 'আয়না' গল্পগ্রন্থ। আবুল মনসুর আহমদের 'বিদ্রোহী সংঘ' ব্যতীত অন্যান্য সব গল্পে ধর্মান্ধ ও ধর্মব্যবসায়ীদের স্বরূপ তুলে ধরেছেন।</li>
+<li><strong>'ফুড কনফারেন্স' (১৯৮৪):</strong> ১৩৫০ সালের দুর্ভিক্ষের করুণ চিত্র এতে প্রতিফলিত।</li>
+<li><strong>'আসমানী পর্দা' (১৯৬৪)।</strong></li>
+</ul>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'আয়না' গল্পগ্রন্থের পরিচয় দাও।</div></div><div class="a"><p class="answer">ধর্মান্ধ ও ধর্ম ব্যবসায়ীদের মুখোশ উন্মোচনের লক্ষ্যে আবুল মনসুর আহমদ রচনা করেন 'আয়না' (১৯৩৫) গল্পগ্রন্থ। এ গ্রন্থের মুখবন্ধে কাজী নজরুল ইসলাম লিখেছেন, 'যে-সমস্ত মানুষ হরেক রকমের মুখোশ পরে আমাদের সমাজে অবাধে বিচরণ করছে, আবুল মনসুরের আয়নার ভেতরে তাদের স্বরূপ-মূর্তি বন্য ভীষণতা নিয়ে ফুটে উঠেছে।' হুজুরে কেবলা, গো দেবতা-কা দেশ, নায়েবে নবী, লীডারকে কওম, মুজাহিদিন, বিদ্রোহী সংঘ, ধর্মরাজ্য - এ সাতটি গল্প নিয়ে 'আয়না' গল্পগ্রন্থ রচিত।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">আবুল মনসুর আহমদের অন্যান্য গ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">
+<strong>প্রবন্ধ:</strong><br/>
+        'বেশি দামে কেনা কম দামে বেচা আমাদের স্বাধীনতা' (১৯৮২): ৪২টি নিবন্ধের সমন্বয়ে গ্রথিত এ প্রবন্ধগ্রন্থটির ৩৯টি নিবন্ধ ১৯৭২-৭৩ সালে 'দৈনিক ইত্তেহাদ' পত্রিকায় প্রকাশিত হয়। পরবর্তীতে নিবন্ধগুলো একত্র করে আবুল মনসুর আহমদের মৃত্যুর পর ১৯৮২ সালে 'আহমদ পাবলিশিং হাউস' থেকে 'বেশি দামে কেনা কম দামে বেচা আমাদের স্বাধীনতা' নামে প্রকাশিত হয়। এ গ্রন্থের নিবন্ধগুলো পাঁচমিশালি হলেও প্রত্যেকটির মূল বক্তব্য ভিন্ন। প্রবন্ধগুলোয় প্রাধান্য পেয়েছে নানান দিক থেকে উদ্ভূত জাতীয় সমস্যার সুষ্ঠু সমাধানের পথ-নির্দেশনা। উল্লেখযোগ্য নিবন্ধ: 'গণতন্ত্র, সমাজবাদ ও শ্রেণীসংগ্রাম', 'আমাদের কাজ শেষ হয় নাই, শুরু হইয়াছে মাত্র', 'রাষ্ট্র পরিচালনায় যৌবনের অধিকার স্বীকৃতি', 'স্বাধীনতার-উত্তর বাংলাদেশের অর্থনৈতিক পুনর্বাসন', 'পাট বাঁচিলে আমরা বাঁচিব : এ কথা আজ সত্য', 'প্রথম নির্বাচনেই সংবিধানকে সফল করিতে হইবে', 'গণতন্ত্রিক সমাজবাদী রাষ্ট্রে আমলাতন্ত্রের ভূমিকা' প্রভৃতি।<br/><br/>
+        'পাক-বাংলার কালচার' (১৯৬৮)।<br/><br/>
+<strong>শিশু সাহিত্য:</strong><br/>
+        'গালিভারের সফরনামা' (১৯৬৫): এটি শিশু বিষয়ক সাহিত্য। এটি Jonathan Swift এর Gulliver's Travels অবলম্বনে রচিত।<br/>
+        'মুসলমানী কথা' (১৯২৪): ইসলামের নবী-রাসুলদের কাহিনিভিত্তিক কিশোর গ্রন্থ।<br/>
+        'ছোটদের কাসাসুল আম্বিয়া' (১৯৪৯), 'আদুভাই' (গল্প)।<br/><br/>
+<strong>আত্মজীবনী :</strong> 'আত্মকথা' (১৯৭৮)<br/><br/>
+<strong>রাজনীতি বিষয়ক গ্রন্থ :</strong><br/>
+        'আমার দেখা রাজনীতির পঞ্চাশ বছর' (১৯৬৯), 'শেরে বাংলা থেকে বঙ্গবন্ধু' (১৯৭২)।
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>জীবনক্ষুধা (উপন্যাস)</td>
+<td>আবুল মনসুর আহমদ</td>
+</tr>
+<tr>
+<td>মৃত্যুক্ষুধা (উপন্যাস)</td>
+<td>কাজী নজরুল ইসলাম</td>
+</tr>
+</table></div></section>
+<section class="author" data-name="আহমদ ছফা" id="a6">
+<header class="a-head">
+<div class="a-num">৬</div>
+<div class="a-meta">
+<h2 class="a-name">আহমদ ছফা</h2>
+<div class="a-sub"><span class="a-years">১৯৪৩-২০০১</span><span class="a-role">প্রাবন্ধিক ও ঔপন্যাসিক</span></div>
+</div>
+</header><p class="lead">বিশিষ্ট লেখক, চিন্তাবিদ ও সাহিত্যিক আহমদ ছফার রচনায় প্রধান পেয়েছে জাতিসত্তার পরিচয়। জীবদ্দশায় তিনি তাঁর প্রথাবিরোধী, নির্মোহ দৃষ্টিভঙ্গীর জন্য বুদ্ধিজীবী মহলে বিশেষ পরিচিত ছিলেন।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>আহমদ ছফা ৩০ জুন, ১৯৪৩ সালে চট্টগ্রামের চন্দনাইশ উপজেলার হাশিমপুর ইউনিয়নের গাছবাড়িয়া গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তিনি ১৯৭১ সালে মহান মুক্তিযুদ্ধে বাংলাকে স্বাধীন করার প্রত্যয়ে 'লেখক সংগ্রাম শিবির' গঠন করেন এবং স্বাধীন বাংলাদেশের প্রথম পত্রিকা 'প্রতিരോധ' প্রকাশ করেন।</li>
+<li>১৯৮০ সালে কাঁটাবন বস্তিতে তিনি 'শিল্পী সুলতান কর্ম ও শিক্ষাকেন্দ্র' চালু করেন।</li>
+<li>তিনি 'উত্থানপর্ব', 'দাবানল' (এটি তিনি মুক্তিযুদ্ধের সমর্থনে কলকাতা থেকে প্রকাশ করেন) পত্রিকার সম্পাদক ছিলেন।</li>
+<li>তিনি একুশে পদক (মরণোত্তর) পান।</li>
+<li>তিনি ২৮ জুলাই, ২০০১ সালে মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাসসমূহ কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'সূর্য তুমি সাথী' (১৯৬৭):</strong> এটি তাঁর প্রথম প্রকাশিত উপন্যাস।</li>
+<li><strong>'ওঙ্কার' (১৯৭৫):</strong> এটি ৬৯ সালের গণঅভ্যুত্থানের পটভূমিতে লেখা স্বাধীন বাংলাদেশ ও বাঙালি জাতি উত্থানের এক মনোজাগতিক রূপায়ণ। উপন্যাসের নায়ক আবু নসরের বোবা মেয়েকে বিয়ে করে। আবু নসরের সাথে আইয়ুব খানের সম্পর্ক থাকায় সে একধরনের ক্ষমতা লাভ করে। এ কাহিনিসূত্র ধরেই উপন্যাসের কাহিনি গতি লাভ করেছে। এখানে আইয়ুব খানের তথাকথিত সামরিক শাসনের সমালোচনা করা হয়েছে।</li>
+<li><strong>'একজন আলী কেনানের উত্থান-পতন' (১৯৮৮):</strong> আইয়ুব খান থেকে শুরু করে বঙ্গবন্ধু পর্যন্ত সময়ের রাজনৈতিক প্রেক্ষাপটে রচিত।</li>
+<li><strong>'মরণ বিলাস' (১৯৯০):</strong> রাত ১২:১৩ মিনিট থেকে ভোর পর্যন্ত একান্ত সাগরেদ মাওলা বক্সের কাছে একজন মুমূর্ষু রাজনীতিবিদের স্বরূপ স্বীকারোক্তিতে ব্যক্ত হয় রাজনৈতিক জীবনের নানা উত্থান-পতন, সিঁড়ি বেয়ে প্রতিষ্ঠিত হওয়ার কাহিনি। একই সাথে নেতার করুণ মিনতিও প্রকাশিত হয়েছে।</li>
+<li><strong>'অলাতচক্র' (১৯৯৩):</strong> উপন্যাসটি মুক্তিযুদ্ধকালীন ভারতে অভিভাষী বাঙালিদের নিয়ে রচিত। প্রেমের কাহিনি হলেও এতে ধ্বনিত হয়েছে উদ্বাস্তু বাঙালিদের দৈন্যদশা।</li>
+<li><strong>'গাভী বৃত্তান্ত' (১৯৯৫):</strong> এটি ঢাকা বিশ্ববিদ্যালয়ের অনিয়মের প্রেক্ষাপটে রচিত ব্যঙ্গাত্মক রচনা। উপন্যাসের কেন্দ্রীয় চরিত্র এ বিশ্ববিদ্যালয়ের নবনির্বাচিত ভিসি মিঞা মোহাম্মদ আবু জোনায়েদ (প্রতীকী চরিত্র)।</li>
+<li><strong>'অর্ধেক নারী অর্ধেক ঈশ্বরী' (১৯৯৬):</strong> উপন্যাসটি 'প্রাণপূর্ণিমার চান' নামে সাপ্তাহিক পত্রিকায় ধারাবাহিকভাবে প্রথম প্রকাশিত হয়। পরবর্তীতে এর নামকরণ করা হয় 'অর্ধেক নারী অর্ধেক ঈশ্বরী'।</li>
+</ul>
+</div><p class="answer">
+        'বিহঙ্গ পুরাণ' (১৯৮৮), 'পুষ্প বৃক্ষ এবং বিহঙ্গ পুরাণ' (১৯৯৬)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর প্রবন্ধগুলো কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'জাগ্রত বাংলাদেশ' (১৯৭১):</strong> এটি স্বাধীন বাংলাদেশের প্রথম গ্রন্থ।</li>
+<li><strong>'যদ্যপি আমার গুরু' (১৯৯৩):</strong> এটি জাতীয় অধ্যাপক আব্দুর রাজ্জাক প্রসঙ্গে রচিত।</li>
+</ul>
+        'বুদ্ধিবৃত্তির নতুন বিন্যাস' (১৯৭২), 'বাংলা ভাষা : রাজনীতির আলোকে' (১৯৭৫), 'বাংলাদেশের রাজনৈতিক জটিলতা' (১৯৭৭), 'বাঙালি মুসলমানের মন' (১৯৮১), 'রাজনীতির লেখা' (১৯৯৩), 'সংকটের নানা চেহারা' (১৯৯৬), 'বাঙালি জাতি এবং বাংলাদেশ রাষ্ট্র' (২০০০), 'উপলক্ষের লেখা' (২০০১), 'সেইসব লেখা' (২০০১)।
+    </div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য রচনাগুলো কী কী?</div></div><div class="a"><p class="answer">
+<strong>গল্প :</strong> 'নিহত নক্ষত্র' (১৯৬৯)<br/><br/>
+<strong>অনুবাদ :</strong> 'তানিয়া' (১৯৬৭), 'ফাউস্ট' (১৯৮৬)।<br/><br/>
+<strong>শিশুতোষ :</strong> 'দোলা আমার কনক চাঁপা' (১৯৬৮), 'গে শিশু হাকিম' (১৯৭৭)।<br/><br/>
+<strong>ইতিহাস গ্রন্থ :</strong> 'সিপাহী যুদ্ধের ইতিহাস' (১৯৭৯)।<br/><br/>
+<strong>কবিতা :</strong> 'জল্লাদ সময়' (১৯৭৪), 'দুঃসময়ের দিনে দেশ' (১৯৭৫), 'একটি প্রবীণ বটের কাছে প্রার্থনা' (১৯৭৭), 'লেনিন ঘুমোবে এবার' (১৯৯৯)।
+    </p></div></article></section>
+<section class="author" data-name="জহির রায়হান" id="a7">
+<header class="a-head">
+<div class="a-num">৭</div>
+<div class="a-meta">
+<h2 class="a-name">জহির রায়হান</h2>
+<div class="a-sub"><span class="a-years">১৯৩৫-১৯৭২</span><span class="a-role">কথাসাহিত্যিক ও চলচ্চিত্রকার</span></div>
+</div>
+</header><p class="lead">প্রখ্যাত কথাশিল্পী ও চলচ্চিত্রকার জহির রায়হান ছিলেন ভাষাসৈনিক। তিনি প্রত্যক্ষভাবে ভাষা আন্দোলনে নেতৃত্ব দেন। তাঁর রচিত সাহিত্যকর্ম ও চলচ্চিত্রের মাধ্যমে পাকিস্তানের স্বৈরাচারী শাসনকে ও সামরিক জান্তার গণহত্যার চিত্র চিত্রিত করা হয় এবং জনগণকে পাকিস্তানি শাসক গোষ্ঠীর বিরুদ্ধে প্রতিরোধ গড়তে উদ্বুদ্ধ করা হয়।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>জহির রায়হান ১৯ আগস্ট, ১৯৩৫ সালে ফেনীর মজুপুর গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তাঁর প্রকৃত নাম আবু আবদার মোহাম্মদ জহিরুল্লাহ। ডাকনাম- জাফর।</li>
+<li>শহীদুল্লা কায়সার তাঁর ভাই। চিত্রনায়িকা কোহিনুর আক্তার সুচন্দা তাঁর স্ত্রী।</li>
+<li>জহির রায়হান ৫২ সালের ভাষা আন্দোলনে সক্রিয়ভাবে অংশগ্রহণ করেন এবং গ্রেফতার হয়ে কারাবরণ করেন।</li>
+<li>ছাত্রজীবনে তিনি সাহিত্য মাসিক 'প্রবাহ' (১৯৫৬) এবং ইংরেজি সাপ্তাহিক 'এক্সপ্রেস' পত্রিকার সম্পাদনা ও প্রকাশের সাথে যুক্ত ছিলেন। এছাড়া ১৯৫০ সালে 'যুগের আলো' পত্রিকায় সাংবাদিক হিসেবে কাজ করেন।</li>
+<li>১৯৫১-৫৭ সাল পর্যন্ত কমিউনিস্ট পার্টির রাজনীতির সাথে জড়িত ছিলেন। এ সময় কমরেড মনি সিংহের দেয়া রাজনৈতিক নাম 'রায়হান' গ্রহণ করেন।</li>
+<li>১৯৫৬ সালে 'জাগো হুয়া সাভেরা' ছবিতে সহকারী পরিচালক হিসেবে কাজ করার মাধ্যমে চলচ্চিত্র জগতে প্রবেশ করেন।</li>
+<li>তিনি বাংলা একাডেমি পুরস্কার- ১৯৭২ (মরণোত্তর) পান।</li>
+<li>তিনি ১৯৭২ সালের ৩০ জানুয়ারি নিখোঁজ ভাই শহীদুল্লা কায়সারকে খুঁজতে মিরপুরে গিয়ে নিজেই নিখোঁজ হন। তাঁর লাশও পাওয়া যায়নি।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাসসমূহ কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'শেষ বিকেলের মেয়ে' (১৯৬০):</strong> এটি তাঁর প্রথম প্রকাশিত উপন্যাস। এটি 'সাপ্তাহিক বিজলী' পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়।</li>
+<li><strong>'হাজার বছর ধরে' (১৯৬৪):</strong> আবহমান বাংলার জীবন ও জনপদ এর প্রতিপাদ্য। তিনি এ উপন্যাসের জন্য ১৯৬৪ সালে 'আদমজী সাহিত্য পুরস্কার' লাভ করেন। জহির রায়হানের স্ত্রী কোহিনুর আক্তার সুচন্দা এ উপন্যাস অবলম্বনে চলচ্চিত্র নির্মাণ করেন এবং 'জাতীয় চলচ্চিত্র পুরস্কার' লাভ করেন। <b class="chr">চরিত্র:</b> টুনি, মকবুল।</li>
+<li><strong>'আরেক ফাগুন' (১৯৬৯):</strong> ১৯৪৮ থেকে ১৯৫২ হয়ে ১৯৫৫ সালে বর্তমান শহীদ মিনারের ভিত্তি প্রস্তর স্থাপন পর্যন্ত চলমান আন্দোলন, জনতার সম্মিলন, ছাত্র/ছাত্রীদের প্রত্যক্ষ অংশগ্রহণ, তাদের প্রেম-প্রণয় ইত্যাদি এ উপন্যাসের মূল বিষয়। এটি ভাষা আন্দোলনভিত্তিক প্রথম উপন্যাস।</li>
+<li><strong>'আর কত দিন' (১৯৭০):</strong> মুক্তিযুদ্ধপূর্ব সময়ের অস্থির সামাজিক-রাজনৈতিক আন্দোলনমুখর প্রেক্ষাপটে আসন্ন যুদ্ধের একটি ভয়াবহ সম্ভাবনা, যুদ্ধকালীন বাস্তবতা, লাঞ্ছিত মানবতার আর্তি, শান্তি ও ভালোবাসার জন্য মানুষের চিরন্তন অন্বেষা এ উপন্যাসের মূল উপজীব্য। ইতা ও তপু এ উপন্যাসের শাশ্বত শান্তি ও ভালোবাসার মূর্ত প্রতীক।</li>
+<li><strong>'একুশে ফেব্রুয়ারি' (১৯৯২):</strong> এটি ভাষা আন্দোলনভিত্তিক উপন্যাস। জহির রায়হান ১৯৭০ সালে ভাষা আন্দোলন প্রেক্ষাপটে একটি চলচ্চিত্র নির্মাণ করতে চেয়েছিলেন, সে উদ্দেশ্যকেই মূর্ত করে রচনা করেন এ উপন্যাসের কাহিনি। কিন্তু তিনি 'জীবন থেকে নেয়া' চলচ্চিত্রে ভাষা আন্দোলন প্রেক্ষাপট যোগ করলে, পরবর্তীতে ১৯৮২ সালে এটি উপন্যাস হিসেবে প্রকাশিত হয়।</li>
+</ul>
+        'তৃষ্ণা' (১৯৬২), 'বরফ গলা নদী' (১৯৬৯), 'সারি' 'মৃত্যু' (১৯৬৭)।
+    </div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর পরিচালিত চলচ্চিত্রগুলো কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'কখনো আসেনি' (১৯৬১):</strong> এটি তাঁর পরিচালিত প্রথম চলচ্চিত্র।</li>
+<li><strong>'সঙ্গম' (১৯৬৪):</strong> এটি বাংলাদেশের প্রথম রঙিন চলচ্চিত্র।</li>
+<li><strong>'জীবন থেকে নেয়া' (১৯৭০):</strong> এটি ভাষা আন্দোলনভিত্তিক চলচ্চিত্র। প্রথম এই চলচ্চিত্রেই জাতীয় সংগীত বাজানো হয়।</li>
+<li><strong>'কাচের দেয়াল' (১৯৬৩):</strong> এটি নিগার পুরস্কার লাভ করে।</li>
+<li><strong>'বাহানা' (১৯৬৫):</strong> এটি ছিল উর্দু ভাষায় নির্মিত তৎকালীন পাকিস্তানের প্রথম সিনেমাস্কোপ ছবি।</li>
+</ul>
+        Let there be Light : প্রামাণ্যচিত্র।<br/>
+        'সোনার কাজল' (১৯৬২), 'বেহুলা' (১৯৬৬), 'আনোয়ারা' (১৯৬৭)।
+    </div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">Stop Genocide কী?</div></div><div class="a"><p class="answer">বাংলাদেশে পাকিস্তানি হানাদার বাহিনীর গণহত্যার প্রামাণ্যচিত্র। এটি ১৯৭১ সালে জহির রায়হান কলকাতা থেকে তৈরি করেন।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর গল্পগ্রন্থটির নাম কী?</div></div><div class="a"><p class="answer">'সূর্যগ্রহণ' (১৯৫৫)।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত গল্পসমূহ কী কী?</div></div><div class="a"><p class="answer">'সূর্যগ্রহণ': বায়ান্ন ভাষা আন্দোলনে পুলিশের গুলিতে নিহত তসলিম নামক যুবকের পরিবারের মর্মবিদারক কাহিনি নিয়ে রচিত।<br/>
+    'বাঁধ': গ্রামীণ পটভূমিতে পীরের ভণ্ডামি নিয়ে রচিত।</p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tr>
+<td>শেষ সপ্তক (কাব্যগ্রন্থ)</td>
+<td rowspan="6">রবীন্দ্রনাথ ঠাকুর</td>
+</tr>
+<tr><td>শেষ লেখা (কাব্যগ্রন্থ)</td></tr>
+<tr><td>শেষের কবিতা (উপন্যাস)</td></tr>
+<tr><td>শেষরক্ষা (প্রহসন)</td></tr>
+<tr><td>শেষকথা (ছোটগল্প)</td></tr>
+<tr><td>শেষ প্রশ্ন (উপন্যাস)</td></tr>
+<tr>
+<td>শেষ প্রশ্ন (উপন্যাস)</td>
+<td rowspan="2">শরৎচন্দ্র চট্টোপাধ্যায়</td>
+</tr>
+<tr><td>শেষের পরিচয় (উপন্যাস)</td></tr>
+<tr>
+<td>শেষ বিকেলের মেয়ে (উপন্যাস)</td>
+<td>জহির রায়হান</td>
+</tr>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">ভাষা আন্দোলনের প্রবাহে রচিত 'একুশের গল্প' সম্পর্কে লিখ। <span class="bcs">৩১তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">বিখ্যাত কথাসাহিত্যিক ও চলচ্চিত্রকার জহির রায়হান রচিত ভাষা আন্দোলনভিত্তিক বিখ্যাত ছোটগল্প 'একুশের গল্প'। এ গল্পের প্রধান চরিত্র ঢাকা মেডিকেল পড়া ছাত্র তপু। ছোটো থেকেই তার একটি পা ছোট ছিল। সে ১৯৫২ এর একুশে ফেব্রুয়ারি মাতৃভাষা বাংলার রাষ্ট্রীয় মর্যাদা আদায়ের মিছিলে যোগ দেয় এবং মিলিটারির গুলি তার কপালে আঘাত করলে সে মৃত্যুর কোলে ঢলে পড়ে। শাসকগোষ্ঠী তার লাশ পর্যন্ত গায়েব করে। চার বছর পর তপুর রুমমেট একটি কঙ্কাল নিয়ে গবেষণা করার সময় দেখে কঙ্কালটির একটি পা ছোট এবং কপালে ছিদ্র। সাথে ছাত্রীটি তা তপুর বন্ধুদের দেখায়। তপুর বন্ধুরা কঙ্কালটি পরীক্ষা করে দেখে এটি তপুরই কঙ্কাল। এভাবেই তপু আবার কঙ্কাল হয়ে বন্ধুদের মাঝে ফিরে আসে।</p></div></article></section>
+<section class="author" data-name="নির্মলেন্দু গুণ" id="a8">
+<header class="a-head">
+<div class="a-num">৮</div>
+<div class="a-meta">
+<h2 class="a-name">নির্মলেন্দু গুণ</h2>
+<div class="a-sub"><span class="a-years">১৯৪৫-</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">বাংলাদেশের কবিদের কবি নির্মলেন্দু গুণ। নারীপ্রেম, সমাজ, সংস্কৃতি, রাজনৈতিক প্রেক্ষাপট, শ্রেণি-সংগ্রাম, স্বৈরাচার বিরোধিতা ইত্যাদি বিষয় তাঁর কবিতার মূল বিষয়বস্তু। সমাজকে তিনি তুলে এনেছেন সাহিত্যের আয়নায়।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>নির্মলেন্দু গুণ ২১ জুন, ১৯৪৫ সালে নেত্রকোনা জেলার বারহাট্টা উপজেলার কাশবন গ্রামে জন্মগ্রহণ করেন। ডাক নাম- রতন / রত্ন / রতু।</li>
+<li>তিনি বাংলা একাডেমি সাহিত্য পুরস্কার (১৯৮২), একুশে পদক (২০০১) পান।</li>
+<li>নিজ গ্রাম কাশবনে 'বিদ্যানিকেতন' নামে একটি স্কুল প্রতিষ্ঠা করেন।</li>
+<li>ম্যাট্রিক পাশের আগেই তার প্রথম কবিতা 'নতুন কাওয়ারী' নেত্রকোনার 'উত্তর আকাশ' পত্রিকায় প্রকাশিত হয়।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">নির্মলেন্দু গুণকে কি নামে ডাকা হয়?</div></div><div class="a"><p class="answer">কবিদের কবি। নির্মলেন্দু গুণ গত শতাব্দীর ষাটের দশকে কবিতা রচনা শুরু করেন। পরের দশককেই তাঁর কবিতা এতটাই প্রভাববিস্তারী হয়ে ওঠে যে, তরুণেরা তাঁর কবিতা পড়েই কবি হওয়ার আকাঙ্ক্ষা বোধ করেন। বাংলাদেশে আর কোনো কবি অনুজ কবিদের ওপর এতোটা প্রভাব বিস্তার করতে পারেননি। সত্তরের দশকের অনেক প্রতিষ্ঠিত কবি নির্মলেন্দু গুণ এর প্রভাবেই কবি হয়েছেন। তাই তাঁকে কবিদের কবি বলা হয়।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর কাব্যগ্রন্থসমূহ কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'প্রেমাংশুর রক্ত চাই' (১৯৭০):</strong> এটি তাঁর প্রথম প্রকাশিত কাব্যগ্রন্থ।</li>
+<li><strong>'ইস্রাফিল' (১৯৮৪):</strong> এ কাব্যে তাঁর রাজনৈতিক কবিতাগুলো স্থান পেয়েছে।</li>
+</ul>
+        'না প্রেমিক না বিপ্লবী' (১৯৭২), 'কবিতা অমীমাংসিত রমণী' (১৯৭৩), 'দীর্ঘ দিবস দীর্ঘ রজনী' (১৯৭৪), 'চৈত্রের ভালোবাসা' (১৯৭৫), 'ও বন্ধু আমার' (১৯৭৫), 'আনন্দ কুসুম' (১৯৭৬), 'বাংলার মাটি বাংলার জল' (১৯৭৮), 'তার আগে চাই সমাজতন্ত্র' (১৯৭৯), 'চাষাভূষার কাব্য' (১৯৮১), 'পৃথিবীজোড়া গান' (১৯৮২), 'অচল পদাবলী' (১৯৮২), 'দূর হ দুশাসন' (১৯৮৩), 'মুজিব-লেনিন-ইন্দিরা' (১৯৮৪), 'শান্তির ডিগ্রি' (১৯৮৪), 'প্রথম দিনের সূর্য' (১৯৮৪), 'নেই কেন সেই পাখি' (১৯৮৫), 'নিরঞ্জনের পৃথিবী' (১৯৮৬), 'চিরকালের বাঁশী' (১৯৮৬), 'দুঃখ করো না, বাঁচো' (১৯৮৭), 'ধাবমান হরিণের দ্যুতি' (১৯৯২), 'অনন্ত বরফবীথি' (১৯৯৩), 'আনন্দ উদ্যান' (১৯৯৫), 'শিয়রে বাংলাদেশ' (১৯৯৮), 'মুঠোফোনের কাব্য' (২০০৩), 'চির অনাবৃতা হে নগ্নতমা' (২০০৫), 'নিশিকাব্য' (২০০৬), 'কামকানন' (২০০৭)।
+    </div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer">
+<strong>ছোটগল্প :</strong> 'আপনদলের মানুষ' (১৯৭৬), 'অন্তর্জাল' (২০০৫)।<br/><br/>
+<strong>কিশোর উপন্যাস:</strong> 'কালো মেঘ' (১৯৮২), 'বাবা যখন ছোট ছিলেন' (১৯৯৭)।<br/><br/>
+<strong>আত্মজীবনী :</strong> 'আমার ছেলেবেলা' (১৯৮৮), 'আত্মকথা ১৯৭১ (২০০৮), 'রক্তঝরা নভেম্বর' (১৯৭৫), 'আমার কণ্ঠস্বর'।<br/><br/>
+<strong>ভ্রমণকাহিনী:</strong> 'ভলগার তীরে' (১৯৮৫), 'গ্রীনসবুর্গের সঙ্গে' (১৯৯৪), 'আমেরিকায় জুয়াখেলার স্মৃতি' (১৯৯৬), 'ও দেশ দেশ' (২০০৮)।<br/><br/>
+<strong>কবিতা :</strong> 'হুলিয়া', 'স্বাধীনতা, এই শব্দটি কিভাবে আমাদের হলো', 'আমাকে কী মাল্য দেবে দাও'।<br/><br/>
+<strong>অনুবাদ কবিতা:</strong> 'রক্ত আর ফুলগুলি' (১৯৮৩), 'রাজনৈতিক কবিতা' (১৯৮৬)।
+    </p></div></article></section>
+<section class="author" data-name="নূরুল মোমেন" id="a9">
+<header class="a-head">
+<div class="a-num">৯</div>
+<div class="a-meta">
+<h2 class="a-name">নূরুল মোমেন</h2>
+<div class="a-sub"><span class="a-years">১৯০৬-১৯৮৯</span><span class="a-role">নাট্যকার</span></div>
+</div>
+</header><p class="lead">প্রখ্যাত নাট্যকার নূরুল মোমেন সমকালীন সমাজের অসঙ্গতি ও দ্বন্দ্বসমূহ ব্যঙ্গরসের মাধ্যমে নাটকের বিভিন্ন চরিত্রে বলিষ্ঠভাবে তুলে ধরেন। সামাজিক সংকটের পটভূমিকায় অন্তর্দ্বন্দ্বমূলক নাট্যচরিত্র অঙ্কন করে খ্যাতি অর্জন করেন। ১৯৭১ সালে বাংলাদেশের মুক্তিযুদ্ধের বিরোধিতা করে বিবৃতি দেন।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>নূরুল মোমেন ২৫ নভেম্বর, ১৯০৬ সালে বর্তমান ফরিদপুরের (তৎকালীন যশোর) আলফাডাঙ্গার বুड़োইচ গ্রামে জন্মগ্রহণ করেন।</li>
+<li>মাত্র ১০ বছর বয়সে তাঁর প্রথম কবিতা 'সন্ধ্যা' ধ্রুবতারা সাময়িকীতে প্রকাশিত হয়।</li>
+<li>তিনি সাহিত্যজগতে 'নাট্যগুরু' হিসেবে সমধিক পরিচিত।</li>
+<li>তিনি রম্যসাহিত্য রচয়িতা হিসেবে প্রসিদ্ধ ছিলেন।</li>
+<li>তিনি বাংলা একাডেমি পুরস্কার (১৯৬১), একুশে পদক (১৯৯৭) পান এবং পাকিস্তান সরকার কর্তৃক সিতারা-ই-ইমতিয়াজ (১৯৬৭) উপাধি লাভ করেন।</li>
+<li>তিনি ১৬ ফেব্রুয়ারি, ১৯৮৯ সালে ঢাকায় মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত নাটকগুলো কী কী?</div></div><div class="a"><div class="answer"><ul class="works">
+<li><strong>'রূপান্তর' (১৯৪৭):</strong> এটি তাঁর রচিত প্রথম নাটক। এটি ঢাকা বেতারে প্রচারিত হয়েছিল।</li>
+<li><strong>'নেমেসিস' (১৯৪৮):</strong> এটি ১৯৩৯-৪৩ সালের দ্বিতীয় বিশ্বযুদ্ধের প্রেক্ষাপটে রচিত।</li>
+<li><strong>'নয়া খান্দান' (১৯৬২):</strong> আধুনিক শিক্ষায় শিক্ষিতদের কাছে বংশমর্যাদার চেয়ে সুরুচি বরং কাম্য। এই সুশিক্ষাই বর্তমান যুগের নতুন বা নয়া খান্দান হিসেবে বিবেচিত। বংশমর্যাদা ও এ নিয়ে অভিজাত্যের প্রতি শ্লেষ ব্যক্ত হয়েছে এ নাটকে।</li>
+<li><strong>'আলোছায়া' (১৯৬২):</strong> আলোমন্দের প্রতীক আলোছায়া। আলোমন্দের দ্বন্দ্ব ছিল, আছে ও থাকবে। ভালো বা আলোর প্রভাব যার মধ্যে আছে সেই স্মরণীয় থাকবে, কালো বা ছায়ার প্রাধান্যধারীরা স্মৃতির অতলে হারিয়ে যাবে, এটিই এ নাটকের বিষয়। <b class="chr">চরিত্র:</b> জামিল, জাহানারা, সুলতান।</li>
+</ul>
+        'শতকরা আশি' (১৯৬৭), 'আইনের অন্তরালে' (১৯৬৭), 'যেমন ইচ্ছা তেমন' (১৯৭০)।
+    </div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">নেমেসিস নাটকের পরিচয় দাও।</div></div><div class="a"><p class="answer">১৯৩৯-৪৩ সালের দ্বিতীয় বিশ্বযুদ্ধের প্রেক্ষাপটে সমকালীন বিখ্যাত নাট্যকার নূরুল মোমেন রচিত একক চরিত্র বিশিষ্ট নাটক 'নেমেসিস' (১৯৪৮)। নাটকটি 'শনিবারের চিঠি' পত্রিকায় প্রকাশিত হয় ১৯৪৫ সালে এবং গ্রন্থরূপে প্রকাশিত হয় ১৯৪৮ সালে। নেমেসিস প্রতিশোধের গ্রীক দেবী এবং মানব নিয়তি তার হাতে। মানুষ ইচ্ছে করেও তা অতিক্রম করতে পারে না, যেমনটি পারেনি স্কুল মাস্টার সুরজিত নন্দী। সুরজিত ধনী নৃপেন বোসের কন্যা সুলতাকে ভালোবেসে বিয়ে করতে চায়। নৃপেন বোস বিয়ের পূর্বশর্ত দেয়, তিন মাসের মধ্যে সুরজিতকে পাঁচ লাখ টাকা উপার্জন করতে হবে। সুরজিত এ শর্তে রাজি হয়ে নৃপেন বোস ও তার সহযোগী অসীমের সহায়তায় যুদ্ধের বাজারে কালো টাকা উপার্জনের পথ আবিষ্কার করে। কিন্তু বিবেকের দংশনে পীড়িত হয় সুরজিত। অবশেষে বিজয় মুহূর্তে তার মৃত্যুর মধ্য দিয়ে নাটকের সমাপ্তি ঘটে। এ নাটকে সমকালীন দুর্ভিক্ষ, মজুদদারদের পিশাচবৃত্তি ও নিরন্নদের হাহাকারের বাস্তবচিত্র অঙ্কিত হয়েছে।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত রম্যগ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">'বহুরূপী' (১৯৬৮), 'নরসুন্দর' (১৯৬১), 'হিং টিং ছট' (প্রথম ও দ্বিতীয় খণ্ড-১৯৭০)।</p></div></article></section>
+<section class="author" data-name="প্রমথ চৌধুরী" id="a10">
+<header class="a-head">
+<div class="a-num">১০</div>
+<div class="a-meta">
+<h2 class="a-name">প্রমথ চৌধুরী</h2>
+<div class="a-sub"><span class="a-years">১৮৬৮-১৯৪৬</span><span class="a-role">প্রাবন্ধিক</span></div>
+</div>
+</header><p class="lead">বাংলা গদ্যে চলিত রীতির প্রবর্তক ও বিদ্রূপাত্মক প্রাবন্ধিক প্রমথ চৌধুরী। তীক্ষ্ণ মননশীলতা, বাকচাতুর্যের চমৎকারিত্ব এবং বুদ্ধির অসিচালনা ছিল তাঁর ভাষাগত বৈশিষ্ট্য। তিনি ১৮৯৯ সালে রবীন্দ্রনাথের অগ্রজ বাংলা প্রথম সিভিলিয়ান সত্যেন্দ্রনাথ ঠাকুরের মেয়ে ইন্দিরা দেবীকে বিয়ে করেন। তিনি রবীন্দ্রনাথকে বাংলা গদ্যে চলিত রীতি ব্যবহারে উদ্বুদ্ধ করেন।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>প্রমথ চৌধুরী ৭ আগস্ট, ১৮৬৮ সালে যশোরে জন্মগ্রহণ করেন। পৈতৃক নিবাস- পাবনা জেলার চাটমোহর উপজেলার হরিপুর গ্রাম।</li>
+<li>তাকে বলা হয় বাংলা গদ্যে চলিত রীতির প্রবর্তক ও বিদ্রূপাত্মক প্রাবন্ধিক।</li>
+<li>প্রমথ চৌধুরীর সাহিত্যিক ছদ্মনাম- বীরবল।</li>
+<li>প্রমথ চৌধুরীর প্রথম প্রবন্ধ 'জয়দেব' ১৮৯৩ সালে 'সাধনা' পত্রিকায় প্রকাশিত হয়।</li>
+<li>'হালখাতা' ('ভারতী' পত্রিকায় প্রকাশ- ১৯০২), এ গদ্য / প্রবন্ধ রচনায় তিনি প্রথম চলিত রীতির প্রয়োগ ঘটান।</li>
+<li>বাংলা কাব্যে তিনিই প্রথম ইতালীয় সনেটের প্রবর্তন করেন।</li>
+<li>তিনি 'সবুজপত্র' (১৯১৪), 'বিশ্বভারতী পত্রিকা' সম্পাদনা করেন।</li>
+<li>তিনি কলকাতা বিশ্ববিদ্যালয় থেকে ১৯৩৮ সালে জগৎতারিণী স্বর্ণপদক লাভ করেন। উল্লেখ্য, স্যার আশুতোষ মুখোপাধ্যায় নিজ মাতার নামে এ পদক প্রবর্তন করেন।</li>
+<li>তিনি ২ সেপ্টেম্বর, ১৯৪৬ সালে (১৬ ভাদ্র, ১৩৫৩ বঙ্গাব্দ) শান্তিনিকেতনে মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'সবুজপত্র' সম্পর্কে লিখ। <span class="bcs">৩০তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">প্রমথ চৌধুরী সম্পাদিত 'সবুজপত্র' বাংলা সাময়িক পত্রের ইতিহাসে বিশেষ স্থান দখল করে আছে। ১৯১৪ সালে (বৈশাখ- ১৩২১) এর প্রথম প্রকাশ ঘটে। বাংলা গদ্যরীতির বিকাশে এ পত্রিকার গুরুত্ব অপরিসীম। সাধু গদ্যরীতির পরিবর্তে চলিত গদ্যরীতি ব্যবহার ও প্রতিষ্ঠায় এর অবদান তাৎপর্যপূর্ণ। রবীন্দ্রনাথ নিজেও এ পত্রিকায় লেখার সুবাদে চলিত গদ্যরীতির স্বাচ্ছন্দ্য অনুভব করেন এবং পরে তা তিনি চর্চা করেন। প্রমথ চৌধুরী 'বীরবলী রীতি' নামে যে মৌখিক ভাষারীতি সাহিত্যে প্রচলন করে যুগান্তর এনেছিলেন তার প্রচারের মাধ্যম ছিল এই 'সবুজপত্র'। সাহিত্যজগতে এ পত্রিকা 'সবুজপত্র গোষ্ঠী' তৈরি করতে সক্ষম হয়।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">চলিত রীতিতে রচিত তাঁর প্রথম গদ্যরচনা কোনটি?</div></div><div class="a"><p class="answer">'হালখাতা' (১৯০২): এটি 'ভারতী' পত্রিকায় প্রথম প্রকাশিত হয়। [বাজারের অধিকাংশ বইয়ে লেখা যে, চলিত ভাষায় রচিত প্রমথ চৌধুরীর প্রথম গ্রন্থ 'বীরবলের হালখাতা'। প্রকৃতপক্ষে এটি হবে 'হালখাতা'। কারণ, 'বীরবলের হালখাতা' প্রবন্ধগ্রন্থ প্রকাশিত হয় ১৯১৬ সালে আর 'হালখাতা' গদ্যগ্রন্থ প্রকাশিত হয় ১৯০২ সালে। (সূত্র: বাংলা একাডেমি চরিতঅভিধান)] উল্লেখ্য, চলিত ভাষায় রচিত প্রথম গ্রন্থ কোনটি? এ প্রশ্নের উত্তরের অপশনে 'হালখাতা' না থাকলে 'বীরবলের হালখাতা' উত্তর দিতে হবে। কারণ, অধিকাংশ প্রশ্নকর্তা বিগত সালের পরীক্ষায় আসা প্রশ্নগুলো নতুন প্রশ্নে অপশনসহ হুবহু তুলে দেয়।</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">প্রমথ চৌধুরী রচিত অন্যান্য সাহিত্যকর্মগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>প্রবন্ধগ্রন্থ:</strong> 'তেল-নুন-লকড়ি' (১৯০৬), 'বীরবলের হালখাতা' (১৯১৬), 'নানাকথা' (১৯১৯), 'আমাদের শিক্ষা' (১৯২০), 'রায়তের কথা' (১৯২৬), 'নানাচর্চা' (১৯৩২), 'আত্মকথা' (১৯৪৬), 'প্রবন্ধ সংগ্রহ' (১ম খণ্ড- ১৯৫২, ২য় খণ্ড- ১৯৫৩)।<br/><br/>
+<strong>কাব্যগ্রন্থ:</strong> 'সনেট পঞ্চাশৎ' (১৯১৩), 'পদচারণ' (১৯১৯)।<br/><br/>
+<strong>গল্পগ্রন্থ:</strong> 'চার ইয়ারি কথা' (১৯১৬), 'আহুতি'(১৯১৯), 'নীললোহিত ও গল্পসংগ্রহ'(১৯৪১)।<br/><br/>
+<strong>প্রবন্ধ:</strong> 'যৌবনে দাও রাজটীকা', 'বই পড়া', 'সাহিত্যে খেলা', 'ভাষার কথা'।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">'চার ইয়ারি কথা' গল্পগ্রন্থের পরিচয় দাও।</div></div><div class="a"><p class="answer">চারবন্ধুর প্রেমের কাহিনি নিয়ে প্রমথ চৌধুরী রচনা করেন বিখ্যাত গল্পগ্রন্থ 'চার ইয়ারি কথা' (১৯১৬)। চারবন্ধুর প্রত্যেকেই প্রেমই অভিশপ্ত। এদের নায়িকারা স্বর্ণকেশী ইউরোপীয়। প্রথম নায়িকা উন্মাদ, দ্বিতীয় নায়িকা চোর, তৃতীয় নায়িকা প্রতারক এবং চতুর্থ নায়িকা মৃত্যুর পর তার ভালোবাসা প্রকাশ করেছে। নানাবিধ হাস্যরসাত্মক ঘটনা ও ব্যঙ্গের মাধ্যমে এর সমাপ্তি ঘটে।</p></div></article><h3 class="sub-h">বিখ্যাত উক্তি</h3><h3 class="sub-h">বিখ্যাত উক্তি</h3>
+<div class="quote-groups">
+<div class="qg"><div class="qg-h">‘বই পড়া’</div><ul class="works">
+<li>আমরা সাহিত্যের রস উপভোগ করতে প্রস্তুত নই; কিন্তু শিক্ষার ফল লাভের জন্য আমরা সকলে উদগ্রীব।</li>
+<li>ব্যাধি সংক্রামক, স্বাস্থ্য নয়।</li>
+<li>জ্ঞানের ভান্ডার যে ধনের ভান্ডার নয়, এ সত্য তো প্রত্যক্ষ।</li>
+<li>যে জাতির জ্ঞানের ভান্ডার শূন্য সে জাতির ধনের ভান্ডারেও ভবানী।</li>
+<li>সাহিত্যের মধ্যে আমাদের জাত মানুষ হবে।</li>
+<li>সুশিক্ষিত লোক মাত্রই স্বশিক্ষিত।</li>
+<li>দেহের মৃত্যুর রেজিস্টারি রাখা হয়, আত্মার মৃত্যুর হয় না।</li>
+<li>আমি লাইব্রেরিকে স্কুল-কলেজের ওপরে স্থান দিই। লাইব্রেরি হচ্ছে একরকম মনের হাসপাতাল।</li>
+</ul></div>
+<div class="qg"><div class="qg-h">‘সাহিত্যে খেলা’</div><ul class="works">
+<li>যিনি গড়তে জানেন, তিনি শিবও গড়তে পারেন আবার বান্দরও গড়তে পারেন।</li>
+<li>মন উঁচুতেও উঠতে চায়, নিচুতেও নামতে চায়।</li>
+<li>শিল্পরাজ্যে খেলা করবার প্রবৃত্তির ন্যায় অধিকারও বড়ো-ছোটো সকলেরই সমান আছে।</li>
+<li>এ পৃথিবীতে একমাত্র খেলার ময়দানে ব্রাহ্মণ-শূদ্রের প্রভেদ নেই।</li>
+<li>যে খেলার ভিতর আনন্দ নেই কিন্তু উপরি-পাওনার আশা আছে, তার নাম খেলা নয়, জুয়াখেলা।</li>
+<li>গীতের মর্মও বোঝেন না, গীতাহার ধর্মও বোঝেন না।</li>
+<li>সাহিত্যের উদ্দেশ্য সকলকে আনন্দ দেওয়া, কারো মনোরঞ্জন করা নয়।</li>
+<li>কাব্যজগতে যার নাম আনন্দ, তারই নাম বেদনা।</li>
+<li>কবির নিজের মনের পরিপূর্ণতা হতেই সাহিত্যের উৎপত্তি।</li>
+<li>সাহিত্য ছেলের হাতের খেলনাও নয়, গুরুর হাতের বেতও নয়।</li>
+</ul></div>
+<div class="qg"><div class="qg-h">‘ভাষার কথা’</div><ul class="works">
+<li>ভাষা মানুষের মুখ থেকে কলমের মুখে আসে, উলটোটা করতে গেলে মুখে শুধু কালি পড়ে।</li>
+</ul></div>
+</div>
+</section>
+<section class="author" data-name="বিভূতিভূষণ বন্দ্যোপাধ্যায়" id="a11">
+<header class="a-head">
+<div class="a-num">১১</div>
+<div class="a-meta">
+<h2 class="a-name">বিভূতিভূষণ বন্দ্যোপাধ্যায়</h2>
+<div class="a-sub"><span class="a-years">১৮৯৪-১৯৫০</span><span class="a-role">ঔপন্যাসিক</span></div>
+</div>
+</header><p class="lead">প্রখ্যাত ঔপন্যাসিক বিভূতিভূষণ বন্দ্যোপাধ্যায় শরৎচন্দ্রের পরবর্তী ঔপন্যাসিকদের মধ্যে ব্যাপক জনপ্রিয় ছিলেন। তাঁর রচিত সাহিত্য মধুর ও কাব্যধর্মী ভাষায় অখণ্ড ও অবিচ্ছিন্ন সত্তায় ধারণ করেছে প্রকৃতি ও নিম্নশ্রেণির মানবজীবন। তাঁর ছোটগল্পগুলোর মধ্যে প্রকৃতি হয়েছে গীতিকবির ব্যক্তিত্ব।</p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>বিভূতিভূষণ বন্দ্যোপাধ্যায় ১২ সেপ্টেম্বর, ১৮৯৪ সালে চব্বিশ পরগনার মুরাদিপুর গ্রামে (মাতুলালয়) জন্মগ্রহণ করেন। পৈত্রিক নিবাস চব্বিশ পরগনার বারাকপুর গ্রাম।</li>
+<li>তিনি ‘চিত্রলেখা’ (১৯৩০) পত্রিকা এবং হেমন্তকুমার গুপ্তের সাথে ‘দীপক’ (১৯৩০), পত্রিকা সম্পাদনা করেন।</li>
+<li>১৯২১ সালে প্রবাসী পত্রিকায় ‘উপেক্ষিতা’ নামক গল্প প্রকাশের মাধ্যমে সাহিত্যিক হিসেবে আত্মপ্রকাশ করেন।</li>
+<li>তিনি ১ সেপ্টেম্বর, ১৯৫০ সালে (১৫ কার্তিক, ১৩৫৭) বিহারের ঘাটশীলায় মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত উপন্যাসসমূহ কী কী? <span class="bcs">১১তম বিসিএস লিখিত</span></div></div><div class="a"><div class="answer">
+<p><strong>‘পথের পাঁচালী’ (১৯২৯):</strong> এটি তাঁর প্রথম ও শ্রেষ্ঠ উপন্যাস। এটি ইংরেজি ও ফরাসি ভাষায় অনূদিত। <b class="chr">মূল চরিত্র:</b> অপু, দুর্গা। উপন্যাসটি তিনটি অংশে বিভক্ত। যথা: বল্লালী বালাই, আমআঁটির ভেঁপু ও অদূর সংবাদ। সত্যজিৎ রায় এ উপন্যাস অবলম্বনে চলচ্চিত্র নির্মাণ করেন।</p>
+<p><strong>‘অপরাজিত’ (১৯৩১):</strong> এটিকে ‘পথের পাঁচালী’ উপন্যাসের দ্বিতীয় খণ্ড বলা হয়। উপন্যাসটি ধারাবাহিকভাবে মাসিক ‘প্রবাসী’ পত্রিকায় প্রকাশিত হয়। গ্রন্থাকারে দুই খণ্ডে প্রকাশিত হয় ১৯৩১ সালে (১৩৩৮)। ‘আলোক সারণী’ নামে এ উপন্যাসের প্রথমে নামকরণ করা হয়েছিল। উপন্যাসের নায়ক অপুর শৈশব ও কৈশোর জীবন, মা সর্বজয়ার মৃত্যু, অপর্ণার সাথে বিবাহ এবং শিশুপুত্র কাজলের মাধ্যমে পুনরায় প্রিয় শৈশবের প্রিয় গ্রাম নিশ্চিন্দিপুরের স্মৃতিমন্থন এ উপন্যাসের মূল কাহিনি। অপরাজিত উপন্যাসের একটি অংশ নিয়েই সত্যজিৎ রায় ‘অপুর সংসার’ সিনেমা তৈরি করেছেন।</p>
+<p><strong>‘দৃষ্টিপ্রদীপ’ (১৯৩৫):</strong> অবাস্তব ও অধিবাস্তব দৃষ্টিভঙ্গি এর কাহিনি।</p>
+<p><strong>‘আরণ্যক’ (১৯৩৮):</strong> এ উপন্যাসে প্রাধান্য পেয়েছে অরণ্যচারী মানুষের জীবন। ভাগলপুরের নিকটবর্তী বনাঞ্চলের মানুষের জীবনের সাথে প্রকৃতির সম্পর্কের টানাপোড়েন, বিচিত্র চরিত্র, তাদের সুখ-দুঃখ, আশা-আনন্দ এ উপন্যাসের মূল কাহিনি।</p>
+<p><strong>‘আদর্শ হিন্দু হোটেল’ (১৯৪০):</strong> এ উপন্যাসের কেন্দ্রীয় চরিত্র হাজারী ঠাকুরের অক্লান্ত পরিশ্রমের ফলে প্রতিপত্তি লাভ এবং মানুষের ভালোবাসা অর্জনের কাহিনিই এ উপন্যাসের মূল বিষয়।</p>
+<p><strong>‘অনুবর্তন’ (১৯৪২):</strong> বিভূতিভূষণ বন্দ্যোপাধ্যায়ের ব্যক্তি অভিজ্ঞতার রূপায়ণ এ উপন্যাস। গ্রামের মানুষের মধ্যে সামান্য স্বার্থ নিয়ে দলাদলি এবং পরিণামে ট্র্যাজিক পরিণতিই এ উপন্যাসের মূল সুর।</p>
+<p><strong>‘দেবযান’ (১৯৪৪):</strong> এটি প্রেমতত্ত্ব ও পরলোকতত্ত্ব ভিত্তিক উপন্যাস। অবাস্তব ও অধিবাস্তব দৃষ্টিভঙ্গি এর কাহিনি ও চরিত্রবিন্যাসের নিয়ামক।</p>
+<p><strong>‘ইছামতী’ (১৯৪৯):</strong> ইছামতী নদীর তীরবর্তী গ্রামে প্রচলিত সংস্কার ও অত্যাচারের বিরুদ্ধে নারী জাগরণ, ইংরেজ শাসকদের প্রভাবে কৃষিনির্ভর বাঙালির বাণিজ্য চেতনা এবং নীলচাষের প্রতিবাদ, নদীর তীরবর্তী মানুষের জীবনকথা এ উপন্যাসের আলেখ্য। বিভূতিভূষণ বন্দ্যোপাধ্যায় এ উপন্যাসের জন্য ‘রবীন্দ্র পুরস্কার’ (মরণোত্তর) লাভ করেন।</p>
+<p><strong>‘অশন সংকেত’ (১৯৫৯):</strong> এ উপন্যাসটি দ্বিতীয় বিশ্বযুদ্ধের ফলে সৃষ্ট পঞ্চাশের মন্বন্তরের প্রেক্ষাপটে রচিত। এটি ধারাবাহিকভাবে মাতৃভূমি পত্রিকায় প্রকাশিত হয়। বাজারে প্রচলিত বইয়ে বলা হয়েছে যে, ঋত্বিক ঘটক এ উপন্যাস অবলম্বনে চলচ্চিত্র নির্মাণ করেন। প্রকৃতপক্ষে সত্যজিৎ রায় এ ১৯৭০ সালে চলচ্চিত্রে নির্মাণ করেন। এ চলচ্চিত্রে অভিনয়ের জন্য বাংলাদেশের চিত্রনায়িকা ববিতাকে চলচ্চিত্রে ডক্টরেট ডিগ্রি দেয়া হয়।</p>
+<p>‘বিপিনের সংসার’ (১৯৪১), ‘দম্পতি’ (১৯৫২)।</p>
+</div></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+
+<tr>
+<td>পথের পাঁচালী (উপন্যাস)</td>
+<td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td>
+</tr>
+<tr>
+<td>পথের দাবী (উপন্যাস)</td>
+<td>শরৎচন্দ্র চট্টোপাধ্যায়</td>
+</tr>
+<tr>
+<td>আরণ্য জনপদে (প্রবন্ধ)</td>
+<td>আবদুস সাত্তার</td>
+</tr>
+<tr>
+<td>আরণ্য সংস্কৃতি (প্রবন্ধ)</td>
+<td>আবদুস সাত্তার</td>
+</tr>
+<tr>
+<td>আরণ্যক (উপন্যাস)</td>
+<td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td>
+</tr>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘পথের পাঁচালী’ উপন্যাসের পরিচয় দাও। <span class="bcs">৩৮তম বিসিএস লিখিত</span></div></div><div class="a"><div class="answer">
+<p>বিভূতিভূষণ বন্দ্যোপাধ্যায়ের প্রথম ও শ্রেষ্ঠ উপন্যাস ‘পথের পাঁচালী’ (১৯২৯)। এটি প্রথম প্রকাশিত হয় ‘বিচিত্রা’ পত্রিকায়। গ্রন্থাকারে প্রকাশিত হয় সজনীকান্ত দাসের রঞ্জন প্রকাশনালয়, কলকাতা থেকে। ভাগলপুরে চাকরি করার সময় তিনি এ উপন্যাস রচনা করেন। এ উপন্যাসের পটভূমিতে আছে বাংলাদেশের গ্রাম ও পরিচিত মানুষের জীবন। বল্লালী বালাই, আমআঁটির ভেঁপু ও অদূর সংবাদ নামে তিনটি ভাগে বিভক্ত এ উপন্যাস। ‘পথের পাঁচালী’ উপন্যাসের প্রধান অংশই হলো একটি শিশুর চেতনার জাগরণ, প্রকৃতির নিবিড় সান্নিধ্যে শিশুর বেড়ে ওঠা। মানুষ ও প্রকৃতির সঙ্গে তাদের পরিচয়। বিশ শতকের শুরুর দিকে বাংলার এক প্রত্যন্ত গ্রামে অপু, অপুর বাবা হরিহর রায়, মা সর্বজয়া, বোন দুর্গা ও দূর সম্পর্কের পিসি ইন্দির ঠাকুরন নিয়ে তাদের জীবন যাত্রার কথাই এ উপন্যাসের মুখ্য বিষয়। দারিদ্র্যের সাথে সংগ্রাম করে তাদের দিন কাটে। অপু ও দুর্গার মধ্যে খুবই ভাব। তারা কখনো চুপচাপ গাছতলায় বসে থাকে, আবার কখনো মিঠাইওয়ালার পিছে পিছে ছোটে, কখনো ভ্রাম্যমান বায়োস্কোপ দেখে। একদিন তারা বাড়িতে না বলে ট্রেন দেখার জন্য অনেক দূরে চলে যায়। ভালো কাজের আশায় অপুর বাবা শহরে গেলে তাদের অভাব বেড়ে যায়। এরমধ্যে বৃষ্টিতে ভিজে দুর্গার জ্বর হয় এবং চিকিৎসার অভাবে দুর্গা মারা যায়। পরে হরিহর বাড়ি ফিরে এলে জীবিকার সন্ধানে পৈত্রিক ভিটা ছেড়ে কাশীর পথে যাত্রা শুরু করে। কাশীতে গিয়ে বসবাস শুরু করার কিছুদিন পর হরিহর মারা গেলে মা সর্বজয়া অন্যের বাড়িতে রান্নার কাজ করে জীবিকা নির্বাহ করে। কিন্তু অপুর মন পড়ে থাকে নিশ্চিন্দিপুরে। <b class="chr">উল্লেখযোগ্য চরিত্র:</b> অপু, দুর্গা, সর্বজয়া, ইন্দির ঠাকুরন। এ উপন্যাসটি সম্পর্কে রবীন্দ্রনাথ ঠাকুর বলেন, ‘এই বইখানিতে পেয়েছি যথার্থ পদের স্থান। আগের থেকে শিক্ষা হয়নি কিছুই। দেখা হয়েছে অনেক যা এমন করে দেখিনি।’</p>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘অশন সংকেত’ উপন্যাসের পরিচয় দাও।</div></div><div class="a"><div class="answer">
+<p>দ্বিতীয় বিশ্বযুদ্ধের করুণ ফল ১৩৫০ বঙ্গাব্দের দুর্ভিক্ষ। এ দুর্ভিক্ষের করাল গ্রাস কীভাবে শান্ত প্রকৃতির অমর গ্রাম বাংলায় প্রভাব বিস্তার করে, তারই নিখুঁত চিত্রের রূপায়ণে বিভূতিভূষণ বন্দ্যোপাধ্যায়ের ‘অশন সংকেত’ (১৯৫৯) উপন্যাস। উপন্যাসটি গ্রন্থাকারে প্রকাশের পূর্বে ১৯৬০-৬১ সাল পর্যন্ত ধারাবাহিকভাবে মাসিক ‘মাতৃভূমি’ পত্রিকায় প্রকাশিত হয়। বিভূতিভূষণ বন্দ্যোপাধ্যায়ের নিজের জন্মস্থান ব্যারাকপুর ও তার পার্শ্ববর্তী অঞ্চল এবং বনগ্রাম মহকুমা শহর এ উপন্যাসের ক্ষেত্রভূমি। অতিরিক্ত মুনাফার লোভে বাঙালি কৃষিজীবীরা কেমন হন্যে হয়ে উঠেছিল, তারই প্রমাণ চিত্র এ উপন্যাস। ‘অনঙ্গবৌ’ নামের চরিত্রটি গ্রামীণ প্রতিদিনের সুখ-দুঃখময় সংসারেও খুঁজে পাওয়া যায়।</p>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">বিভূতিভূষণ বন্দ্যোপাধ্যায়ের অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><div class="answer">
+<p><strong>ছোটগল্প:</strong> ‘আহ্বান’: গল্পটি বিভূতিভূষণ বন্দ্যোপাধ্যায়ের রচনাবলি থেকে সংকলিত। এটি উদার মানবিক সম্পর্কের গল্প, মানুষের স্নেহ-মমতা-প্রীতির যে বাঁধন তা ধন-সম্পদের উর্ধ্বে হৃদয়ের নিবিড় আন্তরিকতার স্পর্শেই গড়ে ওঠে। ‘আহ্বান’ গল্পের মূল উপজীব্য। <b class="chr">চরিত্র:</b> বুড়ি, গোপাল।</p>
+<p>‘মেঘমল্লার’ (১৯৩১), ‘মৌরীফুল’ (১৯৩২), ‘যাত্রাবদল’ (১৯৩৪), ‘কিন্নর দল’ (১৯৩৮), ‘পুইমাচা’, ‘পড়ে পাওয়া’ (কিশোর গল্প)।</p>
+<p><strong>আত্মজীবনী:</strong> ‘তৃণাঙ্কুর’ (১৯৪৩)।</p>
+<p><strong>ভ্রমণকাহিনি:</strong> ‘অভিযাত্রিক’, ‘বনে পাহাড়ে’, ‘হে অরণ্য কথা’।</p>
+</div></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘গোরক্ষিণী সভা’ কী?</div></div><div class="a"><div class="answer">
+<p>১৮৯০ সালে ভারতে গরু রক্ষার জন্য যে মিশন গড়া হয় তাকে ‘গোরক্ষিণী সভা’ বলে। এ সভার প্রতিষ্ঠাতা মহারাষ্ট্রের সাম্প্রদায়িক নেতা গঙ্গাধর তিলক। বিভূতিভূষণ বন্দ্যোপাধ্যায় ‘গোরক্ষিণী সভা’র ভ্রাম্যমান প্রচারক হিসেবে বাংলা, আসাম, ত্রিপুরা ও আরাকানের বিভিন্ন অঞ্চলে ভ্রমণ করে এর পক্ষে জনমত তৈরি করেন।</p>
+</div></div></article></section>
+<section class="author" data-name="বুদ্ধদেব বসু" id="a12">
+<header class="a-head">
+<div class="a-num">১২</div>
+<div class="a-meta">
+<h2 class="a-name">বুদ্ধদেব বসু</h2>
+<div class="a-sub"><span class="a-years">১৯০৮-১৯৭৪</span><span class="a-role">কবি ও সব্যসাচী লেখক</span></div>
+</div>
+</header><p class="lead">
+        বুদ্ধদেব বসু ছিলেন একাধারে কবি, সাহিত্যিক, নাট্যকার, প্রাবন্ধিক, অনুবাদক ও সম্পাদক। তিনি তাঁর রচনাতে সর্বপ্রথম কাব্যরীতিতে কথ্যরীতির সংমিশ্রণ ঘটিয়েছেন। বুদ্ধদেবের কাব্যে সমাজচেতনা বিশেষভাবে প্রকাশ না পেলেও বাস্তবতা ও নাগরিক চেতনা প্রকাশে সিদ্ধহস্ত ছিলেন বলেই তাঁকে ‘নাগরিক কবি’ বলে। ১৯৪২ সালে ফ্যাসিবাদের বিরোধী লেখক ও শিল্পী সংঘের আন্দোলনে যোগদান করেন।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>বুদ্ধদেব বসু ৩০ নভেম্বর, ১৯০৮ সালে কুমিল্লায় জন্মগ্রহণ করেন। পৈতৃক নিবাস- মুন্সীগঞ্জের মালখানগর।</li>
+<li>ঢাকার পুরানা পল্টন থেকে তাঁর ও অজিত দত্তের যৌথ সম্পাদনায় সচিত্র মাসিক পত্রিকা ‘প্রগতি’ (১৯২৭-২৯) ও কলকাতা থেকে তাঁর ও প্রেমেন্দ্র মিত্রের যৌথ সম্পাদনায় ত্রৈমাসিক ‘কবিতা’ (১৯৩৫) এবং হুমায়ুন কবিরের সাথে ত্রৈমাসিক ‘চতুরঙ্গ’ (১৯৩৪) পত্রিকা সম্পাদনা করেন। (জগন্নাথ হলের ছাত্র থাকা অবস্থায় তিনি ‘বাসন্তিকা’ পত্রিকা প্রকাশের সাথে যুক্ত ছিলেন)।</li>
+<li>রবীন্দ্রনাথের পর বুদ্ধদেব বসুকে ‘সব্যসাচী’ বলা হয়।</li>
+<li>তিনি ‘তপস্বী ও তরঙ্গিনী’ কাব্যনাট্যের জন্য সাহিত্য একাডেমি পুরস্কার (১৯৬৭), ‘স্বাগত বিদায়’ গ্রন্থের জন্য রবীন্দ্র পুরস্কার (১৯৭৪) পান এবং পদ্মভূষণ (১৯৭০) উপাধি লাভ করেন।</li>
+<li>তিনি ১৮ মার্চ, ১৯৭৪ সালে মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">বাংলা সাহিত্যের পঞ্চপাণ্ডব কে কে? <span class="bcs">৪৩তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">আধুনিক বাংলা সাহিত্যে ত্রিশের দশকে ‘কল্লোল’ (১৯২৩) পত্রিকাকে ঘিরে তরুণ লেখকদের সম্মিলনে একটি সাহিত্যবলয় সৃষ্টি হয়। এদের মধ্যে অন্যতম পাঁচজন কবিকে একত্রে পঞ্চপাণ্ডব বলা হয়। এরা হলেন: বুদ্ধদেব বসু, জীবনানন্দ দাশ, অমিয় চক্রবর্তী, বিষ্ণু দে, সুধীন্দ্রনাথ দত্ত। পঞ্চপাণ্ডবগণ রবীন্দ্র প্রভাব বলয়ের বাইরে গিয়ে বাংলা ভাষায় আধুনিক কবিতা সৃষ্টি করেছিলেন। তাঁরা বাংলা সাহিত্যে প্রথম আধুনিক নবজাগরণের সূচনা করেন। এরা সবাই ছিলেন পাশ্চাত্য শিক্ষায় শিক্ষিত এবং ইংরেজি সাহিত্যের ছাত্র। অপরদিকে, আধুনিকতার নামে স্বেচ্ছাচারিতা ও অশ্লীলতাকে প্রাধান্য দেওয়া হচ্ছে এই অভিযোগে ‘শনিবারের চিঠি’ পত্রিকাকে কেন্দ্র করে কল্লোল বিরোধী আরেকটি সাহিত্য বলয় সৃষ্টি হয়। এদের নেতৃত্বে ছিলেন- মোহিতলাল মজুমদার, সজনীকান্ত দাস, নীরদ চৌধুরী প্রমুখ।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">বুদ্ধদেব বসুর কাব্যগ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">‘কঙ্কাবতী’ (১৯৩৭): এ কাব্যের কবিতাগুলির প্রধান বিষয় প্রেম। ‘মর্মবাণী’ (১৯২৫), ‘বন্দীর বন্দনা’ (১৯৩০), ‘দময়ন্তী’ (১৯৪৩), ‘মরচেপড়া পেরেকের গান’ (১৯৬৬), ‘একদিন : চিরদিন’ (১৯৭১), ‘স্বাগত বিদায়’ (১৯৭১)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাস গুলো কী কী?</div></div><div class="a"><p class="answer">‘একদা তুমি প্রিয়ে’ (১৯৩৩): পলাশ ও রেবার প্রেমের সম্পর্কের মধ্যে জটিল সমস্যার সৃষ্টি বিষয়ক কাহিনি এ উপন্যাসের মূল বিষয়। রেবা নতুনভাবে প্রেমের অভিষেক করতে চায় কিন্তু পলাশ বুঝতে পারে তা সম্ভবপর নয়, এরকম কাহিনি নিয়ে এগিয়ে যায় উপন্যাসের গতি।
+    </p><p class="answer">
+        ‘তিথিডোর’ (১৯৪৯): বাঙালি মধ্যবিত্ত শিল্পিত স্বভাব নর-নারীর জীবনযাপনের মনোরম ও মধুর কাহিনি, প্রেম ও যৌবনের বন্দনা এ উপন্যাসের মূল সুর। <b class="chr">চরিত্র:</b> স্বাতী, সত্যেন।
+    </p><p class="answer">
+        ‘সাড়া’ (১৯৩০), ‘সানন্দা’ (১৯৩৩), ‘লালমেঘ’ (১৯৩৪), ‘পরিক্রমা’ (১৯৩৮), ‘কালো হাওয়া’ (১৯৪২), ‘নির্জন স্বাক্ষর’ (১৯৫১), ‘মৌলিনাথ’ (১৯৫২), ‘নীলাঞ্জনের খাতা’ (১৯৬০), ‘পাতাল থেকে আলাপ’ (১৯৬৭), ‘রাত ভরে বৃষ্টি’ (১৯৬৭), ‘গোলাপ কেন কালো’ (১৯৬৮), ‘বিপন্ন বিস্ময়’ (১৯৬৯)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর নাটক গুলো কী কী?</div></div><div class="a"><p class="answer">‘মায়া-মালঞ্চ’ (১৯৪৪), ‘তপস্বী ও তরঙ্গিনী’ (১৯৬৬), ‘কলকাতার ইলেকট্রা ও সত্যসন্ধ’ (১৯৬৮)।
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tbody>
+<tr>
+<td>বন্দীর বন্দনা (কাব্যগ্রন্থ)</td>
+<td>বুদ্ধদেব বসু</td>
+</tr>
+<tr>
+<td>বন্দী শিবির থেকে (কাব্যগ্রন্থ)</td>
+<td>শামসুর রাহমান</td>
+</tr>
+<tr>
+<td>বন্দীর বাঁশি (কাব্যগ্রন্থ)</td>
+<td>বেনজীর আহমদ</td>
+</tr>
+<tr>
+<td>রাজবন্দীর জবানবন্দী (প্রবন্ধ)</td>
+<td>কাজী নজরুল ইসলাম</td>
+</tr>
+<tr>
+<td>রাজবন্দীর রোজনামচা (প্রবন্ধ)</td>
+<td>শহীদুল্লা কায়সার</td>
+</tr>
+<tr>
+<td>কঙ্কাবতী (কাব্যগ্রন্থ)</td>
+<td>বুদ্ধদেব বসু</td>
+</tr>
+<tr>
+<td>কঙ্কাবতী (উপন্যাস)</td>
+<td>ত্রৈলোক্যনাথ মুখোপাধ্যায় / অন্নদাশঙ্কর রায়</td>
+</tr>
+</tbody>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer">
+<span class="bold">গল্পগ্রন্থ:</span> ‘অভিনয়, অভিনয় নয়’ (১৯৩০), ‘রেখাচিত্র’ (১৯৩১), ‘হাওয়া বদল’ (১৯৪৩), ‘হৃদয়ের জাগরণ’ (১৯৬১), ‘ভালো আমার ভেলা’ (১৯৬৩), ‘প্রেমপত্র’ (১৯৭২)।
+    </p><p class="answer">
+<span class="bold">প্রবন্ধগ্রন্থ:</span> ‘হঠাৎ আলোর ঝলকানি’ (১৯৩৫), ‘কালের পুতুল’ (১৯৪৬), ‘সাহিত্যচর্চা’ (১৯৫৪), ‘স্বদেশ ও সংস্কৃতি’ (১৯৫৭), ‘সঙ্গ, নিঃসঙ্গতা ও রবীন্দ্রনাথ’ (১৯৬৩)।
+    </p><p class="answer">
+<span class="bold">স্মৃতিকথা:</span> ‘আমার ছেলেবেলা’ (১৯৭৩), ‘আমার যৌবন’ (১৯৭৬)।
+    </p><p class="answer">
+<span class="bold">ভ্রমণকাহিনি:</span> ‘সব পেয়েছির দেশে’ (১৯৪১), ‘দেশান্তর’ (১৯৬৬)।
+    </p><p class="answer">
+<span class="bold">সম্পাদনা:</span> ‘আধুনিক বাংলা কবিতা’ (১৯৬৩)।
+    </p><p class="answer">
+<span class="bold">কবিতা:</span> ‘নদীর স্বপ্ন’।
+    </p></div></article></section>
+<section class="author" data-name="মানিক বন্দ্যোপাধ্যায়" id="a13">
+<header class="a-head">
+<div class="a-num">১৩</div>
+<div class="a-meta">
+<h2 class="a-name">মানিক বন্দ্যোপাধ্যায়</h2>
+<div class="a-sub"><span class="a-years">১৯০৮-১৯৫৬</span><span class="a-role">কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">
+        ত্রিশোত্তর বাংলা কথাসাহিত্যে মানিক বন্দ্যোপাধ্যায় একটি অবিস্মরণীয় নাম। তাঁর গল্প ও উপন্যাসগুলোতে স্বতন্ত্র ও স্বকীয় বৈশিষ্ট্য উজ্জ্বল। বিজ্ঞানমনস্ক এ লেখক মানুষের মনোজগত তথা অন্তর্জীবনের রূপকার হিসেবে সার্থকতা দেখিয়েছেন। শরৎচন্দ্র ও কল্লোল গোষ্ঠীর লেখকদের পর বাংলা সাহিত্যে বস্তুতান্ত্রিকতা ও মনোবিশ্লেষণে মানিক বন্দ্যোপাধ্যায় অগ্রগণ্য।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>মানিক বন্দ্যোপাধ্যায় ১৯ মে, ১৯০৮ সালে বিহারের সাঁওতাল পরগনার দুমকা গ্রামে জন্মগ্রহণ করেন। পৈতৃক নিবাস- মুন্সীগঞ্জের বিক্রমপুরের মালবদিয়া গ্রাম।</li>
+<li>তাঁর পিতৃপ্রদত্ত নাম প্রবোধকুমার বন্দ্যোপাধ্যায়। ডাক নাম মানিক। জন্মপঞ্জিকায় নাম অধরচন্দ্র বন্দ্যোপাধ্যায়।</li>
+<li>তিনি প্রথমদিকে ফ্রয়েডীয়, পরবর্তীতে মার্কসিজম মতবাদে বিশ্বাসী ছিলেন। মার্কসবাদী ঔপন্যাসিক হিসেবে পরিচিতি লাভ করেন।</li>
+<li>তিনি ১৯৪৪ সালে ভারতীয় কমিউনিস্ট পার্টিতে যোগদান করে সদস্যপদ লাভ করেন।</li>
+<li>তিনি ‘নাবারুণ’ পত্রিকার সম্পাদক ও ‘বঙ্গশ্রী’ পত্রিকার সহসম্পাদক ছিলেন।</li>
+<li>লেখালেখিই ছিল তার প্রধান পেশা ও নেশা। এ জন্য তাকে ‘কলম পেশা মজুর’ বলা হয়।</li>
+<li>তিনি ৩ ডিসেম্বর, ১৯৫৬ সালে মৃগী রোগে আক্রান্ত হয়ে মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">মানিক বন্দ্যোপাধ্যায় রচিত প্রথম প্রকাশিত গল্প কোনটি?</div></div><div class="a"><p class="answer"><strong>‘অতসী মামী’</strong> (১৩৩৫ বঙ্গাব্দ): এটি ডিসেম্বর, ১৯২৮ এবং জানুয়ারি, ১৯২৯ সালে পৌষ সংখ্যা ‘বিচিত্রা’ পত্রিকায় প্রকাশিত হয়। এ গল্পেই তিনি মানিক নামটি প্রথম ব্যবহার করেছেন। ফলে মানিক বন্দ্যোপাধ্যায়ের ছায়ানিতে প্রবোধকুমার বন্দ্যোপাধ্যায় নামটি ঢাকা পড়ে যায়।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">মানিকের উপন্যাসসমূহ কী কী? <span class="bcs">৩৩তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer"><strong>‘জননী’</strong> (১৯৩৫): এটি তাঁর রচিত প্রথম উপন্যাস। এটি নারীর জননী-জীবনের নানা স্তর এবং সন্তানের সঙ্গে জননীর সম্পর্কের সূক্ষ্ম মনস্তত্ত্ব বিশ্লেষণমূলক উপন্যাস। <b class="chr">চরিত্র:</b> শ্যামা।
+    </p><p class="answer">
+<strong>‘পদ্মানদীর মাঝি’</strong> (১৯৩৬): জেলেদের দৈনন্দিন জীবনের চালচিত্র এর উপজীব্য। <b class="chr">চরিত্র:</b> কুবের, কপিলা, মালা, হোসেন মিঞা। উর্দু কবি ফয়েজ আহমেদ ফয়েজের চিত্রনাট্যে ১৯৫৮ সালে এ.জে কারদার পরিচালিত উর্দু ছবি ‘জাগো হুয়া সাবেলা’ নামে চলচ্চিত্র নির্মিত হয়। এটি নিয়ে গৌতম ঘোষ ১৯৯২ সালে ‘পদ্মানদীর মাঝি’ নামে চলচ্চিত্র নির্মাণ করেন।
+    </p><p class="answer">
+<strong>‘পুতুলনাচের ইতিকথা’</strong> (১৯৩৬): মুন্সিগঞ্জের বিক্রমপুরের গাউদিয়া গ্রামের সাধারণ মানুষ নিয়ে এ উপন্যাসের পটভূমি। ব্রিটিশ ঔপনিবেশিক শাসনামলে বাঙালি শিক্ষিত মধ্যবিত্তের অন্তর্গত টানাপোড়েন ও অস্তিত্ব সংকট চিত্রিত চরিত্রের মাধ্যমে প্রকাশিত। লোকায়ত ভাষায় প্রেম নিবেদন করে কুসুম, কিন্তু শশীর কাছ থেকে সাড়া না পাওয়ার তার আত্মিক মৃত্যু ঘটে। এ উপন্যাসে বিভিন্ন চরিত্র চিন্তাশীল থাকলেও তারা চারিত্রিক দৃঢ়তা নিয়ে দাঁড়াতে পারেনি; পুতুলের মতো অন্যের অল্প ধাক্কাতেই চালিত হয়েছে। এটি মনস্তত্ত্ব বিশ্লেষণমূলক উপন্যাস। <b class="chr">চরিত্র:</b> শশী, কুসুম।
+    </p><p class="answer">
+<strong>‘অমৃতস্য পুত্রা’</strong> (১৯৩৮): এটি পারিবারিক ও দাম্পত্য সমস্যামূলক উপন্যাস।
+    </p><p class="answer">
+<strong>‘শহরতলী’</strong> (১৯৪০): নিম্ন মধ্যবিত্ত ও শ্রমিকশ্রেণির মানুষের জীবনের কাহিনি ও সেইসাথে প্রবৃত্তির নিরাবরণ প্রকাশ, মানুষের আচরণের বলিষ্ঠতা ও কপটতা, ঈর্ষার রূপায়ণ এ উপন্যাসের মূল সুর।
+    </p><p class="answer">
+<strong>‘অহিংসা’</strong> (১৯৪১): মানুষ যে অজ্ঞাতসারে অনেক অহিংস কাজ করে অথবা হিংসার সাথে অহিংসা যে মানুষের মধ্যে জড়িত থাকতে পারে, এটি নিয়েই উপন্যাসের কাহিনি বিস্তৃত।
+    </p><p class="answer">
+<strong>‘আরোগ্য’</strong> (১৯৫৩): ‘সামাজিক কারণেই মানুষ মানসিক ব্যধিতে আক্রান্ত হয়’ এ তত্ত্বকে ধারণ করেই তিনি রচনা করেন এ উপন্যাসটি।
+    </p><p class="answer">
+        ‘দিবারাত্রির কাব্য’ (১৯৩৫), ‘শহরবাসের ইতিপূর্বে’ (১৯৪৬), ‘চিহ্ন’ (১৯৪৭), ‘চতুষ্কোণ’ (১৯৪৮), ‘জিয়ন্ত’ (১৯৫০), ‘সোনার চেয়ে দামী’ (১৯৫১), ‘স্বাধীনতার স্বাদ’ (১৯৫১), ‘ইতিকথার পরের কথা’ (১৯৫২), ‘হরফ’ (১৯৫৪), ‘হলুদ নদী সবুজ বন’ (১৯৫৬), ‘মাশুল’ (১৯৫৬)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘পদ্মানদীর মাঝি’ উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">পদ্মা তীরবর্তী ধীবর-জীবনকে ভিত্তি করে মানিক বন্দ্যোপাধ্যায় রচনা করেন বিখ্যাত উপন্যাস ‘পদ্মানদীর মাঝি’ (১৯৩৬)। যৌনাকাঙ্ক্ষার সাথে উদরপূর্তির সমস্যার ভিত্তিতে তিনি এ উপন্যাসটি রচনা করেন। উপন্যাসটি ১৯৩৪ সাল থেকে সঞ্জয় ভট্টাচার্যের কুমিল্লার ‘পূর্বাশা’ পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়। প্রকৃতি ও মানুষের হাতে নির্যাতিত পদ্মা তীরবর্তী কেতুপুর গ্রামের জেলে সম্প্রদায়ের ছোট ছোট সুখ-দুঃখ, ভালোবাসা, হিংসা, অসহায়তা ও আত্মরক্ষার তীব্র জৈবিক ইচ্ছার কাহিনি, নদীর মানুষের বেঁচে থাকার আগ্রহ ও সাহস, সেই সাথে হোসেন মিঞা নামক এক রহস্যময় ব্যক্তিত্বের উপস্থিতি এ উপন্যাসটির মূল বিষয়।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">মানিকের গল্পগ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">‘অতসী মামী ও অন্যান্য গল্প’ (১৩৩৫ বঙ্গাব্দ), ‘প্রাগৈতিহাসিক’ (১৯৩৭), ‘মিহি ও মোটা কাহিনী’
+     
+        (১৯৩৮), ‘সরীসৃপ’ (১৯৩৯), ‘সমুদ্রের স্বাদ’ (১৯৪৩), ‘বৌ’ (১৯৪৩), ‘ভেজাল’ (১৯৪৪), ‘হলুদ পোড়া’ (১৯৪৫), ‘আজকাল পরশুর গল্প’ (১৯৪৬), ‘ছোট বকুলপুরের যাত্রী’ (১৯৪৯), ‘ফেরিয়াওয়ালা’ (১৯৫৩)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">মানিকের অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer"><span class="bold">গল্প:</span><br/>
+        ‘মাসি-পিসি’: গল্পটি কলকাতার ‘পূর্বাশা’ পত্রিকায় প্রথম প্রকাশিত হয়। স্বামীর নির্মম নির্যাতনের শিকার পিতৃমাতৃহীন এক তরুণীর করুণ জীবনকাহিনি নিয়ে রচিত গল্প। <b class="chr">চরিত্র:</b> আহ্লাদি, মাসি, পিসি, জগু, কৈলাশ, রহমান।
+    </p><p class="answer">
+        ‘প্রাগৈতিহাসিক’ (<b class="chr">চরিত্র:</b> ভিকু, পাঁচি), ‘আত্মহত্যার অধিকার’, ‘মমতাদি’ (সরীসৃপ), ‘তেলচিত্রের ভূত’ (কিশোর গল্প)।
+    </p><p class="answer">
+<span class="bold">প্রবন্ধ:</span> ‘লেখকের কথা’ (১৯৫৭)।
+    </p><p class="answer">
+<span class="bold">নাটক:</span> ‘ভিটেমাটি’ (১৯৪৬)।
+    </p></div></article></section>
+<section class="author" data-name="মুনীর চৌধুরী" id="a14">
+<header class="a-head">
+<div class="a-num">১৪</div>
+<div class="a-meta">
+<h2 class="a-name">মুনীর চৌধুরী</h2>
+<div class="a-sub"><span class="a-years">১৯২৫-১৯৭১</span><span class="a-role">নাট্যকার</span></div>
+</div>
+</header><p class="lead">
+        বরেণ্য শিক্ষাবিদ, বুদ্ধিজীবী, অসাধারণ বক্তা, সৃজনশীল নাট্যকার, তীক্ষ্ণধী সমালোচক ও সফল অনুবাদক মুনীর চৌধুরী। সাহিত্য ও ধ্বনিতত্ত্বের গবেষণা ও তুলনামূলক আলোচনায় তিনি রেখে গেছেন অনন্য পাণ্ডিত্য ও উৎকর্ষের ছাপ। তিনি বাংলাদেশের আধুনিক নাটক ও নাট্য আন্দোলনের পথিকৃৎ।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>মুনীর চৌধুরী ২৭ নভেম্বর, ১৯২৫ সালে মানিকগঞ্জ শহরে জন্মগ্রহণ করেন। পৈতৃক নিবাস- নোয়াখালী জেলার চাটখিল থানার গোপাইরবাগ গ্রামে।</li>
+<li>পুরো নাম আবু নাইম মোহাম্মদ মুনীর চৌধুরী। অধ্যাপক কবীর চৌধুরী তার ভাই এবং ফেরদৌসী মজুমদার তার বোন।</li>
+<li>২২ জুন, ১৯৬৭ সালে পাকিস্তান কেন্দ্রীয় সরকারের তথ্য ও সম্প্রচারমন্ত্রী খাজা শাহাবুদ্দিন জাতীয় পরিষদে এক বিবৃতিতে রেডিও ও টেলিভিশন থেকে রবীন্দ্রসংগীত প্রচার বন্ধের সিদ্ধান্ত ঘোষণা করলে সে সিদ্ধান্তের বিরুদ্ধে প্রতিবাদ জ্ঞাপন করেন।</li>
+<li>১৯৬৮ সালে বাংলা বর্ণমালা সংস্কার পদক্ষেপের বিরোধিতা করেন।</li>
+<li>তিনি নাটকে বাংলা একাডেমি সাহিত্য পুরস্কার (১৯৬২), দাউদ পুরস্কার (১৯৬৫) পান। তিনি ১৯৬৬ সালে ‘সিতারা-ই-ইমতিয়াজ’ খেতাব লাভ করেন। কিন্তু পরবর্তীতে ১৯৭১ এর মার্চ মাসে বঙ্গবন্ধু কর্তৃক আহূত অসহযোগ আন্দোলনের সমর্থনে এ খেতাব বর্জন করেন।</li>
+<li>১৪ ডিসেম্বর, ১৯৭১ সালে মাত্র ৪৬ বছর বয়সে স্বাধীনতাবিরোধী আলবদর বাহিনী তাঁকে ধরে নিয়ে যায় এবং আর খুঁজে পাওয়া যায়নি।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">প্রথম বাংলা টাইপ রাইটার কে নির্মাণ করেন? <span class="bcs">১১তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">মুনীর চৌধুরী। এটি ‘মুনীর অপটিমা’ নামে পরিচিত। ১৯৬৫ সালে এটি উদ্ভাবন করেন।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত নাটকগুলো কী কী? <span class="bcs">২৭/২৫তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer"><strong>‘রক্তাক্ত প্রান্তর’</strong> (১৯৬২): এটি তাঁর রচিত প্রথম নাটক। ১৭৬১ সালের পানিপথের ৩য় যুদ্ধের কাহিনি এর উপজীব্য। নাট্যকার ইতিহাস থেকে এর কাহিনি গ্রহণ করেননি, কায়কোবাদ রচিত ‘মহাশ্মশান’ থেকে এর কাহিনি গ্রহণ করেছেন। এই নাটকটির জন্য তিনি ১৯৬২ সালে বাংলা একাডেমি পুরস্কার পান। <b class="chr">চরিত্র:</b> জোহরা, ইব্রাহীম কার্দি।
+    </p><p class="answer">
+<strong>‘কবর’</strong> (১৯৬৬): এটি ১৯৫২ সালের ভাষা আন্দোলনের পটভূমিতে রচিত। মুনীর চৌধুরী ভাষা আন্দোলনে সক্রিয় অংশগ্রহণ করার কারণে ১৯৫২-৫৪ সাল পর্যন্ত কারাবাস করেন। বামপন্থী লেখক রণেশ দাশগুপ্তের অনুরোধে মুনীর চৌধুরী এ নাটকটি ১৯৫৩ সালের ১৭ জানুয়ারি কারাগারে বন্দী থাকা অবস্থায় রচনা করেন। ১৯৫৩ সালে ঢাকা কেন্দ্রীয় কারাগারেই ২১ ফেব্রুয়ারি রাত ১০টায় জহীর রায়হানের নির্দেশনায় রাজবন্দীদের দ্বারা এটি প্রথম মঞ্চায়ন করা হয়। এটি একুশের পটভূমিতে রচিত প্রথম নাটক। ১৯৫৬ সালে প্রথম প্রকাশ্যে নাটকটি মঞ্চস্থ হয় ঢাকা বিশ্ববিদ্যালয়ের সংস্কৃতি সংসদের একুশ উদযাপন উপলক্ষে। ১৯৫৫ সালের আগস্ট মাসে নাটকটি ‘দৈনিক সংবাদ’ পত্রিকার ‘আজাদী সংখ্যা’য় প্রথম ছাপা হয়। পরবর্তীতে হাসান হাফিজুর রহমান সম্পাদিত ‘একুশে ফেব্রুয়ারি’ সংকলনের দ্বিতীয় সংস্করণে নাটকটি পুনর্মুদ্রিত হয়।
+    </p><p class="answer">
+<strong>‘মানুষ’</strong> (১৯৪৭): ১৯৪৬ সালের সাম্প্রদায়িক দাঙ্গার প্রেক্ষাপটে রচিত একাঙ্কিকা নাটক। নাট্যকার এখানে ধর্মের ঊর্ধ্বে মানবিকতাকে স্থান দিয়েছেন।
+    </p><p class="answer">
+<strong>‘নষ্ট ছেলে’</strong> (১৯৫০): এটি রাজনৈতিক চেতনাভিত্তিক নাটক।
+    </p><p class="answer">
+<strong>‘দণ্ডকারণ্য’</strong> (১৯৬৬): এতে তিনটি নাটক আছে। যথা: দণ্ড, দণ্ডধর, দণ্ডকারণ্য।
+    </p><p class="answer">
+        ‘রাজার জন্মদিন’ (১৯৪৬), ‘চিঠি’ (১৯৬৬), ‘পলাশী বারাক ও অন্যান্য’ (১৯৬৯)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">বিয়োগান্তক নাটক হিসেবে ‘রক্তাক্ত প্রান্তর’ এর পরিচয় দাও। <span class="bcs">৩০/২১তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">সাহিত্যকর্মে, বিশেষভাবে নাটকে গুরুত্বপূর্ণ ঘটনাসমূহ যখন তার পরিণতিতে প্রধান চরিত্রের জন্য চরম বিপর্যয় ডেকে আনে তখন তাকে সাধারণভাব বিয়োগান্তক নাটক বলে। ১৭৬১ সালের পানিপথের (বর্তমান ভারতের হরিয়ানা প্রদেশের অন্তর্গত প্রাচীন যুদ্ধক্ষেত্র) ৩য় যুদ্ধের কাহিনি এর উপজীব্য। প্রশিক্ষিত মুসলিম যোদ্ধা ইব্রাহীম কার্দি মুসলিম শিবিরে চাকরি না পেয়ে মারাঠা কর্তৃক চাকরি পায় এবং সমাদৃত হয়। যুদ্ধ শুরু হলে ইব্রাহীম কার্দির স্ত্রী জোহরা ‘মনুবেগ’ ছদ্মনাম ধারণ করে এসে স্বামীকে মুসলিম শিবিরে
+     
+        ফিরিয়ে নিতে চেষ্টা করে। ইব্রাহীম কার্দি বিশ্বাসঘাতকতা না করে মারাঠাদের জন্য যুদ্ধে জীবন দিয়ে কৃতজ্ঞতা প্রকাশ করে। নায়ক ইব্রাহীম কার্দির মৃত্যু নাটকটিকে ট্র্যাজিক করে তোলে। এটি ঐতিহাসিক নাটক নয়, ইতিহাস- আশ্রিত ট্র্যাজিক নাটক। এ নাটকের বিখ্যাত উক্তি- ‘মানুষ মরে গেলে পচে যায়, বেঁচে থাকলে বদলায়, কারণে-অকারণে বদলায়।’
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tbody>
+<tr>
+<td>রক্তাক্ত প্রান্তর (নাটক)</td>
+<td>মুনীর চৌধুরী</td>
+</tr>
+<tr>
+<td>রক্তরাগ (কাব্যগ্রন্থ)</td>
+<td>গোলাম মোস্তফা</td>
+</tr>
+<tr>
+<td>রক্তাম্বরধারিণী মা (কবিতা)</td>
+<td>কাজী নজরুল ইসলাম</td>
+</tr>
+<tr>
+<td>রক্তকরবী (নাটক)</td>
+<td>রবীন্দ্রনাথ ঠাকুর</td>
+</tr>
+</tbody>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘কবর’ নাটকের মূলবক্তব্য লিখুন। <span class="bcs">৪৫/২৩/২০/১৫তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">মার্কিন নাট্যকার Irwin Shaw রচিত Bury The Dead (১৯৩৬) নাটকের অনুসরণে মুনীর চৌধুরী এ দেশীয় ঘটনাকে কেন্দ্র করে ‘কবর’ নাটকটি রচনা করেন। বাংলা ভাষা আন্দোলনের পক্ষে কাজ করার অভিযোগে পাকিস্তান সরকার মুনীর চৌধুরীকে ১৯৫২ সালে আটক করে জেলে প্রেরণ করে। জেলে থাকা অবস্থায় বামপন্থী লেখক রণেশ দাশগুপ্তের অনুরোধে ১৯৫২ সালের ভাষা আন্দোলনের পটভূমিতে তিনি ১৭ জানুয়ারি, ১৯৫৩ সালে এ নাটকটি রচনা করেন। ১৯৫৩ সালে কারাগারেই রাজবন্দীদের দ্বারা এটি প্রথম মঞ্চায়ন করা হয়। ‘কবর’ নাটকে দেখা যায়, রাষ্ট্রভাষা বাংলা দাবীর মিছিলে মুসলিম লীগ সরকারের নির্দেশে পুলিশ গুলি করে এবং কারফিউ জারি করে। রাতের আঁধারে বাংলার দামাল ছেলেদের গুলিবিদ্ধ লাশ গুম করার দায়িত্ব দেয়া হয় পুলিশ ইন্সপেক্টর হাফিজ ও নেতাকে। ছিন্নভিন্ন লাশ কবরস্থ না করে মাটিচাপা দেয়ার সিদ্ধান্তে বাধা দেয় গোর-খোদক ও তেতাল্লিশের দুর্ভিক্ষে সর্বহারা ঘর-সংসারহীন মুর্দা ফকির। মুর্দা ফকির আবহমান বাংলার সদাজাগ্রত ও প্রতিবাদমুখর সাহসী সন্তান। সে কবরস্থানে আনা মৃতদেহের প্রকৃত পরিচয় লাভ করে সংগোপনে। সে বুঝতে পারে এ সাধারণ মৃতদেহ নয়; কারণ মৃতের সারা শরীর জুড়ে বারুদের গন্ধ; সারা দেহ বুলেটের আঘাতে ক্ষত-বিক্ষত। সে ঐসব আত্মোৎসর্গী বীরদের মৃতদেহের সৎকার প্রত্যাশী। একই কবরে তাদের দাফন করতে দিতে সে রাজি নয়। সে মৃতদেহগুলোকে পুনরায় উঠে এসে মিছিলে যোগ দেয়ার আহ্বান জানায়। এতে মদ্যপ নেতা ও পুলিশ অফিসার ভীত হয়। অবশেষে ঐসব লাশ ছায়ামূর্তি হয়ে তাদের সামনে এসে প্রতিবাদ করে বলে যে, তারা মৃত নয়, জীবিত। তারা কবরে যাবে না, জানার বাঁচার দাবি। তখন কৌশলের আশ্রয় নেয় হাফিজ। সে ছদ্মবেশে মায়ের কণ্ঠস্বর নকল করে তাদের ধোঁকা দিতে চেষ্টা করে। মাতৃভক্ত বীর সন্তানেরা তাতে বিচলিত হয় না। তারা ফকিরের ডাকে পুনরায় ফিরে যায় মিছিলে। ন্যায় এবং সত্যের জন্য নিয়ত সংগ্রামশীল মানবাত্মার জয়ের ইতিহাস ১৯৫২ সালের ভাষা আন্দোলন। মানবকল্যাণ বিরোধী বিধি-নিষেধ উচ্ছেদকল্পে বাংলার কয়েকজন বীর সন্তান ষড়যন্ত্র ও অত্যাচারের বিরুদ্ধে সংগ্রাম করে শাহাদাৎ বরণ করেছে, তারই পটভূমিতে এ নাটকের সৃষ্টি। উল্লেখ্য, এতে কোনো নারী চরিত্র নেই।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অনূদিত নাটকগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>‘কেউ কিছু বলতে পারে না’</strong> (১৯৬৭): এটি জর্জ বার্নার্ড শ'র You never can tell এর অনুবাদ।
+    </p><p class="answer">
+<strong>‘রূপার কৌটা’</strong> (১৯৬৯): এটি গলস ওয়ার্দির The Silver Box থেকে অনূদিত।
+    </p><p class="answer">
+<strong>‘মুখরা রমণী বশীকরণ’</strong> (১৯৭০): এটি শেক্‌সপিয়রের Taming of the Shrew এর অনুবাদ।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত প্রবন্ধগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>‘মীর মানস’</strong> (১৯৬৫): এর জন্য তিনি ১৯৬৫ সালে দাউদ পুরস্কার লাভ করেন।
+    </p><p class="answer">
+        ‘তুলনামূলক সমালোচনা’ (১৯৬৯), ‘বাংলা গদ্যরীতি’ (১৯৭০)।
+    </p></div></article></section>
+<section class="author" data-name="ড. মুহম্মদ শহীদুল্লাহ্" id="a15">
+<header class="a-head">
+<div class="a-num">১৫</div>
+<div class="a-meta">
+<h2 class="a-name">ড. মুহম্মদ শহীদুল্লাহ্</h2>
+<div class="a-sub"><span class="a-years">১৮৮৫-১৯৬৯</span><span class="a-role">ভাষাবিদ ও গবেষক</span></div>
+</div>
+</header><p class="lead">
+        ড. মুহম্মদ শহীদুল্লাহ্ ছিলেন একাধারে বহুভাষাবিদ, পণ্ডিত, সাহিত্যিক, ধর্মবেত্তা ও শিক্ষাবিদ। বাংলা সাহিত্য সম্পর্কিত গবেষণার জন্য তাঁর নাম এদেশের সাহিত্যের ইতিহাসে উজ্জ্বল হয়ে আছে। সে জন্য তাঁকে ‘জ্ঞানতাপস’ অভিধায় অভিহিত করা হয়। পাকিস্তান রাষ্ট্র প্রতিষ্ঠার পর রাষ্ট্রভাষা বিতর্ক শুরু হলে তিনি বাংলা ভাষাকে রাষ্ট্রভাষা করার পক্ষে জোরালো মত দেন। মধ্যজীবন থেকে মৃত্যু পর্যন্ত তিনি ভাষাতত্ত্বচর্চা বাদ দিয়ে ইসলাম চর্চা ও তা প্রসারে আত্মনিয়োগ করেছিলেন।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>ড. মুহম্মদ শহীদুল্লাহ্ ১০ জুলাই, ১৮৮৫ সালে পশ্চিমবঙ্গের চব্বিশ পরগণার পেয়ারা গ্রামে জন্মগ্রহণ করেন। আকিকাকৃত নাম মুহম্মদ ইব্রাহিম। পরবর্তীতে তাঁর মা হরুন্নেসা সে নাম পরিবর্তন করে রাখেন মুহম্মদ শহীদুল্লাহ্।</li>
+<li>বাংলাদেশের বিখ্যাত চিত্রশিল্পী ও কার্টুনিস্ট মর্তুজা বশীর (১৯৩২-২০২০) তার ছেলে।</li>
+<li>তিনি ‘আঙুর’ (১৯২০- শিশু পত্রিকা), ‘দি পিস’ (১৯২৩- ইংরেজি মাসিক পত্রিকা), ‘বঙ্গভূমি’ (১৯৩৭- মাসিক সাহিত্য পত্রিকা), ‘তকবীর’ (১৯৪৭- পাক্ষিক পত্রিকা) পত্রিকা সম্পাদনা করতেন এবং ‘আল এসলাম’ (১৯১৫) পত্রিকার সহসম্পাদক ছিলেন।</li>
+<li>তিনি ১৯ জানুয়ারি, ১৯২৬ সালে ঢাকায় ‘মুসলিম সাহিত্য সমাজ’ কর্তৃক আয়োজিত প্রতিষ্ঠা সভার সভাপতি ছিলেন।</li>
+<li>তিনি মোট ২৪টি ভাষা আয়ত্ত করেছিলেন, এর মধ্যে ১৮টি ভাষায় ছিল তার অগাধ পাণ্ডিত্য।</li>
+<li>তিনি ১ জুলাই, ১৯৬০ সালে ‘পূর্ব পাকিস্তানি ভাষার আদর্শ অভিধান’ প্রকল্পের সম্পাদক হিসেবে বাংলা একাডেমিতে যোগদান করেন এবং ১৯৬৩ সালে ‘পূর্ব পাকিস্তানি ভাষার আদর্শ অভিধান’ এর কাজ সম্পন্ন করেন।</li>
+<li>তিনি ১৯৬৭ সালে ঢাকা বিশ্ববিদ্যালয়ের প্রথম ‘ইমেরিটাস অধ্যাপক’ পদ লাভ করেন।</li>
+<li>তিনি ১৩ জুলাই, ১৯৬৯ সালে মারা যান। ঢাকা বিশ্ববিদ্যালয়ের কার্জন হল প্রাঙ্গণে তাকে সমাহিত করা হয়। ঐ বছরই ‘ঢাকা হল’ এর নাম পরিবর্তন করে ‘শহীদুল্লাহ হল’ নাম রাখা হয়।</li>
+</ul></div><div class="quote-box"><div class="box-label">বিখ্যাত উক্তি</div><blockquote>‘আমরা হিন্দু বা মুসলমান যেমন সত্য, তার চেয়ে বেশি সত্য আমরা বাঙালি। এটি কোন আদর্শের কথা নয়, এটি বাস্তব কথা।’</blockquote><blockquote>‘যে দেশে গুণের সমাদর নেই, সে দেশে গুণীজন জন্মাতে পারে না।’</blockquote></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">ড. মুহম্মদ শহীদুল্লাহ্র কর্মজীবন সম্পর্কে লিখ।</div></div><div class="a"><p class="answer">ড. মুহম্মদ শহীদুল্লাহ্ ২ জুন, ১৯২১ সালে ঢাকা বিশ্ববিদ্যালয়ের বাংলা বিভাগের প্রভাষক হিসেবে যোগদান করেন। ‘বঙ্গীয় মুসলমান সাহিত্য সমিতি’র (৪ সেপ্টেম্বর, ১৯১১) সম্পাদক (১৯১১-১৫)। ১৯৬৩ সালে বাংলা একাডেমি কর্তৃক ‘বাংলা পঞ্জিকা তারিখ বিন্যাস’ কমিটির সভাপতি, বাংলা একাডেমি’র ইসলামি বিশ্বকোষ প্রকল্পের (১৯৬৪) সম্পাদক এবং পাকিস্তান এশিয়াটিক সোসাইটির সভাপতির দায়িত্ব পালন করেন। তিনি প্রিন্সিপাল ইব্রাহীম খাঁ ও অধ্যাপক আবুল কাশেম সহযোগে মিরপুর বাংলা কলেজ প্রতিষ্ঠা করেন। তিনি ১৯৪৪ সালে ঢাকা বিশ্ববিদ্যালয়ের বাংলা বিভাগ থেকে অবসর গ্রহণ করে বগুড়া আজিজুল হক কলেজের অধ্যক্ষ হিসেবে যোগদান করেন। ১৯৫৫ সালে তিনি রাজশাহী বিশ্ববিদ্যালয়ের বাংলা বিভাগের প্রধান হিসেবে যোগদান করেন এবং কলা অনুষদের ডিন ছিলেন।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">ড. মুহম্মদ শহীদুল্লাহ্র গবেষণামূলক গ্রন্থগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>‘বাংলাদেশের আঞ্চলিক ভাষার অভিধান’</strong> (১৯৬৫): এটি বাংলা একাডেমি কর্তৃক প্রকাশিত। এটি বাংলা ভাষার প্রথম আঞ্চলিক অভিধান। বাংলাদেশের বিভিন্ন অঞ্চলের উপভাষার একটি সংকলন গ্রন্থ।
+    </p><p class="answer">
+<strong>Buddhist Mystic Songs</strong> (১৯৬০): এটি ‘চর্যাপদ’ বিষয়ক গবেষণা গ্রন্থ।
+    </p><p class="answer">
+        ‘সিদ্ধা কানুপার গীত ও দোহা’ (১৯২৬), ‘ভাষা ও সাহিত্য’ (১৯৩১), ‘বাংলা সাহিত্যের কথা’ (১ম খণ্ড- ১৯৫৩, ২য় খণ্ড- ১৯৬৫), ‘বাঙ্গালা ব্যাকরণ’ (১৯৩৬), ‘বৌদ্ধ গান ও দোহা’ (১৯৬০), ‘বাঙ্গালা ভাষার ইতিবৃত্ত’ (১৯৫৮)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">ড. মুহম্মদ শহীদুল্লাহ্র সাহিত্যকর্মসমূহ কী কী?</div></div><div class="a"><p class="answer"><strong>প্রবন্ধ:</strong><br/>
+<strong>‘পল্লীসাহিত্য’</strong>: ১৯৩৮ সালে কিশোরগঞ্জ জেলায় ‘ময়মনসিংহ সাহিত্য সম্মেলনী’র একাদশ অধিবেশনে সভাপতি হিসেবে ড. মুহম্মদ শহীদুল্লাহ্ যে অভিভাষণ দেন তারই লিখিত রূপ প্রবন্ধটি।
+    </p><p class="answer">
+<strong>‘Traditional Culture in East Pakistan’</strong>: ১৯৬০ সালে তিনি এটি মুহম্মদ আবদুল হাই সহযোগে রচনা করেন।<br/>
+        ‘ইকবাল’ (১৯৪৫), ‘Essays on Islam’ (১৯৪৫), ‘আমাদের সমস্যা’ (১৯৪৯), ‘বাংলা আদব কি তারিখ’ (১৯৫৭)।
+    </p><p class="answer">
+<strong>অনুবাদ গ্রন্থ:</strong> ‘দীওয়ানে হাফিজ’ (১৯৩৮), ‘মহানবী’ (১৯৪২), ‘অমিয়শতক’ (১৯৪০), ‘বাণী শিখওয়া’ (১৯৪২), ‘জওয়াব-ই-শিখওয়া’ (১৯৪২), ‘রুবাইয়াত-ই-ওমর খৈয়াম’ (১৯৪২), ‘বাইঅতনামা’ (১৯৪৮), ‘বিদ্যাপতি শতক’ (১৯৫৪), ‘কুরআন প্রসঙ্গ’ (১৯৬২), ‘মহররম শরীফ’ (১৯৬২), ‘অমর কাব্য’ (১৯৬৩), ‘ইসলাম প্রসঙ্গ’ (১৯৬৩)।
+    </p><p class="answer">
+<strong>সম্পাদিত গ্রন্থ:</strong> ‘পদ্মাবতী’ (১৯৫০), ‘প্রাচীন ধর্মগ্রন্থে শেষ নবী’ (১৯৫২)।
+    </p><p class="answer">
+<strong>গল্পগ্রন্থ:</strong> ‘রকমারি’ (১৯৩১)।
+    </p><p class="answer">
+<strong>গল্প:</strong> ‘সততার পুরস্কার’।
+    </p><p class="answer">
+<strong>শিশুতোষ গ্রন্থ:</strong> ‘ছোটদের রসূলুল্লাহ’ (১৯৬২), ‘সেকালের রূপকথা’ (১৯৬৫), ‘শেষ নবীর সন্ধানে’।
+    </p></div></article></section>
+<section class="author" data-name="শওকত ওসমান" id="a16">
+<header class="a-head">
+<div class="a-num">১৬</div>
+<div class="a-meta">
+<h2 class="a-name">শওকত ওসমান</h2>
+<div class="a-sub"><span class="a-years">১৯১৭-১৯৯৮</span><span class="a-role">কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">
+        বাংলাদেশের বিশিষ্ট কথাসাহিত্যিক, নাট্যকার ও প্রাবন্ধিক শওকত ওসমানের সাহিত্যকর্মে তাঁর তীক্ষ্ণ সমাজসচেতন ও প্রগতিশীল ভাবধারার শৈল্পিক ফসল। মুক্তিযুদ্ধ ও ধর্মনিরপেক্ষতার পক্ষে তিনি ছিলেন উচ্চকিত কণ্ঠের অধিকারী। ১৫ আগস্ট, ১৯৭৫ সালে বঙ্গবন্ধুকে সপরিবারে হত্যা করা হলে তিনি স্বেচ্ছায় ৫ বছর কলকাতায় নির্বাসনে ছিলেন। ১৯৫৮ সাল থেকে তিনি ঢাকা কলেজে অধ্যাপনা করেন এবং ১৯৭২ সালে স্বেচ্ছায় অবসর গ্রহণ করেন।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>শওকত ওসমান ২ জানুয়ারি, ১৯১৭ সালে হুগলীর সবল সিংহপুর গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তাঁর প্রকৃত নাম শেখ আজিজুর রহমান।</li>
+<li>বর্তমান বিজ্ঞান ও প্রযুক্তি মন্ত্রণালয়ের মন্ত্রী স্থপতি ইয়াফেস ওসমান তাঁর ছেলে।</li>
+<li>প্রয়াত হুমায়ুন আজাদ শওকত ওসমানকে ‘অগ্রবর্তী আধুনিক মানুষ’ নামে অভিহিত করেন।</li>
+<li>জীবনের শেষ প্রান্তে আত্মজীবনী ‘রাহনামা’ লেখা শুরু করেন কিন্তু শেষ করতে পারেননি।</li>
+<li>তিনি কিছুদিন ‘কৃষক’ পত্রিকায় সাংবাদিকতা করেন।</li>
+<li>তিনি বাংলা একাডেমি সাহিত্য পুরস্কার (১৯৬২), আদমজী সাহিত্য পুরস্কার (১৯৬৬), একুশে পদক (১৯৮৩), ফিলিপস পুরস্কার (১৯৯১), স্বাধীনতা পুরস্কার (১৯৯৭) পান।</li>
+<li>তিনি ১৪ মে, ১৯৯৮ সালে ঢাকায় মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শওকত ওসমানের গ্রন্থাকারে প্রকাশিত প্রথম গ্রন্থ কোনটি?</div></div><div class="a"><p class="answer"><strong>‘জননী’</strong> (১৯৫৮): এটি গ্রন্থাকারে প্রকাশিত প্রথম উপন্যাস। সন্তানের মঙ্গলাকাঙ্ক্ষা ও নিরাপত্তার জন্য একজন মা গোপনে যে কোনো পথ অবলম্বন করতে পারেন, শওকত ওসমান সে কথাই এ উপন্যাসে ব্যক্ত করেছেন। মহেশডাঙার দরিয়াবিবি সন্তান মোনাদিকে আর্থিক সহায়তা দেয়ার জন্য ইয়াকুবের শয্যাসঙ্গিনী হয়। ইয়াকুবের ঔরসে তার গর্ভে সন্তান এলেও সামাজিক সকল বিপত্তি এড়িয়ে অসীম মমতায় তাকে লালন-পালন করে। এ উপন্যাসে ফুটে উঠেছে মুসলিম সমাজের শরিয়তি দ্বন্দ্ব, বিত্তবানদের স্বার্থপরতা, গ্রামের দরিদ্র মানুষদের পারস্পরিক বিবাদ ও সাম্প্রদায়িক সম্প্রীতি। ওসমান জামাল এটি ইংরেজিতে ‘জননী’ (১৯৯৩) নামেই অনুবাদ করে অক্সফোর্ড থেকে প্রকাশ করেন। <b class="chr">চরিত্র:</b> দরিয়া বিবি, আজহার, মোনাদি, ইয়াকুব, চন্দ্রকোটাল।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর মুক্তিযুদ্ধভিত্তিক উপন্যাসসমূহ কী কী? <span class="bcs">৪০/৩০/৩০/২১তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer"><strong>‘জাহান্নম হইতে বিদায়’</strong> (১৯৭১): ‘দেশ’ পত্রিকার সম্পাদক শ্রী সাগরময় ঘোষের অনুরোধে শওকত ওসমান উপন্যাসটি সাতটি পর্বে সেপ্টেম্বর, ১৯৭১ সালে কলকাতায় বসে লেখেন। ‘দেশ’ পত্রিকার শারদীয় সংখ্যায় এটি প্রকাশিত হয়। এতে মুক্তিযুদ্ধের প্রথম সময়কার চালচিত্র ফুটে উঠেছে। কেন্দ্রীয় <b class="chr">চরিত্র:</b> শিক্ষক গাজী রহমান।
+    </p><p class="answer">
+        ‘দুই সৈনিক’ (১৯৭৩), ‘নেকড়ে অরণ্য’ (১৯৭৩), ‘জলাঙ্গী’ (১৯৭৬)।
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tbody>
+<tr>
+<td>জননী (উপন্যাস)</td>
+<td>শওকত ওসমান</td>
+</tr>
+<tr>
+<td>জননী (উপন্যাস)</td>
+<td>মানিক বন্দ্যোপাধ্যায়</td>
+</tr>
+</tbody>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য উপন্যাসসমূহ কী কী?</div></div><div class="a"><p class="answer"><strong>‘বনি আদম’</strong>: এটি ১৯৪৬ সালে দৈনিক আজাদের সাহিত্য সাময়িকীতে প্রকাশিত হয়।
+    </p><p class="answer">
+<strong>‘ক্রীতদাসের হাসি’</strong> (১৯৬২): এটি তাঁর প্রতীকাশ্রয়ী উপন্যাস। উপন্যাসটি আরব্য রজনী ‘আলিফ লায়লা ওয়া লায়লা’ এর শেষ গল্প ‘জাহাকুল আবদ’ এর অনুবাদ কিন্তু সর্বাংশে নয়। এ উপন্যাসে বাগদাদের বাদশা হারুন অর রশিদের মাধ্যমে তৎকালীন পাকিস্তানিদের বিরূপ শাসনের সমালোচনা করা হয়েছে। বাগদাদের বাদশা হারুন অর রশিদ অত্যাচারী। সে ক্রীতদাস তাতারি ও বাঁদি মেহেরজানের প্রণয়ে বাঁধা সৃষ্টি এবং তাতারিকে গৃহবন্দী ও অত্যাচার করে। তাতারি আমৃত্যু বাদশা হারুনের নির্যাতনের প্রতিবাদ করে যায়। এখানে তাতারি বাঙালি জনতার এবং বাদশা হারুন আইয়ুব খানের প্রতীক। এর জন্য ১৯৬৬ সালে তিনি ‘আদমজী সাহিত্য পুরস্কার’ লাভ করেন। কবির চৌধুরী এটি ইংরেজিতে ‘এ স্লেভ লাফস’ (১৯৭৬) নামে অনুবাদ করে দিল্লি থেকে প্রকাশ করেন।
+    </p><p class="answer">
+<strong>‘আর্তনাদ’</strong> (১৯৮৫): ভাষা আন্দোলনভিত্তিক উপন্যাস। <b class="chr">চরিত্র:</b> জাফর আলী।
+    </p><p class="answer">
+        ‘সমাগম’ (১৯৬৭), ‘চৌরসন্ধি’ (১৯৬৮), ‘রাজা উপাখ্যান’ (১৯৭১), ‘পতঙ্গ পিঞ্জর’ (১৯৮৩), ‘রাজপুরুষ’ (১৯৯২)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer"><strong>নাটক:</strong> ‘আমলার মামলা’ (১৯৪৯), ‘কাঁকড়ামণি’ (১৯৫২), ‘তস্কর ও লস্কর’ (১৯৫৩), ‘বাগদাদের কবি’ (১৯৫৩), ‘জন্ম জন্মান্তর’ (১৯৬০), ‘পূর্ণ স্বাধীনতা চূর্ণ স্বাধীনতা’ (১৯৯০)।
+    </p><p class="answer">
+<strong>গল্প:</strong><br/>
+<strong>‘জন্ম যদি তব বঙ্গে’</strong> (১৯৭৫): এটি মুক্তিযুদ্ধ ভিত্তিক।
+    </p><p class="answer">
+<strong>‘তোলপাড়’</strong>: মুক্তিযুদ্ধভিত্তিক গল্প।
+    </p><p class="answer">
+<strong>‘সৌদামিনী ভালো’</strong>: গল্পে আমাদের প্রাত্যহিক জীবনে নিয়ত মানবাত্মার যে অবমাননা চলছে, তারই চিত্র ফুটে উঠেছে।
+    </p><p class="answer">
+<strong>‘ঈশ্বরের প্রতিদ্বন্দ্বী’</strong> (১৯৯০): এর জন্য তিনি ১৯৯১ সালে ফিলিপস পুরস্কার পান।
+    </p><p class="answer">
+        ‘পিঁজরাপোল’ (১৯৫১), ‘জুনু আপা ও অন্যান্য গল্প’ (১৯৫২), ‘প্রস্তর ফলক’ (১৯৬৪), ‘নেত্রপথ’ (১৯৬৮), ‘মনিব ও তাহার কুকুর’ (১৯৮৬), ‘পুরাতন খঞ্জর’ (১৯৮৭)।
+    </p><p class="answer">
+<strong>প্রবন্ধ:</strong> ‘ভাব ভাষা ও ভাবনা’ (১৯৭৪), ‘সংস্কৃতির চড়াই উৎরাই’ (১৯৮৫), ‘মুসলিম মানসের রূপান্তর’ (১৯৮৬)।
+    </p><p class="answer">
+<strong>শিশুতোষ:</strong> ‘ওটেন সাহেবের বাংলো’ (১৯৪৪), ‘মস্কুইটোফোন’ (১৯৫৭), ‘ক্ষুদে সোশ্যালিস্ট’ (১৯৭৩), ‘পঞ্চসঙ্গী’ (১৯৮৭)।
+    </p><p class="answer">
+<strong>রম্যরচনা:</strong> ‘নিজস্ব সংবাদদাতা প্রেরিত’ (১৯৮২)।
+    </p><p class="answer">
+<strong>স্মৃতিকথা:</strong> ‘স্বজন সংগ্রাম’ (১৯৮৬), ‘কালরাত্রি খণ্ডচিত্র’ (১৯৮৬), ‘অনেক কথন’ (১৯৯১), ‘মুজিবনগর’ (১৯৯৩), ‘অস্তিত্বের সঙ্গে সংলাপ’ (১৯৯৪), ‘সোদরের খোঁজে স্বদেশের সন্ধানে’ (১৯৯৫), ‘মৌলবাদের আগুন নিয়ে খেলা’ (১৯৯৬), ‘আর এক ধারাভাষ্য’ (১৯৯৬)।
+    </p><p class="answer">
+<strong>অনুবাদ:</strong> ‘নিশো’ (১৯৪৮-৪৯), ‘লুকনিতশি’ (১৯৪৮), ‘বাগদাদের কবি’ (১৯৫৩), ‘টাইম মেশিন’ (১৯৫৯), ‘ডাক্তার আবদুল্লাহর কারখানা’ (১৯৭৩), ‘সন্তানের স্বীকারোক্তি’ (১৯৮৫)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">মুক্তিযুদ্ধকেন্দ্রিক একটি উপন্যাসের মূল্যায়ন করুন? <span class="bcs">৩৮/৩২/২৯তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">বাংলা সাহিত্য ও মুক্তিযুদ্ধ অনুষঙ্গটি একে অপরের পরিপূরক। মুক্তিযুদ্ধকে কেন্দ্র করে অসংখ্য কবিতা, গল্প, নাটক, উপন্যাস রচিত হয়েছে। শওকত ওসমানের মুক্তিযুদ্ধভিত্তিক অন্যতম উপন্যাস ‘জলাঙ্গী’ (১৯৭৬)। এ উপন্যাসে গ্রাম্য এক কৃষক পরিবারের শহরে পড়া ছাত্র জমিরালীর মুক্তিযুদ্ধে অংশগ্রহণ এবং তাঁর পরিবারের চালচিত্র উপস্থাপিত হয়েছে। এতে রয়েছে পাকিস্তানি সৈন্যদের পাশবিক নিষ্ঠুরতার চিত্র। বৃদ্ধ মা-বাবা, প্রেমিকা হাজেরাকে উপেক্ষা করে দেশের টানে মুক্তিযুদ্ধে অংশগ্রহণ করে। পাকিস্তানি সৈন্যদের দেয়া আগুনে তার গ্রামের বাড়ি পুড়ে যায়। সেই আগুনেই তার বাবা-মা মারা যায়। হাজেরাকে খুঁজতে গিয়ে মিলিটারির হাতে ধরা পড়ে এবং মিলিটারি ক্যাম্পসে সে হাজেরাকে দেখতে পায়। রাজাকার ও মিলিটারিরা মিলে গ্রামে বিচার করে তাদের মেঘনার বুকে গলায় পাথর বেঁধে ডুবিয়ে দেয়া হয়। মৃত্যু নিশ্চিত জেনেও জমিরালী দেশপ্রেমকে জলাঞ্জলি দেয়নি, তবুও মুখ দিয়ে বেরিয়ে আসে ‘জয় বাংলা’।
+    </p></div></article></section>
+<section class="author" data-name="শহীদুল্লা কায়সার" id="a17">
+<header class="a-head">
+<div class="a-num">১৭</div>
+<div class="a-meta">
+<h2 class="a-name">শহীদুল্লা কায়সার</h2>
+<div class="a-sub"><span class="a-years">১৯২৭-১৯৭১</span><span class="a-role">ঔপন্যাসিক</span></div>
+</div>
+</header><p class="lead">
+        সমাজতান্ত্রিক রাজনীতির মাধ্যমে পূর্ব পাকিস্তানে সাম্যাবস্থা আনয়নের প্রচেষ্টার অন্যতম অগ্রদূত শহীদুল্লা কায়সার। বামপন্থী রাজনীতির সমর্থক হিসেবে তিনি শ্রমিক-জনতার দুঃখ-দুর্দশা লাঘবের জন্য সক্রিয় সংগ্রামের ওপর গুরুত্ব দিতেন। ১৯৫২ সালের ভাষা আন্দোলনে কমিউনিস্ট পার্টির পক্ষ থেকে অত্যন্ত সাহসী ভূমিকা পালন করেন এবং ৩ জুন গ্রেপ্তার হয়ে প্রায় সাড়ে তিন বছর কারাদণ্ড ভোগ করে মুক্তি পান। তাঁর রচিত উপন্যাসে উজ্জ্বলভাবে প্রতিফলিত হয়েছে বাঙালি জীবনের আশা-আকাঙ্ক্ষা, দ্বন্দ্ব-সংঘাত ও সংগ্রামী চেতনা।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>শহীদুল্লা কায়সার ১৬ ফেব্রুয়ারি, ১৯২৭ সালে ফেনীর মজুপুর গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তাঁর প্রকৃত নাম আবু নঈম মোহাম্মদ শহীদুল্লাহ।</li>
+<li>কথাসাহিত্যিক জহির রায়হান তাঁর ভাই এবং অভিনেত্রী শমী কায়সার তাঁর মেয়ে।</li>
+<li>তিনি মার্কসবাদ-লেনিনবাদে বিশ্বাসী ছিলেন। সেপ্টেম্বর, ১৯৪৭ সালে ‘গণতান্ত্রিক যুবলীগ’ গঠনে অগ্রণী ভূমিকা রাখেন।</li>
+<li>১৯৪৯ সালে ‘সাপ্তাহিক ইত্তেফাক’ পত্রিকায় সাংবাদিক হিসেবে যোগদান করেন। ১৯৫৮ সালে ‘দৈনিক সংবাদ’ এর সহকারী সম্পাদক নিযুক্ত হন। এতে দেশপ্রেমিক ছদ্মনামে ‘রাজনৈতিক পরিক্রমা’ ও বিশ্বকর্মা ছদ্মনামে ‘বিচিত্র কথা’ শিরোনামে উপসম্পাদকীয় লিখতেন।</li>
+<li>১৪ ডিসেম্বর, ১৯৭১ সালে পাক হানাদার বাহিনীর এ দেশীয় দোসর আলবদর বাহিনীর সদস্যগণ তাঁকে ঢাকার কায়েতটুলির বাসা থেকে তুলে নিয়ে যায়। এরপর তাঁর আর কোনো সন্ধান পাওয়া যায়নি।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাস দুটি কী কী?</div></div><div class="a"><p class="answer"><strong>‘সারেং বৌ’</strong> (১৯৬২): এটি তাঁর প্রথম উপন্যাস। এতে সমুদ্র উপকূলবর্তী জনপদের চিত্র অঙ্কিত হয়েছে। কদম সারেং জাহাজের নাবিক। সৎ ও সরল বলে সহকর্মীদের মতো বাড়ি-গাড়ি করতে পারেনি, কিন্তু অভাব-অনটনের মধ্যেও ছিলো সুখের সংসার। ষড়যন্ত্রের শিকার হয়ে মাদক পাচারের অপরাধে জেলে যেতে হয়। দীর্ঘদিন কদম সারেং নিখোঁজ থাকায় যুবতী স্ত্রী নবিতুন ডুবে যায় দারিদ্র্যের করালগ্রাসের অন্তরালে এবং নিপতিত হয় লোলুপ সমাজপতিদের শিকারের কবলে। কিন্তু আদর্শনিষ্ঠ নবিতুন সব কিছু পরাজিত করে। প্রবল ঝড়ের পর সারেং ফিরে
+     
+        আসলে পিপাসিত কদম সারেংকে ধর্মীয় বিধি লঙ্ঘন করে নবিতুন নিজের দুগ্ধ পান করিয়ে সুস্থ করে তোলে। ‘সারেং বৌ’ উপন্যাসে সব সংস্কার তুচ্ছ করে মানবতাবোধকে জয়ী করা হয়েছে। উপন্যাসটির জন্য তিনি ‘আদমজী পুরস্কার’ (১৯৬২), ‘বাংলা একাডেমি পুরস্কার’ (১৯৬২) লাভ করেন। <b class="chr">চরিত্র:</b> কদম সারেং, নবিতুন।
+    </p><p class="answer">
+<strong>‘সংশপ্তক’</strong> (১৯৬৫): এর অর্থ- নিশ্চিত পরাজয় জেনেও যারা যুদ্ধ চালিয়ে যায়। <b class="chr">উল্লেখযোগ্য চরিত্র:</b> হুরমতি, লেকু, রমজান। <span class="bcs">২৩তম বিসিএস লিখিত</span>
+</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘সংশপ্তক’ উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">‘সংশপ্তক’ এর অর্থ- নিশ্চিত পরাজয় জেনেও যারা যুদ্ধ চালিয়ে যায়। শহীদুল্লা কায়সার এ চেতনাকে ধারণ করে দ্বিতীয় বিশ্বযুদ্ধের অব্যবহিত কাল থেকে বায়ান্নর ভাষা আন্দোলনের পূর্বকাল পর্যন্ত বাংলাদেশের সামাজিক-রাজনৈতিক-অর্থনৈতিক পরিবর্তন ও রূপান্তরকে তাঁর বিখ্যাত ‘সংশপ্তক’ (১৯৬৫) উপন্যাসে তুলে ধরেন। হিন্দু-মুসলিম সম্মিলিত জীবনযাপন, অসাম্প্রদায়িক চেতনা, বিশ্বযুদ্ধ, দাঙ্গা, দুর্ভিক্ষ, ঢাকা ও কলকাতার নাগরিক পরিবেশের সাথে বাকুলিয়া ও তালতলি গ্রামের গ্রামীণ পরিবেশ এ উপন্যাসে তুলে ধরেছেন।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য রচনা কী কী?</div></div><div class="a"><p class="answer"><span class="bold">স্মৃতিকথা :</span> ‘রাজবন্দীর রোজনামচা’ (১৯৬২)।<br/>
+<span class="bold">ভ্রমণকাহিনি :</span> ‘পেশোয়ার থেকে তাসখন্দ’ (১৯৬৬)।
+    </p></div></article></section>
+<section class="author" data-name="শামসুর রাহমান" id="a18">
+<header class="a-head">
+<div class="a-num">১৮</div>
+<div class="a-meta">
+<h2 class="a-name">শামসুর রাহমান</h2>
+<div class="a-sub"><span class="a-years">১৯২৯-২০০৬</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">
+        আধুনিক কবি শামসুর রাহমান, যিনি রোমান্টিকতার সাথে সমাজ মনস্কতার সংমিশ্রণ ঘটিয়ে নতুন কাব্যধারার জন্ম দিয়েছেন। রাষ্ট্রভাষা আন্দোলন থেকে শুরু করে স্বাধীনতাযুদ্ধ ও পরবর্তী সকল গণতান্ত্রিক আন্দোলনের প্রতি অকুণ্ঠ সমর্থন তাঁর কবিতাকে করেছে অনন্য বৈশিষ্ট্যমণ্ডিত। নগর জীবনের যন্ত্রণা, একাকীত্ব, পারিবারিক ও সামাজিক বন্ধন ইত্যাদি তাঁর কবিতায় লক্ষণীয় বৈশিষ্ট্য।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>শামসুর রাহমান ২৪ অক্টোবর, (পারিবারিক হিসেবে ২৩ অক্টোবর) ১৯২৯ সালে পুরান ঢাকার মাহুতটুলিতে জন্মগ্রহণ করেন। পৈতৃক নিবাস নরসিংদী জেলার রায়পুরার পাড়াতলি গ্রাম।</li>
+<li>শামসুর রাহমানের ডাকনাম- বাচ্চু।</li>
+<li>১৯৫৭ সালে সাংবাদিক হিসেবে ‘দৈনিক মর্নিং নিউজ’- এ কর্মজীবন শুরু করেন। ১৯৬৪ সালে ‘দৈনিক পাকিস্তান’ পত্রিকায় যোগদান করেন। পরবর্তীতে এটি ‘দৈনিক বাংলা’ নামে নামকরণ হয়। ১৯৭৭ সালে ‘দৈনিক বাংলা’ ও সাপ্তাহিক ‘বিচিত্রা’র সম্পাদক নিযুক্ত হন। ১৯৮৭ সালে সরকার পরিচালিত ‘দৈনিক বাংলা’ থেকে পদত্যাগ করেন।</li>
+<li>মুক্তিযুদ্ধকালে তিনি কলকাতার ‘দেশ’ পত্রিকায় ‘মজলুম আদিব’ ছদ্মনামে কবিতা লিখতেন।</li>
+<li>তিনি বিভিন্ন পত্রিকায় সিন্দাবাদ, চক্ষুষ্মান, লিপিকার, নেপথ্যে, জনান্তিকে, মৈনাক প্রভৃতি ছদ্মনামে সম্পাদকীয় ও উপসম্পাদকীয় লিখতেন।</li>
+<li>১৯৪৯ সালে ‘সাপ্তাহিক সোনার বাংলা’ পত্রিকায় তাঁর প্রথম কবিতা প্রকাশিত হয়।</li>
+<li>তিনি ১৯৬৩ সালে ‘আদমজী সাহিত্য পুরস্কার’, ১৯৬৯ সালে ‘বাংলা একাডেমি পুরস্কার’, ১৯৭৭ সালে ‘একুশে পদক’ এবং ১৯৯১ সালে ‘স্বাধীনতা পুরস্কার’ লাভ করেন।</li>
+<li>শামসুর রাহমান ‘নাগরিক কবি’ হিসেবে খ্যাত।</li>
+<li>তিনি ১৭ আগস্ট, ২০০৬ সালে ঢাকার পিজি হাসপাতালে মৃত্যুবরণ করেন। কবির ইচ্ছানুযায়ী ১৮ আগস্ট বনানী কবরস্থানে মায়ের সমাধির মধ্যে সমাহিত করা হয়।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উল্লেখযোগ্য কাব্যগ্রন্থগুলো কী কী? <span class="bcs">৩৮তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">তাঁর মোট কাব্য ৬৬টি।<br/>
+<strong>‘প্রথম গান দ্বিতীয় মৃত্যুর আগে’</strong> (১৯৬০): এটি তাঁর প্রথম কাব্যগ্রন্থ। <span class="bcs">২২তম বিসিএস লিখিত</span><br/>
+<strong>‘নিজ বাসভূমে’</strong> (১৯৭০): এ কাব্যের বিখ্যাত কবিতা ‘ফেব্রুয়ারি ১৯৬৯’
+    </p><p class="answer">
+<strong>‘বন্দী শিবির থেকে’</strong> (১৯৭২): এ কাব্যে স্বাধীনতা যুদ্ধকালীন আবেগ ও প্রত্যাশা প্রাধান্য পেয়েছে। এ কাব্যের মাধ্যমে তিনি কবি খ্যাতি অর্জন করেন। এ কাব্যের বিখ্যাত কবিতা ‘তোমাকে পাওয়ার জন্যে, হে স্বাধীনতা’।
+    </p><p class="answer">
+<strong>‘বাংলাদেশ স্বপ্ন দ্যাখে’</strong> (১৯৭৭): ১৯৭৫ সালে বঙ্গবন্ধু শেখ মুজিবুর রহমান বিপথগামী কিছু সৈনিকের হাতে নির্মমভাবে নিহত হলে শামসুর রাহমান অত্যন্ত ব্যথিত হন এবং বঙ্গবন্ধুর সোনার বাংলা বিনির্মাণের প্রত্যাশায় দেশীয় রূপকথা ও পুরাণকাহিনির মিথের সংমিশ্রণে এবং চিত্রকল্পের উজ্জ্বল্যে তিনি রচনা করেন এ কাব্যের কবিতাগুলো।
+    </p><p class="answer">
+<strong>‘উদ্ভট উটের পিঠে চলেছে স্বদেশ’</strong> (১৯৮২): ১৯৭৫-৮২ সাল পর্যন্ত দেশে সংঘটিত একাধিক সামরিক অভ্যুত্থান এবং সামরিক শাসনের যূপকাষ্ঠে দেশ ও জনগণের চরম অবস্থার প্রতিফলন আছে এ কাব্যে।
+    </p><p class="answer">
+        ‘রৌদ্র করোটিতে’ (১৯৬৩), ‘বিধ্বস্ত নীলিমা’ (১৯৬৭), ‘নিরালোকে দিব্যরথ’ (১৯৬৮), ‘ দুঃসময়ের মুখোমুখি’ (১৯৭৩), ‘ফিরিয়ে নাও ঘাতক কাঁটা’ (১৯৭৪), ‘আদিগন্ত নগ্ন পদধ্বনি’ (১৯৭৪), ‘এক ধরনের অহংকার’ (১৯৭৫), ‘আমি অনাহারী’ (১৯৭৬), ‘শূন্যতায় তুমি শোকসভা’ (১৯৭৭), ‘প্রতিদিন ঘরহীন ঘরে’ (১৯৭৮), ‘প্রেমের কবিতা’ (১৯৮১), ‘ইকারুসের আকাশ’ (১৯৮২), ‘এক ফোঁটা কেমন অনল’ (১৯৮৬), ‘বুক তাঁর বাংলাদেশের হৃদয়’ (১৯৮৮), ‘হরিণের হাড়’ (১৯৯৩), ‘তুমিই নিঃশ্বাস, তুমিই হৃদস্পন্দন’ (১৯৯৬), ‘হেমান্ত সন্ধ্যায় কিছুকাল’ (১৯৯৭), ‘না বাস্তব না দুঃস্বপ্ন’ (২০০৬)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘বন্দী শিবির থেকে’ কাব্যগ্রন্থের পরিচয় দাও। <span class="bcs">৩৪/৩৫তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">বাংলা সাহিত্যের প্রখ্যাত সাহিত্যিক শামসুর রাহমান মুক্তিযুদ্ধকালীন সময়ে ‘মজলুম আদিব’ ছদ্মনামে ‘বন্দী শিবির থেকে’ (১৯৭২) কাব্যগ্রন্থটি রচনা করেন। তার খ্যাতি ও পরিচিতি এ কাব্যের মাধ্যমে ব্যাপক বিস্তৃতি লাভ করে। এ কাব্যের অধিকাংশ কবিতা মুক্তিযুদ্ধকালে অবরুদ্ধ সময়ে রচিত। এর প্রতিটি কবিতায় স্বাধীনতা যুদ্ধকালীন আবেগ ও প্রত্যাশা ব্যক্ত হয়েছে। এ কাব্যটি ১৯৭১ সালের শহীদদের প্রতি উৎসর্গ করা হয়। এ গ্রন্থের ৩৮টি কবিতার মধ্যে উল্লেখযোগ্য হলো: ‘তোমাকে পাওয়ার জন্য হে স্বাধীনতা’, ‘স্বাধীনতা তুমি’ ইত্যাদি।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাসগুলো কী কী?</div></div><div class="a"><p class="answer">‘অক্টোপাস’ (১৯৮৩), ‘অদ্ভুত আঁধার এক’ (১৯৮৫), ‘নিয়ত মন্তাজ’ (১৯৮৫), ‘এলো সে অবেলায়’ (১৯৯৪)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer">
+<span class="bold">আত্মস্মৃতি :</span> ‘স্মৃতির শহর’ (১৯৭৯), ‘কালের ধূলায় লেখা’ (২০০৪)।<br/>
+<span class="bold">শিশুতোষ :</span> ‘এলাটিং বেলাটিং’ (১৯৭৪), ‘ধান ভানলে কুঁড়ো দেবো’ (১৯৭৭), ‘লাল ফুলকির ছড়া’ (১৯৯৫)।<br/>
+<span class="bold">প্রবন্ধ :</span> ‘আমৃত্যু তাঁর জীবনানন্দ’ (১৯৮৬), ‘কবিতা এক ধরনের আশ্রয়’ (২০০২)।
+    </p><p class="a-sub-h">কবিতা :</p><p class="answer">
+<strong>‘হাতির শুঁড়’</strong>: ১৯৫৮ সালে স্বৈরশাসক আইয়ুব খানকে বিদ্রুপ করে ‘সমকাল’ পত্রিকায় এ কবিতাটি লেখেন।
+    </p><p class="answer">
+<strong>‘টেলেমেকাস’</strong>: ১৯৬৬ সালে বঙ্গবন্ধু শেখ মুজিবুর রহমান কারাগারে বন্দী হলে তাঁকে উদ্দেশ্য করে তিনি এ কবিতাটি লেখেন।
+    </p><p class="answer">
+<strong>‘বর্ণমালা, আমার দুঃখিনী বর্ণমালা’</strong>: ১৯৬৮ সালে আইয়ুব খান পাকিস্তানের সব ভাষার জন্য অভিন্ন রোমান হরফ চালু করার প্রস্তাব করেন। এ ঘটনার ফলে শামসুর রাহমান কবিতাটি লেখেন।
+    </p><p class="answer">
+<strong>‘আসাদের শার্ট’</strong>: ১৯৬৯ সালের ২০ জানুয়ারি গণমিছিলে একটি মিছিলে সামনে লাঠিতে শহীদ আসাদের শার্ট দিয়ে বানানো পতাকা দেখে আলোড়িত শামসুর রাহমান কবিতাটি লেখেন।
+    </p><p class="answer">
+<strong>‘স্বাধীনতা তুমি’</strong> ও <strong>‘তোমাকে পাওয়ার জন্যে হে স্বাধীনতা’</strong>: মুক্তিযুদ্ধের সময় এপ্রিলের প্রথম দিকে যুদ্ধের ধ্বংসলীলা দেখে তিনি এ দুটি কবিতা লেখেন।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">শামসুর রাহমান রচিত ‘স্বাধীনতা তুমি’ কবিতার মূলভাব লিখুন। <span class="bcs">৪৫তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">শামসুর রাহমান মুক্তিযুদ্ধকালীন মুক্তিযুদ্ধের পটভূমিতে ‘মজলুম আদিব’ ছদ্মনামে ‘বন্দী শিবির থেকে’ (১৯৭২) কাব্যগ্রন্থটি রচনা করেন। এ কাব্যের প্রতিটি কবিতায় স্বাধীনতা যুদ্ধকালীন আবেগ ও প্রত্যাশা ব্যক্ত হয়েছে। কাব্যটির ৩৮টি কবিতার মধ্যে অন্যতম কবিতা ‘স্বাধীনতা তুমি’। মহান মুক্তিযুদ্ধের সময় এপ্রিলের প্রথমদিকে যুদ্ধের ধ্বংসলীলা দেখে, তা থেকে পরিত্রাণের নিমিত্তে স্বাধীনতার প্রকৃত অর্থ বা চিত্র প্রস্ফুটিত করতেই তিনি এ কবিতাটি রচনা করেন। স্বাধীনতা যে কেবল একটি নির্দিষ্ট ক্ষেত্রে আবদ্ধ নয় বা কোনো গণ্ডিতে আবদ্ধ নয়, তা স্পষ্ট ‘স্বাধীনতা তুমি’ কবিতায়। স্বাধীনতাকে কবি বলেছেন রবীন্দ্রনাথের অজর কবিতা, নজরুলের মহান পৌরুষ, শহীদ মিনারের একুশ ফেব্রুয়ারির উজ্জ্বল সভা, পতাকাসহ উচ্চকণ্ঠ মিছিল। মার্তণ্ড আলোয় বাংলার চিরায়ত রূপ। এ রূপকেই তিনি কবিতায় স্বাধীনতার উপজীব্য করেছেন। মাঠভরা ফসল দেখে কৃষক যেমন আনন্দিত হয়, তার পরিশ্রমের ফসল মাঠে বাতাসে মাথা দোলাতে দেখে যে আনন্দ হয়, সেই আনন্দঘন দৃশ্যই স্বাধীনতা। তাই বলেন, ‘স্বাধীনতা তুমি ফসলের মাঠে কৃষকের হাসি।’ তিনি এ কবিতায় স্বাধীনতাকে কখনও কোনো মেয়ের মধ্যপুকুরে অবাধ সাঁতার, কখনও মঞ্জুর যুবকের ঝল্সিত দক্ষ বাহুর গ্রন্থিল পেশি, কোথাও তরুণ দীপ্ত শিক্ষার্থীর তেজদ্দীপ্ত ভাষণের কণ্ঠস্বর, কালবোশেখী দিনে শ্রাবণে অকূল মেঘনার কূল অথবা উঠানে মায়ের হলুদ শাড়ির আঁচল হিসেবে বর্ণনা করেছেন। কবিতাটির প্রতিটি অক্ষরের মর্মার্থ যেন বাংলাদেশের স্বাধীনতাকে গৌরবান্বিত করা হয়েছে।
+    </p></div></article></section>
+<section class="author" data-name="সুকান্ত ভট্টাচার্য" id="a19">
+<header class="a-head">
+<div class="a-num">১৯</div>
+<div class="a-meta">
+<h2 class="a-name">সুকান্ত ভট্টাচার্য</h2>
+<div class="a-sub"><span class="a-years">১৯২৬-১৯৪৭</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">
+        কিশোর কবি সুকান্ত ভট্টাচার্যের কবিতা যেন জ্বলন্ত অগ্নিপিণ্ড, যা স্বাধীনতা যুদ্ধের সময় মুক্তিকামী বাঙালির মনে বিশেষ শক্তি ও সাহস জুগিয়েছে। তাঁর কাব্যে অন্যায়-অবিচার, শোষণ-বঞ্চনার বিরুদ্ধে বিদ্রোহ, বিপ্লব ও মুক্তির আহ্বান প্রাধান্য পেয়েছে।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>সুকান্ত ভট্টাচার্য ১৫ আগস্ট, ১৯২৬ সালে (৩০ শ্রাবণ, ১৩৩৩ বঙ্গাব্দ) কলকাতার মহিম হালদার স্ট্রিট, কালীঘাটে (মাতুলালয়) জন্মগ্রহণ করেন।</li>
+<li>পৈতৃক নিবাস গোপালগঞ্জের কোটালিপাড়ার উনশিয়া গ্রামে।</li>
+<li>তিনি বামপন্থী মার্কসবাদী বিপ্লবী কবি হিসেবে খ্যাত হলেও ‘কিশোর কবি’ হিসেবে পরিচিত।</li>
+<li>তিনি ছিলেন দৈনিক পত্রিকা ‘স্বাধীনতা’র কিশোর সভা অংশের প্রতিষ্ঠাতা ও সম্পাদক।</li>
+<li>তিনি ১৪ মে, ১৯৪৭ সালে (২৯ বৈশাখ, ১৩৫৪ বঙ্গাব্দ) যক্ষ্মা রোগে আক্রান্ত হয়ে যাদবপুর টিবি হাসপাতালে মৃত্যুবরণ করেন। (তিনি মাত্র ২০ বছর ৯ মাস জীবিত ছিলেন)।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত গ্রন্থসমূহের নাম কী?</div></div><div class="a"><p class="answer"><strong>‘ছাড়পত্র’</strong> (১৯৪৮): এটি কবির মৃত্যুর তিনমাস পরে প্রকাশিত হয়। শোষিত মানুষের জীবন-যন্ত্রণা, ক্ষোভ ও বিদ্রোহ, অনাচার ও বৈষম্যের প্রতিবাদ এ কাব্যের প্রধান বিষয়বস্তু। এ কাব্যের কবিতা: ‘ছাড়পত্র’, ‘আঠারো বছর বয়স’, ‘প্রার্থী’, ‘রানাল’।
+    </p><p class="answer">
+        ‘ঘুম নেই’ (১৯৫০), ‘পূর্বাভাস’ (১৯৫০), ‘মিঠেকড়া’ (১৯৫১), ‘অভিযান’ (১৯৫৩), ‘হড়তাল’ (১৯৬২), ‘গীতিগুচ্ছ’ (১৯৬৫)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তিনি কোন সাহিত্য সংকলন সম্পাদনা করেন?</div></div><div class="a"><p class="answer"><strong>‘আকাল’</strong> (১৯৪৩): পঞ্চাশের মন্বন্তর এ সংকলনের কবিতাগুলোর মূল প্রেরণা। ১৯৬৬ সালে সুভাষ মুখোপাধ্যায়ের ভূমিকা সহ এর নতুন সংস্করণ প্রকাশিত হয়। এটি ছিল জীবিত অবস্থায় প্রকাশিত তাঁর একমাত্র গ্রন্থ।
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tbody>
+<tr>
+<td>গীতাঞ্জলি (কাব্যগ্রন্থ)</td>
+<td rowspan="3">রবীন্দ্রনাথ ঠাকুর</td>
+</tr>
+<tr>
+<td>গীতালি (কাব্যগ্রন্থ)</td>
+</tr>
+<tr>
+<td>গীতবিতান (কাব্যগ্রন্থ)</td>
+</tr>
+<tr>
+<td>গীতিগুচ্ছ (কাব্যগ্রন্থ)</td>
+<td>সুকান্ত ভট্টাচার্য</td>
+</tr>
+</tbody>
+</table></div></section>
+<section class="author" data-name="সেলিম আল দীন" id="a20">
+<header class="a-head">
+<div class="a-num">২০</div>
+<div class="a-meta">
+<h2 class="a-name">সেলিম আল দীন</h2>
+<div class="a-sub"><span class="a-years">১৯৪৯-২০০৮</span><span class="a-role">নাট্যকার</span></div>
+</div>
+</header><p class="lead">
+        স্বাধীনতা-উত্তরকালের প্রখ্যাত নাট্যকার, জাহাঙ্গীরনগর বিশ্ববিদ্যালয়ের বাংলা বিভাগের অধ্যাপক নাট্যাচার্য সেলিম আল দীন ঢাকা থিয়েটারের সঙ্গে যুক্ত ছিলেন। তিনি লোকজ উপাদানের সাথে মিথ বা পুরাণকেও অসাধারণভাবে ব্যবহার করে নাটকে কবিতা, গান, গল্প ও নাট্যের সমন্বয় ঘটিয়েছেন চমৎকারভাবে। তিনি নাটকের ফর্ম ও ভাষা নিয়ে নিরীক্ষাধর্মী গবেষণামূলক কার্যক্রম পরিচালনা করে বাংলা নাটককে সমৃদ্ধ করেছেন। তিনি পাশ্চাত্য শিল্পের সব বিভাজনকে বাঙালির সহস্র বছরের নন্দনতত্ত্বের আলোকে অস্বীকার করে এক নবতর শিল্পরীতি প্রবর্তন করে, যার নাম দেন ‘দ্বৈতাদ্বৈতবাদী শিল্পতত্ত্ব’। এ রীতিতে লেখা তাঁর নাটকগুলোতে নিম্নতলার মানুষের সামাজিক-নৃতাত্ত্বিক পটে তাদের বহুমাত্রিক বাস্তবতাই উঠে আসে। ভাঙা মানুষ, লাঞ্ছিত নারী এবং অস্পৃশ্য শ্রেণির মানুষেরই ভিড় তাঁর নাটকে।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>সেলিম আল দীন ১৮ আগস্ট, ১৯৪৯ সালে ফেনীর সোনাগাজীর সেনেরখিল গ্রামে জন্মগ্রহণ করেন।</li>
+<li>তাঁর প্রকৃত নাম মঈনুদ্দিন আহমেদ।</li>
+<li>তিনি প্রথমে বিজ্ঞাপনী সংস্থা ‘বিটপী’তে কপিরাইটার হিসেবে চাকরি জীবন শুরু করেন এবং ১৯৭৪ সালে জাহাঙ্গীরনগর বিশ্ববিদ্যালয়ের বাংলা বিভাগে প্রভাষক হিসেবে যোগদান করেন। পরবর্তীতে নাটক ও নাট্যতত্ত্ব বিভাগের প্রতিষ্ঠাতা চেয়ারম্যান হন এবং আমৃত্যু এ বিভাগে কর্মরত ছিলেন।</li><li>তিনি বাংলা নাট্য সাহিত্যে এথনিক থিয়েটারের উদ্ভাবনকারী এবং ‘নাট্যাচার্য’ হিসেবে খ্যাত।</li><li>তাঁর শিল্পচিন্তার নাম ছিল ‘কথানাট্য’।</li><li>বাংলাদেশে ‘গ্রাম থিয়েটার’ এর প্রবর্তক সেলিম আল দীন। তিনি ১৯৮১-৮২ সালে নাট্য-নির্দেশক নাসির উদ্দীন ইউসুফকে সাথে নিয়ে সারাদেশে ‘গ্রাম থিয়েটার’ গড়ে তোলেন।</li><li>তিনি ‘ঢাকা থিয়েটার’ এর প্রতিষ্ঠাতা সদস্য ছিলেন।</li><li>তিনি ‘বাংলা একাডেমি পুরস্কার’ (১৯৯৪), ‘একুশে পদক’ (২০০৭), ‘জাতীয় চলচ্চিত্র পুরস্কার’ (১৯৯৩, ৯৬) পান।</li><li>তিনি ১৪ জানুয়ারি, ২০০৮ সালে ঢাকায় মারা যান। জাহাঙ্গীরনগর বিশ্ববিদ্যালয়ে তাঁকে সমাহিত করা হয়।</li></ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর প্রথম প্রকাশিত প্রবন্ধ কোনটি?</div></div><div class="a"><p class="answer"><strong>‘নিগ্রো সাহিত্য’</strong> (১৯৬৮): এটি প্রথম প্রকাশিত হয় কবি আহসান হাবীব সম্পাদিত ‘দৈনিক পাকিস্তান’ পত্রিকায়।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর নাটকগুলোর নাম কী কী?</div></div><div class="a"><p class="answer"><strong>‘বিপরীত তমসায়’</strong> (১৯৬৯): এটি রেডিওতে প্রচারিত তাঁর প্রথম নাটক।
+    </p><p class="answer">
+<strong>‘ঘুম নেই’</strong> (১৯৭০): টেলিভিশনে প্রচারিত তাঁর প্রথম নাটক। প্রথমে এটির নাম ছিল ‘লিব্রিয়াম’। নাটকটি প্রযোজনা করেন আতিকুল হক চৌধুরী।
+    </p><p class="answer">
+<strong>‘সর্প বিষয়ক গল্প’</strong> (১৯৭২): এটি আমিরুল হক চৌধুরী নির্দেশিত এবং বহুবচন প্রযোজিত তাঁর প্রথম মঞ্চনাটক।
+    </p><p class="answer">
+<strong>‘মুন্তাসির’</strong> (১৯৮৬): নাটকটির প্রথমে নাম ছিল ‘মুন্তাসির ফ্যান্টাসি’। পরবর্তীতে তিনি নাটকটি থেকে ‘ফ্যান্টাসি’ অংশটুকু বাদ দিয়ে শুধু ‘মুন্তাসির’ রাখেন। এ নাটকে প্রাধান্য পেয়েছে সেনা ও স্বৈরশাসকের কীর্তিকলাপ। বিশ শতকের আশির দশকের স্বৈরশাসকের কবল থেকে এ দেশের কিছুই রক্ষিত হচ্ছিল না, সেই চিত্রই এখানে উপস্থাপিত। হাস্যরসের মাধ্যমে নাট্যকার দেখিয়েছেন, কিভাবে সেনা স্বৈরশাসকেরা দেশের প্রতিষ্ঠানসমূহের সাথে সাথে শুভবোধ ও সংস্কৃতিকেও ধ্বংস করে।
+    </p><p class="answer">
+<strong>‘চাকা’</strong> (১৯৯১): এটি কথানাট্য। নাটকটি নিয়ে ১৯৯৩ সালে চলচ্চিত্র নির্মিত হয়।
+    </p><p class="answer">
+<strong>‘হরগজ’</strong> (১৯৯২): মানিকগঞ্জ জেলার হরগজ নামক স্থানে ১৯৮৯ সালে সংঘটিত প্রলয়সদৃশ টর্নেডো পরবর্তী উদ্ধারপর্বে একটি ত্রাণের দলের দেখা প্রকৃতি ও প্রাণিজগতের নানান স্তর এ নাটকের মূল উপজীব্য।
+    </p><p class="answer">
+<strong>‘হাতহদাই’</strong> (১৯৯৭): এটি নোয়াখালির আঞ্চলিক ভাষায় রচিত।
+    </p><p class="answer">
+<strong>‘ধাবমান’</strong> (২০০৭): নেত্রকোনার বিরিশিরি-দুর্গাপুরের সিমান্ত অঞ্চল ও সোমেশ্বরী নদী এর আখ্যানের পটভূমি। বাঙালি ও গারোদের হাজার বছরের সংঘাত-যুদ্ধ-ধর্মান্তর প্রক্রিয়ার ব্যাপক অঘটনের মধ্য দিয়ে চলতে থাকে প্রান্তিক এলাকার বসবাসরত দুই জাতির ক্রিয়া-প্রতিক্রিয়া। এ প্রেক্ষাপটে সোহরাব নামে এক মহিষকে নিয়ে এ নাটকের কাহিনি গড়ে উঠেছে।
+    </p><p class="answer">
+        ‘সর্প বিষয়ক গল্প ও অন্যান্য নাটক’ (১৯৭৫), ‘জন্ডিস ও বিবিধ বেলুন’ (১৯৭৫), ‘পুত্র’ (১৯৮২), ‘জুলুস’ (১৯৮৩), ‘বাসন’ (১৯৮৫), ‘শকুন্তলা’ (১৯৮৬), ‘কেরামতমঙ্গল’ (১৯৮৮), ‘যৈবতী কন্যার মন’ (১৯৯৩), ‘বনপাংশুল’ (১৯৯৬), ‘প্রাচ্য’ (২০০০), ‘নিমজ্জন’ (২০০২), ‘স্বর্ণবোয়াল’ (২০০৭), ‘এক্সপ্রোসিড ও মূল সমস্যা’, ‘সং কাঁকড়ার ডকুমেন্টারি’।
+    </p><p class="answer">
+<span class="bold">রেডিও-টেলিভিশনে প্রচারিত নাটক:</span> ‘রক্তের আঙুরলতা’, ‘অশ্রুত গান্ধার’ (১৯৭৫), ‘শেকড় কাঁদে জলকণার জন্য’ (১৯৭৭), ‘ভাঙনের শব্দ শুনি’ (১৯৮২), ‘গ্রন্থিকগণ কহে’ (১৯৯০), ‘ছায়া শিকারী’ (১৯৯৪), ‘রঙের মানুষ’ (২০০০), ‘নকশীপাড়ের মানুষেরা’ (২০০০)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">সেলিম আল দীনের অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer">
+<span class="bold">গীতিনৃত্যনাট্য:</span> ‘উষা উৎসব ও স্বপ্ন রমনীগণ’ (২০০৭)।<br/>
+<span class="bold">কাব্যগ্রন্থ:</span> ‘কবি ও তিমি’ (১৯৯০)।<br/>
+<span class="bold">উপন্যাস:</span> ‘অমৃত উপাখ্যান’ (২০০৫)।<br/>
+<span class="bold">গবেষণাগ্রন্থ:</span> ‘মধ্যযুগের বাংলা নাট্য’ (১৯৯৬)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">সেলিম আল দীনের নিরীক্ষামূলক একটি নাটকের পরিচয় দিন। <span class="bcs">৪৬তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">স্বাধীনতা-উত্তরকালের প্রখ্যাত নাট্যকার, নাট্যাচার্য সেলিম আল দীন বাংলা নাট্য সাহিত্যে এথনিক থিয়েটারের উদ্ভাবনকারী ও ‘গ্রাম থিয়েটার’ এর প্রবর্তক। লোকজ উপাদানের সাথে মিথ বা পুরাণকেও অসাধারণভাবে ব্যবহার করে তিনি নাটকে কবিতা, গান, গল্প ও নাট্যের সমন্বয় ঘটিয়েছেন চমৎকারভাবে। তিনি নাটকের ফর্ম ও ভাষা নিয়ে নিরীক্ষাধর্মী গবেষণামূলক কার্যক্রম পরিচালনা করে বাংলা নাটককে সমৃদ্ধ করেছেন। তাঁর নিরীক্ষাধর্মী দ্বৈতাদ্বৈতবাদী শিল্পরীতিতে রচিত নাটকসমূহের মধ্যে অন্যতম ‘কীর্তনখোলা’ (১৯৮৬)। স্থানীয় এক মেলাকে কেন্দ্র করে এ নাটকটির গতি প্রবাহিত হয়েছে অজস্র অবিচ্ছেদ্য ঘটনাস্রোতে। নাটকের দৃশ্যমান কাহিনির শুরু ও শেষ মেলা চলাকালে সংক্ষিপ্ত পরিসরের। কিন্তু নাটকের ব্যাপ্তি ৩-৪ দিনের মধ্যে সীমাবদ্ধ না থেকে হয়েছে ত্রিকাল-সংস্পর্শী সুদূর অতীত, বিশাল বর্তমান আর অসীম ভবিষ্যতের মাঝে নাটকটির কাহিনির শিকড়-বাকড় সঞ্চারিত। দেবী মনসার জীবনবৃত্তান্ত, তার যন্ত্রণা, লাউয়া সম্প্রদায়ের জন্মকথা, বর্তমান সংকট এবং প্রতিটি চরিত্রের অতীত, বর্তমান ও ভবিষ্যতের আলেখ্য বর্ণিত হয়েছে নাটকটিতে। দ্বিতীয় বিশ্বযুদ্ধ পরবর্তী সময়ে কীর্তনখোলা গ্রামে গড়ে ওঠা একটি
+     
+        মাজারকে কেন্দ্র প্রতি বছর মাঘী পূর্ণিমায় মেলা বসে। এ মেলায় আসা যাত্রাদলের চরিত্রের অভ্যন্তরীণ প্রেম, ভালোবাসা, বিরহ, নিষ্ঠুরতা লোভ যেমন তুলে ধরা হয়েছে, তেমনি এ নাটকে আছে মানুষের বিভিন্ন পর্যায়ে রূপান্তরের কাহিনি। মানব জীবনের রূপান্তরশীলতার কথাই এখানে মুখ্য হয়ে উঠেছে। নানা ঘাত-প্রতিঘাত, ঘটনা-প্রতিঘটনা, সংকট-সম্ভাবনা, বাস্তবতা-পারিপার্শ্বিকতার প্রেক্ষিতে মানুষ অন্তর্গত এবং বাহ্যিকভাবে রূপান্তরিত হয়। এ রূপান্তর অনাকাঙ্ক্ষিত হলেও অনিবার্য। ফলে রূপান্তর কখনো হাহাকারের ও বেদনার; আবার কখনো সফলতার ও আনন্দের। নাটকের চরিত্র শামছুল বয়াতি যেমনটি সোনাকে বলেছে, ‘এ হইতাছে রূপ বদলের লড়াই বাবা। এক রূপ চিরদিন থাকে না।’ নাটকটিতে কেন্দ্রীয় চরিত্র না থাকলেও সোনাই চরিত্রটি বারবার উপস্থিত হয়। সে একসময় অবস্থাসম্পন্ন ব্যক্তি থাকলেও নাটকে দিনমজুর হিসেবে দেখা মেলে। সোনাই মেলায় আসা বেদের মেয়ে ডলিমনকে ভালোবাসে। কিন্তু ডলিমন তাকে পছন্দ করলেও নিজ গোত্র ছেড়ে আসতে নারাজ। নাটকে অন্ত্যজ ডোম শ্রেণির চরিত্রের মাধ্যমে নারীজীবন ও নিচুবর্ণের সমাজবাস্তবতা উপস্থাপিত হয়েছে। এখানে কোনো সুনির্দিষ্ট বিষয়কে কেন্দ্র করে নয়, মেলাকে কেন্দ্রে রেখে সমগ্র বাংলাদেশের আর্থ-সামাজিক, রাজনৈতিক, অর্থনৈতিক বিষয় গুরুত্ব সহকারে উপস্থাপিত হয়েছে। এটি নিয়ে ২০০০ সালে চলচ্চিত্র নির্মিত হয়।
+    </p></div></article></section>
+<section class="author" data-name="সৈয়দ ওয়ালীউল্লাহ" id="a21">
+<header class="a-head">
+<div class="a-num">২১</div>
+<div class="a-meta">
+<h2 class="a-name">সৈয়দ ওয়ালীউল্লাহ</h2>
+<div class="a-sub"><span class="a-years">১৯২২-১৯৭১</span><span class="a-role">কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">
+        বাংলা কথাসাহিত্যের অন্যতম শ্রেষ্ঠ রূপকার, জীবনসন্ধানী ও সমাজ-সচেতন শিল্পী সৈয়দ ওয়ালীউল্লাহ। তিনি ব্যক্তিজীবন ও সমাজসমস্যার প্রেক্ষাপটে ধর্মীয় ও সামাজিক কুসংস্কার, মূল্যবোধের বিপর্যয়, মানসিক স্খলন ও পতনের আলেখ্য উজ্জ্বলভাবে অঙ্কন করেছেন। মুক্তিযুদ্ধকালে তিনি প্রবাসে ইউনেস্কোতে কর্মরত থাকায় স্বাধীনতা সংগ্রামের পক্ষে বিশ্ব জনমত গড়ার ক্ষেত্রে কাজ করেন।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>সৈয়দ ওয়ালীউল্লাহ ১৫ আগস্ট, ১৯২২ সালে চট্টগ্রামের ষোলশহরে জন্মগ্রহণ করেন। আদি নিবাস নোয়াখালী।</li>
+<li>তিনি ‘Contemporary’ নামে একটি ইংরেজি পত্রিকা প্রকাশ করেন। ১৯৪৫ সালে কলকাতার ‘দৈনিক স্টেটসম্যান’ পত্রিকার সহ-সম্পাদক পদে যোগদান করেন।</li>
+<li>১৯৫৬ সালে সিডনী দূতাবাসে কর্মরত থাকা অবস্থায় সিডনীর ফরাসী দূতাবাসে কর্মরত অ্যান মারিকে বিবাহ করেন। অ্যান মারি ধর্মান্তরিত হয়ে নাম রাখেন আজিজা মোসাম্মত নাসরিন। যদিও তিনি এ নামে পরিচিত হননি।</li>
+<li>তিনি ‘বাংলা একাডেমি সাহিত্য পুরস্কার’ (১৯৬১), ‘আদমজী সাহিত্য পুরস্কার’ (১৯৬৫), ‘একুশে পদক’ (১৯৮৩- মরণোত্তর) পান।</li>
+<li>তিনি ১০ অক্টোবর, ১৯৭১ সালে প্যারিসে মৃত্যুবরণ করেন। প্যারিসের উপকণ্ঠে মঁদো-স্যুর বেলভুতে তাকে সমাহিত করা হয়।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">সৈয়দ ওয়ালীউল্লাহ্ প্রকাশিত প্রথম গল্পের নাম কী?</div></div><div class="a"><p class="answer"><strong>‘হঠাৎ আলোর ঝলকানি’</strong>: এটি ঢাকা কলেজ ম্যাগাজিনে প্রকাশিত হয়।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাসসমূহ কী কী? <span class="bcs">২১/১০তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer"><strong>‘লালসালু’</strong> (১৯৪৮): এতে গ্রাম-বাংলায় ধর্ম নিয়ে একটি শ্রেণির ব্যক্তিস্বার্থ অর্জন ও নারী জাগরণের চিত্র ফুটে উঠেছে। উপন্যাসটি প্রথম প্রকাশিত হয় ১৯৪৮ সালে ঢাকার ‘কমরেড পাবলিশার্স’ থেকে। এর প্রকাশক ছিলেন মুহাম্মদ আতাউল্লাহ। ১৯৬০ সালে উর্দু ভাষায় ‘Lal Shalu’ নামে করাচি থেকে প্রকাশিত হয়। অনুবাদক ছিলেন কলিমুল্লাহ। ১৯৬১ সালে সৈয়দ ওয়ালীউল্লাহর সহধর্মিণী অ্যান-মারি-থিবো L’arbre sans racines নামে ফরাসি ভাষায় অনুবাদ করেন, যা প্যারিসের Editions du Seuil প্রকাশনী থেকে প্রকাশিত হয়। ১৯৬৭ সালে এর ইংরেজি অনুবাদ ‘Tree without Roots’ নামে লন্ডনের Chatto and Windus Ltd. এটি প্রকাশ করেন। সৈয়দ ওয়ালীউল্লাহ নিজেই এটি ইংরেজিতে অনুবাদ করেন। পরবর্তীতে এটি জার্মান, চেক, ইন্দোনেশীয় ও জাপানি ভাষাসহ বিভিন্ন ভাষায় অনূদিত হয়। ২০০১ সালে উপন্যাসটি তানভীর মোকাম্মেল ‘লালসালু’ নামে চলচ্চিত্রে রূপদান করেন। এতে মজিদ চরিত্রে অভিনয় করেছেন রাইসুল ইসলাম আসাদ।
+    </p><p class="answer">
+<strong>‘চাঁদের অমাবস্যা’</strong> (১৯৬৪): আরেফ আলী নামের এক স্কুল মাস্টারকে অবলম্বন করে মানুষের চেতনাগত জটিলতা উল্লেখ প্রসঙ্গে সামন্ত-সমাজ প্রভাবিত গ্রামীণ জীবনের নানা অসঙ্গতি এ উপন্যাসের মূল বিষয়। এটি মনঃসমীক্ষণমূলক অস্তিত্ববাদী উপন্যাস। এক জোছনা রাতে আরেফ আলী ঘর থেকে বের হয়ে দেখে বাঁশঝাড়ের ভেতর এক নগ্ন যুবতির লাশ পড়ে আছে। পাশে দণ্ডায়মান কাদের মিয়া (আরেফ আলী যে বাড়িতে আশ্রিত সেই বাড়ির মালিক)। কাদেরের সহযোগী হয়ে সে লাশ নদীতে ফেলে দেয়। কিন্তু এ সত্য কথাটি সে বলতে দ্বিধাদ্বন্দ্বে ভোগে। একদিকে আশ্রয় হারানোর ভয়, অন্যদিকে সত্য গোপনের যন্ত্রণা। অবশেষে নিজের অস্তিত্বকে বিলীন করে দাদা সাহেব ও আইন কর্তৃপক্ষের নিকট সব সত্য বলে দিয়ে নিজে অস্তিত্ববান হয়ে ওঠে। আরেফ আলী চরিত্রের মাধ্যমে উপন্যাসটিতে অস্তিত্ববাদী জীবনদর্শন রূপায়িত হয়েছে। <b class="chr">চরিত্র:</b> আরেফ আলী, কাদের (দরবেশ), আলফাজ উদ্দিন (দাদা সাহেব)। <span class="bcs">২৩/১৩তম বিসিএস লিখিত</span>
+</p><p class="answer">
+<strong>The Ugly Asian</strong>: এটি ইংরেজিতে রচিত। এটি শিবব্রত বর্মণ ‘কদর্য এশীয়’ (২০০৬) নামে অনুবাদ করেন।
+    </p><p class="answer">
+<strong>‘কাঁদো নদী কাঁদো’</strong> (১৯৬৮): ধর্মের নামে আচার-সর্বস্বতা, বিজ্ঞানের নামে অদৃষ্টবাদিতা, বাস্তবতার নামে স্বপ্ন-কল্পনা ইত্যাদির বিরুদ্ধাচরণ, ব্যক্তির সামগ্রিক জীবনের সুখ-দুঃখ ইত্যাদির সার্থক রূপায়ণ এ উপন্যাস। এ মনঃসমীক্ষণমূলক উপন্যাসে ফুটে উঠেছে একদিকে মুহাম্মদ মুস্তফার করুণ জীবনালেখ্য, অন্যদিকে শুকিয়ে যাওয়া বাকাল নদীর তীরবর্তী মানুষের জীবনচিত্র। এটি চেতনাপ্রবাহ রীতিতে লেখা। বাংলা সাহিত্যে ওয়ালীউল্লাহ প্রথম চেতনাপ্রবাহ রীতির প্রয়োগ ঘটান।
+    </p><p class="answer">
+<strong>How to cook beans</strong>: এটি ব্যঙ্গাত্মক উপন্যাস। এটি শিবব্রত বর্মণ ‘শিম কিভাবে রান্না করতে হয়’ নামে অনুবাদ করেন।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘লালসালু’ উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">গ্রাম-বাংলায় ধর্ম নিয়ে একটি শ্রেণির ব্যক্তিস্বার্থ অর্জন ও নারী জাগরণের চিত্র নিয়ে সৈয়দ ওয়ালীউল্লাহ রচনা করেন
+     
+        ‘লালসালু’ (১৯৪৮)। নোয়াখালী অঞ্চল থেকে মজিদ নামের একটি কূটচরিত্র গারোপাহাড়ি অঞ্চলে গিয়ে সেই এলাকার মানুষকে ধর্মের নামে কিভাবে শোষণ করে, সেই বাস্তব চিত্র ফুটে উঠেছে এ উপন্যাসে। সে এক গ্রামের ভাঙা কবরকে প্রখ্যাত মোদাচ্ছের পিরের কবর বলে সেখানে মাজার প্রতিষ্ঠা করে। ধর্ম ব্যবসায়ী মজিদ অর্থ ও প্রভাব বৃদ্ধির সাথে সাথে অল্পবয়সী জমিলাকে দ্বিতীয় স্ত্রী হিসেবে গ্রহণ করে। সহজ-সরল জমিলার মধ্যে রয়েছে এক ধরণের চঞ্চলতা। মাজারের প্রতি তার কোনো ভক্তি বা শ্রদ্ধা নেই। এতে বিচলিত হয়ে উঠে মজিদ। তাই জমিলাকে শাস্তি দেয়ার জন্য মাজার ঘরে বেঁধে রাখে। মজিদ গ্রামের মোড়লদেরও নিয়ন্ত্রণ করে একক আধিপত্য প্রতিষ্ঠা করে। তবে শেষে স্বল্পবয়সী স্ত্রী জমিলা কর্তৃক সে লাঞ্ছিত হয়, মাজারের গায়ে পা লেগে থাকে জমিলার। <b class="chr">চরিত্র:</b> মজিদ, জমিলা, আমেনা, রহিমা, আক্কাস, খালেক ব্যাপারী, তানু, ধলা মিয়া, দুদু মিঞা, হাসুনির মা।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর নাটকসমূহ কী কী?</div></div><div class="a"><p class="answer"><strong>‘বহিঃপীড়’</strong> (১৯৬০): এ নাটকে ধর্মকে কিভাবে ভণ্ড বহিপীর নিজের সুবিধার্থে কাজে লাগিয়েছে তাই ফুটে উঠেছে। <b class="chr">চরিত্র:</b> বহিপীর, তাহেরা, হাতেম, হাশেম।
+    </p><p class="answer">
+<strong>‘সুরঙ্গ’</strong> (১৯৬৪): এ নাটকে মানুষের চেতনার গভীরস্থ লোভ, লালসা, ঘৃণা, ঈর্ষাকে রূপকাশ্রয়ে তুলে ধরেছেন।
+    </p><p class="answer">
+<strong>‘তরঙ্গভঙ্গ’</strong> (১৯৬৫): অস্তিত্বের সংকটে নিপতিত মানুষের অন্তর্গত আর্তনাদ শব্দরূপ পেয়েছে এ নাটকে। <b class="chr">চরিত্র:</b> আমেনা, মতলুব আলী।
+    </p><p class="answer">
+<strong>‘উজানে মৃত্যু’</strong> (১৯৬৬): আধুনিক সভ্যতার অন্তঃসারশূন্যতা, এর ক্লান্তিকর পথপরিক্রমা, নিরাশাবাদী ভাব কিন্তু সুখের জন্য অসীম প্রতীক্ষা, যা শেষ হবার নয়, এগুলোই এ নাটকের বিষয়বস্তু। এটি একটি অ্যাবসার্ড নাটক।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর গল্পগ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer"><strong>‘নয়নচারা’</strong> (১৯৪৫): এটি তার প্রথম গল্পগ্রন্থ, যা ছাত্রাবস্থায় প্রকাশিত হয়।
+    </p><p class="answer">
+<strong>‘দুই তীর ও অন্যান্য গল্প’</strong> (১৯৬৫): এ গ্রন্থের বিখ্যাত গল্প ‘একটি তুলসী গাছের কাহিনী’।
+    </p><p class="answer">
+<strong>‘গল্প সমগ্র’</strong> (১৯৭২)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">উপন্যাসের নাম উল্লেখ করে সৈয়দ ওয়ালীউল্লাহর স্বাতন্ত্র্য নিরূপণ করুন। <span class="bcs">৪৪তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">জীবনসন্ধানী ও সমাজ-সচেতন শিল্পী সৈয়দ ওয়ালীউল্লাহ সমাজের রন্ধ্রে রন্ধ্রে লেপ্টে থাকা সমস্যাগুলো প্রত্যক্ষ করে তাঁর রচিত সাহিত্যে উপস্থাপন করেছেন। গ্রাম-বাংলার ধর্ম নিয়ে একটি শ্রেণির ব্যক্তিস্বার্থ অর্জন ও নারী জাগরণের চিত্র নিয়ে তিনি রচনা করেন ‘লালসালু’ উপন্যাসটি। এ উপন্যাসের মাধ্যমে তিনি ধর্মীয় গোঁড়ামী ও মজিদরূপী ধর্মব্যবসায়ীদের মর্মমূলে লাথি মেরেছেন, যা অন্যান্য উপন্যাস সাহিত্যে চপেটাঘাত। আরেফ আলী নামের এক স্কুল মাস্টারকে কেন্দ্র করে সামন্ত-সমাজ প্রভাবিত গ্রামীণ জীবনের নানা অসঙ্গতি নিয়ে রচিত মনঃসমীক্ষণমূলক অস্তিত্ববাদী উপন্যাস ‘চাঁদের অমাবস্যা’। এ উপন্যাসে তিনি ব্যক্তিক জীবনকে উপেক্ষা করে সমষ্টিগত শুভ চেতনাকে পরিব্যাপ্ত করতে আরেফ আলীর মাধ্যমে অস্তিত্ববাদকে প্রতিষ্ঠিত করেছেন। ধর্মের নামে আচার-সর্বস্বতা, বিজ্ঞানের নামে অদৃষ্টবাদিতা, ব্যক্তির সামগ্রিক জীবনের সুখ-দুঃখ ইত্যাদির সার্থক রূপায়ণ চেতনাপ্রবাহ রীতির ‘কাঁদো নদী কাঁদো’ উপন্যাস। এ উপন্যাসের চরিত্র মোস্তফা মানসিক যন্ত্রণায় ছটফট করে পরিত্রাণের পথ না পেয়ে আত্মহত্যা করে। বাংলাদেশের আর্থ-সামাজিক প্রেক্ষাপটে সামাজিক শ্রেণিবিন্যাস, মানুষের কুসংস্কার, ধর্মের প্রতি গভীর বিশ্বাস, সামাজিক রীতি-নীতি প্রভৃতি বিষয় তিনটি উপন্যাসেই পরিব্যাপ্ত, যা বাংলা উপন্যাসের ধারায় স্বাতন্ত্র্য ও অনন্য। উপন্যাসের কাহিনি বিন্যাস, চরিত্র চিত্রণ, বিষয়-বৈচিত্র্য প্রভৃতি বিষয়াদি ফুটিয়ে তুলতে মুন্সিয়ানার পরিচয় দিয়েছেন, যা অন্যান্য ঔপন্যাসিক থেকে আলাদা। তিনি ইউরোপীয় সাহিত্য থেকে অস্তিত্ববাদী চেতনা ও চেতনাপ্রবাহরীতি বাংলা উপন্যাসে প্রবর্তন করেন। তিনি মন ও মনন দিয়ে যা সত্য বলে অনুভব করেছেন, তা উপন্যাসে ব্যক্ত করেছেন। ফলে বাংলা উপন্যাস সাহিত্যে তিনি স্বাতন্ত্র্য অবস্থানে নিজেকে প্রতিষ্ঠিত করেছেন। সৈয়দ ওয়ালীউল্লাহ নিজেই বলেছেন- ‘সাহিত্যিক হতে হবে বলে লেখা- সে আমি ঘৃণা করি। প্রাণের উৎস থেকে না বেরুলে সে আবার লেখা! আপনা থেকে যা বেরুবে তাই খাঁটি।’ মানুষের ব্যক্তিজীবন ও সমাজ সমস্যা তাঁর লেখার প্রধান উপজীব্য। তাঁর শিল্প দৃষ্টি ও কথন ভঙ্গিমায় এ বিষয়টি উঠে এসেছে অকৃপণভাবে। আর এখানেই তাঁর স্বাতন্ত্র্য ও শ্রেষ্ঠত্ব।
+    </p></div></article></section>
+<section class="author" data-name="সৈয়দ শামসুল হক" id="a22">
+<header class="a-head">
+<div class="a-num">২২</div>
+<div class="a-meta">
+<h2 class="a-name">সৈয়দ শামসুল হক</h2>
+<div class="a-sub"><span class="a-years">১৯৩৫-২০১৬</span><span class="a-role">সব্যসাচী লেখক</span></div>
+</div>
+</header><p class="lead">
+        বিংশ শতাব্দীর শেষভাগে সক্রিয় প্রখ্যাত সাহিত্যিক সব্যসাচী লেখক সৈয়দ শামসুল হক। ষাট-সত্তরের দশকে যখন যৌনতা চরম লজ্জার বিষয় তখনই তিনি যৌনগন্ধী সাহিত্য রচনা করেন। কবিতা, উপন্যাস, নাটক, ছোটগল্প, অনুবাদ তথা সাহিত্যের সকল শাখায় সাবলীল পদচারণার জন্য তাকে ‘সব্যসাচী লেখক’ বলা হয়।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>সৈয়দ শামসুল হক ২৭ ডিসেম্বর, ১৯৩৫ সালে কুড়িগ্রামে জন্মগ্রহণ করেন।</li>
+<li>প্রখ্যাত লেখিকা ডা. আনোয়ারা সৈয়দ হক তাঁর স্ত্রী।</li>
+<li>তাঁকে সব্যসাচী লেখক নামে অভিহিত করা হয়। সব্যসাচী অর্থ- যার ডান বাম দুই হাত সমানভাবে চলে। যে লেখক সাহিত্যের সকল শাখায় অবাধ বিচরণ করেন, তাকেই সব্যসাচী লেখক বলে। কিন্তু সে বিচারে সৈয়দ শামসুল হক সব্যসাচী লেখক নন। তিনি ও তাঁর সাহিত্যানুরাগী ব্যক্তিবর্গ তাকে সব্যসাচী লেখক হিসেবে প্রতিষ্ঠিত করতে চেয়েছেন। প্রকৃতপক্ষে, সৈয়দ শামসুল হকের প্রথম দিককার গ্রন্থগুলো তাঁর ভাইয়ের লক্ষ্মীবাজারের সব্যসাচী প্রকাশনী থেকে প্রকাশিত হতো। সে দিক থেকেই তাকে সব্যসাচী লেখক বলা হয়।</li>
+<li>তিনি ১৯৬৬ সালে মাত্র ৩১ বছর বয়সে ‘বাংলা একাডেমি সাহিত্য পুরস্কার’ পান (এ পুরস্কার প্রাপ্ত সাহিত্যিকদের মধ্যে তিনি সবচেয়ে কম বয়সী)। এছাড়াও তিনি ‘আদমজী সাহিত্য পুরস্কার’ (১৯৬৯), ‘একুশে পদক’ (১৯৮৪), ‘স্বাধীনতা পুরস্কার’ (২০০০) লাভ করেন।</li>
+<li>তিনি ২৭ সেপ্টেম্বর, ২০১৬ সালে মৃত্যুবরণ করেন। তাঁর ইচ্ছানুযায়ী কুড়িগ্রাম সরকারি কলেজ মাঠে তাকে সমাহিত করা হয়।</li></ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত উপন্যাসগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>‘দেয়ালের দেশ’</strong> (১৯৫৬): এটি তাঁর প্রথম উপন্যাস।
+    </p><p class="answer">
+<strong>‘নিষিদ্ধ লোবান’</strong> (১৯৮১): এটি মুক্তিযুদ্ধভিত্তিক উপন্যাস। ২০১১ সালে উপন্যাসটি ‘গেরিলা’ নামে চলচ্চিত্রায়িত করেন নাসিরউদ্দীন ইউসুফ বাচ্চু। <b class="chr">চরিত্র:</b> বিলকিস, সিরাজ।
+    </p><p class="answer">
+<strong>‘নীলদংশন’</strong> (১৯৮১): এটি মুক্তিযুদ্ধভিত্তিক উপন্যাস।
+    </p><p class="answer">
+<strong>‘খেলারাম খেলে যা’</strong> (১৯৭৯): আত্মসুখ সন্ধানী ও ভোগবাদী চেতনার চরিত্র বাবর আলীর মস্তিষ্ককোষে ক্রিয়াশীল ফ্রয়েডীয় লিবিডোর একাধিপত্যের কাহিনি এর বিষয়। যৌন সুড়সুড়ি এ উপন্যাসে বিদ্যমান থাকায় একে ‘পিনআপ নভেল’ বলা হয়। এ ধরনের উপন্যাসকে হুমায়ুন আজাদ ‘অপন্যাস’ বলেছেন।
+    </p><p class="answer">
+        ‘এক মহিলার ছবি’ (১৯৬১), ‘অনুপম দিন’ (১৯৬২), ‘সীমানা ছাড়িয়ে’ (১৯৬৪), ‘দ্বিতীয় দিনের কাহিনী’ (১৯৬৪), ‘আয়না বিবির পালা’ (১৯৬৫), ‘স্তব্ধতার অনুবাদ’ (১৯৬৭), ‘বৃষ্টি ও বিদ্রোহীগণ’ (১৯৮৯), ‘ত্রাহি’ (১৯৮৯), ‘তুমি সেই তরবারি’ (১৯৮৯), ‘নির্বাসিতা’ (১৯৯০), ‘মৃগয়ায় কালক্ষেপণ’, ‘অন্য এক আলিখান’, ‘একমুঠো জন্মভূমি’, ‘আলোর জন্য’, ‘রাজার সুন্দরী’।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত কাব্যগ্রন্থগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>‘পরানের গহীন ভিতর’</strong> (১৯৮০): এটি আঞ্চলিক ভাষারীতিতে রচিত।
+    </p><p class="answer">
+        ‘একদা এক রাজ্যে’ (১৯৬১), ‘বিরতিহীন উৎসব’ (১৯৬৯), ‘বৈশাখ সে রচিত পংক্তিমালা’ (১৯৭০), ‘প্রতিধ্বনিগণ’ (১৯৭৩), ‘অপর পুরুষ’ (১৯৭৮), ‘আমি জন্মগ্রহণ করিনি’ (১৯৯০), ‘ধ্বংসস্তূপে কবি ও নগর’ (২০০৯), ‘নাভিমূলে ভস্মাধার’।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর রচিত উল্লেখযোগ্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer">
+<span class="bold">কাব্যনাট্য:</span><br/>
+<strong>‘পায়ের আওয়াজ পাওয়া যায়’</strong> (১৯৭৬): এটি মুক্তিযুদ্ধভিত্তিক কাব্যনাট্য। এর রচনাকাল ১ মে থেকে ১৩ জুন, ১৯৭৫ সালে লন্ডনের হ্যাম্পস্টেড শহরে। মহান স্বাধীনতা যুদ্ধ শেষে মুক্তিবাহিনীর গ্রামে প্রবেশের ঘটনা এ নাটকে স্থান পেয়েছে। <span class="bcs">৪০তম বিসিএস লিখিত</span>
+</p><p class="answer">
+<strong>‘নুরলদীনের সারাজীবন’</strong> (১৯৮২): ১৭৮২ (১১৮৯ বঙ্গাব্দ) সালের রংপুর-দিনাজপুর অঞ্চলের সামন্তবাদ বিরোধী কৃষক নেতা নুরলদীনের সংগ্রাম নিয়ে রচিত এ নাটক। এ কাব্যনাটকের প্রস্তাবনা অংশ ‘নুরলদীনের কথা মনে পড়ে যায়’ কবিতাটি বিখ্যাত।
+    </p><p class="answer">
+        ‘গণনায়ক’ (১৯৭৬), ‘এখানে এখন’ (১৯৮৮), ‘ঈর্ষা’।<br/>
+<span class="bold">প্রবন্ধ:</span> ‘হৃৎকলমের টানে’ (১৯৯১)।<br/>
+<span class="bold">শিশুতোষ:</span> ‘সীমান্তের সিংহাসন’, ‘আনু বড় হয়’, ‘হাডসনের বন্দুক’।<br/>
+<span class="bold">গল্পগ্রন্থ:</span> ‘তাস’ (১৯৫৪), ‘শীত বিকেল’ (১৯৫৯), ‘রক্তগোলাপ’ (১৯৬৪), ‘আনন্দের মৃত্যু’ (১৯৬৭), ‘প্রাচীন বংশের নিঃস্ব সন্তান’ (১৯৮২), ‘জলেশ্বরীর গল্পগুলো’।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">মুক্তিযুদ্ধভিত্তিক একটি বাংলা নাটকের মূল্যায়ন করুন। <span class="bcs">৩৫/৩১তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">বাংলা সাহিত্য ও মুক্তিযুদ্ধ অনুষঙ্গটি একে অপরের পরিপূরক। মুক্তিযুদ্ধকে কেন্দ্র করে অসংখ্য কবিতা, গল্প, নাটক, উপন্যাস রচিত হয়েছে। সৈয়দ শামসুল হকের মুক্তিযুদ্ধভিত্তিক অন্যতম নাটক ‘পায়ের আওয়াজ পাওয়া যায়’ (১৯৭৬)। এটি বাংলাদেশের মুক্তিযুদ্ধ নিয়ে রচিত তাঁর সর্বাধিক সার্থক ও মঞ্চসফল কাব্যনাট্য। এ নাটকে দেখা যায়, মুক্তিযুদ্ধের শেষ পর্যায়ে মুক্তিবাহিনী গ্রামে প্রবেশ করে। এ সংবাদে গাঁয়ের মাতব্বর আতঙ্কিত হয়ে পড়ে। কারণ, সে ছিল হানাদার বাহিনীর দালাল। সে দালালী করে শত্রু বাহিনীকে সহযোগিতা করেছে। সে গ্রামের অল্পবয়সী মেয়েদেরকে পাকবাহিনীর হাতে তুলে দিয়েছে, কিন্তু পাপের পরিণাম হিসেবে নিজের মেয়েকেও তাদের হাতে তুলে দিতে হয়। ফলে ঐ মাতব্বরের সামনেই তার মেয়ে আত্মহত্যা করে। এরপর মাতব্বর অনুতপ্ত হয়ে বুকফাটা আর্তনাদে আকাশ-বাতাস কাঁপিয়ে তোলে। শেষে মুক্তিযোদ্ধাদের বিচারে তার মৃত্যুদণ্ড হয়। সৈয়দ শামসুল হক অসাধারণ দক্ষতায় ‘পায়ের আওয়াজ পাওয়া যায়’ নাটকে মুক্তিযুদ্ধকে প্রতিফলিত করেন।
+    </p></div></article></section>
+<section class="author" data-name="হুমায়ূন আহমেদ" id="a23">
+<header class="a-head">
+<div class="a-num">২৩</div>
+<div class="a-meta">
+<h2 class="a-name">হুমায়ূন আহমেদ</h2>
+<div class="a-sub"><span class="a-years">১৯৪৮-২০১২</span><span class="a-role">কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">
+        বাংলা সাহিত্যে হুমায়ূন আহমেদ কথাসাহিত্যিক হিসেবে সমধিক খ্যাত। আধুনিক ঔপন্যাসিকদের মধ্যে তিনি শ্রেষ্ঠ ও সর্বাধিক জনপ্রিয়। তাঁর সংলাপপ্রধান গল্প ও উপন্যাসে খুব অল্প বাক্যে তিনি একটি চরিত্র ফুটিয়ে তুলতে পারতেন এবং অতিবাস্তব বিষয়গুলি এমনভাবে অনায়াসে বিশ্বাসযোগ্য করে উপস্থাপন করতেন যেন মনে হয় জাদু বাস্তবতা। যথেষ্ট সমাজসচেতন হয়েও তাঁর রচনায় কোনো রাজনৈতিক প্রণোদনা নেই।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>হুমায়ূন আহমেদ ১৩ নভেম্বর, ১৯৪৮ সালে কৃষ্ণপক্ষের শনিবার রাত ১০.৩০ মিনিটে নেত্রকোনার মোহনগঞ্জে জন্মগ্রহণ করেন। পৈতৃক নিবাস নেত্রকোনার কুতুবপুর।</li>
+<li>তাঁর ডাক নাম কাজল। পিতৃপ্রদত্ত নাম শামসুর রহমান।</li>
+<li>কথাসাহিত্যিক জাফর ইকবাল ও কার্টুনিস্ট আহসান হাবীব তাঁর ভাই।</li>
+<li>তিনি পলিমার কেমিস্ট্রি বিষয়ের উপর পিএইচডি ডিগ্রি লাভ করেন।</li>
+<li>তিনি ১৯৭৩ সালে ময়মনসিংহের বাংলাদেশ কৃষি বিশ্ববিদ্যালয়ে ভৌতরসায়নের প্রভাষক হিসেবে কর্মজীবন শুরু করেন। পরবর্তীতে ১৯৭৪ সালে ঢাকা বিশ্ববিদ্যালয়ে রসায়ন বিভাগে যোগ দেন।</li>
+<li>বাংলা কল্পবিজ্ঞান সাহিত্যের পথিকৃৎ হুমায়ূন আহমেদ। ‘তোমাদের জন্য ভালোবাসা’ (১৯৭৩) প্রথম বাংলা কল্পবিজ্ঞান সাহিত্য।</li>
+<li>হুমায়ূন আহমেদ এর সৃষ্ট লজিক ও অ্যান্টি লজিক নিয়ে কাজ করা দুটি অমর চরিত্র মিসির আলী ও হিমু। মিসির আলী বাস্তববাদী, যুক্তিনির্ভর ও রহস্যময় চরিত্র। মিসির আলী চরিত্রের প্রথম উপন্যাস ‘দেবী’ (১৯৮৫)। হিমুর আসল নাম হিমালয়। পকেটবিহীন হলুদ পাঞ্জাবী তার পোশাক। নব্বইয়ের দশকে ‘ময়ূরাক্ষী’ (১৯৯০) উপন্যাসের মধ্য দিয়ে হিমুর আত্মপ্রকাশ।</li>
+<li>তিনি ‘বাংলা একাডেমি সাহিত্য পুরস্কার’ (১৯৮১), ‘একুশে পদক’ (১৯৯৪) লাভ করেন।</li>
+<li>গাজীপুরের ‘নুহাশ পল্লী’ তাঁর নির্মিত বাগানবাড়ি।</li><li>তিনি ১৯ জুলাই, ২০১২ সালে ক্যান্সার রোগে আক্রান্ত হয়ে নিউইয়র্কে মৃত্যুবরণ করেন। নুহাশ পল্লীতে তাঁকে সমাহিত করা হয়। <span class="bcs">৩৫তম বিসিএস লিখিত</span></li></ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর উপন্যাসসমূহ কী কী?</div></div><div class="a"><p class="answer"><strong>‘নন্দিত নরকে’</strong> (১৯৭২): এটি প্রথম প্রকাশিত উপন্যাস হলেও তাঁর লেখা দ্বিতীয় উপন্যাস। ১৯৭০ সালে তিনি যখন ঢাকা বিশ্ববিদ্যালয়ে রসায়ন বিভাগে অধ্যয়নরত এবং হাজী মুহম্মদ মুহসীন হলের আবাসিক ছাত্র, তখন তিনি এটি রচনা করেন। এটি প্রখ্যাত সাহিত্যিক আহমদ ছফার উদ্যোগে ১৯৭২ সালে প্রকাশিত হয় এবং এ উপন্যাসটির ভূমিকা গ্রন্থশোধিত হয়ে লিখে দেন অধ্যাপক আহমদ শরীফ। <b class="chr">চরিত্র:</b> রাবেয়া।
+    </p><p class="answer">
+<strong>‘শঙ্খনীল কারাগার’</strong> (১৯৭৩): বাংলাদেশ কৃষি বিশ্ববিদ্যালয়, ময়মনসিংহের প্রভাষক থাকাকালে তিনি এ উপন্যাসটি রচনা করেন।
+    </p><p class="answer">
+<strong>‘কোথাও কেউ নেই’</strong> (১৯৯২): চরিত্র- বাকের ভাই।
+    </p><p class="answer">
+<strong>‘কে কথা কয়’</strong> (২০০৬): উপন্যাসটি অটিজম নিয়ে রচিত। এ উপন্যাসে গণিতে আগ্রহী দশ-এগারো বছর বয়সী অটিস্টিক শিশু কমল ও ২৭ বছর বয়সী বেকার যুবক মতিন নামের চরিত্রকে কেন্দ্র করে একটি শিশুর আত্মানুসন্ধান ও সত্যান্বেষণের প্রয়াস লক্ষ্য করা যায়। উপন্যাসের শেষে কমল সত্যান্বেষণে ব্যস্ত হয়ে পড়ে এবং মতিন সত্যের জন্য জীবন উৎসর্গ করে। উজবেক কবি নন্দিউ নতিম নামে এক কাল্পনিক চরিত্রও রয়েছে।
+    </p><p class="answer">
+<strong>‘দেয়াল’</strong> (২০১২): এটি রাজনৈতিক উপন্যাস এবং তাঁর রচিত সর্বশেষ উপন্যাস।
+    </p><p class="answer">
+        ‘আমার আছে জল’ (১৯৮৫), ‘নিশিথিনী’ (১৯৮৭), ‘সম্রাট’ (১৯৮৮), ‘রজনী’ (১৯৮৯), ‘বহুব্রীহি’ (১৯৯০), ‘এইসব দিনরাত্রি’ (১৯৯০), ‘ময়ূরাক্ষী’ (১৯৯০), ‘অয়োময়’ (১৯৯০), ‘শ্রাবণ মেঘের দিন’ (১৯৯৪), ‘গৌরীপুর জংশন’ (১৯৯৫), ‘কবি’ (১৯৯৬), ‘দূরে কোথাও’ (১৯৯৭), ‘ইস্টেশন’ (১৯৯৯), ‘বৃষ্টিবিলাস’ (২০০০), ‘নক্ষত্রের রাত’ (২০০৩), ‘এপিটাফ’ (২০০৪), ‘লীলাবতী’ (২০০৫), ‘মধ্যাহ্ন’ (২০০৮), ‘মাতাল হাওয়া’ (২০১০)। বাদশাহ নামদার, অপেক্ষা, আমার সাদা বাড়ি, যখন গিয়েছে ডুবে পঞ্চমীর চাঁদ।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর মুক্তিযুদ্ধভিত্তিক উপন্যাসসমূহ কী কী?</div></div><div class="a"><p class="answer"><strong>‘আগুনের পরশমণি’</strong> (১৯৮৬): ঢাকায় গেরিলা অপারেশন, গেরিলাদের গোপন তৎপরতা, স্বাধীনতা সমর্থনকারী ও বিরোধিতাকারী চরিত্রের মাধ্যমে মহান মুক্তিযুদ্ধের চিত্র উপস্থাপিত হয়েছে এ উপন্যাসে। এ উপন্যাসের কেন্দ্রবিন্দু ঢাকা শহরের একটি বাড়ি। মতিন সাহেব তার স্ত্রী সুরমা, দুই মেয়ে রাত্রি আর অপালা, গৃহকর্মী বিন্তিকে নিয়ে থাকেন এ বাড়িতে। তাদের বাসায় সাময়িক সময়ের জন্য থাকতে আসেন মতিন সাহেবের বন্ধুর ছেলে বদিউল আলম বদি। সে একজন মুক্তিযোদ্ধা। রাত্রি প্রথমদিকে বদিকে অপছন্দ করলেও শেষে ভালবেসে ফেলেন। একদিন পাক বাহিনীর সাথে যুদ্ধ করতে গিয়ে আহত হয় বদি। কারফিউ থাকার কারণে বদিকে ডাক্তারের কাছে নেয়া সম্ভব হয়ে ওঠে না। ভোর হলে নিতে পারবে বদিকে ডাক্তারের কাছে। শুরু হয় অপেক্ষমান এক রজনীর। এভাবেই শেষ হয় উপন্যাসের কাহিনি। উপন্যাসটির চলচ্চিত্ররূপ আটটি শাখায় জাতীয় চলচ্চিত্র পুরস্কার লাভ করে।
+    </p><p class="answer">
+<strong>‘১৯৭১’</strong> (১৯৮৬): এটি মুক্তিযুদ্ধভিত্তিক উপন্যাস।
+    </p><p class="answer">
+<strong>‘জোছনা ও জননীর গল্প’</strong> (২০০৪): উপন্যাসটি মুক্তিযুদ্ধের প্রামাণ্য দলিল। ১৯৭১ সালের মহান মুক্তিযুদ্ধের পুরো নয় মাসের বর্ণনা পুঙ্খানুপুঙ্খভাবে উঠে এসেছে এ উপন্যাসটিতে। মুক্তিযুদ্ধের বিভিন্ন তথ্য-উপাত্ত, মুক্তিযুদ্ধের বিবরণ, ঐতিহাসিক চরিত্র ও তার ভূমিকা, ঔপন্যাসিকের প্রত্যক্ষ অভিজ্ঞতা ও পর্যবেক্ষণকে উপজীব্য করে রচিত হয়েছে উপন্যাসটি।
+    </p><p class="answer">
+<strong>‘শ্যামল ছায়া’</strong> (২০০৩): এটি মুক্তিযুদ্ধভিত্তিক উপন্যাস। ১৯৭১ সালের মার্চে বাংলাদেশের স্বাধীনতা যুদ্ধ শুরু হলে অনেকেই নিরাপদ আশ্রয়ের সন্ধানে ছুটতে থাকে। এমনই একদল আশ্রয় সন্ধানীর পলায়নের কাহিনি উপন্যাসটির মূল বিষয়। ২০০৪ সালে উপন্যাসটি নিয়ে চলচ্চিত্র নির্মিত হয়।
+    </p><p class="answer">
+        ‘সূর্যের দিন’, ‘সৌরভ’, ‘নির্বাসন’, ‘অনিল বাগচীর একদিন’।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর যে সকল উপন্যাস অবলম্বনে চলচ্চিত্র চিত্রায়িত হয় তা কী কী?</div></div><div class="a"><p class="answer">‘শঙ্খনীল কারাগার’ (১৯৯২), ‘আগুনের পরশমণি’ (১৯৯৪), ‘শ্রাবণ মেঘের দিন’ (১৯৯৯), ‘দুই দুয়ারী’ (২০০০), ‘চন্দ্রকথা’ (২০০৩), ‘শ্যামল ছায়া’ (২০০৪), ‘দূরত্ব’ (২০০৬), ‘নন্দিত নরকে’ (২০০৬), ‘নিরন্তর’ (২০০৬), ‘নয় নম্বর বিপদ সংকেত’ (২০০৬), ‘দারুচিনি দ্বীপ’ (২০০৭), ‘সাজঘর’ (২০০৭), ‘আমার আছে জল’ (২০০৮), ‘প্রিয়তমেষু’ (২০০৯), ‘ঘেটুপুত্র কমলা’ (২০১২- এটি তাঁর নির্মিত সর্বশেষ চলচ্চিত্র), ‘অনিল বাগচীর একদিন’ (২০১৫- এটি তাঁর মৃত্যুর পরে নির্মিত হয়)। <small>[ব্রাকেটে দেয়া সালগুলো চলচ্চিত্র নির্মিত হওয়ার সময়কাল, উপন্যাস প্রকাশের সাল নয়।]</small>
+</p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর যে সকল উপন্যাস অবলম্বনে নাটক চিত্রায়িত হয় তা কী কী?</div></div><div class="a"><p class="answer">‘প্রথম প্রহর’, ‘এইসব দিনরাত্রি’, ‘বহুব্রীহি’, ‘কোথাও কেউ নেই’, ‘নক্ষত্রের রাত’, ‘অয়োময়’, ‘আজ রবিবার’, ‘নিমফুল’, ‘তারা তিনজন’, ‘আমরা তিনজন’, ‘মন্ত্রী মহোদয়ের আগমন শুভেচ্ছা স্বাগতম’, ‘সবুজ সাথী’, ‘উড়ে যায় বকপক্ষী’, ‘এই মেঘ এই রৌদ্র’।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর আত্মজীবনীমূলক গ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">‘আমার ছেলেবেলা’ (১৯৯১), ‘বলপয়েন্ট’ (২০০৯), ‘কাঠপেন্সিল’ (২০১০), ‘রংপেন্সিল’ (২০১১), ‘লীলাবতী’র মৃত্যু’ (২০১৪)।
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tbody>
+<tr>
+<td>রজনী (উপন্যাস)</td>
+<td>বঙ্কিমচন্দ্র চট্টোপাধ্যায়</td>
+</tr>
+<tr>
+<td>রজনী (উপন্যাস)</td>
+<td>হুমায়ূন আহমেদ</td>
+</tr>
+<tr>
+<td>দেয়াল (উপন্যাস)</td>
+<td>হুমায়ূন আহমেদ</td>
+</tr>
+<tr>
+<td>দেয়াল (উপন্যাস)</td>
+<td>আবু জাফর শামসুদ্দীন</td>
+</tr>
+<tr>
+<td>এলেবেলে (রম্যগল্প)</td>
+<td>হুমায়ূন আহমেদ</td>
+</tr>
+<tr>
+<td>এলেবেলে (নাটক)</td>
+<td>জিয়া হায়দার</td>
+</tr>
+</tbody>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর গল্পগ্রন্থসমূহ কী কী?</div></div><div class="a"><p class="answer">‘এলেবেলে’ (রম্য), ‘আনন্দবেদনায় কাব্য’, ‘আলাউদ্দীনের চেরাগ’ (গল্প)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘দেয়াল’ উপন্যাসের পরিচয় দাও।</div></div><div class="a"><p class="answer">জনপ্রিয় লেখক হুমায়ূন আহমেদ এর মুক্তিযুদ্ধ পরবর্তী বাংলাদেশের সামাজিক ও রাজনৈতিক প্রেক্ষাপট ভিত্তিক উপন্যাস ‘দেয়াল’ (২০১২)। এটি তাঁর রচিত সর্বশেষ উপন্যাস যা লেখকের মৃত্যুর পরে প্রকাশিত হয়। গ্রন্থাকারে প্রকাশের পূর্বেই এটি নিয়ে বিতর্ক শুরু হয় এবং তা আদালত পর্যন্ত গড়ায়। পরবর্তীতে হাইকোর্টের নির্দেশে এর কিছু অংশ পরিমার্জন করে প্রকাশ করা হয়। এ উপন্যাসে লেখক মুক্তিযুদ্ধ পরবর্তী বাংলাদেশের সামাজিক ও রাজনৈতিক চরিত্র ও ঘটনাবলি নিজ ভাষা ও কল্পনাপ্রসূত ঢঙে চিত্রায়িত করেছেন। এখানে লেখক বিভিন্ন চরিত্রের মাধ্যমে সমসাময়িকভাবে নিজেকেও উপস্থাপন করেছেন। <b class="chr">উল্লেখযোগ্য চরিত্র:</b> বঙ্গবন্ধু শেখ মুজিবুর রহমান, খালেদ মোশাররফ, সৈয়দ নজরুল ইসলাম, জিয়াউর রহমান, কর্নেল তাহের, অবন্তি, চা বিক্রেতা কাদের বাঙালি।
+    </p></div></article></section>
+<section class="author" data-name="বিহারীলাল চক্রবর্তী" id="a24">
+<header class="a-head">
+<div class="a-num">২৪</div>
+<div class="a-meta">
+<h2 class="a-name">বিহারীলাল চক্রবর্তী</h2>
+<div class="a-sub"><span class="a-years">১৮৩৫-১৮৯৪</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">
+        আধুনিক গীতিকবিতার কবি বিহারীলাল চক্রবর্তী। কবির ব্যক্তিগত অনুভূতি ও গীতোচ্ছ্বাস বিশুদ্ধভাবে তাঁর কবিতায় প্রকাশিত হয়েছে। সৌন্দর্যপিয়াসী প্রকৃতি প্রেমিক কবি বিহারীলাল চক্রবর্তীর কবিতায় সমাজ-সমকাল ও সমকালীন সমস্যাবলি প্রাধান্য পায়নি। মনের মাধুরী মিশিয়ে প্রকৃতির রস আস্বাদন করেছেন যেভাবে, সেই মুগ্ধতার প্রকাশ ঘটেছে তাঁর কবিতায়। তাঁর কবিতার চরণে চরণে ঢেউ তুলেছে নূপুর-নিক্বণ। রবীন্দ্রনাথের মতে, ‘বাংলা ভাষার একমাত্র কবি বিহারীলালই প্রথম নিভৃতে বসে নিজের ছন্দে নিজের মনের কথা লিখেছেন।’
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>বিহারীলাল চক্রবর্তী ২১ মে, ১৮৩৫ সালে কলকাতার জোড়াবাগান অঞ্চলের নিমতলায় জন্মগ্রহণ করেন। আদি নিবাস- ফরাসডাঙায়।</li>
+<li>তাঁর পারিবারিক পদবি- চট্টোপাধ্যায়।</li>
+<li>গীতিকবিতার ক্ষেত্রে রবীন্দ্রনাথের গুরু- বিহারীলাল চক্রবর্তী।</li>
+<li>তিনি বাংলা সাহিত্যে আধুনিক গীতিকবিতার স্রষ্টা। এ জন্য রবীন্দ্রনাথ তাকে ‘ভোরের পাখি’ হিসেবে আখ্যা দিয়েছেন।</li>
+<li>তিনি ‘পূর্ণিমা’ (১৮৫৯), ‘সাহিত্য সংক্রান্তি’ (১৮৬৩), ‘অবোধ বন্ধু’ (১৮৬৮) পত্রিকা সম্পাদনা করতেন।</li>
+<li>তিনি ২৪ মে, ১৮৯৪ সালে কলকাতায় মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">বিহারীলালকে কি কারণে ‘ভোরের পাখি’ বলা হয়? <span class="bcs">৩৮তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">যে কবিতায় কবির একান্ত ব্যক্তিগত কামনা-বাসনা ও আনন্দবেদনা প্রাণের অন্তঃস্থল থেকে আবেগকম্পিত সুরে অখণ্ড ভাবমূর্তিতে আত্মপ্রকাশ করে তাকে ‘গীতিকবিতা’ বলে। আধুনিক বাংলা গীতিকবিতার সূত্রপাত টপ্পাগান থেকে। বিহারীলালই প্রথম বাংলায় ব্যক্তির আত্মলীনতা, ব্যক্তিগত আবেগ-অনুভূতি ও গীতোচ্ছ্বাস সহযোগে গীতিকবিতা রচনা করে নতুন এক ধারা সৃষ্টি করেন বলেই তাকে ‘ভোরের পাখি’ বলা হয়।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">বিহারীলাল রচিত কাব্যগ্রন্থসমূহ কী কী? <span class="bcs">৩৮তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer"><strong>‘বঙ্গসুন্দরী’</strong> (১৮৭০): এটি তাঁর প্রথম সার্থক গীতিকবিতার গ্রন্থ। 
+    </p><p class="answer">
+<strong>‘সাধের আসন’</strong> (১৮৮৯): ‘শারদামঙ্গল’ কাব্যের পরিশিষ্ট ‘সাধের আসন’। বিহারীলালের ‘শারদামঙ্গল’ কাব্য পড়ে রবীন্দ্রনাথ ঠাকুরের বৌদি কাদম্বরী দেবী নিজের হাতে একটা আসন বুনে কবিকে উপহার দিয়েছিলেন। আসনের উপর প্রশ্নচ্ছলে কার্পেটের অক্ষরে লেখা ছিল ‘শারদামঙ্গল’ কাব্যের
+     
+        কয়েকটা লাইন। এর উত্তরে কবি রচনা করেন একটি কাব্য। কাদম্বরী দেবীর উপহারের কথা স্মরণ করেই বিহারীলাল এ কাব্যের নামকরণ করেন ‘সাধের আসন’।
+    </p><p class="answer">
+        ‘স্বপ্নদর্শন’ (১৮৫৮), ‘সঙ্গীত শতক’ (১৮৬২), ‘নিসর্গ সন্দর্শন’ (১৮৭০), ‘বন্ধু বিয়োগ’ (১৮৭০), ‘প্রেম প্রবাহিণী’ (১৮৭০), ‘শারদামঙ্গল’ (১৮৭৯), ‘নিসর্গ সঙ্গীত’ (১৮৮১), ‘মায়াদেবী’ (১৮৮২), ‘দেবরাণী’ (১৮৮২), ‘বাউলবিংশতি’ (১৮৮৭), ‘ধূমকেতু’ (১৮৮৯)।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">‘শারদামঙ্গল’ কাব্যের পরিচয় দাও।</div></div><div class="a"><p class="answer">বিহারীলালের শ্রেষ্ঠ কাব্যগ্রন্থ ‘শারদামঙ্গল’ (১৮৭৯)। এটি পাঁচ খণ্ডে স্তবকময় মাধুর্যপূর্ণ ভাষায় রচিত। এ কাব্যে দেখা যায়, শুরুতে কবির মনোজগতে এক কাব্যলক্ষ্মীর আবির্ভাব, লক্ষ্মীর উদ্দেশ্যে কবির মানসভ্রমণ, কবিচিত্তের দ্বন্দ্ব এবং হিমালয়ের উদার প্রকৃতির মধ্যে প্রশান্তি লাভ এবং সর্বশেষে হিমালয়ের পুণ্যভূমিতে কবির আনন্দ উপলব্ধির চিত্র। শেলির মতো বিহারীলালও তাঁর প্রিয়তমার মধ্যে সারদাকে অন্বেষণ করেছেন এবং দীর্ঘ বিরহের পর হিমাদ্রি শিখরে ভাব-সম্মিলনের চিত্র অঙ্কন করে কবি কাব্যের পরিসমাপ্তি টেনেছেন।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">কবি বিহারীলাল চক্রবর্তীর বিশেষত্ব নিরূপণ করুন। <span class="bcs">৪৪তম বিসিএস লিখিত</span></div></div><div class="a"><p class="answer">আধুনিক গীতিকবিতার স্রষ্টা বিহারীলাল চক্রবর্তী ‘ভোরের পাখি’ অভিধায় অভিষিক্ত। তাঁর কবিতায় কবির ব্যক্তিগত অনুভূতি ও গীতোচ্ছ্বাস বিশুদ্ধভাবে প্রকাশিত হয়েছে। সৌন্দর্যপিয়াসী প্রকৃতি প্রেমিক বিহারীলালের কবিতায় সমাজ-সমকাল ও সমকালীন সমস্যাবলি প্রাধান্য পায়নি; মনের মাধুরী মিশিয়ে প্রকৃতির রস আস্বাদন করেছেন যেভাবে, সেই মুগ্ধতার প্রকাশ ঘটেছে তাঁর কবিতায়। তাঁর ‘নিসর্গসন্দর্শন’ কাব্যের কবিতাগুলোয় নিসর্গ প্রকৃতিতে ব্যক্তিসত্তা আরোপ করে সচেতন কবি হৃদয়ের সঙ্গে সম্পর্ক স্থাপনের মাধ্যমে যে নবতম কাব্যশৈলীর উদ্ভাবন ঘটিয়েছেন, তা গীতিকবিতার অন্যতম বৈশিষ্ট্য। ‘শারদামঙ্গল’ কাব্যে তাঁর সৌন্দর্যচেতনা ও গীতিবৈশিষ্ট্য পরিপূর্ণতা লাভ করেছে। ‘সাধের আসন’ কাব্যে তিনি সৌন্দর্যতত্ত্বের তাত্ত্বিক ব্যাখ্যা প্রদান করেছেন। ‘বঙ্গসুন্দরী’ কাব্যে তিনি জননী-জায়া, কন্যা-ভগিনী প্রভৃতি বিবিধ মূর্তিধারিণী নারীর স্নেহ-মায়া ও মমতাময় রূপ ও সৌন্দর্যের সন্ধান করেছেন। ‘বন্ধু বিয়োগ’ ও ‘প্রেম-প্রবাহিণী’ কাব্যে বন্ধুবর্গের জীবনের বাস্তব অভিজ্ঞতা ও নিজের প্রেমানুভূতিকে কাব্যের আকারে রূপদান করেছেন। বিহারীলালই প্রথম বাংলায় ব্যক্তির আত্মলীনতা, ব্যক্তিগত আবেগ-অনুভূতি ও গীতোচ্ছ্বাস সহযোগে কবিতা রচনা করে নতুন এক ধারা সৃষ্টি করেন বলেই তাকে ‘ভোরের পাখি’ বলা হয়। তাঁর কবিতার চরণে চরণে ঢেউ তুলেছে নূপুর-নিক্বণ।
+    </p></div></article></section>
+<section class="author" data-name="সুফিয়া কামাল" id="a25">
+<header class="a-head">
+<div class="a-num">২৫</div>
+<div class="a-meta">
+<h2 class="a-name">সুফিয়া কামাল</h2>
+<div class="a-sub"><span class="a-years">১৯১১-১৯৯৯</span><span class="a-role">কবি</span></div>
+</div>
+</header><p class="lead">
+        বাংলাদেশের একজন প্রখ্যাত কবি, লেখিকা, সমাজসেবক, নারীবাদী ও নারী আন্দোলনের অন্যতম পথিকৃৎ সুফিয়া কামাল। তাঁর কবিতার বিষয় প্রেম, প্রকৃতি, ব্যক্তিগত অনুভূতি, বেদনাময় স্মৃতি, জাতীয় উৎসবাদি, দেশচেতনা, ধর্মানুভূতি এবং মুক্তিযুদ্ধ। ১৯৫২ সালের ভাষা আন্দোলনে তিনি সরাসরি অংশগ্রহণ করেন। পাকিস্তান সরকার বাংলা ভাষা ও বাঙালি সংস্কৃতির ওপর দমননীতির অংশ হিসেবে রবীন্দ্রনাথকে নিষিদ্ধ করলে তিনি তার বিরুদ্ধে তীব্র প্রতিবাদ জানান।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>সুফিয়া কামাল ২০ জুন, ১৯১১ সালে বরিশালের শায়স্তাবাদের রাহাত মঞ্জিলে জন্মগ্রহণ করেন। পৈতৃক নিবাস- কুমিল্লা।</li>
+<li>তিনি ‘মহিলা পরিষদ’ (১৯৭০) এর প্রতিষ্ঠাতা ছিলেন। বর্তমানে এর নাম ‘বাংলাদেশ মহিলা পরিষদ’।</li>
+<li>তিনি ‘বেগম’ (১৯৪৭) পত্রিকার প্রথম সম্পাদক ছিলেন।</li>
+<li>বাংলাদেশের প্রথম আধুনিক মহিলা কবি সুফিয়া কামাল। তিনি ‘জননী সাহসিকা’ নামে পরিচিত।</li>
+<li>তিনি ছিলেন রবীন্দ্র কাব্যধারার গীতিকবিতা রচয়িতা।</li>
+<li>তিনি শিশুদের সংগঠন ‘কচিকাঁচার মেলা’ (১৯৫৬) প্রতিষ্ঠা করেন।</li>
+<li>তিনি ‘বাংলা একাডেমি সাহিত্য পুরস্কার’ (১৯৬২), ‘একুশে পদক’ (১৯৭৬), ‘বেগম রোকেয়া পদক’ (১৯৯২), ‘স্বাধীনতা পুরস্কার’ (১৯৯৭) পান।</li>
+<li>বর্তমানে ঢাকা বিশ্ববিদ্যালয়ের একটি ছাত্রী হলের নামকরণ করা হয়েছে তাঁর নামে ‘বেগম সুফিয়া কামাল হল’।</li>
+<li>সুফিয়া কামাল ১৯১৮ সালে কলকাতায় রোকেয়া সাখাওয়াত হোসেনের সাথে সাক্ষাৎ করেন। তাঁর একান্ত প্রচেষ্টায় ঢাকা বিশ্ববিদ্যালয়ের ‘রোকেয়া হল’ এর নামকরণ করা হয়।</li>
+<li>তিনি ২০ নভেম্বর, ১৯৯৯ সালে মারা যান। বাংলাদেশে তিনিই প্রথম নারী যাকে পূর্ণ রাষ্ট্রীয় মর্যাদায় দাফন করা হয়।</li>
+<li>মাত্র বার বছর বয়সে মামাতো ভাই সৈয়দ নেহাল হোসেনের সাথে বিয়ে হয়। তখন নাম হয় সুফিয়া এন হোসেন। ১৯৩২ সালে নেহাল হোসেন যক্ষ্মা রোগে মারা গেলে ১৯৩৯ সালে 
+        তিনি চট্টগ্রামের লেখক কামালউদ্দিন আহমেদকে বিয়ে করেন। তখন থেকে সুফিয়া কামাল নাম ব্যবহার করেন। এডভোকেট সুলতানা কামাল তাঁর মেয়ে।
+    </li></ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">সুফিয়া কামাল রচিত প্রথম সাহিত্যকর্মের নাম কী?</div></div><div class="a"><p class="answer"><strong>‘সৈনিক বধূ’</strong> (১৯২৩): এটি তাঁর প্রথম গল্প, যা বরিশালের ‘তরুণ’ পত্রিকায় প্রকাশিত হয়।<br/>
+<strong>‘বাসন্তী’</strong> (১৯২৬): এটি তাঁর প্রথম কবিতা, যা ‘সওগাত’ পত্রিকায় প্রকাশিত হয়।
+    </p></div></article><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর প্রকাশিত কাব্যগ্রন্থগুলো কী কী?</div></div><div class="a"><p class="answer"><strong>‘সাঁঝের মায়া’</strong> (১৯৩৮): এটি তাঁর রচিত প্রথম কাব্য। এর মুখবন্ধ লিখে দেন কবি কাজী নজরুল ইসলাম। ১৯৮৪ সালে এটি রুশ ভাষায় সোভিয়েত ইউনিয়ন থেকে প্রকাশিত হয়। এ কাব্যের কবিতা: ‘তাহারেই পড়ে মনে’, ‘রূপসী বাংলা’।<br/>
+<strong>‘উদাত্ত পৃথিবী’</strong> (১৯৬৪): এ কাব্যের বিখ্যাত কবিতা ‘জাগো তবে অরণ্য কন্যা’, ‘আমার দেশ’।<br/>
+<strong>‘মোর জাদুদের সমাধি পরে’</strong> (১৯৭২): এ কাব্যের কবিতাগুলো মুক্তিযুদ্ধের সময়কালে লেখা।<br/>
+        ‘মায়া কাজল’ (১৯৫১), ‘মন ও জীবন’ (১৯৫৭), ‘শান্তি ও প্রার্থনা’ (১৯৫৮), ‘দিওয়ানি’ (১৯৬৬), ‘অভিযাত্রিক’ (১৯৬৯), ‘মৃত্তিকার ঘ্রাণ’ (১৯৭০)।
+    </p></div></article><div class="compare"><div class="box-label">মিলিয়ে পড়ুন · বিভ্রান্তিকর নাম</div><table>
+<tbody>
+<tr>
+<td>অভিযাত্রিক (কাব্য)</td>
+<td>সুফিয়া কামাল</td>
+</tr>
+<tr>
+<td>অভিযাত্রিক (উপন্যাস)</td>
+<td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td>
+</tr>
+</tbody>
+</table></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">তাঁর প্রকাশিত অন্যান্য রচনাবলি কী কী?</div></div><div class="a"><p class="answer">
+<span class="bold">শিশুতোষ গ্রন্থ:</span><br/>
+        ‘নওল কিশোরের দরবারে’ (১৯৮২): এ গ্রন্থের কবিতা ‘সাম্য’ (মিলিত সেবা ও সাম্য প্রীতিতে)।<br/>
+        ‘ইতল বিতল’ (১৯৬৫)।<br/>
+<span class="bold">গল্প:</span> ‘কেয়ার কাঁটা’ (১৯৩৭)।<br/>
+<span class="bold">ভ্রমণকাহিনি:</span> ‘সোভিয়েতের দিনগুলো’ (১৯৬৮)।<br/>
+<span class="bold">আত্মজীবনী:</span> ‘একালে আমাদের কাল’ (১৯৮৮)।<br/>
+<span class="bold">স্মৃতিকথা:</span> ‘একাত্তরের ডায়রী’ (১৯৮৯)।
+     
+        কবিতা: সুফিয়া কামাল রচিত প্রকৃতি ও মানবমনের সম্পর্ক বিষয়ক কবিতা ‘তাহারেই পড়ে মনে’। অক্ষরবৃত্ত ছন্দে লেখা কবিতাটি ‘মাসিক মোহাম্মদীর’ নবম বর্ষ ষষ্ঠ সংখ্যায় প্রকাশিত হয়। এ কবিতায় কবির ব্যক্তিগত জীবনের দুঃসহ ঘটনার ছায়াপাত ঘটেছে। 
+    </p></div></article></section>
+<section class="author" data-name="প্রেমেন্দ্র মিত্র" id="a26">
+<header class="a-head">
+<div class="a-num">২৬</div>
+<div class="a-meta">
+<h2 class="a-name">প্রেমেন্দ্র মিত্র</h2>
+<div class="a-sub"><span class="a-years">১৯০৪-১৯৮৮</span><span class="a-role">কবি ও কথাসাহিত্যিক</span></div>
+</div>
+</header><p class="lead">
+        ত্রিশোত্তর আধুনিক সাহিত্য আন্দোলনের স্থপতিদের অন্যতম প্রখ্যাত কবি, সাহিত্যিক ও সাংবাদিক প্রেমেন্দ্র মিত্র ছিলেন ‘কল্লোল’ গোষ্ঠীর লেখক। পরা-বাস্তবভিত্তিক গণমানুষের প্রতি সংবেদনশীল যে সাহিত্যধারা কল্লোলগোষ্ঠী সৃষ্টি করতে চেয়েছিলেন তার প্রতিফলন ঘটেছে প্রেমেন্দ্র মিত্রের কাব্যে ও গল্প-উপন্যাসে। তিনি জীবনের দুঃখ ও হতাশাকে রূপায়ণে কুশলতার পরিচয় প্রদান করেছেন। তাঁর রচিত সাহিত্যকর্মের মূল প্রতিপাদ্য বিষয় সাধারণ মানুষের প্রতি অনুরাগ।
+    </p><div class="facts-box"><div class="box-label">এক নজরে</div><ul class="facts">
+<li>প্রেমেন্দ্র মিত্র সেপ্টেম্বর, ১৯০৪ সালে কাশীতে জন্মগ্রহণ করেন।</li>
+<li>সাহিত্য সাধনার প্রথম পর্বে ‘কৃত্তিবাস ভদ্র’ ছদ্মনামে লিখতেন। তার সৃষ্ট একটি জনপ্রিয় চরিত্র ‘ঘনাদা’।</li>
+<li>তিনি ‘কল্লোল’ (১৯২৩) পত্রিকায় লেখালেখি করতেন এবং ‘বাংলার কথা’, ‘বঙ্গবাণী’, ‘সংবাদ’ পত্রিকায় সম্পাদকীয় বিভাগে দায়িত্ব পালন করেন।</li>
+<li>শৈলজানন্দ মুখোপাধ্যায় ও মুরলীধর বসু সহযোগে ‘কালিকলম’ (১৯২৬) পত্রিকা প্রকাশ করেন।</li>
+<li>৩ মে, ১৯৮৮ সালে পাকস্থলীর ক্যান্সারে আক্রান্ত হয়ে কলকাতায় মারা যান।</li>
+</ul></div><article class="qa"><div class="q"><span class="q-badge">প্র</span><div class="q-text">প্রেমেন্দ্র মিত্রের সাহিত্যকর্মসমূহ কী কী?</div></div><div class="a"><p class="answer"><span class="bold">কাব্যগ্রন্থ:</span><br/>
+        ‘প্রথমা’ (১৯৩২): এটি তাঁর প্রকাশিত প্রথম কবিতার বই।<br/>
+        ‘সম্রাট’ (১৯৪০), ‘ফেরারী ফৌজ’ (১৯৪৮), ‘সাগর থেকে ফেরা’ (১৯৫৬), ‘হরিণ চিতা চিল’ (১৯৫৯), ‘কখনো মেঘ’।
+    </p><p class="answer">
+<span class="bold">উপন্যাস:</span> ‘পাঁক’ (১৯২৬), ‘কুয়াশা’ (১৯৩০), ‘মিছিল’ (১৯৩৩), ‘উপনয়ন’ (১৯৩৪), ‘আগামীকাল’ (১৯৩৪), ‘প্রতিশোধ’ (১৯৪১), ‘প্রতিধ্বনি ফেরে’, ‘মনুদ্বাদশ’।
+    </p><p class="answer">
+<span class="bold">গল্পগ্রন্থ:</span> ‘পঞ্চশর’ (১৯২৯), ‘বেনামী বন্দর’ (১৯৩০), ‘পুতুল ও প্রতিমা’ (১৯৩২), ‘মৃত্তিকা’ (১৯৩২), ‘অফুরন্ত’ (১৯৩৫), ‘ধূলিধূসর’ (১৯৪৩), ‘মহানগর’ (১৯৪৩), ‘জলপায়রা’ (১৯৫৭), ‘নানা রঙে বোনা’ (১৯৬০)।
+    </p></div></article></section>
+    <div class="foot">শুভকামনা রইল 📚</div>
+  </main>
+</div>
+<button class="totop" id="top" aria-label="উপরে যান">↑</button>
+<script>
+(function(){
+  var root=document.documentElement, body=document.body;
+  function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+  var t=store('bs-theme'); if(t) root.setAttribute('data-theme',t);
+  document.getElementById('theme').onclick=function(){
+    var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme')==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    var n = dark?'light':'dark'; root.setAttribute('data-theme',n); store('bs-theme',n);
+  };
+  var qb=document.getElementById('quiz');
+  qb.onclick=function(){ body.classList.toggle('quiz'); qb.classList.toggle('on');
+    document.querySelectorAll('.a.shown').forEach(function(a){a.classList.remove('shown')}); };
+  document.addEventListener('click',function(e){
+    if(!body.classList.contains('quiz')) return;
+    var a=e.target.closest('.a'); if(a) a.classList.toggle('shown');
+  });
+  var side=document.getElementById('side');
+  document.getElementById('menu').onclick=function(){side.classList.toggle('open')};
+  document.querySelectorAll('.toc a').forEach(function(a){a.addEventListener('click',function(){side.classList.remove('open')})});
+  document.getElementById('q').addEventListener('input',function(){
+    var v=this.value.trim();
+    document.querySelectorAll('#toc li').forEach(function(li){
+      li.classList.toggle('hide', v && li.textContent.indexOf(v)===-1);
+    });
+  });
+  var links={}; document.querySelectorAll('.toc a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){ Object.values(links).forEach(function(l){l.classList.remove('active')});
+      var l=links[e.target.id]; if(l){l.classList.add('active'); if(l.scrollIntoView && !side.classList.contains('open')) l.scrollIntoView({block:'nearest'});} }
+  })},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('.author').forEach(function(s){obs.observe(s)});
+  var bar=document.getElementById('progress'), top=document.getElementById('top');
+  addEventListener('scroll',function(){
+    var h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(h>0?scrollY/h*100:0)+'%'; top.classList.toggle('show',scrollY>600);
+  },{passive:true});
+  top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+})();
+</script>
+</body>
+</html>
