@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>এম্পেরিক্যাল রিভিশন নোট</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef;--card:#ffffff;--ink:#1f2328;--muted:#5d6670;--line:#e3ded3;
+  --accent:#0f5c4d;--accent2:#b5462a;--hl:#fff1b8;--hlink:#5a4300;--chip:#e7f1ee;--chipink:#0f5c4d;
+  --th:#eef3f1;--warn:#fdecea;--warnink:#8a2a17;--ok:#e9f5ec;--okink:#1d5a2c;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181b;--card:#1d2226;--ink:#e7e9ea;--muted:#9aa4ad;--line:#2e353b;
+    --accent:#5cc5a9;--accent2:#ef8c6c;--hl:#4a3d10;--hlink:#ffe28a;--chip:#1f3a33;--chipink:#7fe0c4;
+    --th:#232b30;--warn:#3a2320;--warnink:#f2a491;--ok:#1f3326;--okink:#9fdcae;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181b;--card:#1d2226;--ink:#e7e9ea;--muted:#9aa4ad;--line:#2e353b;
+  --accent:#5cc5a9;--accent2:#ef8c6c;--hl:#4a3d10;--hlink:#ffe28a;--chip:#1f3a33;--chipink:#7fe0c4;
+  --th:#232b30;--warn:#3a2320;--warnink:#f2a491;--ok:#1f3326;--okink:#9fdcae;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif;font-size:16.5px;line-height:1.7}
+header.top{background:var(--accent);color:#fff;padding:28px 16px 22px}
+header.top .wrap{max-width:1000px;margin:0 auto}
+header.top h1{margin:0 0 4px;font-size:1.7rem;line-height:1.3}
+header.top p{margin:0;opacity:.9}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+nav.toc .wrap{max-width:1000px;margin:0 auto;padding:8px 12px;display:flex;gap:6px}
+nav.toc a{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--chip);color:var(--chipink);text-decoration:none;font-weight:600;font-size:.92rem}
+nav.toc a:hover{filter:brightness(.95)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+section.topic{margin:26px 0 40px;scroll-margin-top:60px}
+section.topic>h2{font-size:1.45rem;margin:0 0 12px;padding-bottom:6px;border-bottom:3px solid var(--accent);color:var(--accent)}
+h3{font-size:1.15rem;margin:22px 0 8px;color:var(--accent2)}
+h4{font-size:1.02rem;margin:14px 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.card>h3:first-child,.card>h4:first-child{margin-top:0}
+ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+b.n,.n{background:var(--hl);color:var(--hlink);padding:0 4px;border-radius:4px;font-weight:700;white-space:nowrap}
+.t{display:inline-block;background:var(--chip);color:var(--chipink);border-radius:6px;padding:0 7px;font-size:.88rem;font-weight:600;margin:1px 2px}
+.quote{border-left:4px solid var(--accent2);padding:6px 12px;margin:10px 0;color:var(--muted);font-style:italic;background:var(--card);border-radius:0 8px 8px 0}
+.quote span{font-style:normal;font-weight:600;color:var(--ink)}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--th)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.warn{background:var(--warn);color:var(--warnink);border-radius:10px;padding:10px 14px;margin:10px 0}
+.ok{background:var(--ok);color:var(--okink);border-radius:10px;padding:10px 14px;margin:10px 0}
+.muted{color:var(--muted);font-size:.92rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;padding:0 16px}
+details summary{cursor:pointer;font-weight:700;padding:12px 0;color:var(--accent)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 0}
+.toolbar button{font:inherit;font-size:.88rem;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:8px;padding:3px 10px;cursor:pointer}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 16px}
+@media print{nav.toc,.toolbar{display:none}details{border:none}details>*{display:block}body{background:#fff}}
+@media (max-width:600px){body{font-size:15.5px}header.top h1{font-size:1.35rem}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>আন্তর্জাতিক এম্পেরিক্যাল রিভিশন</h1>
+  <p>মুখস্থ করার নোট — ১২টি এম্পেরিক্যাল টপিকের তথ্য, সংখ্যা, তারিখ, তত্ত্ব, উদাহরণ ও উক্তি এক জায়গায়</p>
+  <div class="toolbar">
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">সব খুলুন</button>
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">সব বন্ধ করুন</button>
+    <button onclick="toggleTheme()">ডার্ক/লাইট</button>
+  </div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#quick">দ্রুত সংখ্যা</a>
+  <a href="#e1">১. Rule-based Order</a>
+  <a href="#e2">২. জাতিসংঘ</a>
+  <a href="#e3">৩. শান্তিরক্ষা</a>
+  <a href="#e4">৪. সার্ক</a>
+  <a href="#e5">৫. আসিয়ান</a>
+  <a href="#e6">৬. দ. এশিয়া</a>
+  <a href="#e7">৭. ফিলিস্তিন</a>
+  <a href="#e8">৮. বাণিজ্য যুদ্ধ</a>
+  <a href="#e9">৯. ইরান-যুক্তরাষ্ট্র</a>
+  <a href="#e10">১০. পারমাণবিক</a>
+  <a href="#e11">১১. ইরান যুদ্ধ ও বাংলাদেশ</a>
+  <a href="#e12">১২. পররাষ্ট্রনীতি</a>
+  <a href="#ps">প্রবলেম সলভিং</a>
+  <a href="#theories">তত্ত্ব</a>
+  <a href="#quotes">উক্তি</a>
+</div></nav>
+
+<main>
+
+<!-- QUICK -->
+<section class="topic" id="quick">
+<h2>⚡ এক নজরে সংখ্যা ও তারিখ</h2>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>তথ্য</th></tr>
+<tr><td>জাতিসংঘের সদস্য</td><td><b class="n">১৯৩</b>টি রাষ্ট্র</td></tr>
+<tr><td>শান্তিরক্ষী</td><td>প্রায় <b class="n">৮০,০০০</b> জন, <b class="n">১২+</b> দেশে</td></tr>
+<tr><td>UDHR</td><td><b class="n">১৯৪৮</b></td></tr>
+<tr><td>শিশু মৃত্যুহার (UNICEF)</td><td>১৯৯০-এর তুলনায় <b class="n">৫০%</b> কম</td></tr>
+<tr><td>SDG / Agenda 2030</td><td><b class="n">২০১৫</b>, <b class="n">১৭</b>টি লক্ষ্য</td></tr>
+<tr><td>UNHCR</td><td><b class="n">৩৫ মিলিয়ন+</b> শরণার্থী; রোহিঙ্গা ~<b class="n">১ মিলিয়ন</b>; সিরিয়া <b class="n">৬ মিলিয়ন+</b></td></tr>
+<tr><td>WHO টিকাদান</td><td>বছরে <b class="n">৪–৫ মিলিয়ন</b> শিশুর জীবন রক্ষা</td></tr>
+<tr><td>হাইতি কলেরা</td><td><b class="n">২০১০</b>, শান্তিরক্ষীদের কারণে ~<b class="n">১০ হাজার</b> মৃত্যু</td></tr>
+<tr><td>Climate Finance প্রতিশ্রুতি</td><td>বছরে <b class="n">১০০ বিলিয়ন ডলার</b></td></tr>
+<tr><td>যুক্তরাষ্ট্রের UN বাজেট অংশ</td><td>প্রায় <b class="n">২২%</b></td></tr>
+<tr><td>নিরাপত্তা পরিষদ</td><td><b class="n">১৯৪৫</b>-এ ৫ স্থায়ী সদস্য; আফ্রিকা (<b class="n">১৩০ কোটি+</b>) ও <b class="n">৫০+</b> মুসলিম দেশের কেউ স্থায়ী নয়</td></tr>
+<tr><td>বাংলাদেশের প্রথম শান্তিরক্ষা মিশন</td><td><b class="n">১৯৮৮</b>; বর্তমানে প্রায় <b class="n">৬০০০–৭০০০</b> শান্তিরক্ষী</td></tr>
+<tr><td>সার্ক</td><td><b class="n">৮</b> দেশ; আন্তঃবাণিজ্য <b class="n">৫%</b> (আসিয়ান <b class="n">২৫%</b>, EU <b class="n">৬৩%</b>)</td></tr>
+<tr><td>আসিয়ান</td><td><b class="n">৮ আগস্ট ১৯৬৭</b>, ব্যাংকক ঘোষণা; শিটে <b class="n">১০</b> সদস্য, <b class="n">৬৫০ মিলিয়ন+</b> মানুষ</td></tr>
+<tr><td>দ্বি-রাষ্ট্র সমাধান</td><td><b class="n">১৯৬৭</b> সালের সীমারেখা</td></tr>
+<tr><td>UNSC Resolution 2334</td><td><b class="n">২০১৬</b> — পশ্চিম তীরের বসতি অবৈধ</td></tr>
+<tr><td>ট্রাম্পের শান্তি পরিকল্পনা</td><td><b class="n">২০২৫</b>, "<b>২০ দফা</b>"</td></tr>
+<tr><td>চীন-যুক্তরাষ্ট্র বাণিজ্য যুদ্ধ</td><td>১ম পর্যায় <b class="n">২০১৮</b> → ২য় <b class="n">২০১৯–২০</b> → বর্তমান <b class="n">২০২৫</b> (Reciprocal Tariff)</td></tr>
+<tr><td>Reciprocal Tariff System</td><td><b class="n">এপ্রিল ২০২৫</b>, ট্রাম্প; "Fairness Doctrine"</td></tr>
+<tr><td>ইরান</td><td>বিপ্লব <b class="n">১৯৭৯</b>; জিম্মি সংকট <b class="n">১৯৭৯–৮১</b>; ইরান-ইরাক যুদ্ধ <b class="n">১৯৮০–৮৮</b></td></tr>
+<tr><td>ইরান যুদ্ধ শুরু</td><td><b class="n">২৮ ফেব্রুয়ারি ২০২৬</b>; ইসরায়েল: <b>Operation Roaring Lion</b>; যুক্তরাষ্ট্র: <b>Operation Epic Fury</b></td></tr>
+<tr><td>ইরানের ক্ষেপণাস্ত্র</td><td>স্বল্প-পাল্লা <b class="n">৩০০–১০০০ কিমি</b>; মধ্য-পাল্লা <b class="n">১০০০–৩০০০ কিমি</b></td></tr>
+<tr><td>হরমুজ প্রণালী</td><td>বিশ্বের ~<b class="n">২০%</b> তেল; প্রস্থ <b class="n">২১ মাইল</b></td></tr>
+<tr><td>রুশ তেলের দাম</td><td>আগে ব্যারেল ~<b class="n">৫০ ডলার</b> (১০–১৩ ডলার ছাড়ে), এখন <b class="n">১০৬ ডলার</b></td></tr>
+<tr><td>Westphalia</td><td><b class="n">১৬৪৮</b></td></tr>
+<tr><td>সোভিয়েত পতন</td><td><b class="n">১৯৯০</b>-এর দশকে; Nescent Multipolar <b class="n">১৯৯০–২০১০</b></td></tr>
+<tr><td>UN Atomic Energy Commission</td><td><b class="n">জানুয়ারি ১৯৪৬</b></td></tr>
+<tr><td>জেনেভা নিরস্ত্রীকরণ সম্মেলন</td><td><b class="n">১৯৬০</b></td></tr>
+<tr><td>মহাকাশ চুক্তি (US-USSR)</td><td><b class="n">১৯৬৬</b> (উদ্যোগ ১৯৬১–৬৩)</td></tr>
+<tr><td>NPT</td><td>চুক্তি <b class="n">১৯৬৮</b>, কার্যকর <b class="n">১৯৭০</b>, পর্যালোচনা <b class="n">১৯৯৫</b>; উ. কোরিয়ার প্রত্যাহার <b class="n">২০০৩</b></td></tr>
+<tr><td>SALT-I</td><td><b class="n">২৬ মে ১৯৭২</b>, মস্কো — ব্রেজনেভ ও নিক্সন</td></tr>
+<tr><td>SALT-II</td><td><b class="n">১৮ জুন ১৯৭৯</b>, ভিয়েনা — ব্রেজনেভ ও কার্টার</td></tr>
+<tr><td>START-I</td><td><b class="n">৩১ জুলাই ১৯৯১</b> — গর্বাচেভ ও জর্জ বুশ</td></tr>
+<tr><td>START-II</td><td><b class="n">৩ জানুয়ারি ১৯৯৩</b>, মস্কো — বুশ ও ইয়েলৎসিন; দূরপাল্লার অস্ত্র দুই-তৃতীয়াংশ হ্রাস</td></tr>
+<tr><td>NEW START</td><td><b class="n">৮ এপ্রিল ২০১০</b>, প্রাগ — ওবামা ও মেদভেদেভ; কার্যকর <b class="n">২০১১</b>; <b class="n">১৫৫০</b> ওয়ারহেড, <b class="n">৮০০</b>; রাশিয়ার স্থগিত <b class="n">২১ ফেব্রুয়ারি ২০২৩</b></td></tr>
+<tr><td>OPCW</td><td><b class="n">১৯৯৭</b>, হেগ</td></tr>
+<tr><td>দক্ষিণ আফ্রিকা</td><td><b class="n">১৯৯১</b>-এ নিজের পারমাণবিক অস্ত্র ধ্বংস (প্রেসিডেন্ট ডি ক্লার্ক)</td></tr>
+<tr><td>JCPOA</td><td><b class="n">২০১৫</b>; যুক্তরাষ্ট্রের প্রত্যাহার <b class="n">২০১৮</b></td></tr>
+<tr><td>ব্রেন্ট ক্রুড (মার্চ ২০২৬)</td><td>ব্যারেলপ্রতি ~<b class="n">১.৬৭ ডলার</b> (~২%) বৃদ্ধি</td></tr>
+<tr><td>বাংলাদেশের জ্বালানি আমদানি</td><td>মোট জ্বালানির ~<b class="n">৯৫%</b> আমদানি, তার ~<b class="n">৯০%</b> হরমুজ হয়ে; অপরিশোধিত তেল বছরে <b class="n">১.৫ মিলিয়ন টন</b></td></tr>
+<tr><td>LNG দাম</td><td>প্রতি MMBTU <b class="n">১০–১২</b> → <b class="n">২১–২৮ ডলার</b> (প্রায় ৩ গুণ)</td></tr>
+<tr><td>গ্যাসনির্ভর বিদ্যুৎ</td><td><b class="n">৪০–৪৫%</b>; কাতার একাই LNG-র <b class="n">৪০–৪২%</b>; কাতার+UAE = <b class="n">৭২%</b></td></tr>
+<tr><td>ডিজেল মজুদ</td><td><b class="n">২৭ ফেব্রুয়ারি ২০২৬</b> পর্যন্ত মাত্র <b class="n">১০ দিনের</b> (BPC)</td></tr>
+<tr><td>ডিজেলের দাম</td><td>ব্যারেলপ্রতি <b class="n">৮০ → ১০০ ডলার+</b></td></tr>
+<tr><td>জ্বালানি আমদানি ব্যয়</td><td>বছরে <b class="n">১০–১১</b> → <b class="n">১৭–১৮ বিলিয়ন ডলার</b> (অতিরিক্ত <b class="n">৬–৭ বিলিয়ন</b>)</td></tr>
+<tr><td>রিজার্ভ</td><td><b class="n">৩০ বিলিয়ন ডলার+</b></td></tr>
+<tr><td>GDP ক্ষতি (SANEM)</td><td>জ্বালানি খাতে <b class="n">১.২%</b>; পরিবহন খরচ ২৫% বাড়লে ও রপ্তানি ৫% কমলে <b class="n">১.৪%</b></td></tr>
+<tr><td>RMG</td><td>রপ্তানির <b class="n">৮০%+</b>; <b class="n">৪০ লাখ</b> কর্মসংস্থান</td></tr>
+<tr><td>শাহজালাল বিমানবন্দর</td><td><b class="n">৬টি</b> এয়ারলাইনসের কার্গো স্থগিত; ~<b class="n">১,২০০ টন</b> পোশাক আটকা</td></tr>
+<tr><td>সিনথেটিক ফাইবার</td><td>টেক্সটাইল মিশ্রণের <b class="n">৩৭%</b> (PTA ও MEG — তেলের উপজাত)</td></tr>
+<tr><td>ইরানে রপ্তানি ২০২৪-২৫</td><td><b class="n">১০.৯ মিলিয়ন ডলার</b></td></tr>
+<tr><td>সৌদির সার রপ্তানি ২০২৪</td><td><b class="n">৪১৪.৭২ মিলিয়ন ডলার</b>; ইউরিয়ার <b class="n">৬০–৭০%</b> মধ্যপ্রাচ্য থেকে</td></tr>
+<tr><td>মধ্যপ্রাচ্যে প্রবাসী</td><td><b class="n">৮ মিলিয়ন+</b>; মাসে ~<b class="n">৩ বিলিয়ন ডলার</b>; মোট রেমিট্যান্সের ~<b class="n">৪৫%</b></td></tr>
+<tr><td>বাংলাদেশের জনসংখ্যা</td><td>~<b class="n">১৭০ মিলিয়ন</b></td></tr>
+</table></div>
+</section>
+
+<!-- E1 -->
+<section class="topic" id="e1">
+<h2>১. Rule-based World Order</h2>
+<p class="muted">প্রেক্ষাপট: রাশিয়া যুদ্ধ, ইরান যুদ্ধ, ফিলিস্তিন সংঘাত; যুক্তরাষ্ট্রের ভেনিজুয়েলায় আক্রমণ, গ্রীনল্যান্ড দখলের আগ্রহ, ইরানের সুপ্রিম লিডারকে হত্যা — বৈশ্বিক আইন ভঙ্গ।</p>
+<div class="card"><h3>সংজ্ঞা</h3>
+<p>এমন আন্তর্জাতিক ব্যবস্থা যেখানে রাষ্ট্রগুলো <b>শক্তির পরিবর্তে স্বীকৃত নিয়ম, আইন ও প্রাতিষ্ঠানিক কাঠামো</b> অনুসরণ করে — জাতিসংঘ সনদ, আন্তর্জাতিক আইন, চুক্তি ও বৈশ্বিক প্রতিষ্ঠানের নিয়ম অনুযায়ী। উদ্দেশ্য: পূর্বানুমানযোগ্য ও স্থিতিশীল পরিবেশ; শক্তিশালী রাষ্ট্রের একতরফা আধিপত্য কমানো।</p></div>
+<div class="grid">
+<div class="card"><h4>৬ বৈশিষ্ট্য</h4><ol>
+<li>আন্তর্জাতিক আইনের প্রাধান্য</li><li>বহুপাক্ষিকতা (Multilateralism) — জাতিসংঘ, WTO, IMF</li><li>শান্তিপূর্ণ বিরোধ নিষ্পত্তি</li><li>সার্বভৌম সমতার স্বীকৃতি</li><li>পূর্বানুমানযোগ্যতা ও স্থিতিশীলতা</li><li>প্রাতিষ্ঠানিক কাঠামোর ভূমিকা</li></ol></div>
+<div class="card"><h4>করণীয় ধাপ ১: জাতিসংঘের ৪ উদ্দেশ্য</h4><ol>
+<li>আন্তর্জাতিক শান্তি ও নিরাপত্তা বজায়</li><li>রাষ্ট্রগুলোর মধ্যে সৌহার্দ্যপূর্ণ সম্পর্ক</li><li>মানবাধিকার, মানবমর্যাদা ও সামাজিক অগ্রগতি</li><li>বৈশ্বিক সমস্যার যৌথ সমাধান</li></ol></div>
+<div class="card"><h4>করণীয় ধাপ ২: জাতিসংঘের ৭ মূলনীতি</h4><ol>
+<li>সার্বভৌম সমতা</li><li>বিরোধের শান্তিপূর্ণ নিষ্পত্তি</li><li>শক্তি প্রয়োগের নিষেধাজ্ঞা</li><li>জাতিসংঘ সনদ বাস্তবায়ন</li><li>সমষ্টিগত নিরাপত্তা</li><li>অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ না করা</li><li>মানবাধিকার ও ন্যায়বিচারের প্রতি শ্রদ্ধা</li></ol></div>
+</div>
+<div class="ok"><b>ধাপ ৩:</b> জাতিসংঘের কাঠামো সংস্কার → Rule-based World Order প্রতিষ্ঠা।<br><b>টিপ:</b> "জাতিসংঘ না এসে বিশ্বশান্তি রক্ষায় করণীয়" এলে এই অংশ ও জাতিসংঘ অংশ মিলিয়ে লিখবেন।</div>
+</section>
+
+<!-- E2 -->
+<section class="topic" id="e2">
+<h2>২. জাতিসংঘ: সফলতা, ব্যর্থতা ও সংস্কার</h2>
+<div class="quote">"Reform of the United Nations is the reform of global governance itself." — <span>Boutros Ghali</span></div>
+<div class="quote">"The United Nations was created for a world that no longer exists; reform is not optional, it is imperative." — <span>Kofi Annan</span></div>
+
+<details open><summary>✅ সফলতা (৮টি)</summary>
+<div class="tbl"><table>
+<tr><th>#</th><th>সফলতা</th><th>উদাহরণ / তথ্য</th></tr>
+<tr><td>১</td><td>যুদ্ধ প্রতিরোধ ও শান্তিরক্ষা</td><td>কসোভো, পূর্ব তিমুর, লাইবেরিয়া, সাইপ্রাস, গ্রিক-তুর্কি উত্তেজনা; ~৮০,০০০ শান্তিরক্ষী ১২+ দেশে</td></tr>
+<tr><td>২</td><td>মানবাধিকার ব্যবস্থা</td><td>১৯৪৮ UDHR</td></tr>
+<tr><td>৩</td><td>উন্নয়ন ও দারিদ্র্য হ্রাস</td><td>UNDP, UNICEF, WFP, WHO; শিশু মৃত্যুহার ৫০% কম; পোলিও প্রায় নির্মূল, স্মলপক্স নির্মূল</td></tr>
+<tr><td>৪</td><td>SDG</td><td>২০১৫, Agenda 2030, ১৭ লক্ষ্য</td></tr>
+<tr><td>৫</td><td>আন্তর্জাতিক আইন ও ন্যায়বিচার</td><td>ICJ (নিকারাগুয়া-কলম্বিয়া সীমানা মামলা); ICC (গণহত্যা, যুদ্ধাপরাধ)</td></tr>
+<tr><td>৬</td><td>শরণার্থী সুরক্ষা</td><td>UNHCR ৩৫ মিলিয়ন+; রোহিঙ্গা ~১ মিলিয়ন; সিরিয়া ৬ মিলিয়ন+; আফগানিস্তান</td></tr>
+<tr><td>৭</td><td>বৈশ্বিক স্বাস্থ্য</td><td>WHO: স্মলপক্স, পোলিও, কোভিড-১৯; বছরে ৪–৫ মিলিয়ন শিশুর জীবন রক্ষা</td></tr>
+<tr><td>৮</td><td>জলবায়ু নেতৃত্ব</td><td>UNFCCC, COP; Adaptation, Climate Finance</td></tr>
+</table></div>
+</details>
+
+<details open><summary>❌ ব্যর্থতা (৮টি)</summary>
+<ol>
+<li>নিরাপত্তা পরিষদের ভেটো বৈশ্বিক ন্যায়বিচার বাধাগ্রস্ত করে</li>
+<li>গণহত্যা ও মানবিক বিপর্যয় ঠেকাতে ব্যর্থ</li>
+<li>শক্তিশালী রাষ্ট্রের রাজনৈতিক প্রভাব — যুক্তরাষ্ট্র (ইসরায়েল-ফিলিস্তিনে ভেটো), রাশিয়া (সিরিয়া), চীন (দক্ষিণ চীন সাগর)</li>
+<li>প্রশাসনিক জটিলতা ও ধীরগতি (১৯৩ সদস্য)</li>
+<li>শান্তিরক্ষীদের বিরুদ্ধে অভিযোগ — কঙ্গো, হাইতি, দক্ষিণ সুদান; ২০১০ হাইতিতে কলেরায় ~১০ হাজার মৃত্যু</li>
+<li>জলবায়ুতে অকার্যকারিতা — ১০০ বিলিয়ন ডলার প্রায়ই দেওয়া হয় না; বাংলাদেশ, মালদ্বীপ, নেপাল, ফিলিপাইন ক্ষতিগ্রস্ত</li>
+<li><b>দ্বৈত মানদণ্ড ("double standard")</b> — ইউক্রেনে দ্রুত, ফিলিস্তিন-রোহিঙ্গায় নীরব</li>
+<li>আর্থিক নির্ভরতা (যুক্তরাষ্ট্র ~২২%) ও নিজস্ব সেনাবাহিনী নেই</li>
+</ol>
+</details>
+
+<details open><summary>⚖️ সংস্কার কেন জরুরি (৭টি)</summary>
+<ol>
+<li>নিরাপত্তা পরিষদের প্রতিনিধিত্ব সংকট (১৯৪৫-এর ৫ স্থায়ী সদস্য)</li>
+<li>ভেটোর বৈষম্যমূলক ব্যবহার (ফিলিস্তিন, সিরিয়া, ইউক্রেন, ইয়েমেন)</li>
+<li>Global South-এর কণ্ঠস্বর দুর্বল</li>
+<li>প্রশাসনিক ধীরগতি — UN = "<b>slow responder</b>"</li>
+<li>শরণার্থী, জলবায়ু ও মহামারিতে সীমিত সক্ষমতা</li>
+<li>আর্থিক নির্ভরতা ও স্বচ্ছতার অভাব</li>
+<li>দ্বৈত মানদণ্ড ("<b>selective justice</b>")</li>
+</ol>
+</details>
+
+<details open><summary>🛠️ সংস্কার কীভাবে সম্ভব</summary>
+<div class="tbl"><table>
+<tr><th>সংস্কার</th><th>মডেল / প্রস্তাব</th></tr>
+<tr><td>১. নিরাপত্তা পরিষদের সদস্য বৃদ্ধি</td><td><b>G4 Model</b> (জার্মানি, জাপান, ভারত, ব্রাজিল); <b>Ezulwini Consensus</b> (আফ্রিকার প্রতিনিধিত্ব)</td></tr>
+<tr><td>২. ভেটোর সীমাবদ্ধতা</td><td>(ক) <b>French Veto Restraint Initiative</b> — গণহত্যা, যুদ্ধাপরাধ ও মানবাধিকার লঙ্ঘনে ভেটো নিষিদ্ধ<br>(খ) <b>ACT Group Proposal</b> — ভেটোর লিখিত ব্যাখ্যা; ভেটো "exceptional and rare"<br>(গ) <b>Global Governance Model</b> — সাধারণ পরিষদের দুই-তৃতীয়াংশ ভোটে ভেটো বাতিল</td></tr>
+<tr><td>৩. উন্নয়নশীল বিশ্বের কণ্ঠস্বর বৃদ্ধি</td><td>জলবায়ু, দারিদ্র্য, সংঘাত, শরণার্থী</td></tr>
+<tr><td>৪. প্রশাসনিক আধুনিকীকরণ</td><td>"<b>Result-Based Administrative Structure</b>" (output-driven)</td></tr>
+<tr><td>৫. আর্থিক পুনর্গঠন</td><td>ন্যায্য চাঁদা, বহুমুখী উন্নয়ন তহবিল, দুর্নীতিমুক্ত অডিট</td></tr>
+<tr><td>৬. আধুনিক হুমকির নতুন কাঠামো</td><td>জলবায়ু, সাইবার, AI, মহামারি, মানবপাচার, ডিজিটাল অপরাধ (UN Charter ১৯৪৫-এর)</td></tr>
+</table></div>
+</details>
+</section>
+
+<!-- E3 -->
+<section class="topic" id="e3">
+<h2>৩. শান্তিরক্ষা মিশনে বাংলাদেশ</h2>
+<p class="muted">জাতিসংঘ নিয়ে প্রশ্ন এলে এই অংশ জুড়ে দিতে পারেন।</p>
+<div class="card"><p>প্রথম অংশগ্রহণ <b class="n">১৯৮৮</b>; বর্তমানে সেনা, নৌ, বিমান ও পুলিশ মিলিয়ে প্রায় <b class="n">৬০০০–৭০০০</b> শান্তিরক্ষী; শীর্ষ অবদানকারী দেশ।</p>
+<p><b>৫ ক্ষেত্র:</b> নিরাপত্তা ও যুদ্ধবিরতি পর্যবেক্ষণ • মানবিক সহায়তা ও স্বাস্থ্যসেবা • শিক্ষা ও প্রশাসনিক সহায়তা • প্রকৌশল ও লজিস্টিক • শান্তিপ্রতিষ্ঠা (Peace-building)</p></div>
+<div class="grid">
+<div class="card"><h4>দেশভিত্তিক অবদান</h4><div class="tbl"><table>
+<tr><td><b>কঙ্গো</b></td><td>সবচেয়ে বড় অবদান — মিলিশিয়া দমন, বেসামরিক নিরাপত্তা</td></tr>
+<tr><td>দক্ষিণ সুদান</td><td>মানবিক সেবা</td></tr>
+<tr><td>হাইতি</td><td>দুর্যোগ উদ্ধার ও রোগব্যাধি মোকাবিলা</td></tr>
+<tr><td>লেবানন</td><td>নৌ নিরাপত্তা ও সীমান্ত পর্যবেক্ষণ</td></tr>
+<tr><td>আইভরি কোস্ট</td><td>শান্তি পুনঃপ্রতিষ্ঠা, প্রশাসনিক সক্ষমতা</td></tr>
+<tr><td>মালি</td><td>জঙ্গিবাদ মোকাবিলা, উচ্চঝুঁকি অপারেশন</td></tr>
+<tr><td>লাইবেরিয়া ও সিয়েরা লিওন</td><td>গৃহযুদ্ধোত্তর পুনর্গঠন</td></tr>
+</table></div></div>
+<div class="card"><h4>প্রাপ্তি ও অর্জন (৭টি)</h4><ol>
+<li>আন্তর্জাতিক সুনাম ও মর্যাদা</li><li>কূটনৈতিক অবস্থান ও বৈশ্বিক নেতৃত্ব</li><li>বৈদেশিক মুদ্রা ও অর্থনৈতিক লাভ</li><li>সামরিক দক্ষতা ও প্রযুক্তি</li><li>নারীর ক্ষমতায়ন ও দৃশ্যমানতা</li><li>জাতীয় অর্থনীতি, সামরিক শিল্প ও রপ্তানি খাত</li><li>আন্তর্জাতিক পুরস্কার ও সম্মাননা</li></ol></div>
+</div>
+</section>
+
+<!-- E4 -->
+<section class="topic" id="e4">
+<h2>৪. সার্ক (SAARC): ব্যর্থতা ও পুনরুজ্জীবন</h2>
+<p><b>৮ দেশ:</b> আফগানিস্তান, পাকিস্তান, ভারত, বাংলাদেশ, নেপাল, ভুটান, শ্রীলঙ্কা, মালদ্বীপ।</p>
+<details><summary>প্রাথমিক উদ্দেশ্য (১০টি)</summary>
+<ol><li>অর্থনৈতিক ও সামাজিক উন্নয়ন</li><li>আঞ্চলিক শান্তি ও আস্থা</li><li>দারিদ্র্য বিমোচন</li><li>বাণিজ্য ও অর্থনৈতিক একীকরণ</li><li>কৃষি, বিজ্ঞান, প্রযুক্তি ও পরিবেশ</li><li>স্বাস্থ্য, শিক্ষা, জনসেবা</li><li>সংস্কৃতি ও জনযোগাযোগ</li><li>যৌথ সমস্যা সমাধান</li><li>হস্তক্ষেপ না করা (Sovereignty)</li><li>খাদ্য নিরাপত্তা</li></ol>
+</details>
+<details open><summary>১ম পর্ব: সার্ক কেন ব্যর্থ (৭ কারণ)</summary>
+<div class="tbl"><table>
+<tr><th>কারণ</th><th>তত্ত্ব / মূল কথা</th></tr>
+<tr><td>১. ভারত-পাকিস্তান দ্বন্দ্ব</td><td><span class="t">Regional Security Complex Theory</span></td></tr>
+<tr><td>২. কাঠামোগত দুর্বলতা</td><td>Consensus Rule ও দুর্বল Secretariat</td></tr>
+<tr><td>৩. অসম ক্ষমতা (ভারতকেন্দ্রিক)</td><td><span class="t">Power Asymmetry Theory</span></td></tr>
+<tr><td>৪. অর্থনৈতিক একীকরণের অভাব</td><td>SAFTA ব্যর্থতা</td></tr>
+<tr><td>৫. নিরাপত্তা ও সন্ত্রাসবাদে অনৈক্য</td><td>—</td></tr>
+<tr><td>৬. Connectivity ব্যর্থতা</td><td>—</td></tr>
+<tr><td>৭. বিকল্প জোটের উত্থান</td><td>SAARC-এর প্রান্তিকতা</td></tr>
+</table></div>
+</details>
+<details open><summary>২য় পর্ব: সার্ককে কার্যকর করার ৮ উদ্যোগ</summary>
+<ol>
+<li><b>Consensus Rule-এর বদলে:</b> ASEAN Minus X Formula; Flexible Engagement; Qualified Majority Voting (স্বাস্থ্য, শিক্ষা, পরিবেশে)</li>
+<li><b>ভারত-পাকিস্তান দ্বন্দ্ব:</b> <span class="t">Conflict Transformation Framework</span> — দ্বন্দ্বকে "manage" করতে হবে, "resolve" নয়</li>
+<li><b>Connectivity:</b> BBIN Motor Vehicle Agreement; SAARC Rail Corridor; Air Connectivity</li>
+<li><b>অর্থনৈতিক একীকরণ</b> (<span class="t">Liberal Institutionalism</span>) — আন্তঃবাণিজ্য মাত্র ৫% (আসিয়ান ২৫%, EU ৬৩%): SAFTA আধুনিকায়ন, NTB অপসারণ, Cross-Border Value Chain, <b>R-SEZ</b>, ব্যবসায়ী ভিসা</li>
+<li><b>প্রাতিষ্ঠানিক সক্ষমতা:</b> বাজেট ও দক্ষ জনবল; Monitoring &amp; Evaluation Unit; বিষয়ভিত্তিক বিভাগ; Summit বছরে একবার বাধ্যতামূলক</li>
+<li><b>মানবিক ও সামাজিক খাতে সহযোগিতা</b> — <span class="t">Functionalism</span> (রাজনৈতিক বিষয় প্রথমে নয়)</li>
+<li><b>Regional Social Cohesion:</b> ছাত্র ও সাংস্কৃতিক বিনিময়, Regional tourism circuit, Communal Harmony, যৌথ তথ্যচিত্র, <b>Young SAARC Network</b> → "shared identity"</li>
+<li><b>ASEAN থেকে শিক্ষা:</b> Flexible Engagement, Minus X Formula, High Connectivity, Institutional Strength, Economic Community</li>
+</ol>
+</details>
+</section>
+
+<!-- E5 -->
+<section class="topic" id="e5">
+<h2>৫. আসিয়ান ও বাংলাদেশ</h2>
+<div class="card"><p><b class="n">৮ আগস্ট ১৯৬৭</b>, ব্যাংকক — "<b>Bangkok Declaration</b>"। শিটে সদস্য <b>১০</b>টি, জনসংখ্যা <b>৬৫০ মিলিয়ন+</b>।</p>
+<p><b>মূলনীতি:</b> অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ না করা • সংঘাত নিষ্পত্তি • জাতীয় পরিচয়ের প্রতি শ্রদ্ধা।</p>
+<p><b>৭ লক্ষ্য:</b> শান্তি ও নিরাপত্তা • উত্তেজনা হ্রাস ও বহিঃশক্তির হস্তক্ষেপ কমানো • <b>AFTA</b> ও <b>AEC</b> • বাণিজ্য-বিনিয়োগ-শ্রমবাজার সংযোগ • দুর্যোগ, স্বাস্থ্য, জলবায়ু • শিক্ষা, সংস্কৃতি, যুব উন্নয়ন • সার্বভৌমত্বের সম্মান।</p></div>
+<div class="grid">
+<div class="card"><h4>বাংলাদেশ কেন যুক্ত হতে চায় (৭)</h4><ol><li>নতুন সম্ভাবনা</li><li>বৃহৎ ও দ্রুতবর্ধনশীল বাজার</li><li>ভূরাজনৈতিক ভারসাম্য</li><li>আঞ্চলিক Connectivity</li><li>শ্রমবাজারে সুযোগ</li><li>নিরাপত্তা ও সন্ত্রাস দমন</li><li>জলবায়ু ও দুর্যোগ ব্যবস্থাপনা</li></ol><p class="muted">→ Look East Policy শক্তিশালী হবে</p></div>
+<div class="card"><h4>আসিয়ানের লাভ (৮)</h4><ol><li>বঙ্গোপসাগরে ভূরাজনৈতিক গুরুত্ব</li><li>Supply Chain সম্প্রসারণ</li><li>Blue Economy</li><li>বৃহৎ ভোক্তা বাজার</li><li>দক্ষ মানবসম্পদ</li><li>জলবায়ু ও দুর্যোগে যৌথ সুবিধা</li><li>রোহিঙ্গা সংকটে আঞ্চলিক নেতৃত্ব</li><li>জ্বালানি ও প্রযুক্তি সহযোগিতা</li></ol></div>
+<div class="card"><h4>বাংলাদেশের করণীয় (৮)</h4><ol><li>Trust Building</li><li>Economic Harmonization</li><li>কানেক্টিভিটি ও অবকাঠামো</li><li>জলবায়ু কূটনীতি</li><li>Regionalization of Rohingya Crisis</li><li>Labour Diplomacy</li><li>নিরাপত্তা ও সামুদ্রিক সক্ষমতা</li><li>বিনিয়োগ পরিবেশ সংস্কার</li></ol><p class="muted">তত্ত্ব: <span class="t">Regional Integration Theory</span></p></div>
+</div>
+</section>
+
+<!-- E6 -->
+<section class="topic" id="e6">
+<h2>৬. দক্ষিণ এশিয়ায় শান্তি ও সহযোগিতা</h2>
+<p class="muted">সার্ক ও আসিয়ানের করণীয় মিলিয়ে লিখবেন।</p>
+<div class="grid">
+<div class="card"><h4>১০ নিরাপত্তা চ্যালেঞ্জ</h4><ol>
+<li>সীমান্ত বিরোধ — ভারত-পাকিস্তান, ভারত-চীন, বাংলাদেশ-ভারত</li><li>সন্ত্রাসবাদ — পাকিস্তান, আফগানিস্তান, ভারত</li><li>সাম্প্রদায়িক সংঘাত</li><li>রাজনৈতিক অস্থিতিশীলতা — আফগানিস্তান, মিয়ানমার</li><li>শক্তির ভারসাম্য — চীন, ভারত, পাকিস্তান</li><li>অর্থনৈতিক অসমতা</li><li>মৌলবাদী চিন্তাধারা</li><li>জলবায়ু ও প্রাকৃতিক বিপর্যয়</li><li>মাদক চোরাচালান</li><li>শরণার্থী সংকট — মিয়ানমার, আফগানিস্তান, পাকিস্তান</li></ol></div>
+<div class="card"><h4>৯ করণীয়</h4><ol>
+<li>দ্বন্দ্ব-ব্যবস্থাপনা কাঠামো</li><li>আঞ্চলিক নিরাপত্তা কাঠামো পুনর্গঠন</li><li>বাণিজ্য প্রতিবন্ধকতা দূর</li><li>পরিবহন, বন্দর, রেল ও ডিজিটাল Connectivity</li><li>পানি, বিদ্যুৎ ও পরিবেশ সহযোগিতা</li><li>সন্ত্রাস, মানবপাচার ও সীমান্ত নিরাপত্তায় সমন্বয়</li><li>মানুষে-মানুষে যোগাযোগ</li><li>সার্ক পুনরুজ্জীবন</li><li>দারিদ্র্য হ্রাসে যৌথ পরিকল্পনা</li></ol>
+<p class="muted">তত্ত্ব: <span class="t">Regional Integration Theory</span> — প্রতিযোগিতা নয়, পারস্পরিক নির্ভরতা</p></div>
+</div>
+</section>
+
+<!-- E7 -->
+<section class="topic" id="e7">
+<h2>৭. ইসরায়েল-ফিলিস্তিন ও দ্বি-রাষ্ট্র সমাধান</h2>
+<div class="quote">"We know too well that our freedom is incomplete without the freedom of the Palestinians." — <span>Nelson Mandela</span></div>
+<div class="quote">"The two-state solution is not an illusion; it is the only option that preserves the hopes of both peoples." — <span>Ban Ki-moon</span></div>
+<p>২০২৩–২০২৬ বিশ্বজুড়ে আন্দোলন; স্লোগান: <b>No more genocide, Ceasefire now, Palestine will be free</b>।</p>
+<details open><summary>সাম্প্রতিক উন্নয়ন (৭টি)</summary>
+<ol>
+<li><b>Reallocation of International Legitimacy</b> — অনেক রাষ্ট্র ফিলিস্তিনকে স্বীকৃতি দিচ্ছে</li>
+<li>আন্তর্জাতিক নর্মস পরিবর্তন — apartheid, genocide, occupying power পরিভাষা</li>
+<li>পশ্চিমা গণতন্ত্রে রাজনৈতিক চাপ</li>
+<li>ইসরায়েলের কূটনৈতিক বিচ্ছিন্নতা</li>
+<li>আরব ও মুসলিম বিশ্বের আত্মবিশ্বাস বৃদ্ধি</li>
+<li>দুই রাষ্ট্র সমাধানের পুনরুজ্জীবন</li>
+<li>ICC তদন্তের গতি বৃদ্ধি</li>
+</ol>
+</details>
+<div class="card"><h3>দ্বি-রাষ্ট্র সমাধান</h3><p><b>১৯৬৭ সালের সীমারেখার</b> ভিত্তিতে স্বাধীন ফিলিস্তিন ও ইসরায়েল পাশাপাশি; প্রায় তিন দশক ধরে বাস্তবায়িত হয়নি।</p></div>
+<details open><summary>প্রতিবন্ধকতা</summary>
+<div class="tbl"><table>
+<tr><th>ধরন</th><th>বিষয়</th></tr>
+<tr><td>রাজনৈতিক</td><td>(ক) নেতানিয়াহু স্বাধীন ফিলিস্তিনের বিপক্ষে, "One State Solution"<br>(খ) ফাতাহ (West Bank) বনাম হামাস (Gaza)<br>(গ) যুক্তরাষ্ট্রের শর্ত: "অসামরিক ফিলিস্তিন রাষ্ট্র" → "নির্ভরশীল রাষ্ট্র"</td></tr>
+<tr><td>ধর্মীয়</td><td>জেরুজালেম প্রশ্ন; ইহুদি উপদলীয় বিভাজন</td></tr>
+<tr><td>ভূ-রাজনৈতিক</td><td>(ক) যুক্তরাষ্ট্র: ২০২৫ ট্রাম্পের "২০ দফা শান্তি পরিকল্পনা" = Strategic Peace Process; "Israel-First"<br>(খ) আরব বিভক্তি — সৌদি যুক্তরাষ্ট্রের পাশে, ইরান সশস্ত্র প্রতিরোধে<br>(গ) সৌদির অবস্থান অর্থনীতি ও নিরাপত্তানির্ভর</td></tr>
+<tr><td>কাঠামোগত ও নিরাপত্তা</td><td>(ক) পশ্চিম তীরে বসতি — <b>UNSC Resolution 2334 (2016)</b>; "বিচ্ছিন্ন দ্বীপসমূহ", contiguity নেই<br>(খ) নিরাপত্তা ও আস্থা সংকট</td></tr>
+<tr><td>আন্তর্জাতিক</td><td>EU মানবাধিকারকেন্দ্রিক, যুক্তরাষ্ট্র নিরাপত্তাকেন্দ্রিক, রাশিয়া-চীন ভূরাজনৈতিক → সমন্বয়হীন</td></tr>
+</table></div>
+</details>
+<details open><summary>করণীয় (১০টি)</summary>
+<ol><li>আরব দেশগুলোর সমন্বিত ভূমিকা</li><li>যুক্তরাষ্ট্রের সদিচ্ছা ও মধ্যস্থতার পুনর্গঠন</li><li>ফিলিস্তিনি অভ্যন্তরীণ ঐক্য</li><li>বসতি স্থাপন বন্ধ ও আন্তর্জাতিক আইন প্রয়োগ</li><li>জেরুজালেমে ধর্মনিরপেক্ষ সমাধান</li><li>ফিলিস্তিনের অর্থনৈতিক সক্ষমতা</li><li>আন্তর্জাতিক স্বীকৃতি ও কূটনৈতিক স্বায়ত্তশাসন</li><li>CBMs</li><li>কৌশলগত ভারসাম্য ও নিরাপত্তা নিশ্চয়তা</li><li>বৈশ্বিক কূটনৈতিক ও জনমত আন্দোলন</li></ol>
+</details>
+</section>
+
+<!-- E8 -->
+<section class="topic" id="e8">
+<h2>৮. চীন-যুক্তরাষ্ট্র বাণিজ্য যুদ্ধ ও বাংলাদেশ</h2>
+<div class="quote">"When two elephants fight, it is the grass that suffers." — <span>African Proverb</span></div>
+<p><b>সংজ্ঞা:</b> দুই বা ততোধিক রাষ্ট্র ইচ্ছাকৃতভাবে শুল্ক, কোটা, ভর্তুকি নিয়ন্ত্রণ বা অশুল্ক বাধা আরোপ করে অর্থনৈতিক সুবিধা অর্জনের চেষ্টা। এটি <b>সংরক্ষণবাদের (Protectionism)</b> তীব্র রূপ, একটি <b>policy-response cycle</b>।</p>
+<div class="grid">
+<div class="card"><h4>৫ বৈশিষ্ট্য</h4><ol><li>Retaliatory Tariffs</li><li>বাণিজ্য প্রবাহ ব্যাহত</li><li>সরবরাহ শৃঙ্খলে ভাঙন</li><li>অর্থনৈতিক নিরাপত্তা ও রাজনৈতিক উত্তেজনা</li><li>নিয়মভিত্তিক বাণিজ্যব্যবস্থার অবক্ষয়</li></ol></div>
+<div class="card"><h4>২১শ শতকের পদ্ধতি</h4><ol>
+<li><b>শুল্ক:</b> Tariff, Quota, Safeguard</li>
+<li><b>অশুল্ক:</b> Anti Dumping, Countervailing Duties, মানভিত্তিক বাধা, Government Procurement নিষেধাজ্ঞা, Investment Screening</li>
+<li><b>Tech Geoeconomic Tools:</b> Export Controls, Entity List, Rare Earth Restrictions, Digital Data Restrictions, Supply Chain Controls</li></ol></div>
+<div class="card"><h4>পর্যায়</h4><ul><li><b>২০১৮</b> — উৎপাদনশিল্পকেন্দ্রিক শুল্কযুদ্ধ</li><li><b>২০১৯–২০</b> — শুল্ক থেকে প্রযুক্তি যুদ্ধ</li><li><b>২০২৫</b> — Reciprocal Tariff Phase</li></ul>
+<p><b>Reciprocal Tariff System</b> (এপ্রিল ২০২৫, ট্রাম্পের দ্বিতীয় মেয়াদ) = "<b>Fairness Doctrine</b>"। লক্ষ্য: বাণিজ্য ঘাটতি হ্রাস • সমান বাজার প্রবেশ • মার্কিন উৎপাদন পুনরুজ্জীবন • সরবরাহ শৃঙ্খল পুনর্গঠন</p></div>
+</div>
+<details open><summary>সাপ্লাই চেইনের কাঠামোগত রূপান্তর</summary>
+<div class="tbl"><table>
+<tr><th>রূপান্তর</th><th>কী ঘটছে</th><th>উদাহরণ</th></tr>
+<tr><td>১. Tech Decoupling</td><td>সেমিকন্ডাক্টর, AI, 5G-তে পারস্পরিক নির্ভরতা কমছে; দুই পৃথক ইকোসিস্টেম</td><td><b>CHIPS and Science Act</b> বনাম চীনের প্রযুক্তি জাতীয়তাবাদ</td></tr>
+<tr><td>২. Production Relocation</td><td>"Single-Country Dependency" এড়াতে <b>China+1 Strategy</b> (Apple, Tesla, Samsung, Foxconn)</td><td>ভিয়েতনাম (ইলেকট্রনিক্স, গার্মেন্টস), ভারত (সেমিকন্ডাক্টর, মোবাইল), বাংলাদেশ (টেক্সটাইল), মেক্সিকো (অটোমোবাইল)</td></tr>
+<tr><td>৩. Regionalization</td><td>বৈশ্বিক থেকে "<b>Regional Industrial Clusters</b>"</td><td>উত্তর আমেরিকা অটোমোবাইল হাব, ইউরোপীয় EV ব্যাটারি, এশীয় ইলেকট্রনিক্স হাব</td></tr>
+</table></div>
+<p><b>অন্যান্য প্রভাব:</b> (ক) বহুপাক্ষিক ব্যবস্থা দুর্বল — <b>MFN</b> নীতি চ্যালেঞ্জে; Free Trade → Fair Trade; ব্লকভিত্তিক বাণিজ্য (খ) পণ্যমূল্য ও উৎপাদন ব্যয় বৃদ্ধি (গ) বিনিয়োগে অনিশ্চয়তা (ঘ) বিশ্ব তিনটি আঞ্চলিক কাঠামোতে: উত্তর আমেরিকা, ইউরোপ, এশিয়া-প্যাসিফিক (ঙ) ক্ষমতার পুনর্বিন্যাস — ভারত ও রাশিয়ার সুযোগ</p>
+</details>
+<details open><summary>বাংলাদেশের সম্ভাবনা (৭টি)</summary>
+<ol><li>আমেরিকান বাজারে চীনের অংশ হ্রাস</li><li>China+1 Strategy</li><li>সাপ্লাই চেইন পুনর্বিন্যাস বাংলাদেশের পক্ষে</li><li>চীন থেকে আমদানি সুবিধা ও পুনঃরপ্তানি</li><li>চীনের শূন্য বাজার দখল</li><li>বিনিয়োগ — "<b>এশিয়ার দ্বিতীয় নিরাপদ গন্তব্য</b>"</li><li>রপ্তানি বহুমুখীকরণ — লাইট ম্যানুফ্যাকচারিং, চামড়া, ফার্নিচার, ইলেকট্রনিক অ্যাসেম্বলি, এগ্রো-প্রসেসিং</li></ol>
+<p class="muted">এই সম্ভাবনাগুলো পররাষ্ট্রনীতির সম্ভাবনা-সংক্রান্ত প্রশ্নেও কাজে লাগবে।</p>
+</details>
+</section>
+
+<!-- E9 -->
+<section class="topic" id="e9">
+<h2>৯. ইরান-যুক্তরাষ্ট্র সংঘাত: বিশ্বব্যবস্থায় পরিবর্তন</h2>
+<p>এককেন্দ্রিক বিশ্ব → বহুমেরুকেন্দ্রিক (multipolar)। মৌলিক ধারা: জ্বালানি রাজনীতি • প্রক্সি, অসম প্রতিরোধ, নিষেধাজ্ঞা, প্রযুক্তিনির্ভর যুদ্ধ • আঞ্চলিক যুদ্ধে বৈশ্বিক অস্থিরতা • যুক্তরাষ্ট্রের একক পদক্ষেপ (ইরান, ভেনিজুয়েলা) • আন্তর্জাতিক আইন ও ওয়েস্টফেলিয়ান সার্বভৌমত্ব প্রশ্নবিদ্ধ।</p>
+<div class="grid">
+<div class="card"><h4>ইরান কীভাবে শত্রু হলো</h4><ul><li>ইসলামি বিপ্লব (<b>১৯৭৯</b>)</li><li>জিম্মি সংকট (<b>১৯৭৯–১৯৮১</b>)</li><li>নিষেধাজ্ঞা ও সম্পদ জব্দ</li><li>ইরান-ইরাক যুদ্ধ (<b>১৯৮০–১৯৮৮</b>)</li><li>আঞ্চলিক প্রভাব ও প্রক্সি সংঘাত</li></ul></div>
+<div class="card"><h4>পারমাণবিক কর্মসূচির কারণ</h4><ul><li>Deterrence</li><li>Regional Balance</li><li>শাসনব্যবস্থা টিকিয়ে রাখা</li><li>দরকষাকষির হাতিয়ার</li><li>Technological Decoupling</li><li>জ্বালানি নিরাপত্তা</li><li>জাতীয়তাবাদ ও অভ্যন্তরীণ বৈধতা</li></ul></div>
+<div class="card"><h4>২০২৬ যুদ্ধের প্রেক্ষাপট</h4><ol><li>পরমাণু কর্মসূচি নিয়ে গালফ, ইসরায়েল ও যুক্তরাষ্ট্রের উদ্বেগ</li><li>অভ্যন্তরীণ সংকট ও বিক্ষোভ; শাহ পরিবারের সমর্থন; "<b>regime change opportunity</b>"</li><li>ব্যালিস্টিক ক্ষেপণাস্ত্র কর্মসূচি</li></ol></div>
+</div>
+<details open><summary>ইরানের ক্ষেপণাস্ত্র (নাম মনে রাখুন)</summary>
+<div class="tbl"><table>
+<tr><th>শ্রেণি</th><th>পাল্লা</th><th>নাম</th></tr>
+<tr><td>স্বল্প-পাল্লা</td><td>৩০০–১০০০ কিমি</td><td>শাহাব-১, শাহাব-২, কিয়াম, ফাতেহ-১১০ সিরিজ, হরমুজ সিরিজ</td></tr>
+<tr><td>মধ্য-পাল্লা</td><td>১০০০–৩০০০ কিমি</td><td>শাহাব-৩ ভ্যারিয়েন্ট, গদর-১১০, সেজ্জিল, খোররামশহর, এমাদ</td></tr>
+<tr><td>নতুন উন্নয়ন</td><td>—</td><td>শহীদ হাজী কাসেম সোলাইমানি, খাইবার শেকান, ফাতেহ-১ ও ফাতেহ-২ <b>হাইপারসনিক</b></td></tr>
+</table></div>
+<p><b>Deterrence by Punishment:</b> "তুমি আমাকে আক্রমণ করলে আমি এমন ক্ষতি করব যা তুমি সহ্য করতে পারবে না।"</p>
+</details>
+<details open><summary>যুদ্ধের সূচনা ও বৈশিষ্ট্য</summary>
+<p><b class="n">২৮ ফেব্রুয়ারি ২০২৬</b> — ইসরায়েল "<b>Operation Roaring Lion</b>", যুক্তরাষ্ট্র "<b>Operation Epic Fury</b>"; সর্বোচ্চ নেতা আলী খামেনেয়ীর মৃত্যু; ইরানের পাল্টা ক্ষেপণাস্ত্র ও ড্রোন হামলা।</p>
+<p><b>দীর্ঘ হওয়ার কারণ:</b> প্রক্সি ও প্রত্যক্ষ সংঘাতের সমন্বয় • প্রযুক্তিনির্ভর কৌশল • <b>calibrated escalation</b> • <b>information warfare</b> • <b>Asymmetric Warfare</b></p>
+</details>
+<details open><summary>বৈশ্বিক প্রভাব (১০টি)</summary>
+<div class="tbl"><table>
+<tr><th>প্রভাব</th><th>মূল কথা</th></tr>
+<tr><td>Security Dilemma</td><td>সৌদি ও UAE-র প্রতিরক্ষা ক্রয়</td></tr>
+<tr><td>হরমুজ ও Energy Security</td><td>~২০% তেল; LNG রপ্তানি বাধাগ্রস্ত; অর্থনৈতিক যুদ্ধ; মার্কিন নৌবাহিনী বিভক্ত; আঞ্চলিক থেকে বৈশ্বিক; সাপ্লাই চেইন; অসম যুদ্ধ</td></tr>
+<tr><td>Inflationary Pressure</td><td>জ্বালানির দাম → সব পণ্যের দাম</td></tr>
+<tr><td>Balance of Power</td><td>চীন-রাশিয়ার সুযোগ</td></tr>
+<tr><td>State Sovereignty প্রশ্ন</td><td>আন্তর্জাতিক আইনের কার্যকারিতা</td></tr>
+<tr><td>Westphalian Sovereignty</td><td><b>১৬৪৮ Peace of Westphalia</b> — কেউ অন্যের অভ্যন্তরে হস্তক্ষেপ করবে না</td></tr>
+<tr><td>Gun Blazing Style of Diplomacy</td><td>Quiet Diplomacy / Softly Softly Approach কাজ করছে না; অস্ত্র প্রদর্শন</td></tr>
+<tr><td>Militarization</td><td>সামরিক ব্যয় বৃদ্ধি (সৌদি)</td></tr>
+<tr><td>Full-blown Multipolar World</td><td>১৯৯০–২০১০ = <b>Nescent Multipolar</b>; এখন পরিপক্ব</td></tr>
+<tr><td>Non Traditional Security গুরুত্ব হারাচ্ছে</td><td><b>Frankfurt School / Critical Theory</b>; Traditional Security-তে ফিরে যাওয়া; Human Security উপেক্ষিত</td></tr>
+</table></div>
+</details>
+<details open><summary>শক্তিগুলোর অবস্থান</summary>
+<div class="tbl"><table>
+<tr><th>দেশ</th><th>কৌশল / তত্ত্ব</th></tr>
+<tr><td>চীন</td><td><span class="t">Strategic Hedging</span> — ইরানের সাথে জ্বালানি চুক্তি + সৌদির সাথে বাণিজ্য</td></tr>
+<tr><td>রাশিয়া</td><td><span class="t">Power Politics</span> — কৌশলগত সুযোগ</td></tr>
+<tr><td>পাকিস্তান</td><td><span class="t">Balancing Strategy</span></td></tr>
+<tr><td>তুরস্ক</td><td><span class="t">Neo-Ottoman Foreign Policy</span> — ন্যাটো সদস্য, ইরানের সাথেও সীমিত সহযোগিতা</td></tr>
+</table></div>
+</details>
+<details open><summary>রাশিয়া-ইউক্রেন যুদ্ধে প্রভাব (রাশিয়ার লাভ, ৭টি)</summary>
+<ol>
+<li>জ্বালানি বাজারে লাভ — আগে ১০–১৩ ডলার ছাড়ে, ~৫০ ডলার; এখন <b>১০৬ ডলার</b>; নিষেধাজ্ঞা আংশিক শিথিল</li>
+<li>"<b>Strategic Distraction</b>" — Patriot ব্যবস্থার ঘাটতি</li>
+<li>ইউক্রেনের আকাশ প্রতিরক্ষা দুর্বল</li>
+<li>ইরান-রাশিয়া সহযোগিতা — ইরান দেয় <b>Shahed</b> ড্রোন, রাশিয়া <b>Su-35</b></li>
+<li>গোয়েন্দা তথ্য বিনিময় — <b>Hybrid Warfare</b></li>
+<li><b>Hedging Strategy</b> — সম্ভাব্য মধ্যস্থতাকারী</li>
+<li>যুক্তরাষ্ট্রের শক্তি প্রদর্শনকে চ্যালেঞ্জ — <b>Relative Balance of Power</b></li>
+</ol>
+</details>
+<details open><summary>চীনের সুযোগ ও ঝুঁকি</summary>
+<div class="grid">
+<div class="card"><h4>সুযোগ</h4><ol><li>জ্বালানি সরবরাহে সুবিধা</li><li>মধ্যপ্রাচ্যে প্রভাব</li><li>BRI সম্প্রসারণ</li><li>বিকল্প আর্থিক ব্যবস্থা</li><li>সামরিক প্রযুক্তি পর্যবেক্ষণ</li></ol></div>
+<div class="card"><h4>ঝুঁকি</h4><ol><li>জ্বালানি অনিশ্চয়তা</li><li>বিনিয়োগ ও অবকাঠামো অনিশ্চয়তা</li><li>বাণিজ্যিক রুটে বিঘ্ন</li><li>কূটনৈতিক ভারসাম্যের চ্যালেঞ্জ</li></ol>
+<p class="muted">তত্ত্ব: <span class="t">Complex Interdependence</span> <span class="t">Geo-economics</span></p></div>
+</div>
+</details>
+<details open><summary>মধ্যপ্রাচ্যে যুক্তরাষ্ট্রের আধিপত্য হ্রাস (৬ কারণ)</summary>
+<ol><li>Security Provider হিসেবে বিশ্বাসযোগ্যতা হ্রাস</li><li>ইসরায়েলকেন্দ্রিক নীতি — <span class="t">Hegemonic Stability Theory</span></li><li>অর্থনৈতিক ও বিনিয়োগ কাঠামোয় অনিশ্চয়তা</li><li>চীন-রাশিয়ার উত্থান</li><li>"<b>Overextension</b>" — ইউক্রেন, ইন্দো-প্যাসিফিক, মধ্যপ্রাচ্য</li><li>সামরিক শক্তির সীমাবদ্ধতা — <b>Robert Jervis</b>-এর <span class="t">Security Dilemma</span></li></ol>
+<p>→ "<b>hegemonic transition</b>"</p>
+</details>
+</section>
+
+<!-- E10 -->
+<section class="topic" id="e10">
+<h2>১০. পারমাণবিক কর্মসূচি নিয়ন্ত্রণে বৈশ্বিক উদ্যোগ</h2>
+<details open><summary>ঐতিহাসিক পদক্ষেপ (টাইমলাইন)</summary>
+<div class="tbl"><table>
+<tr><th>সাল</th><th>পদক্ষেপ</th></tr>
+<tr><td>জানুয়ারি ১৯৪৬</td><td>UN Atomic Energy Commission</td></tr>
+<tr><td>১৯৬০</td><td>জেনেভা নিরস্ত্রীকরণ সম্মেলন</td></tr>
+<tr><td>১৯৬১–৬৩ → ১৯৬৬</td><td>জাতিসংঘের উদ্যোগ; সোভিয়েত-মার্কিন মহাকাশে অস্ত্র ব্যবহারবিরোধী চুক্তি</td></tr>
+<tr><td>১৯৬৮ / ১৯৭০</td><td><b>NPT</b> চুক্তি / কার্যকর; ১৯৯৫ পর্যালোচনা; ২০০৩ উত্তর কোরিয়ার প্রত্যাহার; ভারত, পাকিস্তান, ইসরায়েল, দক্ষিণ সুদান স্বাক্ষর করেনি</td></tr>
+<tr><td>২৬ মে ১৯৭২</td><td><b>SALT-I</b>, মস্কো — ব্রেজনেভ ও নিক্সন</td></tr>
+<tr><td>১৮ জুন ১৯৭৯</td><td><b>SALT-II</b>, ভিয়েনা — ব্রেজনেভ ও কার্টার</td></tr>
+<tr><td>৩১ জুলাই ১৯৯১</td><td><b>START-I</b> — গর্বাচেভ ও জর্জ বুশ</td></tr>
+<tr><td>১৯৯১</td><td>দক্ষিণ আফ্রিকা নিজের পারমাণবিক অস্ত্র ধ্বংস করে (ডি ক্লার্ক) — একমাত্র দেশ</td></tr>
+<tr><td>৩ জানুয়ারি ১৯৯৩</td><td><b>START-II</b>, মস্কো — বুশ ও ইয়েলৎসিন; দূরপাল্লার অস্ত্র দুই-তৃতীয়াংশ হ্রাস</td></tr>
+<tr><td>১৯৯৭</td><td><b>OPCW</b> (রাসায়নিক অস্ত্র নিষিদ্ধকরণ সংস্থা), হেগ</td></tr>
+<tr><td>৮ এপ্রিল ২০১০</td><td><b>NEW START</b>, প্রাগ — ওবামা ও মেদভেদেভ; কার্যকর ২০১১; ১৫৫০ ওয়ারহেড, ৮০০</td></tr>
+<tr><td>২০১৫</td><td><b>JCPOA</b></td></tr>
+<tr><td>২০১৮</td><td>যুক্তরাষ্ট্রের JCPOA প্রত্যাহার</td></tr>
+<tr><td>২১ ফেব্রুয়ারি ২০২৩</td><td>রাশিয়ার NEW START স্থগিত</td></tr>
+</table></div>
+</details>
+<div class="card"><h4>ইরানের বিরুদ্ধে পদক্ষেপ (৭টি)</h4>
+<p>IAEA তদারকি • UNSC নিষেধাজ্ঞা • যুক্তরাষ্ট্র ও EU-র একতরফা নিষেধাজ্ঞা • JCPOA ২০১৫ • যুক্তরাষ্ট্রের প্রত্যাহার ২০১৮ • পুনরায় চুক্তির চেষ্টা • Covert Actions — তত্ত্ব: <span class="t">Liberal Institutionalism</span></p></div>
+<details open><summary>পারমাণবিক বিস্তার রোধে করণীয় (১০টি)</summary>
+<ol><li>NPT ও <b>CTBT</b> বাস্তবায়ন ও সম্প্রসারণ</li><li>START পুনরায় শক্তিশালী করা (যুক্তরাষ্ট্র, রাশিয়া, চীন)</li><li>পরীক্ষার আন্তর্জাতিক নিষেধাজ্ঞা</li><li>অস্ত্র বিতরণে দমন অভিযান</li><li>দ্বিপাক্ষিক ও বহুপাক্ষিক আলোচনা (চীন, ভারত, পাকিস্তান)</li><li>IAEA-র মাধ্যমে শান্তিপূর্ণ ব্যবহারের নিয়ম</li><li>ইরান ও উত্তর কোরিয়ার সাথে আলোচনা</li><li>অপারেশনাল অস্ত্রে আন্তর্জাতিক নজরদারি</li><li>পারমাণবিক নিরাপত্তা সংস্কার</li><li>পারমাণবিক অস্ত্রমুক্ত বিশ্বের প্রচার</li></ol>
+</details>
+</section>
+
+<!-- E11 -->
+<section class="topic" id="e11">
+<h2>১১. ইরান যুদ্ধে বাংলাদেশের উপর প্রভাব ও করণীয়</h2>
+<details open><summary>বহুমুখী সংকট</summary>
+<div class="tbl"><table>
+<tr><th>সংকট</th><th>মুখস্থ তথ্য</th></tr>
+<tr><td>জ্বালানি তেলের মূল্য বৃদ্ধি</td><td>মার্চ ২০২৬: ব্রেন্ট ক্রুড ~১.৬৭ ডলার (~২%) বৃদ্ধি</td></tr>
+<tr><td>Negative Multiplier Effect</td><td>Complex Interdependence — জ্বালানির দাম → পরিবহন, কৃষি, শিল্প, মূল্যস্ফীতি</td></tr>
+<tr><td>দ্বিমুখী সংকট</td><td>ভর্তুকি বাড়ালে রাজস্ব ঘাটতি; দাম বাড়ালে মূল্যস্ফীতি</td></tr>
+<tr><td>জ্বালানি নিরাপত্তা ও GDP</td><td>৯৫% আমদানি, তার ৯০% হরমুজ হয়ে; ১.৫ মিলিয়ন টন অপরিশোধিত তেল (সৌদি, UAE); LPG ইরাক ও ওমান থেকে; ২১ মাইল প্রণালী অচল; LNG ১০–১২ → ২১–২৮ ডলার; বিদ্যুতের ৪০–৪৫% গ্যাসনির্ভর; কাতার ৪০–৪২%, কাতার+UAE ৭২%; ডিজেল মজুদ ১০ দিন (২৭ ফেব্রুয়ারি ২০২৬, BPC); ডিজেল ৮০→১০০ ডলার+; আমদানি ব্যয় ১০–১১ → ১৭–১৮ বিলিয়ন; রিজার্ভ ৩০ বিলিয়ন+; SANEM: GDP ১.২% কমতে পারে</td></tr>
+<tr><td>Inflationary Pressure</td><td>নিম্ন ও মধ্যম আয়ের মানুষের উপর চাপ</td></tr>
+<tr><td>Balance of Payments</td><td>আমদানি বিল বৃদ্ধি, রিজার্ভে চাপ</td></tr>
+<tr><td>Supply Chain Disruption</td><td>সামুদ্রিক পথে ঝুঁকি</td></tr>
+<tr><td>রপ্তানি ও লিড টাইম</td><td>RMG ৮০%+, ৪০ লাখ কর্মসংস্থান; শাহজালালে ৬টি এয়ারলাইনসের কার্গো স্থগিত, ~১২০০ টন আটকা</td></tr>
+<tr><td>গার্মেন্টস উৎপাদন ব্যয়</td><td>৩৭% সিনথেটিক ফাইবার (পলিয়েস্টার, ভিসকোজ — PTA ও MEG), চীন থেকে আমদানি</td></tr>
+<tr><td>বিকল্প নৌপথ</td><td>"বাব আল মান্দেব হয়ে সুয়েজ খাল" বন্ধ হলে <b>কেপ অব গুড হোপ</b> ঘুরে যেতে হবে</td></tr>
+<tr><td>বীমা প্রিমিয়াম</td><td>high-risk zone; marine insurance বৃদ্ধি</td></tr>
+<tr><td>নিম্ন লাভের শিল্প</td><td>SANEM (<b>South Asian Network on Economic Modeling</b>): পরিবহন খরচ ২৫%↑, রপ্তানি ৫%↓ → GDP ১.৪%↓</td></tr>
+<tr><td>ঔষধ রপ্তানি</td><td>কুয়েত, ইরাক, ইরান, বাহরাইন, সৌদি; ইরানে ২০২৪-২৫ রপ্তানি ১০.৯ মিলিয়ন ডলার</td></tr>
+<tr><td>সবজি রপ্তানি</td><td>চট্টগ্রাম থেকে আকাশপথে; ফেব্রুয়ারি ২০২৬ থেকে বিঘ্ন</td></tr>
+<tr><td>সার ও কৃষি</td><td>২০২৪-এ সৌদির সার রপ্তানি ৪১৪.৭২ মিলিয়ন ডলার; ইউরিয়ার ৬০–৭০% মধ্যপ্রাচ্য থেকে</td></tr>
+<tr><td>জেট জ্বালানি ও আকাশপথ</td><td>দুবাই হাব বিঘ্নিত</td></tr>
+<tr><td>রেমিট্যান্স</td><td>৮ মিলিয়ন+ শ্রমিক, মাসে ~৩ বিলিয়ন ডলার, মোট রেমিট্যান্সের ~৪৫%</td></tr>
+<tr><td>External Shock</td><td>~১৭০ মিলিয়ন মানুষ; ৩ ভিত্তি: RMG, মধ্যপ্রাচ্যের রেমিট্যান্স, আমদানিনির্ভর জ্বালানি</td></tr>
+<tr><td>দৈনন্দিন প্রভাব</td><td>ফিলিং স্টেশনে লাইন, গাড়ি ভাড়া বৃদ্ধি, লোডশেডিং</td></tr>
+</table></div>
+</details>
+<details open><summary>করণীয় (৮টি)</summary>
+<ol>
+<li><b>Energy Diversification</b> — আফ্রিকা, মধ্য এশিয়া, দক্ষিণ-পূর্ব এশিয়া; সৌর ও বায়ু শক্তি</li>
+<li><b>Strategic Reserve</b> — "<b>Just in Case Economy</b>"</li>
+<li><b>Macroeconomic Stability</b> — মুদ্রানীতি ও রাজস্বনীতির সমন্বয়, ভর্তুকি, বাজার তদারকি</li>
+<li>বৈদেশিক বাণিজ্য ও রিজার্ভ ব্যবস্থাপনা</li>
+<li>প্রবাসী শ্রমবাজার সুরক্ষা — ইউরোপ, পূর্ব এশিয়া, আফ্রিকা</li>
+<li><b>Strategic Neutrality</b> — "non-aligned"</li>
+<li>আঞ্চলিক ও বহুপাক্ষিক সহযোগিতা — SAARC, OIC</li>
+<li>সতর্ক ও সংযত কূটনৈতিক অবস্থান (বিশ্বরাজনীতি polarized)</li>
+</ol>
+</details>
+</section>
+
+<!-- E12 -->
+<section class="topic" id="e12">
+<h2>১২. বাংলাদেশের পররাষ্ট্রনীতির ভবিষ্যৎ দিকনির্দেশনা</h2>
+<div class="quote">"For Bangladesh, future diplomacy must rest on strategic autonomy — cooperating with all, aligning with none." — <span>Prof. Amartya Sen</span></div>
+<div class="grid">
+<div class="card"><h4>আইনগত নির্ধারক</h4><ol>
+<li>সংবিধানের <b>২৫ নং</b> অনুচ্ছেদ</li>
+<li>সংবিধানের <b>৬৩ নং</b> অনুচ্ছেদ — সংসদের সম্মতি ছাড়া যুদ্ধ ঘোষণা বা অংশগ্রহণ নয়</li>
+<li>জাতিসংঘ সনদ <b>২(৪)</b> — বলপ্রয়োগ নিষিদ্ধ</li>
+<li>জাতিসংঘ সনদ <b>২(৭)</b> — অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ নয় (গুরুতর মানবাধিকার লঙ্ঘনে ব্যতিক্রম)</li></ol></div>
+<div class="card"><h4>জিয়াউর রহমান (১৯৭৬–১৯৮১)</h4><ul><li>স্বাধীনতা ও সার্বভৌমত্ব</li><li>স্বনির্ভরতা</li><li>আরব দেশ</li><li>পশ্চিমা দেশ</li><li>সামরিক কূটনীতি</li><li>আঞ্চলিক সহযোগিতার ধারণা</li><li>রোহিঙ্গা ইস্যু</li><li>বৈশ্বিক ভারসাম্য</li></ul></div>
+<div class="card"><h4>খালেদা জিয়া (১৯৯১–৯৬ / ২০০১–০৬)</h4><ul><li>জিয়ার নীতির ধারাবাহিকতা</li><li>অর্থনীতি উদারীকরণ</li><li>মধ্যপ্রাচ্য</li><li>Look East Policy</li><li>ভারতের সাথে সাম্যতা</li><li>সার্ক ও বিমসটেক</li><li>রোহিঙ্গা আশ্রয় ও প্রত্যাবাসন</li></ul></div>
+</div>
+<div class="grid">
+<div class="card"><h4>বর্তমান সরকারের দর্শন (১২)</h4><ol><li>সবার আগে বাংলাদেশ (Realist Approach)</li><li>সমতা ও পারস্পরিক সম্মান (Multilateralism)</li><li>বন্ধু থাকবে, প্রভু না (Dignity)</li><li>Economic Diplomacy</li><li>নতুন বাজার ও বিনিয়োগ</li><li>রোহিঙ্গা প্রত্যাবাসন</li><li>প্রতিবেশী সহযোগিতা</li><li>সীমান্ত নিরাপত্তা</li><li>মুসলিম বিশ্ব ও উপসাগর</li><li>ইন্দো-প্যাসিফিক</li><li>সফট পাওয়ার</li><li>মন্ত্রণালয় ও দূতাবাসের সক্ষমতা</li></ol></div>
+<div class="card"><h4>চ্যালেঞ্জ (১৫)</h4><ol><li>কূটনৈতিক সম্পর্ক পুনর্গঠন</li><li>সমতা ও ভারসাম্য</li><li>ভারতের সাথে সম্পর্ক</li><li>পাকিস্তানের অমীমাংসিত ইস্যু</li><li>বৈশ্বিক শক্তির প্রতিযোগিতা</li><li>নিরপেক্ষতা</li><li>ইরান যুদ্ধ ও জ্বালানি</li><li>রেমিট্যান্স ও শ্রমবাজার</li><li>খাদ্য ও সরবরাহ</li><li>এলডিসি উত্তরণ</li><li>রোহিঙ্গা</li><li>আঞ্চলিক ও বৈশ্বিক ভারসাম্য</li><li>ঋণের বোঝা</li><li>বিদেশি বিনিয়োগ</li><li>জলবায়ু</li></ol></div>
+</div>
+<details open><summary>ভবিষ্যৎ দিকনির্দেশনা (২২ পয়েন্ট)</summary>
+<ol>
+<li>কূটনৈতিক সম্পর্ক পুনর্গঠন</li><li>গণতান্ত্রিক উত্তরণকেন্দ্রিক দিকনির্দেশ</li><li>বৈশ্বিক দ্বন্দ্বে: <b>Risk-Averting, Opportunity-Maximizing Diplomacy</b></li><li>ফিলিস্তিন, ইউক্রেন, Global South: নৈতিকতা ও বাস্তব স্বার্থের ভারসাম্য</li><li>দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ায় কৌশল</li><li>ভারত: সমতা, নিয়মভিত্তিক সমাধান, নিয়ন্ত্রিত ঘনিষ্ঠতা</li><li>পাকিস্তান: অমীমাংসিত ইতিহাস ও নতুন অর্থনৈতিক সম্পর্ক</li><li>সার্ক, বিমসটেক, আসিয়ান সংযোগ</li><li>চীন-যুক্তরাষ্ট্র: "<b>Equidistant Policy</b>"</li><li>চীন-ভারত প্রতিদ্বন্দ্বিতায় নীতিনির্ভর অবস্থান</li><li>ইন্দো-প্যাসিফিক ও বঙ্গোপসাগর</li><li>রোহিঙ্গায় আঞ্চলিক ও বৈশ্বিক কূটনীতি</li><li>ডেমোগ্রাফিক ডিভিডেন্ড</li><li>ব্লু ইকোনমি</li><li>এলডিসি উত্তরণ ও অর্থনৈতিক কূটনীতি</li><li>জলবায়ু কূটনীতি ও ন্যায্যতা</li><li>চতুর্থ শিল্প বিপ্লব, সাপ্লাই চেইন ও সাইবার নিরাপত্তা</li><li>নতুন বাজার: পূর্ব ইউরোপ, ল্যাটিন আমেরিকা</li><li>খাদ্য নিরাপত্তা</li><li>জ্বালানি সংকট মোকাবিলা</li><li>বিদেশি বিনিয়োগ</li><li>অভ্যন্তরীণ কূটনৈতিক সংস্কার</li>
+</ol>
+<p class="muted">বিস্তারিত (উদাহরণসহ) আগের ফাইল "BCS_International_Revision.html"-এর ৫ নং অংশে আছে।</p>
+</details>
+</section>
+
+<!-- PS -->
+<section class="topic" id="ps">
+<h2>★ প্রবলেম সলভিং: সম্ভাব্য উদ্দীপক</h2>
+<div class="card"><ol type="a">
+<li>রোহিঙ্গা সমস্যা সমাধান</li><li>যুক্তরাষ্ট্রের পারস্পরিক বাণিজ্য চুক্তি</li><li>এলডিসি উত্তরণ (বাংলাদেশ বিষয়াবলীর শিটে)</li><li>বৈশ্বিক সংকটে বাংলাদেশের সার্বিক করণীয়</li><li>পোশাক শিল্পের বৈচিত্র্য ও বাজার সম্প্রসারণ</li><li>কাল্পনিক উদ্দীপক: বিশ্বে পারমাণবিক যুদ্ধের সম্ভাবনা → ক্ষতি, প্রভাব, করণীয়, বৈশ্বিক উদ্যোগ</li>
+</ol></div>
+</section>
+
+<!-- THEORIES -->
+<section class="topic" id="theories">
+<h2>📚 তত্ত্ব ও কনসেপ্ট — কোথায় ব্যবহার করবেন</h2>
+<div class="tbl"><table>
+<tr><th>তত্ত্ব / কনসেপ্ট</th><th>এক লাইনে</th><th>টপিক</th></tr>
+<tr><td>Regional Security Complex Theory</td><td>দ্বিপাক্ষিক বিরোধ অঞ্চল নিয়ন্ত্রণ করলে আঞ্চলিক প্রতিষ্ঠান অকার্যকর</td><td>সার্ক</td></tr>
+<tr><td>Power Asymmetry Theory</td><td>একটি রাষ্ট্র অত্যধিক প্রভাবশালী হলে আঞ্চলিক প্রতিষ্ঠান দুর্বল</td><td>সার্ক</td></tr>
+<tr><td>Conflict Transformation Framework</td><td>দ্বন্দ্ব "manage" করো, "resolve" নয়</td><td>সার্ক</td></tr>
+<tr><td>Liberal Institutionalism</td><td>অর্থনৈতিক আন্তঃনির্ভরতা ও প্রতিষ্ঠান সংঘাত কমায়</td><td>সার্ক, ইরান (JCPOA, IAEA)</td></tr>
+<tr><td>Functionalism</td><td>অরাজনৈতিক খাত দিয়ে সহযোগিতা শুরু</td><td>সার্ক</td></tr>
+<tr><td>Regional Integration Theory</td><td>যে দেশ বেশি প্রস্তুত, তাকে সহজে অন্তর্ভুক্ত করা হয়</td><td>আসিয়ান, দ. এশিয়া</td></tr>
+<tr><td>Protectionism / Fairness Doctrine</td><td>শুল্ক দিয়ে দেশীয় শিল্প সুরক্ষা / সমান শুল্ক</td><td>বাণিজ্য যুদ্ধ</td></tr>
+<tr><td>Deterrence by Punishment</td><td>সহ্যাতীত ক্ষতির হুমকি</td><td>ইরান</td></tr>
+<tr><td>Security Dilemma (Robert Jervis)</td><td>নিরাপত্তা বাড়ানোর চেষ্টা উল্টো অনিরাপত্তা তৈরি করে</td><td>ইরান, মধ্যপ্রাচ্য</td></tr>
+<tr><td>Energy Security</td><td>নিরবচ্ছিন্ন ও সাশ্রয়ী জ্বালানি সরবরাহ</td><td>হরমুজ</td></tr>
+<tr><td>Balance of Power / Relative Balance of Power</td><td>কোনো একক শক্তি অতিরিক্ত প্রভাবশালী নয়</td><td>ইরান, রাশিয়া</td></tr>
+<tr><td>Westphalian Sovereignty</td><td>১৬৪৮; অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ নয়</td><td>ইরান</td></tr>
+<tr><td>Gun Blazing Style of Diplomacy</td><td>অস্ত্র প্রদর্শনের কূটনীতি</td><td>ইরান</td></tr>
+<tr><td>Frankfurt School / Critical Theory</td><td>Non Traditional Security-র গুরুত্ব</td><td>ইরান</td></tr>
+<tr><td>Strategic Hedging</td><td>দুই পক্ষের সাথেই সম্পর্ক</td><td>চীন, রাশিয়া</td></tr>
+<tr><td>Power Politics</td><td>জাতীয় স্বার্থে পরিস্থিতি কাজে লাগানো</td><td>রাশিয়া</td></tr>
+<tr><td>Balancing Strategy</td><td>বিভিন্ন শক্তির মধ্যে ভারসাম্য</td><td>পাকিস্তান</td></tr>
+<tr><td>Neo-Ottoman Foreign Policy</td><td>ঐতিহাসিক প্রভাব বলয় পুনরুদ্ধার</td><td>তুরস্ক</td></tr>
+<tr><td>Strategic Distraction / Hybrid Warfare</td><td>মনোযোগ সরানো / তথ্য-প্রযুক্তি-প্রক্সি যুদ্ধ</td><td>রাশিয়া-ইউক্রেন</td></tr>
+<tr><td>Complex Interdependence / Geo-economics</td><td>পরস্পরনির্ভরতা</td><td>চীন, বাংলাদেশের জ্বালানি</td></tr>
+<tr><td>Hegemonic Stability Theory</td><td>ন্যায্য নেতৃত্ব থাকলেই আধিপত্য টেকে</td><td>যুক্তরাষ্ট্র</td></tr>
+<tr><td>Overextension / hegemonic transition</td><td>অনেক ফ্রন্টে জড়িয়ে কার্যকারিতা হারানো</td><td>যুক্তরাষ্ট্র</td></tr>
+<tr><td>Negative Multiplier Effect</td><td>একটি নেতিবাচক প্রভাব অনেক প্রভাব তৈরি করে</td><td>বাংলাদেশ</td></tr>
+<tr><td>External Shock</td><td>বাইরের ঘটনায় অর্থনীতিতে আঘাত</td><td>বাংলাদেশ</td></tr>
+<tr><td>Just in Case Economy</td><td>কৌশলগত মজুদ</td><td>বাংলাদেশ</td></tr>
+<tr><td>Macroeconomic Stability</td><td>মূল্যস্ফীতি, ঘাটতি ও মুদ্রামান স্থিতিশীল</td><td>বাংলাদেশ</td></tr>
+<tr><td>Strategic Neutrality / Equidistant Policy</td><td>পক্ষ না নিয়ে জাতীয় স্বার্থ</td><td>বাংলাদেশ</td></tr>
+</table></div>
+</section>
+
+<!-- QUOTES -->
+<section class="topic" id="quotes">
+<h2>💬 উক্তিসমূহ</h2>
+<div class="tbl"><table>
+<tr><th>উক্তি</th><th>বক্তা</th><th>টপিক</th></tr>
+<tr><td>Reform of the United Nations is the reform of global governance itself.</td><td>Boutros Ghali</td><td>জাতিসংঘ</td></tr>
+<tr><td>The United Nations was created for a world that no longer exists; reform is not optional, it is imperative.</td><td>Kofi Annan</td><td>জাতিসংঘ</td></tr>
+<tr><td>We know too well that our freedom is incomplete without the freedom of the Palestinians.</td><td>Nelson Mandela</td><td>ফিলিস্তিন</td></tr>
+<tr><td>The two-state solution is not an illusion; it is the only option that preserves the hopes of both peoples.</td><td>Ban Ki-moon</td><td>ফিলিস্তিন</td></tr>
+<tr><td>When two elephants fight, it is the grass that suffers.</td><td>African Proverb</td><td>বাণিজ্য যুদ্ধ</td></tr>
+<tr><td>For Bangladesh, future diplomacy must rest on strategic autonomy — cooperating with all, aligning with none.</td><td>Prof. Amartya Sen</td><td>পররাষ্ট্রনীতি</td></tr>
+</table></div>
+</section>
+
+<div class="warn"><b>শিটের কয়েকটি তথ্য যাচাই করে নিন:</b>
+<ul>
+<li><b>আসিয়ান সদস্য:</b> শিটে ১০টি; পূর্ব তিমুর (Timor-Leste) অক্টোবর ২০২৫-এ ১১তম সদস্য হয়েছে।</li>
+<li><b>OPCW:</b> শিটে দক্ষিণ সুদানকে অ-সদস্য বলা হয়েছে, কিন্তু দক্ষিণ সুদান ২০১৯-এ যোগ দিয়েছে। ইসরায়েল স্বাক্ষর করলেও অনুসমর্থন করেনি; মিশর ও উত্তর কোরিয়া বাইরে।</li>
+<li><b>ভারত-জাপান সিভিল নিউক্লিয়ার চুক্তি:</b> শিটে ২০২১; প্রকৃতপক্ষে স্বাক্ষর ২০১৬, কার্যকর ২০১৭।</li>
+<li><b>NEW START "ICBM ৮০০":</b> প্রকৃতপক্ষে ৮০০ হলো মোট মোতায়েনকৃত ও অমোতায়েনকৃত লঞ্চার (ICBM, SLBM ও বোমারু মিলিয়ে); মোতায়েনকৃত ৭০০।</li>
+</ul></div>
+
+</main>
+<footer>রিভিশন নোট • মূল সূত্র: আন্তর্জাতিক এম্পেরিক্যাল রিভিশন শিট</footer>
+<script>
+function toggleTheme(){
+  const r=document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme = dark ? 'light' : 'dark';
+}
+</script>
+</body>
+</html>

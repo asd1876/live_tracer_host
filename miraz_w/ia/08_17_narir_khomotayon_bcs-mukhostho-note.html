@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>মুখস্থ নোট — লৈঙ্গিক ইস্যু ও ICT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1f2328; --muted:#5f6670; --line:#e4e0d6;
+  --accent:#0f6e5a; --accent2:#b4552d; --soft:#e8f3ef; --soft2:#fbeee6; --hl:#fff3b0;
+  --th:#0f6e5a; --thtext:#fff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171a; --card:#1d2125; --ink:#e7e9ec; --muted:#a3abb5; --line:#2e343a;
+    --accent:#4cc3a5; --accent2:#f0936a; --soft:#1b2e29; --soft2:#33231b; --hl:#5a4d12;
+    --th:#1f4d42; --thtext:#e7f6f1;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171a; --card:#1d2125; --ink:#e7e9ec; --muted:#a3abb5; --line:#2e343a;
+  --accent:#4cc3a5; --accent2:#f0936a; --soft:#1b2e29; --soft2:#33231b; --hl:#5a4d12;
+  --th:#1f4d42; --thtext:#e7f6f1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;font-size:17px;line-height:1.75}
+header.top{background:linear-gradient(135deg,var(--accent),#0a4c3e);color:#fff;padding:28px 16px 22px}
+header.top .wrap{max-width:1000px;margin:auto}
+header.top h1{margin:0 0 4px;font-size:1.6rem;line-height:1.3}
+header.top p{margin:0;opacity:.9}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.toolbar button{font:inherit;font-size:.9rem;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:4px 14px;cursor:pointer}
+.toolbar button:hover{background:rgba(255,255,255,.25)}
+main{max-width:1000px;margin:auto;padding:16px}
+nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:8px 0 20px}
+nav.toc h2{margin:0 0 6px;font-size:1.05rem;color:var(--accent)}
+nav.toc ol{margin:0;padding-left:22px;columns:2;column-gap:28px}
+nav.toc a{color:var(--ink);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+.part{margin:30px 0 8px;padding:10px 16px;border-radius:12px;background:var(--accent2);color:#fff;font-size:1.25rem;font-weight:700}
+details.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden}
+details.sec>summary{cursor:pointer;list-style:none;padding:12px 18px;font-weight:700;font-size:1.12rem;color:var(--accent);border-bottom:1px solid transparent}
+details.sec[open]>summary{border-bottom-color:var(--line)}
+details.sec>summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+details.sec[open]>summary::before{transform:rotate(90deg)}
+.body{padding:6px 18px 16px}
+h3{font-size:1.02rem;margin:16px 0 6px;color:var(--accent2)}
+ul,ol{margin:4px 0 8px;padding-left:22px}
+li{margin:2px 0}
+.tablewrap{overflow-x:auto;margin:8px 0 12px}
+table{border-collapse:collapse;width:100%;font-size:.94rem;min-width:520px}
+th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left}
+th{background:var(--th);color:var(--thtext);font-weight:600}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 45%,transparent)}
+.quote{border-left:4px solid var(--accent);background:var(--soft);padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-style:italic}
+.quote b{font-style:normal}
+.box{background:var(--soft2);border:1px dashed var(--accent2);border-radius:10px;padding:8px 14px;margin:10px 0}
+.warn{background:var(--hl);border-radius:10px;padding:8px 14px;margin:10px 0;font-size:.95rem}
+mark{background:var(--hl);color:inherit;padding:0 3px;border-radius:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.92rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.mini h4{margin:0 0 4px;color:var(--accent)}
+/* recall mode */
+body.recall .hide{filter:blur(6px);cursor:pointer;transition:filter .15s}
+body.recall .hide.shown{filter:none}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:24px 16px 40px}
+@media (max-width:640px){
+  nav.toc ol{columns:1}
+  .grid2{grid-template-columns:1fr}
+  header.top h1{font-size:1.3rem}
+  body{font-size:16px}
+}
+@media print{
+  header.top .toolbar, nav.toc{display:none}
+  details.sec{break-inside:avoid-page}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>📘 মুখস্থ নোট: বাংলাদেশ বিষয়াবলি</h1>
+  <p>পঞ্চদশ অধ্যায় — লৈঙ্গিক ইস্যু ও উন্নয়ন &nbsp;|&nbsp; দ্বাদশ অধ্যায় — সমসাময়িক তথ্য ও যোগাযোগ প্রযুক্তি (১৭তম ক্লাস)</p>
+  <div class="toolbar">
+    <button onclick="toggleAll(true)">সব খোলো</button>
+    <button onclick="toggleAll(false)">সব বন্ধ</button>
+    <button onclick="toggleRecall()" id="rbtn">🧠 রিভিশন মোড (সাল/সংখ্যা লুকাও)</button>
+    <button onclick="toggleTheme()">🌓 থিম</button>
+    <button onclick="window.print()">🖨️ প্রিন্ট</button>
+  </div>
+</div></header>
+
+<main>
+<nav class="toc">
+  <h2>সূচিপত্র</h2>
+  <ol>
+    <li><a href="#cheat">এক নজরে: সাল, সংখ্যা ও নাম</a></li>
+    <li><a href="#we-def">নারীর ক্ষমতায়ন: সংজ্ঞা ও উপাদান</a></li>
+    <li><a href="#we-theory">নারীর ক্ষমতায়নের ৪ তত্ত্ব</a></li>
+    <li><a href="#we-chal">নারীর ক্ষমতায়নের চ্যালেঞ্জ</a></li>
+    <li><a href="#we-sol">চ্যালেঞ্জ উত্তরণের উপায়</a></li>
+    <li><a href="#we-law">নারী সুরক্ষার ১২টি আইন</a></li>
+    <li><a href="#we-q">১৯৭০ বনাম ২০২৫ ও প্রশ্ন</a></li>
+    <li><a href="#ir">৪র্থ শিল্প বিপ্লব</a></li>
+    <li><a href="#global">বৈশ্বিক অভিজ্ঞতা (দেশভিত্তিক)</a></li>
+    <li><a href="#ir-chal">4IR: বাংলাদেশের চ্যালেঞ্জ</a></li>
+    <li><a href="#ir-opp">4IR: সুযোগ ও সম্ভাবনা</a></li>
+    <li><a href="#ir-do">4IR: করণীয়</a></li>
+    <li><a href="#ir-theory">প্রযুক্তি সম্পর্কিত তত্ত্ব</a></li>
+    <li><a href="#egov">ই-গভর্ন্যান্স</a></li>
+    <li><a href="#starlink">স্টারলিংক</a></li>
+    <li><a href="#misinfo">মিস/ডিসইনফরমেশন ও ডিপফেক</a></li>
+    <li><a href="#media">মিডিয়ার ভূমিকা ও তত্ত্ব</a></li>
+    <li><a href="#cyber">সাইবার সুরক্ষা অধ্যাদেশ ২০২৫</a></li>
+    <li><a href="#womencyber">নারীদের সাইবার সুরক্ষা</a></li>
+    <li><a href="#practice">চর্চার প্রশ্ন</a></li>
+  </ol>
+</nav>
+
+<!-- ================= CHEAT SHEET ================= -->
+<details class="sec" id="cheat" open><summary>⚡ এক নজরে: সাল, সংখ্যা ও নাম (সবচেয়ে বেশি মুখস্থ)</summary><div class="body">
+<div class="grid2">
+<div class="mini"><h4>নারীর ক্ষমতায়ন — তত্ত্ব ও লেখক</h4>
+<ul>
+<li>Amartya Sen — <i>Development as Freedom</i> (<span class="hide">1999</span>)</li>
+<li>Naila Kabeer — <i>Resources, Agency, Achievements</i> (<span class="hide">1999</span>)</li>
+<li>Liberal Feminism — <span class="hide">Mary Wollstonecraft (১৮শ শতক), J. S. Mill</span></li>
+<li>Post-Structural Feminism — <span class="hide">Michel Foucault, Judith Butler</span></li>
+<li>জাতীয় নারী উন্নয়ন নীতি — <span class="hide">২০১১</span></li>
+<li>লক্ষ্য: <span class="hide">“from marginality to agency”</span></li>
+<li>SDG — <span class="hide">5 (Gender Equality)</span></li>
+<li>CEDAW — অনুচ্ছেদ <span class="hide">২ ও ১৬</span></li>
+<li>Gender Budgeting প্রস্তাব — বাজেটের <span class="hide">ন্যূনতম ৫%</span></li>
+</ul></div>
+<div class="mini"><h4>প্রযুক্তি তত্ত্ব — লেখক ও সাল</h4>
+<ul>
+<li>Creative Destruction — <span class="hide">Schumpeter, 1942</span></li>
+<li>Human Capital — <span class="hide">Becker, 1964</span></li>
+<li>Skill-Biased Tech Change — <span class="hide">Restrepo, 2018</span></li>
+<li>Digital Divide — <span class="hide">Castells, 2001</span></li>
+<li>Just Transition — <span class="hide">ILO, 2015</span></li>
+<li>NPM — <span class="hide">Christopher Hood, 1991</span></li>
+<li>Good Governance — <span class="hide">UNDP, 1997</span></li>
+<li>Diffusion of Innovation — <span class="hide">Everett Rogers, 1962</span></li>
+<li>Systems Theory — <span class="hide">Ludwig von Bertalanffy</span></li>
+<li>Public Value — <span class="hide">Moore, 1995</span></li>
+</ul></div>
+<div class="mini"><h4>মিডিয়া তত্ত্ব</h4>
+<ul>
+<li>Liberal Theory — <span class="hide">John Milton, Areopagitica (1644)</span></li>
+<li>Social Responsibility — <span class="hide">Hutchins Commission (1947)</span></li>
+<li>Public Sphere — <span class="hide">Habermas (1989)</span></li>
+<li>Propaganda Model — <span class="hide">Chomsky &amp; Herman (1988), <i>Manufacturing Consent</i></span></li>
+</ul></div>
+<div class="mini"><h4>দেশভিত্তিক উদ্যোগ ও সাল</h4>
+<ul>
+<li>জার্মানি Industrie 4.0 — <span class="hide">২০১১</span></li>
+<li>Made in China 2025 — <span class="hide">২০১৫</span></li>
+<li>সিঙ্গাপুর Smart Nation — <span class="hide">২০১৪</span></li>
+<li>দক্ষিণ কোরিয়া — <span class="hide">AI National Strategy 2025</span></li>
+<li>ভারত — <span class="hide">Digital India, AI for All</span></li>
+</ul></div>
+<div class="mini"><h4>গুরুত্বপূর্ণ সংখ্যা</h4>
+<ul>
+<li>অটোমেশন ঝুঁকিতে শ্রমিক (ILO) — <span class="hide">প্রায় ৬০%</span></li>
+<li>প্রবাসী শ্রমিক — <span class="hide">প্রায় ১০ মিলিয়ন</span></li>
+<li>রেমিট্যান্স হ্রাসের ঝুঁকি (বিশ্বব্যাংক) — <span class="hide">১৫–২০%</span></li>
+<li>SME-এর GDP অবদান — <span class="hide">প্রায় ২৫%</span></li>
+<li>কৃষিনির্ভর শ্রমিক — <span class="hide">৪০%</span></li>
+<li>AI-এ উৎপাদন দক্ষতা বৃদ্ধি (ILO) — <span class="hide">২৫–৩০%</span></li>
+<li>ডিজিটাল দক্ষতায় নারীর আয় বৃদ্ধি (ILO) — <span class="hide">২০–২৫%</span></li>
+<li>Green AI-এ ডেটা সেন্টারের শক্তি খরচ কমবে (WB) — <span class="hide">৩০–৪০%</span></li>
+<li>National Portal — <span class="hide">৫০,০০০+</span> সরকারি ওয়েবসাইট</li>
+</ul></div>
+<div class="mini"><h4>সাইবার আইন ও স্টারলিংক</h4>
+<ul>
+<li>ডিজিটাল নিরাপত্তা আইন — <span class="hide">২০১৮</span></li>
+<li>Cyber Security Act — <span class="hide">২০২৩</span></li>
+<li>সাইবার সুরক্ষা অধ্যাদেশ প্রণয়ন — <span class="hide">২১ মে ২০২৫</span></li>
+<li>অধ্যাদেশের মোট ধারা — <span class="hide">৫১টি</span></li>
+<li>ইউনূস–মাস্ক ভিডিও আলোচনা — <span class="hide">১৪ ফেব্রুয়ারি</span></li>
+<li>BIDA-র স্টারলিংক বিনিয়োগ নিবন্ধন — <span class="hide">২৯ মার্চ</span></li>
+</ul></div>
+</div>
+<p class="box">💡 <b>রিভিশন মোড</b> চালু করলে ঝাপসা হয়ে যাওয়া উত্তরগুলো আগে নিজে বলার চেষ্টা করুন, তারপর ক্লিক করে মিলিয়ে নিন।</p>
+</div></details>
+
+<div class="part">পঞ্চদশ অধ্যায়: বাংলাদেশের লৈঙ্গিক ইস্যু ও উন্নয়ন</div>
+
+<!-- ================= WE DEF ================= -->
+<details class="sec" id="we-def"><summary>১. নারীর ক্ষমতায়ন: সংজ্ঞা, উপাদান ও বিস্তৃতি</summary><div class="body">
+<p><b>PSC সিলেবাস:</b> Gender issues and Development in Bangladesh.</p>
+<h3>জাতিসংঘের সংজ্ঞা</h3>
+<div class="quote">“The process by which women gain power and control over their own lives and acquire the ability to make strategic life choices.”</div>
+<p>অর্থাৎ যে প্রক্রিয়ায় নারী নিজ জীবনের গুরুত্বপূর্ণ সিদ্ধান্ত নেওয়ার সক্ষমতা অর্জন করে এবং ব্যক্তি ও সমাজ উভয় পর্যায়ে প্রভাব বিস্তার করতে পারে।</p>
+
+<h3>৫টি মৌলিক উপাদান (জাতিসংঘ ও আন্তর্জাতিক সংস্থা)</h3>
+<ol>
+<li><b>আত্ম-মর্যাদাবোধ</b> — নিজের মূল্য, সক্ষমতা ও অধিকার সম্পর্কে সচেতনতা ও আত্মবিশ্বাস।</li>
+<li><b>নির্বাচনের অধিকার</b> — শিক্ষা, পেশা, বিবাহ, স্বাস্থ্যে স্বাধীন সিদ্ধান্ত।</li>
+<li><b>সুযোগ ও সম্পদে প্রবেশাধিকার</b> — শিক্ষা, অর্থনৈতিক সম্পদ, কর্মসংস্থান, স্বাস্থ্যসেবায় সমান প্রবেশাধিকার।</li>
+<li><b>নিজ জীবনের ওপর নিয়ন্ত্রণ</b> — পরিবার ও সমাজের ভেতরে-বাইরে কার্যকর নিয়ন্ত্রণ।</li>
+<li><b>সামাজিক পরিবর্তনে প্রভাব</b> — স্থানীয় ও জাতীয় পর্যায়ে ন্যায়সংগত পরিবর্তনে অংশগ্রহণ।</li>
+</ol>
+
+<h3>নারীর ক্ষমতায়নের ৬টি মাত্রা (বিস্তৃতি)</h3>
+<div class="chips">
+<span class="chip">ক) অর্থনৈতিক</span><span class="chip">খ) শিক্ষাগত</span><span class="chip">গ) রাজনৈতিক</span>
+<span class="chip">ঘ) সামাজিক ও সাংস্কৃতিক</span><span class="chip">ঙ) মনস্তাত্ত্বিক</span><span class="chip">চ) ডিজিটাল (সমসাময়িক সংযোজন)</span>
+</div>
+<ul>
+<li><b>অর্থনৈতিক:</b> আয়, সম্পত্তির অধিকার, কর্মসংস্থান, আর্থিক সিদ্ধান্ত → দরকষাকষির ক্ষমতা বাড়ে।</li>
+<li><b>শিক্ষাগত:</b> জ্ঞান, দক্ষতা ও তথ্যপ্রযুক্তিতে সমঅধিকার → প্রজন্মান্তরে বৈষম্য হ্রাস।</li>
+<li><b>রাজনৈতিক:</b> ভোটাধিকার, নেতৃত্ব, জাতীয় ও স্থানীয় প্রতিনিধিত্ব।</li>
+<li><b>সামাজিক-সাংস্কৃতিক:</b> সামাজিক মর্যাদা, মতপ্রকাশ, নিরাপদ জীবন।</li>
+<li><b>মনস্তাত্ত্বিক:</b> আত্মবিশ্বাস, আত্ম-পরিচয়, আত্মসম্মান।</li>
+<li><b>ডিজিটাল:</b> অনলাইন অংশগ্রহণ, ডিজিটাল দক্ষতা, সাইবার নিরাপত্তা সচেতনতা।</li>
+</ul>
+<div class="quote">চূড়ান্ত লক্ষ্য: <b>“from marginality to agency”</b> — প্রান্তিক অবস্থান থেকে সিদ্ধান্ত গ্রহণ ও পরিবর্তনের সক্রিয় কেন্দ্রবিন্দুতে আনা।</div>
+</div></details>
+
+<!-- ================= WE THEORY ================= -->
+<details class="sec" id="we-theory"><summary>২. নারীর ক্ষমতায়নের ৪টি তাত্ত্বিক কাঠামো</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>তত্ত্ব</th><th>প্রবক্তা / গ্রন্থ</th><th>মূল ধারণা</th><th>প্রয়োগ / বাংলাদেশি উদাহরণ</th></tr>
+<tr><td><b>Capability Approach</b></td><td>Amartya Sen — <i>Development as Freedom</i> (1999)</td><td>উন্নয়ন মানে আয় নয়, স্বাধীনতা (freedom); মানদণ্ড “capabilities and functionings”</td><td>শিক্ষা, স্বাস্থ্য, তথ্যপ্রাপ্তি → “capability set” বাড়ে; Kishori Clubs, Her Power Project</td></tr>
+<tr><td><b>Empowerment Model</b></td><td>Naila Kabeer (বাংলাদেশি-ব্রিটিশ) — <i>Resources, Agency and Achievements</i> (1999)</td><td>Resources → Agency → Achievements (৩ স্তর)</td><td>মাইক্রোক্রেডিট, BRAC, গ্রামীণ ব্যাংক</td></tr>
+<tr><td><b>Liberal Feminism</b></td><td>Mary Wollstonecraft (১৮শ শতক); বিকাশ: John Stuart Mill</td><td>নারী-পুরুষ বুদ্ধিবৃত্তিকভাবে সমান → সমান অধিকার ও সুযোগ</td><td>জাতীয় নারী উন্নয়ন নীতি ২০১১, Gender Budget Framework</td></tr>
+<tr><td><b>Post-Structural Feminism</b></td><td>Michel Foucault ও Judith Butler-এর ক্ষমতা ও ভাষা তত্ত্ব</td><td>ক্ষমতা ভাষা, সংস্কৃতি ও প্রতীকে নিহিত</td><td>মিডিয়া, নাটক, বিজ্ঞাপন, ধর্মীয় বক্তৃতায় নারীর চিত্র বদলানো</td></tr>
+</table></div>
+<h3>Kabeer-এর ৩ স্তর</h3>
+<ol>
+<li><b>Resources (সম্পদ):</b> শিক্ষা, আয়, সামাজিক মূলধন, তথ্য।</li>
+<li><b>Agency (সিদ্ধান্ত গ্রহণের ক্ষমতা):</b> নিজের জীবনের সিদ্ধান্ত নেওয়ার সক্ষমতা ও কণ্ঠস্বর।</li>
+<li><b>Achievements (ফলাফল):</b> আর্থিক স্বাধীনতা, সামাজিক স্বীকৃতি, নেতৃত্ব।</li>
+</ol>
+<p class="box">চারটি মিলে গঠিত হয় <b>Integrated Feminist Framework</b> (সমন্বিত তাত্ত্বিক কাঠামো)।</p>
+</div></details>
+
+<!-- ================= WE CHALLENGES ================= -->
+<details class="sec" id="we-chal"><summary>৩. বাংলাদেশে নারীর ক্ষমতায়নের চ্যালেঞ্জ</summary><div class="body">
+<h3>১. সামাজিক ও সাংস্কৃতিক</h3>
+<ul><li>পিতৃতান্ত্রিক সমাজব্যবস্থা</li><li>বাল্যবিবাহ ও যৌতুকপ্রথা</li><li>গার্হস্থ্য সহিংসতা ও লিঙ্গভিত্তিক নির্যাতন</li><li>ধর্মীয় গোঁড়ামি ও কুসংস্কার</li><li>সাংস্কৃতিক প্রতিবন্ধকতা (চলাফেরা, পোশাক, মতপ্রকাশে বিধিনিষেধ)</li></ul>
+<h3>২. অর্থনৈতিক</h3>
+<ul><li>শ্রমবাজারে বৈষম্য (নিম্নদক্ষ, অনানুষ্ঠানিক খাত)</li><li>বৈষম্যমূলক মজুরি ও কাজের পরিবেশ</li><li>নারী উদ্যোক্তাদের মূলধন ও ঋণপ্রাপ্তিতে বাধা</li><li>দারিদ্র্য ও বেকারত্ব</li><li>অবৈতনিক শ্রম (পরিসংখ্যানে অস্বীকৃত)</li></ul>
+<h3>৩. রাজনৈতিক</h3>
+<ul><li>প্রতিনিধিত্বের সীমাবদ্ধতা (সংরক্ষিত আসননির্ভর)</li><li>রাজনৈতিক সহিংসতা ও সামাজিক প্রতিরোধ</li><li>দলীয় রাজনীতিতে পিতৃতান্ত্রিক মনোভাব</li></ul>
+<h3>৪. প্রযুক্তিগত ও ডিজিটাল</h3>
+<ul><li>ডিজিটাল সাক্ষরতার অভাব</li><li>সাইবার সহিংসতা ও অনলাইন হয়রানি</li><li>ডিজিটাল অবকাঠামো ও সুরক্ষার অভাব</li></ul>
+<h3>৫. আইনি ও নীতিগত</h3>
+<ul><li>আইনের দুর্বল প্রয়োগ</li><li>সামাজিক সুরক্ষা কর্মসূচির সীমাবদ্ধতা</li><li>নীতিনির্ধারণে নারী নেতৃত্বের অভাব</li></ul>
+<h3>৬. শিক্ষাগত ও মনস্তাত্ত্বিক</h3>
+<ul><li>STEM-এ মেয়েদের অংশগ্রহণ কম</li><li>“Self-censorship” ও আত্মসম্মানের ঘাটতি</li></ul>
+<h3>সারসংক্ষেপ টেবিল</h3>
+<div class="tablewrap"><table>
+<tr><th>ধরন</th><th>মূল সমস্যা</th><th>সম্ভাব্য ফলাফল</th></tr>
+<tr><td>সামাজিক</td><td>বাল্যবিবাহ, যৌতুক, গোঁড়ামি</td><td>শিক্ষার ব্যাঘাত, নেতৃত্বে অনুপস্থিতি</td></tr>
+<tr><td>অর্থনৈতিক</td><td>মজুরি বৈষম্য, অবৈতনিক শ্রম</td><td>আয়-অসাম্য ও দারিদ্র্য বৃদ্ধি</td></tr>
+<tr><td>রাজনৈতিক</td><td>প্রতিনিধিত্বের অভাব</td><td>নীতিনির্ধারণে নারী দৃষ্টিভঙ্গির অনুপস্থিতি</td></tr>
+<tr><td>প্রযুক্তিগত</td><td>সাইবার হয়রানি, ডিজিটাল অজ্ঞতা</td><td>ডিজিটাল বিচ্ছিন্নতা</td></tr>
+<tr><td>আইনি</td><td>দুর্বল আইন প্রয়োগ</td><td>নারী সুরক্ষায় ঘাটতি</td></tr>
+</table></div>
+</div></details>
+
+<!-- ================= WE SOLUTIONS ================= -->
+<details class="sec" id="we-sol"><summary>৪. চ্যালেঞ্জ কাটিয়ে ওঠার উপায় (৭ ক্ষেত্র)</summary><div class="body">
+<p>নারীর ক্ষমতায়ন <b>SDG-5: Gender Equality</b>-এর মূল ভিত্তি। প্রয়োজন বহুমাত্রিক নীতি, কাঠামোগত সংস্কার ও মানসিকতার রূপান্তর।</p>
+<div class="tablewrap"><table>
+<tr><th>ক্ষেত্র</th><th>উদ্ধৃতি</th><th>মুখস্থ কিওয়ার্ড</th></tr>
+<tr><td>১. শিক্ষা ও মানবসম্পদ</td><td>“Education is the first step toward empowerment.” – Amartya Sen</td><td>STEM for Girls Initiative; A2i-এর Her Power Project, SheTrades Bangladesh, Women ICT Frontier Initiative (WIFI); TVET; জেন্ডার সেনসিটিভ পাঠ্যক্রম</td></tr>
+<tr><td>২. অর্থনৈতিক ও উদ্যোক্তা</td><td>“Economic independence is the cornerstone of women’s freedom.” – Naila Kabeer</td><td>Gender-Responsive Credit Policy; SME প্রণোদনা ও করছাড়; অবৈতনিক শ্রমের স্বীকৃতি (UNDP-র Gendered GDP); Equal Pay Policy</td></tr>
+<tr><td>৩. রাজনৈতিক ও প্রশাসনিক</td><td>“No democracy is complete without women’s equal participation.” – UN Women</td><td>দলীয় কোটা বাধ্যতামূলক; স্থানীয় সরকারে নেতৃত্ব প্রশিক্ষণ; প্রতিটি মন্ত্রণালয়ে Gender Focal Point</td></tr>
+<tr><td>৪. সামাজিক ও সাংস্কৃতিক</td><td>—</td><td>Men as Allies প্রোগ্রাম; স্কুলভিত্তিক “Adolescent Clubs”; ধর্মীয় নেতাদের জেন্ডার প্রশিক্ষণ</td></tr>
+<tr><td>৫. প্রযুক্তিগত ও ডিজিটাল</td><td>—</td><td>প্রতি উপজেলায় Women IT Learning Center; Gender-sensitive Cyber Protection Policy; Women Cyber Help Cell; ই-কমার্স প্ল্যাটফর্ম</td></tr>
+<tr><td>৬. আইনি ও প্রাতিষ্ঠানিক</td><td>—</td><td>দ্রুত বিচার ট্রাইব্যুনাল; CEDAW অনুচ্ছেদ ২ ও ১৬ বাস্তবায়ন; বাজেটের ন্যূনতম ৫% নারী উন্নয়নে + Gender Audit</td></tr>
+<tr><td>৭. মনস্তাত্ত্বিক ও আত্মবিশ্বাস</td><td>—</td><td>প্রতি জেলায় Women Empowerment &amp; Support Center; রোল মডেল প্রচার; “Best Woman Leader” জাতীয় পুরস্কার</td></tr>
+</table></div>
+</div></details>
+
+<!-- ================= LAWS ================= -->
+<details class="sec" id="we-law"><summary>৫. নারী সুরক্ষার আইনসমূহ (১২টি)</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>#</th><th>আইন</th><th>সাল</th></tr>
+<tr><td>১</td><td>নারী ও শিশু নির্যাতন দমন আইন</td><td class="hide">২০০০ (সংশোধিত ২০০৩)</td></tr>
+<tr><td>২</td><td>এসিড-সন্ত্রাস দমন আইন</td><td class="hide">২০০২</td></tr>
+<tr><td>৩</td><td>পারিবারিক সহিংসতা (প্রতিরোধ ও সুরক্ষা) আইন</td><td class="hide">২০১০</td></tr>
+<tr><td>৪</td><td>মুসলিম পারিবারিক আইন (বিবাহবিচ্ছেদের অধিকার)</td><td class="hide">১৯৬১</td></tr>
+<tr><td>৫</td><td>যৌতুক নিরোধ আইন</td><td class="hide">২০১৮</td></tr>
+<tr><td>৬</td><td>বাল্যবিবাহ নিরোধ আইন</td><td class="hide">২০১৭</td></tr>
+<tr><td>৭</td><td>মানবপাচার প্রতিরোধ ও দমন আইন</td><td class="hide">২০১২ (নোটে ২০১১ লেখা)</td></tr>
+<tr><td>৮</td><td>পিতা-মাতার ভরণ-পোষণ আইন</td><td class="hide">২০১৩</td></tr>
+<tr><td>৯</td><td>পারিবারিক আদালত আইন</td><td class="hide">২০২৩</td></tr>
+<tr><td>১০</td><td>ভ্রাম্যমাণ আদালত আইন (৫০৯ ধারা)</td><td class="hide">২০০৯</td></tr>
+<tr><td>১১</td><td>পর্নোগ্রাফি নিয়ন্ত্রণ আইন</td><td class="hide">২০১২</td></tr>
+<tr><td>১২</td><td>ডিএনএ আইন</td><td class="hide">২০১৪</td></tr>
+</table></div>
+<p class="warn">⚠️ মানবপাচার প্রতিরোধ ও দমন আইনের প্রচলিত সাল ২০১২; ক্লাস নোটে ২০১১ লেখা আছে। পরীক্ষার আগে মিলিয়ে নিন।</p>
+</div></details>
+
+<!-- ================= 1970 vs 2025 + Q ================= -->
+<details class="sec" id="we-q"><summary>৬. ১৯৭০-এর দশক বনাম ২০২৫ ও বিগত প্রশ্ন</summary><div class="body">
+<h3>বিগত সালের প্রশ্ন</h3>
+<ul>
+<li>১৯৭০-এর দশক ও ২০২৫-এর বাংলাদেশে নারীর শ্রম-পরিচয়, নগরায়ন, ভাষা, তথ্য-প্রযুক্তিতে পরিবর্তন — <b>[৪৭তম]</b></li>
+<li>নজরুলের উক্তি “বিশ্বে যা কিছু মহান সৃষ্টি…” ও বর্তমান প্রেক্ষাপট — <b>[৪১তম]</b></li>
+<li>নারীর ক্ষমতায়নে বাংলাদেশের অর্জন ও প্রতিবন্ধকতা — <b>[৪৬তম]</b></li>
+<li>সামাজিক-অর্থনৈতিক উন্নয়নে নারীর মর্যাদা ও ক্ষমতায়নের গুরুত্ব — <b>[৪১তম]</b></li>
+</ul>
+<h3>তুলনামূলক টেবিল</h3>
+<div class="tablewrap"><table>
+<tr><th>ক্ষেত্র</th><th>১৯৭০-এর দশক</th><th>২০২৫</th></tr>
+<tr><td>শ্রম-পরিচয়</td><td>গৃহকেন্দ্রিক ও অবৈতনিক; অর্থনৈতিক স্বীকৃতি নেই</td><td>শ্রমবাজারের দৃশ্যমান অংশ: পোশাক, সেবা, শিক্ষা, স্বাস্থ্য, উদ্যোক্তা, ডিজিটাল</td></tr>
+<tr><td>নগরায়ন ও জনপরিসর</td><td>গ্রামীণ, ঐতিহ্যনির্ভর; চলাচল সীমিত</td><td>শিক্ষা-কর্মসংস্থানের সুযোগ, সামাজিক গতিশীলতা; নিরাপত্তা চ্যালেঞ্জ রয়ে গেছে</td></tr>
+<tr><td>ভাষা ও সাংস্কৃতিক প্রকাশ</td><td>সংযত, পারিবারিক গণ্ডিবদ্ধ</td><td>গণমাধ্যম ও সোশ্যাল মিডিয়ায় মতপ্রকাশ; অধিকারভিত্তিক শব্দচয়ন</td></tr>
+<tr><td>তথ্য-প্রযুক্তি</td><td>সীমিত ও পুরুষনির্ভর</td><td>স্মার্টফোন, ইন্টারনেট; তবে ডিজিটাল বৈষম্য ও সাইবার ঝুঁকি</td></tr>
+<tr><td>সামাজিক পরিচয়</td><td>পরিবারকেন্দ্রিক পরিচয়</td><td>ব্যক্তি, নাগরিক ও অর্থনৈতিক অংশীদার; শ্রেণি-অঞ্চলভেদে অসম</td></tr>
+</table></div>
+</div></details>
+
+<div class="part">দ্বাদশ অধ্যায়: সমসাময়িক তথ্য ও যোগাযোগ প্রযুক্তি</div>
+
+<!-- ================= 4IR ================= -->
+<details class="sec" id="ir"><summary>৭. প্রযুক্তি ও চতুর্থ শিল্প বিপ্লব: ভূমিকা</summary><div class="body">
+<p><b>PSC সিলেবাস:</b> Contemporary Communication; ICT, Role of Media; Right to Information (RTI), and E-Governance.</p>
+<p class="box">প্রশ্নের ধরন: পূর্বে স্মার্ট/ডিজিটাল বাংলাদেশ, বঙ্গবন্ধু স্যাটেলাইট জাতীয় প্রশ্ন আসত (এখন অপ্রাসঙ্গিক)। বর্তমানে <b>cross-cutting issue</b> — 4IR-এর প্রভাব, চ্যালেঞ্জ, করণীয়; বাংলা-ইংরেজি রচনাতেও কাজে লাগে।</p>
+<div class="tablewrap"><table>
+<tr><th>শিল্প বিপ্লব</th><th>সময়</th><th>বৈশিষ্ট্য</th></tr>
+<tr><td>প্রথম</td><td>১৮শ শতক</td><td>যান্ত্রিক শক্তি</td></tr>
+<tr><td>দ্বিতীয়</td><td>১৯শ শতক</td><td>বিদ্যুৎ ও গণউৎপাদন</td></tr>
+<tr><td>তৃতীয়</td><td>২০শ শতক</td><td>ইন্টারনেট, তথ্যপ্রযুক্তি, স্বয়ংক্রিয়তা</td></tr>
+<tr><td>চতুর্থ</td><td>২১শ শতক</td><td>AI, রোবোটিকস, অটোমেশন, IoT, বিগ ডেটা, ব্লকচেইন</td></tr>
+</table></div>
+<p>4IR = সভ্যতাগত রূপান্তর (<b>paradigm shift of civilization</b>)।</p>
+</div></details>
+
+<!-- ================= GLOBAL ================= -->
+<details class="sec" id="global"><summary>৮. বৈশ্বিক অভিযোজন ও বাংলাদেশের জন্য শিক্ষা</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>দেশ</th><th>উদ্যোগ</th><th>মূল উপাদান</th><th>ফলাফল</th><th>বাংলাদেশের শিক্ষা</th></tr>
+<tr><td>জার্মানি</td><td>Industrie 4.0 (<b>২০১১</b>)</td><td>CPS, Human–Machine Collaboration, IIoT, Predictive Maintenance, Digital Twin</td><td>খরচ ~২০% ↓, উৎপাদনশীলতা ২৫% ↑, কার্বন ১০% ↓</td><td><b>Triple Helix</b> (সরকার-বিশ্ববিদ্যালয়-শিল্প) — “innovation cluster”</td></tr>
+<tr><td>চীন</td><td>Made in China 2025 (<b>২০১৫</b>)</td><td>লক্ষ্য: উৎপাদন খাতের ৭০% স্বয়ংক্রিয়; AI-রোবোটিকস, Joint R&amp;D Fund, Green Manufacturing</td><td>৪ কোটি নতুন চাকরি; ৪০% কারখানায় পূর্ণ অটোমেশন; উৎপাদন খাতের GDP অবদান ৩২% → ৪৮%</td><td>Industrial + AI Policy Integration; শিল্পনীতি-২০২২-এ Automation Transition Fund</td></tr>
+<tr><td>দক্ষিণ কোরিয়া</td><td>AI National Strategy 2025</td><td>প্রাথমিক থেকেই Coding ও Data Literacy; ৫ লাখ AI বিশেষজ্ঞ; Smart Factory Fund</td><td>৯০% SME IoT ব্যবহার; উৎপাদনশীলতা ২৫% ↑</td><td>AI-driven TVET (Technical and Vocational Education and Training)</td></tr>
+<tr><td>সিঙ্গাপুর</td><td>Smart Nation (<b>২০১৪</b>)</td><td>Unique Digital ID, Health Data Interoperability, Smart Transport, AI Public Services</td><td>সেবা দক্ষতা ৪০% ↑, প্রশাসনিক ব্যয় ৩০% ↓, নাগরিক সন্তুষ্টি ২৫% ↑</td><td>সবচেয়ে প্রাসঙ্গিক মডেল: একক Digital ID, e-Health Card, e-Tax Portal</td></tr>
+<tr><td>ইউরোপীয় ইউনিয়ন</td><td>Green Deal ও AI Ethics Framework</td><td>AI Ethics (Transparency, Accountability, Privacy), Green AI, Circular Economy</td><td>শক্তি দক্ষতা ↑, কার্বন ↓, নৈতিক মানদণ্ড</td><td>Data Protection Act শক্তিশালী; Green Data Center, Solar-Powered AI</td></tr>
+<tr><td>ভারত</td><td>Digital India ও AI for All</td><td>জাতীয় AI নীতি, AI Startup Mission</td><td>৩০ লক্ষ টেক চাকরি; ডিজিটাল লেনদেন ৬ গুণ</td><td>“AI Startup Ecosystem”</td></tr>
+<tr><td>আন্তর্জাতিক সংস্থা</td><td>ILO, UNDP, ADB, WB</td><td>Future of Work, Skill Development for 4IR</td><td>প্রযুক্তিনির্ভর কর্মসংস্থান</td><td>“AI Skill Alliance”, UNDP Innovation Lab</td></tr>
+</table></div>
+</div></details>
+
+<!-- ================= IR CHALLENGES ================= -->
+<details class="sec" id="ir-chal"><summary>৯. 4IR ও বাংলাদেশের ১০টি চ্যালেঞ্জ</summary><div class="body">
+<ol>
+<li><b>কর্মসংস্থান সংকট ও Job Polarization</b> — ILO: প্রায় <mark>৬০%</mark> শ্রমিক অটোমেশন ঝুঁকিতে; Automation Displacement Theory → “routine manual jobs” আগে প্রতিস্থাপিত।</li>
+<li><b>Skill Gap ও শিক্ষাব্যবস্থার অমিল</b> — rote-learning; skill mismatch → <b>Frictional Unemployment</b>।</li>
+<li><b>কৃষিতে প্রযুক্তিগত প্রতিস্থাপন</b> — Precision Agriculture, Drone; technological divide; data ownership ও cyber risk।</li>
+<li><b>প্রবাসী শ্রম ও রেমিট্যান্স ঝুঁকি</b> — প্রায় <mark>১০ মিলিয়ন</mark> প্রবাসী; বিশ্বব্যাংক: রেমিট্যান্স <mark>১৫–২০%</mark> হ্রাসের ঝুঁকি।</li>
+<li><b>Digital Divide</b> — শহর-গ্রাম বিভাজন → digital exclusion।</li>
+<li><b>ডেটা নিরাপত্তা, নৈতিকতা ও Algorithmic Bias</b> — deepfake, surveillance capitalism; Data Protection Act প্রণয়নাধীন।</li>
+<li><b>অবকাঠামো ও শক্তি নির্ভরতা</b> — “energy intensive AI economy”।</li>
+<li><b>SME-এর সীমাবদ্ধতা</b> — GDP-তে <mark>~২৫%</mark> অবদান কিন্তু প্রযুক্তি ব্যবহার কম।</li>
+<li><b>পরিবেশগত ঝুঁকি</b> — E-waste ও Energy Emission; green transition প্রয়োজন।</li>
+<li><b>নীতি সমন্বয়ের অভাব</b> — policy fragmentation।</li>
+</ol>
+</div></details>
+
+<!-- ================= IR OPP ================= -->
+<details class="sec" id="ir-opp"><summary>১০. 4IR: বাংলাদেশের সুযোগ ও সম্ভাবনা</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>সম্ভাবনা</th><th>মূল তথ্য</th><th>সংশ্লিষ্ট তত্ত্ব</th></tr>
+<tr><td>১. উৎপাদনশীলতা ও শিল্প রূপান্তর</td><td>ILO: AI-ভিত্তিক মনিটরিংয়ে দক্ষতা ২৫–৩০% ↑; Predictive Maintenance</td><td>Technological Change Theory (long waves); Schumpeter-এর Creative Destruction</td></tr>
+<tr><td>২. স্মার্ট কৃষি</td><td>“Data-driven Smart Farming System”; IoT Sensor, AI Predictive Analytics, Drone-based Fertilization</td><td>—</td></tr>
+<tr><td>৩. ডিজিটাল রপ্তানি ও জ্ঞানভিত্তিক অর্থনীতি</td><td>ফ্রিল্যান্সিং ও আউটসোর্সিংয়ে বিশ্বের অন্যতম বৃহৎ শ্রমবাহিনী</td><td>Human Capital Theory ও Global Value Chain Theory</td></tr>
+<tr><td>৪. শিক্ষা ও মানবসম্পদ</td><td>Adaptive Learning, AI in Education; Reskilling ও Upskilling</td><td>Task/Skill-Biased Technological Change</td></tr>
+<tr><td>৫. নারীর অংশগ্রহণ</td><td>ILO: ডিজিটাল দক্ষতায় নারীর আয় ২০–২৫% ↑; Women in Digital, SheTrades, HerTech</td><td>Sen-এর Capability Approach</td></tr>
+<tr><td>৬. টেকসই ও সবুজ প্রবৃদ্ধি</td><td>WB: Green AI-এ ডেটা সেন্টারের শক্তি খরচ ৩০–৪০% ↓</td><td>Ecological Modernization Theory</td></tr>
+</table></div>
+<div class="grid2">
+<div class="mini"><h4>Reskilling (রিস্কিলিং)</h4>সম্পূর্ণ <b>নতুন ধরনের কাজ বা ভিন্ন পেশার</b> জন্য নতুন দক্ষতা শেখানো।</div>
+<div class="mini"><h4>Upskilling (আপস্কিলিং)</h4><b>একই চাকরির ভেতরে</b> নতুন প্রযুক্তি/পদ্ধতি যোগ করে আরও দক্ষ হওয়া।</div>
+</div>
+</div></details>
+
+<!-- ================= IR DO ================= -->
+<details class="sec" id="ir-do"><summary>১১. 4IR-এর সম্ভাবনা কাজে লাগাতে করণীয়</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>কৌশল</th><th>তত্ত্ব</th><th>মূল পদক্ষেপ</th></tr>
+<tr><td>১. শিক্ষা ও মানবসম্পদ</td><td>Becker-এর Human Capital Theory; “Skill-based competitiveness”</td><td>AI literacy, coding, data analytics; পলিটেকনিকে Robotics ও IoT কোর্স; কোরিয়ার “Human Resource Development Service” মডেল</td></tr>
+<tr><td>২. অবকাঠামো ও প্রশাসনিক সংস্কার</td><td>North-এর Institutional Theory</td><td><b>National 4IR Council</b> (ICT, BIDA, পরিকল্পনা কমিশন, শিক্ষা মন্ত্রণালয়); 5G, Cloud, Cybersecurity Framework; Data Protection Law</td></tr>
+<tr><td>৩. শিল্প ও বিনিয়োগ রূপান্তর</td><td>Schumpeter-এর Creative Destruction; GVC</td><td>National Industry 4.0 Strategy; RMG ও SME-তে IoT production line; Feed-in Innovation Model → “low value assembly” থেকে “high value design and innovation economy”</td></tr>
+<tr><td>৪. কৃষি ও গ্রামীণ উন্নয়ন</td><td>Sen-এর Capability Approach</td><td>“Smart Krishi” প্রকল্প; কৃষি ডেটা প্ল্যাটফর্ম; Solar-powered irrigation; Agri-Tech Learning Hub</td></tr>
+<tr><td>৫. নারী ও সামাজিক অন্তর্ভুক্তি</td><td>Inclusive Innovation ও Just Transition</td><td>Digital Entrepreneurship Fund; Assistive Technologies; “Transition Allowance” ও “Reskilling Fund” → “inclusive digital society”</td></tr>
+<tr><td>৬. পরিবেশবান্ধব প্রযুক্তি</td><td>Ecological Modernization</td><td>Green AI নীতি; Extended Producer Responsibility (EPR); সোলার ইন্টিগ্রেশন</td></tr>
+<tr><td>৭. আঞ্চলিক সহযোগিতা</td><td>—</td><td>SAARC ও BIMSTEC-এ AI Collaboration Network; WB, ADB, ILO-র Skill Development Loan</td></tr>
+<tr><td>নীতি পর্যবেক্ষণ</td><td>—</td><td>“National 4IR Observatory”; বার্ষিক Bangladesh 4IR Progress Report; Impact Evaluation Framework</td></tr>
+</table></div>
+</div></details>
+
+<!-- ================= IR THEORY ================= -->
+<details class="sec" id="ir-theory"><summary>১২. প্রযুক্তি সম্পর্কিত একাডেমিক তত্ত্ব</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>তত্ত্ব</th><th>মূল ধারণা</th><th>বাংলাদেশে প্রয়োগ</th></tr>
+<tr><td>Creative Destruction (Schumpeter, 1942)</td><td>নতুন প্রযুক্তি পুরনো শিল্প ধ্বংস করে নতুন কাঠামো তৈরি করে</td><td>RMG-তে চাকরি কমলেও digital service exports, AI maintenance, startups-এ নতুন কর্মসংস্থান</td></tr>
+<tr><td>Skill-Biased Technological Change (Restrepo, 2018)</td><td>প্রযুক্তি “রুটিন” কাজ প্রতিস্থাপন করে, উচ্চদক্ষদের সুযোগ বাড়ায়</td><td>সেলাই অপারেটর, কল সেন্টার কর্মী ঝুঁকিতে</td></tr>
+<tr><td>Human Capital (Becker, 1964)</td><td>মানবসম্পদে বিনিয়োগ উৎপাদনশীলতা ও প্রবৃদ্ধি বাড়ায়</td><td>TVET, industry–academia linkage → “productivity dividend”</td></tr>
+<tr><td>Capability Approach (Sen, 1999)</td><td>উন্নয়ন মানে সুযোগ ও সক্ষমতা বাড়ানো</td><td>AI-based education, e-health, precision agriculture</td></tr>
+<tr><td>Digital Divide (Castells, 2001)</td><td>প্রবেশাধিকারের বৈষম্য নতুন অসমতা সৃষ্টি করে</td><td>rural tech-labs, community internet centers → “inclusive digital growth”</td></tr>
+<tr><td>Just Transition (ILO, 2015)</td><td>পরিবর্তনে শ্রমিকদের সুরক্ষা ও পুনর্বিন্যাস</td><td>Reskilling Fund, Transition Allowance → “no one left behind”</td></tr>
+</table></div>
+</div></details>
+
+<!-- ================= EGOV ================= -->
+<details class="sec" id="egov"><summary>১৩. ই-গভর্ন্যান্স: ধারণা, উপাদান, সুবিধা ও চ্যালেঞ্জ</summary><div class="body">
+<h3>বিশ্বব্যাংকের সংজ্ঞা</h3>
+<div class="quote">“E-Governance refers to the use of ICT by government agencies to transform relations with citizens, businesses and other arms of government.”</div>
+<h3>৪টি প্রধান উপাদান</h3>
+<div class="tablewrap"><table>
+<tr><th>উপাদান</th><th>বর্ণনা</th></tr>
+<tr><td>G2C — Government to Citizen</td><td>জন্মনিবন্ধন, পাসপোর্ট, ট্যাক্স, শিক্ষা, স্বাস্থ্যসেবা</td></tr>
+<tr><td>G2B — Government to Business</td><td>অনলাইন নিবন্ধন, টেন্ডার, লাইসেন্স, ভ্যাট</td></tr>
+<tr><td>G2G — Government to Government</td><td>দপ্তরের মধ্যে নথি বিনিময়, ই-ফাইলিং</td></tr>
+<tr><td>G2E — Government to Employee</td><td>প্রশিক্ষণ, বেতন, ছুটি, তথ্য ব্যবস্থাপনা</td></tr>
+</table></div>
+<div class="grid2">
+<div class="mini"><h4>৬ সুবিধা</h4><ol><li>স্বচ্ছতা ও জবাবদিহি</li><li>সেবার গতি বৃদ্ধি</li><li>ব্যয় ও সময় সাশ্রয়</li><li>ডেটা-নির্ভর সিদ্ধান্ত</li><li>জনঅংশগ্রহণ বৃদ্ধি</li><li>ডিজিটাল অন্তর্ভুক্তি (UDC)</li></ol></div>
+<div class="mini"><h4>বাংলাদেশি উদাহরণ</h4><ul><li>A2I (Access to Information)</li><li>Union Digital Center (UDC)</li><li>E-Nothi (ই-নথি)</li><li>Bangladesh National Portal (৫০,০০০+ ওয়েবসাইট)</li><li>E-Tendering ও E-GP</li></ul></div>
+<div class="mini"><h4>৬ চ্যালেঞ্জ</h4><ol><li>অবকাঠামোগত সীমাবদ্ধতা</li><li>সাইবার নিরাপত্তা হুমকি</li><li>ডিজিটাল সাক্ষরতার অভাব</li><li>নীতিমালা ও সমন্বয়ের অভাব</li><li>পরিবর্তনে মানসিক অনীহা</li><li>ব্যয় ও টেকসই ব্যবস্থাপনা</li></ol></div>
+<div class="mini"><h4>৬ সমাধান</h4><ol><li>ডিজিটাল অবকাঠামো (ব্রডব্যান্ড, ফাইবার)</li><li>প্রশিক্ষণ ও সক্ষমতা বৃদ্ধি</li><li>সাইবার নিরাপত্তা (Cyber Security Ordinance 2025)</li><li>একীভূত ICT নীতি ও কেন্দ্রীয় মনিটরিং</li><li>জনসচেতনতা</li><li>PPP</li></ol></div>
+</div>
+<h3>একাডেমিক তত্ত্ব</h3>
+<div class="tablewrap"><table>
+<tr><th>তত্ত্ব</th><th>মূল বক্তব্য</th><th>ই-গভর্ন্যান্সে প্রয়োগ</th></tr>
+<tr><td>New Public Management (Christopher Hood, 1991)</td><td>বেসরকারি খাতের কার্যদক্ষতা ও ফলাফলভিত্তিক মূল্যায়ন</td><td>ই-টেন্ডারিং, ই-ফাইলিং</td></tr>
+<tr><td>Good Governance (UNDP, 1997)</td><td>৬ স্তম্ভ: স্বচ্ছতা, জবাবদিহি, অংশগ্রহণ, আইনের শাসন, কার্যকারিতা, ন্যায়বিচার</td><td>e-participation, e-transparency, e-efficiency</td></tr>
+<tr><td>Diffusion of Innovation (Everett Rogers, 1962)</td><td>নতুন প্রযুক্তি কীভাবে ছড়ায়</td><td>সেতুর টোল, রেলের টিকিট, UDC, E-Nothi</td></tr>
+<tr><td>Systems Theory (Ludwig von Bertalanffy)</td><td>সমাজ পারস্পরিক নির্ভরশীল ব্যবস্থা</td><td>প্রশাসন-নাগরিক-প্রযুক্তি: ৩ সাবসিস্টেম</td></tr>
+<tr><td>Public Value Theory (Moore, 1995)</td><td>জনগণের জন্য মূল্য সৃষ্টি</td><td>সময়, ব্যয়, জটিলতা হ্রাস</td></tr>
+</table></div>
+<h3>চ্যালেঞ্জের একাডেমিক বিশ্লেষণ</h3>
+<div class="tablewrap"><table>
+<tr><th>চ্যালেঞ্জ</th><th>তত্ত্ব/ব্যাখ্যা</th></tr>
+<tr><td>Digital Divide</td><td>প্রযুক্তি-অভ্যস্ত ও অনভ্যস্ত জনগোষ্ঠীর বৈষম্য</td></tr>
+<tr><td>Cybersecurity Threats</td><td>“Information Assurance Model”-এর ঘাটতি</td></tr>
+<tr><td>Resistance to Change</td><td>“Path Dependency Theory”</td></tr>
+<tr><td>Financial Sustainability</td><td>“Resource Dependency Theory”</td></tr>
+</table></div>
+<p><b>কৌশলগত দৃষ্টিভঙ্গি:</b> Capacity Building, PPP, Cybersecurity Framework (National CERT — Computer Emergency Response Team), Inclusive Governance, AI &amp; Data Governance।</p>
+</div></details>
+
+<!-- ================= STARLINK ================= -->
+<details class="sec" id="starlink"><summary>১৪. বাংলাদেশে স্টারলিংক ইন্টারনেট</summary><div class="body">
+<ul>
+<li>প্রধান উপদেষ্টা <b>অধ্যাপক মুহাম্মদ ইউনূস</b> <mark>১৪ ফেব্রুয়ারি</mark> SpaceX-মালিক <b>ইলন মাস্কের</b> সঙ্গে ভিডিও আলোচনায় স্টারলিংক চালুর বিষয়ে কথা বলেন।</li>
+<li><mark>২৯ মার্চ</mark> <b>BIDA</b> (বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষ) স্টারলিংককে বিনিয়োগ নিবন্ধন দেয়।</li>
+<li>প্রযুক্তি: <b>নিম্ন কক্ষপথ (LEO)</b> স্যাটেলাইট।</li>
+</ul>
+<div class="grid2">
+<div class="mini"><h4>✅ সুবিধা (কিওয়ার্ড)</h4>
+<div class="chips"><span class="chip">ডিজিটাল অন্তর্ভুক্তি</span><span class="chip">উচ্চগতি</span><span class="chip">ফ্রিল্যান্সিং আয়</span><span class="chip">অনলাইন শিক্ষা</span><span class="chip">গ্রামীণ ই-কমার্স</span><span class="chip">জাতীয় নিরাপত্তায় বিকল্প নেটওয়ার্ক</span><span class="chip">ব্যাকআপ</span><span class="chip">দুর্যোগকালীন সংযোগ</span><span class="chip">টেলিমেডিসিন</span><span class="chip">ডিজিটাল কূটনীতি</span><span class="chip">স্টার্টআপ</span><span class="chip">লো-ল্যাটেন্সি গেমিং</span><span class="chip">প্রযুক্তিগত সার্বভৌমত্ব</span></div></div>
+<div class="mini"><h4>❌ অসুবিধা (কিওয়ার্ড)</h4>
+<ul>
+<li>উচ্চ ব্যয় ও সাবস্ক্রিপশন খরচ</li>
+<li>Starlink Terminal ও বিদ্যুৎ নির্ভরতা</li>
+<li><b>“Rain Fade Effect”</b> — বৃষ্টি/ঝড়ে সিগন্যাল দুর্বল</li>
+<li>বিদেশি নিয়ন্ত্রণ (SpaceX)</li>
+<li>BTRC অনুমোদন, স্পেকট্রাম জটিলতা</li>
+<li><b>“Data Sovereignty”</b> সংকট</li>
+<li><b>“Space Pollution” / “Orbital Congestion”</b></li>
+<li>দেশীয় ISP-র ক্ষতি</li>
+<li><b>“Digital Monopoly”</b></li>
+<li><b>“Sky Brightness Problem”</b> — জ্যোতির্বিদ্যায় বাধা</li>
+</ul></div>
+</div>
+</div></details>
+
+<!-- ================= MISINFO ================= -->
+<details class="sec" id="misinfo"><summary>১৫. ডিজিটাল বিভ্রম: Misinformation, Disinformation, Deepfake</summary><div class="body">
+<h3>সহজে মনে রাখার উপায়</h3>
+<div class="tablewrap"><table>
+<tr><th>ধরন</th><th>এক লাইনে</th></tr>
+<tr><td><b>Misinformation</b></td><td>ভুল তথ্য, কিন্তু ইচ্ছাকৃত নয়</td></tr>
+<tr><td><b>Fake News</b></td><td>সংবাদ আকারে মিথ্যা তথ্য</td></tr>
+<tr><td><b>Disinformation</b></td><td>পরিকল্পিতভাবে ছড়ানো মিথ্যা তথ্য</td></tr>
+<tr><td><b>Deepfake</b></td><td>AI দিয়ে তৈরি মিথ্যা বাস্তবতা (ভিডিও/ছবি/অডিও)</td></tr>
+</table></div>
+<h3>তুলনামূলক বিশ্লেষণ</h3>
+<div class="tablewrap"><table>
+<tr><th>বিষয়</th><th>Misinformation</th><th>Disinformation</th><th>Deepfake</th></tr>
+<tr><td>ইচ্ছাকৃত?</td><td>না</td><td>হ্যাঁ</td><td>উচ্চমাত্রায় ইচ্ছাকৃত</td></tr>
+<tr><td>উদ্দেশ্য</td><td>অজ্ঞতা, আবেগ, অসাবধানতা</td><td>রাজনৈতিক/অর্থনৈতিক/সামাজিক স্বার্থ</td><td>প্রতারণা, মানহানি, প্রচারণা</td></tr>
+<tr><td>মাধ্যম</td><td>সোশ্যাল মিডিয়া, হোয়াটসঅ্যাপ</td><td>ভুয়া পেজ, বটনেট, সংগঠিত প্রচারণা</td><td>ভিডিও, অডিও, 3D রেন্ডারিং</td></tr>
+<tr><td>প্রযুক্তি</td><td>সাধারণ যোগাযোগ</td><td>ডিজিটাল প্রোপাগান্ডা টুল</td><td>AI, Machine/Deep Learning</td></tr>
+<tr><td>বাংলাদেশি উদাহরণ</td><td>কোভিডে “গরম পানি খেলে করোনা সারবে”, “ভ্যাকসিনে বন্ধ্যা”; ২০২৪ বন্যায় পুরনো ছবি</td><td>“অমুক প্রার্থী সরে দাঁড়িয়েছেন”; ২০২৪ ফেনী বন্যায় ইন্দোনেশিয়া-ভারতের ভিডিও</td><td>রাজনীতিক/অভিনেত্রীর মুখ deepfake</td></tr>
+<tr><td>প্রভাব</td><td>বিভ্রান্তি ও আতঙ্ক</td><td>মেরুকরণ, ঘৃণা, বিভাজন</td><td>বাস্তব-মিথ্যার পার্থক্য মুছে দেয়</td></tr>
+<tr><td>প্রতিরোধ</td><td>fact-check, মিডিয়া শিক্ষা</td><td>আইন প্রয়োগ, তথ্য যাচাই সংস্থা</td><td>AI সনাক্তকরণ, আইনি কাঠামো</td></tr>
+</table></div>
+<h3>Deepfake তৈরির ৪ ধাপ</h3>
+<ol><li>ডেটা সংগ্রহ</li><li>মডেল ট্রেনিং</li><li>Face Mapping/Swapping বা Voice Cloning</li><li>Rendering ও Enhancement</li></ol>
+<p>ভিত্তি: <b>Artificial Neural Network</b> ও <b>Deep Learning Algorithm</b>। সনাক্তকরণ সফটওয়্যার: <b>Deepware Scanner, Reality Defender</b>; প্রস্তাব: AI-নির্ভর <b>Deepfake Detection Lab</b>।</p>
+<h3>Misinformation যেভাবে ছড়ায়</h3>
+<ol><li>যাচাই ছাড়া শেয়ার</li><li>পুরনো তথ্য নতুন ঘটনার সাথে মেশানো</li><li>ভুল অনুবাদ/বিকৃত উপস্থাপন</li><li>অবিশ্বস্ত সূত্র</li></ol>
+<h3>Disinformation যেভাবে ছড়ায়</h3>
+<ol><li>সোশ্যাল মিডিয়া প্রোপাগান্ডা</li><li>ভুয়া নিউজ পোর্টাল</li><li>ভুয়া জরিপ ও পরিসংখ্যান</li><li>বিদেশি প্রভাব ও বট নেটওয়ার্ক</li></ol>
+<p class="box">স্লোগান: <b>“শেয়ার করার আগে যাচাই করুন”</b> — মিডিয়া লিটারেসি, Fact-Checking প্ল্যাটফর্ম, প্ল্যাটফর্মের জবাবদিহি (Facebook, YouTube, TikTok)।</p>
+</div></details>
+
+<!-- ================= MEDIA ================= -->
+<details class="sec" id="media"><summary>১৬. মিডিয়ার ভূমিকা ও ৪টি তত্ত্ব</summary><div class="body">
+<h3>মিডিয়ার ৬ ভূমিকা</h3>
+<ol>
+<li>তথ্য প্রচার ও সচেতনতা বৃদ্ধি</li>
+<li>জনমত গঠন ও নীতি প্রভাবিত করা</li>
+<li>গণতন্ত্র ও স্বচ্ছতা রক্ষা — <b>“watchdog of democracy”</b></li>
+<li>সামাজিক ঐক্য ও জাতীয় চেতনা গঠন</li>
+<li>সংকট মোকাবিলা ও মানবিক ভূমিকা</li>
+<li>ডিজিটাল যুগে নতুন ভূমিকা (নাগরিক সাংবাদিকতা)</li>
+</ol>
+<div class="tablewrap"><table>
+<tr><th>তত্ত্ব</th><th>প্রবক্তা</th><th>মূল ধারণা</th><th>সীমাবদ্ধতা</th></tr>
+<tr><td>Liberal Theory of the Press</td><td>John Milton, <i>Areopagitica</i> (1644)</td><td>মিডিয়া স্বাধীনতার রক্ষক ও watchdog</td><td>রাজনৈতিক/কর্পোরেট নির্ভরতা</td></tr>
+<tr><td>Social Responsibility Theory</td><td>Hutchins Commission (1947)</td><td>স্বাধীনতা + নৈতিক দায়বদ্ধতা</td><td>“সেনসেশনালিজম”</td></tr>
+<tr><td>Public Sphere Theory</td><td>Habermas (1989)</td><td>মিডিয়া নাগরিক সংলাপের ক্ষেত্র</td><td>hate speech ও বিভ্রান্তি</td></tr>
+<tr><td>Propaganda Model</td><td>Chomsky &amp; Herman (1988), <i>Manufacturing Consent</i></td><td>কর্পোরেট মালিকানা, বিজ্ঞাপন ও রাষ্ট্রীয় প্রভাব বস্তুনিষ্ঠতা বিকৃত করে</td><td>সবসময় রাষ্ট্রই মূল কারণ নয়</td></tr>
+</table></div>
+<p class="box">পরিপূরকতা: Liberal → স্বাধীনতা; Social Responsibility → নৈতিক ব্যবহার; Habermas → সংলাপের ক্ষেত্র; Chomsky → মিডিয়া ক্ষমতার প্রভাবমুক্ত নয়।</p>
+</div></details>
+
+<!-- ================= CYBER ================= -->
+<details class="sec" id="cyber"><summary>১৭. সাইবার সুরক্ষা অধ্যাদেশ-২০২৫</summary><div class="body">
+<h3>পটভূমি (টাইমলাইন)</h3>
+<div class="chips"><span class="chip">ডিজিটাল নিরাপত্তা আইন ২০১৮</span><span class="chip">→ Cyber Security Act 2023</span><span class="chip">→ সাইবার সুরক্ষা অধ্যাদেশ ২০২৫ (২১ মে ২০২৫)</span></div>
+<p>জাতিসংঘ ও আন্তর্জাতিক মানবাধিকার সংস্থার সুপারিশে অন্তর্বর্তীকালীন সরকার প্রণয়ন করে। অফিসিয়াল নাম: <b>Cyber Security Ordinance, 2025</b>; মোট <b>৫১টি ধারা</b>।</p>
+<p class="warn">⚠️ ক্লাস নোটে একই সাথে “২১ মে ২০২৫ প্রণয়ন” এবং “১ জানুয়ারি ২০২৫ থেকে কার্যকর” লেখা আছে — দুটি পরস্পরবিরোধী। প্রণয়নের তারিখ ২১ মে ২০২৫ মনে রাখুন; কার্যকরের তারিখ বই/গেজেটে মিলিয়ে নিন।</p>
+<h3>৫ মূল লক্ষ্য</h3>
+<ol><li>ডিজিটাল নিরাপত্তা ও ব্যক্তিগত তথ্য সুরক্ষা</li><li>সাইবার অপরাধ দমন</li><li>Digital Infrastructure Protection (ব্যাংক, বিদ্যুৎ, টেলিযোগাযোগ)</li><li>অনলাইনে দায়িত্বশীল আচরণ</li><li>দ্রুত বিচার ও ক্ষতিপূরণ</li></ol>
+<h3>গুরুত্বপূর্ণ ধারা ও শাস্তি</h3>
+<div class="tablewrap"><table>
+<tr><th>ধারা</th><th>অপরাধ</th><th>সর্বোচ্চ শাস্তি</th></tr>
+<tr><td>১৭</td><td>সরকারি তথ্য অবৈধভাবে প্রকাশ</td><td class="hide">১০ বছর বা ১ কোটি টাকা</td></tr>
+<tr><td>১৮</td><td>অননুমোদিত প্রবেশ/হ্যাকিং</td><td class="hide">৭ বছর বা ৫০ লাখ টাকা</td></tr>
+<tr><td>২০</td><td>অনলাইন জুয়া ও প্রতারণা</td><td class="hide">২ বছর বা ১ কোটি টাকা</td></tr>
+<tr><td>২৫</td><td>যৌন হয়রানি, ক্লিপ/ভিডিও প্রচার</td><td class="hide">২–১০ বছর ও জরিমানা</td></tr>
+<tr><td>২৬</td><td>ধর্মীয় বা জাতিগত বিদ্বেষ</td><td class="hide">২–৫ বছর ও জরিমানা</td></tr>
+<tr><td>৩২</td><td>জাতীয় নিরাপত্তা বিঘ্নিত করা</td><td class="hide">৭–১০ বছর ও যাবজ্জীবন পর্যন্ত</td></tr>
+</table></div>
+<h3>প্রধান বৈশিষ্ট্য ও নতুনত্ব (DSA 2018-এর তুলনায়)</h3>
+<ul>
+<li>প্রতি বিভাগে <b>Cyber Tribunal</b> ও <b>Cyber Appellate Tribunal</b>; জেলায় <b>Cyber Investigation Unit</b></li>
+<li>গ্রেফতার/তদন্তের আগে বিচারকের অনুমোদন বাধ্যতামূলক; “অপ্রয়োজনীয় গ্রেফতার” নিষিদ্ধ</li>
+<li>আগের <mark>৮০–৮৫%</mark> মামলা এখন জামিনযোগ্য ধারায়</li>
+<li>সংজ্ঞা সম্প্রসারণ: ব্যাংকিং জালিয়াতি, সাইবার বুলিং, AI-ভিত্তিক অপরাধ</li>
+<li>Global Threat Intelligence Network ও Interpol-এর সাথে যৌথ মনিটরিং</li>
+<li>শিক্ষা প্রতিষ্ঠান ও সরকারি সংস্থায় সাইবার প্রশিক্ষণ বাধ্যতামূলক</li>
+</ul>
+<h3>সমালোচনা</h3>
+<ul><li>কিছু ধারার অস্পষ্ট ব্যাখ্যা</li><li>আইন প্রয়োগকারীর প্রযুক্তিগত দক্ষতার ঘাটতি</li><li>AI ব্যবহারের নৈতিক কাঠামো দুর্বল</li><li>ডিজিটাল সাক্ষরতার অভাব</li></ul>
+</div></details>
+
+<!-- ================= WOMEN CYBER ================= -->
+<details class="sec" id="womencyber"><summary>১৮. নারীদের সাইবার সুরক্ষা</summary><div class="body">
+<p><b>Cyberbullying:</b> ডিজিটাল মাধ্যমে বারবার ইচ্ছাকৃত হেনস্থা। নারী টার্গেট হলে → <b>Gender-based cyber violence</b>; নারীবাদী তত্ত্বে এটি পিতৃতান্ত্রিক ক্ষমতার ডিজিটাল সম্প্রসারণ।</p>
+<div class="tablewrap"><table>
+<tr><th>ঝুঁকি</th><th>অর্থ</th></tr>
+<tr><td>Online harassment</td><td>অশালীন মন্তব্য, হুমকি</td></tr>
+<tr><td>Revenge porn / Non-consensual image sharing</td><td>অনুমতি ছাড়া ব্যক্তিগত ছবি/ভিডিও ছড়ানো</td></tr>
+<tr><td>Trolling</td><td>ইচ্ছাকৃত অপমানজনক মন্তব্য</td></tr>
+<tr><td>Doxing</td><td>ঠিকানা, ফোন নম্বর প্রকাশ করে ভয় দেখানো</td></tr>
+<tr><td>Impersonation</td><td>ভুয়া প্রোফাইলে অপপ্রচার</td></tr>
+<tr><td>Stalking</td><td>অনলাইনে নজরদারি ও ট্র্যাক</td></tr>
+</table></div>
+<div class="grid2">
+<div class="mini"><h4>আইনি কাঠামো</h4><ul><li>সাইবার সুরক্ষা অধ্যাদেশ ২০২৫ (Cyber Tribunal)</li><li>ডিজিটাল নিরাপত্তা আইন ২০১৮-এর ধারাবাহিকতা</li><li>ICT Division ও National CERT</li><li>BTRC — কনটেন্ট অপসারণ</li></ul></div>
+<div class="mini"><h4>বাস্তবায়ন কৌশল</h4><ul><li><b>Technical:</b> 2FA, Strong Password &amp; Encryption, Cyber Hygiene</li><li><b>Institutional:</b> Women Cyber Help Desk, Digital Literacy Training, Awareness Campaign</li><li><b>Legal:</b> Gender-sensitive Cyber Policy, Rapid Response, PPP</li><li>হটলাইন: <b>৯৯৯, ১০৯</b></li></ul></div>
+</div>
+<h3>ভবিষ্যৎ দিকনির্দেশনা</h3>
+<div class="chips"><span class="chip">AI-based Monitoring</span><span class="chip">Digital Gender Policy 2030</span><span class="chip">Community-based Resilience</span><span class="chip">Research &amp; Data Collection</span></div>
+</div></details>
+
+<!-- ================= PRACTICE ================= -->
+<details class="sec" id="practice"><summary>১৯. চর্চার প্রশ্ন (উত্তরের মূল পয়েন্টসহ)</summary><div class="body">
+<h3>লৈঙ্গিক ইস্যু</h3>
+<ol>
+<li>১৯৭০ বনাম ২০২৫: নারীর শ্রম-পরিচয়, নগরায়ন, ভাষা, তথ্য-প্রযুক্তি → <i>৫ পয়েন্ট: শ্রম-পরিচয়, নগরায়ন, ভাষা, ICT, সামাজিক পরিচয়</i></li>
+<li>১৯৭০ থেকে বর্তমান পর্যন্ত লৈঙ্গিক সম্পর্ক ও সাংস্কৃতিক পরিবর্তন → <i>পারিবারিক কাঠামো, শ্রম, শিক্ষা, ভাষা, ICT, রাষ্ট্রীয় নীতি</i></li>
+<li>ডিজিটাল বৈষম্য ও প্রযুক্তিগত ঝুঁকি কীভাবে নারীর ক্ষমতায়ন প্রভাবিত করছে → <i>সুযোগপ্রাপ্তি, সাক্ষরতা, সাইবার সহিংসতা, নিরাপত্তা, রাজনৈতিক অংশগ্রহণ</i></li>
+<li>নারীর ক্ষমতায়নের সামাজিক, অর্থনৈতিক ও সাংস্কৃতিক প্রতিবন্ধকতা</li>
+<li>লিঙ্গসমতা অর্জনে নীতিগত সাফল্য ও সীমাবদ্ধতা</li>
+</ol>
+<h3>ICT ও 4IR</h3>
+<ol>
+<li>ICT ও 4IR-এর নেতিবাচক প্রভাব মোকাবিলায় নীতিগত প্রস্তুতি → <i>শ্রমবাজার ও দক্ষতা; ডিজিটাল বৈষম্য; সাইবার ঝুঁকি; অনানুষ্ঠানিক খাত ও সামাজিক সুরক্ষা; নীতিগত সমন্বয়</i></li>
+<li>Digital divide কীভাবে সামাজিক-অর্থনৈতিক বৈষম্য বাড়াচ্ছে → <i>শহর-গ্রাম; দক্ষতা; শিক্ষা; ডিজিটাল অর্থনীতি; তথ্য ও অংশগ্রহণ</i></li>
+<li>ICT ও automation-এর কর্মসংস্থান ও আয়ে ইতিবাচক/নেতিবাচক প্রভাব → <i>উৎপাদনশীলতা ও নতুন চাকরি (+); প্রতিযোগিতা সক্ষমতা (+); নিম্ন-মধ্যম দক্ষতার চাকরি (−); আয় বৈষম্য (−); অনানুষ্ঠানিক খাত (−)</i></li>
+<li>Skill mismatch কেন বড় চ্যালেঞ্জ ও এর অর্থনৈতিক প্রভাব → <i>তাত্ত্বিক/ডিগ্রিকেন্দ্রিক শিক্ষা; ধীর দক্ষতা উন্নয়ন; সাধারণ-কারিগরি ভারসাম্যহীনতা; শিক্ষিত বেকারত্ব ও উৎপাদনশীলতা হ্রাস; আয় বৈষম্য</i></li>
+</ol>
+</div></details>
+
+</main>
+<footer>১৭তম ক্লাসের লেকচার শিট (তারিখ: ১৫/০৩/২০২৬) থেকে সংকলিত ব্যক্তিগত রিভিশন নোট</footer>
+
+<script>
+function toggleAll(open){document.querySelectorAll('details.sec').forEach(d=>d.open=open)}
+function toggleRecall(){
+  const on=document.body.classList.toggle('recall');
+  document.getElementById('rbtn').textContent=on?'🧠 রিভিশন মোড বন্ধ করো':'🧠 রিভিশন মোড (সাল/সংখ্যা লুকাও)';
+  document.querySelectorAll('.hide').forEach(e=>e.classList.remove('shown'));
+  if(on) toggleAll(true);
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.hide');
+  if(h&&document.body.classList.contains('recall')) h.classList.toggle('shown');
+});
+function toggleTheme(){
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+  try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}
+}
+try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+document.querySelectorAll('nav.toc a').forEach(a=>a.addEventListener('click',()=>{
+  const d=document.querySelector(a.getAttribute('href'));if(d&&d.tagName==='DETAILS')d.open=true;
+}));
+</script>
+</body>
+</html>

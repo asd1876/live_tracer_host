@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>কনসেপচুয়াল রিভিশন নোট</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef;--card:#ffffff;--ink:#1f2328;--muted:#5d6670;--line:#e3ded3;
+  --accent:#0f5c4d;--accent2:#b5462a;--hl:#fff1b8;--hlink:#5a4300;--chip:#e7f1ee;--chipink:#0f5c4d;
+  --th:#eef3f1;--warn:#fdecea;--warnink:#8a2a17;--ok:#e9f5ec;--okink:#1d5a2c;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181b;--card:#1d2226;--ink:#e7e9ea;--muted:#9aa4ad;--line:#2e353b;
+    --accent:#5cc5a9;--accent2:#ef8c6c;--hl:#4a3d10;--hlink:#ffe28a;--chip:#1f3a33;--chipink:#7fe0c4;
+    --th:#232b30;--warn:#3a2320;--warnink:#f2a491;--ok:#1f3326;--okink:#9fdcae;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181b;--card:#1d2226;--ink:#e7e9ea;--muted:#9aa4ad;--line:#2e353b;
+  --accent:#5cc5a9;--accent2:#ef8c6c;--hl:#4a3d10;--hlink:#ffe28a;--chip:#1f3a33;--chipink:#7fe0c4;
+  --th:#232b30;--warn:#3a2320;--warnink:#f2a491;--ok:#1f3326;--okink:#9fdcae;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif;font-size:16.5px;line-height:1.7}
+header.top{background:var(--accent);color:#fff;padding:28px 16px 22px}
+header.top .wrap{max-width:1000px;margin:0 auto}
+header.top h1{margin:0 0 4px;font-size:1.7rem;line-height:1.3}
+header.top p{margin:0;opacity:.9}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+nav.toc .wrap{max-width:1000px;margin:0 auto;padding:8px 12px;display:flex;gap:6px}
+nav.toc a{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--chip);color:var(--chipink);text-decoration:none;font-weight:600;font-size:.92rem}
+nav.toc a:hover{filter:brightness(.95)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+section.topic{margin:26px 0 40px;scroll-margin-top:60px}
+section.topic>h2{font-size:1.45rem;margin:0 0 12px;padding-bottom:6px;border-bottom:3px solid var(--accent);color:var(--accent)}
+h3{font-size:1.15rem;margin:22px 0 8px;color:var(--accent2)}
+h4{font-size:1.02rem;margin:14px 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.card>h3:first-child,.card>h4:first-child{margin-top:0}
+ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+b.n,.n{background:var(--hl);color:var(--hlink);padding:0 4px;border-radius:4px;font-weight:700;white-space:nowrap}
+.t{display:inline-block;background:var(--chip);color:var(--chipink);border-radius:6px;padding:0 7px;font-size:.88rem;font-weight:600;margin:1px 2px}
+.quote{border-left:4px solid var(--accent2);padding:6px 12px;margin:10px 0;color:var(--muted);font-style:italic;background:var(--card);border-radius:0 8px 8px 0}
+.quote span{font-style:normal;font-weight:600;color:var(--ink)}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--th)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.warn{background:var(--warn);color:var(--warnink);border-radius:10px;padding:10px 14px;margin:10px 0}
+.ok{background:var(--ok);color:var(--okink);border-radius:10px;padding:10px 14px;margin:10px 0}
+.muted{color:var(--muted);font-size:.92rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;padding:0 16px}
+details summary{cursor:pointer;font-weight:700;padding:12px 0;color:var(--accent)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 0}
+.toolbar button{font:inherit;font-size:.88rem;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:8px;padding:3px 10px;cursor:pointer}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 16px}
+@media print{nav.toc,.toolbar{display:none}details{border:none}details>*{display:block}body{background:#fff}}
+@media (max-width:600px){body{font-size:15.5px}header.top h1{font-size:1.35rem}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>আন্তর্জাতিক কনসেপচুয়াল রিভিশন</h1>
+  <p>মুখস্থ করার নোট — সাম্প্রতিক কনসেপ্ট + ৭টি অধ্যায়ের সংজ্ঞা, তত্ত্ব, প্রবক্তা, সাল ও উদাহরণ এক জায়গায়</p>
+  <div class="toolbar">
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">সব খুলুন</button>
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">সব বন্ধ করুন</button>
+    <button onclick="toggleTheme()">ডার্ক/লাইট</button>
+  </div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#quick">দ্রুত তথ্য</a>
+  <a href="#recent">সাম্প্রতিক কনসেপ্ট</a>
+  <a href="#c1">১. Introduction</a>
+  <a href="#c2">২. Actors ও রাষ্ট্র</a>
+  <a href="#c3">৩. Power ও Security</a>
+  <a href="#c4">৪. Major Ideas</a>
+  <a href="#c5">৫. Diplomacy</a>
+  <a href="#c6">৬. Economy</a>
+  <a href="#c7">৭. Climate</a>
+  <a href="#people">প্রবক্তা</a>
+</div></nav>
+
+<main>
+
+<!-- QUICK -->
+<section class="topic" id="quick">
+<h2>⚡ এক নজরে সাল, সংখ্যা ও তথ্য</h2>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>তথ্য</th></tr>
+<tr><td>Westphalia চুক্তি</td><td><b class="n">১৬৪৮</b> — আধুনিক সার্বভৌম রাষ্ট্রব্যবস্থার সূচনা</td></tr>
+<tr><td>জাতিসংঘের সদস্য রাষ্ট্র</td><td><b class="n">১৯৩</b>টি</td></tr>
+<tr><td>বাংলাদেশের আয়তন</td><td><b class="n">১,৪৭,৫৭০ বর্গকিমি</b></td></tr>
+<tr><td>Board of Peace (গাজা)</td><td>নভেম্বর <b class="n">২০২৫</b>, UNSC Resolution <b class="n">২৮০৩</b>; চেয়ারম্যান ট্রাম্প; ~<b class="n">২৬</b> দেশ; মেয়াদ <b class="n">৩ বছর</b>, <b class="n">১ বিলিয়ন ডলার</b> দিলে স্থায়ী সদস্যপদ; International Stabilization Force</td></tr>
+<tr><td>Board of Peace সদস্য</td><td>মার্কো রুবিও, টনি ব্লেয়ার, অজয় বাঙ্গা (বিশ্বব্যাংক), রবার্ট গ্যাব্রিয়েল; সৌদি, কাতার, UAE, মিশর</td></tr>
+<tr><td>Look East (বাংলাদেশ)</td><td><b class="n">১৯৯১–১৯৯৬</b> ও <b class="n">২০০১–২০০৬</b>, প্রধানমন্ত্রী খালেদা জিয়া</td></tr>
+<tr><td>BRI ঘোষণা</td><td><b class="n">২০১৩</b> — Silk Road Economic Belt + Maritime Silk Road</td></tr>
+<tr><td>TRIPS</td><td><b class="n">১৯৯৫</b> (WTO প্রতিষ্ঠার সময়) — Trade-Related Aspects of Intellectual Property Rights</td></tr>
+<tr><td>Petrodollar</td><td><b class="n">১৯৭০</b>-এর দশক — যুক্তরাষ্ট্র-সৌদি চুক্তি</td></tr>
+<tr><td>Slowbalisation</td><td><b class="n">২০০৮</b>-এর বৈশ্বিক আর্থিক সংকটের পর থেকে</td></tr>
+<tr><td>বাংলাদেশের NDC 3.0</td><td>জমা <b class="n">২৯ সেপ্টেম্বর ২০২৫</b>; সময়সীমা <b class="n">২০৩৫</b></td></tr>
+<tr><td>Unipolar / Bipolar</td><td>Bipolar <b class="n">১৯৪৭–১৯৯০</b>; Unipolar (যুক্তরাষ্ট্র) <b class="n">১৯৯০–২০১০</b></td></tr>
+<tr><td>NATO / Warsaw Pact</td><td><b class="n">১৯৪৯</b> (ট্রুম্যান) / <b class="n">১৯৫৫</b></td></tr>
+<tr><td>R2P</td><td>শিটে <b>২০২৫</b> (সঠিক: <b class="n">২০০৫</b> World Summit) — ৪ অপরাধ: গণহত্যা, যুদ্ধাপরাধ, জাতিগত নিধন, মানবতাবিরোধী অপরাধ</td></tr>
+<tr><td>জেনেভা কনভেনশন</td><td>১ম <b class="n">১৮৬৪</b> (স্থলযুদ্ধে আহত সৈনিক) • ২য় <b class="n">১৯০৬</b> (নৌযুদ্ধ) • ৩য় <b class="n">১৯২৯</b> (যুদ্ধবন্দী) • ৪র্থ <b class="n">১৯৪৯</b> (বেসামরিক নাগরিক); প্রটোকল <b class="n">১৯৭৭</b>-এ ২টি, <b class="n">২০০৫</b>-এ ১টি</td></tr>
+<tr><td>START-I / II / NEW</td><td><b class="n">৩১ জুলাই ১৯৯১</b> (বুশ-গর্বাচেভ) / <b class="n">৩ জানুয়ারি ১৯৯৩</b> (বুশ-ইয়েলৎসিন) / <b class="n">৮ এপ্রিল ২০১০</b>, প্রাগ (ওবামা-মেদভেদেভ), কার্যকর <b>২০১১</b>, <b>১৫৫০</b> ওয়ারহেড; রাশিয়ার স্থগিত <b>২১ ফেব্রুয়ারি ২০২৩</b></td></tr>
+<tr><td>NPT</td><td><b class="n">১৯৬৮</b> চুক্তি, <b class="n">১৯৭০</b> কার্যকর, <b class="n">১৯৯৫</b> পর্যালোচনা; উ. কোরিয়ার প্রত্যাহার <b class="n">২০০৩</b></td></tr>
+<tr><td>SALT-I / SALT-II</td><td><b class="n">২৬ মে ১৯৭২</b> মস্কো (ব্রেজনেভ-নিক্সন) / <b class="n">১৮ জুন ১৯৭৯</b> ভিয়েনা (ব্রেজনেভ-কার্টার)</td></tr>
+<tr><td>অন্যান্য নিরস্ত্রীকরণ</td><td>UN Atomic Energy Commission <b>জানুয়ারি ১৯৪৬</b> • জেনেভা নিরস্ত্রীকরণ সম্মেলন <b>১৯৬০</b> • মহাকাশ চুক্তি <b>১৯৬৬</b> • OPCW <b>১৯৯৭</b>, হেগ • দ. আফ্রিকা নিজ অস্ত্র ধ্বংস <b>১৯৯১</b> (ডি ক্লার্ক)</td></tr>
+<tr><td>ECSC</td><td><b class="n">১৯৫১</b> — European Coal and Steel Community (Functionalism-এর উদাহরণ)</td></tr>
+<tr><td>শিল্পবিপ্লব</td><td>১ম <b class="n">১৭৮৪</b> (বাষ্পীয় ইঞ্জিন) • ২য় <b class="n">১৮৭০</b> (বিদ্যুৎ) • ৩য় <b class="n">১৯৬৯</b> (ইন্টারনেট) • ৪র্থ একুশ শতক (AI, IoT, রোবটিক্স)</td></tr>
+<tr><td>ডকট্রিন</td><td>Monroe <b>১৮২৩</b> • Truman <b>১৯৪৭</b> (গ্রিস-তুরস্ক ৪০০ মিলিয়ন ডলার) • Containment <b>১৯৪৭</b> (Kennan) • Eisenhower <b>১৯৫৭</b> • Brezhnev <b>১৯৬৮</b> • Carter <b>১৯৮০</b> • Reagan <b>১৯৮০-এর দশক</b> • Bush <b>২০০২</b></td></tr>
+<tr><td>Sea Power / Power Transition</td><td>Mahan <b class="n">১৮৯০</b> / Organski <b class="n">১৯৫৮</b> (World Politics)</td></tr>
+<tr><td>Vienna Convention on Diplomatic Relations</td><td><b class="n">১৯৬১</b>; Article <b>৩</b> = কূটনৈতিক কার্যাবলি; Article <b>৯</b> = Persona Non Grata</td></tr>
+<tr><td>NIEO ঘোষণা</td><td><b class="n">১৯৭৪</b>, জাতিসংঘ সাধারণ পরিষদ</td></tr>
+<tr><td>UNFCCC / Kyoto / Paris</td><td><b class="n">১৯৯২</b> / <b class="n">১১ ডিসেম্বর ১৯৯৭</b> / <b class="n">১২ ডিসেম্বর ২০১৫</b></td></tr>
+<tr><td>Kyoto মেয়াদ</td><td>১ম পর্ব <b>১৯৯৭–২০১২</b> (১৫ বছর); দোহা ২০১২-তে বেড়ে <b>৩১ ডিসেম্বর ২০২০</b>; Annex-I ৪২ দেশ + EU, গড়ে ~<b>৫%</b> কমানো</td></tr>
+<tr><td>COP-21</td><td><b class="n">৩০ নভেম্বর–১২ ডিসেম্বর ২০১৫</b>, প্যারিস; <b>১৯৫</b> দেশ + EU</td></tr>
+<tr><td>প্যারিস চুক্তি</td><td>স্বাক্ষর উন্মুক্ত <b class="n">২২ এপ্রিল ২০১৬</b> (বাংলাদেশ প্রথম দিনেই); কার্যকর <b class="n">৪ নভেম্বর ২০১৬</b>; ২°C-এর নিচে, সম্ভব হলে ১.৫°C; NDC প্রতি <b>৫ বছরে</b> হালনাগাদ; যুক্তরাষ্ট্রের বের হওয়ার ঘোষণা <b class="n">২০ জানুয়ারি ২০২৫</b></td></tr>
+<tr><td>Climate Finance</td><td><b class="n">২০২০</b> থেকে প্রতি বছর <b class="n">১০০ বিলিয়ন ডলার</b></td></tr>
+<tr><td>Net Zero লক্ষ্য</td><td>EU ও যুক্তরাষ্ট্র <b class="n">২০৫০</b>; চীন, রাশিয়া, সৌদি <b class="n">২০৬০</b></td></tr>
+<tr><td>COP-26</td><td><b class="n">২০৩০</b>-এর মধ্যে বন উজাড় শূন্যে নামানো</td></tr>
+<tr><td>Global Minimum Tax</td><td><b class="n">২০২১</b>, ভেনিস (ইতালি), G-20; অন্তত <b class="n">১৫%</b> কর</td></tr>
+<tr><td>Loss and Damage Fund</td><td>COP27, মিশর, <b class="n">২০২২</b></td></tr>
+<tr><td>Green Climate Fund</td><td>প্রতিষ্ঠা <b class="n">২০১০</b>; UNFCCC; সদর দপ্তর <b>ইনচন, দ. কোরিয়া</b>; অর্থায়ন শুরু <b>২০১৫</b></td></tr>
+<tr><td>IPCC</td><td><b class="n">১৯৮৮</b>; প্রতিষ্ঠাতা UNEP ও WMO; ৩ Working Group + ১ Task Force (TFI)</td></tr>
+<tr><td>Basel Convention</td><td>গৃহীত <b class="n">১৯৮৯</b>, বাসেল (সুইজারল্যান্ড); কার্যকর <b class="n">১৯৯২</b></td></tr>
+<tr><td>IUCN</td><td><b class="n">৫ অক্টোবর ১৯৪৮</b>, ফন্টেইনব্লু (ফ্রান্স); সদর দপ্তর <b>গ্ল্যান্ড, সুইজারল্যান্ড</b>; Red List</td></tr>
+<tr><td>SDG</td><td><b class="n">২৫ সেপ্টেম্বর ২০১৫</b>, ৭০তম সাধারণ পরিষদ; <b>২০১৬–২০৩০</b>; <b class="n">১৭</b> লক্ষ্য, <b class="n">১৬৯</b> টার্গেট, <b class="n">২৩২</b> সূচক; "Leave no one behind"</td></tr>
+</table></div>
+</section>
+
+<!-- RECENT -->
+<section class="topic" id="recent">
+<h2>★ সাম্প্রতিক কনসেপচুয়াল (এক লাইনে সংজ্ঞা)</h2>
+
+<details open><summary>আঞ্চলিক সংস্থা ও কূটনীতি</summary>
+<div class="tbl"><table>
+<tr><th>টার্ম</th><th>মূল কথা</th><th>উদাহরণ</th></tr>
+<tr><td>SAARC Consensus Rule</td><td>সব সদস্য রাজি হলেই সিদ্ধান্ত; একটি দেশ আপত্তি করলেই প্রস্তাব অকার্যকর</td><td>সার্ক</td></tr>
+<tr><td>ASEAN Way</td><td>অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ নয়; সবার সম্মতিতে সিদ্ধান্ত</td><td>—</td></tr>
+<tr><td>Flexible Engagement</td><td>আঞ্চলিক স্থিতিশীলতায় প্রভাব ফেললে সদস্যের অভ্যন্তরীণ বিষয়ে সীমিত ও গঠনমূলক আলোচনা</td><td>আসিয়ান</td></tr>
+<tr><td>ASEAN Minus X Formula</td><td>সবাই রাজি না হলেও প্রস্তুত দেশগুলো এগিয়ে যায়, বাকিরা পরে যোগ দেয়</td><td>১০ দেশের মুক্তবাণিজ্যে কম্বোডিয়া, লাওস, ভিয়েতনাম বাদে ৭ দেশ</td></tr>
+<tr><td>Multi-speed Europe</td><td>EU সদস্যরা সক্ষমতা অনুযায়ী ভিন্ন গতিতে একীকরণে অংশ নেয়</td><td>ইউরোজোন — জার্মানি, ফ্রান্স, ইতালি আছে; পোল্যান্ড, হাঙ্গেরি নেই</td></tr>
+<tr><td>Special and Differential Treatment (SDT)</td><td>WTO-তে উন্নয়নশীল ও LDC-কে অতিরিক্ত সুবিধা (শুল্কমুক্ত, বাড়তি সময়)</td><td>বাংলাদেশ (LDC)</td></tr>
+<tr><td>Gunboat Diplomacy</td><td>যুদ্ধ না করে সামরিক শক্তি (নৌবাহিনী) দেখিয়ে সিদ্ধান্তে বাধ্য করা</td><td>ঔপনিবেশিক যুগে ব্রিটেন</td></tr>
+<tr><td>Multilateralism</td><td>একাধিক রাষ্ট্র নিয়ম ও প্রতিষ্ঠানের মাধ্যমে সহযোগিতা</td><td>জাতিসংঘ, WTO, IMF</td></tr>
+<tr><td>Flexible Realism</td><td>জাতীয় স্বার্থ সর্বোচ্চ, কিন্তু পরিস্থিতি অনুযায়ী কৌশল বদলায়</td><td>—</td></tr>
+<tr><td>Sovereign Equality</td><td>ছোট-বড়, ধনী-দরিদ্র সব রাষ্ট্র আইনগতভাবে সমান</td><td>—</td></tr>
+<tr><td>Donroe Doctrine</td><td>Donald Trump + Monroe Doctrine; আমেরিকা মহাদেশে যুক্তরাষ্ট্রের প্রভাব জোরদার। বৈশিষ্ট্য: (১) আঞ্চলিক আধিপত্য (২) ভৌগোলিক ও কৌশলগত নিয়ন্ত্রণ</td><td>ভেনিজুয়েলা (মাদুরো), গ্রিনল্যান্ড, কিউবা</td></tr>
+<tr><td>Look East Diplomacy</td><td>পূর্ব ও দক্ষিণ-পূর্ব এশিয়ার সাথে ঘনিষ্ঠতা। গুরুত্ব: বাণিজ্য, বিনিয়োগ (চীন, জাপান, দ. কোরিয়া), কৌশলগত ভারসাম্য</td><td>বাংলাদেশ ১৯৯১–৯৬, ২০০১–০৬</td></tr>
+<tr><td>Good Cop, Bad Cop (Europe)</td><td>একই জোটের কেউ কঠোর (নিষেধাজ্ঞা), কেউ নরম (আলোচনা) — চাপ ও কূটনীতি একসাথে</td><td>EU</td></tr>
+<tr><td>Softly-softly approach</td><td>সরাসরি কঠোর না হয়ে ধীরে, সতর্ক, নরম কূটনীতি</td><td>গ্রিনল্যান্ড প্রশ্নে ডেনমার্ক ও EU</td></tr>
+<tr><td>Quiet Diplomacy</td><td>প্রকাশ্যে কঠোর না হয়ে গোপনে আলোচনা</td><td>মানবাধিকার, সংঘাত নিরসন</td></tr>
+<tr><td>South-South Cooperation</td><td>এশিয়া, আফ্রিকা, লাতিন আমেরিকার উন্নয়নশীল দেশগুলোর পারস্পরিক সহযোগিতা</td><td>Global South</td></tr>
+<tr><td>Economic vs Cultural Diplomacy</td><td>অর্থনীতি (বাণিজ্য, বিনিয়োগ; দ্রুত দৃশ্যমান) বনাম সংস্কৃতি (ভাষা, শিক্ষা, চলচ্চিত্র; দীর্ঘমেয়াদি)</td><td>চীনের BRI বনাম দ. কোরিয়ার K-pop</td></tr>
+<tr><td>Indo-Pacific Strategy (IPS) vs BRI</td><td>IPS: নিরাপত্তা, নৌচলাচল, নিয়মভিত্তিক ব্যবস্থা, গণতান্ত্রিক দেশের সমন্বয় (Quad: যুক্তরাষ্ট্র, জাপান, ভারত, অস্ট্রেলিয়া)। BRI: চীনকেন্দ্রিক অবকাঠামো ও বাণিজ্য, ২০১৩</td><td>—</td></tr>
+</table></div>
+</details>
+
+<details open><summary>অর্থনীতি ও বিশ্বায়ন</summary>
+<div class="tbl"><table>
+<tr><th>টার্ম</th><th>মূল কথা</th><th>উদাহরণ</th></tr>
+<tr><td>Soft Landing</td><td>কেন্দ্রীয় ব্যাংক ধীরে ধীরে সুদের হার বাড়িয়ে মুদ্রাস্ফীতি কমায়, মন্দা হয় না (ধীরে ব্রেক)</td><td>—</td></tr>
+<tr><td>Hard Landing</td><td>হঠাৎ ও বড় মাত্রায় সুদের হার বাড়ানো → বিনিয়োগ কমা, বেকারত্ব, মন্দা (হঠাৎ ব্রেক)</td><td>—</td></tr>
+<tr><td>NDC</td><td>প্রতিটি দেশ নিজ সক্ষমতা অনুযায়ী কার্বন কমানোর লক্ষ্য ঠিক করে</td><td>বাংলাদেশ, EU (২০৩০)</td></tr>
+<tr><td>NDC 3.0</td><td>NDC-র ৩য় হালনাগাদ; ২০২৫-এর মধ্যে জমা, ২০৩৫ পর্যন্ত; আগের চেয়ে বেশি উচ্চাভিলাষী</td><td>বাংলাদেশ ২৯ সেপ্টেম্বর ২০২৫</td></tr>
+<tr><td>Reshoring</td><td>উৎপাদন বিদেশ থেকে নিজ দেশে ফেরানো</td><td>চীন থেকে যুক্তরাষ্ট্রে</td></tr>
+<tr><td>Nearshoring</td><td>নিকটবর্তী দেশে উৎপাদন সরানো</td><td>চীন থেকে মেক্সিকোতে</td></tr>
+<tr><td>Friend-shoring</td><td>রাজনৈতিকভাবে মিত্র দেশে উৎপাদন সরানো</td><td>চীন থেকে ভিয়েতনাম, ভারতে</td></tr>
+<tr><td>Economic Protectionism vs Liberalization</td><td>শুল্ক, কোটা দিয়ে দেশীয় শিল্প রক্ষা বনাম শুল্ক কমিয়ে বাজার উন্মুক্ত করা</td><td>—</td></tr>
+<tr><td>Market-Based Solutions</td><td>বাজারের প্রণোদনায় দূষণ কমানো; Emission Trading, CDM</td><td>কিয়োটো প্রটোকল</td></tr>
+<tr><td>TRIPS</td><td>মেধাস্বত্ব সুরক্ষা (পেটেন্ট, কপিরাইট, ট্রেডমার্ক, শিল্প নকশা)</td><td>WTO, ১৯৯৫</td></tr>
+<tr><td>Just-in-time</td><td>প্রয়োজনের সময় ঠিক তখনই কাঁচামাল আসে; মজুদ নেই</td><td>টয়োটা (জাপান)</td></tr>
+<tr><td>Just-in-case Economy</td><td>সংকটের আশঙ্কায় আগেই অতিরিক্ত মজুদ ও বিকল্প ব্যবস্থা</td><td>কোভিড, রাশিয়া-ইউক্রেন, ইরান সংকটের পর</td></tr>
+<tr><td>Petrodollar</td><td>তেল মার্কিন ডলারে বেচাকেনা। প্রভাব: ডলারের আধিপত্য, যুক্তরাষ্ট্রের অর্থনৈতিক ক্ষমতা, রাজনৈতিক প্রভাব, নিষেধাজ্ঞার সক্ষমতা, বিকল্প ব্যবস্থার উদ্ভব</td><td>যুক্তরাষ্ট্র-সৌদি, ১৯৭০-এর দশক</td></tr>
+<tr><td>K-shaped economy</td><td>সংকটের পর এক অংশের দ্রুত উন্নতি, আরেক অংশের অবনতি — বৈষম্য বাড়ে</td><td>কোভিড-১৯ পরবর্তী</td></tr>
+<tr><td>Balance Sheet Recession</td><td>সম্পদের দাম কমে কিন্তু ঋণ একই থাকে → সবাই ঋণ শোধে মনোযোগ দেয়, ব্যয় ও বিনিয়োগ কমে, মন্দা</td><td>১০০ টাকার সম্পদ, ৫০ টাকা ঋণ → সম্পদ ৪০ টাকায় নামে</td></tr>
+<tr><td>Deglobalisation</td><td>বৈশ্বিক নির্ভরতা কমিয়ে নিজস্ব উৎপাদনে জোর। বৈশিষ্ট্য: বৈশ্বিক নির্ভরতা হ্রাস, আঞ্চলিকীকরণ, অর্থনীতির ভূরাজনৈতিকীকরণ, সরবরাহ পুনর্গঠন</td><td>—</td></tr>
+<tr><td>Reglobalisation</td><td>বিশ্বায়ন থেকে সরে না গিয়ে নিরাপত্তা বিবেচনায় পুনর্গঠন — reshoring, friend-shoring, regionalisation</td><td>—</td></tr>
+<tr><td>Slowbalisation</td><td>বিশ্বায়নের গতি কমে যাওয়া</td><td>২০০৮-এর পর, কোভিড</td></tr>
+<tr><td>Fragmented Globalisation</td><td>বিশ্বায়ন বিভিন্ন ব্লক বা গোষ্ঠীতে বিভক্ত</td><td>যুক্তরাষ্ট্র বনাম চীন (Huawei)</td></tr>
+<tr><td>Post-globalization</td><td>বিশ্বায়ন শেষ হয়নি, কিন্তু নিরাপত্তা ও কৌশলগত বিবেচনায় নিয়ন্ত্রিত — Reshoring, Friend-shoring, Techno-nationalism</td><td>সেমিকন্ডাক্টর, জ্বালানি, ওষুধ</td></tr>
+<tr><td>China+1 Strategy</td><td>চীনের পাশাপাশি আরও এক বা একাধিক দেশে উৎপাদন</td><td>Apple → ভারত, ভিয়েতনাম; বাংলাদেশ, মেক্সিকো</td></tr>
+<tr><td>Just Transition</td><td>সবুজ অর্থনীতিতে রূপান্তরে ক্ষতিগ্রস্ত শ্রমিকদের বিকল্প কর্মসংস্থান, প্রশিক্ষণ ও সামাজিক সুরক্ষা</td><td>কয়লা খনি বন্ধ হলে</td></tr>
+<tr><td>Rentier State</td><td>আয়ের প্রধান উৎস প্রাকৃতিক সম্পদের "rent"; জনগণের কাছ থেকে কম কর</td><td>সৌদি আরব, কুয়েত, কাতার</td></tr>
+<tr><td>Zero-sum vs Positive-sum</td><td>এক পক্ষের লাভ = অন্য পক্ষের ক্ষতি (যুদ্ধ) বনাম সবাই লাভবান (মুক্ত বাণিজ্য, জলবায়ু সহযোগিতা)</td><td>—</td></tr>
+<tr><td>Game Theory (Prisoner's Dilemma)</td><td>প্রত্যেকের ফলাফল অন্যের সিদ্ধান্তের উপর নির্ভর; উভয়েই বিশ্বাসঘাতকতা বেছে নেয় → উভয়ের জন্য খারাপ</td><td>পারমাণবিক অস্ত্র প্রতিযোগিতা</td></tr>
+<tr><td>Jobageddon</td><td>অটোমেশন ও AI-তে বিপুল চাকরি বিলুপ্তি</td><td>রোবট, ডিজিটাল ব্যাংকিং</td></tr>
+<tr><td>Triple Bubble</td><td>শেয়ারবাজার, রিয়েল এস্টেট ও ঋণ খাতে একসাথে বুদবুদ</td><td>—</td></tr>
+<tr><td>Middle-Income Trap</td><td>মধ্যম আয়ে পৌঁছে দীর্ঘদিন আটকে থাকা; কারণ: অর্থনৈতিক কাঠামো পরিবর্তনে ব্যর্থতা</td><td>বাংলাদেশের ঝুঁকি (RMG, প্রবাসী আয়, সস্তা শ্রমনির্ভর)</td></tr>
+<tr><td>Weaponized Interdependence</td><td>বৈশ্বিক নেটওয়ার্কের "hub" অবস্থানকে চাপের অস্ত্র হিসেবে ব্যবহার</td><td>চীনের rare earth minerals</td></tr>
+<tr><td>Techno-nationalism</td><td>প্রযুক্তিকে জাতীয় স্বার্থ ও নিরাপত্তার সাথে যুক্ত করা</td><td>—</td></tr>
+<tr><td>Decoupling</td><td>কৌশলগত কারণে অন্য দেশের উপর নির্ভরতা কমানো</td><td>যুক্তরাষ্ট্র-চীন সেমিকন্ডাক্টর; ইউরোপের রুশ জ্বালানি</td></tr>
+<tr><td>Resource Nationalism</td><td>প্রাকৃতিক সম্পদে সার্বভৌম নিয়ন্ত্রণ; জাতীয়করণ, বিদেশি বিনিয়োগে বিধিনিষেধ</td><td>—</td></tr>
+</table></div>
+<div class="card"><h4>Middle-Income Trap এড়াতে বাংলাদেশের ৯ করণীয়</h4>
+<p>মানবসম্পদ ও দক্ষতা • শিল্প বৈচিত্র্য ও উচ্চমূল্য সংযোজন • প্রযুক্তি ও উদ্ভাবনে বিনিয়োগ • রপ্তানি খাত ও নতুন বাজার • প্রাতিষ্ঠানিক দক্ষতা ও সুশাসন • অবকাঠামো • প্রযুক্তি স্থানান্তর ও FDI • ডিজিটাল অর্থনীতি ও চতুর্থ শিল্পবিপ্লব • কৃষির আধুনিকায়ন</p></div>
+</details>
+
+<details open><summary>যুদ্ধ ও কৌশল</summary>
+<div class="card"><h4>Clausewitz-এর যুদ্ধতত্ত্ব (গ্রন্থ: <i>On War</i>)</h4>
+<div class="quote">"War is the continuation of politics by other means." — <span>Carl von Clausewitz</span></div>
+<ul>
+<li><b>Trinity (ত্রয়ী):</b> (১) জনগণের আবেগ ও জাতীয়তাবাদ (২) সামরিক বাহিনীর কৌশল ও দক্ষতা (৩) সরকারের নীতি ও রাজনৈতিক লক্ষ্য</li>
+<li><b>Fog of War:</b> যুদ্ধক্ষেত্রে তথ্যের অভাব ও অনিশ্চয়তা</li>
+<li><b>Friction:</b> ছোট বাধাও বড় প্রভাব ফেলে</li>
+<li><b>প্রাসঙ্গিকতা:</b> রাশিয়া-ইউক্রেন (ন্যাটোর পূর্বমুখী বিস্তার ঠেকানো), মধ্যপ্রাচ্যে ইরান (হরমুজ)</li>
+</ul></div>
+</details>
+</section>
+
+<!-- C1 -->
+<section class="topic" id="c1">
+<h2>১ম অধ্যায়: Introduction to International Affairs</h2>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>International Affairs</th><th>International Relations</th></tr>
+<tr><td>প্রকৃতি</td><td>বিস্তৃত ক্ষেত্র; সীমান্ত অতিক্রমকারী বৈশ্বিক ইস্যু</td><td>একাডেমিক শাস্ত্র; রাষ্ট্রের আচরণ ও সম্পর্ক বিশ্লেষণ</td></tr>
+<tr><td>আলোচ্য বিষয়</td><td>যুদ্ধ, বাণিজ্য, জলবায়ু, জ্বালানি, মানবাধিকার</td><td>পররাষ্ট্রনীতি, কূটনীতি, শক্তির ভারসাম্য, জোট</td></tr>
+<tr><td>পরিধি</td><td>ঘটনাভিত্তিক ও ইস্যুভিত্তিক</td><td>তত্ত্বভিত্তিক ও বিশ্লেষণভিত্তিক</td></tr>
+<tr><td>মূল লক্ষ্য</td><td>কী ঘটছে ও প্রভাব কী</td><td>রাষ্ট্র কেন নির্দিষ্ট আচরণ করে</td></tr>
+<tr><td>উদাহরণ</td><td>জলবায়ু, রাশিয়া-ইউক্রেন, জ্বালানি সংকট, ইসরায়েল-ফিলিস্তিন, বাণিজ্য যুদ্ধ</td><td>উ. কোরিয়ার হুমকি; সোভিয়েত রাষ্ট্রদূত বহিষ্কার; ইউরোপের ফিলিস্তিন স্বীকৃতি</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h4>আন্তর্জাতিক রাজনীতি — রাষ্ট্রের ৪ সক্ষমতা</h4><ol><li><b>Extractive</b> — সম্পদ সংগ্রহ</li><li><b>Regulative</b> — আইনশৃঙ্খলা</li><li><b>Distributive</b> — ন্যায্য বণ্টন</li><li><b>Symbolic</b> — জনগণের আস্থা ও দেশপ্রেম</li></ol></div>
+<div class="card"><h4>আন্তর্জাতিক রাজনীতির ৫ বৈশিষ্ট্য</h4><ol><li>রাষ্ট্রকেন্দ্রিকতা</li><li>ক্ষমতাভিত্তিক সম্পর্ক</li><li>জাতীয় স্বার্থকেন্দ্রিকতা</li><li>প্রভাব ও প্রভুত্বের প্রয়াস</li><li>সংঘাত ও সহযোগিতা</li></ol></div>
+<div class="card"><h4>International vs World Politics</h4><p><b>International:</b> শুধু রাষ্ট্রকেন্দ্রিক।<br><b>World:</b> রাষ্ট্র + আন্তর্জাতিক প্রতিষ্ঠান, আঞ্চলিক সংস্থা, জোট, MNC (জাতিসংঘ, বিশ্বব্যাংক, IMF, সার্ক, আসিয়ান, EU, AU, ন্যাটো)।</p></div>
+</div>
+<div class="grid">
+<div class="card"><h4>আন্তর্জাতিক বিষয়াবলির ৬ গুরুত্ব</h4><ol><li>আন্তঃনির্ভরশীল বিশ্ব বোঝা</li><li>বৈশ্বিক শান্তি ও স্থিতিশীলতা</li><li>অর্থনৈতিক সহযোগিতা ও উন্নয়ন</li><li>বৈশ্বিক চ্যালেঞ্জে সম্মিলিত উদ্যোগ</li><li>আন্তর্জাতিক আইন ও মানবাধিকার</li><li>বৈশ্বিক পারস্পরিক বোঝাপড়া</li></ol></div>
+<div class="card"><h4>পরিধি (৮টি)</h4><ol><li>আন্তর্জাতিক রাজনীতি</li><li>আন্তর্জাতিক সম্পর্ক</li><li>আন্তর্জাতিক অর্থনীতি</li><li>আন্তর্জাতিক সংস্থা ও বৈশ্বিক শাসন</li><li>আন্তর্জাতিক আইন ও মানবাধিকার</li><li>বৈশ্বিক সমস্যা ও সহযোগিতা</li><li>কূটনীতি ও পররাষ্ট্রনীতি</li><li>অ-রাষ্ট্রীয় শক্তির ভূমিকা</li></ol></div>
+</div>
+
+<h3>অধ্যায়ের তত্ত্বসমূহ</h3>
+<div class="tbl"><table>
+<tr><th>তত্ত্ব</th><th>মূল কথা</th><th>মনে রাখার পয়েন্ট</th></tr>
+<tr><td><b>Realism</b> (বাস্তববাদ)</td><td>ক্ষমতা, স্বার্থ ও নিরাপত্তা; রাষ্ট্রই প্রধান; বিশ্ব Anarchy</td><td>৬ বৈশিষ্ট্য: Relative Gain • Zero-Sum • Anarchy • Anarchical Society • State-centrism • Self-help System</td></tr>
+<tr><td>Classical Realism</td><td>মানুষ জন্মগতভাবে স্বার্থপর ও ক্ষমতালিপ্সু → রাষ্ট্রও আগ্রাসী; যুদ্ধ স্বাভাবিক</td><td>মানব প্রকৃতিই কারণ</td></tr>
+<tr><td>Neo-realism (Structural Realism)</td><td>সমস্যা মানুষের স্বভাব নয়, বৈশ্বিক কাঠামো (Anarchy)</td><td>কাঠামোই কারণ</td></tr>
+<tr><td>Offensive Realism</td><td>হুমকি দুর্বল করতে আক্রমণ → Security Dilemma</td><td>উদাহরণ: ইরান-যুক্তরাষ্ট্র</td></tr>
+<tr><td>Defensive Realism</td><td>আক্রমণ প্রতিহত করার মতো যথেষ্ট শক্তি অর্জন</td><td>উদাহরণ: ইরান, উত্তর কোরিয়া</td></tr>
+<tr><td><b>Liberalism</b> (উদারতাবাদ)</td><td>সহযোগিতা, পারস্পরিক নির্ভরতা ও প্রতিষ্ঠান দিয়ে শান্তি</td><td>৬ বৈশিষ্ট্য: Rejection of Power Politics • Absolute Gains • Win-Win (EU) • Collective Security (শান্তিরক্ষা মিশন) • প্রতিষ্ঠানের ভূমিকা (প্যারিস চুক্তি) • Regime Theory (EU, NAFTA, সার্ক, UN, WB, IMF)</td></tr>
+<tr><td>Neoliberalism (Liberal Institutionalism)</td><td>কোনো রাষ্ট্র স্বয়ংসম্পূর্ণ নয়; বাণিজ্য সংঘাত কমায়; বাজার উদারীকরণ; আন্তর্জাতিক প্রতিষ্ঠান (বিশ্বব্যাংক, WTO)</td><td>—</td></tr>
+<tr><td>Traditional Liberalism vs Liberal Institutionalism</td><td>১৮–১৯ শতক; জন লক, অ্যাডাম স্মিথ, ইমানুয়েল কান্ট; গণতন্ত্র, নৈতিকতা, মুক্তবাজার <b>বনাম</b> ২০ শতক (বিশেষত ২য় বিশ্বযুদ্ধের পর); প্রতিষ্ঠান ও নিয়ম</td><td>মূল্যবোধকেন্দ্রিক বনাম প্রতিষ্ঠানকেন্দ্রিক</td></tr>
+<tr><td><b>Constructivism</b> (গঠনবাদ)</td><td>ধারণা, পরিচয়, ইতিহাস, মূল্যবোধ রাজনীতি গড়ে। ৪ উপাদান: (১) Historical Relationship — "History defines international structure" (যুক্তরাষ্ট্র-অস্ট্রেলিয়া) (২) Identities — "Identity defines…" (যুক্তরাষ্ট্র, যুক্তরাজ্য, কানাডা, অস্ট্রেলিয়া, নিউজিল্যান্ড) (৩) Ideas and Interests — Norms against war, Nuclear Taboo; "Society defines…" (৪) State's Behaviour — উত্তর কোরিয়া</td><td>উক্তি: "International politics is shaped by persuasive ideas, collective values, culture, and social identities." — Emanuel Adler</td></tr>
+<tr><td>Democratic Peace Theory</td><td>গণতান্ত্রিক রাষ্ট্র অন্য গণতান্ত্রিক রাষ্ট্রের সাথে যুদ্ধ করে না</td><td>৪ ভিত্তি: People Mandate • War Cost • Economic Interdependence • Normative ভিত্তি</td></tr>
+<tr><td>Dependency Theory</td><td>Core (কেন্দ্র: প্রযুক্তি, শিল্প, পুঁজি) বনাম Periphery (প্রান্ত: কাঁচামাল, সস্তা শ্রম)</td><td>সমাধান: নিজস্ব শিল্প ও প্রযুক্তি, আমদানি নির্ভরতা হ্রাস</td></tr>
+<tr><td>Hegemonic Stability Theory (HST)</td><td>স্থিতিশীলতার জন্য একটি প্রভাবশালী হেজিমন দরকার</td><td>—</td></tr>
+<tr><td>After Hegemony (Robert Keohane)</td><td>HST-র বিপরীত; একক হেজিমনে শান্তি আসে না (ব্রিটেন ১০০ বছর, যুক্তরাষ্ট্রের হস্তক্ষেপ); প্রতিষ্ঠান ও আঞ্চলিক সংস্থায় জোর দিতে হবে</td><td>রবার্ট কোহেন: ১৯৪টি রাষ্ট্র</td></tr>
+</table></div>
+</section>
+
+<!-- C2 -->
+<section class="topic" id="c2">
+<h2>২য় অধ্যায়: Actors in the World ও রাষ্ট্র</h2>
+<div class="grid">
+<div class="card"><h4>প্রভাবক দুই প্রকার</h4><p><b>রাষ্ট্রীয় (State Actors):</b> জাতিসংঘের ১৯৩টি সদস্য রাষ্ট্র।<br><b>অ-রাষ্ট্রীয় (Non-State Actors):</b> গ্রেটা থুনবার্গ, মার্ক জাকারবার্গ, ইলন মাস্ক, ন্যাটো, আরব বসন্ত।</p></div>
+<div class="card"><h4>৭ ধরনের Non-State Actor</h4><ol>
+<li><b>People's Movement</b> — ২০২৪ জুলাই অভ্যুত্থান; ২০১১ আরব বসন্ত (তিউনিসিয়া)</li>
+<li><b>Business magnates</b> — ওয়ারেন বাফেট, বিল গেটস, ইলন মাস্ক</li>
+<li><b>MNC</b> — বিদেশ থেকে মোট লভ্যাংশের <b>২৫%</b> আয়; Huawei → ব্রাজিলের 5G</li>
+<li><b>Smart contracts</b> — ক্রিপ্টোকারেন্সি (বিটকয়েন), peer-to-peer</li>
+<li><b>International Media</b> — আল জাজিরা, CNN, BBC, AFP, AP, রয়টার্স, সিনহুয়া, দ্য ইকোনমিস্ট</li>
+<li><b>NGOs</b> — Amnesty International, Greenpeace, BRAC</li>
+<li><b>Violent Non-State Actors (VNSA)</b> — আইএস, আল কায়েদা, বোকো হারাম, আল শাবাব, ড্রাগ কার্টেল, জলদস্যু</li></ol></div>
+</div>
+
+<div class="card"><h3>রাষ্ট্র (State)</h3>
+<p>আধুনিক রাষ্ট্রব্যবস্থার সূচনা <b>১৬৪৮ Westphalia Treaty</b>।<br>
+<b>৪ মৌলিক উপাদান:</b> নির্দিষ্ট ভূখণ্ড • স্থায়ী জনসংখ্যা • সরকার • সার্বভৌমত্ব।<br>
+<b>Modern State-এর বিশ্লেষক:</b> মরটন ক্যাপলান, হার্বার্ট স্পিরো, গ্যাব্রিয়েল অ্যালমন্ড, রবার্ট ডাল, ডেভিড ইস্টন, হেরল্ড ল্যাসওয়েল। অ্যালমন্ড ও ডাল "State"-এর বদলে "<b>Political System</b>" শব্দ ব্যবহার করেন।<br>
+<b>আধুনিক রাষ্ট্রের অতিরিক্ত ৬ বৈশিষ্ট্য:</b> আইনের শাসন • বৈধতা ও রাজনৈতিক কর্তৃত্ব • জাতীয়তাবাদ ও জাতীয় পরিচয় • আইনি ও রাজনৈতিক সমতা • কেন্দ্রীয় প্রশাসন • আন্তর্জাতিক স্বীকৃতি।</p></div>
+
+<div class="tbl"><table>
+<tr><th>রাষ্ট্র বনাম সরকার</th><th>রাষ্ট্র</th><th>সরকার</th></tr>
+<tr><td>উপাদান</td><td>৪টি উপাদানের পূর্ণাঙ্গ সত্তা</td><td>রাষ্ট্রের একটি উপাদান মাত্র</td></tr>
+<tr><td>পরিসর</td><td>বিস্তৃত (জনগণ, প্রতিষ্ঠান, সিভিল সোসাইটি)</td><td>সীমিত</td></tr>
+<tr><td>স্থায়িত্ব</td><td>স্থায়ী</td><td>সাময়িক</td></tr>
+<tr><td>কর্তৃত্বের উৎস</td><td>সার্বভৌম ক্ষমতার চূড়ান্ত উৎস</td><td>রাষ্ট্রের পক্ষে ক্ষমতা প্রয়োগ করে</td></tr>
+</table></div>
+<p class="muted">একাডেমিক পার্থক্য: রাষ্ট্র সরকারকে বৈধতা দেয়, সরকার রাষ্ট্রকে সক্রিয় রাখে (Mutual Dependence) • রাষ্ট্র নীতি নির্ধারণ করে, সরকার বাস্তবায়ন করে • সরকারের ব্যর্থতা রাষ্ট্রের ভাবমূর্তি ক্ষুণ্ণ করে।</p>
+
+<details open><summary>রাষ্ট্রের প্রকারভেদ (১৬টি)</summary>
+<div class="tbl"><table>
+<tr><th>ধরন</th><th>মূল কথা</th><th>উদাহরণ</th></tr>
+<tr><td>Status Quo State</td><td>বিদ্যমান ব্যবস্থা ধরে রাখতে চায়; "maintenance of the status quo"</td><td>যুক্তরাষ্ট্র</td></tr>
+<tr><td>Revisionist State</td><td>বিদ্যমান ব্যবস্থা বদলাতে চায়; Quest for Geopolitical Dominance</td><td>চীন, রাশিয়া, উ. কোরিয়া, ইরান, ভারত, ব্রাজিল</td></tr>
+<tr><td>De Jure State</td><td>আইনগতভাবে স্বীকৃত</td><td>জাতিসংঘের সদস্য রাষ্ট্র</td></tr>
+<tr><td>De Facto State</td><td>বাস্তবে রাষ্ট্রের মতো চলে, স্বীকৃতি সীমিত</td><td>ফিলিস্তিন, তাইওয়ান, সোমালিল্যান্ড</td></tr>
+<tr><td>Failed State (ব্যর্থ)</td><td>সম্পূর্ণ ভূখণ্ডের নিয়ন্ত্রণ নেই</td><td>মিয়ানমার, ইয়েমেন</td></tr>
+<tr><td>Fragile State (ভঙ্গুর)</td><td>মৌলিক চাহিদা পূরণে ব্যর্থ; দারিদ্র্য, দুর্নীতি, দুর্বল প্রতিষ্ঠান</td><td>সুদান, সোমালিয়া, ডি আর কঙ্গো</td></tr>
+<tr><td>Satellite State (পোষ্য)</td><td>বৃহৎ রাষ্ট্রের প্রভাবাধীন</td><td>ভুটান, মালদ্বীপ (ভারত); এসওয়াতিনি, লেসোথো (দ. আফ্রিকা)</td></tr>
+<tr><td>Rump State</td><td>একসময় বৃহৎ, এখন অনেক ছোট</td><td>তুরস্ক (অটোমান সাম্রাজ্য); ইউক্রেন (২০১৪ ক্রিমিয়া)</td></tr>
+<tr><td>Ethical State (নৈতিক)</td><td>মানবিকতা ও ন্যায়সঙ্গততা বিবেচনা; মানবাধিকার, আন্তর্জাতিক আইন, শান্তিপূর্ণ সমাধান, নিরপেক্ষ মানবিক সহায়তা</td><td>—</td></tr>
+<tr><td>Banana Republic</td><td>অস্থিতিশীল রাজনীতি, প্রাইভেট কোম্পানির নিয়ন্ত্রণ</td><td>মালদ্বীপ (Resort Company); ফিলিপাইন (Tobacco industry)</td></tr>
+<tr><td>Neo patrimonial State (আমলাতান্ত্রিক)</td><td>আমলানির্ভর (Bureaucratic)</td><td>তৃতীয় বিশ্বের দেশ</td></tr>
+<tr><td>Intermediate State (মধ্যবর্তী)</td><td>গরিবও নয়, উন্নতও নয়</td><td>ভারত, ব্রাজিল, দ. আফ্রিকা</td></tr>
+<tr><td>Ethnic State</td><td>একটি প্রধান জাতিগোষ্ঠীকেন্দ্রিক</td><td>ইসরায়েল (ইহুদি), আর্মেনিয়া, জাপান</td></tr>
+<tr><td>Nation-State (জাতি-রাষ্ট্র)</td><td>Ethnic group → জাতি → জাতীয়তাবাদ → রাষ্ট্র</td><td>বাংলাদেশ (বাঙালি জাতীয়তাবাদ, ১৯৭১); ভারত; পাকিস্তান</td></tr>
+<tr><td>Multinational State (বহুজাতিক)</td><td>একাধিক জাতি নিয়ে গঠিত</td><td>ভারত; ঘানা; কেনিয়া (কোনো জাতি ২০%-এর বেশি নয়); দ. আফ্রিকা</td></tr>
+<tr><td>Welfare State (কল্যাণরাষ্ট্র)</td><td>নাগরিকের সামাজিক ও অর্থনৈতিক কল্যাণ রাষ্ট্রের দায়িত্ব</td><td>বেকার ভাতা, পেনশন</td></tr>
+</table></div>
+<p class="muted"><b>ভূখণ্ডগত/জাতিগত অখণ্ডতা (National Integrity):</b> বৈচিত্র্য সত্ত্বেও অভিন্ন রাষ্ট্রচেতনা — "আমরা সবাই বাংলাদেশি"।</p>
+</details>
+
+<details open><summary>সার্বভৌমত্ব (Sovereignty)</summary>
+<div class="grid">
+<div class="card"><h4>৩ প্রকার</h4><ol><li><b>Internal</b> — ভূখণ্ডের উপর সম্পূর্ণ নিয়ন্ত্রণ</li><li><b>External</b> — বহিঃআক্রমণ থেকে রক্ষা ও স্বাধীন পররাষ্ট্রনীতি (সিরিয়া: তুরস্ক ও রাশিয়ার নিয়ন্ত্রণ)</li><li><b>Westphalian</b> — ১৬৪৮; হস্তক্ষেপ নয়</li></ol><p class="muted">"সার্বভৌম সমতা" — ছোট-বড় সবার সার্বভৌমত্ব সমান গুরুত্বপূর্ণ।</p></div>
+<div class="card"><h4>৫ বৈশিষ্ট্য</h4><ol><li>Permanence (চিরস্থায়ী)</li><li>Exclusiveness (বিশেষত্ব)</li><li>Inalienability (অবিচ্ছেদ্যতা)</li><li>Imprescriptibility (অবিলুপ্ততা)</li><li>Absoluteness (পরমতা)</li></ol></div>
+<div class="card"><h4>পরিবর্তিত রূপ</h4><p><b>Shared Sovereignty:</b> স্বেচ্ছায় জোটের সাথে ভাগ — EU (ফ্রান্স, জার্মানি)।<br><b>Limited Sovereignty:</b> আনুষ্ঠানিক আছে, বাস্তবে সীমিত — IMF/World Bank ঋণের শর্ত।</p></div>
+</div>
+<div class="card"><h4>মানবিক হস্তক্ষেপ ও R2P</h4>
+<p><b>Humanitarian Intervention:</b> মানবাধিকার রক্ষায় অন্য রাষ্ট্রে হস্তক্ষেপ — রোহিঙ্গাদের জন্য যুক্তরাষ্ট্র ও তুরস্কের অর্থ; গাজায় মিশর ও তুরস্কের খাবার।<br>
+<b>R2P (Responsibility to Protect):</b> ৪ অপরাধে হস্তক্ষেপ বৈধ — গণহত্যা, যুদ্ধাপরাধ, জাতিগত নিধন, মানবতাবিরোধী অপরাধ।</p>
+<p><b>উন্নয়নশীল রাষ্ট্রের সার্বভৌমত্ব সংকট (৪):</b> অর্থনৈতিক নির্ভরশীলতা (IMF, WB, ADB) • আন্তর্জাতিক সংস্থা ও চুক্তির প্রভাব (UN, WTO, WHO, UNDP) • রাজনৈতিক অস্থিতিশীলতা • সামরিক নির্ভরশীলতা।</p></div>
+</details>
+</section>
+
+<!-- C3 -->
+<section class="topic" id="c3">
+<h2>৩য় অধ্যায়: Power ও Security</h2>
+<div class="grid">
+<div class="card"><h4>Block-এর দিক থেকে</h4><ul><li><b>Unipolarity</b> — ১৯৯০–২০১০ যুক্তরাষ্ট্র (Hegemon)</li><li><b>Bipolarity</b> — ১৯৪৭–১৯৯০ যুক্তরাষ্ট্র ও সোভিয়েত</li><li><b>Multipolarity</b> — বর্তমান; চীন, ভারত, সৌদি, তুরস্ক, ব্রাজিল</li></ul></div>
+<div class="card"><h4>ক্ষমতা ব্যবহারের দিক থেকে</h4><ul><li><b>Hard Power</b> — সামরিক আক্রমণ, ড্রোন হামলা; ট্যারিফ, নিষেধাজ্ঞা</li><li><b>Soft Power</b> — কূটনীতি ও সহযোগিতা; প্রবক্তা <b>জোসেফ নাই</b></li><li><b>Smart Power</b> — Hard + Soft; যুক্তরাষ্ট্র → রাশিয়া, ইরান, উ. কোরিয়া</li></ul></div>
+<div class="card"><h4>National Interest</h4><p><b>Core:</b> ভূখণ্ড, সার্বভৌমত্ব, নাগরিকের নিরাপত্তা — ছাড় নয়।<br><b>Peripheral:</b> অর্থনৈতিক, সামরিক, রাজনৈতিক, সাংস্কৃতিক — ছাড় দেওয়া যায়।</p></div>
+<div class="card"><h4>জাতীয় শক্তির ৭ উপাদান</h4><ol><li>ভৌগোলিক অবস্থান</li><li>জনসংখ্যা</li><li>অর্থনীতি</li><li>সামরিক শক্তি</li><li>কূটনীতি</li><li>জাতীয় মনোবল</li><li>নেতৃত্ব</li></ol><p class="muted">WMD: পারমাণবিক, হাইড্রোজেন, রাসায়নিক, জীবাণু অস্ত্র; P5 সবাই পারমাণবিক শক্তিধর।</p></div>
+</div>
+
+<details open><summary>Balance of Power (শক্তিসাম্য)</summary>
+<p><b>কার্যকর রূপ:</b> (১) Deterrence (২) Power Equilibrium — A শক্তিশালী হলে B ও C জোট।<br>
+<b>উদাহরণ:</b> নেপোলিয়নের ফ্রান্সের বিরুদ্ধে ইংল্যান্ড, অস্ট্রিয়া, রাশিয়া, প্রুশিয়া • ঠান্ডা যুদ্ধ (১৯৪৭–৯০) → <b>MAD</b> (Mutual Assured Destruction)।</p>
+<p><b>রক্ষার ৭ উপায়:</b> Nuclear Deterrence (উ. কোরিয়া) • Military Alliance (NATO ১৯৪৯, Warsaw Pact ১৯৫৫) • Economic Alliance • Local Balance • Regional Balance • Armaments ("<b>Balance of Terror</b>") • Disarmament।</p>
+<p class="muted">পারমাণবিক তথ্য: ভারত, পাকিস্তান, ইসরায়েল NPT-তে নেই; ইরান, ইসরায়েল, অস্ট্রেলিয়া শীঘ্রই শক্তিধর হতে পারে বলে শিটের মত।</p>
+</details>
+
+<details open><summary>Security (নিরাপত্তা)</summary>
+<div class="grid">
+<div class="card"><h4>Traditional Security</h4><p>রাষ্ট্রকেন্দ্রিক; উপাদান: State, Territory, Survival, Sovereignty, Military, War, Hard Power, Foreign Policy।</p></div>
+<div class="card"><h4>Non-Traditional (Human Security) — ৭ উপাদান</h4><p>স্বাস্থ্য • খাদ্য • শিক্ষা • পরিবেশ • রাজনৈতিক • অর্থনৈতিক • ডিজিটাল নিরাপত্তা।</p></div>
+</div>
+<div class="tbl"><table>
+<tr><th>স্কুল</th><th>মূল কথা</th></tr>
+<tr><td><b>Frankfurt School</b></td><td>ফ্রয়েড, কার্ল মার্কস, হেগেল, ম্যাক্স ওয়েবার; Neo-Marxist; সমাজের ভেতর থেকে Critical বিশ্লেষণ; নারীবাদীরাও প্রচলিত নিরাপত্তায় অসন্তুষ্ট</td></tr>
+<tr><td><b>Copenhagen School</b></td><td>নিরাপত্তা সামাজিকভাবে নির্মিত; <b>Securitization</b> — কোনো ইস্যুকে অস্তিত্বের হুমকি হিসেবে উপস্থাপন (সন্ত্রাসবাদ; অথচ অনাহার, সড়ক দুর্ঘটনায় বেশি মৃত্যু)</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h4>ক্ষুদ্র রাষ্ট্রের ঝুঁকি</h4><p><b>অভ্যন্তরীণ:</b> সামরিক দুর্বলতা, রাজনৈতিক অস্থিতিশীলতা, প্রাতিষ্ঠানিক দুর্বলতা, সেনা অভ্যুত্থান, বিদ্রোহী, বিচ্ছিন্নতাবাদ, জঙ্গি।<br><b>বৈদেশিক:</b> প্রতিবেশী বৃহৎ শক্তির দ্বন্দ্ব, সীমান্ত বিরোধ, শক্তিশালী রাষ্ট্রে নির্ভরতা, সন্ত্রাসবাদ, জলবায়ু।</p></div>
+<div class="card"><h4>বাংলাদেশের নিরাপত্তা কৌশল (৪)</h4><ol><li>Alliance</li><li>Balance of Power</li><li>Collective Security</li><li><b>Pilot Fish Behaviour</b></li></ol></div>
+<div class="card"><h4>Problem Solving: ছোট রাষ্ট্রের Soft Power</h4><ol><li>আন্তর্জাতিক বৈধতা অর্জন</li><li>বহুপাক্ষিক কূটনীতি</li><li>ইতিবাচক ভাবমূর্তি ("responsible actor")</li><li>অর্থনৈতিক ও সাংস্কৃতিক সম্পর্ক (UN Peacekeeping)</li></ol></div>
+</div>
+</details>
+
+<details open><summary>রিসেন্ট ট্রেন্ডস</summary>
+<ul>
+<li><b>Digital / Algorithmic Geopolitics:</b> শক্তির নতুন উৎস ডেটা, অ্যালগরিদম, সাইবার অবকাঠামো, AI।</li>
+<li><b>Cyber Warfare:</b> Hacking, Data Theft, Disinformation, Sabotage।</li>
+<li><b>বিশ্ব রাজনীতিতে AI:</b> সামরিক (ড্রোন, স্বয়ংক্রিয় অস্ত্র), গোয়েন্দা (Big Data, Predictive AI), অর্থনৈতিক প্রতিযোগিতা (চিপ, ক্লাউড)।</li>
+<li><b>AI-র ৮ প্রভাব:</b> সার্বভৌমত্ব (সাইবার স্পেস) • নিরাপত্তা • Cyber Diplomacy (<b>EU AI Act</b>, Cyber Norms) • Balance of Power • Trust Deficit (Deepfake) • Ethical Dilemma • গণতন্ত্রের ঝুঁকি • <b>Tech Colonialism</b>।</li>
+<li><b>Information Warfare-এর ৫ কৌশল:</b> Engagement-driven Algorithm • Micro-targeting • Bot Network ও Troll Farm • Disinformation ও Deepfake • Echo Chamber Effect (২০১৬ মার্কিন নির্বাচন)।</li>
+<li><b>Regional Security Complex Theory:</b> প্রবক্তা <b>ব্যারি বুজান ও ওলে ভেভার</b>; নিরাপত্তা হুমকি পরাশক্তির চেয়ে প্রতিবেশী থেকেই বেশি আসে।</li>
+<li><b>Five Eyes (FVEY):</b> যুক্তরাষ্ট্র, যুক্তরাজ্য, কানাডা, অস্ট্রেলিয়া, নিউজিল্যান্ড; গোয়েন্দা তথ্য বিনিময়; ২য় বিশ্বযুদ্ধ থেকে।</li>
+</ul>
+</details>
+</section>
+
+<!-- C4 -->
+<section class="topic" id="c4">
+<h2>৪র্থ অধ্যায়: Major Ideas</h2>
+<details open><summary>সভ্যতার সংঘাত (Clash of Civilizations) — Samuel Huntington</summary>
+<p><b>৮ সভ্যতা:</b> পশ্চিমা • ল্যাটিন আমেরিকান • স্লাভিক-অর্থোডক্স • মুসলিম • সিনিক (চীনা) • সাব-সাহারান আফ্রিকান • জাপানিজ • হিন্দু।</p>
+<p>দ্বন্দ্ব মূলত ৩ সভ্যতায়: <b>পশ্চিমা, ইসলামি ও চীনা</b>।</p>
+<ol>
+<li><b>Two forms of conflict:</b> Fault line conflicts (প্রতিবেশী, ভিন্ন সভ্যতা: ভারত-পাকিস্তান, ভারত-চীন) ও Core state conflicts (বৈশ্বিক: চীন-যুক্তরাষ্ট্র)</li>
+<li><b>Sino-Islamic connection:</b> চীনা + মুসলিম সভ্যতা পশ্চিমের বিরুদ্ধে (তুরস্ক, পাকিস্তান, ইরান, কাতার চীনের বলয়ে)</li>
+<li><b>Band-wagoning:</b> Cost Benefit Analysis — ক্ষতি বেশি হলে যুদ্ধে না যাওয়া (সাদ্দাম হোসেনের উদাহরণ)</li>
+</ol>
+</details>
+
+<div class="grid">
+<div class="card"><h4>বহুমেরু বিশ্বের আঞ্চলিক শক্তি</h4><ul><li>দ. এশিয়া: ভারত, পাকিস্তান</li><li>দূরপ্রাচ্য: চীন, উ. কোরিয়া, দ. কোরিয়া, জাপান</li><li>মধ্যপ্রাচ্য: সৌদি, ইরান, UAE, তুরস্ক, কাতার, ইসরায়েল</li><li>ইউরোপ: ব্রিটেন, ফ্রান্স, জার্মানি, রাশিয়া, ইতালি</li><li>উ. আমেরিকা: কানাডা, যুক্তরাষ্ট্র; লাতিন: ব্রাজিল, চিলি, পেরু</li><li>আফ্রিকা: মিশর, দ. আফ্রিকা, ইথিওপিয়া</li></ul></div>
+<div class="card"><h4>ভূখণ্ডের ৬ গুরুত্ব</h4><ol><li>সার্বভৌমত্বের ক্ষেত্র নির্ধারণ</li><li>প্রশাসনের ভিত্তি</li><li>অর্থনৈতিক শক্তির উৎস (রাশিয়ার তেল-গ্যাস)</li><li>জনসংখ্যা ও সামরিক সক্ষমতা</li><li>নিরাপত্তা ও প্রতিরক্ষা</li><li>আন্তর্জাতিক স্বীকৃতির শর্ত</li></ol></div>
+<div class="card"><h4>Vassal State</h4><p>আনুষ্ঠানিকভাবে স্বাধীন, বাস্তবে শক্তিশালী রাষ্ট্রের অধীন; ইতিহাসে <b>Tributary State</b>।</p></div>
+</div>
+
+<details open><summary>আঞ্চলিকতাবাদ ও ফাংশনালিজম</summary>
+<div class="tbl"><table>
+<tr><th>টার্ম</th><th>মূল কথা / উদাহরণ</th></tr>
+<tr><td>Regionalism</td><td>একই অঞ্চলের রাষ্ট্রগুলো সংস্থা গড়ে তোলে। গুরুত্ব: ঐক্য, অর্থনৈতিক উন্নয়ন, স্থিতিশীলতা, সাংস্কৃতিক বন্ধন, শক্তির ভারসাম্য</td></tr>
+<tr><td>Sub-Regionalism</td><td>বৃহৎ সংস্থার ভেতরে কয়েকটি দেশ — <b>BBIN</b> (বাংলাদেশ, ভুটান, ভারত, নেপাল) সার্কের ভেতরে</td></tr>
+<tr><td>Trans Regionalism</td><td>দুই আঞ্চলিক সংস্থার মধ্যে চুক্তি — সার্ক ও EU</td></tr>
+<tr><td>Regionalization</td><td>অঞ্চলের মানুষের মধ্যে লেনদেন, জনযাতায়াত, সাংস্কৃতিক বিনিময় বৃদ্ধি</td></tr>
+<tr><td>Functionalism</td><td>রাজনৈতিক বিষয় নয়, কার্যকর সহযোগিতা দিয়ে শুরু। ৪ পর্যায়: (১) রাজনৈতিক নয়, কার্যকর সহযোগিতা (২) আস্থা সৃষ্টি (৩) <b>Spillover Effect / Ramification</b> (৪) শান্তির ভিত্তি। উদাহরণ: <b>ECSC ১৯৫১</b></td></tr>
+<tr><td>Neo-Functionalism</td><td>একটি কার্যকর সম্পর্ক অনেকগুলো সম্পর্কে রূপান্তরিত হলে</td></tr>
+<tr><td>Postmodernism</td><td>আধুনিকতার সমালোচনা; প্রবক্তা <b>জাঁক লাকাঁ, মিশেল ফুকো, জ্যাক দেরিদা</b>; ১৯৮০-র পর একাডেমিক ডিসকোর্সে; "technological slave"</td></tr>
+</table></div>
+</details>
+
+<div class="card"><h3>Ethnic, Nation ও Nationalism</h3>
+<ul><li><b>Ethnic</b> — সাংস্কৃতিক পরিচয়ভিত্তিক নৃগোষ্ঠী (চাকমা, মারমা, সাঁওতাল, কুর্দি)</li><li><b>Nation</b> — সাংস্কৃতিক + রাজনৈতিক ঐক্যে গঠিত জাতি (বাংলাদেশি, ফরাসি, জাপানি)</li><li><b>Nationalism</b> — জাতির প্রতি আনুগত্য, আবেগ ও রাষ্ট্রগঠনের দর্শন</li></ul></div>
+
+<div class="grid">
+<div class="card"><h4>বিশ্বায়নের ৬ চালিকাশক্তি</h4><ol><li>প্রযুক্তি</li><li>বাণিজ্য উদারীকরণ (SAFTA, EU)</li><li>MNC (Apple, Toyota, Unilever, Samsung, Nestle)</li><li>পরিবহন (কন্টেইনার শিপিং)</li><li>মিডিয়া (CNN, BBC, Netflix, YouTube)</li><li>আন্তর্জাতিক অভিবাসন</li></ol></div>
+<div class="card"><h4>Imperialism / Colonialism / Neo-colonialism</h4><p><b>Imperialism:</b> আধিপত্য বিস্তারের নীতি (Policy of domination)।<br><b>Colonialism:</b> সরাসরি দখল ও শাসন (Practice of domination) — ভারত-বাংলাদেশ (ব্রিটিশ), ইন্দোনেশিয়া (ডাচ), আলজেরিয়া (ফরাসি)।<br><b>Neo-colonialism:</b> দখল নেই, অর্থনৈতিক নির্ভরতা — ঋণ, IMF/WB শর্ত, MNC, উন্নয়ন সহায়তা।</p></div>
+</div>
+
+<details open><summary>রিসেন্ট ট্রেন্ডস: ভূরাজনৈতিক তত্ত্ব ও ডকট্রিন</summary>
+<div class="tbl"><table>
+<tr><th>তত্ত্ব / ডকট্রিন</th><th>প্রবক্তা ও সাল</th><th>মূল কথা</th></tr>
+<tr><td>Heartland Theory</td><td><b>ম্যাকিন্ডার</b> — "The Geographical Pivot of History"</td><td>"Who rules Eastern Europe commands the Heartland; Who rules the Heartland commands the World-Island; Who rules the World-Island commands the World." Heartland = রাশিয়া, মধ্য এশিয়া, পূর্ব ইউরোপ</td></tr>
+<tr><td>Rimland Theory</td><td><b>স্পাইকম্যান</b></td><td>"Who controls the Rimland rules Eurasia; Who rules Eurasia controls the world." Rimland = ইউরোপের উপকূল, মধ্যপ্রাচ্য, দ. এশিয়া, পূর্ব এশিয়া; Indo-Pacific Strategy এর প্রয়োগ</td></tr>
+<tr><td>Domino Theory</td><td>শীতল যুদ্ধ, যুক্তরাষ্ট্র</td><td>একটি দেশ কমিউনিস্ট হলে প্রতিবেশীরাও হবে; দ.-পূর্ব এশিয়ার যুদ্ধ</td></tr>
+<tr><td>Containment Theory</td><td><b>জর্জ এফ. কেনান</b>, ১৯৪৭, "Long Telegram"</td><td>সোভিয়েত কমিউনিজম ধ্বংস নয়, প্রসার রোধ</td></tr>
+<tr><td>Monroe Doctrine</td><td><b>জেমস মনরো</b>, ১৮২৩</td><td>পশ্চিম গোলার্ধে ইউরোপীয় উপনিবেশ ও হস্তক্ষেপ চলবে না</td></tr>
+<tr><td>Truman Doctrine</td><td>১৯৪৭</td><td>কমিউনিজমের হুমকিতে থাকা দেশকে সহায়তা; গ্রিস ও তুরস্ককে ~৪০০ মিলিয়ন ডলার; পরে Containment Policy</td></tr>
+<tr><td>Carter Doctrine</td><td><b>জিমি কার্টার</b>, ১৯৮০</td><td>পারস্য উপসাগরে বিদেশি নিয়ন্ত্রণ চেষ্টা = যুক্তরাষ্ট্রের নিরাপত্তায় হুমকি; প্রেক্ষাপট: ১৯৭৯ সোভিয়েতের আফগানিস্তান আক্রমণ</td></tr>
+<tr><td>Bush Doctrine</td><td><b>জর্জ ডব্লিউ বুশ</b>, ২০০২</td><td>৯/১১-এর পর <b>Pre-emptive Strike</b>; সন্ত্রাসীর আশ্রয়দাতাও শত্রু; আফগানিস্তান ২০০১, ইরাক ২০০৩</td></tr>
+<tr><td>Sea Power Theory</td><td><b>আলফ্রেড থেয়ার মাহান</b>, ১৮৯০, "The Influence of Sea Power upon History"</td><td>সমুদ্র নিয়ন্ত্রণকারী বিশ্বনেতৃত্ব দেবে</td></tr>
+<tr><td>Air Power Theory</td><td><b>দুহে</b> (Giulio Douhet)</td><td>"Command of the Air" বিজয়ের পূর্বশর্ত</td></tr>
+<tr><td>The Grand Chessboard</td><td><b>ব্রেজিনস্কি</b></td><td>ইউরেশিয়া = ভূরাজনীতির কেন্দ্র; Heartland-এর আধুনিক রূপ</td></tr>
+<tr><td>Brezhnev Doctrine</td><td><b>লিওনিদ ব্রেজনেভ</b>, ১৯৬৮</td><td>চেকোস্লোভাকিয়ার "Prague Spring"; সমাজতান্ত্রিক দেশে হস্তক্ষেপের অধিকার</td></tr>
+<tr><td>Eisenhower Doctrine</td><td><b>ডুইট ডি. আইজেনহাওয়ার</b>, ১৯৫৭</td><td>মধ্যপ্রাচ্যে কমিউনিজমের হুমকিতে থাকা দেশকে সহায়তা</td></tr>
+<tr><td>Reagan Doctrine</td><td><b>রোনাল্ড রিগ্যান</b>, ১৯৮০-এর দশক</td><td>সোভিয়েত-সমর্থিত সরকারবিরোধী বিদ্রোহীদের সহায়তা</td></tr>
+<tr><td>Power Transition Theory</td><td><b>এ. এফ. কে. অর্গানস্কি</b>, ১৯৫৮, "World Politics"</td><td>উদীয়মান শক্তি অসন্তুষ্ট হলে যুদ্ধের ঝুঁকি বাড়ে</td></tr>
+</table></div>
+</details>
+</section>
+
+<!-- C5 -->
+<section class="topic" id="c5">
+<h2>৫ম অধ্যায়: পররাষ্ট্রনীতি ও কূটনীতি</h2>
+<div class="quote">"Foreign policy is the result of political-level decisions which guide a state's external actions." — <span>Charles Hermann</span></div>
+<p><b>Foreign Policy determines what a state wants; Diplomacy determines how a state achieves it.</b></p>
+<div class="grid">
+<div class="card"><h4>অভ্যন্তরীণ নির্ধারক (৭)</h4><ol><li>ভৌগোলিক অবস্থান ও প্রাকৃতিক পরিবেশ</li><li>অর্থনৈতিক শক্তি</li><li>সামরিক শক্তি</li><li>রাজনৈতিক ব্যবস্থা ও প্রশাসন</li><li>নেতৃত্ব ও ব্যক্তিত্ব</li><li>জনমত ও রাজনৈতিক সংস্কৃতি</li><li>ঐতিহাসিক অভিজ্ঞতা ও ঐতিহ্য</li></ol></div>
+<div class="card"><h4>বাহ্যিক নির্ধারক (৬)</h4><ol><li>Balance of Power</li><li>আন্তর্জাতিক সংস্থা ও আইন</li><li>প্রতিবেশী ও আঞ্চলিক রাজনীতি</li><li>বৈশ্বিক অর্থনীতি</li><li>প্রযুক্তি ও যোগাযোগ</li><li>আন্তর্জাতিক জনমত ও গণমাধ্যম</li></ol></div>
+<div class="card"><h4>সিদ্ধান্ত গ্রহণ প্রক্রিয়া (৬ ধাপ)</h4><ol><li>Problem Identification</li><li>Information Collection</li><li>Formulation of Alternatives</li><li>Policy Decision-Making</li><li>Implementation</li><li>Evaluation and Feedback</li></ol></div>
+</div>
+<div class="tbl"><table>
+<tr><th>মডেল</th><th>মূল কথা</th></tr>
+<tr><td>Rational Actor Model</td><td>রাষ্ট্র যুক্তিবাদী একক Actor; ধাপ: Agenda Setting → Alternative Options → Cost-Benefit → Maximization; <b>Cuban Missile Crisis</b> বিশ্লেষণে ব্যবহৃত</td></tr>
+<tr><td>SWOT Model</td><td>Strengths, Weaknesses, Opportunities, Threats</td></tr>
+<tr><td>Governmental Bargaining Model</td><td><b>Graham Allison</b> — সামরিক বাহিনী, মন্ত্রণালয় ইত্যাদির দরকষাকষিতে সিদ্ধান্ত</td></tr>
+</table></div>
+<p><b>প্রভাব বিস্তারকারী ৩ স্তর:</b> Systemic • State/National • Bureaucratic Politics।</p>
+
+<details open><summary>কূটনৈতিক কার্যাবলি — Vienna Convention 1961, Article 3</summary>
+<p>৯ কার্যাবলি: Representation • Negotiation • Observation, Information, Reporting • সম্পর্ক উন্নয়ন • রাষ্ট্রীয় স্বার্থ ও নাগরিক সুরক্ষা • Treaty-Making • অর্থনৈতিক ও সাংস্কৃতিক সহযোগিতা • Peace-Making • ইমেজ ও Soft Power।</p>
+<p><b>আধুনিক সম্প্রসারণ:</b> Digital • Environmental (Paris Agreement) • Humanitarian • Health (কোভিড ভ্যাকসিন) • Science and Technology Diplomacy।</p>
+<div class="grid">
+<div class="card"><h4>Diplomatic Immunities (৬)</h4><ol><li>বিচারিক দায়মুক্তি</li><li>গ্রেফতার থেকে মুক্তি</li><li>কর ও শুল্কমুক্তি</li><li>অফিস ও বাসস্থানের নিরাপত্তা</li><li>নথি ও যোগাযোগের সুরক্ষা</li><li>পারিবারিক দায়মুক্তি</li></ol></div>
+<div class="card"><h4>Diplomatic Privileges (৫)</h4><ol><li>মুক্ত যোগাযোগ</li><li>ভ্রমণ ও চলাচলের স্বাধীনতা</li><li>সামাজিক ও আনুষ্ঠানিক মর্যাদা</li><li>চিঠিপত্রের নিরাপত্তা</li><li>প্রতীক ও পতাকা ব্যবহার</li></ol></div>
+<div class="card"><h4>Diplomatic Abuse</h4><p>দায়মুক্তির আড়ালে অপরাধ, শ্রম শোষণ, মানবপাচার, গুপ্তচরবৃত্তি; শীতল যুদ্ধে পারস্পরিক বহিষ্কার।</p></div>
+</div>
+</details>
+
+<details open><summary>কূটনীতির ধরন</summary>
+<div class="tbl"><table>
+<tr><th>ধরন</th><th>মূল কথা / উদাহরণ</th></tr>
+<tr><td>Wolf Warrior Diplomacy</td><td>চীন; "Peaceful Rise" থেকে আক্রমণাত্মক; ৪ বৈশিষ্ট্য: সার্বভৌমত্বে আপসহীন, সোশ্যাল মিডিয়ায় প্রতিক্রিয়া, পাল্টা আক্রমণাত্মক ভাষা, উচ্চকণ্ঠ</td></tr>
+<tr><td>Panda Diplomacy</td><td>চীনের জায়ান্ট পান্ডা প্রদান</td></tr>
+<tr><td>Economic Diplomacy</td><td>৪ প্রকার: Commercial, Financial, Development, Investment</td></tr>
+<tr><td>Public Diplomacy (People-to-People)</td><td>বিদেশি জনগণের সাথে সরাসরি যোগাযোগ। মাধ্যম: শিক্ষা (Fulbright, Chevening), সম্প্রচার (BBC World, VOA, CGTN), সেলিব্রিটি/ক্রীড়া, ডিজিটাল (<b>Twiplomacy</b>), সিটিজেন কূটনীতি। উদাহরণ: Fulbright, চীনের Confucius Institutes, দ. কোরিয়ার K-Wave, ভারতের Yoga Diplomacy</td></tr>
+<tr><td>Dual-Track Diplomacy</td><td>Track I (সরকারি, আনুষ্ঠানিক, বাধ্যতামূলক) + Track II (বেসরকারি: শিক্ষাবিদ, NGO, প্রবাসী)</td></tr>
+<tr><td>Ad Hoc Diplomacy</td><td>নির্দিষ্ট ইস্যুতে অস্থায়ী মিশন — "Special Envoy for Middle East Peace"; দোহায় তালেবান আলোচনা</td></tr>
+<tr><td>Cheque-book Diplomacy</td><td>অর্থ দিয়ে রাজনৈতিক সমর্থন — চীনের BRI</td></tr>
+<tr><td>Preventive Diplomacy</td><td>সংঘাত শুরুর আগেই প্রতিরোধ</td></tr>
+<tr><td>Backchannel Diplomacy</td><td>গোপন যোগাযোগ — কিসিঞ্জারের বেইজিং সফর (১৯৭০-এর দশক); <b>Oslo Accords ১৯৯৩</b>; ওমানের মাধ্যমে JCPOA</td></tr>
+</table></div>
+<div class="tbl"><table>
+<tr><th>দিক</th><th>Traditional Diplomacy</th><th>Public Diplomacy</th></tr>
+<tr><td>পক্ষ</td><td>সরকার থেকে সরকার</td><td>সরকার থেকে বিদেশি জনগণ</td></tr>
+<tr><td>উদ্দেশ্য</td><td>রাজনৈতিক, কৌশলগত, নিরাপত্তা</td><td>ভাবমূর্তি, soft power</td></tr>
+<tr><td>পদ্ধতি</td><td>গোপন, আনুষ্ঠানিক</td><td>উন্মুক্ত, স্বচ্ছ</td></tr>
+<tr><td>মাধ্যম</td><td>দূতাবাস, কনস্যুলেট, বৈঠক</td><td>সম্প্রচার, সামাজিক মাধ্যম, বৃত্তি</td></tr>
+<tr><td>সময়কাল</td><td>স্বল্প-মধ্যমেয়াদি, দ্রুত ফল</td><td>দীর্ঘমেয়াদি</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h4>Ambassador vs High Commissioner</h4><p>কমনওয়েলথভুক্ত দুই দেশের মধ্যে = <b>High Commissioner</b> (বাংলাদেশ-ভারত)। অন্যথায় = <b>Ambassador</b> (বাংলাদেশ-যুক্তরাষ্ট্র)।</p></div>
+<div class="card"><h4>Persona Non Grata</h4><p>ল্যাটিন শব্দ, অর্থ "অবাঞ্ছিত ব্যক্তি"; <b>Vienna Convention 1961, Article 9</b> — কারণ না দেখিয়েই অবাঞ্ছিত ঘোষণা করা যায়।</p></div>
+<div class="card"><h4>অন্যান্য</h4><ul><li><b>De-Risking</b> — সম্পর্কচ্ছেদ নয়, নির্ভরতার ঝুঁকি কমানো</li><li><b>Polycrisis</b> — একাধিক আন্তঃসম্পর্কিত সংকট একসাথে</li><li><b>Minilateralism</b> — সীমিত দেশ নিয়ে দ্রুত সিদ্ধান্ত (QUAD)</li><li><b>Two-Level Game Theory</b> — <b>Robert Putnam</b>; আন্তর্জাতিক দরকষাকষি + অভ্যন্তরীণ অনুমোদন</li></ul></div>
+</div>
+</details>
+</section>
+
+<!-- C6 -->
+<section class="topic" id="c6">
+<h2>৬ষ্ঠ অধ্যায়: Economy</h2>
+<div class="card"><h3>বিশ্বায়ন (Globalisation)</h3>
+<p>Interconnectedness ও Interdependence। উদাহরণ: জিন্স প্যান্ট (চীনের তুলা, ভারতের রং, জার্মানির সেলাই মেশিন, ভিয়েতনামের ডিজাইনার) • আইফোন (ক্যালিফোর্নিয়া, তাইওয়ানের চিপ, চীনের স্টোরেজ, জাপানের ক্যামেরা, দ. কোরিয়ার র‍্যাম, ভিয়েতনামে অ্যাসেম্বল)।</p>
+<p><b>৪ চালিকাশক্তি:</b> Economic Shift • Technological Shift • Political Shift • Institutional Shift।</p>
+<p><b>বিশ্বায়নের ৩ স্কুল:</b> <b>Traditionalist</b> (বামপন্থী; বিশ্বায়ন Myth, বৈষম্য বেড়েছে) • <b>Liberal</b> (দক্ষিণও উপকৃত) • <b>Transformationalist</b> (ইতিবাচক ও নেতিবাচক উভয়; ভারত ও ব্রাজিল)।</p></div>
+
+<div class="grid">
+<div class="card"><h4>মুক্ত বাজার অর্থনীতির ৬ বৈশিষ্ট্য</h4><ol><li>Financial Liberalisation</li><li>Private Ownership</li><li>Profit Motive</li><li>Competition</li><li>Price Determined by Market Forces</li><li>Consumer Sovereignty</li></ol></div>
+<div class="card"><h4>Tariff (৩ ধরন)</h4><ul><li><b>Ad Valorem</b> — মূল্যের শতকরা হারে (১০%)</li><li><b>Specific</b> — প্রতি ইউনিটে নির্দিষ্ট (কেজিতে ৫ টাকা)</li><li><b>Compound</b> — উভয়ের সমন্বয়</li></ul><p class="muted">উদ্দেশ্য: দেশীয় শিল্প রক্ষা, রাজস্ব, বাণিজ্য ঘাটতি কমানো।</p></div>
+<div class="card"><h4>Non-Tariff Barriers (৭)</h4><ol><li>কোটা (Quota)</li><li>Import License</li><li>Technical Standards (EU)</li><li>Subsidy (চীনের টেক্সটাইল)</li><li>Anti-Dumping Measures</li><li>Sanitary Measures (বার্ড ফ্লু)</li><li>Embargo</li></ol></div>
+</div>
+
+<div class="card"><h3>সংরক্ষণবাদ (Protectionism / Economic Nationalism)</h3>
+<ul><li><b>Infant-Industry Argument:</b> উদীয়মান শিল্পকে বিদেশি প্রতিযোগিতা থেকে রক্ষা।</li>
+<li><b>Dumping:</b> উৎপাদন খরচের কম দামে বিক্রি করে বাজার দখল (ভারতের পেঁয়াজ: খরচ ৪০, বিক্রি ৩০ টাকা)। অন্য নাম: <b>Below-Cost Pricing, Unfair Competition, Predatory Pricing</b>। প্রতিকার: Anti-Dumping Policy।</li>
+<li><b>উদ্দেশ্য:</b> দেশীয় শিল্প রক্ষা, কর্মসংস্থান, বাণিজ্য ঘাটতি হ্রাস, অর্থনৈতিক নিরাপত্তা।</li></ul></div>
+
+<div class="tbl"><table>
+<tr><th>টার্ম</th><th>মূল কথা</th></tr>
+<tr><td>Balance of Payment</td><td>বৈদেশিক মুদ্রার আয় বনাম ব্যয়; Favourable বা Unfavourable</td></tr>
+<tr><td>Balance of Trade</td><td>দুই দেশের পণ্য রপ্তানি বনাম আমদানি; Trade Deficit বা Trade Surplus</td></tr>
+<tr><td>Most Favoured Nation (MFN)</td><td>সব বাণিজ্যিক অংশীদারের সাথে সমান আচরণ; WTO সদস্যরা মানতে বাধ্য</td></tr>
+<tr><td>Foreign Aid</td><td>উন্নয়ন (অবকাঠামো, স্থিতিশীলতা, প্রযুক্তি) বনাম নির্ভরতা (debt trap, নীতিগত শর্ত, স্থানীয় উদ্যোগ দুর্বল)</td></tr>
+<tr><td>ঋণ সংকট ও সার্বভৌমত্ব</td><td>নীতিগত স্বাধীনতা হ্রাস, সম্পদ হস্তান্তর, রাজস্ব সংকোচন; লাতিন আমেরিকা ১৯৮০-র দশক</td></tr>
+<tr><td>IMF Concessional Loan</td><td>দরিদ্র দেশের জন্য কম/শূন্য সুদ, দীর্ঘমেয়াদি, সহজ শর্ত</td></tr>
+<tr><td>IMF Non-Concessional Loan</td><td>মধ্যম ও উচ্চ আয়ের দেশের জন্য বাজারভিত্তিক সুদ, কঠোর শর্ত</td></tr>
+<tr><td>Economic Nationalism</td><td>দেশীয় শিল্প সুরক্ষা • কৌশলগত খাতে রাষ্ট্রীয় নিয়ন্ত্রণ • আমদানি নির্ভরতা হ্রাস (Self-reliance) • বিদেশি বিনিয়োগে নিয়ন্ত্রণ</td></tr>
+<tr><td>Economic Sanctions</td><td>Trade • Financial • Asset Freeze • Travel Ban • Sectoral</td></tr>
+<tr><td>Financial Liberalization</td><td>৪ উপাদান: সুদের হার বাজারনির্ভর, ব্যাংকিংয়ে প্রতিযোগিতা, পুঁজিবাজার উন্মুক্ত, মূলধন প্রবাহে শিথিলতা। Free Market = সামগ্রিক আদর্শ; Financial Liberalization = তার আর্থিক খাতের আংশিক বাস্তবায়ন</td></tr>
+<tr><td>North-South Gap</td><td>উন্নত (North) বনাম উন্নয়নশীল (South); ৪ প্রকৃতি: আয়-সম্পদ, প্রযুক্তি, বাণিজ্য কাঠামো, মানব উন্নয়ন</td></tr>
+<tr><td>NIEO</td><td>১৯৭০-এর দশক; ১৯৭৪ সাধারণ পরিষদের ঘোষণা; Bretton Woods (IMF, WB, GATT)-এর প্রতিক্রিয়া। ৫ দাবি: বাণিজ্যে ন্যায্যতা, প্রাকৃতিক সম্পদে সার্বভৌম অধিকার, প্রযুক্তি স্থানান্তর, আর্থিক প্রতিষ্ঠানে প্রতিনিধিত্ব, ঋণ পুনর্গঠন</td></tr>
+</table></div>
+
+<details open><summary>Keynesian vs Austrian Economics</summary>
+<div class="tbl"><table>
+<tr><th>দিক</th><th>Keynesian (John Maynard Keynes)</th><th>Austrian (Friedrich Hayek)</th></tr>
+<tr><td>বাজার</td><td>নিজে স্থিতিশীল হয় না; Invisible Hand নয়, <b>Guiding Hand</b></td><td>দাম ও সুদ = "market signal"; বাজার নিজেই সমন্বয় করে</td></tr>
+<tr><td>সরকার</td><td>সক্রিয় হস্তক্ষেপ, সরকারি ব্যয়, প্রণোদনা</td><td>সীমিত: আইনের শাসন, সম্পত্তির অধিকার</td></tr>
+<tr><td>মূল ধারণা</td><td>Market Failure, <b>Aggregate Demand</b> (ভোগ + বিনিয়োগ + সরকারি ব্যয়), <b>Animal Spirits</b>, <b>Multiplier Effect</b>, সুদের হার</td><td><b>Boom and Bust</b> (কৃত্রিম ঋণ → malinvestment), "Let the market correct itself"</td></tr>
+<tr><td>প্রবৃদ্ধির উৎস</td><td>চাহিদা (Demand)</td><td>যোগান (Supply): উৎপাদন, সঞ্চয়, উদ্ভাবন</td></tr>
+<tr><td>উদাহরণ</td><td>১৯৩০-এর Great Depression-এ রুজভেল্টের <b>New Deal</b>; কোভিডে stimulus package</td><td>২০০৮ আর্থিক সংকট = নিম্ন সুদ ও সহজ ঋণের ফল</td></tr>
+</table></div>
+<p><b>অর্থ সরবরাহ ও মূল্যস্ফীতি:</b> পূর্ণ সক্ষমতার অর্থনীতিতে অতিরিক্ত অর্থ → <b>demand-pull inflation</b>। অপূর্ণ সক্ষমতায় (১০০ কারখানার ৩০টি বন্ধ) → উৎপাদন ও কর্মসংস্থান বাড়ে। কেন্দ্রীয় ব্যাংক Output Gap ও প্রত্যাশা বিবেচনা করে।</p>
+</details>
+</section>
+
+<!-- C7 -->
+<section class="topic" id="c7">
+<h2>৭ম অধ্যায়: Global Environment</h2>
+<details open><summary>জলবায়ু সমস্যার সমাধান</summary>
+<div class="grid">
+<div class="card"><h4>Locally</h4><p><b>১. Regulatory Policies:</b> দূষণকারী কারখানা নিয়ন্ত্রণ, Quota, তদারকি।<br><b>২. Market-based Policies:</b> বেশি নিঃসরণে বেশি কর।</p>
+<p><b>Rebound Effects (৪ সমস্যা):</b> উৎপাদন ও কর্মসংস্থান কমে • পণ্যের দাম বাড়ে • বাস্তবায়নে সরকারি খরচ • বাজারে পণ্য সংকট।</p>
+<p><b>টেকসই ৫ নীতি:</b> Price Choice • Permit Market • Cap and Trade • Subsidies • Green Economy।</p></div>
+<div class="card"><h4>Globally (Global Commons)</h4><ol><li>Paris Climate Agreement বাস্তবায়ন</li><li>Electric Car</li><li>Forestation (COP-26: ২০৩০-এর মধ্যে বন উজাড় শূন্য)</li><li>Net Zero (EU, US ২০৫০; চীন, রাশিয়া, সৌদি ২০৬০)</li><li>Solar Energy</li><li>Climate Financing (১০০ বিলিয়ন ডলার)</li><li>Global Minimum Tax on Big Business (G-20, ভেনিস ২০২১, ১৫%; গুগল, ফেসবুক, অ্যামাজন, মাইক্রোসফট)</li></ol></div>
+</div>
+</details>
+
+<details open><summary>নিরাপত্তায় জলবায়ুর প্রভাব — "Threat Multiplier"</summary>
+<ol><li><b>Resource Conflicts</b> — আফ্রিকার সাহেল; ইউফ্রেটিস (সিরিয়া, ইরাক)</li><li><b>Food & Water Security</b> — সিরিয়ায় ২০০৭–২০১০ খরা, গৃহযুদ্ধের অন্যতম কারণ</li><li><b>Climate Migration</b> — মালদ্বীপ, প্রশান্ত মহাসাগরীয় দ্বীপ</li><li>রাজনৈতিক অস্থিতিশীলতা ও সন্ত্রাসবাদ</li><li><b>Geopolitical Competition</b> — আর্কটিক (যুক্তরাষ্ট্র, রাশিয়া, কানাডা, চীন)</li><li><b>Human Security</b></li></ol>
+</details>
+
+<div class="grid">
+<div class="card"><h4>Green Climate Fund (GCF)</h4><p>২০১০, UNFCCC, ইনচন (দ. কোরিয়া), COP-এর অধীন, অর্থায়ন ২০১৫ থেকে।<br><b>উদ্দেশ্য:</b> উন্নয়নশীল দেশকে সহায়তা, Adaptation ও Mitigation অর্থায়ন, ১.৫°C লক্ষ্য, "climate finance gap" কমানো।<br><b>ক্ষেত্র:</b> Adaptation • Mitigation • Resilience Building • Capacity Building।</p></div>
+<div class="card"><h4>Climate Justice</h4><p>যারা কম দূষণ করে তারাই বেশি ক্ষতিগ্রস্ত — সেই ভারসাম্য ফেরানো।<br><b>পদক্ষেপ:</b> Paris Agreement-এর CBDR • Loss and Damage Fund (COP27, মিশর, ২০২২) • GCF।</p></div>
+<div class="card"><h4>Mitigation vs Adaptation</h4><p><b>Mitigation (প্রশমন):</b> Cause নিয়ে কাজ — GHG কমানো।<br><b>Adaptation (অভিযোজন):</b> Impact নিয়ে কাজ — মানিয়ে নেওয়া।</p></div>
+</div>
+
+<details open><summary>প্যারিস জলবায়ু চুক্তি ২০১৫ ও COP-21</summary>
+<p>প্রেক্ষাপট: UNFCCC (১৯৯২) বাধ্যতামূলক ছিল না; Kyoto (১৯৯৭)-তে যুক্তরাষ্ট্র ও চীন না থাকায় ব্যর্থ।</p>
+<div class="grid">
+<div class="card"><h4>৫ লক্ষ্য</h4><ol><li>তাপমাত্রা ২°C-এর নিচে, সম্ভব হলে ১.৫°C</li><li>GHG হ্রাস (NDC)</li><li>Adaptation</li><li>অর্থায়ন ও প্রযুক্তি</li><li>CBDR-এর আওতায় সহযোগিতা</li></ol></div>
+<div class="card"><h4>৫ কাঠামো</h4><ol><li>NDCs — প্রতি ৫ বছরে হালনাগাদ; স্বেচ্ছা কিন্তু বাধ্যতামূলক</li><li>Climate Finance — ২০২০ থেকে বছরে ১০০ বিলিয়ন, GCF-এর মাধ্যমে</li><li>Technology Transfer</li><li>Transparency Framework</li><li>Loss and Damage</li></ol></div>
+</div>
+<p>Paris-এ CBDR-এর সাথে Respective Capabilities যুক্ত হয়ে <b>CBDR-RC</b>। অনেক দেশ ২০৫০-এর মধ্যে Net Zero-তে প্রতিশ্রুতিবদ্ধ। এটি জলবায়ু সংক্রান্ত প্রথম সার্বজনীন চুক্তি।</p>
+</details>
+
+<details open><summary>কিয়োটো প্রটোকল (১৯৯৭)</summary>
+<p>গৃহীত <b>১১ ডিসেম্বর ১৯৯৭</b>, কিয়োটো (জাপান); আনুষ্ঠানিক নাম Kyoto Protocol to the UNFCCC। ধারণা: <b>CBDR</b> (রিও সম্মেলনে প্রতিষ্ঠিত, কিয়োটোতে বাধ্যতামূলক)।</p>
+<div class="grid">
+<div class="card"><h4>দেশের ৩ শ্রেণি (শিট অনুযায়ী)</h4><ul><li><b>Annex-I:</b> শিল্পপ্রধান ৪২ দেশ ও EU; গড়ে ~৫% কমাতে হবে</li><li><b>Annex-II:</b> শিটে "উন্নয়নশীল ২৪টি দেশ" লেখা</li><li><b>Non-Annex:</b> দায়ী নয় এমন দেশ (বাংলাদেশ, ভারত)</li></ul></div>
+<div class="card"><h4>৬ গ্রিনহাউস গ্যাস</h4><ol><li>কার্বন ডাই-অক্সাইড (CO₂)</li><li>মিথেন (CH₄)</li><li>নাইট্রাস অক্সাইড (N₂O)</li><li>হাইড্রোফ্লুরোকার্বন (HFCs)</li><li>পারফ্লুরোকার্বন (PFCs)</li><li>সালফার হেক্সাফ্লুরাইড (SF₆)</li></ol></div>
+<div class="card"><h4>৩ Market-based Mechanism</h4><ol><li><b>Emissions Trading</b> — অতিরিক্ত অংশ বিক্রি</li><li><b>CDM</b> — উন্নত দেশ উন্নয়নশীল দেশে বিনিয়োগ করে ক্রেডিট পায়</li><li><b>Joint Implementation (JI)</b> — উন্নত দেশ অন্য উন্নত দেশে প্রকল্প চালায়</li></ol></div>
+</div>
+</details>
+
+<div class="card"><h3>কার্বন ট্রেডিং</h3>
+<p><b>Cap and Trade:</b> প্রতি কারখানা ১০০ টন সীমা → A ৮০ টন (২০ টন উদ্বৃত্ত), B ১০০ টন, C ১২০ টন → C, A-এর কাছ থেকে ২০ টনের অনুমতি কেনে।<br>
+<b>Carbon Credit:</b> ১টি ক্রেডিট = <b>১ মেট্রিক টন CO₂</b> নিঃসরণের অনুমতি।</p></div>
+
+<details open><summary>জলবায়ু কূটনীতি, IPCC, Basel, IUCN</summary>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>মুখস্থ তথ্য</th></tr>
+<tr><td>জলবায়ু কূটনীতির মঞ্চ</td><td>UNFCCC (১৯৯২) • Kyoto Protocol (১৯৯৭) • Paris Agreement (২০১৫) • COP (প্রতি বছর)</td></tr>
+<tr><td>জলবায়ু কূটনীতির উপাদান</td><td>Policy Dialogue • Negotiation • Climate Finance Diplomacy • Technology Diplomacy • Public Diplomacy</td></tr>
+<tr><td>বাংলাদেশের ভূমিকা</td><td>COP-এ "Climate Justice" ও "Loss and Damage Fund"; <b>Climate Vulnerable Forum (CVF)</b> ও <b>V20</b> গঠন; GCF থেকে অর্থায়ন</td></tr>
+<tr><td>IPCC Working Groups</td><td><b>WG I</b> — বৈজ্ঞানিক ভিত্তি • <b>WG II</b> — প্রভাব, অভিযোজন, ঝুঁকি • <b>WG III</b> — প্রশমন • <b>TFI</b> — জাতীয় GHG হিসাব</td></tr>
+<tr><td>Basel Convention</td><td>Control of Transboundary Movements of Hazardous Wastes and Their Disposal; ১৯৮৯, কার্যকর ১৯৯২। মূল বৈশিষ্ট্য: বর্জ্যের আন্তঃসীমান্ত চলাচল নিয়ন্ত্রণ, পরিমাণ কমানো, নিরাপদ ব্যবস্থাপনা, অবৈধ নিক্ষেপ রোধ, <b>"Notice and Consent"</b></td></tr>
+<tr><td>IUCN</td><td>৫ অক্টোবর ১৯৪৮, ফন্টেইনব্লু; গ্ল্যান্ড, সুইজারল্যান্ড; <b>Red List of Threatened Species</b></td></tr>
+</table></div>
+</details>
+
+<details open><summary>SDG — ১৭টি লক্ষ্য</summary>
+<p>দুই মূল ধারণা: দরিদ্রের অত্যাবশ্যকীয় প্রয়োজন মেটানো + পরিবেশ সুরক্ষায় যৌক্তিক প্রযুক্তি। MDG-র স্থলাভিষিক্ত।</p>
+<div class="tbl"><table>
+<tr><th>#</th><th>লক্ষ্য</th><th>#</th><th>লক্ষ্য</th></tr>
+<tr><td>১</td><td>দারিদ্র্য বিমোচন (No Poverty)</td><td>১০</td><td>অসমতা হ্রাস</td></tr>
+<tr><td>২</td><td>ক্ষুধা মুক্তি (Zero Hunger)</td><td>১১</td><td>টেকসই নগর ও জনপদ</td></tr>
+<tr><td>৩</td><td>সুস্বাস্থ্য ও কল্যাণ</td><td>১২</td><td>দায়িত্বশীল ভোগ ও উৎপাদন</td></tr>
+<tr><td>৪</td><td>গুণগত শিক্ষা</td><td>১৩</td><td>জলবায়ু কার্যক্রম</td></tr>
+<tr><td>৫</td><td>জেন্ডার সমতা</td><td>১৪</td><td>জলজ জীবনের সুরক্ষা</td></tr>
+<tr><td>৬</td><td>নিরাপদ পানি ও পয়ঃনিষ্কাশন</td><td>১৫</td><td>স্থলজ জীবনের সুরক্ষা</td></tr>
+<tr><td>৭</td><td>সাশ্রয়ী ও দূষণমুক্ত জ্বালানি</td><td>১৬</td><td>শান্তি, ন্যায়বিচার ও শক্তিশালী প্রতিষ্ঠান</td></tr>
+<tr><td>৮</td><td>শোভন কাজ ও অর্থনৈতিক প্রবৃদ্ধি</td><td>১৭</td><td>লক্ষ্য অর্জনে অংশীদারিত্ব</td></tr>
+<tr><td>৯</td><td>শিল্প, উদ্ভাবন ও অবকাঠামো</td><td></td><td></td></tr>
+</table></div>
+</details>
+</section>
+
+<!-- PEOPLE -->
+<section class="topic" id="people">
+<h2>👤 তত্ত্ব ও প্রবক্তা — এক নজরে</h2>
+<div class="tbl"><table>
+<tr><th>প্রবক্তা</th><th>তত্ত্ব / গ্রন্থ / উক্তি</th></tr>
+<tr><td>Carl von Clausewitz</td><td><i>On War</i>; "War is the continuation of politics by other means"; Trinity, Fog of War, Friction</td></tr>
+<tr><td>Joseph Nye</td><td>Soft Power</td></tr>
+<tr><td>Robert Keohane</td><td>After Hegemony</td></tr>
+<tr><td>Emanuel Adler</td><td>Constructivism উক্তি</td></tr>
+<tr><td>Barry Buzan ও Ole Wæver</td><td>Regional Security Complex Theory</td></tr>
+<tr><td>Samuel Huntington</td><td>Clash of Civilizations</td></tr>
+<tr><td>Halford Mackinder</td><td>Heartland Theory — "The Geographical Pivot of History"</td></tr>
+<tr><td>Nicholas Spykman</td><td>Rimland Theory</td></tr>
+<tr><td>George F. Kennan</td><td>Containment Theory, "Long Telegram" (১৯৪৭)</td></tr>
+<tr><td>Alfred Thayer Mahan</td><td>Sea Power — "The Influence of Sea Power upon History" (১৮৯০)</td></tr>
+<tr><td>Giulio Douhet</td><td>Air Power — "Command of the Air"</td></tr>
+<tr><td>Zbigniew Brzezinski</td><td>The Grand Chessboard</td></tr>
+<tr><td>A. F. K. Organski</td><td>Power Transition Theory — "World Politics" (১৯৫৮)</td></tr>
+<tr><td>Charles Hermann</td><td>Foreign policy-র সংজ্ঞা</td></tr>
+<tr><td>Graham Allison</td><td>Governmental Bargaining Model</td></tr>
+<tr><td>Robert Putnam</td><td>Two-Level Game Theory</td></tr>
+<tr><td>John Maynard Keynes</td><td>Keynesian Economy; Animal Spirits</td></tr>
+<tr><td>Friedrich Hayek</td><td>Austrian School</td></tr>
+<tr><td>জাঁক লাকাঁ, মিশেল ফুকো, জ্যাক দেরিদা</td><td>Postmodernism</td></tr>
+<tr><td>জন লক, অ্যাডাম স্মিথ, ইমানুয়েল কান্ট</td><td>Traditional Liberalism</td></tr>
+<tr><td>ফ্রয়েড, মার্কস, হেগেল, ম্যাক্স ওয়েবার</td><td>Frankfurt School</td></tr>
+</table></div>
+</section>
+
+<div class="warn"><b>শিটের কয়েকটি তথ্য প্রকৃত তথ্যের সাথে মেলেনি — পরীক্ষায় সঠিকটা লিখুন:</b>
+<ul>
+<li><b>R2P:</b> শিটে ২০২৫; সঠিক <b>২০০৫</b> (জাতিসংঘ World Summit)।</li>
+<li><b>কিয়োটো Annex-II:</b> শিটে "উন্নয়নশীল ২৪টি দেশ"; আসলে Annex-II হলো ২৪টি <b>উন্নত</b> (OECD) দেশ, যারা উন্নয়নশীল দেশকে অর্থ ও প্রযুক্তি দেবে। উন্নয়নশীল দেশগুলো Non-Annex I।</li>
+<li><b>বনভূমি:</b> শিটে "৮৫% বন ব্রাজিল, কানাডা, রাশিয়া, ইন্দোনেশিয়ায়"; FAO অনুযায়ী শীর্ষ ৫ দেশ (রাশিয়া, ব্রাজিল, কানাডা, যুক্তরাষ্ট্র, চীন) মিলে ~৫৪%।</li>
+<li><b>ভারত-জাপান সিভিল নিউক্লিয়ার চুক্তি:</b> শিটে ২০২১; সঠিক স্বাক্ষর <b>২০১৬</b>।</li>
+<li><b>OPCW:</b> দক্ষিণ সুদান ২০১৯-এ যোগ দিয়েছে; এখন বাইরে মিশর, উত্তর কোরিয়া (ইসরায়েল স্বাক্ষর করেছে, অনুসমর্থন করেনি)।</li>
+<li><b>NEW START "ICBM ৮০০":</b> ৮০০ হলো মোট লঞ্চার (ICBM, SLBM ও বোমারু মিলিয়ে)।</li>
+<li><b>জেনেভা কনভেনশন:</b> শিটের সালগুলো (১৮৬৪, ১৯০৬, ১৯২৯) পূর্বসূরি চুক্তির; বর্তমান চারটি কনভেনশনই <b>১৯৪৯</b> সালে গৃহীত।</li>
+</ul></div>
+
+</main>
+<footer>রিভিশন নোট • মূল সূত্র: আন্তর্জাতিক কনসেপচুয়াল রিভিশন শিট</footer>
+<script>
+function toggleTheme(){
+  const r=document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme = dark ? 'light' : 'dark';
+}
+</script>
+</body>
+</html>

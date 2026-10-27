@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>আন্তর্জাতিক রিভিশন নোট</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef;--card:#ffffff;--ink:#1f2328;--muted:#5d6670;--line:#e3ded3;
+  --accent:#0f5c4d;--accent2:#b5462a;--hl:#fff1b8;--hlink:#5a4300;--chip:#e7f1ee;--chipink:#0f5c4d;
+  --th:#eef3f1;--warn:#fdecea;--warnink:#8a2a17;--ok:#e9f5ec;--okink:#1d5a2c;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181b;--card:#1d2226;--ink:#e7e9ea;--muted:#9aa4ad;--line:#2e353b;
+    --accent:#5cc5a9;--accent2:#ef8c6c;--hl:#4a3d10;--hlink:#ffe28a;--chip:#1f3a33;--chipink:#7fe0c4;
+    --th:#232b30;--warn:#3a2320;--warnink:#f2a491;--ok:#1f3326;--okink:#9fdcae;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181b;--card:#1d2226;--ink:#e7e9ea;--muted:#9aa4ad;--line:#2e353b;
+  --accent:#5cc5a9;--accent2:#ef8c6c;--hl:#4a3d10;--hlink:#ffe28a;--chip:#1f3a33;--chipink:#7fe0c4;
+  --th:#232b30;--warn:#3a2320;--warnink:#f2a491;--ok:#1f3326;--okink:#9fdcae;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif;font-size:16.5px;line-height:1.7}
+header.top{background:var(--accent);color:#fff;padding:28px 16px 22px}
+header.top .wrap{max-width:1000px;margin:0 auto}
+header.top h1{margin:0 0 4px;font-size:1.7rem;line-height:1.3}
+header.top p{margin:0;opacity:.9}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+nav.toc .wrap{max-width:1000px;margin:0 auto;padding:8px 12px;display:flex;gap:6px}
+nav.toc a{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--chip);color:var(--chipink);text-decoration:none;font-weight:600;font-size:.92rem}
+nav.toc a:hover{filter:brightness(.95)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+section.topic{margin:26px 0 40px;scroll-margin-top:60px}
+section.topic>h2{font-size:1.45rem;margin:0 0 12px;padding-bottom:6px;border-bottom:3px solid var(--accent);color:var(--accent)}
+h3{font-size:1.15rem;margin:22px 0 8px;color:var(--accent2)}
+h4{font-size:1.02rem;margin:14px 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.card>h3:first-child,.card>h4:first-child{margin-top:0}
+ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+b.n,.n{background:var(--hl);color:var(--hlink);padding:0 4px;border-radius:4px;font-weight:700;white-space:nowrap}
+.t{display:inline-block;background:var(--chip);color:var(--chipink);border-radius:6px;padding:0 7px;font-size:.88rem;font-weight:600;margin:1px 2px}
+.quote{border-left:4px solid var(--accent2);padding:6px 12px;margin:10px 0;color:var(--muted);font-style:italic;background:var(--card);border-radius:0 8px 8px 0}
+.quote span{font-style:normal;font-weight:600;color:var(--ink)}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--th)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.warn{background:var(--warn);color:var(--warnink);border-radius:10px;padding:10px 14px;margin:10px 0}
+.ok{background:var(--ok);color:var(--okink);border-radius:10px;padding:10px 14px;margin:10px 0}
+.muted{color:var(--muted);font-size:.92rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;padding:0 16px}
+details summary{cursor:pointer;font-weight:700;padding:12px 0;color:var(--accent)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 0}
+.toolbar button{font:inherit;font-size:.88rem;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:8px;padding:3px 10px;cursor:pointer}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 16px}
+@media print{nav.toc,.toolbar{display:none}details{border:none}details>*{display:block}body{background:#fff}}
+@media (max-width:600px){body{font-size:15.5px}header.top h1{font-size:1.35rem}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>২২তম ক্লাস: আন্তর্জাতিক প্রবলেম সলভিং ও বাংলাদেশের পররাষ্ট্রনীতি</h1>
+  <p>মুখস্থ করার রিভিশন নোট — তথ্য, সংখ্যা, তারিখ, তত্ত্ব ও উদাহরণ এক জায়গায় (তারিখ: ৩১/০৩/২০২৬ এর ক্লাস শিট থেকে)</p>
+  <div class="toolbar">
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">সব খুলুন</button>
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">সব বন্ধ করুন</button>
+    <button onclick="toggleTheme()">ডার্ক/লাইট</button>
+  </div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#exam">সম্ভাব্য প্রশ্ন</a>
+  <a href="#quick">দ্রুত সংখ্যা</a>
+  <a href="#teesta">১. তিস্তা</a>
+  <a href="#india">২. বাংলাদেশ-ভারত</a>
+  <a href="#rohingya">৩. রোহিঙ্গা</a>
+  <a href="#pakistan">৪. পাকিস্তান</a>
+  <a href="#fp">৫. পররাষ্ট্রনীতি</a>
+  <a href="#art">৬. ART চুক্তি</a>
+  <a href="#theories">তত্ত্ব তালিকা</a>
+  <a href="#quotes">উক্তি</a>
+</div></nav>
+
+<main>
+
+<!-- ================= EXAM ================= -->
+<section class="topic" id="exam">
+<h2>★ যেসব টপিক থেকে প্রশ্ন আসার সম্ভাবনা বেশি</h2>
+<div class="grid">
+  <div class="card"><h4>আন্তর্জাতিক এম্পেরিক্যাল</h4><ul>
+    <li>বর্তমান বিশ্বব্যবস্থা নিয়ন্ত্রণে আন্তর্জাতিক প্রতিষ্ঠান, বিশেষ করে জাতিসংঘের গুরুত্ব, সফলতা-ব্যর্থতা</li>
+    <li>ইরান-যুক্তরাষ্ট্র যুদ্ধের বৈশ্বিক প্রভাব; বাংলাদেশের সংকট ও করণীয়</li>
+    <li>বাংলাদেশ-ভারতের দ্বিপাক্ষিক ইস্যু</li>
+    <li>সার্কের পুনরুজ্জীবন / দক্ষিণ এশিয়ার নিরাপত্তা সংকট</li>
+    <li>পররাষ্ট্রনীতির সফলতা, ব্যর্থতা, চ্যালেঞ্জ ও করণীয়</li></ul></div>
+  <div class="card"><h4>বাংলাদেশ বিষয়াবলি (পররাষ্ট্রনীতি)</h4><ul>
+    <li>ইরান-যুক্তরাষ্ট্র যুদ্ধে বাংলাদেশের চ্যালেঞ্জ ও করণীয়</li>
+    <li>নতুন সরকারের বহির্বিশ্বের সাথে সম্পর্ক রক্ষায় চ্যালেঞ্জ ও করণীয়</li>
+    <li>তিস্তা বাস্তবায়নের চ্যালেঞ্জ ও করণীয়</li>
+    <li>রোহিঙ্গা সমস্যা সমাধানে করণীয়</li></ul></div>
+  <div class="card"><h4>আন্তর্জাতিক প্রবলেম সলভিং</h4><ul>
+    <li>আনকমন টপিকের সম্ভাবনা বেশি (Security, Trade, Climate)</li>
+    <li>এলডিসি উত্তরণ, চ্যালেঞ্জ ও করণীয়</li>
+    <li>যুক্তরাষ্ট্রের সাথে রেসিপ্রোক্যাল বাণিজ্য চুক্তি</li>
+    <li>জলবায়ু, কপ, বাংলাদেশের করণীয়</li>
+    <li>বাংলাদেশ-পাকিস্তান অমীমাংসিত ইস্যু (কম গুরুত্বপূর্ণ)</li></ul></div>
+</div>
+</section>
+
+<!-- ================= QUICK NUMBERS ================= -->
+<section class="topic" id="quick">
+<h2>⚡ এক নজরে সংখ্যা ও তারিখ</h2>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>তথ্য</th></tr>
+<tr><td>তিস্তার বাংলাদেশ অংশের দৈর্ঘ্য</td><td><b class="n">~১১৫ কিমি</b>, এর মধ্যে <b class="n">~৪৫ কিমি</b> ভাঙনপ্রবণ</td></tr>
+<tr><td>তিস্তার উৎপত্তি / প্রবেশ / মিলন</td><td>পাউহুনরি পর্বতমালা (হিমালয়) → সিকিম → দার্জিলিং, জলপাইগুড়ি → লালমনিরহাটের <b>পাটগ্রাম</b> → যমুনায় মিলিত</td></tr>
+<tr><td>১৯৮৩ অন্তর্বর্তী চুক্তি</td><td><b class="n">৩০ নভেম্বর ১৯৮৩</b>, JRC বৈঠকে অনুমোদিত; ভারত <b class="n">৩৯%</b>, বাংলাদেশ <b class="n">৩৬%</b>, অবণ্টিত <b class="n">২৫%</b></td></tr>
+<tr><td>২০১১ খসড়া চুক্তি</td><td>বাংলাদেশ <b class="n">৩৭.৫%</b>, ভারত <b class="n">৪২.৫%</b>, Environmental flow <b class="n">২০%</b> (মনমোহন সিংয়ের ঢাকা সফর)</td></tr>
+<tr><td>গজলডোবা ব্যারেজ</td><td>জলপাইগুড়ি, নির্মাণ <b class="n">১৯৮৫</b></td></tr>
+<tr><td>শুষ্ক মৌসুমে বাস্তব প্রাপ্তি</td><td>মাত্র <b class="n">৫–১০%</b>; প্রবাহ <b class="n">১০০০–১২০০ কিউসেক</b>-এর নিচে; প্রয়োজন <b class="n">৫০০০–৬০০০ কিউসেক</b></td></tr>
+<tr><td>ধান উৎপাদন ক্ষতি (IFPRI)</td><td>বছরে <b class="n">১৫ লাখ টন</b></td></tr>
+<tr><td>তিস্তা ব্যারেজ সেচ প্রকল্প (TBIP)</td><td>ডিমলা, নীলফামারী; <b class="n">৫ লাখ ৪০ হাজার হেক্টর</b>; কাজ <b class="n">১৯৭৯–১৯৯০</b>; পরিচালনা BWDB</td></tr>
+<tr><td>PowerChina MoU / ব্লুপ্রিন্ট</td><td>MoU <b class="n">২০১৬</b>; ব্লুপ্রিন্ট জমা <b class="n">২০১৯</b>; সমীক্ষা হস্তান্তর <b class="n">২০২৪</b> (৩ বছর, ২০০ কোটি+ টাকা)</td></tr>
+<tr><td>ড. ইউনূসের চীন সফর</td><td><b class="n">মার্চ ২০২৫</b> — ৫০ বছরের মাস্টারপ্ল্যান</td></tr>
+<tr><td>BWDB–PowerChina MoU খসড়া</td><td><b class="n">২০২৫</b>; <b class="n">২.১ বিলিয়ন ডলার</b> ঋণ; ৩ বছরে প্রথম ধাপ</td></tr>
+<tr><td>তিস্তা মহাপরিকল্পনা ব্যয়</td><td>মোট <b class="n">~১২ হাজার কোটি টাকা</b>; প্রথম ধাপে ঋণ <b class="n">~৬৭০০ কোটি</b>; প্রথম ধাপ <b class="n">২০২৬–২০২৯</b></td></tr>
+<tr><td>বাঁধ / খনন</td><td><b class="n">২০৩ কিমি</b> বন্যা নিয়ন্ত্রণ বাঁধ (মোট ২০০–২২৪ কিমি); <b class="n">১০০–১০২ কিমি</b> খনন, গভীরতা <b class="n">~১০ মিটার</b></td></tr>
+<tr><td>শিলিগুড়ি করিডোর প্রস্থ</td><td>মাত্র <b class="n">২২ কিমি</b> ("চিকেন'স নেক"), ৭ রাজ্যের সাথে যোগসূত্র</td></tr>
+<tr><td>কলকাতা বিমানবন্দর ট্রানজিট প্রত্যাহার</td><td><b class="n">৯ এপ্রিল ২০২৫</b></td></tr>
+<tr><td>লালমনিরহাট বর্ডার হাট</td><td>পাচার কমেছে <b class="n">৪৮%</b></td></tr>
+<tr><td>মিয়ানমার নাগরিকত্ব আইন</td><td><b class="n">১৯৮২</b>; সামরিক অভ্যুত্থান <b class="n">২০২১</b></td></tr>
+<tr><td>রোহিঙ্গা সংখ্যা</td><td><b class="n">১১–১২ লাখ</b>; তহবিল কমেছে <b class="n">~৫০%</b> (২০১৭–২০ তুলনায়)</td></tr>
+<tr><td>জিয়ার আমলে রোহিঙ্গা</td><td><b class="n">১৯৭৭–৭৮</b> নাগা মিন অপারেশন, <b class="n">২ লাখ</b> আগমন; প্রত্যাবাসন চুক্তি <b class="n">৯ জুলাই ১৯৭৮</b></td></tr>
+<tr><td>খালেদা জিয়ার আমলে রোহিঙ্গা</td><td><b class="n">১৯৯১</b>: <b class="n">২ লাখ ৭০ হাজার</b></td></tr>
+<tr><td>ইসহাক দারের ঢাকা সফর</td><td><b class="n">২৩ আগস্ট ২০২৫</b></td></tr>
+<tr><td>পাকিস্তানের যৌথবাহিনী প্রধানের সফর</td><td><b class="n">২৫ অক্টোবর ২০২৫</b></td></tr>
+<tr><td>BD-Pak JEC বৈঠক</td><td><b class="n">২৭ অক্টোবর ২০২৫</b> (করাচি পোর্ট ব্যবহার)</td></tr>
+<tr><td>BD-Pak বাণিজ্য ২০২৪-২৫</td><td><b class="n">৮৬৫ মিলিয়ন ডলার</b> (২০–২৫% বৃদ্ধি)</td></tr>
+<tr><td>মোশাররফের দুঃখপ্রকাশ</td><td><b class="n">২০০২</b> (regret, apology নয়)</td></tr>
+<tr><td>ত্রিপক্ষীয় চুক্তি</td><td><b class="n">১৯৭৪</b> ভারত-বাংলাদেশ-পাকিস্তান</td></tr>
+<tr><td>সার্ক প্রতিষ্ঠা</td><td><b class="n">১৯৮৫</b> (ধারণা জিয়াউর রহমানের)</td></tr>
+<tr><td>যুক্তরাষ্ট্রে RMG রপ্তানি শুরু</td><td><b class="n">১৯৭৮</b></td></tr>
+<tr><td>সমুদ্র এলাকা</td><td><b class="n">১,১৮,৮১৩ বর্গকিমি</b></td></tr>
+<tr><td>ফিলিপাইনের রেমিট্যান্স</td><td>বছরে <b class="n">৩৫ বিলিয়ন ডলার</b></td></tr>
+<tr><td>Loss and Damage Fund</td><td><b class="n">২০২২</b> COP-এ গঠিত</td></tr>
+<tr><td>ভিয়েতনাম EVFTA</td><td>২ বছরে ইউরোপে রপ্তানি <b class="n">৪০%+</b> বৃদ্ধি</td></tr>
+<tr><td>ART চুক্তি স্বাক্ষর</td><td><b class="n">৯ ফেব্রুয়ারি ২০২৬</b></td></tr>
+<tr><td>নির্বাহী আদেশ (Reciprocal Tariff)</td><td><b class="n">নং ১৪২৫৭</b>, <b class="n">২ এপ্রিল ২০২৫</b>; শুল্ক <b class="n">২০% → ১৯%</b></td></tr>
+<tr><td>ART: বাজার প্রবেশ</td><td>বাংলাদেশ <b class="n">~২৫০০</b> পণ্যে শুল্কমুক্ত; বাংলাদেশ <b class="n">৬৭১০</b> মার্কিন পণ্যে শুল্ক কমাবে (তাৎক্ষণিক / ৫ বছর / ১০ বছর)</td></tr>
+<tr><td>LDC উত্তরণ</td><td><b class="n">২০২৬</b></td></tr>
+</table></div>
+</section>
+
+<!-- ================= TEESTA ================= -->
+<section class="topic" id="teesta">
+<h2>১. তিস্তা বাস্তবায়নে চ্যালেঞ্জ ও করণীয়</h2>
+
+<div class="card">
+<h3>ভূমিকা (মুখস্থ লাইন)</h3>
+<p>তিস্তা মহাপরিকল্পনা শুধু উন্নয়ন প্রকল্প নয়; উত্তরবঙ্গের জলব্যবস্থা, কৃষি, পরিবেশগত ভারসাম্য ও আঞ্চলিক ভূরাজনীতিকেন্দ্রিক একটি <b>বহুমাত্রিক জাতীয় এজেন্ডা</b>। মূল ভিত্তি: Hydro Diplomacy, চীন-ভারত থেকে পরিমিত দূরত্ব, দেশীয় বিশেষজ্ঞ দিয়ে পুনর্মূল্যায়ন, পরিবেশ-নিরাপত্তা, ঋণ-ঝুঁকি হ্রাস, স্থানীয় জনগণের অংশগ্রহণ।</p>
+<p>তিস্তা = <b>Lifeline of North Bengal</b>; না হলে উত্তরাঞ্চল <b>"ecological stress zone"</b>; একটি <b>"Strategic Water Issue"</b>।</p>
+</div>
+
+<div class="card">
+<h3>তিস্তা-বিধৌত জেলা ও সমস্যা</h3>
+<div class="tbl"><table>
+<tr><th>জেলা</th><th>মূল সমস্যা</th></tr>
+<tr><td>লালমনিরহাট</td><td>নদীভাঙন ও মৌসুমি দুর্যোগের কেন্দ্রস্থল</td></tr>
+<tr><td>নীলফামারী</td><td>শুষ্ক মৌসুমে জলাভাব ও কৃষি সংকট</td></tr>
+<tr><td>রংপুর</td><td>ব্যারেজ-কেন্দ্রিক ক্ষয় ও জলব্যবস্থাপনা সমস্যা</td></tr>
+<tr><td>গাইবান্ধা</td><td>হড়কা বন্যা (আকস্মিক) ও ক্রমাগত স্থানচ্যুতি</td></tr>
+<tr><td>কুড়িগ্রাম</td><td>সর্বাধিক ক্ষতিগ্রস্ত; <b class="n">~২০ কিমি</b> চরম ভাঙনপ্রবণ; তিস্তা সংকটের <b>epicenter</b>; তিস্তা = <b>crisis river</b></td></tr>
+</table></div>
+<p class="muted">৫টি জেলা সরাসরি তিস্তানির্ভর; সেচবিহীন ৬ জেলা: নীলফামারী, লালমনিরহাট, রংপুর, গাইবান্ধা, কুড়িগ্রাম, দিনাজপুর।</p>
+<p><b>গুরুত্ব ৩ দিক:</b> (ক) কৃষি ও খাদ্য নিরাপত্তা (খ) নদীভাঙন রোধ ও পরিবেশ (প্রাকৃতিক Flood Buffer) (গ) জনজীবন, অর্থনীতি ও নিরাপত্তা।</p>
+</div>
+
+<div class="card">
+<h3>১৯৮৩ অন্তর্বর্তী চুক্তি (Interim Agreement)</h3>
+<ul>
+<li>"স্থায়ী সমাধান না হওয়া পর্যন্ত" অস্থায়ী বণ্টন; <b class="n">৩০ নভেম্বর ১৯৮৩</b> JRC বৈঠকে অনুমোদন; দুই দেশের প্রথম আনুষ্ঠানিক নদীভিত্তিক সমঝোতা।</li>
+<li>ভারত ৩৯% (গজলডোবা, সেচ, বিদ্যুৎ) | বাংলাদেশ ৩৬% (কৃষি, সেচ, পরিবেশ) | অবণ্টিত ২৫% (পরিবেশগত ভারসাম্য)</li>
+<li>প্রকৃতি: <b>ad hoc, interim, non-binding</b>; মেয়াদ নেই; যৌথ মনিটরিং সেলের উল্লেখ ছিল।</li>
+</ul>
+<h4>কার্যকর না হওয়ার ৫ কারণ</h4>
+<ol><li>গজলডোবায় ভারতের একতরফা (unilateral) পানি নিয়ন্ত্রণ</li><li>ডেটা শেয়ারিং ও মনিটরিং ব্যর্থতা ("joint monitoring of flow")</li><li>আইনি বল প্রয়োগের অভাব (কোনো dispute mechanism নেই)</li><li>রাজনৈতিক ইচ্ছাশক্তির অভাব</li><li>পশ্চিমবঙ্গের প্রভাব (upstream dominance)</li></ol>
+</div>
+
+<div class="card">
+<h3>গজলডোবা ব্যারেজ ও আন্তর্জাতিক নদী আইন</h3>
+<ul>
+<li>জলপাইগুড়ি, নির্মাণ <b class="n">১৯৮৫</b>; উদ্দেশ্য: সেচ, জলবিদ্যুৎ, ক্যানেল, আঞ্চলিক কৃষি।</li>
+<li>শুষ্ক মৌসুম (<b>ডিসেম্বর–মার্চ</b>): পানি আটকে রাখে → নদী শুকায়। বর্ষা (<b>জুলাই–সেপ্টেম্বর</b>): হঠাৎ গেট খোলা → flash flood, <b>flood-dumping</b>।</li>
+<li><b>Helsinki Rules (1966)</b> ও <b>UN Watercourses Convention (1997)</b>: (ক) উজান দেশ ভাটির ক্ষতি করবে না (খ) বণ্টন একতরফা নয় (গ) তথ্য নিয়মিত শেয়ার। নীতি: <b>equitable and reasonable utilization</b> ও <b>no-harm principle</b>। "No state may cause significant harm to another state."</li>
+</ul>
+<h4>ক্ষতির পরিসংখ্যান</h4>
+<ul>
+<li>বর্ষায় তিস্তার প্রস্থ <b class="n">৮–৯ কিমি</b>; প্রতিবছর <b class="n">৪০ হাজার পরিবার</b> বাস্তুচ্যুত</li>
+<li>দারিদ্র্য জাতীয় গড়ের <b class="n">দ্বিগুণ</b> (BBS); ভূগর্ভস্থ পানিস্তর নামে <b class="n">২০–৩০ মিটার</b></li>
+<li>বছরে <b class="n">~১ লাখ কোটি টাকা</b> সম্পদ ক্ষয় (BAPA, BEN); নাব্যতা কমেছে <b class="n">৫০–৬০%</b></li>
+<li>মৎস্য উৎপাদন কমে <b class="n">৭০–৮০%</b>; শুকনো মৌসুমে সেচ ব্যয় <b class="n">৫–১০ গুণ</b></li>
+<li>তিন ফসলি জমি এক ফসলি; আত্রাই, পুনর্ভবা, করতোয়া খালে পরিণত</li>
+<li>ধারণা: <b>Hydro-Hegemony</b>, "ecological refugee", low-productivity trap</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>২০১১ সালের তিস্তা চুক্তি</h3>
+<ul>
+<li>মনমোহন সিংয়ের ঢাকা সফর উপলক্ষে JRC খসড়া; ৩ উপাদান: (ক) Dry season allocation: BD ৩৭.৫%, India ৪২.৫%, E-flow ২০% — "win-win framework" (খ) Real-time hydrological data (গ) Joint Commission।</li>
+</ul>
+<h4>বাস্তবায়ন না হওয়ার কারণ</h4>
+<ol><li>মমতা বন্দ্যোপাধ্যায়ের আপত্তি; ভারতের সংবিধানে পানি <b>State Subject</b></li><li>কেন্দ্র সরকারের রাজনৈতিক দ্বিধা</li><li>উজানের জল প্রকল্পের স্বার্থ (সিকিম, পশ্চিমবঙ্গ)</li><li>নিরাপত্তা সংবেদনশীলতা (Siliguri Corridor — "strategic zone")</li></ol>
+</div>
+
+<div class="card">
+<h3>চীনের প্রসঙ্গ ও তিস্তা মহাপরিকল্পনা</h3>
+<p><b>নাম:</b> Teesta River Comprehensive Management and Restoration Project (<b>TRCMRP</b>) — নকশা: চীনের রাষ্ট্রায়ত্ত <b>PowerChina</b>।</p>
+<p><b>চীন কেন এলো (৫ কারণ):</b> PowerChina প্রস্তাব (২০১৬) • ভারতীয় নিষ্ক্রিয়তা ("alternative hydrodiplomacy") • উত্তরাঞ্চলের মানবিক সংকট • চীনের প্রযুক্তিগত দক্ষতা (হোয়াংহো/Yellow River, ইয়াংজি) • ভারত-নির্ভরতা কমানো।</p>
+<p class="muted">২০১১–২০২৩: ১২ বছর অগ্রগতি নেই → পানি কূটনীতি "Deadlock"।</p>
+<h4>সাম্প্রতিক উদ্যোগ</h4>
+<ol>
+<li>পূর্ণাঙ্গ সমীক্ষা সম্পন্ন — <b>২০২৪</b> (৩ বছর, ২০০ কোটি+ টাকা)</li>
+<li>ড. ইউনূসের চীন সফর <b>মার্চ ২০২৫</b>: চীনকে "water management master" স্বীকৃতি, ৫০ বছরের মাস্টারপ্ল্যান</li>
+<li>BWDB–PowerChina MoU খসড়া <b>২০২৫</b>: ২.১ বিলিয়ন ডলার ঋণ, ৩ বছরে প্রথম ধাপ</li>
+<li>"<b>Teesta Plus</b>": ৫০ বছরের "Mega Water Management Initiative" → "উত্তরাঞ্চলীয় ইঞ্জিন"</li>
+<li>সম্ভাব্য সুফল: <b class="n">১৩,১১৬ কোটি টাকার</b> জমি উদ্ধার; বছরে <b class="n">২৪০ কোটি কিউসেক</b> পানি ব্যবস্থাপনা</li>
+</ol>
+<h4>প্রকল্পের উপাদান</h4>
+<ul>
+<li>স্যাটেলাইট শহর, ইন্ডাস্ট্রিয়াল জোন, লজিস্টিক হাব, কৃষিভিত্তিক শিল্প, পর্যটন অঞ্চল, <b class="n">১৫০ MW</b> সৌরবিদ্যুৎ, মেরিন ড্রাইভ — নতুন কর্মসংস্থান <b class="n">৭ লাখ</b></li>
+<li><b>১০০–১০২ কিমি</b> খনন, গভীরতা ~১০ মি → পরিবহন খরচ <b>৩০–৪০%</b> কম, BBIN বাণিজ্য</li>
+<li>দুই তীরে <b>২০০–২২৪ কিমি</b> বাঁধ (২০৩ কিমি বন্যা নিয়ন্ত্রণ), গ্রোয়েন, রিভেটমেন্ট → <b class="n">~৩ কোটি</b> মানুষ সুরক্ষিত</li>
+<li><b>১৬০–১৭০ বর্গকিমি</b> চরভূমি পুনরুদ্ধার; ৫০–৬০ হাজার হেক্টর সেচ সংকটে; তিন ফসলি → চার ফসলি</li>
+<li>IFPRI ও BARC: বছরে <b class="n">২০ হাজার কোটি টাকা</b> বেশি কৃষি উৎপাদন</li>
+<li>Nature-Based Solutions (NBS); SDG 1: No Poverty</li>
+</ul>
+<p class="muted">নোট: <b>ডাইক/লেভি</b> = নদীর সমান্তরাল দীর্ঘ বাঁধ; <b>গ্রোয়েন</b> = তীর থেকে কোণাকুণি ছোট কাঠামো (স্রোত নিয়ন্ত্রণ)।</p>
+</div>
+
+<details open><summary>✅ মহাপরিকল্পনার সুবিধা + প্রয়োগকৃত থিওরি</summary>
+<div class="tbl"><table>
+<tr><th>#</th><th>সুবিধা</th><th>থিওরি</th></tr>
+<tr><td>১</td><td>উত্তরাঞ্চলের দুর্বল অর্থনীতি পুনর্জাগরণ (impoverished belt → অর্থনৈতিক অঞ্চল)</td><td><span class="t">Regional Development Theory</span></td></tr>
+<tr><td>২</td><td>কৃষি বিপ্লব ও খাদ্যনিরাপত্তা</td><td><span class="t">Food-Water-Energy Nexus</span></td></tr>
+<tr><td>৩</td><td>নদীভাঙন নিয়ন্ত্রণ ও মানবিক দুর্যোগ হ্রাস</td><td><span class="t">Disaster Risk Reduction</span></td></tr>
+<tr><td>৪</td><td>পানি সংরক্ষণ ও পরিবেশ পুনরুদ্ধার</td><td><span class="t">Ecological Restoration Theory</span></td></tr>
+<tr><td>৫</td><td>শিল্পায়ন ও অর্থনৈতিক করিডোর</td><td><span class="t">Growth Pole Theory</span></td></tr>
+<tr><td>৬</td><td>যোগাযোগ ও বাণিজ্য</td><td><span class="t">Infrastructure-Led Development Theory</span></td></tr>
+<tr><td>৭</td><td>পর্যটন ও নদীকেন্দ্রিক অর্থনীতি</td><td><span class="t">Sustainable Tourism Theory</span></td></tr>
+<tr><td>৮</td><td>জলবায়ু অভিযোজন</td><td><span class="t">Climate Resilience Framework (UNFCCC)</span></td></tr>
+<tr><td>৯</td><td>সামাজিক স্থিতিশীলতা ও মানবিক উন্নয়ন ("capability expansion")</td><td><span class="t">Human Development Approach (Amartya Sen)</span></td></tr>
+<tr><td>১০</td><td>ভূরাজনৈতিক ভারসাম্য (Geopolitical Leverage)</td><td><span class="t">Strategic Hedging</span></td></tr>
+</table></div>
+</details>
+
+<details open><summary>⚠️ চীনের অধীনে বাস্তবায়নের চ্যালেঞ্জ + তত্ত্ব</summary>
+<div class="tbl"><table>
+<tr><th>#</th><th>চ্যালেঞ্জ</th><th>তত্ত্ব</th></tr>
+<tr><td>১</td><td>ভারত-চীন-বাংলাদেশ ত্রিপাক্ষিক টানাপোড়েন (Chicken's Neck, "Strategic Encirclement", BRI)</td><td><span class="t">Geopolitical Realism</span></td></tr>
+<tr><td>২</td><td>ভারতের কঠোর অবস্থান — গজলডোবা পানি না ছাড়লে প্রকৃত পানি নেই</td><td><span class="t">Hydro-Hegemony Theory</span></td></tr>
+<tr><td>৩</td><td>চীনা ঋণের উচ্চসুদ (Minsheng Bank, commercial interest)</td><td><span class="t">Debt Trap Diplomacy Hypothesis</span> (শ্রীলঙ্কার হাম্বানটোটা)</td></tr>
+<tr><td>৪</td><td>চীনা প্রযুক্তির উপযোগিতা প্রশ্ন (পলিসমৃদ্ধ, বৃষ্টিচক্রনির্ভর নদী)</td><td><span class="t">Environmental Determinism</span></td></tr>
+<tr><td>৫</td><td>Embankment ঝুঁকি (৭–৯ কিমি প্রস্থ সংকুচিত → হড়কা বন্যা, flood-dumping)</td><td><span class="t">River Morphology Theory</span></td></tr>
+<tr><td>৬</td><td>গোপনীয়তা ও স্বচ্ছতার অভাব (Feasibility Study, EIA প্রকাশ হয়নি)</td><td><span class="t">Good Governance (World Bank, ৮ নীতি)</span></td></tr>
+<tr><td>৭</td><td>অংশীজনদের অংশগ্রহণহীনতা ("Top-down Engineering Model")</td><td><span class="t">Participatory Development</span></td></tr>
+<tr><td>৮</td><td>ভারতের বিরোধিতা (গোয়েন্দা সন্দেহ)</td><td><span class="t">Security Dilemma</span></td></tr>
+<tr><td>৯</td><td>প্রকল্প ব্যর্থ হলে ২০–৪০ কিমি disaster zone; প্রস্থ এক-চতুর্থাংশে</td><td><span class="t">Risk Society Theory</span></td></tr>
+<tr><td>১০</td><td>engineered channel → ecological flow কমা; sediment cycle বাধাগ্রস্ত</td><td><span class="t">Ecohydrology Theory</span></td></tr>
+<tr><td>১১</td><td>অতিরিক্ত প্রত্যাশা (১৫০ MW, ৬ স্যাটেলাইট টাউন) — মূল সমস্যা পানির হিস্যা</td><td><span class="t">Cost-benefit Analysis</span></td></tr>
+<tr><td>১২</td><td>স্থানীয় পরিবেশ ও জীববৈচিত্র্যে অনিশ্চিত প্রভাব</td><td><span class="t">EIA</span></td></tr>
+<tr><td>১৩</td><td>ভারত ক্ষুব্ধ, যুক্তরাষ্ট্র উদ্বিগ্ন (Indo-Pacific) → "geopolitical pressure zone"</td><td><span class="t">Small State Foreign Policy</span></td></tr>
+</table></div>
+</details>
+
+<details open><summary>🛠️ চ্যালেঞ্জ মোকাবিলায় করণীয় (৯টি)</summary>
+<ol>
+<li><b>Hydro Diplomacy</b> — Helsinki/UN 1997 অনুযায়ী "<b>Joint River Basin Council</b>" (চীন, ভারত, নেপাল, বাংলাদেশ)</li>
+<li><b>Balanced Geopolitical Posture</b> — "Strategic Hedging Posture": চীনের প্রযুক্তি-অর্থায়ন নেবে, নিরাপত্তায় ভূমিকা নয়; ভারতের "Strategic Anxiety" দূর করা</li>
+<li>ডেটা-শেয়ারিং ও বৈজ্ঞানিক গবেষণাভিত্তিক সিদ্ধান্ত</li>
+<li>দেশীয় বিশেষজ্ঞদের নেতৃত্বে <b>জাতীয় তিস্তা কমিশন</b>; Local Capacity Building</li>
+<li>পরিবেশগত নিরাপত্তা — <span class="t">Eco-centric Development Theory</span>; <b>SEA</b> বাধ্যতামূলক</li>
+<li>ঋণে সতর্কতা — soft/concessional loan, PPP মডেল</li>
+<li>ভারতকে যুক্ত করা — CBM (পর্যবেক্ষক আমন্ত্রণ, যৌথ পরিদর্শন)</li>
+<li>স্থানীয় জনগণকে প্রধান স্টেকহোল্ডার — গণশুনানি, <b>SIA</b></li>
+<li><b>IWRM</b> (Integrated Water Resource Management) মাস্টারপ্ল্যান</li>
+</ol>
+<div class="ok">উপসংহার: তিস্তা শুধু অবকাঠামো নয় — খাদ্য নিরাপত্তা, মানব উন্নয়ন, আঞ্চলিক স্থিতিশীলতা, পরিবেশ সুরক্ষা ও ভূরাজনৈতিক ভারসাম্যের প্রশ্ন।</div>
+</details>
+</section>
+
+<!-- ================= INDIA ================= -->
+<section class="topic" id="india">
+<h2>২. বাংলাদেশ-ভারত সম্পর্ক: সাম্প্রতিক দ্বিপাক্ষিক ইস্যু</h2>
+<div class="quote">"Trust is the rarest currency in India-Bangladesh relations; without it, even small incidents turn into major political crises." — <span>Shantanu Mukherjee</span></div>
+<p>১৯৭১-পরবর্তী সম্পর্ক "<b>ঘনিষ্ঠ কিন্তু অসম</b>" (close but unequal); ৫ আগস্ট ২০২৪-এর পর নাটকীয় পরিবর্তন।</p>
+
+<details open><summary>১ম পর্ব: ১০টি সমস্যা ও মূল টার্ম</summary>
+<div class="tbl"><table>
+<tr><th>ইস্যু</th><th>মূল তথ্য / টার্ম</th></tr>
+<tr><td>১. শেখ হাসিনাকে আশ্রয় ও প্রত্যর্পণ</td><td>trust deficit; "<b>regime preference</b>" বনাম "<b>sovereignty</b>"</td></tr>
+<tr><td>২. ভিসা, ট্যুরিজম</td><td>পর্যটক ভিসা বন্ধ; <b>people-to-people linkage erosion</b>; soft power ক্ষতি; আগরতলা মিশন</td></tr>
+<tr><td>৩. বাণিজ্য-বিধিনিষেধ</td><td>৯ এপ্রিল ২০২৫ কলকাতা ট্রানজিট প্রত্যাহার; পাট পণ্যে স্থলবন্দর নিষেধ; গুঁড়াদুধ, চাল, সুতা; "<b>issue linkage</b>"; NTB; "unfair/asymmetrical interdependence"</td></tr>
+<tr><td>৪. পুশ-ইন ও সীমান্ত হত্যা</td><td>border ethics লঙ্ঘন; security dilemma; ভারতকে "security-centric / insensitive neighbour"</td></tr>
+<tr><td>৫. অপতথ্য ও হিন্দু-নির্যাতন ন্যারেটিভ</td><td>misinformation/disinformation; "<b>securitization of the Other</b>"; <b>Habermas – Public Sphere</b></td></tr>
+<tr><td>৬. সীমান্তে সামরিক উপস্থিতি</td><td>Siliguri Corridor; আসাম ও উত্তর দিনাজপুরে ২টি আর্মি স্টেশন; "encirclement anxiety"; BD চোখে "securitization of the border", ভারতের চোখে "preventive defence"; "geopolitical frontline"</td></tr>
+<tr><td>৭. পানি বণ্টন</td><td>hydro-hegemony; গঙ্গা চুক্তি নবায়ন</td></tr>
+<tr><td>৮. চীনের তিস্তা প্রকল্প</td><td>"strategic encirclement risk"; dual-use সন্দেহ</td></tr>
+<tr><td>৯. ডিজিটাল ইন্টারডিপেনডেন্স</td><td>সাবমেরিন কেবল, বঙ্গবন্ধু-১; "soft control / infrastructural power"</td></tr>
+<tr><td>১০. ন্যারেটিভের বদল</td><td>"কমফোর্ট জোন" শেষ; ভারত "asymmetric partner"</td></tr>
+</table></div>
+</details>
+
+<details open><summary>২য় পর্ব: সমাধান (ইস্যুভিত্তিক)</summary>
+<div class="card"><h4>১) হাসিনা প্রত্যর্পণ</h4><ul>
+<li>(ক) <b>Legal Diplomatic Track</b> — <b>MLAT</b> (Mutual Legal Assistance Treaty); বিচারকে "judicial", "রাজনৈতিক" নয়</li>
+<li>(খ) <b>Back-channel / Track 1.5</b> — transitional justice; "Rule of law and accountability are essential pillars of democratic transition."</li>
+<li>(গ) <b>Security Assurance</b> — লিখিত নিশ্চয়তা, আন্তর্জাতিক পর্যবেক্ষক; "strictly criminal & humanitarian accountability case, not political vendetta"</li>
+<li>তত্ত্ব: <span class="t">Asymmetrical Interdependence</span> <span class="t">Complex Interdependence (Nye & Keohane)</span> — issue-linkage নয়</li></ul></div>
+
+<div class="card"><h4>২) পুশ-ইন সংকট</h4><ul>
+<li>(ক) <b>Joint Verification Mechanism (JVM)</b> — বায়োমেট্রিক যাচাই; উদাহরণ: ভারত-মিয়ানমার <b>Moreh-Tamu</b> — <span class="t">Regime Theory</span></li>
+<li>(খ) <b>Human-Rights-First Diplomacy</b> — <b>ICCPR Article 12</b>; <b>non-refoulement</b>; UNHCR, OHCHR; "norm-based diplomacy"</li>
+<li>(গ) <b>BGB-BSF</b> Force-to-Force CBMs (হটলাইন, ফ্ল্যাগ মিটিং) — EU ও বালকান উদাহরণ</li>
+<li>(ঘ) মিডিয়া কূটনীতি — Fact Sheet, media briefing; "information diplomacy / narrative management"</li>
+<li>(ঙ) <b>Coalition Diplomacy</b> — নেপাল, ভুটান, শ্রীলঙ্কা, মালদ্বীপ; "image cost"</li>
+<li>তত্ত্ব: Regime, Complex Interdependence, Asymmetrical Interdependence, <span class="t">Human Security Framework</span></li></ul></div>
+
+<div class="card"><h4>ভিসা ও পর্যটন</h4><ul>
+<li><b>Selective visa</b> — স্বাস্থ্য ও শিক্ষার্থী করিডোর; "essential mobility corridor" (ভারত-নেপাল, ভারত-ভুটান)</li>
+<li><b>Track-2 Diplomacy</b> — বিশ্ববিদ্যালয় বিনিময়; উদাহরণ: কলম্বো-চেন্নাই শিক্ষার্থী বিনিময়</li></ul></div>
+
+<div class="card"><h4>সীমান্ত হত্যা</h4>
+<div class="quote">"Border killings between two friendly nations are a moral failure, not just a policy failure." — <span>Salil Tripathi</span></div>
+<ul><li>তত্ত্ব: <span class="t">Human Security Approach</span></li>
+<li>(ক) <b>Zero Shooting Policy</b> (২০১১–১৩ ঘোষণা, বাধ্যতামূলক নয়; নেপাল-ভুটানে মানে) → লিখিত চুক্তি — <span class="t">Norm Diffusion Theory</span></li>
+<li>(খ) যৌথ <b>Border Crime Monitoring Center</b> (ড্রোন, CCTV) — ভারত-মিয়ানমার উদাহরণ — Regime Theory</li>
+<li>(গ) বিকল্প জীবিকা — <b>লালমনিরহাট বর্ডার হাটে পাচার ৪৮% কম</b> — <span class="t">Human Development Theory</span></li></ul></div>
+
+<div class="card"><h4>বাণিজ্য নিষেধাজ্ঞা</h4><ul>
+<li>trade retaliation নয়, <b>trade diversification</b> (থাইল্যান্ড, মালয়েশিয়া, ভিয়েতনাম, ইন্দোনেশিয়া)</li>
+<li>NTB: phytosanitary (উদ্ভিদ-স্বাস্থ্য সুরক্ষা) → যৌথ ল্যাব, mutual recognition of standards</li>
+<li>দ্রুত <b>CEPA</b> (Comprehensive Economic Partnership Agreement); BBIN, BIMSTEC নেটওয়ার্ক</li>
+<li>তত্ত্ব: <span class="t">Asymmetrical Interdependence</span> (balancing)</li></ul></div>
+
+<div class="card"><h4>সীমান্তের সামরিকীকরণ</h4><ul>
+<li>শিলিগুড়ির কাছে অন্তত <b>৩টি গ্যারিসন</b>; করিডোর <b>২২ কিমি</b></li>
+<li>(ক) Strategic Transparency Dialogue — "intent clarification diplomacy"</li>
+<li>(খ) Joint Military CBMs — DGMO হটলাইন; ভারত-চীন "Hotline Diplomacy"</li>
+<li>(গ) "regional stability narrative": "India's northeast is safe when Bangladesh is stable and friendly."</li>
+<li>তত্ত্ব: <span class="t">Security Dilemma</span></li></ul></div>
+
+<div class="card"><h4>পানি-বাঁধ সমস্যা</h4>
+<div class="quote">"Transboundary rivers are not national assets; they are shared lifelines, and they demand shared governance." — <span>Richard Snyder</span></div>
+<ul><li>ধরলা, দুধকুমার, মহানন্দা</li>
+<li>(ক) <b>Basin-wide hydro-diplomacy</b> — নীলনদ, <b>Colorado River Compact</b></li>
+<li>(খ) Data transparency — রিয়েল টাইম ডেটা</li>
+<li>(গ) চীনা প্রকল্প = "<b>alternative bargaining chip</b>" (নেপালের উদাহরণ)</li></ul></div>
+
+<div class="card"><h4>Misinformation</h4><ul>
+<li><b>Rapid Response Media Cell (RRMC)</b> — ২৪ ঘণ্টায় জবাব (EU বনাম রাশিয়া মডেল)</li>
+<li>Track-2 মিডিয়া সংলাপ (ভারত-শ্রীলঙ্কা); Narrative Diplomacy</li>
+<li>তত্ত্ব: <span class="t">Constructivism</span> — narrative competition</li></ul></div>
+
+<div class="card"><h4>রাজনৈতিক অবিশ্বাস: পুনর্গঠন</h4><ul>
+<li><b>Reset Summit</b> (Leaders' Summit) • প্রাতিষ্ঠানিক আস্থা (যৌথ কমিশন, FS বৈঠক) • বহুপাক্ষিক কূটনীতি (<b>BIMSTEC, IORA, AIIB, NDB</b>)</li></ul></div>
+
+<div class="tbl"><table>
+<tr><th>ইস্যু</th><th>সমাধানের মূল কৌশল</th></tr>
+<tr><td>হাসিনাকে ফেরত</td><td>Legal ও Backchannel diplomacy</td></tr>
+<tr><td>Push-in</td><td>Joint Verification ও Human-rights diplomacy</td></tr>
+<tr><td>ভিসা/ট্যুরিজম</td><td>Selective visa ও Digital processing</td></tr>
+<tr><td>সীমান্ত হত্যা</td><td>Zero-shooting agreement, surveillance</td></tr>
+<tr><td>বাণিজ্য নিষেধাজ্ঞা</td><td>Diversification, CEPA, joint labs</td></tr>
+<tr><td>সামরিক ঘাঁটি</td><td>Transparency, CBM, hotline</td></tr>
+<tr><td>তিস্তা–গজলডোবা</td><td>Basin diplomacy, data sharing</td></tr>
+<tr><td>Misinformation</td><td>Rapid Response, Media dialogue</td></tr>
+<tr><td>সামগ্রিক সম্পর্ক</td><td>Leaders Summit, institutional reset</td></tr>
+</table></div>
+<div class="ok">উপসংহার: সমন্বিত, নিয়মভিত্তিক (Rule-Based) ও পারস্পরিক শ্রদ্ধানির্ভর সহযোগিতা।</div>
+</details>
+</section>
+
+<!-- ================= ROHINGYA ================= -->
+<section class="topic" id="rohingya">
+<h2>৩. রোহিঙ্গা সংকট: চ্যালেঞ্জ ও সমাধান</h2>
+<div class="quote">"Bangladesh has shown remarkable compassion, but sustainable solutions depend on global responsibility-sharing." — <span>Amnesty International</span></div>
+<div class="quote">"Bangladesh has shown extraordinary humanity, but humanitarian generosity cannot substitute political solutions." — <span>Filippo Grandi</span></div>
+<p>রোহিঙ্গা সংকট = মানবিক, নিরাপত্তা ও কূটনৈতিক — <b>ত্রিমাত্রিক</b>; একটি "<b>protracted crisis</b>"।</p>
+
+<details open><summary>১ম পর্ব: ১১টি চ্যালেঞ্জ</summary>
+<ol>
+<li>মিয়ানমারের রাজনৈতিক ভাঙন — ২০২১ অভ্যুত্থান, আরাকান আর্মি (AA); <b>state collapse</b> ও <b>authority fragmentation</b></li>
+<li>নাগরিকত্বহীনতা — <b>১৯৮২ Citizenship Law</b> ("Foreigner"/"Bengali Migrant"); "<b>statelessness trap</b>"</li>
+<li>আন্তর্জাতিক নৈরাজ্যবাদী কাঠামো — চীন-রাশিয়ার ভেটো</li>
+<li>বাংলাদেশে চাপ — ১১ লাখ+; "<b>refugee-host tension</b>"</li>
+<li>নিরাপত্তাহীনতা — ARSA, RSO, অস্ত্র, ইয়াবা</li>
+<li>মনোযোগ বিচ্যুতি ও তহবিল ~৫০% হ্রাস — "long crises lose donor attention"</li>
+<li>বাংলাদেশেই থাকার প্রস্তুতি — "<b>de facto integration</b>" ঝুঁকি</li>
+<li>শক্তির প্রতিযোগিতা (চীন মধ্যস্থতাকারী, ভারত আরাকানে প্রভাব, পশ্চিমা মানবাধিকার)</li>
+<li>আঞ্চলিক প্রতিষ্ঠানের ব্যর্থতা — ASEAN "<b>non-interference doctrine</b>" / "Asian Way"</li>
+<li>UNHCR-এর ৩ শর্ত পূরণ হয়নি: <b>Safe, Dignified, Voluntary</b></li>
+<li>চীন (অর্থনৈতিক করিডোর, তেল-গ্যাস পাইপলাইন), ভারত, আসিয়ানের স্বার্থ → "<b>জিওপলিটিক্যাল ট্রাফিক জ্যাম</b>"</li>
+</ol>
+</details>
+
+<details open><summary>অতীতের প্রচেষ্টা ব্যর্থ হওয়ার ৪ কারণ</summary>
+<ol>
+<li>মিয়ানমারের Political Will নেই — নীতি ৩ স্তম্ভ: <b>Delaying, Denying, Delegitimizing</b>; ২০১৮ ও ২০১৯ প্রত্যাবাসন ব্যর্থ; ২০২৩ "pilot repatriation"</li>
+<li><b>Negotiation Parties Mismatch</b> — শুধু জান্তার সাথে আলোচনা; NUG ও আরাকান আর্মি বাদ</li>
+<li>২০১৭-১৮ Arrangement-এ ত্রুটি — Citizenship guarantee, Monitoring mechanism, International supervision নেই</li>
+<li>সীমিত দরকষাকষি — "<b>Asymmetrical Negotiation Problem</b>" (hard leverage নেই)</li>
+</ol>
+</details>
+
+<details open><summary>২য় পর্ব: ৬টি সমাধান</summary>
+<div class="card"><h4>সমাধান-১: Three-Guarantee Repatriation Framework</h4>
+<div class="tbl"><table>
+<tr><th>গ্যারান্টি</th><th>কী করতে হবে</th><th>উদাহরণ</th></tr>
+<tr><td>নিরাপত্তা</td><td>UNHCR, ICRC, ASEAN monitoring mission</td><td>১৯৯০-এর দশকে কম্বোডিয়ায় <b>UNTAC</b></td></tr>
+<tr><td>নাগরিকত্ব</td><td>জন্মসূত্রে নাগরিকত্ব, পরিবারভিত্তিক নথি, NVC বাতিল</td><td>রুয়ান্ডা গণহত্যা-পরবর্তী <b>তুতসি</b></td></tr>
+<tr><td>জীবিকা</td><td>বসতি, কৃষিজমি, স্কুল-ক্লিনিক</td><td><b>মোজাম্বিক–রুয়ান্ডা</b> livelihood restoration</td></tr>
+</table></div>
+<p><b>"No Safety, No Citizenship, No Livelihood = No Repatriation."</b></p></div>
+
+<div class="card"><h4>সমাধান-২: Multilateral Pressure Coalition (চীনের একক মধ্যস্থতা ভাঙা)</h4>
+<div class="tbl"><table>
+<tr><th>The 5-Pillar Coalition</th><th>ভূমিকা</th></tr>
+<tr><td>China</td><td>প্রধান মধ্যস্থতাকারী কিন্তু একক নয়</td></tr>
+<tr><td>Japan</td><td>অর্থনৈতিক চাপ; Counter Mediator; মিয়ানমারের ২য় বৃহত্তম ডোনার; Rakhine Reconstruction; FOIP</td></tr>
+<tr><td>ASEAN Troika (ইন্দোনেশিয়া, মালয়েশিয়া, থাইল্যান্ড)</td><td>আঞ্চলিক চাপ; ইন্দোনেশিয়া ২০২৩; মালয়েশিয়ায় ১ লাখ+ রোহিঙ্গা</td></tr>
+<tr><td>EU</td><td>Arms Embargo, Targeted Sanctions, GSP; সার্বিয়া-কসোভো উদাহরণ</td></tr>
+<tr><td>UNSC P3 (US, UK, France)</td><td>কূটনৈতিক চাপ; ২০০৫ সুদান-দারফুর উদাহরণ</td></tr>
+</table></div>
+<p>→ "<b>Collective Mediation Framework</b>" / "Multilateral Repatriation Pressure Architecture"</p></div>
+
+<div class="card"><h4>সমাধান-৩: Dual-Track Diplomacy (Coercive Bargaining / Smart Pressure)</h4><ul>
+<li><b>Pressure Track:</b> UNHRC প্রস্তাব (সিরিয়া উদাহরণ); P3, কানাডা, অস্ট্রেলিয়া দিয়ে ভ্রমণ নিষেধাজ্ঞা; ICJ-তে গাম্বিয়ার মামলায় <b>amicus brief</b> (বসনিয়া-সার্বিয়া উদাহরণ); <b>আর্জেন্টিনার</b> ইউনিভার্সাল জুরিসডিকশন মামলা; জার্মানি, নেদারল্যান্ড, কানাডা</li>
+<li><b>Negotiation Track:</b> মানবিক করিডোর (সিরিয়া-তুরস্ক); Aid-Linked Negotiation (ইরান <b>JCPOA</b> উদাহরণ)</li></ul></div>
+
+<div class="card"><h4>সমাধান-৪: Safe Zone / Protected Return Zone</h4>
+<p>উদাহরণ: ১৯৯১ ইরাকে কুর্দিদের নিরাপদ অঞ্চল; বসনিয়ায় স্রেব্রেনিৎসা "Safe Corridor"; সিরিয়া-তুরস্ক সীমান্ত।</p></div>
+
+<div class="card"><h4>সমাধান-৫: দরকষাকষি ক্ষমতা বৃদ্ধি</h4><ul>
+<li>Geostrategic Leverage (চীনের রাখাইন পাইপলাইন, BRI) • Indo-Pacific Alignment (ভারত, জাপান, যুক্তরাষ্ট্র) • Aid Bargaining — উদাহরণ: <b>জর্ডান</b> (সিরীয় শরণার্থী)</li></ul></div>
+
+<div class="card"><h4>সমাধান-৬: ন্যারেটিভ — নিরাপত্তা নয়, মানবিক বিপর্যয়</h4>
+<p>উদাহরণ: সিরিয়ায় EU ~<b class="n">৪ বিলিয়ন ডলার</b>; ২০১৭-র পর বৈশ্বিক তহবিল।</p></div>
+</details>
+</section>
+
+<!-- ================= PAKISTAN ================= -->
+<section class="topic" id="pakistan">
+<h2>৪. বাংলাদেশ-পাকিস্তান সম্পর্ক ও অমীমাংসিত ইস্যু</h2>
+<div class="quote">"South Asia's future cannot rest on historic grievances; it must rest on economic connectivity and mutual respect." — <span>Amina Mohammed</span></div>
+<p>২০২৪-এর পর সম্পর্ক: "<b>Cautious Engagement</b>" (সতর্ক অংশীদারত্ব)।</p>
+
+<details open><summary>দ্বিপাক্ষিক ইস্যু (১১টি)</summary>
+<ol>
+<li><b>১৯৭১ গণহত্যা, ক্ষমা ও ক্ষতিপূরণ</b> — "memory politics"; ইসহাক দার প্রশ্ন এড়িয়েছেন; ২০০২ আংশিক দুঃখপ্রকাশ — <span class="t">Transitional Justice</span> <span class="t">Historical Reconciliation Theory</span></li>
+<li><b>উচ্চপর্যায়ের সফর</b> — ইসহাক দার <b>২৩ আগস্ট ২০২৫</b>:
+  <ul><li>সরকারি ও কূটনৈতিক পাসপোর্টে ভিসা মুক্তি চুক্তি</li><li>সাংস্কৃতিক বিনিময় কর্মসূচি</li><li>৪ MoU: বাণিজ্য JWG; Foreign Service Academy; <b>BSS-APP</b>; <b>BIISS-ISSI</b></li></ul>
+  যৌথবাহিনী প্রধান <b>২৫ অক্টোবর ২০২৫</b>; নৌ-জাহাজ চট্টগ্রামে; ৪০ বছরে সবচেয়ে উষ্ণ। ভারত গভীর সন্দেহে দেখে।</li>
+<li><b>বাণিজ্য ও ভিসা</b> — সেপ্টেম্বর ২০২৪ ভিসা চার্জ হ্রাস; NOC শিথিল; JEC পুনরুজ্জীবিত (<b>২৭ অক্টোবর ২০২৫</b>, করাচি পোর্ট); SEZ সফর; বাণিজ্য <b>৮৬৫ মিলিয়ন ডলার</b> (১ বিলিয়নের নিচে) — "<b>under-utilised interdependence</b>"; <span class="t">Regionalism</span> <span class="t">South-South Cooperation</span></li>
+<li><b>শিক্ষা-সংস্কৃতি</b> — ঢাবি–পাঞ্জাব বিশ্ববিদ্যালয় ২০২৪ (<span class="t">Knowledge Diplomacy</span>, CBM); BIISS–IPRI (<span class="t">Track-1.5</span>, <span class="t">Epistemic Community</span>); সাংবাদিক বিনিময় (<span class="t">Constructivism</span>, Soft Power)</li>
+<li><b>কনস্যুলার ও মানবিক</b> — বিচ্ছিন্ন পরিবার পুনর্মিলন; <span class="t">Humanitarian Diplomacy</span></li>
+<li><b>নিরাপত্তা</b> — Economic Times-এর ISI দাবি (কক্সবাজার, টেকনাফ, মেঘনা উপকূল); ২০০১–০৬; BD-র "<b>No soil policy</b>" — <span class="t">Securitization Theory</span></li>
+<li><b>CPEC, BCIM, BIMSTEC</b> — OIC, সার্ক পুনর্গঠন, IDB; Act East Policy; "inclusive connectivity", "win-win regionalism" — <span class="t">Balance of Power</span> <span class="t">Hedging Strategy</span></li>
+<li><b>নিউক্লিয়ার আমব্রেলা</b> — পাকিস্তান দক্ষিণ এশিয়ার ২য় পারমাণবিক শক্তি — <span class="t">Deterrence Theory</span>, security dilemma; balanced hedging</li>
+<li><b>নতুন কৌশলগত অক্ষ</b> — ভারতের আশঙ্কা (চীন ভরকেন্দ্র); BD: সম্পর্ক অর্থনীতি-শিক্ষায় সীমিত — hedging</li>
+<li><b>Narrative Shift</b> — "message politics"; পাকিস্তানের repositioning; BD: পরস্পর শ্রদ্ধা, অর্থনৈতিক সহযোগিতা, শিক্ষা-সংস্কৃতি — <span class="t">Constructivist Theory</span></li>
+</ol>
+<p><b>প্রধান বাধা:</b> ১৯৭১ অমীমাংসা • ভারতের strategic anxiety • CPEC-BCIM-BIMSTEC ভারসাম্য • পরমাণু ছায়া রাজনীতি • দুর্বল অর্থনৈতিক কাঠামো • নিরাপত্তা সন্দেহ • জনমতের ঐতিহাসিক বিভাজন • কূটনৈতিক ভাষার অমিল • আঞ্চলিক শক্তির ভারসাম্য সংকট।</p>
+</details>
+
+<details open><summary>৩ অমীমাংসিত ইস্যু ও সমাধান</summary>
+<div class="card"><h4>১) ১৯৭১ গণহত্যার জন্য নিঃশর্ত ক্ষমা</h4>
+<p>genocide, war crimes, crimes against humanity; ২০০২ মোশাররফ শুধু <b>regret</b>।</p>
+<div class="tbl"><table>
+<tr><th>সমাধান</th><th>উদাহরণ</th></tr>
+<tr><td>(ক) Transitional Justice Diplomacy — "State Apology"</td><td>জাপান-দ. কোরিয়া <b>Comfort Women Apology (2015)</b>; জার্মানির <b>Holocaust</b> Apology</td></tr>
+<tr><td>(খ) Track 1.5 Dialogue — <b>Historical Truth Commission</b>, যৌথ "Truth Report"</td><td>Germany-Poland Historic Commission; Rwanda-France Joint Genocide Inquiry</td></tr>
+<tr><td>(গ) Symbolic Apology Model — সংসদ রেজোলিউশন → প্রধানমন্ত্রীর বিবৃতি → "Declaration on 1971 Tragedy and Future Reconciliation"</td><td>অস্ট্রেলিয়া Sorry Day; কানাডা Residential School; জাপান-চীন <b>Murayama Statement</b>; জাপান-ফিলিপাইন; জার্মানি-চেক</td></tr>
+</table></div></div>
+
+<div class="card"><h4>২) ক্ষতিপূরণ ও অবিভাজিত সম্পদ (১৯৪৭–১৯৭১)</h4>
+<div class="tbl"><table>
+<tr><th>সমাধান</th><th>উদাহরণ</th></tr>
+<tr><td>(ক) Reparations Negotiation Framework — "One Time Reparations Package" (বৃত্তি, আর্কাইভ, উন্নয়ন তহবিল)</td><td>Iraq-Kuwait UN Reparation Fund; Germany-Jewish Claims Conference; Ethiopia-Eritrea War Claims Commission</td></tr>
+<tr><td>(খ) Economic Offset Mechanism — নগদ নয়: বাণিজ্য সুবিধা, স্কলারশিপ, কোটা, Joint Investment Fund</td><td>জাপান-কোরিয়া ২০১৫ ফান্ড; Japan-Philippines; Italy-Libya; Indonesia-Pakistan</td></tr>
+<tr><td>(গ) আন্তর্জাতিক Arbitration — pre-arbitration consultation</td><td><b>SIAC</b> (সিঙ্গাপুর), <b>ICSID</b> (বিশ্বব্যাংক), <b>PCA</b>; সুদান-দক্ষিণ সুদান</td></tr>
+</table></div>
+<p>ফ্রেমিং: "punitive justice" নয়, "<b>restorative justice</b>"।</p></div>
+
+<div class="card"><h4>৩) আটকে পড়া নাগরিকদের প্রত্যাবাসন</h4>
+<div class="tbl"><table>
+<tr><th>পদ্ধতি</th><th>সুবিধা / উদাহরণ</th></tr>
+<tr><td><b>1974 Tripartite</b> চুক্তি পুনরুজ্জীবন</td><td>আইনি ভিত্তি শক্তিশালী ("লিগ্যাল ও পলিটিক্যাল ম্যান্ডেট"); জার্মানি-পোল্যান্ড, ইথিওপিয়া-ইরিত্রিয়া</td></tr>
+<tr><td><b>Joint Repatriation Mechanism</b> (UNHCR, IOM, স্বরাষ্ট্র মন্ত্রণালয়)</td><td>রাজনৈতিক চাপ কমে; ভারত-শ্রীলঙ্কা তামিল প্রত্যাবাসন (১৯৮০–৯০)</td></tr>
+<tr><td><b>Citizenship Clarification Program</b></td><td>দীর্ঘমেয়াদি আইনি সমাধান; Jordan-Iraq-Palestinian; Croatia-Serbia</td></tr>
+</table></div>
+<p>তত্ত্ব: <span class="t">Regime Theory</span> <span class="t">Liberal Institutionalism</span> <span class="t">Human Security Framework</span></p></div>
+</details>
+</section>
+
+<!-- ================= FOREIGN POLICY ================= -->
+<section class="topic" id="fp">
+<h2>৫. বাংলাদেশের পররাষ্ট্রনীতির ভবিষ্যৎ দিকনির্দেশনা</h2>
+<div class="quote">"For Bangladesh, future diplomacy must rest on strategic autonomy — cooperating with all, aligning with none." — <span>Prof. Amartya Sen</span></div>
+<p><b>সংজ্ঞা:</b> পররাষ্ট্রনীতি হলো রাষ্ট্রের বৈদেশিক সম্পর্ক পরিচালনার নীতি ও সিদ্ধান্তের সমষ্টি, যার মাধ্যমে জাতীয় স্বার্থ রক্ষা, উন্নয়ন ও আন্তর্জাতিক মর্যাদা প্রতিষ্ঠা করা হয়। নির্ধারক: অভ্যন্তরীণ, বহিঃ ও আইনগত।</p>
+
+<details open><summary>আইনগত নির্ধারক (Binding Determinants)</summary>
+<ol>
+<li><b>সংবিধান অনুচ্ছেদ ২৫</b> — সার্বভৌমত্ব ও সমতার প্রতি শ্রদ্ধা; অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ না করা; বিরোধের শান্তিপূর্ণ সমাধান; আন্তর্জাতিক আইন ও জাতিসংঘ সনদের প্রতি শ্রদ্ধা।
+  <br>(ক) শক্তিপ্রয়োগ থেকে বিরত, সাধারণ ও পূর্ণ নিরস্ত্রীকরণ (খ) আত্মনিয়ন্ত্রণাধিকার সমর্থন (গ) সাম্রাজ্যবাদ, উপনিবেশবাদ, বর্ণবৈষম্যবাদের বিরুদ্ধে নিপীড়িত জনগণের সংগ্রাম সমর্থন</li>
+<li><b>অনুচ্ছেদ ৬৩</b> — সংসদের সম্মতি ছাড়া যুদ্ধ ঘোষণা বা যুদ্ধে অংশগ্রহণ নয়</li>
+<li><b>জুলাই সনদের ২৬ ধারা</b> — জাতীয় স্বার্থ/নিরাপত্তা প্রভাবিত করে এমন চুক্তি আইনসভার <b>উভয় কক্ষের</b> সংখ্যাগরিষ্ঠ ভোটে অনুমোদন</li>
+<li><b>জাতিসংঘ সনদ ২(৪)</b> — আঞ্চলিক অখণ্ডতা ও রাজনৈতিক স্বাধীনতার বিরুদ্ধে বলপ্রয়োগ নিষিদ্ধ</li>
+<li><b>জাতিসংঘ সনদ ২(৭)</b> — অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ নয়, তবে <b>সপ্তম অধ্যায়</b> ব্যতিক্রম</li>
+</ol>
+</details>
+
+<details open><summary>প্রেসিডেন্ট জিয়াউর রহমানের পররাষ্ট্রনীতি (১৯৭৬–১৯৮১)</summary>
+<ul>
+<li>স্বাধীনতা ও সার্বভৌমত্বের সুরক্ষা; <b>১৯ দফার ১ম দফা</b> সার্বভৌমত্ব; সবার সাথে বন্ধুত্ব, সম্মান ও মর্যাদাপূর্ণ</li>
+<li>সংবিধানে <b>অনুচ্ছেদ ১৪৫(ক)</b> সংযোজন — বিদেশি চুক্তি রাষ্ট্রপতির কাছে পেশ, রাষ্ট্রপতি সংসদে উপস্থাপন</li>
+<li>আরব দেশ ও <b>OIC</b>-তে সক্রিয়তা; সৌদি, কুয়েত — শ্রমবাজার, ঋণ</li>
+<li>পশ্চিমা সম্পর্ক — <b>১৯৭৮</b> যুক্তরাষ্ট্রে পোশাক রপ্তানি শুরু; ভারত-সোভিয়েত বলয় থেকে বেরিয়ে আমেরিকা ও চীন</li>
+<li>সামরিক কূটনীতি — চীনের সহায়তায় সশস্ত্র বাহিনী পুনর্গঠন; শান্তিরক্ষা মিশনে অংশগ্রহণ শুরু; বিমানের আধুনিকায়ন</li>
+<li>দক্ষিণ এশীয় আঞ্চলিক সহযোগিতার ধারণা → <b>১৯৮৫ সার্ক</b></li>
+<li>রোহিঙ্গা: <b>১৯৭৭</b> নে উইনের "নাগা মিন অপারেশন", ২ লাখ শরণার্থী; "Either you get it back or you face"; <b>৯ জুলাই ১৯৭৮</b> প্রত্যাবাসন চুক্তি; মিয়ানমারের "হিন্থা প্রজেক্ট"</li>
+<li>বৈশ্বিক ভারসাম্য — "উপগ্রহ রাষ্ট্র" নয়; ন্যাটো-ওয়ারশ জোটের বাইরে</li>
+</ul>
+</details>
+
+<details open><summary>বেগম খালেদা জিয়ার পররাষ্ট্রনীতি (১৯৯১–৯৬ / ২০০১–০৬)</summary>
+<ul>
+<li>জিয়ার নীতির ধারাবাহিকতা • অর্থনীতি উদারীকরণ • মধ্যপ্রাচ্য সম্পর্ক • <b>Look East Policy</b> • ভারতের সাথে সাম্যতা • সার্ক ও বিমসটেকে সক্রিয়তা • রোহিঙ্গা আশ্রয় (১৯৯১: <b>২ লাখ ৭০ হাজার</b>)</li>
+<li><b>সমালোচনা:</b> চীনের সাথে শাহজালাল সার কারখানাসহ ৩ চুক্তি বাতিল; ২০০৪ চট্টগ্রাম অস্ত্র উদ্ধার → ভারতের সাথে টানাপোড়েন; বুশের "War on Terror" প্রেক্ষিতে যুক্তরাষ্ট্রের অবিশ্বাস</li>
+</ul>
+</details>
+
+<details open><summary>বর্তমান সরকারের মূল দর্শন ও চ্যালেঞ্জ</summary>
+<div class="grid">
+<div class="card"><h4>মূল দর্শন</h4><ul>
+<li>সবার আগে বাংলাদেশ (<b>Realism</b>)</li><li>সমতা ও পারস্পরিক সম্মান (<b>Multilateralism</b>)</li><li>"বন্ধু থাকবে, প্রভু না" (<b>Dignity</b>)</li><li>Economic Diplomacy; নতুন বাজার ও বিনিয়োগ</li><li>রোহিঙ্গা প্রত্যাবাসন; প্রতিবেশী সহযোগিতা; পানিবণ্টন; সীমান্ত নিরাপত্তা</li><li>মুসলিম বিশ্ব ও উপসাগর; ইন্দো-প্যাসিফিক; সফট পাওয়ার; মন্ত্রণালয়-দূতাবাসের সক্ষমতা</li></ul></div>
+<div class="card"><h4>চ্যালেঞ্জ</h4><ul>
+<li>ভারতের সাথে সম্পর্ক পুনরুদ্ধার ও দ্বন্দ্ব</li><li>পাকিস্তানের অমীমাংসিত ইস্যু</li><li>পরাশক্তির প্রতিযোগিতায় নিরপেক্ষতা</li><li>ইরান যুদ্ধে জ্বালানি সংকট; রেমিট্যান্স সংকট; খাদ্য সংকট</li><li>এলডিসি উত্তরণ (৩ বছর পেছানো প্রসঙ্গ)</li><li>রোহিঙ্গা; ঋণের বোঝা; ডলার সংকট ও টাকার অবমূল্যায়ন</li><li>বিদেশি বিনিয়োগ; জলবায়ু সংকট</li></ul></div>
+</div>
+</details>
+
+<details open><summary>ভবিষ্যৎ দিকনির্দেশনা (Future Directions)</summary>
+<div class="tbl"><table>
+<tr><th>দিক</th><th>মূল কথা / টার্ম</th><th>উদাহরণ</th></tr>
+<tr><td>গণতান্ত্রিক উত্তরণ</td><td>"rule-based foreign policy"; আইনের শাসন, মানবাধিকার</td><td>ইন্দোনেশিয়া, ১৯৯৮ সুহার্তোর পতন</td></tr>
+<tr><td>বৈশ্বিক দ্বন্দ্ব</td><td><b>Risk-Averting, Opportunity-Maximizing Diplomacy</b></td><td>ভিয়েতনাম — <b>multi-vector diplomacy</b></td></tr>
+<tr><td>ফিলিস্তিন, ইউক্রেন, Global South</td><td>নৈতিকতা + বাস্তব স্বার্থ; Two State Solution</td><td>জর্ডান, কাতার; ভারত (ইউক্রেন); ব্রাজিল, দ. আফ্রিকা, ইন্দোনেশিয়া</td></tr>
+<tr><td>ভারত</td><td>"<b>close but not captive</b>"</td><td>—</td></tr>
+<tr><td>পাকিস্তান</td><td>ট্রানজিশনাল জাস্টিস + অর্থনীতি-শিক্ষা</td><td>—</td></tr>
+<tr><td>সার্ক/বিমসটেক/আসিয়ান</td><td>দ্বিমুখী: সার্ক পুনরুজ্জীবন + BIMSTEC, IORA, ASEAN অগ্রাধিকার; চট্টগ্রাম-মংলা-পায়রা</td><td>ভিয়েতনাম, সিঙ্গাপুর (লজিস্টিক হাব)</td></tr>
+<tr><td>চীন-যুক্তরাষ্ট্র</td><td><b>Equidistant Policy</b>; Strategic Autonomy; "<b>security neutrality but economic engagement</b>"; QUAD/AUKUS-এ নয়</td><td>মালয়েশিয়া, ইন্দোনেশিয়া; নেপাল, ভুটান</td></tr>
+<tr><td>ইন্দো-প্যাসিফিক</td><td>FOIP; সামরিক জোট নয়, সমুদ্র-নিরাপত্তা সহযোগিতা</td><td>—</td></tr>
+<tr><td>রোহিঙ্গা</td><td>আঞ্চলিক-বৈশ্বিক চাপ; গাম্বিয়ার ICJ মামলা সমর্থন</td><td>—</td></tr>
+<tr><td>ডেমোগ্রাফিক ডিভিডেন্ড</td><td><b>Labour Diplomacy</b></td><td>ফিলিপাইন "Overseas Employment Strategy" — <b>৩৫ বিলিয়ন ডলার</b></td></tr>
+<tr><td>ব্লু ইকোনমি</td><td><b>১,১৮,৮১৩ বর্গকিমি</b> সমুদ্র এলাকা</td><td>ভিয়েতনাম, থাইল্যান্ড</td></tr>
+<tr><td>এলডিসি উত্তরণ</td><td>GSP+, DCTS; বাজার বৈচিত্র্য; China+1 / supply chain relocation; TIEA</td><td>ভিয়েতনাম <b>EVFTA</b> — ২ বছরে ৪০%+</td></tr>
+<tr><td>জলবায়ু কূটনীতি</td><td>Loss and Damage Fund (COP ২০২২); Adaptation Finance; climate displaced people</td><td>কেনিয়া, মরক্কো</td></tr>
+<tr><td>চতুর্থ শিল্প বিপ্লব</td><td>Technology Diplomacy; Digital Partnership; China+1; সাইবার নিরাপত্তা, "তথ্য কূটনীতি ইউনিট"</td><td>ভিয়েতনাম; জাপান, এস্তোনিয়া, সিঙ্গাপুর</td></tr>
+<tr><td>নতুন বাজার</td><td>পূর্ব ইউরোপ (পোল্যান্ড, রোমানিয়া, চেকিয়া, হাঙ্গেরি, স্লোভেনিয়া); ল্যাটিন আমেরিকা (ব্রাজিল, মেক্সিকো, পেরু, চিলি, কলম্বিয়া) — PTA</td><td>তুরস্ক, ভিয়েতনাম</td></tr>
+<tr><td>অভ্যন্তরীণ সংস্কার</td><td><b>Whole-of-Government Approach</b>; বহু অংশীজন কূটনীতি; নতুন কূটনীতিক ক্যাডার; <b>State-Consensus Approach</b></td><td>ভিয়েতনাম; ভারত, রুয়ান্ডা, সিঙ্গাপুর; দ. কোরিয়া</td></tr>
+</table></div>
+</details>
+</section>
+
+<!-- ================= ART ================= -->
+<section class="topic" id="art">
+<h2>৬. Agreement on Reciprocal Trade (ART)</h2>
+<div class="card">
+<ul>
+<li>স্বাক্ষর: <b class="n">৯ ফেব্রুয়ারি ২০২৬</b>, বাংলাদেশ ও যুক্তরাষ্ট্র — দ্বিপাক্ষিক বাণিজ্য চুক্তি</li>
+<li>প্রেক্ষাপট: <b class="n">২ এপ্রিল ২০২৫</b> নির্বাহী আদেশ <b class="n">নং ১৪২৫৭</b> → Reciprocal Tariff (RT); অন্তর্বর্তী সরকারের দরকষাকষিতে শুল্ক <b class="n">২০% → ১৯%</b></li>
+<li>প্রকৃতি: ব্যাপক বাণিজ্য কাঠামো (বাণিজ্য, বিনিয়োগ, মান নিয়ন্ত্রণ, সেবা, ডিজিটাল, মেধাস্বত্ব, শ্রম, পরিবেশ)</li>
+</ul>
+</div>
+<div class="grid">
+<div class="card"><h4>অন্তর্ভুক্ত ১৩ বিষয়</h4><ol>
+<li>পণ্য বাণিজ্য ও শুল্ক</li><li>কাস্টমস সহজীকরণ (paperless trade)</li><li>Rules of Origin</li><li>SPS ও TBT</li><li>বিনিয়োগ (ইন্স্যুরেন্স, তেল, গ্যাস, টেলিযোগাযোগ)</li><li>ই-কমার্স ও ডিজিটাল বাণিজ্য</li><li>সরকারি ক্রয় ও স্বচ্ছতা</li><li>শ্রম ও পরিবেশ</li><li>মেধাস্বত্ব (IPR)</li><li>RMG: মার্কিন তুলা ও কৃত্রিম তন্তু দিয়ে তৈরি পোশাকে শুল্কমুক্ত</li><li>Market Access: <b>~২৫০০</b> পণ্য শুল্কমুক্ত</li><li>ধাপে শুল্ক হ্রাস: তাৎক্ষণিক / ৫ বছর / ১০ বছর</li><li><b>Exit Clause</b></li></ol></div>
+<div class="card"><h4>সুবিধা (১১টি)</h4><ol>
+<li>RMG-এ বিশেষ সুবিধা</li><li>মার্কিন বাজারে প্রবেশাধিকার (ওষুধ, কৃষি, প্লাস্টিক, কাঠজাত)</li><li>২০→১৯% শুল্ক — কূটনৈতিক সাফল্য</li><li>FDI (China+1)</li><li>প্রযুক্তি স্থানান্তর ও দক্ষতা</li><li>ডিজিটাল অর্থনীতি ও IT</li><li>জ্বালানি (LNG)</li><li>LDC উত্তরণ-পরবর্তী "safety net"</li><li>স্টার্টআপ (Fintech, Edutech, venture capital)</li><li>ব্লু ইকোনমি</li><li>লজিস্টিকস ও অবকাঠামো</li></ol></div>
+<div class="card"><h4>ঝুঁকি (১১টি)</h4><ol>
+<li><b>Infant Industry Argument</b> — <b>৬৭১০</b> মার্কিন পণ্যে শুল্ক হ্রাস</li><li>বাণিজ্য ঘাটতি (LNG, গম, সয়াবিন, তুলা, সামরিক সরঞ্জাম)</li><li>Policy Space সংকোচন</li><li>IPR কঠোর → জেনেরিক ওষুধ শিল্প</li><li>কৃষি ও খাদ্য নিরাপত্তা (ভর্তুকিপ্রাপ্ত পণ্য)</li><li>শ্রম ও পরিবেশ মানদণ্ডের ব্যয়</li><li>ডিজিটাল নির্ভরতা</li><li>আমদানির উৎস পরিবর্তনের সীমাবদ্ধতা</li><li>অর্থনৈতিক নির্ভরতা</li><li>Asymmetric Relationship</li><li>দীর্ঘমেয়াদি শিল্পায়নে প্রভাব</li></ol></div>
+<div class="card"><h4>করণীয় (১১টি)</h4><ol>
+<li>দেশীয় শিল্প সুরক্ষা ও সক্ষমতা</li><li>রপ্তানি বৈচিত্র্য</li><li>বাণিজ্য ঘাটতি নিয়ন্ত্রণ</li><li>নীতি স্বাধীনতা বজায়</li><li>IPR-এ ভারসাম্য</li><li>কৃষিকে সুরক্ষা</li><li>শ্রম-পরিবেশ মান ধীরে বাস্তবায়ন</li><li>ডিজিটাল সক্ষমতা ও ডেটা সুরক্ষা</li><li>FDI-এর সঠিক খাত নির্বাচন</li><li><b>Multi-vector diplomacy</b></li><li>দক্ষ মানবসম্পদ</li></ol></div>
+</div>
+</section>
+
+<!-- ================= THEORIES ================= -->
+<section class="topic" id="theories">
+<h2>📚 তত্ত্ব ও কনসেপ্ট — মাস্টার তালিকা</h2>
+<div class="tbl"><table>
+<tr><th>তত্ত্ব / কনসেপ্ট</th><th>এক লাইনে</th><th>কোথায় প্রয়োগ</th></tr>
+<tr><td>Hydro-Hegemony</td><td>উজান দেশের হাতে পানির উপর শক্তি</td><td>তিস্তা, গজলডোবা</td></tr>
+<tr><td>Debt Trap Diplomacy</td><td>বাণিজ্যিক ঋণে নির্ভরতার ফাঁদ (হাম্বানটোটা)</td><td>চীনা ঋণ</td></tr>
+<tr><td>Security Dilemma</td><td>এক দেশের নিরাপত্তা পদক্ষেপ অন্যের কাছে হুমকি</td><td>তিস্তা, সীমান্ত সামরিকীকরণ, নিউক্লিয়ার আমব্রেলা</td></tr>
+<tr><td>Geopolitical Realism</td><td>রাষ্ট্র নিরাপত্তা সর্বোচ্চভাবে রক্ষা করতে চায়</td><td>চিকেন'স নেক</td></tr>
+<tr><td>Risk Society</td><td>উন্নয়ন প্রকল্প ভুল ব্যবস্থাপনায় নতুন ঝুঁকি তৈরি করে</td><td>তিস্তা প্রকল্প ব্যর্থতা</td></tr>
+<tr><td>Ecohydrology</td><td>নদীর জীবন প্রাকৃতিক প্রবাহনির্ভর</td><td>তিস্তা</td></tr>
+<tr><td>River Morphology</td><td>নদী সংকুচিত করলে নদী জায়গা ফিরে চায় → ভাঙন</td><td>২০৩ কিমি বাঁধ</td></tr>
+<tr><td>Environmental Determinism</td><td>সাফল্য ভৌগোলিক বাস্তবতানির্ভর</td><td>চীনা প্রযুক্তি</td></tr>
+<tr><td>Eco-centric Development</td><td>প্রকৃতিকেন্দ্রিক উন্নয়ন</td><td>তিস্তা করণীয়</td></tr>
+<tr><td>Growth Pole</td><td>বড় অবকাঠামো চারপাশে অর্থনৈতিক প্রবাহ ছড়ায়</td><td>তিস্তা শিল্প করিডোর</td></tr>
+<tr><td>Food-Water-Energy Nexus</td><td>খাদ্য, পানি, শক্তি পরস্পরনির্ভর</td><td>তিস্তা কৃষি</td></tr>
+<tr><td>Human Development Approach (Amartya Sen)</td><td>"capability expansion"</td><td>তিস্তা, বর্ডার হাট</td></tr>
+<tr><td>Asymmetrical Interdependence</td><td>ছোট রাষ্ট্রকে বৃহৎ রাষ্ট্রের সংবেদনশীলতা বুঝে নমনীয় কূটনীতি</td><td>ভারত, ART</td></tr>
+<tr><td>Complex Interdependence (Nye & Keohane)</td><td>সম্পর্ক বহুমাত্রিক; এক ইস্যুতে পুরো সম্পর্ক নষ্ট নয়</td><td>হাসিনা ইস্যু, পুশ-ইন</td></tr>
+<tr><td>Regime Theory</td><td>নিয়মভিত্তিক কাঠামো আচরণ পূর্বানুমেয় করে</td><td>JVM, সীমান্ত, প্রত্যাবাসন</td></tr>
+<tr><td>Norm Diffusion</td><td>অঞ্চলে গৃহীত নীতি প্রতিবেশীতেও ছড়ায়</td><td>Zero Shooting</td></tr>
+<tr><td>Human Security</td><td>নিরাপত্তা শুধু রাষ্ট্রের নয়, মানুষেরও</td><td>সীমান্ত হত্যা, পুশ-ইন</td></tr>
+<tr><td>Constructivism</td><td>ধারণা, পরিচয়, ন্যারেটিভ আচরণ গঠন করে</td><td>Misinformation, পাকিস্তান</td></tr>
+<tr><td>Securitization</td><td>কোনো বিষয়কে নিরাপত্তা ইস্যু বানালে সহযোগিতা কঠিন</td><td>পাকিস্তান, "securitization of the Other"</td></tr>
+<tr><td>Habermas – Public Sphere</td><td>তথ্যযুদ্ধ যুক্তিসংগত আলোচনা দুর্বল করে</td><td>অপপ্রচার</td></tr>
+<tr><td>Deterrence</td><td>পরমাণু ছাতা প্রতিরোধ ক্ষমতা দেয়</td><td>পাকিস্তান</td></tr>
+<tr><td>Balance of Power / Hedging</td><td>এক শক্তির উপর নির্ভর না করা</td><td>CPEC-BIMSTEC</td></tr>
+<tr><td>Epistemic Community</td><td>বিশেষজ্ঞ নেটওয়ার্ক নীতিতে প্রভাব রাখে</td><td>BIISS-IPRI</td></tr>
+<tr><td>Liberal Institutionalism</td><td>প্রতিষ্ঠান সমস্যাকে বহুপাক্ষিক করে</td><td>UNHCR, IOM</td></tr>
+<tr><td>Transitional Justice / Historical Reconciliation</td><td>অতীত অপরাধ স্বীকার ছাড়া স্থায়ী সহযোগিতা নয়</td><td>১৯৭১</td></tr>
+<tr><td>Small State Foreign Policy</td><td>দুই শক্তির প্রতিযোগিতায় ছোট রাষ্ট্রের ভারসাম্য কঠিন</td><td>চীন-ভারত</td></tr>
+<tr><td>Participatory Development</td><td>জনগণ ছাড়া উন্নয়ন টেকসই নয়</td><td>তিস্তা</td></tr>
+<tr><td>Good Governance (World Bank)</td><td>৮ নীতি; স্বচ্ছতা ও জবাবদিহিতা</td><td>তিস্তা EIA গোপনীয়তা</td></tr>
+<tr><td>Regionalism / South-South Cooperation</td><td>উন্নয়নশীল দেশের বাণিজ্য উত্তেজনা কমায়</td><td>পাকিস্তান বাণিজ্য</td></tr>
+</table></div>
+<h3>গুরুত্বপূর্ণ টার্ম (এক নজরে)</h3>
+<p>
+<span class="t">Strategic Hedging</span> <span class="t">Equidistant Policy</span> <span class="t">Strategic Autonomy</span> <span class="t">close but not captive</span> <span class="t">Multi-vector Diplomacy</span> <span class="t">Coercive Bargaining</span> <span class="t">Smart Pressure Diplomacy</span> <span class="t">Norm-based Diplomacy</span> <span class="t">Coalition Diplomacy</span> <span class="t">Information Diplomacy</span> <span class="t">Knowledge Diplomacy</span> <span class="t">Labour Diplomacy</span> <span class="t">Technology Diplomacy</span> <span class="t">Humanitarian Diplomacy</span> <span class="t">Track 1.5 / Track 2</span> <span class="t">CBM</span> <span class="t">issue linkage</span> <span class="t">regime preference</span> <span class="t">statelessness trap</span> <span class="t">protracted crisis</span> <span class="t">de facto integration</span> <span class="t">under-utilised interdependence</span> <span class="t">Whole-of-Government</span> <span class="t">State-Consensus Approach</span> <span class="t">China+1</span> <span class="t">IWRM</span> <span class="t">SEA / SIA / EIA</span> <span class="t">NBS</span>
+</p>
+</section>
+
+<!-- ================= QUOTES ================= -->
+<section class="topic" id="quotes">
+<h2>💬 উক্তিসমূহ (উত্তরের শুরুতে লিখুন)</h2>
+<div class="tbl"><table>
+<tr><th>উক্তি</th><th>বক্তা</th><th>টপিক</th></tr>
+<tr><td>Trust is the rarest currency in India-Bangladesh relations; without it, even small incidents turn into major political crises.</td><td>Shantanu Mukherjee</td><td>বাংলাদেশ-ভারত</td></tr>
+<tr><td>Border killings between two friendly nations are a moral failure, not just a policy failure.</td><td>Salil Tripathi</td><td>সীমান্ত হত্যা</td></tr>
+<tr><td>Transboundary rivers are not national assets; they are shared lifelines, and they demand shared governance.</td><td>Richard Snyder</td><td>পানি/তিস্তা</td></tr>
+<tr><td>Bangladesh has shown remarkable compassion, but sustainable solutions depend on global responsibility-sharing.</td><td>Amnesty International</td><td>রোহিঙ্গা</td></tr>
+<tr><td>Bangladesh has shown extraordinary humanity, but humanitarian generosity cannot substitute political solutions.</td><td>Filippo Grandi</td><td>রোহিঙ্গা</td></tr>
+<tr><td>South Asia's future cannot rest on historic grievances; it must rest on economic connectivity and mutual respect.</td><td>Amina Mohammed</td><td>পাকিস্তান</td></tr>
+<tr><td>For Bangladesh, future diplomacy must rest on strategic autonomy — cooperating with all, aligning with none.</td><td>Prof. Amartya Sen</td><td>পররাষ্ট্রনীতি</td></tr>
+</table></div>
+</section>
+
+</main>
+<footer>রিভিশন নোট • মূল সূত্র: ২২তম ক্লাস শিট (আন্তর্জাতিক প্রবলেম সলভিং ও বাংলাদেশের পররাষ্ট্রনীতি)</footer>
+<script>
+function toggleTheme(){
+  const r=document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme = dark ? 'light' : 'dark';
+}
+</script>
+</body>
+</html>

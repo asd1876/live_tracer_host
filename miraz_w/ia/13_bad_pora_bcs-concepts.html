@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>বাদ পড়া ও সাম্প্রতিক কনসেপচুয়াল</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1f2328; --muted:#5b6370; --line:#e4e0d6;
+  --accent:#0f6b5c; --accent-soft:#e3f1ed; --gold:#b7791f; --gold-soft:#fbf1df;
+  --ex:#3b4a8c; --ex-soft:#ecefff; --warn:#a33a2c; --warn-soft:#fcebe8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171a; --card:#1c2024; --ink:#e7e9ec; --muted:#9aa3ad; --line:#2c3238;
+    --accent:#4fc3a8; --accent-soft:#1d332e; --gold:#e3b155; --gold-soft:#332a19;
+    --ex:#9fb0ff; --ex-soft:#222842; --warn:#f08a7c; --warn-soft:#3a2420;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171a; --card:#1c2024; --ink:#e7e9ec; --muted:#9aa3ad; --line:#2c3238;
+  --accent:#4fc3a8; --accent-soft:#1d332e; --gold:#e3b155; --gold-soft:#332a19;
+  --ex:#9fb0ff; --ex-soft:#222842; --warn:#f08a7c; --warn-soft:#3a2420;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;font-size:17px;line-height:1.75}
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px}
+.top-inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.top h1{font-size:1.15rem;margin:0;flex:1 1 220px}
+.top input{flex:1 1 220px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.btn{padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit;cursor:pointer;white-space:nowrap}
+.btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:28px;padding:20px 16px 80px}
+nav.toc{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto;font-size:.92rem;padding-right:6px}
+nav.toc h4{margin:14px 0 4px;color:var(--accent);font-size:.95rem}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:2px 0}
+nav.toc a:hover{color:var(--accent)}
+.intro{background:var(--gold-soft);border-left:4px solid var(--gold);padding:12px 16px;border-radius:8px;margin-bottom:18px;font-size:.95rem}
+section.part>h2{font-size:1.4rem;margin:34px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent);color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;scroll-margin-top:80px}
+.card h3{margin:0 0 6px;font-size:1.15rem;line-height:1.4}
+.card h3 small{font-weight:500;color:var(--muted);font-size:.85rem}
+.star{color:var(--gold);font-size:.9rem;margin-right:4px}
+.def{background:var(--accent-soft);border-radius:8px;padding:8px 12px;margin:8px 0}
+.def b:first-child{color:var(--accent)}
+.card ul,.card ol{margin:6px 0;padding-left:22px}
+.card li{margin:2px 0}
+.ex{background:var(--ex-soft);border-radius:8px;padding:8px 12px;margin:8px 0;font-size:.96rem}
+.ex b{color:var(--ex)}
+.lim{background:var(--warn-soft);border-radius:8px;padding:8px 12px;margin:8px 0;font-size:.96rem}
+.lim b{color:var(--warn)}
+.k{font-weight:700;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.94rem}
+th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}
+th{background:var(--accent-soft)}
+.tbl{overflow-x:auto}
+.hide{display:none!important}
+/* revision mode */
+body.revise .card .body{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.revise .card.shown .body{filter:none;user-select:auto}
+.count{color:var(--muted);font-size:.85rem}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  nav.toc{position:static;max-height:none;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--card)}
+}
+@media print{
+  header.top,nav.toc{display:none}
+  .wrap{display:block}
+  .card{break-inside:avoid}
+  body.revise .card .body{filter:none}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner">
+  <h1>📘 বাদ পড়া ও সাম্প্রতিক কনসেপচুয়াল</h1>
+  <input id="q" type="search" placeholder="খুঁজুন… (যেমন: ASEAN, NDC, শুল্ক)">
+  <button class="btn" id="rev" title="উত্তর ঝাপসা থাকবে, ক্লিক করলে দেখা যাবে">🧠 রিভিশন মোড</button>
+  <button class="btn" id="theme">🌓</button>
+  <span class="count" id="count"></span>
+</div></header>
+
+<div class="wrap">
+<nav class="toc" id="toc"></nav>
+<main id="main">
+
+<div class="intro">প্রতিটি কার্ডে আগে <b>সংজ্ঞা (এক লাইনে)</b>, তারপর <b>মূল পয়েন্ট</b>, শেষে <b>উদাহরণ</b>। ★★ = বেশি গুরুত্বপূর্ণ। <b>রিভিশন মোড</b> চালু করলে উত্তর ঝাপসা থাকবে — নিজে মনে করে তারপর কার্ডে ক্লিক করে মিলিয়ে নিন।</div>
+
+<!-- ===================== PART 1 ===================== -->
+<section class="part" data-title="আঞ্চলিক সংস্থা ও বাণিজ্য কাঠামো">
+<h2>১. আঞ্চলিক সংস্থা ও বাণিজ্য কাঠামো</h2>
+
+<article class="card"><h3><span class="star">★★</span>SAARC-এর "Consensus Rule"</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> সার্কে (প্রতিষ্ঠা ১৯৮৫) কোনো সিদ্ধান্ত তখনই গৃহীত হয়, যখন <b>সব সদস্য রাষ্ট্র সম্মত</b> হয় — অর্থাৎ সর্বসম্মতির ভিত্তিতে সিদ্ধান্ত।</p>
+<ul>
+<li>সংখ্যাগরিষ্ঠ ভোটের কোনো ব্যবস্থা নেই।</li>
+<li>একটি দেশও আপত্তি জানালে প্রস্তাব কার্যকর হয় না (কার্যত সবার ভেটো)।</li>
+<li>সব দেশের মতামত সমান গুরুত্ব পায়; কোনো রাষ্ট্রকে উপেক্ষা করা যায় না।</li>
+</ul>
+</div></article>
+
+<article class="card"><h3><span class="star">★</span>ASEAN-এর "Flexible Engagement"</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> কোনো সদস্য দেশের অভ্যন্তরীণ বিষয় যদি <b>আঞ্চলিক স্থিতিশীলতা, নিরাপত্তা বা অর্থনৈতিক স্বার্থকে প্রভাবিত</b> করে, তবে অন্য সদস্যরা তা নিয়ে আলোচনা করতে পারে — এটি পূর্ণ হস্তক্ষেপ নয়, সীমিত ও গঠনমূলক সম্পৃক্ততা।</p>
+<ul>
+<li><span class="k">উত্থাপক:</span> থাইল্যান্ড, ১৯৯০-এর দশকে।</li>
+<li><span class="k">প্রেক্ষাপট:</span> মিয়ানমারের রাজনৈতিক সংকট, মানবাধিকার সমস্যা ও অর্থনৈতিক অস্থিরতা পুরো অঞ্চলে প্রভাব ফেলছিল; কঠোর non-interference নীতিতে সমাধান কঠিন হয়ে পড়ে।</li>
+</ul>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>ASEAN Way বনাম Flexible Engagement</h3><div class="body">
+<p class="def"><b>ASEAN Way:</b> একে অপরের অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ না করা + সবার সম্মতিতে সিদ্ধান্ত → সার্বভৌমত্ব ও পারস্পরিক আস্থা রক্ষা।</p>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>ASEAN Way</th><th>Flexible Engagement</th></tr>
+<tr><td>মূল নীতি</td><td>অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ না করা</td><td>আঞ্চলিক স্বার্থ ক্ষতিগ্রস্ত হলে অভ্যন্তরীণ বিষয়ে আলোচনা</td></tr>
+<tr><td>সিদ্ধান্ত গ্রহণ</td><td>ঐকমত্যে, ধীরগতিতে</td><td>প্রয়োজন অনুযায়ী তুলনামূলক দ্রুত ও বাস্তবমুখী</td></tr>
+<tr><td>অভ্যন্তরীণ বিষয়ে অবস্থান</td><td>সম্পূর্ণভাবে এড়িয়ে চলা</td><td>আঞ্চলিক প্রভাব থাকলে আলোচনায় আনা</td></tr>
+<tr><td>লক্ষ্য</td><td>শান্তিপূর্ণ সম্পর্ক ও সার্বভৌমত্ব বজায়</td><td>আঞ্চলিক সমস্যা সমাধান ও কার্যকর সহযোগিতা</td></tr>
+<tr><td>কার্যকারিতা</td><td>সংকটে ধীর ও সীমিত</td><td>তুলনামূলক কার্যকর ও বাস্তবসম্মত</td></tr>
+</table></div>
+</div></article>
+
+<article class="card"><h3><span class="star">★</span>ASEAN Minus X Formula</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> আসিয়ানের নমনীয় সিদ্ধান্ত পদ্ধতি — সব সদস্য প্রস্তুত না থাকলেও <b>আগ্রহী ও প্রস্তুত দেশগুলো এগিয়ে যেতে পারে</b>, বাকিরা পরে যোগ দিতে পারে।</p>
+<ul><li><span class="k">উদ্দেশ্য:</span> Consensus Rule-এর কারণে কোনো উদ্যোগ যেন আটকে না যায়।</li></ul>
+<p class="ex"><b>উদাহরণ:</b> AFTA (ASEAN Free Trade Area) — কম্বোডিয়া, লাওস, ভিয়েতনাম দেশীয় শিল্পের ঝুঁকির কথা বলে আপাতত বাইরে থাকল; বাকি ৭টি দেশ বাস্তবায়ন করল (10 − 3)। পরে সক্ষম হলে ওই তিন দেশ যোগ দিতে পারবে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Multi-speed Europe</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> EU-র সদস্যরা নিজ নিজ <b>সক্ষমতা ও প্রস্তুতি অনুযায়ী ভিন্ন গতিতে</b> একীকরণে অংশ নেয় — প্রস্তুতরা আগে, বাকিরা পরে। এটি আসিয়ানের ASEAN Minus X-এর মতো।</p>
+<p class="ex"><b>উদাহরণ ১ — Eurozone:</b> ইউরো গ্রহণে শর্ত (মূল্যস্ফীতি নিয়ন্ত্রণ, বাজেট ঘাটতির সীমা, ঋণের মাত্রা)। জার্মানি, ফ্রান্স, ইতালি আগে যোগ দিয়েছে; পোল্যান্ড, হাঙ্গেরি এখনও বাইরে।<br>
+<b>উদাহরণ ২ — Schengen Area:</b> সদস্যদের মধ্যে সীমান্ত নিয়ন্ত্রণ নেই, পাসপোর্ট ছাড়া চলাচল। জার্মানি, ফ্রান্স শুরু থেকে; কেউ পরে যুক্ত হয়েছে, কেউ এখনও বাইরে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Plurilateral Agreements <small>(WTO)</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> WTO-র <b>সব সদস্য নয়, নির্দিষ্ট কিছু আগ্রহী দেশ</b> মিলে যে চুক্তি করে; এটি শুধু অংশগ্রহণকারীদের জন্য বাধ্যতামূলক।</p>
+<ul>
+<li>WTO মূলত Multilateral, কিন্তু ১৬০+ দেশের ঐকমত্য কঠিন → অচলাবস্থা কাটাতে এর উদ্ভব। (ASEAN Minus X-এর সাথে সাদৃশ্যপূর্ণ)</li>
+<li><span class="k">বৈশিষ্ট্য ১ — অচলাবস্থা কাটানোর কৌশল:</span> আগ্রহী দেশরা অপেক্ষা না করে এগিয়ে যায়; নতুন খাতে নিয়ম তৈরি হয় (যেমন e-commerce)।</li>
+<li><span class="k">বৈশিষ্ট্য ২ — বহুপাক্ষিক ব্যবস্থার সীমাবদ্ধতার প্রতিক্রিয়া:</span> Doha Development Round উন্নত-উন্নয়নশীল দেশের স্বার্থের সংঘাতে আটকে আছে।</li>
+</ul>
+<p class="ex"><b>উদাহরণ:</b> Government Procurement Agreement (GPA) — সরকারি ক্রয়ে স্বচ্ছতা ও প্রতিযোগিতা; শুধু কিছু দেশ এতে আছে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Special and Differential Treatment (SDT)</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> উন্নত-উন্নয়নশীল দেশের বৈষম্য বিবেচনায় WTO উন্নয়নশীল ও স্বল্পোন্নত দেশকে <b>বিশেষ সুবিধা ও নমনীয়তা</b> দেয়।</p>
+<ol>
+<li><span class="k">বিশেষ সুবিধা:</span> শুল্কমুক্ত বা কম শুল্কে উন্নত দেশের বাজারে রপ্তানি (যেমন LDC হিসেবে বাংলাদেশ)।</li>
+<li><span class="k">Transition Period:</span> নিয়ম বাস্তবায়নে বেশি সময় — যেমন LDC-দের TRIPS বাস্তবায়নে দীর্ঘ সময়সীমা।</li>
+<li><span class="k">প্রযুক্তিগত ও আর্থিক সহায়তা:</span> বাণিজ্যনীতি প্রণয়নে প্রশিক্ষণ ও সক্ষমতা উন্নয়ন।</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>TRIPS</h3><div class="body">
+<p class="def"><b>পূর্ণরূপ:</b> Trade-Related Aspects of Intellectual Property Rights — WTO প্রতিষ্ঠার সময় <b>১৯৯৫ সালে</b> কার্যকর মেধাস্বত্ব সুরক্ষার আন্তর্জাতিক চুক্তি।</p>
+<ul>
+<li><span class="k">অন্তর্ভুক্ত:</span> পেটেন্ট, কপিরাইট, ট্রেডমার্ক, শিল্প নকশা।</li>
+<li><span class="k">গুরুত্ব:</span> উদ্ভাবন ও গবেষণায় উৎসাহ; সুশৃঙ্খল বাণিজ্য ও আস্থা; প্রযুক্তি-জ্ঞান বিনিময়ের কাঠামো।</li>
+</ul>
+<p class="ex"><b>উদাহরণ:</b> নতুন ওষুধ আবিষ্কারকারী কোম্পানি নির্দিষ্ট সময় পেটেন্ট পায়; অন্য কেউ তা নকল করে বিক্রি করতে পারে না।</p>
+<p class="lim"><b>সমালোচনা:</b> কঠোর প্রয়োগে উন্নয়নশীল দেশে ওষুধের দাম বেশি হয়।</p>
+</div></article>
+</section>
+
+<!-- ===================== PART 2 ===================== -->
+<section class="part" data-title="আন্তর্জাতিক রাজনীতি ও কূটনীতি">
+<h2>২. আন্তর্জাতিক রাজনীতি, নিরাপত্তা ও কূটনীতি</h2>
+
+<article class="card"><h3><span class="star">★★</span>Gunboat Diplomacy ও বর্তমান প্রাসঙ্গিকতা</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> নৌবাহিনী, যুদ্ধজাহাজ বা সামরিক সক্ষমতার <b>দৃশ্যমান উপস্থিতি দিয়ে</b> অন্য রাষ্ট্রকে নির্দিষ্ট সিদ্ধান্তে বাধ্য করা — যুদ্ধ না করে যুদ্ধের সম্ভাবনা সৃষ্টি।</p>
+<ul><li><span class="k">ইতিহাস:</span> ঔপনিবেশিক যুগে ব্রিটেন ও ইউরোপীয় শক্তি দুর্বল রাষ্ট্রের বন্দরে যুদ্ধজাহাজ পাঠিয়ে চুক্তিতে বাধ্য করত।</li></ul>
+<p><b>বর্তমান ব্যবহার:</b></p>
+<ol>
+<li><span class="k">শক্তি প্রদর্শনে কৌশলগত চাপ:</span> দক্ষিণ চীন সাগরে চীনের "nine-dash line" ও কৃত্রিম দ্বীপ বনাম যুক্তরাষ্ট্রের Freedom of Navigation Operations।</li>
+<li><span class="k">Deterrence Signaling:</span> তাইওয়ান প্রণালীতে মার্কিন যুদ্ধজাহাজের টহল; চীনের পাল্টা সামরিক মহড়া।</li>
+<li><span class="k">সমুদ্রপথ নিয়ন্ত্রণ:</span> হরমুজ প্রণালী দিয়ে বিশ্বের প্রায় ১/৫ তেল যায়; ইরান মাঝে মাঝে ট্যাংকার আটক/হুমকি দেয়।</li>
+<li><span class="k">Crisis Signaling:</span> ইরান-যুক্তরাষ্ট্র উত্তেজনায় পারস্য উপসাগরে বিমানবাহী রণতরী মোতায়েন।</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>অপ্রচলিত নিরাপত্তা (Non-Traditional Security)</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> যেসব নিরাপত্তা ইস্যু <b>সরাসরি সামরিক হুমকি নয়</b>, কিন্তু মানবজীবন, সমাজ ও পরিবেশের স্থিতিশীলতাকে প্রভাবিত করে — এখানে Human Security গুরুত্ব পায়।</p>
+<p><b>উপাদান (৭টি):</b></p>
+<ol>
+<li>জলবায়ু ও পরিবেশগত নিরাপত্তা</li>
+<li>স্বাস্থ্য নিরাপত্তা (যেমন কোভিড-১৯)</li>
+<li>খাদ্য নিরাপত্তা</li>
+<li>জ্বালানি নিরাপত্তা (রাশিয়া-ইউক্রেন যুদ্ধে ইউরোপের জ্বালানি সংকট)</li>
+<li>সন্ত্রাসবাদ ও আন্তঃরাষ্ট্রীয় অপরাধ (মানব পাচার, মাদক চোরাচালান)</li>
+<li>সাইবার নিরাপত্তা</li>
+<li>অভিবাসন ও শরণার্থী সংকট (মধ্যপ্রাচ্য থেকে ইউরোপে)</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Traditional বনাম Non-Traditional Security</h3><div class="body">
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>Traditional</th><th>Non-Traditional</th></tr>
+<tr><td>সংজ্ঞা</td><td>সার্বভৌমত্ব, সীমান্ত ও সামরিক শক্তি রক্ষা</td><td>সামরিক হুমকির বাইরে মানবজীবন, পরিবেশ, অর্থনীতি</td></tr>
+<tr><td>মূল ফোকাস</td><td>রাষ্ট্রকেন্দ্রিক, সামরিক</td><td>মানবকেন্দ্রিক, বহুমাত্রিক</td></tr>
+<tr><td>হুমকি</td><td>যুদ্ধ, আক্রমণ, সীমান্ত বিরোধ</td><td>জলবায়ু, মহামারি, সন্ত্রাস, সাইবার, খাদ্য-জ্বালানি সংকট</td></tr>
+<tr><td>উপকরণ</td><td>সামরিক শক্তি, অস্ত্র, প্রতিরক্ষা জোট</td><td>কূটনীতি, সহযোগিতা, উন্নয়ননীতি, প্রযুক্তি</td></tr>
+<tr><td>প্রভাবের ক্ষেত্র</td><td>ভৌগোলিক অখণ্ডতা ও রাজনৈতিক স্বাধীনতা</td><td>জীবনযাত্রা, অর্থনীতি, পরিবেশ, সমাজ</td></tr>
+<tr><td>সমাধান</td><td>প্রতিরোধ, প্রতিরক্ষা চুক্তি, শক্তির ভারসাম্য</td><td>সহযোগিতা, নীতি সমন্বয়, টেকসই উন্নয়ন</td></tr>
+<tr><td>উদাহরণ</td><td>রাশিয়া-ইউক্রেন যুদ্ধ</td><td>কোভিড-১৯, জলবায়ু পরিবর্তন, সাইবার হামলা</td></tr>
+</table></div>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Economic Diplomacy বনাম Cultural Diplomacy</h3><div class="body">
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>Economic Diplomacy</th><th>Cultural Diplomacy</th></tr>
+<tr><td>সংজ্ঞা</td><td>বাণিজ্য, বিনিয়োগ ও অর্থনৈতিক সহযোগিতা দিয়ে জাতীয় স্বার্থ প্রতিষ্ঠা</td><td>সংস্কৃতি, ভাষা ও মূল্যবোধ প্রচারে ইতিবাচক প্রভাব ও গ্রহণযোগ্যতা তৈরি</td></tr>
+<tr><td>লক্ষ্য</td><td>প্রবৃদ্ধি, বিনিয়োগ, অর্থনৈতিক অবস্থান শক্তিশালী</td><td>আস্থা ও বোঝাপড়া তৈরি</td></tr>
+<tr><td>কার্যক্রম</td><td>বাণিজ্য চুক্তি, অবকাঠামো বিনিয়োগ, উন্নয়ন সহযোগিতা</td><td>সাংস্কৃতিক বিনিময়, শিক্ষা, ভাষা, চলচ্চিত্র, সংগীত</td></tr>
+<tr><td>প্রভাব</td><td>সরাসরি ও দৃশ্যমান (কর্মসংস্থান, বাজার)</td><td>ধীরে, মনোভাব ও মূল্যবোধে; দীর্ঘমেয়াদি</td></tr>
+<tr><td>উপকরণ</td><td>অর্থনৈতিক নীতি, শুল্ক, বিনিয়োগ প্রণোদনা</td><td>সংস্কৃতি, শিক্ষা, গণমাধ্যম, বিনিময় কর্মসূচি</td></tr>
+<tr><td>উদাহরণ</td><td>চীনের Belt and Road Initiative</td><td>দক্ষিণ কোরিয়ার K-pop ও চলচ্চিত্র</td></tr>
+</table></div>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Multilateralism (বহুপাক্ষিকতাবাদ)</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> একাধিক রাষ্ট্র নির্দিষ্ট নিয়ম, নীতি ও প্রতিষ্ঠানের মাধ্যমে <b>পারস্পরিক সহযোগিতার ভিত্তিতে</b> আন্তর্জাতিক সমস্যার সমাধান করে। উদাহরণ: জাতিসংঘ, WTO, IMF।</p>
+<p><b>কেন গুরুত্বপূর্ণ:</b></p>
+<ol>
+<li>সংকট আন্তঃনির্ভরশীল ও সীমান্ত অতিক্রমকারী — রাশিয়া-ইউক্রেন যুদ্ধ, ইরানকেন্দ্রিক সংঘাত।</li>
+<li>অর্থনীতি-বাণিজ্যের গভীর সংযোগ — সরবরাহ শৃঙ্খল, জ্বালানি, ইন্দো-প্যাসিফিক নিরাপত্তা।</li>
+<li>নিরাপত্তা ও রাজনৈতিক সংকট মোকাবিলা — ভেনিজুয়েলা, মধ্যপ্রাচ্য।</li>
+<li>ক্ষমতার ভারসাম্য; ছোট রাষ্ট্রের জন্য প্ল্যাটফর্ম।</li>
+</ol>
+<p class="lim"><b>সীমাবদ্ধতা:</b> বড় শক্তির স্বার্থের দ্বন্দ্ব ও নিরাপত্তা পরিষদের ভেটো।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Board of Peace <small>(ফিলিস্তিন/গাজা)</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> মার্কিন প্রেসিডেন্ট ডোনাল্ড ট্রাম্পের উদ্যোগে গঠিত নতুন আন্তর্জাতিক সংস্থা — গাজায় <b>যুদ্ধ-পরবর্তী শাসন, মানবিক সহায়তা ও পুনর্গঠন</b> তদারকির জন্য।</p>
+<ul>
+<li><span class="k">প্রস্তাব:</span> ৮ অক্টোবর ২০২৫, গাজা যুদ্ধবিরতি চুক্তির সময়।</li>
+<li><span class="k">অনুমোদন:</span> নভেম্বর ২০২৫, জাতিসংঘ নিরাপত্তা পরিষদের <b>রেজুলেশন ২৮০৩</b>।</li>
+<li><span class="k">চেয়ারম্যান:</span> ডোনাল্ড ট্রাম্প। <span class="k">সদস্য:</span> মার্কো রুবিও, টনি ব্লেয়ার, অজয় বাঙ্গা (বিশ্বব্যাংক), রবার্ট গ্যাব্রিয়েল।</li>
+<li>অংশীদার: সৌদি আরব, কাতার, UAE, মিশর; পাকিস্তান, ইন্দোনেশিয়া; ইসরায়েল যুক্ত; ফিলিস্তিন সরাসরি বোর্ডে নেই।</li>
+<li>প্রায় ২৬টি সদস্য দেশ; মেয়াদ ৩ বছর, <b>১ বিলিয়ন ডলার</b> দিলে স্থায়ী সদস্যপদ।</li>
+<li><b>International Stabilization Force</b> নামে শান্তিরক্ষী বাহিনী গঠনের কথা।</li>
+<li>কাজ: নীতিনির্ধারণ, অন্তর্বর্তী প্রশাসন, শান্তিরক্ষী মোতায়েন, পুনর্গঠন, হামাসসহ সশস্ত্র গোষ্ঠীর নিরস্ত্রীকরণ — অর্থাৎ <b>প্রশাসন + নিরাপত্তা + উন্নয়ন</b>।</li>
+</ul>
+<p class="ex"><b>কার্যকারিতা:</b> দ্রুত সিদ্ধান্ত (ভেটো জটিলতা নেই); পুনর্গঠন ও অর্থনৈতিক উন্নয়নে জোর; তিন দিকের সমন্বিত পরিচালনা।</p>
+<p class="lim"><b>সমালোচনা:</b> নিরপেক্ষ নয়, মার্কিন প্রভাব বিস্তারের মাধ্যম বলে অভিযোগ; জেরুজালেম স্বীকৃতি ও নিরাপত্তা পরিষদে ইসরায়েল-প্রশ্নে মার্কিন ভেটোর ইতিহাস; ফিলিস্তিনের প্রত্যক্ষ প্রতিনিধিত্বের অভাব।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Rule-based World Order</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> রাষ্ট্রগুলো <b>শক্তির পরিবর্তে স্বীকৃত নিয়ম, আইন ও প্রাতিষ্ঠানিক কাঠামো</b> (জাতিসংঘ সনদ, আন্তর্জাতিক আইন, চুক্তি) মেনে চলে — দ্বিতীয় বিশ্বযুদ্ধের পর বিকাশ।</p>
+<ol>
+<li>আন্তর্জাতিক আইনের প্রাধান্য</li>
+<li>বহুপাক্ষিকতা (UN, WTO, IMF)</li>
+<li>শান্তিপূর্ণ বিরোধ নিষ্পত্তি (আলোচনা, মধ্যস্থতা, আন্তর্জাতিক আদালত)</li>
+<li>সার্বভৌম সমতার স্বীকৃতি</li>
+<li>পূর্বানুমানযোগ্যতা ও স্থিতিশীলতা</li>
+<li>প্রাতিষ্ঠানিক কাঠামোর ভূমিকা</li>
+</ol>
+<p class="lim"><b>সীমাবদ্ধতা:</b> শক্তিশালী রাষ্ট্র প্রায়ই নিজ স্বার্থে নিয়ম উপেক্ষা করে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Flexible Realism</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> রাষ্ট্র জাতীয় স্বার্থ ও নিরাপত্তাকে সর্বোচ্চ গুরুত্ব দেয়, কিন্তু অনড় না থেকে <b>পরিস্থিতি অনুযায়ী নীতি ও কৌশল বদলায়</b> — শক্তির পাশাপাশি কূটনীতি, সহযোগিতা ও সমঝোতা।</p>
+<ol>
+<li>জাতীয় স্বার্থকে অগ্রাধিকার (পদ্ধতি পরিবর্তনশীল)</li>
+<li>কৌশলগত নমনীয়তা</li>
+<li>শক্তি ও কূটনীতির সমন্বয়</li>
+<li>সংঘাত এড়ানোর প্রবণতা</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Axis of Resistance <small>(ইরান যুদ্ধে অ-রাষ্ট্রীয় প্রভাবক)</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> <b>ইরানের নেতৃত্বে</b> অ-রাষ্ট্রীয় সশস্ত্র গোষ্ঠী ও মিত্রদের অনানুষ্ঠানিক নেটওয়ার্ক — যুক্তরাষ্ট্র ও ইসরায়েলের প্রভাব মোকাবিলার লক্ষ্যে।</p>
+<ul>
+<li><span class="k">সদস্য:</span> হিজবুল্লাহ (লেবানন), হামাস ও ইসলামিক জিহাদ (ফিলিস্তিন), হুথি (ইয়েমেন), ইরাক ও সিরিয়ার শিয়া মিলিশিয়া।</li>
+<li><span class="k">কাজের ধরন:</span> বিকেন্দ্রীভূত; ইরান সরাসরি না জড়িয়ে প্রক্সি যুদ্ধ চালায় — হিজবুল্লাহ সীমান্তে চাপ, হুথিরা লোহিত সাগরে হামলা, মিলিশিয়ারা মার্কিন ঘাঁটিতে আক্রমণ।</li>
+</ul>
+<ol>
+<li>যুদ্ধকে বহুমাত্রিক রূপ দেয় (বহু ফ্রন্টে বিস্তার)</li>
+<li>ইরানের জন্য কৌশলগত গভীরতা / প্রতিরক্ষা বলয়</li>
+<li>প্রতিপক্ষের ওপর বহুমুখী চাপ</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Sovereign Equality</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> ছোট-বড়, ধনী-দরিদ্র নির্বিশেষে <b>সব রাষ্ট্র আইনগতভাবে সমান মর্যাদা ও অধিকার</b> ভোগ করে। জাতিসংঘ সনদের <b>অনুচ্ছেদ ২(১)</b>।</p>
+<ul>
+<li>ভৌগোলিক অখণ্ডতা ও রাজনৈতিক স্বাধীনতা</li>
+<li>আন্তর্জাতিক ফোরামে সমান অংশগ্রহণ</li>
+<li>অভ্যন্তরীণ বিষয়ে হস্তক্ষেপ নয়</li>
+</ul>
+<p class="ex"><b>উদাহরণ:</b> সাধারণ পরিষদে বাংলাদেশ, যুক্তরাষ্ট্র, নেপাল — সবার একটি করে ভোট।</p>
+<p class="lim"><b>সীমাবদ্ধতা:</b> নিরাপত্তা পরিষদে স্থায়ী সদস্যদের ভেটো ক্ষমতা।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Donroe Doctrine</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> <b>Donald + Monroe Doctrine</b> — ট্রাম্পের সময় আমেরিকা মহাদেশে যুক্তরাষ্ট্রের প্রভাব আরও জোরালোভাবে প্রতিষ্ঠার প্রবণতা; Monroe Doctrine-এর আধুনিক রূপ (আনুষ্ঠানিক ঘোষিত নীতি নয়, ব্যাখ্যামূলক ধারণা)।</p>
+<ul><li><span class="k">Monroe Doctrine (১৮২৩, জেমস মনরো):</span> ইউরোপ আমেরিকা মহাদেশে নতুন উপনিবেশ/হস্তক্ষেপ করবে না, যুক্তরাষ্ট্রও ইউরোপীয় বিষয়ে হস্তক্ষেপ করবে না।</li></ul>
+<ol>
+<li>আঞ্চলিক আধিপত্য প্রতিষ্ঠা (লাতিন আমেরিকা)</li>
+<li>ভৌগোলিক ও কৌশলগত নিয়ন্ত্রণ (গ্রিনল্যান্ড ক্রয়ের আগ্রহ, তেলসমৃদ্ধ অঞ্চল)</li>
+<li>অর্থনৈতিক ও রাজনৈতিক চাপ (ভেনিজুয়েলায় মাদুরো সরকারের ওপর নিষেধাজ্ঞা)</li>
+<li>"America First"-এর প্রতিফলন</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Look East Diplomacy</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> পশ্চিমমুখী নির্ভরতা কমিয়ে <b>পূর্ব ও দক্ষিণ-পূর্ব এশিয়ার</b> দেশগুলোর সাথে অর্থনৈতিক, বাণিজ্যিক ও কৌশলগত সম্পর্ক জোরদারের পররাষ্ট্রনীতি।</p>
+<ul>
+<li><span class="k">বাংলাদেশ:</span> ১৯৯১-১৯৯৬ ও ২০০১-২০০৬, বিএনপি সরকার, প্রধানমন্ত্রী বেগম খালেদা জিয়া।</li>
+<li>আসিয়ান দেশ এবং চীন, জাপান, দক্ষিণ কোরিয়ার সাথে সম্পর্ক জোরদার।</li>
+</ul>
+<p><b>গুরুত্ব:</b> বাণিজ্য সম্প্রসারণ · বিদেশি বিনিয়োগ আকর্ষণ · আঞ্চলিক সহযোগিতা ও কৌশলগত ভারসাম্য।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Indo-Pacific Strategy (IPS) বনাম Belt and Road Initiative (BRI)</h3><div class="body">
+<ul>
+<li><span class="k">IPS:</span> যুক্তরাষ্ট্র ও মিত্রদের কৌশলগত কাঠামো — মুক্ত, উন্মুক্ত ও অন্তর্ভুক্তিমূলক ইন্দো-প্যাসিফিক; সমুদ্রপথে অবাধ চলাচল, নিয়মভিত্তিক শৃঙ্খলা, নিরাপত্তা, গণতান্ত্রিক মূল্যবোধ। <b>Quad</b> (যুক্তরাষ্ট্র, জাপান, ভারত, অস্ট্রেলিয়া) দ্বারা শক্তিশালী।</li>
+<li><span class="k">BRI:</span> চীনের অবকাঠামো ও সংযোগ উদ্যোগ, <b>২০১৩ সালে</b> ঘোষিত; দুই অংশ — স্থলভিত্তিক <b>Silk Road Economic Belt</b> ও সমুদ্রভিত্তিক <b>Maritime Silk Road</b>।</li>
+</ul>
+<div class="tbl"><table>
+<tr><th>বিষয়</th><th>IPS</th><th>BRI</th></tr>
+<tr><td>জোর</td><td>নিরাপত্তা ও কৌশলগত ভারসাম্য</td><td>অর্থনৈতিক সহযোগিতা ও অবকাঠামো</td></tr>
+<tr><td>লক্ষ্য</td><td>নিয়মভিত্তিক ব্যবস্থা বজায়</td><td>বাণিজ্য-সংযোগ দিয়ে চীনের প্রভাব বিস্তার</td></tr>
+<tr><td>অংশগ্রহণ</td><td>গণতান্ত্রিক দেশের সমন্বয়</td><td>চীনকেন্দ্রিক, উন্নয়নশীল দেশ</td></tr>
+</table></div>
+<p class="ex"><b>মিল:</b> উভয়ই ইন্দো-প্যাসিফিকে প্রভাব বিস্তার ও সংযোগে গুরুত্ব দেয় — তবে পদ্ধতি ভিন্ন; দুটি প্রতিদ্বন্দ্বী কৌশল।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>রোহিঙ্গা সংকটে "Asian Troika"</h3><div class="body">
+<p class="def"><b>Asian Troika =</b> <b>ইন্দোনেশিয়া, মালয়েশিয়া ও থাইল্যান্ড</b> — ভৌগোলিক নৈকট্য, আসিয়ান সদস্যপদ ও মুসলিম বিশ্বের সাথে সংযোগের কারণে গুরুত্বপূর্ণ।</p>
+<ol>
+<li><span class="k">কূটনৈতিক:</span> মিয়ানমারের ওপর যৌথ চাপ; থাইল্যান্ড মধ্যস্থতাকারী হতে পারে।</li>
+<li><span class="k">মানবিক সহায়তা:</span> আশ্রয়, খাদ্য, চিকিৎসা, পুনর্বাসন।</li>
+<li><span class="k">আঞ্চলিক সহযোগিতা:</span> আসিয়ানের ভেতরে থেকে রোহিঙ্গা ইস্যুকে আঞ্চলিক ইস্যু হিসেবে তুলে ধরা।</li>
+</ol>
+<p class="lim"><b>সীমাবদ্ধতা:</b> ASEAN Way (হস্তক্ষেপ না করার নীতি) এবং দেশগুলোর নিজস্ব সীমাবদ্ধতা।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Europe's "Good Cop, Bad Cop" Approach <small>[BBC, 2026]</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> একই জোটের এক পক্ষ <b>কঠোর (bad cop)</b>, অন্য পক্ষ <b>নরম ও আলোচনামুখী (good cop)</b> অবস্থান নেয় — EU-র কিছু দেশ নিষেধাজ্ঞা/কঠোর বিবৃতি দিয়ে চাপ দেয়, অন্যরা আলোচনার পথ খোলা রাখে।</p>
+<ul><li>ফল: চাপ ও কূটনীতি একসাথে চলে; অবস্থান শক্তভাবে প্রকাশ হয়, আবার সংঘাতও তীব্র হয় না।</li></ul>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Softly-softly Approach <small>[BBC, ২০ জানুয়ারি ২০২৬]</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> সরাসরি কঠোর পদক্ষেপ না নিয়ে <b>ধীরে, সতর্কভাবে ও নরম কূটনীতিতে</b> সমস্যা সমাধান — লক্ষ্য দ্রুত ফল নয়, দীর্ঘমেয়াদি স্থিতিশীল সমাধান।</p>
+<p class="ex"><b>উদাহরণ:</b> ট্রাম্প গ্রিনল্যান্ড (ডেনমার্কের অধীন স্বায়ত্তশাসিত অঞ্চল) কেনা/দখলের ইচ্ছা প্রকাশ করলে ডেনমার্ক স্পষ্ট জানায় "বিক্রির জন্য নয়", কিন্তু যুক্তরাষ্ট্রের সাথে সম্পর্ক নষ্ট করেনি; ইউরোপ উত্তেজনা না বাড়িয়ে সংযতভাবে মোকাবিলা করে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★</span>Quiet Diplomacy <small>[দ্য ডেইলি স্টার, ১১ মার্চ ২০২৬]</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> প্রকাশ্যে কঠোর অবস্থান বা গণমাধ্যমে বক্তব্য না দিয়ে <b>নীরবে, ব্যক্তিগত আলোচনা ও গোপন যোগাযোগে</b> সমস্যার সমাধান।</p>
+<ol>
+<li>নীরব ও গোপন কূটনীতি</li>
+<li>সম্পর্ক রক্ষায় গুরুত্ব</li>
+<li>সংবেদনশীল বিষয়ে ব্যবহার (মানবাধিকার, সংঘাত)</li>
+<li>সমঝোতামূলক — ধীরে বিশ্বাস তৈরি</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>South-South Cooperation</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> এশিয়া, আফ্রিকা ও লাতিন আমেরিকার <b>উন্নয়নশীল দেশগুলোর (Global South) নিজেদের মধ্যে</b> অর্থনৈতিক, প্রযুক্তিগত ও উন্নয়নমূলক সহযোগিতা — উন্নত দেশের ওপর নির্ভর না করে।</p>
+<ul>
+<li><span class="k">BRICS:</span> New Development Bank — পশ্চিমা আর্থিক প্রতিষ্ঠানের বিকল্প।</li>
+<li><span class="k">IBSA:</span> India-Brazil-South Africa Dialogue Forum।</li>
+<li><span class="k">BRI:</span> উন্নয়নশীল দেশে অবকাঠামো।</li>
+<li><span class="k">G77:</span> আন্তর্জাতিক অর্থনৈতিক নীতিতে যৌথ অবস্থান।</li>
+</ul>
+</div></article>
+
+<article class="card"><h3><span class="star">★</span>Zero-sum ও Positive-sum <small>[দ্য ডেইলি স্টার, ৩ এপ্রিল ২০২৫]</small></h3><div class="body">
+<ul>
+<li><span class="k">Zero-sum:</span> এক পক্ষের লাভ = অন্য পক্ষের সমান ক্ষতি; মোট লাভ-ক্ষতি স্থির। উদাহরণ: যুদ্ধে ভূখণ্ড দখল।</li>
+<li><span class="k">Positive-sum:</span> একাধিক পক্ষ একসাথে লাভবান। উদাহরণ: মুক্ত বাণিজ্য চুক্তি, জলবায়ু সহযোগিতা।</li>
+</ul>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Game Theory ও Prisoner's Dilemma <small>[দ্য ডেইলি স্টার, ৩ এপ্রিল ২০২৫]</small></h3><div class="body">
+<p class="def"><b>Game Theory:</b> একাধিক পক্ষ নিজ স্বার্থে সিদ্ধান্ত নেয়, কিন্তু ফলাফল নির্ভর করে <b>অন্য পক্ষের সিদ্ধান্তের ওপর</b> — পারস্পরিক নির্ভরশীল সিদ্ধান্তের বিশ্লেষণ।</p>
+<div class="tbl"><table>
+<tr><th>পরিস্থিতি</th><th>ফল</th></tr>
+<tr><td>দুজনই চুপ (সহযোগিতা)</td><td>দুজনের কম শাস্তি — সেরা যৌথ ফল</td></tr>
+<tr><td>একজন বিশ্বাসঘাতকতা, অন্যজন চুপ</td><td>বিশ্বাসঘাতক মুক্ত, অন্যজনের বেশি শাস্তি</td></tr>
+<tr><td>দুজনই বিশ্বাসঘাতকতা</td><td>দুজনের মাঝারি শাস্তি — খারাপ যৌথ ফল</td></tr>
+</table></div>
+<p>সন্দেহের কারণে দুজনই বিশ্বাসঘাতকতা বেছে নেয় → দুজনের জন্যই খারাপ ফল; এটাই dilemma।</p>
+<p class="ex"><b>আন্তর্জাতিক উদাহরণ:</b> অস্ত্র প্রতিযোগিতা — দুই রাষ্ট্র পারমাণবিক অস্ত্র না বানালে উভয়ের নিরাপত্তা বাড়ে, কিন্তু সন্দেহে দুজনই বানায় → ব্যয়বহুল ও ঝুঁকিপূর্ণ।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Clausewitz-এর যুদ্ধতত্ত্ব <small>[প্রথম আলো, ১৫ মার্চ ২০২৬]</small></h3><div class="body">
+<p class="def"><b>মূল বক্তব্য:</b> কার্ল ফন ক্লজউইটজ, গ্রন্থ <b>On War</b> — "War is the continuation of politics by other means." যুদ্ধ রাষ্ট্রের নীতির ধারাবাহিকতা।</p>
+<ul>
+<li><span class="k">Trinity (ত্রয়ী):</span> (১) জনগণের আবেগ/জাতীয়তাবাদ, (২) সামরিক বাহিনীর কৌশল ও দক্ষতা, (৩) সরকারের নীতি ও রাজনৈতিক লক্ষ্য।</li>
+<li><span class="k">Fog of War:</span> তথ্যের অভাব, বিভ্রান্তি ও অনিশ্চয়তা।</li>
+<li><span class="k">Friction:</span> বাস্তব যুদ্ধ তত্ত্বের চেয়ে জটিল; ছোট বাধাও বড় প্রভাব ফেলে।</li>
+</ul>
+<p class="ex"><b>প্রাসঙ্গিকতা:</b> রাশিয়া-ইউক্রেন যুদ্ধ (ন্যাটোর পূর্বমুখী বিস্তার ঠেকানো — রাজনৈতিক লক্ষ্য); ইরানকেন্দ্রিক উত্তেজনা (তেল ও হরমুজ প্রণালীতে প্রভাব)।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Weaponized Interdependence</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> বৈশ্বিক অর্থনৈতিক/প্রযুক্তিগত নেটওয়ার্কের <b>কেন্দ্র বা "hub"</b>-এ থাকা রাষ্ট্র সেই অবস্থান ব্যবহার করে অন্য রাষ্ট্রের ওপর চাপ দেয় — আন্তঃনির্ভরতাই অস্ত্র।</p>
+<ol>
+<li><span class="k">বিচ্ছিন্ন করার হুমকি:</span> যুক্তরাষ্ট্রের আর্থিক নিষেধাজ্ঞা; চীনের rare earth minerals নিয়ন্ত্রণ; রাশিয়ার জ্বালানি অস্ত্র; ইরানের ওপর তেল নিষেধাজ্ঞা।</li>
+<li><span class="k">তথ্য-অর্থ-প্রযুক্তির প্রবাহ নিয়ন্ত্রণ:</span> নজরদারি ও চাপ।</li>
+</ol>
+<p class="ex"><b>ফল:</b> অর্থনীতি-প্রযুক্তি নিরাপত্তার অংশ; reshoring/friend-shoring; আন্তঃনির্ভরতা একদিকে সহযোগিতা, অন্যদিকে দ্বন্দ্বের ক্ষেত্র।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Techno-nationalism</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> প্রযুক্তিগত উন্নয়ন, উদ্ভাবন ও নিয়ন্ত্রণকে <b>জাতীয় স্বার্থ ও নিরাপত্তার সাথে সরাসরি যুক্ত</b> করে দেখা — প্রযুক্তি কৌশলগত সম্পদ (AI, সেমিকন্ডাক্টর, 5G, ডেটা)।</p>
+<p class="ex"><b>উদাহরণ:</b> যুক্তরাষ্ট্রের Huawei নিষেধাজ্ঞা ও উন্নত সেমিকন্ডাক্টর রপ্তানি নিয়ন্ত্রণ; চীনের "Made in China 2025"।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Decoupling</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> কৌশলগত কারণে অন্য দেশের সাথে <b>অর্থনৈতিক, প্রযুক্তিগত বা সরবরাহগত নির্ভরতা কমিয়ে আনা</b>।</p>
+<ul><li>খাত: সেমিকন্ডাক্টর, জ্বালানি, প্রযুক্তি, প্রতিরক্ষা।</li></ul>
+<p class="ex"><b>উদাহরণ:</b> যুক্তরাষ্ট্র-চীন প্রযুক্তি নিষেধাজ্ঞা ও সরবরাহ শৃঙ্খল পুনর্বিন্যাস; ইউরোপের রুশ জ্বালানি-নির্ভরতা কমানো।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★</span>Resource Nationalism</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> রাষ্ট্র তার <b>প্রাকৃতিক সম্পদের (তেল, গ্যাস, খনিজ, পানি) ওপর সার্বভৌম নিয়ন্ত্রণ</b> প্রতিষ্ঠা করে জাতীয় স্বার্থে ব্যবহার নিশ্চিত করে — প্রয়োজনে জাতীয়করণ ও বিদেশি বিনিয়োগে বিধিনিষেধ।</p>
+<ol>
+<li>রাষ্ট্রীয় নিয়ন্ত্রণ সম্প্রসারণ — ভেনিজুয়েলার PDVSA</li>
+<li>বিদেশি কোম্পানির ওপর নিয়ন্ত্রণ — বলিভিয়ার গ্যাস খাত</li>
+<li>রাষ্ট্রীয় রাজস্ব বৃদ্ধি (কর, রয়্যালটি) — রাশিয়া</li>
+<li>কৌশলগত নিরাপত্তা — ইরানের তেল সম্পদে রাষ্ট্রীয় নিয়ন্ত্রণ</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Rentier State</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> যে রাষ্ট্রের আয়ের প্রধান উৎস অভ্যন্তরীণ উৎপাদন বা কর নয়, বরং <b>প্রাকৃতিক সম্পদ রপ্তানি থেকে প্রাপ্ত "rent"</b> (তেল, গ্যাস)।</p>
+<p class="ex"><b>উদাহরণ:</b> সৌদি আরব, কুয়েত, কাতার — জনগণের কাছ থেকে বেশি কর নিতে হয় না।</p>
+</div></article>
+</section>
+
+<!-- ===================== PART 3 ===================== -->
+<section class="part" data-title="অর্থনীতি">
+<h2>৩. অর্থনীতি সম্পর্কিত কনসেপচুয়াল</h2>
+
+<article class="card"><h3><span class="star">★★</span>Soft Landing ও Hard Landing</h3><div class="body">
+<p class="def"><b>Soft Landing:</b> অতিরিক্ত প্রবৃদ্ধি ও মূল্যস্ফীতিকে <b>ধীরে ও পরিকল্পিতভাবে</b> নিয়ন্ত্রণ (যেমন ধাপে ধাপে সুদের হার বাড়ানো) — মূল্যস্ফীতি কমে, কিন্তু মন্দা হয় না।</p>
+<p class="def"><b>Hard Landing:</b> <b>হঠাৎ ও তীব্রভাবে</b> নিয়ন্ত্রণ (দ্রুত বড় হারে সুদ বাড়ানো) → বিনিয়োগ ও উৎপাদন কমে, বেকারত্ব বাড়ে, মন্দা সৃষ্টি হয়।</p>
+<p class="ex"><b>উপমা:</b> দ্রুতগামী গাড়িতে ধীরে ব্রেক = Soft Landing; হঠাৎ ব্রেক = দুর্ঘটনা (Hard Landing)।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Reshoring, Nearshoring, Friend-shoring</h3><div class="body">
+<ul>
+<li><span class="k">Reshoring:</span> উৎপাদন বিদেশ থেকে <b>নিজ দেশে ফিরিয়ে আনা</b> — মার্কিন কোম্পানি চীন থেকে যুক্তরাষ্ট্রে কারখানা।</li>
+<li><span class="k">Nearshoring:</span> দূরের দেশ থেকে <b>ভৌগোলিকভাবে কাছের দেশে</b> সরানো — চীন থেকে মেক্সিকোতে।</li>
+<li><span class="k">Friend-shoring:</span> <b>রাজনৈতিক মিত্র/বিশ্বস্ত দেশে</b> সরানো — চীন থেকে ভিয়েতনাম, ভারতে।</li>
+</ul>
+<p class="ex"><b>প্রেক্ষাপট:</b> চীন-যুক্তরাষ্ট্র বাণিজ্য যুদ্ধ ও সরবরাহ শৃঙ্খলে বিঘ্ন।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Economic Protectionism বনাম Economic Liberalization</h3><div class="body">
+<ul>
+<li><span class="k">Protectionism (সংরক্ষণবাদ):</span> দেশীয় শিল্প রক্ষায় আমদানি শুল্ক, কোটা ও বিধিনিষেধ। উদাহরণ: সস্তা বিদেশি কাপড়ে উচ্চ শুল্ক → দেশীয় কাপড় টিকে যায়। <i>ঝুঁকি:</i> প্রতিযোগিতা ও দক্ষতা কমে।</li>
+<li><span class="k">Liberalization (উদারীকরণ):</span> শুল্ক কমানো, বাধা দূর করা, বিদেশি বিনিয়োগে উৎসাহ → প্রযুক্তি, কর্মসংস্থান, মান বাড়ে। <i>ঝুঁকি:</i> দুর্বল দেশীয় শিল্প ক্ষতিগ্রস্ত।</li>
+</ul>
+<p class="ex">বাস্তবে অনেক দেশ দুটির সমন্বয় করে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Market-Based Solutions <small>(জলবায়ু)</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> সরাসরি কঠোর নিয়ন্ত্রণ না করে <b>বাজারের প্রণোদনা</b> দিয়ে দূষণ কমানো — বেশি দূষণকারী বেশি খরচ দেয়, কম দূষণকারী সুবিধা পায়।</p>
+<ul>
+<li><span class="k">Emission Trading (কার্বন বাণিজ্য):</span> কোম্পানি A সীমার চেয়ে কম দূষণ করে উদ্বৃত্ত অনুমতি B ও C-র কাছে বিক্রি করে।</li>
+<li><span class="k">কিয়োটো প্রটোকল (১৯৯৭):</span> উন্নত দেশের জন্য বাধ্যতামূলক নিঃসরণ হ্রাস।</li>
+<li><span class="k">CDM (Clean Development Mechanism):</span> উন্নত দেশ উন্নয়নশীল দেশে পরিবেশবান্ধব প্রকল্পে বিনিয়োগ করে নিঃসরণ হ্রাসের স্বীকৃতি পায়।</li>
+</ul>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Just-in-time ও Just-in-case Economy</h3><div class="body">
+<ul>
+<li><span class="k">Just-in-time (JIT):</span> প্রয়োজনের ঠিক সময়ে কাঁচামাল আসে, বড় মজুদ নেই। উদাহরণ: <b>টয়োটা</b>। বৈশিষ্ট্য: কম মজুদ, খরচ সাশ্রয়, উচ্চ দক্ষতা, <b>ঝুঁকি বেশি</b>।</li>
+<li><span class="k">Just-in-case:</span> সম্ভাব্য সংকটের জন্য আগেই অতিরিক্ত মজুদ ও বিকল্প উৎস। বৈশিষ্ট্য: অতিরিক্ত মজুদ, নিরাপত্তা ও স্থিতিশীলতা, বিকল্প সরবরাহ, <b>খরচ বেশি</b>।</li>
+</ul>
+<p class="ex"><b>পরিবর্তনের কারণ:</b> কোভিড-১৯, রাশিয়া-ইউক্রেন যুদ্ধ, মধ্যপ্রাচ্য উত্তেজনা, সরবরাহ সংকট।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Petrodollar <small>[রয়টার্স, ২৫ মার্চ ২০২৬]</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> আন্তর্জাতিক বাজারে <b>তেল প্রধানত মার্কিন ডলারে</b> কেনাবেচা হয়; ১৯৭০-এর দশকে <b>যুক্তরাষ্ট্র-সৌদি আরব</b> চুক্তিতে প্রতিষ্ঠিত।</p>
+<ol>
+<li>ডলারের বৈশ্বিক আধিপত্য</li>
+<li>যুক্তরাষ্ট্রের সহজে ঋণ নেওয়া ও ঘাটতি পূরণের ক্ষমতা</li>
+<li>মধ্যপ্রাচ্যে রাজনৈতিক ও সামরিক প্রভাব</li>
+<li>নিষেধাজ্ঞা প্রয়োগের সক্ষমতা</li>
+<li>বিকল্প ব্যবস্থার উদ্ভব — চীন, রাশিয়া নিজস্ব মুদ্রায় তেল লেনদেন</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>K-shaped Economy</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> পুনরুদ্ধারের সময় সমাজের একাংশ দ্রুত উন্নতি করে (উর্ধ্বমুখী), অন্য অংশ পিছিয়ে পড়ে (নিম্নমুখী) — "K" অক্ষরের মতো।</p>
+<p class="ex"><b>উদাহরণ:</b> কোভিড-১৯-এর পর প্রযুক্তি খাত, বড় কর্পোরেশন ও দক্ষ কর্মী এগিয়েছে; ক্ষুদ্র ব্যবসা, অনানুষ্ঠানিক শ্রমিক ও নিম্নআয়ের মানুষ পিছিয়েছে → আয়বৈষম্য বৃদ্ধি।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Balance Sheet Recession</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> সম্পদের (assets) মূল্য কমে কিন্তু ঋণ (liabilities) একই থাকে → মানুষ ও প্রতিষ্ঠান বিনিয়োগ/খরচ না করে <b>ঋণ শোধে মনোযোগ দেয়</b> → চাহিদা কমে, মন্দা।</p>
+<p class="ex"><b>হিসাব:</b> সম্পদ ১০০, ঋণ ৫০ → সম্পদ ৫০-এ নামলে সমান, ৪০-এ নামলে দায় বেশি।<br><b>উদাহরণ:</b> জাপানের <b>"Lost Decade"</b>; ২০০৮-এর সংকটের পর যুক্তরাষ্ট্র ও ইউরোপ।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Deglobalisation</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> বিশ্বায়নের বিপরীত প্রবণতা — দেশগুলো বৈশ্বিক সংযোগ কমিয়ে <b>নিজস্ব অর্থনীতি, আঞ্চলিক সম্পর্ক ও অভ্যন্তরীণ উৎপাদনে</b> বেশি গুরুত্ব দেয়।</p>
+<ol>
+<li>বৈশ্বিক নির্ভরতা হ্রাস</li>
+<li>আঞ্চলিকীকরণ বৃদ্ধি</li>
+<li>অর্থনীতির ভূরাজনৈতিকীকরণ</li>
+<li>সরবরাহ ব্যবস্থার পুনর্গঠন</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Reglobalisation (বিশ্বায়নের পুনর্গঠন)</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> বৈশ্বিক সংযোগ থেকে সরে না গিয়ে <b>নতুন শর্ত ও কাঠামোয় বিশ্বায়নকে পুনর্গঠন</b> — খরচনির্ভর নয়, নিরাপত্তা ও স্থিতিশীলতাভিত্তিক (reshoring, friend-shoring, regionalisation)।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★</span>Slowbalisation</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> বিশ্বায়নের <b>গতি কমে যাওয়া</b> — বাণিজ্য, বিনিয়োগ ও সংযোগ আগের মতো দ্রুত বাড়ছে না।</p>
+<p class="ex"><b>উদাহরণ:</b> ২০০৮-এর বৈশ্বিক আর্থিক সংকটের পর স্পষ্ট; কোভিড-১৯-এ সরবরাহ ধীর ও নতুন বিনিয়োগ কম।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Fragmented Globalisation</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> বিশ্বায়ন একক ও সমন্বিত না থেকে <b>রাজনৈতিক-কৌশলগত ব্লকে বিভক্ত</b> হয়ে যায়।</p>
+<p class="ex"><b>উদাহরণ:</b> যুক্তরাষ্ট্র মিত্রদের নিয়ে আলাদা সরবরাহ ব্যবস্থা ও Huawei সীমিত করা; চীন নিজস্ব প্রযুক্তি ও বাজারকেন্দ্রিক আলাদা বলয়।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>China+1 Strategy</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> শুধু চীনের ওপর নির্ভর না করে <b>চীনের পাশাপাশি আরও এক বা একাধিক দেশে</b> উৎপাদন (ভিয়েতনাম, ভারত, বাংলাদেশ, মেক্সিকো)।</p>
+<p class="ex"><b>উদাহরণ:</b> Apple কিছু উৎপাদন ভারত ও ভিয়েতনামে সরিয়েছে।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Post-globalization <small>[দ্য ডেইলি স্টার, ১৮ মার্চ ২০২৬]</small></h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> বিশ্বায়ন শেষ হয়নি, বরং নতুন রূপ নিয়েছে — সংযোগ আছে, কিন্তু তা <b>বাজারের যুক্তির বদলে নিরাপত্তা, কৌশলগত স্বার্থ ও ভূরাজনীতি</b> দ্বারা নিয়ন্ত্রিত।</p>
+<ol>
+<li>দক্ষতা থেকে স্থিতিশীলতার দিকে পরিবর্তন</li>
+<li>উৎপাদন ও সরবরাহ ব্যবস্থার পুনর্বিন্যাস</li>
+<li>অর্থনীতির ভূরাজনৈতিক গুরুত্ব বৃদ্ধি (শুল্ক, নিষেধাজ্ঞা, Techno-nationalism)</li>
+<li>গুরুত্বপূর্ণ খাতে স্বনির্ভরতা (Decoupling) — সেমিকন্ডাক্টর, জ্বালানি, ওষুধ</li>
+<li>বহুকেন্দ্রিক বিশ্ব অর্থনীতির উদ্ভব</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Jobageddon</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> <b>Job + Armageddon</b> — অটোমেশন, AI ও ডিজিটাল প্রযুক্তির ফলে প্রচলিত চাকরি বিলুপ্ত হয়ে কর্মসংস্থানে বড় সংকট; শ্রমবাজারের কাঠামোগত পরিবর্তন।</p>
+<ol>
+<li>প্রযুক্তির কারণে চাকরি হ্রাস</li>
+<li>দক্ষতার পরিবর্তন</li>
+<li>কাঠামোগত বেকারত্ব</li>
+<li>নতুন কর্মসংস্থান (সীমিত ও দক্ষতাভিত্তিক)</li>
+</ol>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Triple Bubble</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> একই সময়ে তিন খাতে বুদবুদ — <b>শেয়ারবাজার, রিয়েল এস্টেট/আবাসন এবং ঋণ/আর্থিক খাত</b>; একসাথে ফাটলে বড় সংকট।</p>
+<ul><li>কারণ: অতিরিক্ত বিনিয়োগ, সহজ ঋণ, জল্পনা-কল্পনা।</li></ul>
+<p class="ex"><b>উদাহরণ:</b> ২০০৮-এর বৈশ্বিক আর্থিক সংকট (মার্কিন আবাসন বুদবুদ)।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Middle-Income Trap</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> মধ্যম আয়ের স্তরে পৌঁছানোর পর দীর্ঘদিন সেখানেই আটকে থাকা, উচ্চ আয়ে উন্নীত হতে না পারা — মূল কারণ <b>অর্থনৈতিক কাঠামোর রূপান্তরে ব্যর্থতা</b>।</p>
+<p><b>বৈশিষ্ট্য:</b> প্রবৃদ্ধির স্থবিরতা · সস্তা শ্রমের সুবিধা হারানো · প্রযুক্তিতে পিছিয়ে থাকা · কাঠামোগত সংস্কারের প্রয়োজন।</p>
+<p><b>বাংলাদেশ:</b> পোশাক শিল্প, রেমিট্যান্স ও সস্তা শ্রমে প্রবৃদ্ধি; শ্রমনির্ভর থেকে প্রযুক্তি ও দক্ষতানির্ভর অর্থনীতিতে রূপান্তরই চ্যালেঞ্জ।</p>
+<p><b>করণীয়:</b></p>
+<ol>
+<li>মানবসম্পদ ও দক্ষতা উন্নয়ন (দক্ষিণ কোরিয়া)</li>
+<li>শিল্প বৈচিত্র্য (মালয়েশিয়া, চীন)</li>
+<li>প্রযুক্তি ও উদ্ভাবনে বিনিয়োগ (সিঙ্গাপুর)</li>
+<li>রপ্তানি বৈচিত্র্য ও নতুন বাজার</li>
+<li>প্রাতিষ্ঠানিক দক্ষতা ও সুশাসন</li>
+<li>অবকাঠামো উন্নয়ন (চীন)</li>
+<li>প্রযুক্তি স্থানান্তর ও FDI</li>
+<li>ডিজিটাল অর্থনীতি ও চতুর্থ শিল্পবিপ্লব</li>
+<li>কৃষির আধুনিকায়ন</li>
+</ol>
+</div></article>
+</section>
+
+<!-- ===================== PART 4 ===================== -->
+<section class="part" data-title="জলবায়ু">
+<h2>৪. জলবায়ু সম্পর্কিত পরিভাষা</h2>
+
+<article class="card"><h3><span class="star">★★</span>Nationally Determined Contributions (NDC)</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> <b>প্যারিস চুক্তির</b> আওতায় প্রতিটি দেশ নিজ সক্ষমতা ও উন্নয়ন চাহিদা অনুযায়ী <b>স্বেচ্ছায় নির্ধারিত</b> জলবায়ু লক্ষ্য — UNFCCC-তে জমা দেয়।</p>
+<ol>
+<li>দেশভিত্তিক লক্ষ্য নির্ধারণ</li>
+<li>নমনীয়তা (Flexibility)</li>
+<li>সময়ভিত্তিক হালনাগাদ (Progressive Update) — প্রতিবার আরও উচ্চাভিলাষী</li>
+<li>বহুমাত্রিক — প্রশমন, adaptation, প্রযুক্তি স্থানান্তর, জলবায়ু অর্থায়ন</li>
+</ol>
+<p class="ex"><b>উদাহরণ:</b> বাংলাদেশ — আন্তর্জাতিক সহায়তা পেলে ২০৩০-এর মধ্যে আরও নিঃসরণ কমানো সম্ভব; EU — ২০৩০-এর মধ্যে উল্লেখযোগ্য হ্রাস ও নবায়নযোগ্য জ্বালানি।</p>
+<p class="lim"><b>সীমাবদ্ধতা:</b> লক্ষ্য যথেষ্ট উচ্চাভিলাষী নয়, বাস্তবায়নে ঘাটতি।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>NDC 3.0</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> NDC-এর <b>তৃতীয় হালনাগাদকৃত সংস্করণ</b> — ২০২৫-এর মধ্যে জমা দেওয়ার কথা, <b>২০৩৫</b> পর্যন্ত সময়সীমা বিবেচনায়।</p>
+<ul>
+<li>বাংলাদেশ জমা দেয় <b>২৯ সেপ্টেম্বর ২০২৫</b>।</li>
+<li>প্রশমন: নবায়নযোগ্য জ্বালানি, বিদ্যুৎ দক্ষতা, বৈদ্যুতিক যান, বনায়ন, বর্জ্য থেকে জ্বালানি, মিথেন নিয়ন্ত্রণ, ম্যানগ্রোভ পুনরুদ্ধার।</li>
+<li>অভিযোজন: পানি ব্যবস্থাপনা, উপকূলীয় সুরক্ষা, দুর্যোগ ঝুঁকি হ্রাস।</li>
+<li>সামাজিক: নারী-পুরুষ সমতা, Just Transition।</li>
+</ul>
+<p><b>বৈশিষ্ট্য:</b> নিঃসরণ হ্রাস ও উন্নয়ন সমন্বয় · জ্বালানি ও শিল্পে পরিবর্তন · কৃষি ও পরিবেশ ব্যবস্থাপনা · অভিযোজন · ন্যায়সংগত রূপান্তর ও সামাজিক অন্তর্ভুক্তি।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Milankovitch Theory</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> সার্বীয় বিজ্ঞানী <b>মিলুটিন মিলানকোভিচ</b> — পৃথিবীর কক্ষপথ ও অক্ষের ধীর পরিবর্তনে সূর্যালোকের পরিমাণ ও বণ্টন বদলায় → দীর্ঘমেয়াদে বরফ যুগ (Ice Age) ও উষ্ণ যুগ (Interglacial)।</p>
+<div class="tbl"><table>
+<tr><th>উপাদান</th><th>কী ঘটে</th><th>চক্র</th></tr>
+<tr><td>Orbital Eccentricity</td><td>কক্ষপথ কখনো বেশি উপবৃত্তাকার, কখনো প্রায় গোল</td><td>~১ লক্ষ বছর</td></tr>
+<tr><td>Axial Tilt / Obliquity</td><td>অক্ষের ঝোঁক (~২৩.৫°) সামান্য কমে-বাড়ে → ঋতুর তীব্রতা বদলায়</td><td>—</td></tr>
+<tr><td>Precession</td><td>অক্ষের লাটিমের মতো দুলুনি</td><td>~২৬,০০০ বছর</td></tr>
+</table></div>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Just Transition (ন্যায়সংগত রূপান্তর)</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> জীবাশ্ম জ্বালানিনির্ভর থেকে সবুজ/নিম্ন-কার্বন অর্থনীতিতে রূপান্তরের সময় <b>শ্রমিক ও ক্ষতিগ্রস্ত জনগোষ্ঠীর স্বার্থ ও অধিকার রক্ষা</b>।</p>
+<ol>
+<li>শ্রমিকের সুরক্ষা (সামাজিক নিরাপত্তা, ক্ষতিপূরণ)</li>
+<li>দক্ষতা উন্নয়ন ও পুনর্বাসন</li>
+<li>অন্তর্ভুক্তিমূলক উন্নয়ন</li>
+<li>পরিকল্পিত ও ধাপে ধাপে রূপান্তর</li>
+</ol>
+<p class="ex"><b>উদাহরণ:</b> কয়লা খনি বন্ধ হলে শ্রমিকদের নতুন দক্ষতা ও অন্য খাতে পুনর্বাসন।</p>
+</div></article>
+
+<article class="card"><h3><span class="star">★★</span>Degrowth</h3><div class="body">
+<p class="def"><b>সংজ্ঞা:</b> সচেতনভাবে <b>অর্থনৈতিক প্রবৃদ্ধির গতি কমিয়ে</b> পরিবেশ রক্ষা, সম্পদের টেকসই ব্যবহার ও জীবনমানকে অগ্রাধিকার — সীমিত পৃথিবীতে সীমাহীন প্রবৃদ্ধি সম্ভব নয়।</p>
+<ol>
+<li>অতিরিক্ত ভোগ হ্রাস</li>
+<li>পরিবেশের সুরক্ষা</li>
+<li>ন্যায্য বণ্টন</li>
+<li>জীবনমানের গুরুত্ব (স্বাস্থ্য, শিক্ষা, কল্যাণ)</li>
+</ol>
+</div></article>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  // Build TOC
+  var toc=document.getElementById('toc');
+  document.querySelectorAll('section.part').forEach(function(sec,si){
+    var h=document.createElement('h4');h.textContent=sec.dataset.title;toc.appendChild(h);
+    sec.querySelectorAll('.card').forEach(function(c,ci){
+      var id='c'+si+'_'+ci;c.id=id;
+      var t=c.querySelector('h3').cloneNode(true);
+      var s=t.querySelector('.star');if(s)s.remove();
+      var sm=t.querySelector('small');if(sm)sm.remove();
+      var a=document.createElement('a');a.href='#'+id;a.textContent=t.textContent.trim();a.dataset.for=id;
+      toc.appendChild(a);
+    });
+  });
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  var count=document.getElementById('count');
+  function upd(n){count.textContent=n+'টি কনসেপ্ট';}
+  upd(cards.length);
+  // Search
+  document.getElementById('q').addEventListener('input',function(e){
+    var q=e.target.value.trim().toLowerCase(),n=0;
+    cards.forEach(function(c){
+      var ok=!q||c.textContent.toLowerCase().indexOf(q)>-1;
+      c.classList.toggle('hide',!ok);
+      var a=toc.querySelector('a[data-for="'+c.id+'"]');if(a)a.classList.toggle('hide',!ok);
+      if(ok)n++;
+    });
+    upd(n);
+  });
+  // Revision mode
+  var rev=document.getElementById('rev');
+  rev.addEventListener('click',function(){
+    var on=document.body.classList.toggle('revise');
+    rev.classList.toggle('on',on);
+    cards.forEach(function(c){c.classList.remove('shown');});
+  });
+  cards.forEach(function(c){
+    c.querySelector('.body').addEventListener('click',function(){
+      if(document.body.classList.contains('revise'))c.classList.toggle('shown');
+    });
+  });
+  // Theme
+  document.getElementById('theme').addEventListener('click',function(){
+    var r=document.documentElement,cur=r.getAttribute('data-theme');
+    var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+    r.setAttribute('data-theme',dark?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>
