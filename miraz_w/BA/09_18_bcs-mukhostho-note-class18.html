@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>মুখস্থ নোট — রাজনৈতিক দল ও সুশীল সমাজ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1f2328; --muted:#5f6670; --line:#e4e0d6;
+  --accent:#28509e; --accent2:#b4552d; --soft:#e9eff9; --soft2:#fbeee6; --hl:#fff3b0;
+  --th:#28509e; --thtext:#fff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171a; --card:#1d2125; --ink:#e7e9ec; --muted:#a3abb5; --line:#2e343a;
+    --accent:#7fa6ee; --accent2:#f0936a; --soft:#1c2536; --soft2:#33231b; --hl:#5a4d12;
+    --th:#26395f; --thtext:#e8eefb;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171a; --card:#1d2125; --ink:#e7e9ec; --muted:#a3abb5; --line:#2e343a;
+  --accent:#7fa6ee; --accent2:#f0936a; --soft:#1c2536; --soft2:#33231b; --hl:#5a4d12;
+  --th:#26395f; --thtext:#e8eefb;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;font-size:17px;line-height:1.75}
+header.top{background:linear-gradient(135deg,var(--accent),#1a3570);color:#fff;padding:28px 16px 22px}
+header.top .wrap{max-width:1000px;margin:auto}
+header.top h1{margin:0 0 4px;font-size:1.6rem;line-height:1.3}
+header.top p{margin:0;opacity:.9}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.toolbar button{font:inherit;font-size:.9rem;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:4px 14px;cursor:pointer}
+.toolbar button:hover{background:rgba(255,255,255,.25)}
+main{max-width:1000px;margin:auto;padding:16px}
+nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:8px 0 20px}
+nav.toc h2{margin:0 0 6px;font-size:1.05rem;color:var(--accent)}
+nav.toc ol{margin:0;padding-left:22px;columns:2;column-gap:28px}
+nav.toc a{color:var(--ink);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+.part{margin:30px 0 8px;padding:10px 16px;border-radius:12px;background:var(--accent2);color:#fff;font-size:1.25rem;font-weight:700}
+details.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden}
+details.sec>summary{cursor:pointer;list-style:none;padding:12px 18px;font-weight:700;font-size:1.12rem;color:var(--accent);border-bottom:1px solid transparent}
+details.sec[open]>summary{border-bottom-color:var(--line)}
+details.sec>summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+details.sec[open]>summary::before{transform:rotate(90deg)}
+.body{padding:6px 18px 16px}
+h3{font-size:1.02rem;margin:16px 0 6px;color:var(--accent2)}
+ul,ol{margin:4px 0 8px;padding-left:22px}
+li{margin:2px 0}
+.tablewrap{overflow-x:auto;margin:8px 0 12px}
+table{border-collapse:collapse;width:100%;font-size:.94rem;min-width:520px}
+th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left}
+th{background:var(--th);color:var(--thtext);font-weight:600}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 45%,transparent)}
+.quote{border-left:4px solid var(--accent);background:var(--soft);padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-style:italic}
+.box{background:var(--soft2);border:1px dashed var(--accent2);border-radius:10px;padding:8px 14px;margin:10px 0}
+.warn{background:var(--hl);border-radius:10px;padding:8px 14px;margin:10px 0;font-size:.95rem}
+mark{background:var(--hl);color:inherit;padding:0 3px;border-radius:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.92rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.mini h4{margin:0 0 4px;color:var(--accent)}
+body.recall .hide{filter:blur(6px);cursor:pointer;transition:filter .15s}
+body.recall .hide.shown{filter:none}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:24px 16px 40px}
+@media (max-width:640px){
+  nav.toc ol{columns:1}
+  .grid2{grid-template-columns:1fr}
+  header.top h1{font-size:1.3rem}
+  body{font-size:16px}
+}
+@media print{
+  header.top .toolbar, nav.toc{display:none}
+  details.sec{break-inside:avoid-page}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>📘 মুখস্থ নোট: বাংলাদেশ বিষয়াবলি (ক্লাস ১৮)</h1>
+  <p>দশম অধ্যায় — রাজনৈতিক দলসমূহ &nbsp;|&nbsp; ত্রয়োদশ অধ্যায় — অনানুষ্ঠানিক প্রতিষ্ঠান, সুশীল সমাজ, স্বার্থগোষ্ঠী ও এনজিও</p>
+  <div class="toolbar">
+    <button onclick="toggleAll(true)">সব খোলো</button>
+    <button onclick="toggleAll(false)">সব বন্ধ</button>
+    <button onclick="toggleRecall()" id="rbtn">🧠 রিভিশন মোড (নাম/সাল লুকাও)</button>
+    <button onclick="toggleTheme()">🌓 থিম</button>
+    <button onclick="window.print()">🖨️ প্রিন্ট</button>
+  </div>
+</div></header>
+
+<main>
+<nav class="toc">
+  <h2>সূচিপত্র</h2>
+  <ol>
+    <li><a href="#cheat">এক নজরে: তাত্ত্বিক ও তত্ত্ব</a></li>
+    <li><a href="#p-intro">সিলেবাস ও বিগত প্রশ্ন (দশম)</a></li>
+    <li><a href="#p-def">রাজনৈতিক দল: সংজ্ঞা ও গঠন</a></li>
+    <li><a href="#p-func">রাজনৈতিক দলের ৭ কার্যাবলি</a></li>
+    <li><a href="#opp">বিরোধী দলের ৮ ভূমিকা</a></li>
+    <li><a href="#opp-th">বিরোধী দল: ৮ একাডেমিক তত্ত্ব</a></li>
+    <li><a href="#demo">গণতন্ত্রের চ্যালেঞ্জ ও উত্তরণ</a></li>
+    <li><a href="#culture">রাজনৈতিক সংস্কৃতি</a></li>
+    <li><a href="#p-q">দশম অধ্যায়: চর্চার প্রশ্ন</a></li>
+    <li><a href="#cs-intro">সিলেবাস ও বিগত প্রশ্ন (ত্রয়োদশ)</a></li>
+    <li><a href="#cs">সুশীল সমাজ: সংজ্ঞা, বৈশিষ্ট্য, প্রকার</a></li>
+    <li><a href="#cs-op">জনমত গঠনে সুশীল সমাজ</a></li>
+    <li><a href="#cs-th">সুশীল সমাজ ও রাষ্ট্র: তত্ত্ব</a></li>
+    <li><a href="#pg">চাপ সৃষ্টিকারী গোষ্ঠী</a></li>
+    <li><a href="#cspg">সুশীল সমাজ বনাম চাপ গোষ্ঠী</a></li>
+    <li><a href="#ngo">এনজিও: সংজ্ঞা ও ভূমিকা</a></li>
+    <li><a href="#ngo-th">এনজিও: ৬ তত্ত্ব</a></li>
+    <li><a href="#cs-q">ত্রয়োদশ অধ্যায়: চর্চার প্রশ্ন</a></li>
+  </ol>
+</nav>
+
+<!-- ============ CHEAT ============ -->
+<details class="sec" id="cheat" open><summary>⚡ এক নজরে: তাত্ত্বিক, তত্ত্ব ও মূল শব্দ</summary><div class="body">
+<div class="grid2">
+<div class="mini"><h4>দল গঠনের তত্ত্ব</h4><ul>
+<li>Cleavage / Sociological Theory — <span class="hide">Lipset &amp; Rokkan</span></li>
+<li>Ideological Theory — <span class="hide">Edmund Burke</span></li>
+<li>“দল হলো শ্রেণির রাজনৈতিক রূপ” — <span class="hide">Marx</span></li>
+<li>Charismatic Authority — <span class="hide">Max Weber</span></li>
+<li>দল = রাষ্ট্রের <span class="hide">“leadership-producing institution”</span></li>
+</ul></div>
+<div class="mini"><h4>বিরোধী দলের তত্ত্ব</h4><ul>
+<li>Polyarchy (Contestation + Participation) — <span class="hide">Robert Dahl</span></li>
+<li>“party-mediated system”, responsible opposition — <span class="hide">Giovanni Sartori (ইতালীয়)</span></li>
+<li>৪ ফাংশন (Articulation, Aggregation, Communication, Recruitment) — <span class="hide">Almond &amp; Powell</span></li>
+<li>Deliberative Democracy, “public reasoning” — <span class="hide">Habermas</span></li>
+<li>Pluralist Theory — <span class="hide">Truman, Bentley</span></li>
+<li>Responsible Party Model — <span class="hide">APSA</span></li>
+<li>Checks &amp; Balances (separation of powers) — <span class="hide">Montesquieu</span></li>
+<li>“essential countervailing force” ও “watchdog of democracy” — <span class="hide">Dahl, Sartori, Lipset</span></li>
+</ul></div>
+<div class="mini"><h4>সুশীল সমাজের তত্ত্ব</h4><ul>
+<li>“sphere of particularity”, রাষ্ট্র = ethical totality — <span class="hide">Hegel</span></li>
+<li>Civil society = পুঁজিবাদী ক্ষমতার ভিত্তি — <span class="hide">Marx</span></li>
+<li>Hegemony, “integral state” — <span class="hide">Gramsci</span></li>
+<li>রাষ্ট্রের বিরুদ্ধে অধিকার রক্ষা — <span class="hide">John Locke</span></li>
+<li>সমিতি গণতন্ত্রের “স্কুল” — <span class="hide">Alexis de Tocqueville</span></li>
+<li>Social Capital — <span class="hide">Robert Putnam</span></li>
+<li>Governmentality / ক্ষমতা ছড়িয়ে থাকে — <span class="hide">Foucault</span></li>
+<li>Public Sphere — <span class="hide">Habermas</span></li>
+</ul></div>
+<div class="mini"><h4>এনজিও তত্ত্ব</h4><ul>
+<li>Third Sector — রাষ্ট্র ও বাজারের মাঝে <span class="hide">“তৃতীয় শক্তি”</span></li>
+<li>Participatory Development (bottom-up) — <span class="hide">Chambers</span></li>
+<li>Rights-Based Approach — <span class="hide">BLAST, ASK, BNWLA</span></li>
+<li>Social Capital — <span class="hide">Putnam</span></li>
+<li>Governance &amp; Accountability — <span class="hide">TIB</span></li>
+<li>Human Development (capability expansion) — <span class="hide">Amartya Sen; BRAC-এর UPG</span></li>
+</ul></div>
+</div>
+</div></details>
+
+<div class="part">দশম অধ্যায়: বাংলাদেশের রাজনৈতিক দলসমূহ</div>
+
+<details class="sec" id="p-intro"><summary>১. সিলেবাস ও বিগত সালের প্রশ্ন</summary><div class="body">
+<p><b>PSC সিলেবাস:</b> Political Parties: Historical development; Leadership; Social Bases; Structure; Ideology and Programmes; Factionalism; Politics of Alliances; Inter and Intra-Party Relations; Electoral Behaviour; Parties in Government and Opposition.</p>
+<div class="tablewrap"><table>
+<tr><th>ধরন</th><th>প্রশ্ন</th><th>বিসিএস</th></tr>
+<tr><td>পলিসি নির্ভর</td><td>রাজনৈতিক সংস্কৃতির মূল বৈশিষ্ট্য, গণতান্ত্রিক আদর্শ থেকে বিচ্যুতি ও সুপারিশ</td><td>৪৭তম</td></tr>
+<tr><td>বর্ণনামূলক</td><td>গণতন্ত্রে রাজনৈতিক দলের ভূমিকা</td><td>৪১তম</td></tr>
+<tr><td>বর্ণনামূলক</td><td>দলসমূহের মধ্যে জোট গঠন নতুন কোনো ঘটনা নয়</td><td>৩৭তম</td></tr>
+<tr><td>বর্ণনামূলক</td><td>বাংলাদেশে দল ব্যবস্থার ধরন; দলের কার্যাবলি; ১৯৯১-পরবর্তী বিরোধীদলীয় রাজনীতির বৈশিষ্ট্য</td><td>৩৫তম</td></tr>
+</table></div>
+<p class="box">প্রেক্ষাপট: <b>২০২৪-এর জুলাই গণঅভ্যুত্থান</b>-পরবর্তী রাজনৈতিক উত্তরণে দলগঠন, অভ্যন্তরীণ গণতন্ত্র, ভিন্নমতের স্বাধীনতা ও দায়িত্বশীল বিরোধী দল নিয়ে নতুন আলোচনা।</p>
+</div></details>
+
+<details class="sec" id="p-def"><summary>২. রাজনৈতিক দল: সংজ্ঞা ও গঠন প্রক্রিয়া</summary><div class="body">
+<p>রাজনৈতিক দল = সংগঠিত, স্থায়ী ও মতাদর্শভিত্তিক প্রতিষ্ঠান; লক্ষ্য জনসমর্থনে রাষ্ট্রক্ষমতা লাভ ও নীতিনির্ধারণ।</p>
+<div class="quote"><b>Edmund Burke:</b> “A political party is a group of people united to promote the national interest on the basis of common principles.”</div>
+<h3>গঠনের ৩ ধাপ</h3>
+<div class="tablewrap"><table>
+<tr><th>ধাপ</th><th>তত্ত্ব</th><th>মূল কথা</th></tr>
+<tr><td>১. সামাজিক-অর্থনৈতিক স্বার্থের সংগঠন</td><td>Sociological / Cleavage Theory (Lipset &amp; Rokkan)</td><td>শ্রমিক বনাম মালিক, গ্রাম বনাম শহর, ধর্মীয় বনাম ধর্মনিরপেক্ষ, জাতিগত গোষ্ঠী → স্বার্থের সংঘাত → স্বার্থগোষ্ঠী → দল</td></tr>
+<tr><td>২. অভিন্ন মতাদর্শের উদ্ভব</td><td>Ideological Theory (Edmund Burke); Marx</td><td>Burke: দল = “common principles” ভিত্তিক ঐক্য; Marx: দল = শ্রেণির রাজনৈতিক রূপ</td></tr>
+<tr><td>৩. নেতৃত্বের আবির্ভাব</td><td>Leadership / Charismatic Authority (Max Weber)</td><td>নেতা আন্দোলন সংগঠিত করেন, দাবি একত্র করেন, মতাদর্শকে শক্তিতে রূপ দেন</td></tr>
+</table></div>
+<h3>মতাদর্শ ও দল (নোটের উদাহরণ)</h3>
+<div class="chips"><span class="chip">বাঙালি জাতীয়তাবাদ — আওয়ামী লীগ</span><span class="chip">বাংলাদেশি জাতীয়তাবাদ — বিএনপি</span><span class="chip">ইসলামি মতাদর্শ — জামায়াত</span><span class="chip">বাম আদর্শ — ওয়ার্কার্স পার্টি</span></div>
+<p class="warn">⚠️ নোটে বিএনপির পাশে “বহুদলীয় জাতীয়তাবাদ” লেখা আছে, তবে প্রচলিত নাম <b>বাংলাদেশি জাতীয়তাবাদ</b>। এখানে সেটাই রাখা হয়েছে।</p>
+</div></details>
+
+<details class="sec" id="p-func"><summary>৩. রাজনৈতিক দলের ৭টি কার্যাবলি</summary><div class="body">
+<ol>
+<li><b>নেতৃত্ব নির্বাচন ও প্রস্তুতকরণ</b> — দল রাষ্ট্রের <mark>“leadership-producing institution”</mark></li>
+<li><b>নীতি প্রণয়ন (Policy Formulation)</b> — নির্বাচনী ইশতেহার (manifesto)</li>
+<li><b>Interest Articulation &amp; Aggregation</b> — বিচ্ছিন্ন স্বার্থ একত্রে সমন্বয়</li>
+<li><b>রাজনৈতিক সামাজিকীকরণ</b> — democratic culture গড়ে তোলা</li>
+<li><b>নির্বাচন পরিচালনা, প্রার্থী মনোনয়ন ও ভোট সংগঠন</b></li>
+<li><b>সরকার পরিচালনা ও বিরোধী দলের ভূমিকা</b> — checks and balances</li>
+<li><b>রাষ্ট্র ও জনগণের যোগাযোগ (Communication Link)</b> — “bridge between citizens and the state”</li>
+</ol>
+</div></details>
+
+<details class="sec" id="opp"><summary>৪. বিরোধী দলের ৮টি ভূমিকা</summary><div class="body">
+<p>বিরোধী দল = <b>“essential countervailing force”</b> ও <b>“watchdog of democracy”</b> (Dahl, Sartori, Lipset)।</p>
+<div class="tablewrap"><table>
+<tr><th>ভূমিকা</th><th>মুখস্থ কিওয়ার্ড</th></tr>
+<tr><td>১. কার্যকর ও জবাবদিহিমূলক সংসদ</td><td>“majority tyranny” রোধ; সংসদ হয় deliberative forum</td></tr>
+<tr><td>২. গণতন্ত্র দৃঢ়করণ ও ভারসাম্য</td><td>“balancing pillar”; authoritarian tendencies রোধ; peaceful alternation</td></tr>
+<tr><td>৩. প্রতিষ্ঠানকে জবাবদিহিমূলক করা</td><td>“Institutional Accountability”; সংসদীয় কমিটি, হোয়াইট পেপার</td></tr>
+<tr><td>৪. জনমত গঠন ও সামাজিকীকরণ</td><td>Political Socialization</td></tr>
+<tr><td>৫. নীতি পর্যালোচনা ও বিকল্প নীতি</td><td><b>responsible opposition</b></td></tr>
+<tr><td>৬. নির্বাচনী প্রতিযোগিতা</td><td>policy choice; শক্তিশালী বিরোধী দল ছাড়া “free and fair election” সম্ভব নয়</td></tr>
+<tr><td>৭. উন্নয়ন ও সুশাসন</td><td>political check</td></tr>
+<tr><td>৮. মানবাধিকার ও আইনের শাসন</td><td>Rule of Law; বিচারবহির্ভূত কর্মকাণ্ডের বিরুদ্ধে সোচ্চার</td></tr>
+</table></div>
+</div></details>
+
+<details class="sec" id="opp-th"><summary>৫. বিরোধী দলের ভূমিকা: ৮টি একাডেমিক তত্ত্ব</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>তত্ত্ব</th><th>মূল ধারণা</th><th>বিরোধী দলের কাজ</th></tr>
+<tr><td>Dahl’s Polyarchy</td><td>Contestation + Participation = গণতন্ত্রের দুই স্তম্ভ</td><td>প্রতিযোগিতা বজায়, অংশগ্রহণ বৃদ্ধি; বিরোধী দল না থাকলে গণতন্ত্র সংখ্যাগরিষ্ঠের আধিপত্যে পরিণত</td></tr>
+<tr><td>Sartori’s Party System</td><td>গণতন্ত্র “party-mediated system”; Responsible Opposition</td><td>বিকল্প নীতি, নেতৃত্ব ও ভবিষ্যৎ; dominant-party একচ্ছত্রতা রোধ</td></tr>
+<tr><td>Almond &amp; Powell — Structural Functionalism</td><td>রাষ্ট্র = “function-performing institutions”</td><td>৪ ফাংশন: Interest Articulation, Interest Aggregation, Political Communication, Political Recruitment</td></tr>
+<tr><td>Habermas — Deliberative Democracy</td><td>“public reasoning”; Public Sphere</td><td>সংসদকে deliberative arena বানায় → “collective reasoning”</td></tr>
+<tr><td>Good Governance (World Bank)</td><td>Transparency, Accountability, Rule of Law, Participation, Efficiency, Responsiveness</td><td>primary accountability mechanism; point of order, oversight; watchdog institution</td></tr>
+<tr><td>Pluralist Theory (Truman, Bentley)</td><td>রাষ্ট্র = স্বার্থগোষ্ঠীর সমন্বয়</td><td>competitive political force; counter-pressure</td></tr>
+<tr><td>Responsible Party Model (APSA)</td><td>নীতিভিত্তিক প্রতিযোগিতা = সুস্থ গণতন্ত্র</td><td>৪ দায়িত্ব: Clear alternative policies, Criticize &amp; scrutinize, Shadow government, Ensure responsible governance</td></tr>
+<tr><td>Checks &amp; Balances (Montesquieu)</td><td>নির্বাহী সীমিত রাখতে counter-power দরকার</td><td>নির্বাহীর unchecked power সীমিত করে</td></tr>
+</table></div>
+<p class="box">সব মিলিয়ে বিরোধী দল = রাষ্ট্রের <b>institutional safeguard</b> (কাঠামোগত নিরাপত্তা-বলয়)।</p>
+</div></details>
+
+<details class="sec" id="demo"><summary>৬. বাংলাদেশের গণতন্ত্রের চ্যালেঞ্জ ও উত্তরণের পথ</summary><div class="body">
+<div class="grid2">
+<div class="mini"><h4>৭টি চ্যালেঞ্জ</h4><ol>
+<li>Confrontational Politics (মুখোমুখি সংঘাত)</li>
+<li>Weak Institutional Autonomy</li>
+<li>Weak Rule of Law</li>
+<li>Corruption &amp; Lack of Transparency (clientelism)</li>
+<li>Political Violence &amp; Intolerance</li>
+<li>Media Freedom Constraints</li>
+<li>Shrinking Civil Society Space</li>
+</ol></div>
+<div class="mini"><h4>উত্তরণের ১০টি পথ</h4><ol>
+<li>Consensus-Based Political Culture (“winner-takes-all” পরিহার)</li>
+<li>Strengthening Constitutional Institutions</li>
+<li>Electoral Reform (“Election Dispute Tribunal”)</li>
+<li>Preventing Political Violence (“Level Playing Field”)</li>
+<li>Media Freedom &amp; Digital Transparency</li>
+<li>Robust Anti-Corruption Framework (e-procurement)</li>
+<li>Civil Society Engagement (social audit)</li>
+<li>Decentralization &amp; Local Governance</li>
+<li>Civic Education (political literacy)</li>
+<li>E-Governance</li>
+</ol></div>
+</div>
+</div></details>
+
+<details class="sec" id="culture"><summary>৭. বাংলাদেশের রাজনৈতিক সংস্কৃতি (৪৭তম বিসিএস)</summary><div class="body">
+<p>বৈশিষ্ট্য এক কথায়: <b>আন্দোলননির্ভর, সংঘাতপ্রবণ ও ক্ষমতাকেন্দ্রিক</b>।</p>
+<div class="tablewrap"><table>
+<tr><th>বিদ্যমান সমস্যা (৮ বৈশিষ্ট্য)</th><th>প্রতিফলন</th><th>উত্তরণের করণীয়</th></tr>
+<tr><td>ক্ষমতাকেন্দ্রিক রাজনীতি</td><td><b>zero-sum politics</b></td><td>ক্ষমতার ভারসাম্য, সংসদ শক্তিশালীকরণ</td></tr>
+<tr><td>বিরোধী দলের প্রতি অসহিষ্ণুতা</td><td>দমনপীড়ন, মামলা, সমাবেশে বাধা</td><td>রাজনৈতিক সহনশীলতা</td></tr>
+<tr><td>নির্বাচন ও ক্ষমতা ধরে রাখার সংস্কৃতি</td><td>তত্ত্বাবধায়ক প্রশ্নে দ্বৈত অবস্থান = <b>political opportunism</b></td><td>নিরপেক্ষ ও বিশ্বাসযোগ্য নির্বাচন</td></tr>
+<tr><td>সাংবিধানিক প্রতিষ্ঠানে হস্তক্ষেপ</td><td>EC, বিচার বিভাগ দুর্বল</td><td>প্রতিষ্ঠানের স্বাধীনতা</td></tr>
+<tr><td>প্রশাসনের রাজনৈতিক নিয়ন্ত্রণ</td><td>আমলাতন্ত্রের দলীয় ব্যবহার</td><td>পেশাদারিত্ব ও নিরপেক্ষতা</td></tr>
+<tr><td>গণমাধ্যমের সীমিত স্বাধীনতা</td><td><b>self-censorship</b></td><td>স্বাধীন ও দায়িত্বশীল গণমাধ্যম</td></tr>
+<tr><td>সহিংসতা ও বিচারহীনতা</td><td>হামলা, গুম, খুন, মিথ্যা মামলা</td><td>দৃষ্টান্তমূলক বিচার</td></tr>
+<tr><td>নীতিনির্ভর বিতর্কের অভাব</td><td>ব্যক্তিকেন্দ্রিক রাজনীতি</td><td>নীতিনির্ভর চর্চা ও শিক্ষা</td></tr>
+</table></div>
+<p>এছাড়া করণীয়: <b>দলের অভ্যন্তরীণ গণতন্ত্র</b> (নিয়মিত কাউন্সিল), সংসদ বর্জন কমানো, রাজনৈতিক শিক্ষা।</p>
+</div></details>
+
+<details class="sec" id="p-q"><summary>৮. দশম অধ্যায়: চর্চার প্রশ্ন ও মূল পয়েন্ট</summary><div class="body">
+<h3>প্রশ্ন ১: দলের ঐতিহাসিক বিকাশ কীভাবে বর্তমান দলীয় আচরণকে প্রভাবিত করেছে?</h3>
+<div class="tablewrap"><table>
+<tr><th>প্রেক্ষাপট</th><th>অভিজ্ঞতা</th><th>বর্তমান আচরণ</th><th>সংস্কৃতিতে প্রভাব</th></tr>
+<tr><td>ঔপনিবেশিক শাসন</td><td>আন্দোলন ও প্রতিরোধ</td><td>সংঘাতমুখী কৌশল</td><td>অসহিষ্ণু রাজনীতি</td></tr>
+<tr><td>ভাষা আন্দোলন ও স্বাধিকার</td><td>গণআন্দোলনকেন্দ্রিক সংগঠন</td><td>রাজপথনির্ভর বিরোধিতা</td><td>আন্দোলনই প্রধান হাতিয়ার</td></tr>
+<tr><td>মুক্তিযুদ্ধ-পরবর্তী রাষ্ট্রগঠন</td><td>ক্ষমতা দখলের তাগিদ</td><td>ক্ষমতাকেন্দ্রিক আচরণ</td><td>zero-sum মানসিকতা</td></tr>
+<tr><td>সামরিক শাসন পর্ব</td><td>দমনমূলক রাষ্ট্র ও প্রতিরোধ</td><td>নেতৃত্বকেন্দ্রিক আনুগত্য</td><td>ব্যক্তিনির্ভর রাজনীতি</td></tr>
+<tr><td>১৯৯১-পরবর্তী সংসদীয় গণতন্ত্র</td><td>আন্দোলন ও সংসদের দ্বৈত ব্যবহার</td><td>সংসদবিমুখ বিরোধিতা</td><td>সংঘাতনির্ভর গণতন্ত্র</td></tr>
+<tr><td>দলীয় অভিজ্ঞতার ধারাবাহিকতা</td><td>ক্ষমতায় ও বিরোধে ভিন্ন আচরণ</td><td>রাজনৈতিক সুবিধাবাদ</td><td>নীতিনির্ভর রাজনীতির অভাব</td></tr>
+</table></div>
+<h3>প্রশ্ন ২: জোট রাজনীতি মতাদর্শগত ঐক্য নাকি ক্ষমতাকেন্দ্রিক বাস্তবতা?</h3>
+<ul>
+<li>মূলত <b>ক্ষমতাকেন্দ্রিক বাস্তবতার প্রতিফলন</b> — বহুদলীয় কাঠামো সত্ত্বেও কার্যত দ্বিদলীয় আধিপত্য।</li>
+<li>উদাহরণ (নোট অনুযায়ী, ত্রয়োদশ জাতীয় নির্বাচন ঘিরে): বিএনপি ও সমমনা দলের জোট; জামায়াতে ইসলামী, এনসিপি ও অন্যান্য ইসলামি দলের জোট।</li>
+<li>কিছু ন্যূনতম আদর্শিক মিল থাকে, তবে তা মূলত <b>strategic convergence</b>।</li>
+</ul>
+<h3>প্রশ্ন ৩: দল, রাজনৈতিক সংস্কৃতি ও গণতান্ত্রিক প্রাতিষ্ঠানিকতার সম্পর্ক</h3>
+<p>দলের আচরণ → রাজনৈতিক সংস্কৃতি → প্রতিষ্ঠানের কার্যকারিতা। বাংলাদেশে প্রাতিষ্ঠানিক দুর্বলতা আবার সংঘাতকে উৎসাহিত করে, ফলে তৈরি হয় <b>vicious cycle</b>।</p>
+<h3>প্রশ্ন ৪: অভ্যন্তরীণ গণতন্ত্র ছাড়া জাতীয় গণতন্ত্র টেকসই হয় কি?</h3>
+<p>না। কারণ: (১) ব্যক্তিকেন্দ্রিক ও কর্তৃত্ববাদী নেতৃত্ব, (২) সীমিত গোষ্ঠীর নীতিনির্ধারণ, (৩) অন্তর্দলীয় দ্বন্দ্ব ও ভাঙন, (৪) ভিন্নমতের প্রতি অসহিষ্ণুতা, (৫) নেতৃত্বের নবায়ন না হওয়া।</p>
+</div></details>
+
+<div class="part">ত্রয়োদশ অধ্যায়: অনানুষ্ঠানিক প্রতিষ্ঠান, সুশীল সমাজ, স্বার্থগোষ্ঠী ও এনজিও</div>
+
+<details class="sec" id="cs-intro"><summary>৯. সিলেবাস ও বিগত সালের প্রশ্ন</summary><div class="body">
+<p><b>PSC সিলেবাস:</b> Non-formal Institutions; Role of Civil Society; Interest Groups; and NGOs in Bangladesh.</p>
+<div class="tablewrap"><table>
+<tr><th>প্রশ্ন</th><th>বিসিএস</th></tr>
+<tr><td>সুশীল সমাজ কী? এনজিও ও সুশীল সমাজের পার্থক্য</td><td>৪১তম</td></tr>
+<tr><td>নারীর ক্ষমতায়নে এনজিওর ভূমিকা</td><td>৪১তম</td></tr>
+<tr><td>জনমত গঠনে সুশীল সমাজের ভূমিকা</td><td>৩৭তম</td></tr>
+<tr><td>সৃজনশীল প্যাটার্ন: ৪৩–৪৭তম বিসিএসে এই অধ্যায় থেকে প্রশ্ন আসেনি</td><td>—</td></tr>
+</table></div>
+</div></details>
+
+<details class="sec" id="cs"><summary>১০. সুশীল সমাজ: সংজ্ঞা, বৈশিষ্ট্য ও প্রকারভেদ</summary><div class="body">
+<p>রাষ্ট্র (state) ও বাজারের (market) বাইরে অবস্থিত নাগরিক সংগঠন ও অংশগ্রহণের ক্ষেত্র।</p>
+<div class="quote"><b>রাষ্ট্রবিজ্ঞান:</b> “Civil Society acts as an intermediary sphere that mediates between individuals and the state, ensuring that state authority does not override fundamental liberties.”</div>
+<div class="quote"><b>UNDP:</b> “Civil Society is the arena outside the family, the state and the market where people associate to advance common interests.”</div>
+<h3>৮টি বৈশিষ্ট্য</h3>
+<ol><li>স্বায়ত্তশাসিত ও রাষ্ট্রবহির্ভূত</li><li>স্বেচ্ছাসেবী ও অংশগ্রহণমূলক</li><li>জনস্বার্থে অ্যাডভোকেসি</li><li>Social Capital Formation</li><li>নৈতিকতা, জবাবদিহি ও স্বচ্ছতার পক্ষে</li><li>প্রতিরোধ ও সামাজিক আন্দোলন</li><li>মধ্যস্থতাকারী (Mediator)</li><li>বহুমাত্রিকতা ও বৈচিত্র্য</li></ol>
+<h3>৭টি প্রকার ও উদাহরণ</h3>
+<div class="tablewrap"><table>
+<tr><th>প্রকার</th><th>উদাহরণ</th></tr>
+<tr><td>ক) স্বেচ্ছাসেবী ও কমিউনিটিভিত্তিক</td><td>রেড ক্রিসেন্ট, বিদ্যানন্দ, রোটারি ক্লাব, লায়ন্স ক্লাব</td></tr>
+<tr><td>খ) পেশাজীবী সংগঠন</td><td>সাংবাদিক ইউনিয়ন, বাংলাদেশ মেডিকেল অ্যাসোসিয়েশন</td></tr>
+<tr><td>গ) অধিকারভিত্তিক সংগঠন</td><td>আইন ও সালিশ কেন্দ্র</td></tr>
+<tr><td>ঘ) এনজিও</td><td>ব্র্যাক, গ্রামীণ ব্যাংক</td></tr>
+<tr><td>ঙ) অ্যাডভোকেসি গ্রুপ</td><td>টিআইবি, সিপিডি, সুজন, ফ্যাক্ট-চেক সংগঠন</td></tr>
+<tr><td>চ) সাংস্কৃতিক সংগঠন</td><td>উদীচী, ছায়ানট</td></tr>
+<tr><td>ছ) গণমাধ্যম ও ডিজিটাল সিভিল সোসাইটি</td><td>প্রিন্ট, ইলেকট্রনিক ও সোশ্যাল মিডিয়ার নাগরিক নেটওয়ার্ক</td></tr>
+</table></div>
+</div></details>
+
+<details class="sec" id="cs-op"><summary>১১. জনমত গঠনে সুশীল সমাজের ৭ ভূমিকা (৩৭তম)</summary><div class="body">
+<ol>
+<li>রাষ্ট্রীয় ক্ষমতার নজরদারি (<b>Watchdog Function</b>)</li>
+<li>রাজনৈতিক সচেতনতা ও নাগরিক শিক্ষা</li>
+<li>তথ্যের প্রবাহ নিশ্চিত করা (তৃণমূল সমস্যা জাতীয় অঙ্গনে)</li>
+<li>অ্যাডভোকেসি ও ক্যাম্পেইনে চাপ সৃষ্টি</li>
+<li>সামাজিক আন্দোলন ও সমষ্টিগত চাপ (র‍্যালি, মানববন্ধন)</li>
+<li>নীতিনির্ধারণ প্রভাবিত করা (policy brief)</li>
+<li>অবহেলিত ও প্রান্তিক জনগোষ্ঠীর কণ্ঠস্বর তুলে ধরা</li>
+</ol>
+</div></details>
+
+<details class="sec" id="cs-th"><summary>১২. সুশীল সমাজ ও রাষ্ট্র: তাত্ত্বিক কাঠামো</summary><div class="body">
+<p>সুশীল সমাজকে তিন দৃষ্টিতে দেখা হয়: <b>countervailing force</b>, <b>legitimizing force</b> এবং <b>resistance</b>।</p>
+<div class="tablewrap"><table>
+<tr><th>ধারা</th><th>তাত্ত্বিক</th><th>মূল কথা</th></tr>
+<tr><td rowspan="3">ক্লাসিক্যাল</td><td>Hegel</td><td>Civil society = “sphere of particularity”; রাষ্ট্র = ethical totality; সুশীল সমাজ রাষ্ট্রের অধীনস্থ</td></tr>
+<tr><td>Marx</td><td>Civil society = পুঁজিবাদী ক্ষমতার ভিত্তি (economic base); রাষ্ট্র ও সুশীল সমাজ দুটোই শ্রেণিশোষণের যন্ত্র</td></tr>
+<tr><td>Gramsci</td><td>Civil society = সাংস্কৃতিক আধিপত্যের (hegemony) ক্ষেত্র; রাষ্ট্র + সুশীল সমাজ = “integral state”</td></tr>
+<tr><td rowspan="3">লিবারেল ও গণতান্ত্রিক</td><td>John Locke</td><td>রাষ্ট্রের বিরুদ্ধে নাগরিক অধিকার রক্ষা</td></tr>
+<tr><td>Alexis de Tocqueville</td><td>Associations strengthen democracy; সুশীল সমাজ গণতন্ত্রের “স্কুল”</td></tr>
+<tr><td>Robert Putnam</td><td>Social Capital: বিশ্বাস, নেটওয়ার্ক, সহযোগিতা; Social Capital যত বেশি, রাষ্ট্র তত জবাবদিহিমূলক</td></tr>
+<tr><td rowspan="3">সমকালীন</td><td>Neoliberal</td><td>রাষ্ট্র ছোট হবে (State downsizing); NGOs fill governance gaps (welfare gap)</td></tr>
+<tr><td>Foucault (Post-Structuralist)</td><td>ক্ষমতা সমাজজুড়ে ছড়িয়ে থাকে; সুশীল সমাজও ক্ষমতারই অংশ</td></tr>
+<tr><td>Global Civil Society</td><td>INGO ও transnational advocacy networks বৈশ্বিক নীতিনির্ধারণ প্রভাবিত করে</td></tr>
+</table></div>
+<h3>রাষ্ট্র–সুশীল সমাজ সম্পর্কের ৩ ধরন</h3>
+<div class="tablewrap"><table>
+<tr><th>সম্পর্ক</th><th>নাম</th></tr>
+<tr><td>Cooperative (সহযোগিতামূলক)</td><td>Participatory Governance (যেমন NGO–রাষ্ট্র অংশীদার)</td></tr>
+<tr><td>Adversarial (প্রতিদ্বন্দ্বিতামূলক)</td><td>Countervailing power; রাষ্ট্র একে “threat” মনে করে</td></tr>
+<tr><td>Resistance (প্রতিরোধমূলক)</td><td>Democratic Resistance</td></tr>
+</table></div>
+<h3>পরিভাষা সারসংক্ষেপ</h3>
+<div class="chips"><span class="chip">Hegemony — গ্রামশি</span><span class="chip">Social Capital — Putnam</span><span class="chip">Governmentality — Foucault</span><span class="chip">Public Sphere — Habermas</span><span class="chip">Countervailing Power</span><span class="chip">Participatory Governance</span><span class="chip">Accountability Mechanism</span><span class="chip">Transnational Advocacy Networks</span><span class="chip">Rights-based Approach</span></div>
+</div></details>
+
+<details class="sec" id="pg"><summary>১৩. চাপ সৃষ্টিকারী গোষ্ঠী (Pressure Group)</summary><div class="body">
+<p>স্বায়ত্তশাসিত নাগরিক সংগঠন, যারা <b>নির্বাচনে অংশ নেয় না</b> কিন্তু নীতি প্রভাবিত করতে চাপ দেয়।</p>
+<div class="grid2">
+<div class="mini"><h4>Interest Articulation</h4>দাবি রাষ্ট্রের কাছে প্রকাশ করা; তথ্যপ্রবাহ <b>people → state</b>। যেমন: মজুরি বৃদ্ধির দাবি, সেশনজট কমানোর দাবি।</div>
+<div class="mini"><h4>Interest Aggregation</h4>নানা দাবি একত্র করে সমন্বিত নীতিতে রূপ দেওয়া। যেমন: শ্রম আইন তৈরি, নির্বাচনী ইশতেহার।</div>
+</div>
+<h3>প্রকারভেদ (Almond &amp; Powell-এর ৪টি + আধুনিক ৩টি)</h3>
+<div class="tablewrap"><table>
+<tr><th>প্রকার</th><th>উদাহরণ</th></tr>
+<tr><td>১. Institutional</td><td>বিশ্ববিদ্যালয়, আমলা, সামরিক বাহিনী, সরকারি কর্পোরেশন</td></tr>
+<tr><td>২. Associational</td><td>শ্রমিক ইউনিয়ন, শিক্ষক সমিতি, FBCCI, BGMEA, আইনজীবী সমিতি</td></tr>
+<tr><td>৩. Non-Associational</td><td>উপজাতি গোষ্ঠী, ধর্মীয় সম্প্রদায়, কাস্ট/কৌলিন্যভিত্তিক গোষ্ঠী, ক্ল্যান</td></tr>
+<tr><td>৪. Anomic (স্বতঃস্ফূর্ত)</td><td>হঠাৎ আন্দোলন, দাঙ্গা, ছাত্রদের তাৎক্ষণিক প্রতিবাদ</td></tr>
+<tr><td>৫. Cause-Oriented (আধুনিক)</td><td>পরিবেশবাদী আন্দোলন, মানবাধিকার সংগঠন, নারীবাদী গ্রুপ, জলবায়ু ন্যায্যতা আন্দোলন</td></tr>
+<tr><td>৬. Economic (আধুনিক)</td><td>BGMEA, চেম্বার অব কমার্স, কৃষক সংগঠন; Almond &amp; Powell একে “material interest”-এর অধীনে রাখেন</td></tr>
+<tr><td>৭. Political Action (আধুনিক)</td><td>ছাত্র সংগঠন, নির্বাচনী লবিস্ট গ্রুপ, রাজনৈতিক গণমঞ্চ</td></tr>
+</table></div>
+<h3>রাষ্ট্রে চাপ গোষ্ঠীর ৮ ভূমিকা</h3>
+<ol><li>নীতি ও আইন প্রণয়নে প্রভাব</li><li>সরকার-জনগণের সেতুবন্ধন</li><li>মানবাধিকার ও সামাজিক ন্যায়ের পক্ষে চাপ</li><li>জনমত গঠন</li><li>গণতান্ত্রিক শাসন শক্তিশালীকরণ</li><li>নীতি বাস্তবায়নে তদারকি (Policy Monitoring)</li><li>বিচার বিভাগের স্বাধীনতা ও সংস্কার (Public Interest Litigation)</li><li>প্রশাসনিক দুর্নীতি উন্মোচন (whistleblowing)</li></ol>
+</div></details>
+
+<details class="sec" id="cspg"><summary>১৪. সুশীল সমাজ বনাম চাপ সৃষ্টিকারী গোষ্ঠী</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>বিষয়</th><th>সুশীল সমাজ</th><th>চাপ সৃষ্টিকারী গোষ্ঠী</th></tr>
+<tr><td>উদ্দেশ্য</td><td>সমাজকল্যাণ, মানবাধিকার, গণতন্ত্র</td><td>নির্দিষ্ট স্বার্থ বা নীতিগত দাবি</td></tr>
+<tr><td>কার্যক্ষেত্র</td><td>বিস্তৃত</td><td>সীমিত (লবিং, প্রচারণা)</td></tr>
+<tr><td>রাজনৈতিক সম্পর্ক</td><td>সাধারণত নিরপেক্ষ; কখনো সহযোগী, কখনো সমালোচক</td><td>সরাসরি নীতি ও সিদ্ধান্তকে লক্ষ্য করে</td></tr>
+<tr><td>ক্ষমতার প্রশ্ন</td><td>ক্ষমতা দখলের লক্ষ্য নেই</td><td>দখল নয়, প্রভাব বিস্তারই উদ্দেশ্য</td></tr>
+<tr><td>সদস্য</td><td>বিস্তৃত ও বৈচিত্র্যময়</td><td>পেশা/স্বার্থভিত্তিক</td></tr>
+<tr><td>সামাজিক ভূমিকা</td><td>সামাজিক পরিবর্তন, নৈতিকতা বৃদ্ধি</td><td>বিল, আইন, নীতি বদলাতে চাপ</td></tr>
+<tr><td>উদাহরণ</td><td>ব্র্যাক, বিদ্যানন্দ, ছায়ানট, পরিবেশ আন্দোলন</td><td>শ্রমিক ইউনিয়ন, ব্যবসায়ী সমিতি, ছাত্র সংগঠন, শিক্ষক সমিতি</td></tr>
+</table></div>
+<p class="box">এক লাইনে: সুশীল সমাজ <b>সমাজকেন্দ্রিক</b>, Pressure Group <b>স্বার্থকেন্দ্রিক ও নীতি প্রভাবকারী</b>।</p>
+</div></details>
+
+<details class="sec" id="ngo"><summary>১৫. এনজিও: সংজ্ঞা ও বিভিন্ন খাতে ভূমিকা</summary><div class="body">
+<p><b>NGO = Non-Government Organization</b>: অলাভজনক (non-profit), অ-সরকারি (non-state) ও স্বেচ্ছাসেবী (voluntary) সংগঠন।</p>
+<div class="chips"><span class="chip">বাংলাদেশ: ব্র্যাক, গ্রামীণ ব্যাংক, আশা (ASA), উদ্দীপন, উসেপ (UCEP), কারিতাস, হেলভেটাস</span><span class="chip">বিশ্ব: CARE, Oxfam, Red Cross, Save the Children</span></div>
+
+<h3>নারীর ক্ষমতায়নে এনজিও (৪১তম) — ৮ পয়েন্ট</h3>
+<div class="tablewrap"><table>
+<tr><th>ক্ষেত্র</th><th>উদাহরণ</th></tr>
+<tr><td>১. অর্থনৈতিক ক্ষমতায়ন</td><td>ব্র্যাক, গ্রামীণ ব্যাংক, আশার ক্ষুদ্রঋণ</td></tr>
+<tr><td>২. শিক্ষা ও দক্ষতা</td><td>ব্র্যাক, উসেপ, কেয়ার</td></tr>
+<tr><td>৩. আইনি সচেতনতা ও অধিকার</td><td>ASK, BLAST, BNWLA</td></tr>
+<tr><td>৪. স্বাস্থ্য ও মাতৃস্বাস্থ্য</td><td>ব্র্যাক, মেরী স্টোপস, স্বাস্থ্যসেবা ট্রাস্ট</td></tr>
+<tr><td>৫. সচেতনতা ও লিঙ্গসমতা</td><td>ব্র্যাকের প্রচারণা, কারিতাসের লিঙ্গসমতা কর্মশালা</td></tr>
+<tr><td>৬. নেতৃত্ব ও রাজনৈতিক অংশগ্রহণ</td><td>ব্র্যাকের “লিডারশিপ ডেভেলপমেন্ট প্রোগ্রাম”</td></tr>
+<tr><td>৭. নারী শ্রমিকের অধিকার</td><td>কর্মজীবী নারী, BLAST; রানা প্লাজা-পরবর্তী সোচ্চার ভূমিকা</td></tr>
+<tr><td>৮. দারিদ্র্য বিমোচন ও সামাজিক সুরক্ষা</td><td>ব্র্যাকের Ultra Poor Graduation (UPG)</td></tr>
+</table></div>
+
+<h3>শিশুশিক্ষায় এনজিও — ৭ পয়েন্ট</h3>
+<ol><li>বিদ্যালয় স্থাপন (One Room School, নন-ফরমাল স্কুল)</li><li>ঝরে পড়া শিশুদের ফেরানো (re-entry প্রোগ্রাম)</li><li>মানসম্মত শিক্ষা ও শিক্ষক প্রশিক্ষণ (play-based learning)</li><li>শিক্ষাসামগ্রী, পুষ্টি ও সহায়তা (school feeding; সেভ দ্য চিলড্রেন, ওয়ার্ল্ড ভিশন)</li><li>অভিভাবক সচেতনতা ও SMC (School Management Committee)</li><li>শিশুশ্রম ও বাল্যবিবাহ প্রতিরোধ (ব্র্যাক, প্ল্যান ইন্টারন্যাশনাল, কারিতাস)</li><li>জরুরি শিক্ষা (Emergency Education); UNICEF-BRAC Rohingya Learning Center <mark>৫ লাখের বেশি</mark> শিশুকে শিক্ষা দিয়েছে</li></ol>
+
+<h3>দারিদ্র্য বিমোচনে এনজিও — ৬ পয়েন্ট</h3>
+<ol><li>গ্রামীণ অর্থনীতি সক্রিয় করা (ব্র্যাক, কারিতাস, আশা)</li><li>নারী শ্রমশক্তি উৎপাদনমুখী খাতে → “দ্বৈত আয়”</li><li>শহুরে দারিদ্র্য (UCEP, Sajida Foundation, Marie Stopes)</li><li>সামাজিক পুঁজি (সঞ্চয় দল, মহাজন-বিরোধী সহায়তা)</li><li>প্রযুক্তি দক্ষতা (BRAC Skills Programme, Oxfam Skills for Employment, DNet)</li><li>জলবায়ু-ঝুঁকিপূর্ণ এলাকায় জীবিকা (BRAC Climate Adaptation Programme, Practical Action)</li></ol>
+</div></details>
+
+<details class="sec" id="ngo-th"><summary>১৬. এনজিও: ৬টি একাডেমিক তত্ত্ব</summary><div class="body">
+<div class="tablewrap"><table>
+<tr><th>তত্ত্ব</th><th>মূল কথা</th><th>প্রয়োগ</th></tr>
+<tr><td>Third Sector Theory</td><td>রাষ্ট্র ধীর ও আমলাতান্ত্রিক, বাজার লাভকেন্দ্রিক; এনজিও “তৃতীয় শক্তি”</td><td>BRAC নন-ফরমাল শিক্ষা, CARE খাদ্য নিরাপত্তা, Oxfam দুর্যোগ প্রতিক্রিয়া</td></tr>
+<tr><td>Participatory Development (Chambers)</td><td>জনগণ উন্নয়নের সক্রিয় অংশীদার; “bottom-up”</td><td>BRAC Village Organization (VO), গ্রুপভিত্তিক ক্ষুদ্রঋণ</td></tr>
+<tr><td>Rights-Based Approach (RBA)</td><td>উন্নয়ন চ্যারিটি নয়, মৌলিক মানবাধিকার</td><td>BLAST, ASK, BNWLA</td></tr>
+<tr><td>Social Capital (Putnam)</td><td>trust, network, cooperation</td><td>সঞ্চয় গ্রুপ, স্বনির্ভর নারীগোষ্ঠী, মহাজন-বিরোধী আন্দোলন</td></tr>
+<tr><td>Governance &amp; Accountability</td><td>এনজিও = “watchdog”</td><td>TIB-এর দুর্নীতি সূচক, নির্বাচন পর্যবেক্ষণ</td></tr>
+<tr><td>Human Development (Amartya Sen)</td><td>“capability expansion”</td><td>BRAC Ultra Poor Graduation (UPG) Model</td></tr>
+</table></div>
+<p class="warn">⚠️ নোটে শিরোনাম “Third Sector/ Executive Theory” লেখা আছে। প্রচলিত নাম <b>Third Sector Theory</b>; “Executive” সম্ভবত টাইপো।</p>
+</div></details>
+
+<details class="sec" id="cs-q"><summary>১৭. ত্রয়োদশ অধ্যায়: চর্চার প্রশ্ন ও মূল পয়েন্ট</summary><div class="body">
+<h3>ক) রাষ্ট্রীয় দুর্বলতায় সুশীল সমাজ কতটা কার্যকর বিকল্প?</h3>
+<div class="tablewrap"><table>
+<tr><th>দিক</th><th>কার্যকর ভূমিকা</th><th>সীমাবদ্ধতা</th></tr>
+<tr><td>জনমত ও সচেতনতা</td><td>অধিকার ও ন্যায্যতার প্রশ্ন জনপরিসরে তোলা</td><td>মেরুকরণ; ধারাবাহিকতার অভাব</td></tr>
+<tr><td>সেবা ঘাটতি পূরণ</td><td>প্রান্তিক জনগোষ্ঠীর কাছে সেবা</td><td>প্রকল্প ও অর্থায়ন-নির্ভরতা</td></tr>
+<tr><td>রাষ্ট্র-সমাজ মধ্যস্থতা</td><td>দাবিকে নীতি আলোচনায় রূপ দেয়</td><td>সিদ্ধান্তে সরাসরি ক্ষমতা নেই</td></tr>
+<tr><td>বিকল্প না পরিপূরক?</td><td>চাপ সৃষ্টিকারী ও সহায়ক শক্তি</td><td>সাংবিধানিক কর্তৃত্ব নেই → <b>বিকল্প নয়, পরিপূরক</b></td></tr>
+<tr><td>স্বাধীনতা ও প্রতিনিধিত্ব</td><td>নানা কণ্ঠস্বর তুলে ধরে</td><td>শ্রেণিস্বার্থ, বিদেশি অর্থায়ন, অভ্যন্তরীণ জবাবদিহির ঘাটতি</td></tr>
+</table></div>
+<h3>খ) সুশীল সমাজ কি স্বাধীন নৈতিক শক্তি?</h3>
+<p>সিদ্ধান্ত: <b>আংশিকভাবে স্বাধীন</b>। চাপের উৎস: রাজনৈতিক মেরুকরণ ও দলীয় আনুগত্য, নগরভিত্তিক মধ্যবিত্ত-উচ্চবিত্তের আধিপত্য, দাতা-নির্ভরতা। সমাধান: নিরপেক্ষতা, অভ্যন্তরীণ জবাবদিহি, প্রান্তিক জনগোষ্ঠীর অংশগ্রহণ।</p>
+<h3>গ) এনজিওর অবদান কতটা টেকসই ও কাঠামোগত?</h3>
+<p>সিদ্ধান্ত: <b>গুরুত্বপূর্ণ, কিন্তু এখনো পুরোপুরি টেকসই নয়</b>। কারণ সহায়তাগুলো স্বল্পমেয়াদি, কাঠামোগত কারণ (জমির অসম বণ্টন, মজুরি বৈষম্য) সমাধান হয়নি, কার্যক্রম প্রকল্পনির্ভর এবং দাতার অগ্রাধিকার প্রাধান্য পায়। করণীয়: রাষ্ট্রীয় নীতি ও স্থানীয় সরকারের সঙ্গে সমন্বয়।</p>
+</div></details>
+
+</main>
+<footer>১৮তম ক্লাসের লেকচার শিট (তারিখ: ২৩/০৩/২০২৬) থেকে সংকলিত ব্যক্তিগত রিভিশন নোট</footer>
+
+<script>
+function toggleAll(open){document.querySelectorAll('details.sec').forEach(d=>d.open=open)}
+function toggleRecall(){
+  const on=document.body.classList.toggle('recall');
+  document.getElementById('rbtn').textContent=on?'🧠 রিভিশন মোড বন্ধ করো':'🧠 রিভিশন মোড (নাম/সাল লুকাও)';
+  document.querySelectorAll('.hide').forEach(e=>e.classList.remove('shown'));
+  if(on) toggleAll(true);
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.hide');
+  if(h&&document.body.classList.contains('recall')) h.classList.toggle('shown');
+});
+function toggleTheme(){
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+  try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}
+}
+try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+document.querySelectorAll('nav.toc a').forEach(a=>a.addEventListener('click',()=>{
+  const d=document.querySelector(a.getAttribute('href'));if(d&&d.tagName==='DETAILS')d.open=true;
+}));
+</script>
+</body>
+</html>
