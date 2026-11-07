@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>প্রত্যয় চিট শিট</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet"><style id="css">
+:root{--ink:#141414;--paper:#FFF8E7;--y:#FFD93D;--g:#6BCB77;--p:#FF8FAB;--b:#4D96FF;--o:#FF6B35;--m:#7A5BB0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hind Siliguri','Noto Sans Bengali','Nirmala UI',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;font-size:16px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1240px;margin:0 auto;padding:0 14px}
+header.top{background:var(--y);border-bottom:3px solid var(--ink);padding:18px 0 14px}
+header.top h1{font-size:clamp(26px,5vw,40px);line-height:1.15;font-weight:700}
+header.top p{font-weight:600;font-size:15px;margin-top:2px}
+.bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:3px solid var(--ink)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 14px}
+.search{flex:1 1 200px;min-width:160px;border:3px solid var(--ink);padding:5px 12px;font-weight:600;background:#fff}
+.search:focus{outline:none;box-shadow:3px 3px 0 var(--b)}
+.btn{border:3px solid var(--ink);background:#fff;padding:3px 12px;font-weight:700;box-shadow:3px 3px 0 var(--ink);white-space:nowrap;transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn.on{background:var(--ink);color:var(--y)}
+.btn.pri{background:var(--g)}
+.btn.warn{background:var(--o);color:#fff}
+.btn:disabled{opacity:.5;cursor:wait}
+.chipf{display:flex;gap:6px;flex-wrap:wrap}
+.chipf .btn{padding:2px 10px;font-size:15px;box-shadow:2px 2px 0 var(--ink)}
+.banner{background:#E3F0FF;border:3px solid var(--ink);margin:12px 0 0;padding:8px 12px;font-weight:600;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+section.ch{padding:22px 0 6px}
+.chh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.chh h2{font-size:clamp(22px,4vw,30px);line-height:1.2;background:var(--c);border:3px solid var(--ink);padding:2px 14px;box-shadow:5px 5px 0 var(--ink)}
+.chh span{font-weight:600;font-size:15px;opacity:.8}
+.chh .btn{margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{background:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--c);padding:10px 12px 12px;position:relative;display:flex;flex-direction:column;gap:7px}
+.ct{display:flex;align-items:center;gap:8px}
+.no{font-weight:700;font-size:13px;background:var(--c);border:2px solid var(--ink);padding:0 6px;line-height:1.5}
+.p{font-size:22px;font-weight:700;line-height:1.25;flex:1}
+.pos{font-size:12.5px;font-weight:700;color:#fff;padding:0 8px;border:2px solid var(--ink);line-height:1.6;white-space:nowrap}
+.pn{background:var(--b)}.pa{background:var(--o)}.pm{background:var(--m)}
+.ib{border:2px solid var(--ink);background:#fff;width:30px;height:30px;font-size:14px;line-height:1;flex:none}
+.ib:hover{background:var(--y)}
+.end{font-size:15px;font-weight:600}
+.end b{background:#FFF1B8;padding:0 6px;border:2px solid var(--ink);font-size:16px}
+.note{font-size:14px;background:#F4F4F4;border-left:4px solid var(--ink);padding:2px 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:2px solid var(--ink);padding:1px 8px;line-height:1.35;background:#fff}
+.chip b{font-size:17px;display:block}
+.chip i{font-style:normal;font-size:13px;opacity:.8}
+.trick{background:var(--ink);color:var(--y);font-weight:700;font-size:14.5px;padding:4px 10px;margin-top:auto}
+/* revision mode */
+.rev .ans{filter:blur(7px);transition:filter .15s;user-select:none}
+.rev .card{cursor:pointer}
+.rev .card.shown .ans{filter:none;user-select:auto}
+.rev .card:not(.shown)::after{content:"👆 ট্যাপ করে উত্তর দেখুন";position:absolute;right:10px;bottom:-12px;font-size:12px;font-weight:700;background:var(--y);border:2px solid var(--ink);padding:0 6px}
+/* editor */
+.card.edit{box-shadow:5px 5px 0 var(--y);outline:3px dashed var(--ink);outline-offset:3px;cursor:auto}
+.card.edit label{display:block;font-size:13px;font-weight:700}
+.card.edit input,.card.edit select,.card.edit textarea{display:block;width:100%;border:2px solid var(--ink);padding:3px 8px;font-size:15px;font-weight:500;background:#FFFDF5;margin-top:2px}
+.card.edit textarea{min-height:52px;resize:vertical}
+.exrow{display:grid;grid-template-columns:1fr 1.3fr 30px;gap:5px;margin-top:5px}
+.exrow input{margin-top:0!important}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.row .btn{font-size:14px;padding:1px 10px;box-shadow:2px 2px 0 var(--ink)}
+.row .sp{flex:1}
+/* confusion table */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);font-size:15px}
+th,td{border:2px solid var(--ink);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--y)}
+td b{font-size:16px}
+.empty{padding:20px;border:3px dashed var(--ink);text-align:center;font-weight:600;background:#fff}
+footer{margin-top:34px;background:var(--ink);color:#fff;padding:22px 0;text-align:center;font-weight:600;font-size:15px}
+footer b{color:var(--y);display:block;font-size:19px}
+/* save bar */
+.savebar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;background:var(--ink);color:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--y);padding:7px 10px 7px 14px;display:none;gap:10px;align-items:center;font-weight:700;max-width:calc(100% - 20px);flex-wrap:wrap}
+.savebar.show{display:flex}
+.savebar .btn{box-shadow:none;border-color:#fff}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:60;background:var(--g);border:3px solid var(--ink);padding:5px 14px;font-weight:700;box-shadow:4px 4px 0 var(--ink);display:none}
+.toast.show{display:block}
+.toast.bad{background:var(--o);color:#fff}
+/* modal */
+.modal{position:fixed;inset:0;background:#000a;z-index:50;display:none;align-items:center;justify-content:center;padding:14px}
+.modal.show{display:flex}
+.mbox{background:var(--paper);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--y);width:min(680px,100%);max-height:90vh;overflow:auto;padding:16px}
+.mbox h3{font-size:22px;margin-bottom:6px}
+.mbox p{font-size:14px;font-weight:500;margin-bottom:8px}
+.mbox textarea{width:100%;min-height:220px;border:3px solid var(--ink);font-family:ui-monospace,monospace;font-size:12.5px;padding:8px;background:#fff}
+.mbox .row{margin-top:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}body{font-size:15.5px}}
+@media print{.bar,.savebar,.ib,.chh .btn,.banner,footer{display:none!important}.rev .ans{filter:none}.card{break-inside:avoid;box-shadow:none}body{background:#fff}}
+</style></head><body><div id="root"></div><script id="data" type="application/json">null</script><script id="app">
+(function(){
+const DEFAULT={rules:[
+{id:"k1",ch:"k",p:"অক / ণক",end:"অক",pos:"বিশেষ্য",note:"'ণ'-এর প্রভাবে ধাতুর স্বর বড় হয় (কৃ→কার, নী→নায়)",trick:"কাজের কর্তা = অক = বিশেষ্য",ex:[["কারক","কৃ + অক"],["নায়ক","নী + অক"],["পাঠক","পঠ্ + অক"],["দর্শক","দৃশ্ + অক"],["গায়ক","গৈ + অক"],["লেখক","লিখ্ + অক"]]},
+{id:"k2",ch:"k",p:"অনীয়",end:"নীয় / নীয়া",pos:"বিশেষণ",note:"মূল 'অনীয়র্' — 'র্' বাদ। 'করার যোগ্য/উচিত' বোঝায়",trick:"যোগ্যতা = অনীয় = বিশেষণ",ex:[["করণীয়","কৃ + অনীয়"],["দর্শনীয়","দৃশ্ + অনীয়"],["শ্রবণীয়","শ্রু + অনীয়"]]},
+{id:"k3",ch:"k",p:"তৃ / তৃচ্",end:"তা (ধাতুর পরে)",pos:"বিশেষ্য",note:"আসল রূপ দাতৃ, নেতৃ, কর্তৃ → প্রথমার একবচনে দাতা, নেতা, কর্তা",trick:"শেষে 'তা' + ধাতু = তৃ",ex:[["দাতা","দা + তৃ"],["কর্তা","কৃ + তৃ"],["নেতা","নী + তৃ"],["জ্ঞাতা","জ্ঞা + তৃ"]]},
+{id:"k4",ch:"k",p:"শানচ্",end:"মান (ধাতুর পরে)",pos:"বিশেষণ",note:"'এখন চলছে' বোঝায়। 'বর্তমান' কালের নাম হলে বিশেষ্য",trick:"মানের আগে ধাতু = শানচ্ · নাম = মতুপ্",ex:[["চলমান","চল্ + শানচ্"],["বর্ধমান","বৃধ্ + শানচ্"],["বর্তমান","বৃৎ + শানচ্"]]},
+{id:"k5",ch:"k",p:"য (ণ্যৎ / যৎ)",end:"র্য / য্য / য-ফলা",pos:"বিশেষণ / বিশেষ্য",note:"ধাতু + য = 'করার যোগ্য'। সৌন্দর্য, ধৈর্যের মতো নাম + য আসলে তদ্ধিত (ষ্যঞ্)",trick:"ধাতু+য = কৃৎ · নাম+য = তদ্ধিত",ex:[["কার্য","কৃ + য"],["ভোজ্য","ভুজ্ + য"],["লভ্য","লভ্ + য"]]},
+{id:"k6",ch:"k",p:"অ / অল্",end:"অয়",pos:"বিশেষ্য",note:"ই/ঈ-কারান্ত ধাতু + অ → অয় (জি→জয়)। ব্যতিক্রম: হন্ + অল্ = বধ",trick:"অয় = অ/অল্ = বিশেষ্য",ex:[["জয়","জি + অ"],["ভয়","ভী + অ"],["বিনয়","বি + নী + অ"],["বধ","হন্ + অল্"]]},
+{id:"k7",ch:"k",p:"ক্ত",end:"ত / ক্ত / ন্ত / দ্ধ / গ্ধ",pos:"বিশেষণ",note:"কাজ 'শেষ হয়ে গেছে' বোঝায়",trick:"ই-কার ছাড়া ত/ক্ত/ন্ত/দ্ধ/গ্ধ = ক্ত",ex:[["গত","গম্ + ক্ত"],["মুক্ত","মুচ্ + ক্ত"],["শান্ত","শম্ + ক্ত"],["যুদ্ধ","যুধ্ + ক্ত"],["মুগ্ধ","মুহ্ + ক্ত"]]},
+{id:"k8",ch:"k",p:"ক্তি",end:"তি / ক্তি / ন্তি / ষ্টি",pos:"বিশেষ্য",note:"ক্ত-এর মতোই, শুধু শেষে ই-কার — কাজের ভাবের নাম",trick:"ই-কারওয়ালা তি/ক্তি/ন্তি/ষ্টি = ক্তি",ex:[["গতি","গম্ + ক্তি"],["মুক্তি","মুচ্ + ক্তি"],["শান্তি","শম্ + ক্তি"],["দৃষ্টি","দৃশ্ + ক্তি"],["ভক্তি","ভজ্ + ক্তি"]]},
+{id:"k9",ch:"k",p:"অন / অনট্",end:"অন",pos:"বিশেষ্য",note:"",trick:"কাজের নাম = অন",ex:[["গমন","গম্ + অনট্"]]},
+{id:"k10",ch:"k",p:"তব্য",end:"তব্য",pos:"বিশেষণ",note:"",trick:"উচিত/আবশ্যক = তব্য",ex:[["কর্তব্য","কৃ + তব্য"]]},
+{id:"k11",ch:"k",p:"ইষ্ণু",end:"ইষ্ণু",pos:"বিশেষণ",note:"",trick:"স্বভাব/গুণ = ইষ্ণু",ex:[["সহিষ্ণু","সহ্ + ইষ্ণু"]]},
+{id:"k12",ch:"k",p:"বর (বরচ্)",end:"বর",pos:"বিশেষ্য",note:"",trick:"বর = অপরিবর্তিত",ex:[["ঈশ্বর","ঈশ্ + বর"],["নশ্বর","নশ্ + বর"],["স্থাবর","স্থা + বর"],["চত্বর","চৎ + বর"]]},
+{id:"k13",ch:"k",p:"র (রচ্)",end:"র-ফলা",pos:"বিশেষণ",note:"হিংস্রের ধাতু 'হিন্স্'",trick:"র = অপরিবর্তিত",ex:[["নম্র","নম্ + র"],["হিংস্র","হিন্স্ + র"]]},
+{id:"k14",ch:"k",p:"ঘঞ্",end:"শেষে কিছু নেই, ধাতুর স্বর বড়",pos:"বিশেষ্য",note:"বস্→বাস, ক্রুধ্→ক্রোধ, ভিদ্→ভেদ, যুজ্→যোগ",trick:"স্বর বড় হলে = ঘঞ্",ex:[["বাস","বস্ + ঘঞ্"],["ক্রোধ","ক্রুধ্ + ঘঞ্"],["ভেদ","ভিদ্ + ঘঞ্"],["যোগ","যুজ্ + ঘঞ্"]]},
+{id:"t1",ch:"t",p:"ইক (ষ্ণিক / ঠক্)",end:"ইক + প্রথম স্বর বৃদ্ধি",pos:"বিশেষণ",note:"'তার সাথে সম্পর্কিত'",trick:"প্রথম স্বর বৃদ্ধি + ইক = বিশেষণ",ex:[["সামাজিক","সমাজ + ইক"],["দৈনিক","দিন + ইক"],["বৈজ্ঞানিক","বিজ্ঞান + ইক"],["বার্ষিক","বর্ষ + ইক"]]},
+{id:"t2",ch:"t",p:"এয় (ঢক্)",end:"এয়",pos:"বিশেষণ",note:"'তা থেকে উৎপন্ন / সম্পর্কিত'",trick:"উৎপন্ন/সম্পর্কিত = এয়",ex:[["আগ্নেয়","অগ্নি + এয়"],["গাঙ্গেয়","গঙ্গা + এয়"],["বৈমাত্রেয়","বিমাতৃ + এয়"],["পাথেয়","পথ + এয়"],["ভাগিনেয়","ভগিনী + এয়"]]},
+{id:"t3",ch:"t",p:"অ (অণ্ / ষ্ণ)",end:"অব / অ + প্রথম স্বর বৃদ্ধি",pos:"বিশেষণ",note:"শেষে উ/ঊ থাকলে 'অব' (মনু→মানব)",trick:"শুরুতে বৃদ্ধি + শেষে অব/অ",ex:[["মানব","মনু + অ"],["গৌরব","গুরু + অ"],["শৈব","শিব + অ"],["বৌদ্ধ","বুদ্ধ + অ"]]},
+{id:"t4",ch:"t",p:"বিন্",end:"বী",pos:"বিশেষণ",note:"মেধাবিন্ → 'ন্' লোপ → মেধাবী",trick:"আছে = বী = বিশেষণ",ex:[["মেধাবী","মেধা + বিন্"],["মায়াবী","মায়া + বিন্"],["যশস্বী","যশঃ + বিন্"]]},
+{id:"t5",ch:"t",p:"বতুপ্ (বৎ)",end:"বান",pos:"বিশেষণ",note:"বতুপ্ → বৎ → প্রথমায় 'বান'",trick:"বান = বতুপ্",ex:[["দয়াবান","দয়া + বতুপ্"],["গুণবান","গুণ + বতুপ্"],["ধনবান","ধন + বতুপ্"]]},
+{id:"t6",ch:"t",p:"মতুপ্ (মৎ)",end:"মান (নামের পরে)",pos:"বিশেষণ",note:"শানচ্-এর সাথে গুলাবেন না: চলমান = শানচ্",trick:"মানের আগে নাম = মতুপ্",ex:[["বুদ্ধিমান","বুদ্ধি + মতুপ্"],["শক্তিমান","শক্তি + মতুপ্"],["শ্রীমান","শ্রী + মতুপ্"]]},
+{id:"t7",ch:"t",p:"ষ্যঞ্ (য)",end:"র্য + প্রথম স্বর বৃদ্ধি",pos:"বিশেষ্য",note:"গুণবাচক শব্দ → ভাবের নাম",trick:"গুণ → ভাবের নাম (য)",ex:[["সৌন্দর্য","সুন্দর + য"],["প্রাচুর্য","প্রচুর + য"],["মাধুর্য","মধুর + য"],["ধৈর্য","ধীর + য"]]},
+{id:"t8",ch:"t",p:"য (ষ্যঞ্ / যঞ্)",end:"য-ফলা + প্রথম স্বর বৃদ্ধি",pos:"বিশেষ্য",note:"",trick:"ভাব/অবস্থার নাম",ex:[["সাম্য","সম + য"],["তারল্য","তরল + য"],["কাব্য","কবি + য"],["কাঠিন্য","কঠিন + য"]]},
+{id:"t9",ch:"t",p:"ইমন",end:"ইমা",pos:"বিশেষ্য",note:"ইমন্ → 'ন্' লোপ → ইমা",trick:"ইমা = ইমন",ex:[["মহিমা","মহৎ + ইমন"],["নীলিমা","নীল + ইমন"],["গরিমা","গুরু + ইমন"],["লালিমা","লাল + ইমন"]]},
+{id:"t10",ch:"t",p:"ইত (ইতচ্)",end:"ইত",pos:"বিশেষণ",note:"শুরুতে বৃদ্ধি হয় না",trick:"ইত = অপরিবর্তিত = বিশেষণ",ex:[["ব্যথিত","ব্যথা + ইত"],["পুষ্পিত","পুষ্প + ইত"],["তরঙ্গিত","তরঙ্গ + ইত"],["দুঃখিত","দুঃখ + ইত"]]},
+{id:"t11",ch:"t",p:"ইল (ইলচ্)",end:"ইল",pos:"বিশেষণ",note:"'ভরা / যুক্ত'",trick:"ইল = অপরিবর্তিত = বিশেষণ",ex:[["পঙ্কিল","পঙ্ক + ইল"],["ফেনিল","ফেনা + ইল"],["জটিল","জটা + ইল"]]},
+{id:"t12",ch:"t",p:"তা (তাক্)",end:"তা (বিশেষণের পরে)",pos:"বিশেষ্য",note:"দাতা/কর্তার 'তা' আলাদা — ওটা কৃৎ তৃ",trick:"ভাব = তা",ex:[["মধুরতা","মধুর + তা"],["সাধুতা","সাধু + তা"],["বন্ধুতা","বন্ধু + তা"],["চঞ্চলতা","চঞ্চল + তা"]]},
+{id:"t13",ch:"t",p:"ত্ব (ত্বন্)",end:"ত্ব",pos:"বিশেষ্য",note:"'তা'-এর জোড়া, একই অর্থ (বন্ধুতা = বন্ধুত্ব)",trick:"তা ও ত্ব = একই অর্থ",ex:[["কবিত্ব","কবি + ত্ব"],["মনুষ্যত্ব","মনুষ্য + ত্ব"],["গুরুত্ব","গুরু + ত্ব"],["মহত্ত্ব","মহৎ + ত্ব"],["বন্ধুত্ব","বন্ধু + ত্ব"]]},
+{id:"t14",ch:"t",p:"অঞ্জলি",end:"অঞ্জলি",pos:"বিশেষ্য",note:"আগের অ/আ + অ = আ",trick:"অঞ্জলি = নিবেদন",ex:[["গীতাঞ্জলি","গীত + অঞ্জলি"],["শ্রদ্ধাঞ্জলি","শ্রদ্ধা + অঞ্জলি"]]}
+]};
+const DRAFT="protyoy-cheat-draft";
+const POS=["বিশেষ্য","বিশেষণ","বিশেষণ / বিশেষ্য"];
+const CH={k:{name:"কৃৎ প্রত্যয়",sub:"ধাতুর (কাজের মূলের) পরে বসে",c:"#6BCB77"},t:{name:"তদ্ধিত প্রত্যয়",sub:"নাম শব্দের (বিশেষ্য/বিশেষণের) পরে বসে",c:"#FF8FAB"}};
+const clone=o=>JSON.parse(JSON.stringify(o));
+const bn=s=>String(s).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+function valid(d){return d&&Array.isArray(d.rules)&&d.rules.every(r=>r&&r.id&&(r.ch==="k"||r.ch==="t")&&Array.isArray(r.ex))}
+
+let embedded=null;try{embedded=JSON.parse(document.getElementById("data").textContent)}catch(e){}
+let saved=valid(embedded)?embedded:clone(DEFAULT);
+let state=clone(saved);
+let fromDraft=false;
+const dr=ls.get(DRAFT);
+if(dr){try{const d=JSON.parse(dr);if(valid(d)&&JSON.stringify(d)!==JSON.stringify(saved)){state=d;fromDraft=true}else ls.del(DRAFT)}catch(e){ls.del(DRAFT)}}
+const ui={q:"",f:"all",rev:false,shuf:false,order:{},editing:new Set(),shown:new Set()};
+
+const root=document.getElementById("root");
+root.innerHTML=`
+<header class="top"><div class="wrap"><h1>প্রত্যয় চিট শিট</h1><p>শব্দের শেষ দেখো → আসল প্রত্যয় → পদ · <span id="cnt"></span></p></div></header>
+<div class="bar"><div class="wrap">
+<input class="search" id="q" type="search" placeholder="🔍 খুঁজুন: শব্দ, প্রত্যয়, শেষাংশ…">
+<div class="chipf" id="flt">
+<button class="btn on" data-f="all">সব</button><button class="btn" data-f="k">কৃৎ</button><button class="btn" data-f="t">তদ্ধিত</button><button class="btn" data-f="n">বিশেষ্য</button><button class="btn" data-f="a">বিশেষণ</button>
+</div>
+<button class="btn" id="rev" title="প্রত্যয় ও গঠন লুকিয়ে নিজেকে যাচাই করুন">🙈 রিভিশন</button>
+<button class="btn" id="shuf" title="কার্ডের ক্রম এলোমেলো">🔀</button>
+<button class="btn" id="dat" title="ব্যাকআপ / ইমপোর্ট / রিসেট">⚙️ ডেটা</button>
+</div></div>
+<main class="wrap" id="main"><div id="ban"></div><div id="list"></div></main>
+<footer><div class="wrap"><b>কাজের সাথে কৃৎ, নামের সাথে তদ্ধিত 😌</b>যেকোনো কার্ডে ✏️ চাপুন — উদাহরণ যোগ/বদল/মুছুন, তারপর 💾 সেভ।</div></footer>
+<div class="savebar" id="sb"><span>✏️ অসংরক্ষিত পরিবর্তন</span><button class="btn pri" id="save">💾 সেভ</button><button class="btn" id="undo">বাতিল</button></div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="mbox">
+<h3>⚙️ ডেটা</h3>
+<p>পুরো নোট JSON আকারে নিচে আছে। কপি করে ব্যাকআপ রাখুন; অন্য কোথাও থেকে এনে পেস্ট করে "প্রয়োগ" চাপলে নোট বদলে যাবে (তারপর 💾 সেভ)।</p>
+<textarea id="json" spellcheck="false"></textarea>
+<div class="row"><button class="btn" id="copy">📋 কপি</button><button class="btn pri" id="apply">⬇️ প্রয়োগ</button><label class="btn">📂 ফাইল থেকে<input type="file" id="file" accept=".json,application/json" hidden></label><span class="sp"></span><button class="btn warn" id="reset">↺ মূল নোটে রিসেট</button><button class="btn" id="close">✕ বন্ধ</button></div>
+</div></div>`;
+const $=id=>document.getElementById(id);
+
+function posCls(p){return p.includes("/")?"pm":p.includes("বিশেষ্য")?"pn":"pa"}
+function match(r){
+  if(ui.f==="k"||ui.f==="t"){if(r.ch!==ui.f)return false}
+  else if(ui.f==="n"){if(!r.pos.includes("বিশেষ্য"))return false}
+  else if(ui.f==="a"){if(!r.pos.includes("বিশেষণ"))return false}
+  if(!ui.q)return true;
+  const hay=[r.p,r.end,r.pos,r.trick,r.note].concat(r.ex.flat()).join(" ").toLowerCase();
+  return ui.q.split(/\s+/).every(w=>hay.includes(w));
+}
+function viewCard(r,i){
+  const shown=ui.shown.has(r.id)?" shown":"";
+  return `<article class="card${shown}" data-id="${r.id}" style="--c:${CH[r.ch].c}">
+<div class="ct"><span class="no">${bn(String(i).padStart(2,"0"))}</span><h3 class="p ans">${esc(r.p)}</h3><span class="pos ${posCls(r.pos)} ans">${esc(r.pos)}</span><button class="ib" data-act="edit" title="এডিট">✏️</button></div>
+${r.end?`<div class="end">শেষে: <b>${esc(r.end)}</b></div>`:""}
+${r.note?`<div class="note ans">${esc(r.note)}</div>`:""}
+${r.ex.length?`<div class="chips">${r.ex.map(e=>`<span class="chip"><b>${esc(e[0])}</b><i class="ans">${esc(e[1])}</i></span>`).join("")}</div>`:""}
+${r.trick?`<div class="trick ans">💡 ${esc(r.trick)}</div>`:""}
+</article>`;
+}
+function editCard(r){
+  return `<article class="card edit" data-id="${r.id}" style="--c:${CH[r.ch].c}">
+<label>প্রত্যয়<input data-k="p" value="${esc(r.p)}"></label>
+<label>শব্দের শেষে কী দেখবেন<input data-k="end" value="${esc(r.end)}"></label>
+<label>পদ<select data-k="pos">${POS.map(p=>`<option${p===r.pos?" selected":""}>${p}</option>`).join("")}</select></label>
+<label>মনে রাখার ট্রিক<input data-k="trick" value="${esc(r.trick)}"></label>
+<label>নোট / কারণ<textarea data-k="note">${esc(r.note)}</textarea></label>
+<label>উদাহরণ (শব্দ · গঠন)</label>
+${r.ex.map((e,i)=>`<div class="exrow"><input data-ex="${i}" data-part="0" value="${esc(e[0])}" placeholder="শব্দ"><input data-ex="${i}" data-part="1" value="${esc(e[1])}" placeholder="গঠন, যেমন কৃ + অক"><button class="ib" data-act="delex" data-i="${i}" title="মুছুন">✕</button></div>`).join("")}
+<div class="row"><button class="btn" data-act="addex">+ উদাহরণ</button></div>
+<div class="row"><button class="btn" data-act="up" title="উপরে">↑</button><button class="btn" data-act="down" title="নিচে">↓</button><button class="btn warn" data-act="del">🗑 নিয়ম মুছুন</button><span class="sp"></span><button class="btn pri" data-act="done">✓ শেষ</button></div>
+</article>`;
+}
+const CONF=`<section class="ch" style="--c:#FFD93D"><div class="chh"><h2>⚠️ যেগুলো গুলিয়ে যায়</h2></div><div class="tw"><table>
+<tr><th>শেষে</th><th>কৃৎ (ধাতুর পরে)</th><th>তদ্ধিত (নামের পরে)</th></tr>
+<tr><td><b>মান</b></td><td>শানচ্ — চলমান, বর্ধমান</td><td>মতুপ্ — বুদ্ধিমান, শক্তিমান</td></tr>
+<tr><td><b>তা</b></td><td>তৃ — দাতা, কর্তা (বিশেষ্য, মানুষ)</td><td>তা — মধুরতা, সাধুতা (ভাব)</td></tr>
+<tr><td><b>য / র্য</b></td><td>য — কার্য, ভোজ্য (যোগ্য)</td><td>ষ্যঞ্ — সৌন্দর্য, ধৈর্য (ভাবের নাম, বৃদ্ধি)</td></tr>
+<tr><td><b>ত vs তি</b></td><td>ক্ত — মুক্ত (বিশেষণ) · ক্তি — মুক্তি (বিশেষ্য)</td><td>—</td></tr>
+<tr><td><b>বান vs মান</b></td><td>—</td><td>বান = বতুপ্ · মান = মতুপ্</td></tr>
+</table></div></section>`;
+function render(){
+  const total=state.rules.length, exN=state.rules.reduce((a,r)=>a+r.ex.length,0);
+  $("cnt").textContent=`${bn(total)} নিয়ম · ${bn(exN)} উদাহরণ`;
+  $("main").classList.toggle("rev",ui.rev);
+  let html="";
+  for(const ch of ["k","t"]){
+    if((ui.f==="k"&&ch==="t")||(ui.f==="t"&&ch==="k"))continue;
+    let rs=state.rules.filter(r=>r.ch===ch);
+    const num=new Map(rs.map((r,i)=>[r.id,i+1]));
+    rs=rs.filter(r=>ui.editing.has(r.id)||match(r));
+    if(ui.shuf)rs.sort((a,b)=>(ui.order[a.id]||0)-(ui.order[b.id]||0));
+    html+=`<section class="ch" style="--c:${CH[ch].c}"><div class="chh"><h2>${CH[ch].name}</h2><span>${CH[ch].sub}</span><button class="btn" data-act="addrule" data-ch="${ch}">+ নতুন নিয়ম</button></div>`;
+    html+=rs.length?`<div class="grid">${rs.map(r=>ui.editing.has(r.id)?editCard(r):viewCard(r,num.get(r.id))).join("")}</div>`:`<div class="empty">কিছু পাওয়া যায়নি</div>`;
+    html+=`</section>`;
+  }
+  if(!ui.q&&ui.f==="all")html+=CONF;
+  $("list").innerHTML=html;
+  $("ban").innerHTML=fromDraft?`<div class="banner">ℹ️ এই ব্রাউজারে আগের কিছু পরিবর্তন সংরক্ষিত ছিল, সেগুলো দেখানো হচ্ছে। <button class="btn pri" data-act="savenow">💾 সেভ করুন</button><button class="btn" data-act="dropdraft">ফেলে দিন</button></div>`:"";
+  updateBar();
+}
+function dirty(){return JSON.stringify(state)!==JSON.stringify(saved)}
+function updateBar(){const d=dirty();$("sb").classList.toggle("show",d);if(d)ls.set(DRAFT,JSON.stringify(state));else ls.del(DRAFT)}
+let tt;function toast(m,bad){const t=$("toast");t.textContent=m;t.className="toast show"+(bad?" bad":"");clearTimeout(tt);tt=setTimeout(()=>t.className="toast",2600)}
+const rule=id=>state.rules.find(r=>r.id===id);
+
+/* toolbar */
+$("q").addEventListener("input",e=>{ui.q=e.target.value.trim().toLowerCase();render()});
+$("flt").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b)return;ui.f=b.dataset.f;[...$("flt").children].forEach(x=>x.classList.toggle("on",x===b));render()});
+$("rev").onclick=()=>{ui.rev=!ui.rev;ui.shown.clear();$("rev").classList.toggle("on",ui.rev);render()};
+$("shuf").onclick=()=>{ui.shuf=!ui.shuf;if(ui.shuf)state.rules.forEach(r=>ui.order[r.id]=Math.random());$("shuf").classList.toggle("on",ui.shuf);render()};
+
+/* list interactions */
+$("main").addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]");
+  const card=e.target.closest(".card");
+  if(!b){ if(ui.rev&&card&&!card.classList.contains("edit")){card.classList.toggle("shown");const id=card.dataset.id;ui.shown.has(id)?ui.shown.delete(id):ui.shown.add(id)} return; }
+  const act=b.dataset.act, id=card&&card.dataset.id, r=id&&rule(id);
+  if(act==="edit"){ui.editing.add(id);render();const c=document.querySelector(`.card[data-id="${id}"] input`);c&&c.focus();return}
+  if(act==="done"){r.ex=r.ex.filter(x=>x[0].trim()||x[1].trim());ui.editing.delete(id);render();return}
+  if(act==="addex"){r.ex.push(["",""]);render();const ins=document.querySelectorAll(`.card[data-id="${id}"] .exrow input[data-part="0"]`);ins.length&&ins[ins.length-1].focus();return}
+  if(act==="delex"){r.ex.splice(+b.dataset.i,1);render();return}
+  if(act==="up"||act==="down"){const sib=state.rules.filter(x=>x.ch===r.ch);const k=sib.indexOf(r)+(act==="up"?-1:1);if(k<0||k>=sib.length)return;const a=state.rules.indexOf(r),c=state.rules.indexOf(sib[k]);[state.rules[a],state.rules[c]]=[state.rules[c],state.rules[a]];render();return}
+  if(act==="del"){if(!b.dataset.armed){b.dataset.armed="1";b.textContent="নিশ্চিত? আবার চাপুন";setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent="🗑 নিয়ম মুছুন"}},3000);return}state.rules=state.rules.filter(x=>x.id!==id);ui.editing.delete(id);render();toast("নিয়ম মুছে ফেলা হলো — ভুল হলে 'বাতিল' চাপুন");return}
+  if(act==="addrule"){const nid="r"+Date.now().toString(36);const ch=b.dataset.ch;let last=-1;state.rules.forEach((x,i)=>{if(x.ch===ch)last=i});state.rules.splice(last+1,0,{id:nid,ch,p:"",end:"",pos:"বিশেষ্য",note:"",trick:"",ex:[["",""]]});ui.editing.add(nid);ui.q="";$("q").value="";render();const c=document.querySelector(`.card[data-id="${nid}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.querySelector("input").focus()}return}
+  if(act==="savenow"){save();return}
+  if(act==="dropdraft"){state=clone(saved);fromDraft=false;ls.del(DRAFT);ui.editing.clear();render();return}
+});
+$("main").addEventListener("input",e=>{
+  const el=e.target, card=el.closest(".card.edit");if(!card)return;
+  const r=rule(card.dataset.id);
+  if(el.dataset.k)r[el.dataset.k]=el.value;
+  else if(el.dataset.ex!=null)r.ex[+el.dataset.ex][+el.dataset.part]=el.value;
+  updateBar();
+});
+$("main").addEventListener("change",e=>{if(e.target.dataset.k==="pos"){updateBar()}});
+$("main").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches(".exrow input")){e.preventDefault();const card=e.target.closest(".card");card.querySelector('[data-act="addex"]').click()}});
+
+/* save */
+let artP=null;
+function getArt(){if(!artP)artP=(window.claude&&typeof window.claude.use==="function")?Promise.resolve(window.claude.use("artifact")).catch(()=>null):Promise.resolve(null);return artP}
+function buildDoc(data){
+  const css=$("css")?document.getElementById("css").textContent:"";
+  const app=document.getElementById("app").textContent;
+  const json=JSON.stringify(data).replace(/</g,"\\u003c");
+  return '<!DOCTYPE html>\n<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>প্রত্যয় চিট শিট</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet"><style id="css">'+css+'</style></head><body><div id="root"></div><script id="data" type="application/json">'+json+'<\/script><script id="app">'+app+'<\/script></body></html>';
+}
+async function save(){
+  ui.editing.forEach(id=>{const r=rule(id);if(r)r.ex=r.ex.filter(x=>x[0].trim()||x[1].trim())});
+  const btn=$("save");btn.disabled=true;btn.textContent="সেভ হচ্ছে…";
+  try{
+    const art=await getArt();
+    if(!art){ls.set(DRAFT,JSON.stringify(state));toast("অনলাইন সেভ এখানে চালু নেই — এই ব্রাউজারে রাখা হলো",true);return}
+    await art.publish(buildDoc(state));
+    ls.del(DRAFT);saved=clone(state);fromDraft=false;ui.editing.clear();render();toast("সেভ হয়েছে ✓ সব ডিভাইসে আপডেট");
+  }catch(err){
+    const c=err&&(err.code||err.name||err.message)||"";
+    if(/conflict/i.test(c))toast("অন্য কোথাও থেকে নতুন ভার্সন সেভ হয়েছে — পেজ রিলোড হচ্ছে",true);
+    else if(/not_writer|not_granted/i.test(c))toast("এই পেজ এডিট করার অনুমতি নেই — পরিবর্তন এই ব্রাউজারে রাখা হলো",true);
+    else toast("সেভ হয়নি — পরিবর্তন এই ব্রাউজারে রাখা আছে, আবার চেষ্টা করুন",true);
+  }finally{btn.disabled=false;btn.textContent="💾 সেভ"}
+}
+$("save").onclick=save;
+$("undo").onclick=()=>{state=clone(saved);fromDraft=false;ui.editing.clear();ls.del(DRAFT);render();toast("পরিবর্তন বাতিল হলো")};
+
+/* data modal */
+const modal=$("modal");
+$("dat").onclick=()=>{$("json").value=JSON.stringify(state,null,1);modal.classList.add("show")};
+$("close").onclick=()=>modal.classList.remove("show");
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("show")});
+$("copy").onclick=async()=>{const t=$("json");try{await navigator.clipboard.writeText(t.value);toast("কপি হয়েছে ✓")}catch(e){t.focus();t.select();toast("টেক্সট সিলেক্ট করা হলো — Ctrl+C / কপি চাপুন",true)}};
+function applyText(txt){try{const d=JSON.parse(txt);if(!valid(d))throw 0;state=d;ui.editing.clear();modal.classList.remove("show");render();toast("প্রয়োগ হয়েছে — রাখতে 💾 সেভ চাপুন")}catch(e){toast("JSON ঠিক নেই",true)}}
+$("apply").onclick=()=>applyText($("json").value);
+$("file").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(applyText);e.target.value=""};
+$("reset").onclick=e=>{const b=e.currentTarget;if(!b.dataset.armed){b.dataset.armed="1";b.textContent="নিশ্চিত? আবার চাপুন";setTimeout(()=>{delete b.dataset.armed;b.textContent="↺ মূল নোটে রিসেট"},3000);return}delete b.dataset.armed;b.textContent="↺ মূল নোটে রিসেট";state=clone(DEFAULT);ui.editing.clear();modal.classList.remove("show");render();toast("মূল নোট ফেরানো হলো — রাখতে 💾 সেভ চাপুন")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.classList.remove("show")});
+
+render();
+})();
+</script></body></html>

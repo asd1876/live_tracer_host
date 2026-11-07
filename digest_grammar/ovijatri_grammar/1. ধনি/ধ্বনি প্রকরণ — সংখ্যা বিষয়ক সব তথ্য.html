@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ধ্বনি প্রকরণ — সংখ্যা বিষয়ক সব তথ্য</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f4ee; --card:#fffdf9; --ink:#22201c; --muted:#6b655b; --line:#e4ddd0;
+    --accent:#b4441f; --accent-soft:#f6e3d9; --blue:#2d5d7b; --blue-soft:#e1ecf2; --green:#3f6b3a; --green-soft:#e4efdf;
+    --warn:#8a6100; --warn-soft:#fbf0d2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#18171a; --card:#222126; --ink:#ece8e1; --muted:#a39d93; --line:#38363c;
+      --accent:#ef8a63; --accent-soft:#3a2720; --blue:#86b8d6; --blue-soft:#1f2d36; --green:#97c28e; --green-soft:#223024;
+      --warn:#e8c26a; --warn-soft:#352c17; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",sans-serif;font-size:17px;line-height:1.7}
+  header{padding:48px 20px 28px;text-align:center;border-bottom:1px solid var(--line)}
+  header h1{font-family:"Noto Serif Bengali",serif;font-weight:800;font-size:clamp(28px,5vw,42px);margin:0 0 6px}
+  header p{margin:0;color:var(--muted)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 18px 60px}
+  nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 18px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  nav a{font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--line);padding:3px 11px;border-radius:999px;background:var(--card)}
+  nav a:hover{border-color:var(--accent);color:var(--accent)}
+  .search{max-width:520px;margin:22px auto 0;display:block;width:100%;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+  h2{font-family:"Noto Serif Bengali",serif;font-size:25px;margin:46px 0 6px;scroll-margin-top:70px}
+  h2 + .sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .num{flex:0 0 auto;min-width:62px;height:62px;padding:0 8px;border-radius:12px;background:var(--accent-soft);color:var(--accent);
+       display:flex;align-items:center;justify-content:center;font-family:"Noto Serif Bengali",serif;font-weight:800;font-size:28px;line-height:1}
+  .fact.b .num{background:var(--blue-soft);color:var(--blue)}
+  .fact.g .num{background:var(--green-soft);color:var(--green)}
+  .fact h3{margin:0;font-size:17px;font-weight:700;line-height:1.45}
+  .fact .ex{margin:4px 0 0;font-size:15px;color:var(--muted)}
+  .fact .ex b{color:var(--ink);font-weight:600}
+  .letters{font-weight:600;color:var(--ink)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15.5px}
+  th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:center}
+  th{background:var(--blue-soft);color:var(--blue);font-weight:700}
+  td:first-child,th:first-child{text-align:left}
+  tr:last-child td{border-bottom:none}
+  .tablebox{overflow-x:auto;margin:10px 0 6px}
+  .note{background:var(--warn-soft);border-left:4px solid var(--warn);padding:12px 16px;border-radius:8px;margin:14px 0;font-size:15.5px}
+  .note b{color:var(--warn)}
+  .chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+  .chain span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px}
+  .chain i{font-style:normal;color:var(--muted)}
+  .chain .tot{background:var(--accent-soft);color:var(--accent);font-weight:700;border-color:transparent}
+  .hidden{display:none!important}
+  footer{color:var(--muted);font-size:14px;text-align:center;margin-top:50px}
+</style>
+</head>
+<body>
+<header>
+  <h1>ধ্বনি প্রকরণ — সংখ্যার হিসাব</h1>
+  <p>অভিযাত্রী (পৃ. ২১–২৪) থেকে সব সংখ্যা বিষয়ক তথ্য, ব্যাখ্যা ও মনে রাখার কৌশলসহ</p>
+  <input class="search" id="q" type="search" placeholder="খুঁজুন… যেমন: উষ্ম, ২৫, মাত্রা">
+</header>
+<nav>
+  <a href="#mul">মূল হিসাব</a><a href="#swar">স্বরবর্ণ</a><a href="#jougik">যৌগিক স্বর</a><a href="#kar">কার ও ফলা</a>
+  <a href="#matra">মাত্রা</a><a href="#byanjon">ব্যঞ্জনবর্ণ</a><a href="#ucharon">উচ্চারণ</a><a href="#bishesh">বিশেষ বর্ণ</a><a href="#akkhor">অক্ষর</a>
+</nav>
+<div class="wrap">
+
+<!-- ================= মূল ================= -->
+<h2 id="mul">১. মূল হিসাব — এক নজরে</h2>
+<p class="sub">সবচেয়ে বেশি আসে এমন সংখ্যাগুলো</p>
+<div class="grid">
+  <div class="fact"><div class="num">৫০</div><div><h3>বাংলা বর্ণমালায় মোট বর্ণ</h3>
+    <p class="ex">মোট সাংকেতিক চিহ্ন / অসংযুক্ত বর্ণ / সরলকৃত বর্ণ — সবগুলোর উত্তর ৫০। <b>স্বরবর্ণ ১১ + ব্যঞ্জনবর্ণ ৩৯ = ৫০</b>।</p></div></div>
+  <div class="fact"><div class="num">১১</div><div><h3>স্বরবর্ণ</h3>
+    <p class="ex"><span class="letters">অ আ ই ঈ উ ঊ ঋ এ ঐ ও ঔ</span> — যে বর্ণ অন্য বর্ণের সাহায্য ছাড়াই উচ্চারিত হয়।</p></div></div>
+  <div class="fact"><div class="num">৩৯</div><div><h3>ব্যঞ্জনবর্ণ</h3>
+    <p class="ex">যে বর্ণ স্বরবর্ণের সাহায্য নিয়ে উচ্চারিত হয়। ক থেকে ঁ (চন্দ্রবিন্দু) পর্যন্ত।</p></div></div>
+  <div class="fact b"><div class="num">৪১</div><div><h3>আধুনিক বাংলায় ব্যবহৃত ধ্বনি</h3>
+    <p class="ex">বর্ণ ৫০টি হলেও <b>ধ্বনি ৪১টি</b> — কারণ কিছু বর্ণের উচ্চারণ একই (যেমন ঙ/ং, শ/ষ/স কাছাকাছি)। বর্ণ ≠ ধ্বনি, এটাই মনে রাখার মূল কথা।</p></div></div>
+  <div class="fact b"><div class="num">৪৫</div><div><h3>পূর্ণরূপে ব্যবহৃত বর্ণ</h3>
+    <p class="ex">আধুনিক বাংলায় ৪৫টি বর্ণের পূর্ণরূপ ব্যবহৃত হয় (বইয়ের তথ্য অনুযায়ী)।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>বাংলা ধ্বনির প্রধান ভাগ</h3>
+    <p class="ex">১. স্বরধ্বনি ২. ব্যঞ্জনধ্বনি।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>ধ্বনি উৎপাদনের মূল উপকরণ (উচ্চারক)</h3>
+    <p class="ex">মুখবিবরে উচ্চারণের মূল উপকরণ — <b>জিহ্বা ও ওষ্ঠ</b>।</p></div></div>
+</div>
+
+<!-- ================= স্বরবর্ণ ================= -->
+<h2 id="swar">২. স্বরবর্ণ ও মৌলিক স্বরধ্বনি</h2>
+<p class="sub">"বর্ণ" আর "ধ্বনি" আলাদা — এখানেই সবচেয়ে বেশি ভুল হয়</p>
+<div class="grid">
+  <div class="fact"><div class="num">৭</div><div><h3>মৌলিক স্বরধ্বনি (আন্তর্জাতিকভাবে স্বীকৃত)</h3>
+    <p class="ex"><span class="letters">অ, আ, ই, উ, এ, অ্যা, ও</span> — যে স্বরধ্বনিকে আর ভাঙা যায় না।</p></div></div>
+  <div class="fact"><div class="num">৬</div><div><h3>মৌলিক স্বরবর্ণ / লিখিত মৌলিক স্বরধ্বনি</h3>
+    <p class="ex"><span class="letters">অ, আ, ই, উ, এ, ও</span>। ৭টি মৌলিক ধ্বনির মধ্যে "অ্যা"-র কোনো বর্ণ নেই, তাই বর্ণ ৬টি।</p></div></div>
+  <div class="fact"><div class="num">১</div><div><h3>অলিখিত মৌলিক স্বরধ্বনি</h3>
+    <p class="ex"><b>অ্যা / এ্যা</b> — এর জ্ঞাপক কোনো বর্ণ নেই। ধ্বনিবিদ <b>মুহম্মদ আবদুল হাই</b> মূল ধ্বনির তালিকায় 'অ্যা' প্রতিষ্ঠা করেন।</p></div></div>
+  <div class="fact"><div class="num">৫</div><div><h3>মৌলিক নয় এমন স্বরবর্ণ</h3>
+    <p class="ex"><span class="letters">ঈ, ঊ, ঋ, ঐ, ঔ</span>। হিসাব: ১১ − ৬ = ৫।</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>যৌগিক স্বরবর্ণ</h3>
+    <p class="ex"><span class="letters">ঐ (অ+ই / ও+ই), ঔ (অ+উ / ও+উ)</span> — দুটি স্বর মিলে তৈরি।</p></div></div>
+  <div class="fact b"><div class="num">৯</div><div><h3>"মূল" স্বরধ্বনি (বইয়ের ভাষায়)</h3>
+    <p class="ex"><span class="letters">অ, আ, ই, ঈ, উ, ঊ, ঋ, এ, ও</span> — অর্থাৎ ১১টি স্বরবর্ণ থেকে যৌগিক ২টি (ঐ, ঔ) বাদ দিলে ৯।</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>মূল স্বরধ্বনি নয়</h3>
+    <p class="ex"><span class="letters">ঐ, ঔ</span> — কারণ এরা যৌগিক।</p></div></div>
+  <div class="fact g"><div class="num">৪</div><div><h3>হ্রস্ব স্বর</h3>
+    <p class="ex"><span class="letters">অ, ই, উ, ঋ</span>। কৌশল: এই ৪টি মুখস্থ করলে বাকি ৭টি নিজে থেকেই দীর্ঘ।</p></div></div>
+  <div class="fact g"><div class="num">৭</div><div><h3>দীর্ঘ স্বর</h3>
+    <p class="ex"><span class="letters">আ, ঈ, ঊ, এ, ঐ, ও, ঔ</span>। হ্রস্ব ৪ + দীর্ঘ ৭ = ১১।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>উচ্চারণ কাল অনুযায়ী স্বরের ভাগ</h3>
+    <p class="ex">হ্রস্ব স্বর ও দীর্ঘ স্বর।</p></div></div>
+  <div class="fact"><div class="num">১</div><div><h3>সংক্ষিপ্ত রূপ (কার) নেই যে স্বরবর্ণের</h3>
+    <p class="ex"><b>অ</b> — একে <b>নিলীন বর্ণ</b> বলে, ব্যঞ্জনে মিশে যায়। যেমন: শত = শ্+অ+ত্+অ।</p></div></div>
+  <div class="fact"><div class="num">১১</div><div><h3>পূর্ণরূপ আছে যে স্বরবর্ণের</h3>
+    <p class="ex">সব ১১টিরই পূর্ণরূপ আছে, কিন্তু সংক্ষিপ্ত রূপ (কার) আছে ১০টির।</p></div></div>
+  <div class="fact b"><div class="num">৭</div><div><h3>উচ্চারণ স্থান অনুযায়ী স্বরধ্বনির অবস্থান</h3>
+    <p class="ex">নিচের ছকে ৭টি মৌলিক স্বরের জিহ্বার অবস্থান দেখানো হলো।</p></div></div>
+</div>
+<div class="tablebox"><table>
+  <tr><th>জিহ্বার উচ্চতা</th><th>সম্মুখ (ওষ্ঠাধর প্রসৃত)</th><th>কেন্দ্রীয় (ওষ্ঠাধর বিবৃত)</th><th>পশ্চাৎ (ওষ্ঠাধর গোলাকৃত)</th></tr>
+  <tr><td>উচ্চ</td><td>ই, ঈ</td><td>—</td><td>উ, ঊ</td></tr>
+  <tr><td>উচ্চমধ্য</td><td>এ</td><td>—</td><td>ও</td></tr>
+  <tr><td>নিম্নমধ্য</td><td>অ্যা</td><td>—</td><td>অ</td></tr>
+  <tr><td>নিম্ন</td><td>—</td><td>আ</td><td>—</td></tr>
+</table></div>
+<div class="note"><b>মনে রাখুন:</b> "মৌলিক স্বরধ্বনি ৭টি" আর "মূল স্বরধ্বনি ৯টি" দুটো আলাদা প্রশ্ন। প্রশ্নে "মৌলিক" থাকলে ৭ (ধ্বনি) বা ৬ (বর্ণ); বইয়ের "মূল স্বরধ্বনি" বলতে যৌগিক নয় এমন ৯টি স্বরবর্ণ।</div>
+
+<!-- ================= যৌগিক স্বর ================= -->
+<h2 id="jougik">৩. যৌগিক স্বর / সন্ধিস্বর / দ্বিস্বর / সান্ধ্যক্ষর</h2>
+<p class="sub">যৌগিক স্বর = স্বরধ্বনি + স্বরধ্বনি (একসাথে উচ্চারিত)</p>
+<div class="grid">
+  <div class="fact"><div class="num">২৫</div><div><h3>মোট যৌগিক স্বর</h3>
+    <p class="ex">স্বরবর্ণের সাথে স্বরবর্ণ মিলিত হতে পারে ২৫ বার। যেমন: বউ = ব+অ+উ ('অউ'), বই = ব্+অ+ই ('অই')।</p></div></div>
+  <div class="fact"><div class="num">২</div><div><h3>প্রতীক বা বর্ণ আছে যে যৌগিক স্বরের</h3>
+    <p class="ex"><b>ঐ, ঔ</b> — এদের বলে যৌগিক স্বরজ্ঞাপক বর্ণ।</p></div></div>
+  <div class="fact"><div class="num">২৩</div><div><h3>অলিখিত যৌগিক স্বর</h3>
+    <p class="ex">২৫ − ২ = ২৩টির কোনো আলাদা বর্ণ নেই। এগুলো মিলিত স্বরধ্বনি, কিন্তু মূল স্বরধ্বনি নয়।</p></div></div>
+</div>
+<div class="chain"><span>যৌগিক স্বর <b>২৫</b></span><i>=</i><span>বর্ণ আছে <b>২</b> (ঐ, ঔ)</span><i>+</i><span>অলিখিত <b>২৩</b></span></div>
+<div class="note"><b>ফাঁদ:</b> "যৌগিক স্বর কয়টি?" → ২৫। "যৌগিক স্বরবর্ণ কয়টি?" → ২।</div>
+
+<!-- ================= কার ও ফলা ================= -->
+<h2 id="kar">৪. কার (স্বরের সংক্ষিপ্ত রূপ) ও ফলা (ব্যঞ্জনের সংক্ষিপ্ত রূপ)</h2>
+<div class="grid">
+  <div class="fact"><div class="num">১০</div><div><h3>কার / স্বরচিহ্ন</h3>
+    <p class="ex">অ ছাড়া বাকি ১০টি স্বরবর্ণের সংক্ষিপ্ত রূপ আছে। ২ + ৩ + ৩ + ২ = ১০ (নিচে বিস্তারিত)।</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>ব্যঞ্জনের পরে যুক্ত হয়</h3>
+    <p class="ex">আ-কার ( া ), ঈ-কার ( ী )</p></div></div>
+  <div class="fact b"><div class="num">৩</div><div><h3>ব্যঞ্জনের পূর্বে যুক্ত হয়</h3>
+    <p class="ex">ই-কার ( ি ), এ-কার ( ে ), ঐ-কার ( ৈ )</p></div></div>
+  <div class="fact b"><div class="num">৩</div><div><h3>ব্যঞ্জনের নিচে যুক্ত হয়</h3>
+    <p class="ex">উ-কার ( ু ), ঊ-কার ( ূ ), ঋ-কার ( ৃ )</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>পূর্বে ও পরে দুই দিকে যুক্ত হয়</h3>
+    <p class="ex">ও-কার ( ো ), ঔ-কার ( ৌ )</p></div></div>
+  <div class="fact g"><div class="num">৬</div><div><h3>ফলা</h3>
+    <p class="ex">য-ফলা, ব-ফলা, র-ফলা, ল-ফলা, ম-ফলা, ন/ণ-ফলা।</p></div></div>
+</div>
+<div class="tablebox"><table>
+  <tr><th>ফলা</th><th>উদাহরণ (উচ্চারণ)</th></tr>
+  <tr><td>য-ফলা ( ্য )</td><td>দ্+য = দ্য, স্+য = স্য</td></tr>
+  <tr><td>ব-ফলা ( ্ব )</td><td>শ্বাপদ (শশাপদ), স্বত্ব (সসত্তো), বিশ্ব (বিশ্শো)</td></tr>
+  <tr><td>র-ফলা ( ্র )</td><td>ভদ্র (ভদ্দ্রো), নম্র (নম্‌রো)</td></tr>
+  <tr><td>ল-ফলা ( ্ল )</td><td>অম্ল (অম্‌লো), শুক্ল (শুক্‌লো)</td></tr>
+  <tr><td>ম-ফলা ( ্ম )</td><td>গ্রীষ্ম (গ্রিশ্‌শোঁ), আত্মীয় (আত্‌তীয়), পদ্ম (পদ্‌দোঁ)</td></tr>
+  <tr><td>ন / ণ-ফলা</td><td>হ্+ণ = হ্ণ (পূর্বাহ্ণ), ষ্+ণ = ষ্ণ (কৃষ্ণ), হ্+ন = হ্ন (মধ্যাহ্ন)</td></tr>
+</table></div>
+
+<!-- ================= মাত্রা ================= -->
+<h2 id="matra">৫. মাত্রা</h2>
+<p class="sub">কিছু বর্ণের উপরে যে রেখা বা কষি দেওয়া হয় তাকে মাত্রা বলে (হাতে লেখা নোট: অক্ষর উচ্চারণের কাল পরিমাণকেও মাত্রা বলে)</p>
+<div class="tablebox"><table>
+  <tr><th>মাত্রা</th><th>মোট বর্ণ ৫০</th><th>ব্যঞ্জনবর্ণ ৩৯</th><th>স্বরবর্ণ ১১</th></tr>
+  <tr><td>পূর্ণমাত্রা</td><td><b>৩২</b></td><td>২৬</td><td>৬ (অ আ ই ঈ উ ঊ)</td></tr>
+  <tr><td>অর্ধমাত্রা</td><td><b>৮</b></td><td>৭ (খ গ ণ থ ধ প শ)</td><td>১ (ঋ)</td></tr>
+  <tr><td>মাত্রাহীন</td><td><b>১০</b></td><td>৬ (ঙ ঞ ৎ ং ঃ ঁ)</td><td>৪ (এ ঐ ও ঔ)</td></tr>
+  <tr><td><b>মোট</b></td><td>৫০</td><td>৩৯</td><td>১১</td></tr>
+</table></div>
+<div class="note"><b>যাচাই:</b> ৩২ + ৮ + ১০ = ৫০ ✓ | ২৬ + ৭ + ৬ = ৩৯ ✓ | ৬ + ১ + ৪ = ১১ ✓ — বন্ধনীর বর্ণগুলো প্রচলিত তালিকা থেকে যোগ করা হয়েছে, বইয়ে শুধু সংখ্যা আছে।</div>
+
+<!-- ================= ব্যঞ্জন ================= -->
+<h2 id="byanjon">৬. ব্যঞ্জনবর্ণের হিসাব</h2>
+<p class="sub">ক থেকে গুনে গুনে সংখ্যাগুলো কীভাবে বাড়ে</p>
+<div class="chain">
+  <span>ক–ম <b>২৫</b> (স্পর্শ)</span><i>+ য র ল →</i><span>ক–ল <b>২৮</b></span><i>+ শ ষ স হ ড় ঢ় য় →</i><span>ক–য় <b>৩৫</b></span><i>+ ৎ ং ঃ ঁ →</i><span class="tot">মোট ৩৯</span>
+</div>
+<div class="grid">
+  <div class="fact"><div class="num">২৫</div><div><h3>ক থেকে ম পর্যন্ত বর্ণ</h3>
+    <p class="ex">এদের বলে <b>স্পর্শধ্বনি (plosive) / স্পর্শ ব্যঞ্জন / স্পৃষ্ট ব্যঞ্জন</b> — উচ্চারণে জিহ্বা বা ওষ্ঠ মুখের কোনো স্থান স্পর্শ করে। ৫ বর্গ × ৫ = ২৫।</p></div></div>
+  <div class="fact"><div class="num">২৮</div><div><h3>ক থেকে ল পর্যন্ত বর্ণ</h3>
+    <p class="ex">২৫ + য, র, ল = ২৮।</p></div></div>
+  <div class="fact"><div class="num">৩৫</div><div><h3>ক থেকে য় পর্যন্ত বর্ণ</h3>
+    <p class="ex">হাতে লেখা নোট: এগুলোকে <b>প্রকৃত ব্যঞ্জন</b> বলা হয় (৩৫টি)।</p></div></div>
+  <div class="fact b"><div class="num">৩৬</div><div><h3>যে ব্যঞ্জনবর্ণে 'অ' যুক্ত থাকে</h3>
+    <p class="ex">ক = ক্ + অ। হসন্ত ( ্ ) দিলে অ বাদ পড়ে: ক্ = ক − অ।</p></div></div>
+  <div class="fact b"><div class="num">৩</div><div><h3>যে ব্যঞ্জনে 'অ' যুক্ত হয় না</h3>
+    <p class="ex"><span class="letters">ৎ, ং, ঃ</span> (৩৯ − ৩৬ = ৩)। বইয়ের এক জায়গায় ঃ-এর জায়গায় ঁ লেখা আছে — চন্দ্রবিন্দুও অ ছাড়া উচ্চারিত হয়, তাই প্রশ্নের অপশন দেখে উত্তর দিন।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>উচ্চারণ রীতিতে ব্যঞ্জনের ভাগ (১ম)</h3>
+    <p class="ex">১. অঘোষ ২. ঘোষ — স্বরতন্ত্রীর কম্পনের উপর নির্ভর করে।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>উচ্চারণ রীতিতে ব্যঞ্জনের ভাগ (২য়)</h3>
+    <p class="ex">১. অল্পপ্রাণ ২. মহাপ্রাণ — বাতাসের চাপের (প্রাণের) উপর নির্ভর করে।</p></div></div>
+  <div class="fact g"><div class="num">৫</div><div><h3>বর্গ (উচ্চারণ স্থানভিত্তিক)</h3>
+    <p class="ex">ক-বর্গ, চ-বর্গ, ট-বর্গ, ত-বর্গ, প-বর্গ — প্রতি বর্গে ৫টি করে।</p></div></div>
+</div>
+
+<!-- ================= উচ্চারণ ================= -->
+<h2 id="ucharon">৭. ব্যঞ্জনধ্বনির উচ্চারণ ছক</h2>
+<p class="sub">২৫টি স্পর্শবর্ণ = ৫ বর্গ × ৫ কলাম</p>
+<div class="tablebox"><table>
+  <tr><th>ধ্বনি</th><th>বর্ণ</th><th>উচ্চারণ স্থান</th><th>অঘোষ অল্পপ্রাণ</th><th>অঘোষ মহাপ্রাণ</th><th>ঘোষ অল্পপ্রাণ</th><th>ঘোষ মহাপ্রাণ</th><th>নাসিক্য</th></tr>
+  <tr><td>কণ্ঠ্য</td><td>ক-বর্গ</td><td>জিহ্বামূল</td><td>ক</td><td>খ</td><td>গ</td><td>ঘ</td><td>ঙ</td></tr>
+  <tr><td>তালব্য</td><td>চ-বর্গ</td><td>অগ্রতালু</td><td>চ</td><td>ছ</td><td>জ</td><td>ঝ</td><td>ঞ</td></tr>
+  <tr><td>মূর্ধন্য</td><td>ট-বর্গ</td><td>পশ্চাৎ দন্তমূল</td><td>ট</td><td>ঠ</td><td>ড</td><td>ঢ</td><td>ণ</td></tr>
+  <tr><td>দন্ত্য</td><td>ত-বর্গ</td><td>অগ্রদন্তমূল</td><td>ত</td><td>থ</td><td>দ</td><td>ধ</td><td>ন</td></tr>
+  <tr><td>ওষ্ঠ্য</td><td>প-বর্গ</td><td>ওষ্ঠ</td><td>প</td><td>ফ</td><td>ব</td><td>ভ</td><td>ম</td></tr>
+</table></div>
+<div class="grid" style="margin-top:14px">
+  <div class="fact"><div class="num">৫</div><div><h3>প্রতিটি কলামে ৫টি করে</h3>
+    <p class="ex">অঘোষ অল্পপ্রাণ ৫ (প্রতি বর্গের ১ম), অঘোষ মহাপ্রাণ ৫ (২য়), ঘোষ অল্পপ্রাণ ৫ (৩য়), ঘোষ মহাপ্রাণ ৫ (৪র্থ), নাসিক্য ৫ (৫ম)।</p></div></div>
+  <div class="fact"><div class="num">১০</div><div><h3>অঘোষ স্পর্শবর্ণ</h3>
+    <p class="ex">প্রতি বর্গের ১ম ও ২য় বর্ণ — স্বরতন্ত্রী কম কাঁপে।</p></div></div>
+  <div class="fact"><div class="num">১৫</div><div><h3>ঘোষ স্পর্শবর্ণ</h3>
+    <p class="ex">প্রতি বর্গের ৩য়, ৪র্থ ও ৫ম বর্ণ — স্বরতন্ত্রী বেশি কাঁপে (নাসিক্যগুলোও ঘোষ)।</p></div></div>
+</div>
+<div class="tablebox"><table>
+  <tr><th>বর্ণ</th><th>উচ্চারণ স্থান</th></tr>
+  <tr><td>শ, য, য়</td><td>অগ্রতালু</td></tr>
+  <tr><td>ষ, র, ড়, ঢ়</td><td>পশ্চাৎ দন্তমূল</td></tr>
+  <tr><td>ল, স</td><td>অগ্রদন্তমূল</td></tr>
+</table></div>
+
+<!-- ================= বিশেষ বর্ণ ================= -->
+<h2 id="bishesh">৮. বিশেষ শ্রেণির বর্ণ — কোনটায় কয়টি</h2>
+<div class="grid">
+  <div class="fact"><div class="num">৩</div><div><h3>পরাশ্রয়ী বর্ণ</h3>
+    <p class="ex"><span class="letters">ং, ঃ, ঁ</span> — অন্য বর্ণের আশ্রয়ে বসে, স্বাধীনভাবে ব্যবহার করা যায় না।</p></div></div>
+  <div class="fact"><div class="num">৪</div><div><h3>উষ্মধ্বনি / শিস ধ্বনি</h3>
+    <p class="ex"><span class="letters">শ, ষ, স, হ</span> (খাতায় 'য' কেটে স লেখা)। শ, ষ, স = অঘোষ অল্পপ্রাণ; হ = ঘোষ মহাপ্রাণ।</p></div></div>
+  <div class="fact"><div class="num">৫</div><div><h3>নাসিক্য ধ্বনি (বর্গীয়)</h3>
+    <p class="ex"><span class="letters">ঙ, ঞ, ণ, ন, ম</span> — প্রতি বর্গের শেষ বর্ণ। হাতে লেখা নোটে <b>নাসিক্য বর্ণ ৭টি</b> (ঙ, ঞ, ন, ণ, ম, ং, ঁ) এবং বর্গীয় নাসিক্য <b>ধ্বনি ৩টি</b> (ঙ, ন, ম — কারণ ণ ও ঞ আলাদা ধ্বনি হিসেবে উচ্চারিত হয় না)।</p></div></div>
+  <div class="fact"><div class="num">৪</div><div><h3>অন্তঃস্থ বর্ণ</h3>
+    <p class="ex"><span class="letters">য, র, ল, ব</span> — স্পর্শ ও উষ্মের মাঝামাঝি (অন্তঃস্থ) অবস্থানে।</p></div></div>
+  <div class="fact"><div class="num">৪</div><div><h3>অর্ধস্বর</h3>
+    <p class="ex"><span class="letters">ই̯, উ̯, এ̯, ও̯</span> — যৌগিক স্বরে যে স্বর পুরো উচ্চারিত হয় না। হাতে লেখা নোট: অর্ধস্বর বর্ণ — <b>য়, ব</b>।</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>তাড়নজাত বর্ণ</h3>
+    <p class="ex"><span class="letters">ড়, ঢ়</span> — জিহ্বার অগ্রভাগ দিয়ে দন্তমূলে দ্রুত আঘাত (তাড়না)।</p></div></div>
+  <div class="fact b"><div class="num">১</div><div><h3>কম্পনজাত বর্ণ</h3>
+    <p class="ex"><span class="letters">র</span> — জিহ্বা কয়েকবার কাঁপে।</p></div></div>
+  <div class="fact b"><div class="num">১</div><div><h3>পার্শ্বিক বর্ণ</h3>
+    <p class="ex"><span class="letters">ল</span> — বাতাস জিহ্বার দুই পাশ দিয়ে বের হয়।</p></div></div>
+  <div class="fact b"><div class="num">৩</div><div><h3>ঘর্ষণজাত ধ্বনি</h3>
+    <p class="ex"><span class="letters">শ, ষ, স</span></p></div></div>
+  <div class="fact b"><div class="num">৪</div><div><h3>ঘৃষ্ট বর্ণ</h3>
+    <p class="ex"><span class="letters">চ, ছ, জ, ঝ</span> — স্পর্শের পর ঘর্ষণ হয় (চ-বর্গের প্রথম ৪টি)।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>অযোগবাহ বর্ণ</h3>
+    <p class="ex"><span class="letters">ং, ঃ</span> — স্বর বা ব্যঞ্জন কোনোটার সাথেই পুরো যোগ নেই।</p></div></div>
+  <div class="fact g"><div class="num">২</div><div><h3>উচ্চারণে পার্থক্য নেই যে বর্ণে</h3>
+    <p class="ex"><span class="letters">ঙ, ং</span> — যেমন রং = রঙ।</p></div></div>
+  <div class="fact g"><div class="num">১</div><div><h3>স্বতন্ত্রভাবে উচ্চারিত হয় না</h3>
+    <p class="ex"><b>ৎ (খণ্ড ত)</b> — এটি 'ত'-এর হসন্তযুক্ত রূপ (ত্) মাত্র।</p></div></div>
+  <div class="fact g"><div class="num">৪</div><div><h3>শব্দের প্রথমে বসে না</h3>
+    <p class="ex"><span class="letters">ঙ, ং, ঞ, ণ</span> — শব্দের মধ্যে বা শেষে আসে।</p></div></div>
+  <div class="fact g"><div class="num">৫</div><div><h3>ইংরেজিতে N লেখা হয়</h3>
+    <p class="ex"><span class="letters">ঙ, ঞ, ন, ণ, ং</span></p></div></div>
+  <div class="fact"><div class="num">২</div><div><h3>উচ্চারণে পার্থক্য নেই — ণ ও ন</h3>
+    <p class="ex">বাংলায় ণ ও ন দুটোর উচ্চারণে কোনো পার্থক্য নেই।</p></div></div>
+</div>
+<div class="note"><b>আরও কিছু তথ্য (সংখ্যা নয়, কিন্তু প্রশ্নে আসে):</b> বাংলা অভিধানে <b>ক্ষ</b> ক-বর্গের অন্তর্গত। বাঙালি শিশু আগে শেখে প-বর্গ (ওষ্ঠ্য ধ্বনি)। 'ঋ' কে স্বরধ্বনি বলা চলে না। বিসর্গ (ঃ) শব্দের মধ্যে থাকলে পরের ব্যঞ্জন দ্বিত্ব হয় (দুঃখ → দুখ্খো)। বাংলায় হ্রস্বত্ব-দীর্ঘত্বে অর্থের পার্থক্য ঘটে না।</div>
+
+<!-- ================= অক্ষর ================= -->
+<h2 id="akkhor">৯. অক্ষর (Syllable) ও শব্দে অক্ষর সংখ্যা</h2>
+<p class="sub">এক প্রয়াসে বা নিঃশ্বাসের স্বল্পতম চেষ্টায় যতটুকু উচ্চারিত হয় = এক অক্ষর</p>
+<div class="grid">
+  <div class="fact"><div class="num">২</div><div><h3>অক্ষরের প্রকার</h3>
+    <p class="ex">১. <b>স্বরান্ত</b> (Open) — শেষে স্বরধ্বনি, যেমন আ-শা, ভা-ষা। ২. <b>ব্যঞ্জনান্ত</b> (Closed) — শেষে ব্যঞ্জন, যেমন শী-তল, প-বন।</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>'বন্ধন' শব্দে অক্ষর</h3>
+    <p class="ex">বন্ + ধন্। কিন্তু ব, ন, ধ, ন — এগুলো বর্ণ, অক্ষর নয়।</p></div></div>
+  <div class="fact b"><div class="num">৫</div><div><h3>'বিশ্ববিদ্যালয়' শব্দে অক্ষর</h3>
+    <p class="ex">বিশ্ + শ্ব + বিদ্ + দ্যা + লয়</p></div></div>
+  <div class="fact b"><div class="num">৪</div><div><h3>'রবীন্দ্রনাথ' শব্দে অক্ষর</h3>
+    <p class="ex">র + বীন্ + দ্র + নাথ</p></div></div>
+  <div class="fact b"><div class="num">২</div><div><h3>'নজরুল' শব্দে অক্ষর</h3>
+    <p class="ex">নজ্ + রুল্</p></div></div>
+</div>
+<div class="note"><b>ব্যক্তি:</b> বাংলা বর্ণমালা এসেছে ব্রাহ্মী লিপি থেকে, লেখা হয় বঙ্গলিপিতে; স্থায়ী রূপ দেন ঈশ্বরচন্দ্র বিদ্যাসাগর। বাংলা অক্ষরের প্রথম নকশা চার্লস উইলকিন্স, আধুনিক রূপ পঞ্চানন কর্মকার।</div>
+
+<h2>১০. ধ্বনি, বর্ণ ও অক্ষরের পার্থক্য — ৪টি পয়েন্ট</h2>
+<div class="tablebox"><table>
+  <tr><th>ধ্বনি</th><th>বর্ণ</th><th>অক্ষর</th></tr>
+  <tr><td>বর্ণের উচ্চারিত রূপ</td><td>ধ্বনির লিখিত রূপ</td><td>স্বর বা স্বরযুক্ত ব্যঞ্জনের উচ্চারণযোগ্য রূপ</td></tr>
+  <tr><td>শব্দ বিশ্লেষণের ক্ষুদ্রতম অংশ</td><td>ধ্বনি প্রকাশের প্রতীক</td><td>এক বা একাধিক ধ্বনিতে তৈরি (খ্+অ = খ)</td></tr>
+  <tr><td>বাগযন্ত্রে উচ্চারিত</td><td>লেখনীতে তৈরি</td><td>বাগযন্ত্র ও লেখনী দুটোতেই</td></tr>
+  <tr><td>শ্রুতিগ্রাহ্য</td><td>দৃষ্টিগ্রাহ্য</td><td>দৃষ্টিগ্রাহ্য ও শ্রুতিগ্রাহ্য দুটোই</td></tr>
+</table></div>
+
+<footer>উৎস: আপলোড করা PDF — অভিযাত্রী, ধ্বনি প্রকরণ, পৃষ্ঠা ২১–২৪ (খাতার হাতে লেখা নোটসহ)</footer>
+</div>
+<script>
+  const q=document.getElementById('q');
+  q.addEventListener('input',()=>{
+    const v=q.value.trim();
+    document.querySelectorAll('.fact').forEach(el=>{
+      el.classList.toggle('hidden', v && !el.textContent.includes(v));
+    });
+  });
+</script>
+</body>
+</html>

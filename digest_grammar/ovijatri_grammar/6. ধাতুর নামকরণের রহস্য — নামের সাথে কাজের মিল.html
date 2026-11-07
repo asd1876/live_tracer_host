@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ধাতুর নামকরণের রহস্য — নামের সাথে কাজের মিল</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf7ef; --ink:#2b2622; --muted:#6d645b; --line:#e6dccb;
+  --c1:#c2410c; --c1b:#fff1e8;   /* নাম */
+  --c2:#1d4ed8; --c2b:#eaf0ff;   /* প্রযোজক */
+  --c3:#7c3aed; --c3b:#f3edff;   /* কর্মবাচ্য */
+  --c4:#047857; --c4b:#e6f6ef;   /* যৌগিক */
+  --c5:#b91c1c; --c5b:#fdecec;   /* অসম্পূর্ণ */
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hind Siliguri",sans-serif;font-size:17px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px}
+h1,h2,h3{font-family:"Noto Serif Bengali",serif;line-height:1.35;margin:0}
+header{text-align:center;padding:24px 0 8px}
+header h1{font-size:clamp(28px,5vw,42px);font-weight:800}
+header p{color:var(--muted);margin:10px auto 0;max-width:640px}
+.key{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:28px 0;display:flex;gap:16px;align-items:flex-start}
+.key .big{font-size:34px;line-height:1}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 8px}
+nav a{text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-weight:500;font-size:15px}
+nav a:hover{border-color:var(--ink)}
+section.card{background:#fff;border:1px solid var(--line);border-radius:20px;margin:34px 0;overflow:hidden}
+.card .top{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.card .top h2{font-size:26px}
+.tag{font-size:14px;font-weight:600;padding:4px 12px;border-radius:999px}
+.body{padding:22px 24px;display:grid;gap:22px}
+.label{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
+/* word breakdown */
+.split{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:20px}
+.chip{background:var(--bg);color:var(--fg);border-radius:10px;padding:4px 14px;font-weight:600;font-family:"Noto Serif Bengali",serif}
+.chip small{display:block;font-family:"Hind Siliguri";font-size:12px;font-weight:500;opacity:.85;line-height:1.3}
+.op{color:var(--muted);font-weight:700}
+.match{display:grid;grid-template-columns:1fr 46px 1fr;gap:0;align-items:stretch}
+.match .box{border:1px dashed var(--line);border-radius:14px;padding:14px 16px;background:#fffdf9}
+.match .arrow{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--fg)}
+@media(max-width:640px){.match{grid-template-columns:1fr}.match .arrow{transform:rotate(90deg);height:36px}}
+.ex{border-left:4px solid var(--fg);background:var(--bg);border-radius:0 12px 12px 0;padding:12px 16px}
+.ex b{color:var(--fg)}
+.ex p{margin:4px 0}
+.tip{display:flex;gap:10px;background:#fffbe6;border:1px solid #f3e3a3;border-radius:12px;padding:12px 16px}
+.c1{--fg:var(--c1);--bg:var(--c1b)} .c2{--fg:var(--c2);--bg:var(--c2b)} .c3{--fg:var(--c3);--bg:var(--c3b)} .c4{--fg:var(--c4);--bg:var(--c4b)} .c5{--fg:var(--c5);--bg:var(--c5b)} .c0{--fg:#57534e;--bg:#f1ede6}
+.card .top{background:var(--bg)} .card .top h2{color:var(--fg)} .tag{background:#fff;color:var(--fg);border:1px solid var(--fg)}
+/* diagram */
+.actors{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center;font-size:15px}
+.actor{border-radius:14px;padding:10px 14px;min-width:120px;border:2px solid var(--fg);background:#fff}
+.actor .em{font-size:28px;display:block}
+.actor.ghost{border-style:dashed;opacity:.55}
+.flow{color:var(--fg);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:#f6f0e4;font-family:"Noto Serif Bengali",serif}
+.tense{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.tense div{border:1px solid var(--line);border-radius:10px;padding:8px}
+.tense .no{background:var(--c5b);color:var(--c5);border-color:var(--c5);text-decoration:line-through}
+.tense .yes{background:var(--c4b);color:var(--c4);border-color:var(--c4)}
+/* quiz */
+.quiz .q{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:#fffdf9}
+.quiz .q p{margin:0 0 10px;font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;cursor:pointer}
+.opts button:hover{border-color:var(--ink)}
+.opts button.right{background:var(--c4b);border-color:var(--c4);color:var(--c4);font-weight:700}
+.opts button.wrong{background:var(--c5b);border-color:var(--c5);color:var(--c5)}
+.fb{font-size:15px;margin-top:8px;color:var(--muted);display:none}
+.fb.show{display:block}
+#score{text-align:center;font-weight:700;font-size:18px;margin-top:12px}
+footer{text-align:center;color:var(--muted);font-size:14px;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>ধাতুর নামকরণের রহস্য</h1>
+  <p>প্রতিটি ধাতুর নাম আসলে তার কাজেরই একটা সংক্ষিপ্ত বর্ণনা। নামের ভেতরের শব্দগুলো ভাঙলেই দেখা যায় ধাতুটি কী কাজ করে।</p>
+</header>
+
+<div class="key">
+  <div class="big">🔑</div>
+  <div><b>মূল কৌশল:</b> নামটিকে ছোট ছোট অংশে ভাঙো (যেমন <i>প্র + যুজ্ + অক</i>), প্রতিটি অংশের অর্থ বের করো, তারপর সেই অর্থ সংজ্ঞার সাথে মিলিয়ে দেখো। তাহলে আর মুখস্থ করতে হবে না, বোঝা হয়ে যাবে।</div>
+</div>
+
+<nav>
+  <a href="#sadhito">সাধিত</a><a href="#nam">নাম ধাতু</a><a href="#proyojok">প্রযোজক</a><a href="#karmo">কর্মবাচ্যের</a><a href="#compare">তুলনা</a><a href="#jougik">যৌগিক / মিশ্রক্রিয়া</a><a href="#osompurno">অসম্পূর্ণ</a><a href="#quiz">যাচাই করো</a>
+</nav>
+
+<!-- সাধিত -->
+<section class="card c0" id="sadhito">
+  <div class="top"><h2>সাধিত ধাতু</h2><span class="tag">মূল ছাতা-নাম</span></div>
+  <div class="body">
+    <div>
+      <div class="label">শব্দ বিশ্লেষণ</div>
+      <div class="split"><span class="chip">সাধ্<small>সাধন করা, তৈরি করা</small></span><span class="op">+</span><span class="chip">ইত<small>করা হয়েছে এমন</small></span><span class="op">=</span><span class="chip">সাধিত<small>যা তৈরি করা হয়েছে</small></span></div>
+    </div>
+    <div class="match">
+      <div class="box"><div class="label">নামের অর্থ</div>“যা সাধন করা হয়েছে”, অর্থাৎ <b>বানানো জিনিস</b>, প্রকৃতিতে আপনা থেকে পাওয়া নয়।</div>
+      <div class="arrow">⟷</div>
+      <div class="box"><div class="label">কাজের মিল</div><b>মৌলিক ধাতু</b> (পড়্, খা, দেখ্) ভাঙা যায় না, সেগুলো আগে থেকেই আছে। কিন্তু সাধিত ধাতু <b>কোনো শব্দের সাথে ‘আ’ প্রত্যয় জুড়ে তৈরি করতে হয়</b>। “তৈরি করা” বোঝাতেই নাম <b>সাধিত</b>।</div>
+    </div>
+    <div class="tip">💡 <span>মৌলিক = মূল/আদি (আগে থেকেই আছে); সাধিত = বানানো। যেমন মাটি মৌলিক, ইট সাধিত।</span></div>
+  </div>
+</section>
+
+<!-- নাম ধাতু -->
+<section class="card c1" id="nam">
+  <div class="top"><h2>১. নাম ধাতু</h2><span class="tag">নামপদ + আ</span></div>
+  <div class="body">
+    <div>
+      <div class="label">শব্দ বিশ্লেষণ</div>
+      <div class="split"><span class="chip">নাম<small>নামপদ (বিশেষ্য, বিশেষণ ইত্যাদি)</small></span><span class="op">+</span><span class="chip">ধাতু<small>ক্রিয়ার মূল</small></span><span class="op">=</span><span class="chip">নাম ধাতু<small>নাম থেকে জন্মানো ধাতু</small></span></div>
+    </div>
+    <div class="match">
+      <div class="box"><div class="label">নামের অর্থ</div>ব্যাকরণে বিশেষ্য, বিশেষণ, অনুকার অব্যয়কে একসাথে <b>‘নামপদ’ / ‘নামশব্দ’</b> বলা হয়। এগুলো কাজ নয়, কোনো কিছুর <b>নাম বা গুণ</b> বোঝায়।</div>
+      <div class="arrow">⟷</div>
+      <div class="box"><div class="label">কাজের মিল</div>এই ধাতুর জন্ম কোনো ক্রিয়া থেকে নয়, <b>একটা নামপদ থেকে</b>। নামপদের সাথে ‘আ’ যোগ করলে সেটি ক্রিয়ার মূল হয়ে যায়। জন্ম যেহেতু “নাম” থেকে, তাই নাম <b>নাম ধাতু</b>।</div>
+    </div>
+    <div>
+      <div class="label">উদাহরণ: কীভাবে নাম থেকে কাজ হলো</div>
+      <div style="display:grid;gap:10px">
+        <div class="ex"><p><b>বেত</b> (বিশেষ্য, একটা জিনিসের নাম) + আ = <b>বেতা</b></p><p>“মা শিশুকে <u>বেতাচ্ছে</u>।” বেত (জিনিস) দিয়ে মারার কাজটা হয়ে গেল ক্রিয়া।</p></div>
+        <div class="ex"><p><b>বাঁক</b> (বিশেষণ ভাব, বাঁকা অবস্থা) + আ = <b>বাঁকা</b></p><p>“লাঠিটি <u>বাঁকিয়ে</u> ধর।” বাঁকা অবস্থাটা তৈরি করার কাজ।</p></div>
+        <div class="ex"><p><b>ফোঁস</b> (অনুকার অব্যয়, একটা আওয়াজ) + আ = <b>ফোঁসা</b></p><p>“সাপটি <u>ফোঁসাচ্ছে</u>।” আওয়াজটা করার কাজ।</p></div>
+      </div>
+    </div>
+    <div class="tip">💡 <span><b>পরীক্ষা:</b> ধাতু থেকে ‘আ’ বাদ দিলে যদি একটা <b>বিশেষ্য / বিশেষণ / ধ্বনি</b> পাও (বেত, বাঁক, ফোঁস), তবে সেটা নাম ধাতু।</span></div>
+  </div>
+</section>
+
+<!-- প্রযোজক -->
+<section class="card c2" id="proyojok">
+  <div class="top"><h2>২. প্রযোজক ধাতু</h2><span class="tag">মৌলিক ধাতু + আ</span></div>
+  <div class="body">
+    <div>
+      <div class="label">শব্দ বিশ্লেষণ</div>
+      <div class="split"><span class="chip">প্র<small>প্রকৃষ্টভাবে, সামনে</small></span><span class="op">+</span><span class="chip">যুজ্<small>নিযুক্ত করা, লাগানো</small></span><span class="op">+</span><span class="chip">অক<small>যে করে</small></span><span class="op">=</span><span class="chip">প্রযোজক<small>যে অন্যকে কাজে লাগায়</small></span></div>
+    </div>
+    <div class="match">
+      <div class="box"><div class="label">নামের অর্থ</div><b>প্রযোজক = যে প্রযোজনা করে বা প্রেরণা দেয়</b>, অর্থাৎ নিজে না করে <b>অন্যকে দিয়ে কাজ করায়</b>। সিনেমার “প্রযোজক” যেমন নিজে অভিনয় করেন না, অন্যদের দিয়ে করান।</div>
+      <div class="arrow">⟷</div>
+      <div class="box"><div class="label">কাজের মিল</div>এই ক্রিয়ায় <b>কর্তা দুজন</b>: একজন <b>করায়</b> (প্রযোজক কর্তা), আরেকজন <b>করে</b> (প্রযোজ্য কর্তা)। একই সময়ে, একই জায়গায় কাজটা ঘটে। “করানো” কাজটাই নামের ভেতরে আছে।</div>
+    </div>
+    <div>
+      <div class="label">ছবিতে বোঝো: সাপুড়ে সাপ খেলায়</div>
+      <div class="actors">
+        <div class="actor"><span class="em">🧑‍🦱</span><b>সাপুড়ে</b><br>প্রযোজক কর্তা<br><small>(করায়)</small></div>
+        <div class="flow">— খেলায় →</div>
+        <div class="actor"><span class="em">🐍</span><b>সাপ</b><br>প্রযোজ্য কর্তা<br><small>(খেলে)</small></div>
+      </div>
+    </div>
+    <div style="display:grid;gap:10px">
+      <div class="ex"><p><b>খেল্</b> (খেলা করা) + আ = <b>খেলা</b> → “সাপুড়ে সাপ <u>খেলায়</u>।”</p><p>সাপ খেলছে, কিন্তু খেলাচ্ছে সাপুড়ে।</p></div>
+      <div class="ex"><p><b>দেখ্</b> (দেখা) + আ = <b>দেখা</b> → “মা শিশুকে চাঁদ <u>দেখায়</u>।”</p><p>শিশু দেখছে, কিন্তু দেখাচ্ছেন মা।</p></div>
+    </div>
+    <div class="tip">💡 <span><b>পরীক্ষা:</b> বাক্যে ক্রিয়াটা “<b>করানো</b>” অর্থ দেয় কি না দেখো: খাওয়ায়, পড়ায়, হাসায়, নাচায়, শোয়ায়। দুজন মানুষ/প্রাণী খুঁজে পেলেই প্রযোজক। প্রাচীন ব্যাকরণে এর আরেক নাম <b>ণিজন্ত ধাতু</b> (সংস্কৃত ‘ণিচ্’ প্রত্যয় থেকে)।</span></div>
+  </div>
+</section>
+
+<!-- কর্মবাচ্য -->
+<section class="card c3" id="karmo">
+  <div class="top"><h2>৩. কর্মবাচ্যের ধাতু</h2><span class="tag">রূপে প্রযোজক, কাজে আলাদা</span></div>
+  <div class="body">
+    <div>
+      <div class="label">শব্দ বিশ্লেষণ</div>
+      <div class="split"><span class="chip">কর্ম<small>কাজ / বিষয়বস্তু</small></span><span class="op">+</span><span class="chip">বাচ্য<small>যা বলা হয়, যার প্রাধান্য</small></span><span class="op">=</span><span class="chip">কর্মবাচ্য<small>কর্মই যেখানে প্রধান</small></span></div>
+    </div>
+    <div class="match">
+      <div class="box"><div class="label">নামের অর্থ</div><b>বাচ্য</b> মানে বাক্যে কে প্রধান। <b>কর্মবাচ্যে</b> কর্তা আড়ালে থাকে, <b>কর্ম বা বিষয়টিই</b> সামনে আসে, যেন কাজটা নিজে নিজেই ঘটছে।</div>
+      <div class="arrow">⟷</div>
+      <div class="box"><div class="label">কাজের মিল</div>রূপটা প্রযোজকের মতোই (মৌলিক ধাতু + আ), কিন্তু <b>কেউ করছে না, কেউ করাচ্ছেও না</b>। কোনো কর্তা চোখে পড়ে না, শুধু বিষয়টা থাকে। কর্তা হারিয়ে কর্ম প্রধান হয় বলেই নাম <b>কর্মবাচ্যের ধাতু</b>।</div>
+    </div>
+    <div>
+      <div class="label">ছবিতে বোঝো: “কাজটি ভালো দেখায় না”</div>
+      <div class="actors">
+        <div class="actor ghost"><span class="em">❓</span><b>কে দেখাচ্ছে?</b><br>কেউ না</div>
+        <div class="flow">✕</div>
+        <div class="actor ghost"><span class="em">❓</span><b>কে দেখছে?</b><br>কেউ না</div>
+        <div class="flow">→</div>
+        <div class="actor"><span class="em">📌</span><b>কাজটি</b><br>শুধু বিষয়টাই প্রধান</div>
+      </div>
+    </div>
+    <div style="display:grid;gap:10px">
+      <div class="ex"><p>“কাজটি ভালো <u>দেখায়</u> না।” এখানে দেখা = দেখ্ + আ।</p><p>মানে “কাজটা ভালো লাগে না”। কেউ কাউকে কিছু দেখাচ্ছে না।</p></div>
+      <div class="ex"><p>“যা কিছু <u>হারায়</u> গিন্নী বলেন কেষ্টা বেটাই চোর।” এখানে হারা = হার্ + আ।</p><p>জিনিসটা নিজেই হারিয়ে যায়। কেউ হারাচ্ছে না, কাউকে দিয়ে হারানোও হচ্ছে না।</p></div>
+    </div>
+    <div class="tip">💡 <span><b>পরীক্ষা:</b> জিজ্ঞেস করো “<b>কে করাচ্ছে?</b>” উত্তর না থাকলে, আর বিষয়টা যদি নিজেই ঘটছে বলে মনে হয়, তবে সেটা কর্মবাচ্যের ধাতু।</span></div>
+  </div>
+</section>
+
+<!-- তুলনা -->
+<section class="card c0" id="compare">
+  <div class="top"><h2>এক রূপ, দুই কাজ: “দেখায়”</h2><span class="tag">সবচেয়ে বেশি ভুল হয় এখানে</span></div>
+  <div class="body">
+    <table>
+      <tr><th></th><th style="color:var(--c2)">প্রযোজক</th><th style="color:var(--c3)">কর্মবাচ্যের</th></tr>
+      <tr><td><b>বাক্য</b></td><td>মা শিশুকে চাঁদ <u>দেখায়</u>।</td><td>কাজটি ভালো <u>দেখায়</u> না।</td></tr>
+      <tr><td><b>কে করায়?</b></td><td>মা ✔</td><td>কেউ না ✕</td></tr>
+      <tr><td><b>কে করে?</b></td><td>শিশু ✔</td><td>কেউ না ✕</td></tr>
+      <tr><td><b>কর্তার সংখ্যা</b></td><td>২ জন</td><td>০ জন (কর্তা আড়ালে)</td></tr>
+      <tr><td><b>প্রধান কে?</b></td><td>কর্তা (প্রযোজক)</td><td>কর্ম / বিষয়</td></tr>
+      <tr><td><b>নামের যুক্তি</b></td><td>“প্রযোজনা করা”, অন্যকে দিয়ে করানো</td><td>“কর্ম প্রধান”, কর্তা নেই</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- যৌগিক -->
+<section class="card c4" id="jougik">
+  <div class="top"><h2>৪. যৌগিক / সংযোগমূলক ধাতু ও মিশ্রক্রিয়া</h2><span class="tag">নামপদ + ধাতু</span></div>
+  <div class="body">
+    <div>
+      <div class="label">শব্দ বিশ্লেষণ</div>
+      <div class="split"><span class="chip">যুজ্ → যোগ<small>জোড়া লাগানো</small></span><span class="op">→</span><span class="chip">যৌগিক<small>যোগ করে তৈরি</small></span></div>
+      <div class="split" style="margin-top:8px"><span class="chip">সংযোগ<small>দুটিকে জোড়া</small></span><span class="op">+</span><span class="chip">মূলক<small>যার মূলে আছে</small></span><span class="op">=</span><span class="chip">সংযোগমূলক<small>জোড়া দেওয়াই যার ভিত্তি</small></span></div>
+      <div class="split" style="margin-top:8px"><span class="chip">মিশ্র<small>মেশানো</small></span><span class="op">+</span><span class="chip">ক্রিয়া<small>কাজ</small></span><span class="op">=</span><span class="chip">মিশ্রক্রিয়া<small>মিশিয়ে তৈরি ক্রিয়া</small></span></div>
+    </div>
+    <div class="match">
+      <div class="box"><div class="label">নামের অর্থ</div>রসায়নে যেমন দুটি মৌল মিলে <b>যৌগ</b> হয় (H + O → পানি), তেমনি দুটি শব্দ জোড়া লেগে একটি নতুন অর্থ তৈরি হয়।</div>
+      <div class="arrow">⟷</div>
+      <div class="box"><div class="label">কাজের মিল</div><b>বিশেষ্য/বিশেষণ/অনুকার + ধাতু</b> (কর্, হ, দে, পা, খা, কাট্) জোড়া লেগে <b>একটিই কাজ</b> বোঝায়। যেমন “ভাল কর্”, “যোগ কর্”, “দর্শন কর্”। যোগ করে তৈরি বলে নাম <b>যৌগিক বা সংযোগমূলক</b>।</div>
+    </div>
+    <table>
+      <tr><th>ধাতু স্তরে (যৌগিক ধাতু)</th><th>ক্রিয়াপদ স্তরে (মিশ্রক্রিয়া)</th></tr>
+      <tr><td>নামপদ + <b>ধাতু</b><br>ভাল + কর্ = <b>ভাল কর্</b></td><td>নামপদ + <b>ক্রিয়াপদ</b><br>ভাল + করেছে = <b>ভাল করেছে</b></td></tr>
+      <tr><td>যোগ + কর্ = <b>যোগ কর্</b></td><td>যোগ + করেছে = <b>যোগ করেছে</b></td></tr>
+      <tr><td colspan="2">👉 মিশ্রক্রিয়ার <b>মূল অংশটুকুই</b> (বিভক্তি বাদ দিয়ে) হলো যৌগিক ধাতু। ধাতু = মূল, ক্রিয়া = ব্যবহারযোগ্য রূপ।</td></tr>
+    </table>
+    <div style="display:grid;gap:10px">
+      <div class="ex"><p>আমরা তাজমহল <u>দর্শন করলাম</u> → <b>দর্শন কর্</b></p></div>
+      <div class="ex"><p>এখন <u>গোল্লায় যাও</u> → <b>গোল্লায় যা</b> &nbsp;|&nbsp; মাথা <u>ঝিমঝিম করছে</u> → <b>ঝিমঝিম কর্</b> (অনুকার)</p></div>
+      <div class="ex"><p>কর্-যোগে: ভয় কর্, দান কর্ &nbsp;·&nbsp; হ-যোগে: রাজি হ, সুখী হ &nbsp;·&nbsp; দে-যোগে: উত্তর দে &nbsp;·&nbsp; পা-যোগে: ভয় পা &nbsp;·&nbsp; খা-যোগে: মার খা &nbsp;·&nbsp; কাট্-যোগে: সাঁতার কাট্</p></div>
+    </div>
+    <div class="tip">💡 <span><b>নাম ধাতু আর যৌগিক ধাতুর পার্থক্য:</b> নাম ধাতুতে নামপদের সাথে শুধু <b>‘আ’ প্রত্যয়</b> বসে (বেত + আ = বেতা, একটি শব্দ)। যৌগিক ধাতুতে নামপদের সাথে <b>একটা আস্ত ধাতু</b> বসে (ভাল + কর্, দুটি শব্দ)।</span></div>
+  </div>
+</section>
+
+<!-- অসম্পূর্ণ -->
+<section class="card c5" id="osompurno">
+  <div class="top"><h2>৫. অসম্পূর্ণ ধাতু</h2><span class="tag">তিন কালের রূপ নেই</span></div>
+  <div class="body">
+    <div>
+      <div class="label">শব্দ বিশ্লেষণ</div>
+      <div class="split"><span class="chip">অ<small>না</small></span><span class="op">+</span><span class="chip">সম্পূর্ণ<small>পুরোপুরি, পূর্ণ</small></span><span class="op">=</span><span class="chip">অসম্পূর্ণ<small>যা পূর্ণ নয়</small></span></div>
+    </div>
+    <div class="match">
+      <div class="box"><div class="label">নামের অর্থ</div>যার সব অংশ নেই, <b>কিছু ঘাটতি আছে</b>।</div>
+      <div class="arrow">⟷</div>
+      <div class="box"><div class="label">কাজের মিল</div>একটা “সম্পূর্ণ” ধাতুর <b>তিন কালেরই</b> (অতীত, বর্তমান, ভবিষ্যৎ) রূপ থাকে। যে ধাতুর <b>অন্তত একটি কালের রূপ পাওয়া যায় না</b>, সে ধাতু অপূর্ণ। সেই ঘাটতির জন্যই নাম <b>অসম্পূর্ণ</b>।</div>
+    </div>
+    <div style="display:grid;gap:14px">
+      <div><div class="label">সম্পূর্ণ ধাতু: পড়্</div>
+        <div class="tense"><div class="yes">অতীত<br><b>পড়েছিল</b></div><div class="yes">বর্তমান<br><b>পড়ছে</b></div><div class="yes">ভবিষ্যৎ<br><b>পড়বে</b></div></div></div>
+      <div><div class="label">অসম্পূর্ণ ধাতু: আছ্</div>
+        <div class="tense"><div class="yes">অতীত<br><b>আছিলা</b></div><div class="yes">বর্তমান<br><b>আছে</b></div><div class="no">ভবিষ্যৎ<br><b>নেই</b></div></div>
+        <p style="margin:8px 0 0;font-size:15px;color:var(--muted)">“আছবে” বলে কোনো শব্দ নেই। ভবিষ্যৎ বোঝাতে অন্য ধাতু থেকে ধার করে বলতে হয় “থাকবে”।</p></div>
+    </div>
+    <div class="ex"><p>বইয়ের তালিকায় অসম্পূর্ণ ধাতু: <b>আ, আছ্, নহ্, বট্, থাক্</b></p><p>যেমন নহ্ → “নই, নও, নয়”, বট্ → “বটে”। এদের সব কালের রূপ পাওয়া যায় না।</p></div>
+  </div>
+</section>
+
+<!-- কুইজ -->
+<section class="card c0 quiz" id="quiz">
+  <div class="top"><h2>নিজে যাচাই করো ✍️</h2><span class="tag">নাম দেখে কাজ চেনো</span></div>
+  <div class="body" id="qbox"></div>
+  <div id="score" style="padding:0 24px 24px"></div>
+</section>
+
+<footer>সাধিত ধাতু · যৌগিক ধাতু · অসম্পূর্ণ ধাতু: নামকরণের ব্যাখ্যা</footer>
+</div>
+
+<script>
+const T=["নাম ধাতু","প্রযোজক","কর্মবাচ্যের","যৌগিক","অসম্পূর্ণ"];
+const Q=[
+ ["“কুকুরটা সারারাত <u>ঘেউঘেউ করছে</u>।” রেখাঙ্কিত অংশের ধাতু কোনটি?",3,"ঘেউঘেউ (অনুকার) + কর্ (ধাতু), দুটি শব্দ জোড়া লেগেছে। তাই যৌগিক।"],
+ ["“শিক্ষক ছাত্রদের <u>পড়ান</u>।”",1,"শিক্ষক পড়ান আর ছাত্ররা পড়ে, কর্তা দুজন। তাই প্রযোজক।"],
+ ["“ছেলেটি <u>হাতাচ্ছে</u>।” (হাত + আ)",0,"হাত একটি বিশেষ্য, তার সাথে ‘আ’ যোগ হয়েছে। তাই নাম ধাতু।"],
+ ["“এ পোশাকে তোমাকে সুন্দর <u>দেখায়</u>।”",2,"কেউ দেখাচ্ছে না, কাউকে দিয়ে দেখানোও হচ্ছে না। বিষয়টাই প্রধান, তাই কর্মবাচ্যের ধাতু।"],
+ ["“সে বাড়িতে <u>আছে</u>।” ধাতু ‘আছ্’ কোন ধরনের?",4,"আছ্-এর ভবিষ্যৎ কালের রূপ নেই। তাই অসম্পূর্ণ।"],
+ ["“মা শিশুকে ভাত <u>খাওয়ান</u>।”",1,"মা খাওয়ান আর শিশু খায়। “করানো” অর্থ দেয়, তাই প্রযোজক।"]
+];
+let score=0,done=0;
+const box=document.getElementById('qbox');
+Q.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='q';
+  d.innerHTML=`<p>${i+1}. ${q[0]}</p><div class="opts">${T.map((t,j)=>`<button data-j="${j}">${t}</button>`).join('')}</div><div class="fb"></div>`;
+  d.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    if(d.dataset.done)return; d.dataset.done=1; done++;
+    const j=+b.dataset.j;
+    d.querySelectorAll('button')[q[1]].classList.add('right');
+    if(j===q[1])score++; else b.classList.add('wrong');
+    const fb=d.querySelector('.fb');fb.innerHTML=(j===q[1]?'✅ ঠিক! ':'❌ ঠিক উত্তর: <b>'+T[q[1]]+'</b>। ')+q[2];fb.classList.add('show');
+    if(done===Q.length)document.getElementById('score').textContent=`তোমার স্কোর: ${score} / ${Q.length}`;
+  });
+  box.appendChild(d);
+});
+</script>
+</body>
+</html>

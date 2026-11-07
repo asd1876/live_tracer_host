@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>সন্ধি চিট শিট — রিভিশন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f3ea; --paper:#fffdf8; --ink:#1f1b16; --muted:#6d655a; --line:#e4dccd;
+  --swar:#c2410c; --swar-bg:#fff1e6;
+  --byan:#0f766e; --byan-bg:#e6f6f3;
+  --bis:#6d28d9; --bis-bg:#f1ebff;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#16140f; --paper:#201d17; --ink:#f1ece2; --muted:#a69d8f; --line:#38322a;
+    --swar:#fb923c; --swar-bg:#2c1c10; --byan:#2dd4bf; --byan-bg:#0f2622; --bis:#a78bfa; --bis-bg:#211a33; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 16px 60px}
+header h1{font-family:"Noto Serif Bengali",serif;font-weight:800;font-size:clamp(28px,5vw,42px);margin:0;letter-spacing:-.5px}
+header p{margin:4px 0 0;color:var(--muted)}
+.core{margin:14px 0 4px;padding:10px 14px;border:1.5px dashed var(--line);border-radius:12px;background:var(--paper);font-weight:500}
+.core b{color:var(--swar)}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:16px}
+.bar button{font:inherit;font-weight:600;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer}
+.bar button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bar .sp{flex:1}
+.bar .rev.on{background:var(--swar);border-color:var(--swar);color:#fff}
+.prog{font-size:14px;color:var(--muted)}
+.hint{font-size:14px;color:var(--muted);margin:-6px 0 14px;display:none}
+body.revise .hint{display:block}
+
+section{margin-bottom:34px}
+.sec-h{display:flex;align-items:baseline;gap:10px;margin:0 0 4px}
+.sec-h .n{font-family:"Noto Serif Bengali",serif;font-size:30px;font-weight:800;color:var(--c)}
+.sec-h h2{font-family:"Noto Serif Bengali",serif;margin:0;font-size:26px}
+.sec-sub{color:var(--muted);margin:0 0 12px}
+
+/* at-a-glance table */
+.glance{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:10px 12px;margin-bottom:14px;overflow-x:auto}
+.glance table{border-collapse:collapse;width:100%;min-width:520px}
+.glance td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+.glance tr:last-child td{border-bottom:0}
+.glance td.k{font-weight:700;color:var(--c);white-space:nowrap;width:34px}
+.glance td.f{font-weight:600;white-space:nowrap}
+.glance td.e{color:var(--muted)}
+.glance .ttl{font-weight:700;font-size:13px;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:12px 13px 11px;position:relative;cursor:default}
+.card.done{opacity:.55}
+.card .no{font-size:13px;font-weight:700;color:var(--c);background:var(--cbg);padding:1px 8px;border-radius:999px}
+.card .chk{position:absolute;top:10px;right:10px;font:inherit;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:1px 9px;cursor:pointer}
+.card.done .chk{background:var(--c);color:#fff;border-color:var(--c)}
+.formula{font-family:"Noto Serif Bengali",serif;font-weight:800;font-size:21px;margin:8px 0 4px;line-height:1.35}
+.why{font-size:14.5px;margin:0 0 8px}
+.why .tag{font-weight:700;color:var(--c)}
+.ex{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ex span{background:var(--cbg);border-radius:8px;padding:3px 9px;font-size:15px}
+.ex b{font-weight:700}
+.ex i{font-style:normal;color:var(--muted)}
+.trick{font-size:14px;color:var(--muted);border-top:1px dashed var(--line);padding-top:6px}
+.trick::before{content:"💡 "}
+
+/* revision mode */
+body.revise .card{cursor:pointer}
+body.revise .card:not(.show) .formula, body.revise .card:not(.show) .why, body.revise .card:not(.show) .trick, body.revise .card:not(.show) .ex b{filter:blur(7px);user-select:none}
+body.revise .card:not(.show) .ex b{filter:none;color:transparent;background:var(--line);border-radius:4px}
+body.revise .glance{display:none}
+.hidden{display:none!important}
+.ex span.mine{outline:1.5px dashed var(--c)}
+.edit{font:inherit;font-size:13px;border:0;background:transparent;color:var(--c);cursor:pointer;padding:0;font-weight:600;float:right}
+body.revise .edit{display:none}
+.ed{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+.ed .row{display:flex;gap:5px;margin-bottom:5px;align-items:center}
+.ed input{font:inherit;font-size:15px;min-width:0;flex:1;padding:4px 7px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+.ed .eq{color:var(--muted)}
+.ed .x{font:inherit;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:0 3px}
+.ed .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ed .acts button{font:inherit;font-size:13.5px;font-weight:600;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:3px 11px;cursor:pointer}
+.ed .acts .save{background:var(--c);border-color:var(--c);color:#fff}
+.ed .acts .reset{margin-left:auto;color:var(--muted)}
+.sync{font-size:13px;color:var(--muted)}
+.note{font-size:14px;color:var(--muted);margin-top:10px}
+footer{color:var(--muted);font-size:14px;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>সন্ধি — এক নজরে চিট শিট</h1>
+  <p>স্বরসন্ধি · ব্যঞ্জনসন্ধি · বিসর্গসন্ধি — সূত্র, এক লাইনের কারণ, উদাহরণ আর মনে রাখার ট্রিক</p>
+  <div class="core">মূল মন্ত্র: <b>সন্ধি = ধ্বনির আরাম</b> — মুখ সবসময় সহজ রাস্তা খোঁজে। প্রায় সব নিয়মের পেছনে এই একটাই কারণ।</div>
+</header>
+
+<div class="bar">
+  <button data-f="all" class="on">সব</button>
+  <button data-f="swar">স্বরসন্ধি</button>
+  <button data-f="byan">ব্যঞ্জনসন্ধি</button>
+  <button data-f="bis">বিসর্গসন্ধি</button>
+  <span class="sp"></span>
+  <span class="sync" id="sync"></span>
+  <span class="prog" id="prog"></span>
+  <button class="rev" id="rev">🧠 রিভিশন মোড</button>
+</div>
+<p class="hint" style="display:block;margin-top:-6px">✏️ যেকোনো কার্ডে "✏️ উদাহরণ" চেপে নিজের উদাহরণ যোগ, বদল বা মুছে ফেলতে পারো — নিজের যোগ করা উদাহরণ ড্যাশ বর্ডারে দেখাবে।</p>
+<p class="hint">রিভিশন মোড: উদাহরণ দেখে মনে মনে সন্ধি করো, তারপর কার্ডে ট্যাপ করে উত্তর মিলাও। মুখস্থ হলে "✓ পারি" চাপো।</p>
+
+<div id="root"></div>
+<footer>সন্ধি = ধ্বনির আরাম 😌</footer>
+</div>
+
+<script>
+const DATA = [
+ {id:"swar", n:"১", name:"স্বরসন্ধি", sub:"স্বর + স্বর — মুখের আরামের জন্য মিলন, লোপ বা রূপান্তর", rules:[
+  ["০১","অ/আ + অ/আ = আ","দীর্ঘীভবন","দুটোই কণ্ঠ্য — এক টানে দীর্ঘ 'আ'।",[["হিমালয়","হিম + আলয়"],["রত্নাকর","রত্ন + আকর"]],"কণ্ঠ্য + কণ্ঠ্য = আ"],
+  ["০২","ই/ঈ + ই/ঈ = ঈ","দীর্ঘীভবন","দুটোই তালব্য — মিলে দীর্ঘ 'ঈ'।",[["রবীন্দ্র","রবি + ইন্দ্র"],["পরীক্ষা","পরি + ঈক্ষা"]],"তালব্য + তালব্য = ঈ"],
+  ["০৩","উ/ঊ + উ/ঊ = ঊ","দীর্ঘীভবন","ওষ্ঠ্য — ঠোঁট এক সংকোচনে দীর্ঘ 'ঊ'।",[["কটূক্তি","কটু + উক্তি"],["মরূদ্যান","মরু + উদ্যান"]],"ওষ্ঠ্য + ওষ্ঠ্য = ঊ"],
+  ["০৪","অ/আ + ই/ঈ = এ","স্বর-মিশ্রণ","কণ্ঠ (নিচে) আর তালু (ওপরে)-র মাঝামাঝি = 'এ'।",[["যথেষ্ট","যথা + ইষ্ট"],["শুভেচ্ছা","শুভ + ইচ্ছা"]],"কণ্ঠ + তালু = এ"],
+  ["০৫","অ/আ + উ/ঊ = ও","স্বর-মিশ্রণ","খোলা কণ্ঠ আর গোল ঠোঁটের মাঝামাঝি = 'ও'।",[["সূর্যোদয়","সূর্য + উদয়"],["কথোপকথন","কথা + উপকথন"]],"কণ্ঠ + ওষ্ঠ = ও"],
+  ["০৬","অ/আ + এ/ঐ = ঐ","স্বর-বৃদ্ধি","কণ্ঠ্য বাতাসের জোরে 'এ' প্রসারিত হয়ে 'ঐ'।",[["জনৈক","জন + এক"],["মতৈক্য","মত + ঐক্য"]],"অ/আ + এ = ঐ"],
+  ["০৭","অ/আ + ও/ঔ = ঔ","স্বর-বৃদ্ধি","কণ্ঠ্য চাপে 'ও' বর্ধিত হয়ে 'ঔ'।",[["বনৌষধি","বন + ওষধি"],["মহৌষধ","মহা + ঔষধ"]],"অ/আ + ও = ঔ"],
+  ["০৮","অ/আ + ঋ = অর্ (রেফ)","","ঋ ≈ 'র্ই' — স্বরাংশ হারিয়ে রেফ হয়ে বসে।",[["দেবর্ষি","দেব + ঋষি"],["মহর্ষি","মহা + ঋষি"]],"অ/আ + ঋ = অর্ (রেফ)"],
+  ["০৯","অ/আ + ঋত = আর্ (কাতর অর্থে)","","'ঋত' (পীড়িত)-এ জোর পড়ে, তাই অ → আ; ঋ → রেফ।",[["ক্ষুধার্ত","ক্ষুধা + ঋত"],["শীতার্ত","শীত + ঋত"]],"ঋত = কষ্ট পাওয়া → আর্"],
+  ["১০","ই/ঈ + ভিন্ন স্বর = য-ফলা (্য)","","ই/ঈ সংকুচিত হয়ে অর্ধস্বর 'য়' → আগের বর্ণে য-ফলা।",[["অত্যধিক","অতি + অধিক"],["ইত্যাদি","ইতি + আদি"]],"ই/ঈ + অন্য স্বর = ্য"],
+  ["১১","উ/ঊ + ভিন্ন স্বর = ব-ফলা (্ব)","","উ/ঊ ইংরেজি W-এর মতো অর্ধস্বর → ব-ফলা।",[["স্বাগত","সু + আগত"],["অন্বেষণ","অনু + এষণ"]],"উ/ঊ + অন্য স্বর = ্ব"],
+  ["১২","ঋ + ভিন্ন স্বর = র-ফলা (্র)","","ঋ-এর উচ্চারণ 'র'-এর মতো → র-ফলা হয়ে আগের বর্ণে।",[["পিত্রালয়","পিতৃ + আলয়"],["মাত্রাজ্ঞা","মাতৃ + আজ্ঞা"]],"ঋ + অন্য স্বর = ্র"],
+  ["১৩","এ→অয়্ · ঐ→আয়্ · ও→অব্ · ঔ→আব্","স্বর-বিশ্লেষণ","পরে ভিন্ন স্বর এলে এরা অর্ধ-ব্যঞ্জনে (য়্/ব্) ভেঙে যায়; ঐ/ঔ ভারী বলে 'আ'।",[["নয়ন","নে + অন"],["নায়ক","নৈ + অক"],["পবন","পো + অন"],["পাবক","পৌ + অক"]],"এ-ঐ → য়্ ; ও-ঔ → ব্"],
+  ["১৪","স্বর + ব্যঞ্জন → স্বরলোপ","স্বরলোপ","খাঁটি বাংলার নিয়ম — দ্রুত বলায় দুর্বল স্বর হাওয়া।",[["ঘোড়দৌড়","ঘোড়া + দৌড়"],["কাঁচকলা","কাঁচা + কলা"]],"দ্রুত উচ্চারণে স্বর গায়েব"],
+  ["১৫","পাশাপাশি দুই স্বরের একটি লোপ","","দুবার উচ্চারণ ক্লান্তিকর — কম জোরেরটি ছাঁটাই।",[["যাচ্ছেতাই","যা + ইচ্ছা + তাই"],["জাত্যভিমান","জাতি + অভিমান"]],"একটি স্বর বাদ"]
+ ]},
+ {id:"byan", n:"২", name:"ব্যঞ্জনসন্ধি", sub:"ব্যঞ্জন + ব্যঞ্জন/স্বর — ধ্বনির সমীভবন (পাশের ধ্বনির মতো হয়ে যাওয়া)", rules:[
+  ["০১","ত্/দ্ + চ/ছ = চ্চ / চ্ছ","সমীভবন","দন্ত্য → তালব্যে যাওয়া কঠিন, তাই ত/দ নিজেই 'চ্'।",[["চলচ্চিত্র","চলৎ + চিত্র"],["উচ্ছেদ","উৎ + ছেদ"],["সচ্চরিত্র","সৎ + চরিত্র"],["শরচ্চন্দ্র","শরৎ + চন্দ্র"]],"ত/দ + চ = চ্চ"],
+  ["০২","ত্/দ্ + জ/ঝ = জ্জ / জ্ঝ","সমীভবন + ঘোষীভবন","ঘোষ তালব্য 'জ'-এর ধাক্কায় ত/দ → 'জ্'।",[["উজ্জ্বল","উৎ + জ্বল"],["যাবজ্জীবন","যাবৎ + জীবন"],["বিপজ্জাল","বিপদ + জাল"],["কুজ্ঝটিকা","কুৎ + ঝটিকা"]],"ত/দ + জ = জ্জ"],
+  ["০৩","ত্/দ্ + শ = চ্ছ","পরস্পর সমীভবন","দুই দিকেই বদল: ত/দ → চ্, শ → ছ্।",[["উচ্ছ্বাস","উৎ + শ্বাস"],["উচ্ছৃঙ্খল","উৎ + শৃঙ্খল"]],"ত/দ + শ = চ্ছ"],
+  ["০৪","ত্/দ্ + ড/ঢ = ড্ড / ড্ঢ","সমীভবন","মূর্ধন্য ড/ঢ-এর রঙে ত/দ → 'ড্'।",[["উড্ডীন","উৎ + ডীন"],["বৃহড্ঢক্কা","বৃহৎ + ঢক্কা"]],"ত/দ + ড = ড্ড"],
+  ["০৫","ত্/দ্ + হ = দ্ধ","পরস্পর সমীভবন","ত/দ → দ্, হ → ধ্ — মিলে দ্ধ।",[["উদ্ধার","উৎ + হার"],["পদ্ধতি","পদ + হতি"]],"ত/দ + হ = দ্ধ"],
+  ["০৬","ত্/দ্ + ন = ন্ন","নাসিক্যভবন","নাসিক্য 'ন'-এর টানে ত/দ → 'ন্'।",[["উন্নয়ন","উৎ + নয়ন"],["উন্নাসিক","উৎ + নাসিক"]],"ত/দ + ন = ন্ন"],
+  ["০৭","বর্গের ১ম + ঘোষ ধ্বনি = ৩য়","ঘোষীভবন","পরে ৩য়/৪র্থ বর্ণ বা য র ল ব হ / স্বর → অঘোষ ১ম বর্ণ নিজ বর্গের ৩য় হয়।",[["বাগদান","বাক্ + দান"],["তদ্ভব","তৎ + ভব"],["ষড়ঋতু","ষট্ + ঋতু"]],"১ম + ঘোষ = ৩য় (ক→গ, ত→দ, ট→ড)"],
+  ["০৮","বর্গের ১ম + নাসিক্য = ৫ম","নাসিক্যভবন","ঙ ঞ ণ ন ম পরে থাকলে আগেরটি নিজ বর্গের নাসিক্য।",[["বাঙ্ময়","বাক্ + ময়"],["উন্নয়ন","উৎ + নয়ন"],["তন্মধ্যে","তৎ + মধ্যে"]],"১ম + নাসিক্য = ৫ম (ক→ঙ, ত→ন)"],
+  ["০৯","ম্ + ক-বর্গ/য র ল ব শ ষ স হ = ং · ম্ + চ–ম বর্গ = ঐ বর্গের নাসিক্য","","য র ল ব শ ষ স হ-এর নিজস্ব নাসিক্য নেই → তাই অনুস্বার (ং)।",[["অহংকার","অহম্ + কার"],["সঞ্চয়","সম্ + চয়"],["সন্তাপ","সম্ + তাপ"],["সংসার","সম্ + সার"],["সংবিধান","সম্ + বিধান"]],"ম্ → পরের বর্গের নাসিক্য; অন্তঃস্থ/উষ্ম হলে ং"],
+  ["১০","চ্/জ্ + ন = ঞ","প্রগত সমীভবন","তালব্য চ/জ-এর টানে দন্ত্য 'ন' → তালব্য 'ঞ'।",[["যজ্ঞ","যজ্ + ন"],["রাজ্ঞী","রাজ্ + নী"],["যাচ্ঞা","যাচ্ + না"]],"জ্ + ঞ = জ্ঞ"],
+  ["১১","দ্/ধ্ + অঘোষ (ক চ ট ত প খ ছ ঠ থ ফ) = ৎ","অঘোষীভবন","পরের অঘোষের জন্য কম্পন থামে → দ/ধ হয় অঘোষ 'ৎ'।",[["তৎকাল","তদ্ + কাল"],["ক্ষুৎপিপাসা","ক্ষুধ্ + পিপাসা"]],"ঘোষ + অঘোষ = অঘোষ (৭ নং-এর উল্টো)"],
+  ["১২","দ্/ধ্ + স = ৎ","অঘোষীভবন","অঘোষ শীষ-ধ্বনি 'স'-এর কারণে দ/ধ → 'ৎ'।",[["বিপৎসংকুল","বিপদ + সংকুল"],["তৎসম","তদ্ + সম"]],"দ/ধ + স = ৎস"],
+  ["১৩","ষ্ + ত = ষ্ট · ষ্ + থ = ষ্ঠ","মূর্ধন্যভবন","মূর্ধন্য 'ষ'-এ জিভ উল্টে থাকে → ত/থ হয় ট/ঠ।",[["বৃষ্টি","বৃষ্ + তি"],["তুষ্ট","তুষ্ + ত"],["ষষ্ঠ","ষষ্ + থ"]],"ষ-এর পাশে ত→ট, থ→ঠ"]
+ ]},
+ {id:"bis", n:"৩", name:"বিসর্গসন্ধি", sub:"বিসর্গ (ঃ) আসলে র্ বা স্ — পরের ধ্বনির প্রভাবে রূপ বদলায়", rules:[
+  ["০১","অঃ + ঘোষ ধ্বনি = ও","","ঘোষের ধাক্কায় ঃ → 'উ'; অ + উ = 'ও'।",[["অধোগতি","অধঃ + গতি"],["মনোযোগ","মনঃ + যোগ"],["মনোহর","মনঃ + হর"]],"অঃ + ঘোষ (৩য়/৪র্থ/৫ম, য র ল হ) = ও"],
+  ["০২","ইঃ/উঃ + র = ঈ/ঊ","ক্ষতিপূরক দীর্ঘীভবন","ঃ আসলে 'র্'; দুই 'র' কঠিন → একটি লোপ, আগের স্বর দীর্ঘ।",[["নীরব","নিঃ + রব"],["নীরস","নিঃ + রস"],["নীরোগ","নিঃ + রোগ"]],"র লোপ → আগের স্বর দীর্ঘ"],
+  ["০৫","র-জাত বিসর্গ + ঘোষ = রেফ (র্)","","অন্তঃ, দুঃ-এর ঃ আদিতে 'র্' — ঘোষের টানে আসল রূপে ফেরে।",[["অন্তর্গত","অন্তঃ + গত"],["দুর্ভাগ্য","দুঃ + ভাগ্য"]],"র-জাত ঃ + ঘোষ = র্"],
+  ["০৬","ঃ + চ/ছ = শ · ট/ঠ = ষ · ত/থ = স","স্থান-সমীভবন","পরের ধ্বনির উচ্চারণ-স্থানের শীষ-ধ্বনি বেছে নেয়।",[["নিশ্চয়","নিঃ + চয়"],["ধনুষ্টঙ্কার","ধনুঃ + টঙ্কার"],["ইতস্তত","ইতঃ + তত"]],"চ→শ (তালব্য), ট→ষ (মূর্ধন্য), ত→স (দন্ত্য)"],
+  ["০৭","ইঃ/উঃ + ক খ প ফ = ষ · অঃ/আঃ + ক খ প ফ = স","","ই/উ-তে জিভ ওপরে → 'ষ'; অ/আ খোলা → দন্ত্য 'স'।",[["আবিষ্কার","আবিঃ + কার"],["নিষ্ফল","নিঃ + ফল"],["তিরস্কার","তিরঃ + কার"]],"ই/উ → ষ ; অ/আ → স"]
+ ]}
+];
+
+const COL = {swar:["var(--swar)","var(--swar-bg)"],byan:["var(--byan)","var(--byan-bg)"],bis:["var(--bis)","var(--bis-bg)"]};
+const RULES = {};
+DATA.forEach(ch=>ch.rules.forEach(r=>{ RULES[ch.id+"-"+r[0]] = r; }));
+const TOTAL = Object.keys(RULES).length;
+
+/* ---------- state: {done:{key:true}, ex:{key:[[word,split,mine],...]}} ---------- */
+let state = {done:{}, ex:{}};
+try{
+  const s = JSON.parse(localStorage.getItem("sondhi-state")||"null");
+  if(s && typeof s==="object") state = {done:s.done||{}, ex:s.ex||{}};
+  else { const d = JSON.parse(localStorage.getItem("sondhi-done")||"{}"); state.done = d||{}; }
+}catch(e){}
+
+let dbRef = null, writing = Promise.resolve();
+const syncEl = document.getElementById("sync");
+function setSync(t){ syncEl.textContent = t; }
+
+function save(){
+  try{ localStorage.setItem("sondhi-state", JSON.stringify(state)); }catch(e){}
+  if(dbRef){
+    const body = JSON.parse(JSON.stringify(state));
+    setSync("☁️ সেভ হচ্ছে…");
+    writing = writing.then(()=>dbRef.set(body)).then(()=>setSync("☁️ সেভ হয়েছে"))
+      .catch(()=>setSync("⚠️ শুধু এই ব্রাউজারে সেভ"));
+  }
+}
+
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const examplesOf = k => state.ex[k] || RULES[k][4];
+let editing = null; // key of the card being edited
+
+function cardHTML(chId, r){
+  const key = chId+"-"+r[0];
+  const ex = examplesOf(key);
+  const custom = !!state.ex[key];
+  let ed = "";
+  if(editing===key){
+    ed = `<div class="ed">
+      <div class="rows">${ex.map(x=>rowHTML(x[0],x[1])).join("")}</div>
+      <div class="acts">
+        <button class="add">+ নতুন উদাহরণ</button>
+        <button class="save">সংরক্ষণ</button>
+        <button class="cancel">বাতিল</button>
+        ${custom?'<button class="reset">মূল উদাহরণে ফেরো</button>':""}
+      </div></div>`;
+  }
+  return `<div class="card${state.done[key]?" done":""}" data-k="${key}">
+    <span class="no">নিয়ম ${r[0]}</span>
+    <button class="chk">✓ পারি</button>
+    <div class="formula">${esc(r[1])}</div>
+    <p class="why">${r[2]?`<span class="tag">${r[2]}।</span> `:""}${esc(r[3])}</p>
+    <div class="ex">${ex.map(x=>`<span${x[2]?' class="mine"':""}><b>${esc(x[0])}</b> <i>= ${esc(x[1])}</i></span>`).join("")||'<i style="color:var(--muted);font-size:14px">কোনো উদাহরণ নেই</i>'}</div>
+    <div class="trick">${esc(r[5])}${editing===key?"":'<button class="edit">✏️ উদাহরণ</button>'}</div>
+    ${ed}
+  </div>`;
+}
+function rowHTML(w="",s=""){
+  return `<div class="row"><input class="w" placeholder="সন্ধিযুক্ত শব্দ" value="${esc(w)}"><span class="eq">=</span><input class="s" placeholder="যেমন: হিম + আলয়" value="${esc(s)}"><button class="x" title="মুছে ফেলো">×</button></div>`;
+}
+
+const root = document.getElementById("root");
+function render(){
+  root.innerHTML = DATA.map(ch=>{
+    const [c,cb] = COL[ch.id];
+    const glance = ch.rules.map(r=>{
+      const ex = examplesOf(ch.id+"-"+r[0]);
+      return `<tr><td class="k">${r[0]}</td><td class="f">${esc(r[1])}</td><td class="e">${ex.slice(0,2).map(x=>esc(x[0])+" = "+esc(x[1])).join(" · ")}</td></tr>`;
+    }).join("");
+    return `<section data-s="${ch.id}" style="--c:${c};--cbg:${cb}">
+      <div class="sec-h"><span class="n">${ch.n}</span><h2>${ch.name}</h2></div>
+      <p class="sec-sub">${ch.sub}</p>
+      <div class="glance"><div class="ttl">এক নজরে — সব সূত্র</div><table>${glance}</table></div>
+      <div class="grid">${ch.rules.map(r=>cardHTML(ch.id,r)).join("")}</div>
+      ${ch.id==="bis"?'<p class="note">মূল নোটে বিসর্গসন্ধির নিয়ম ০৩ ও ০৪ ছিল না, তাই এখানেও নম্বর ০২-এর পর ০৫ থেকে শুরু।</p>':""}
+    </section>`;
+  }).join("");
+  applyFilter();
+  prog();
+}
+function rerenderCard(key){
+  const old = root.querySelector(`.card[data-k="${key}"]`);
+  if(!old){ render(); return; }
+  const [chId] = key.split("-");
+  const t = document.createElement("div");
+  t.innerHTML = cardHTML(chId, RULES[key]);
+  old.replaceWith(t.firstElementChild);
+}
+function prog(){
+  const n = Object.values(state.done).filter(Boolean).length;
+  document.getElementById("prog").textContent = `মুখস্থ: ${n}/${TOTAL}`;
+}
+
+root.addEventListener("click", e=>{
+  const card = e.target.closest(".card"); if(!card) return;
+  const k = card.dataset.k, t = e.target;
+  if(t.classList.contains("chk")){
+    state.done[k] = !state.done[k]; if(!state.done[k]) delete state.done[k];
+    card.classList.toggle("done", !!state.done[k]); save(); prog(); return;
+  }
+  if(t.classList.contains("edit")){
+    const prev = editing; editing = k;
+    if(prev && prev!==k) rerenderCard(prev);
+    rerenderCard(k);
+    const first = root.querySelector(`.card[data-k="${k}"] .ed input`); if(first) first.focus();
+    return;
+  }
+  if(t.classList.contains("add")){
+    const rows = card.querySelector(".rows");
+    rows.insertAdjacentHTML("beforeend", rowHTML());
+    rows.lastElementChild.querySelector("input").focus(); return;
+  }
+  if(t.classList.contains("x")){ t.closest(".row").remove(); return; }
+  if(t.classList.contains("cancel")){ editing = null; rerenderCard(k); return; }
+  if(t.classList.contains("reset")){ delete state.ex[k]; editing = null; save(); render(); return; }
+  if(t.classList.contains("save")){
+    const orig = RULES[k][4].map(x=>x[0]+"|"+x[1]);
+    const list = [...card.querySelectorAll(".rows .row")].map(r=>[r.querySelector(".w").value.trim(), r.querySelector(".s").value.trim()])
+      .filter(x=>x[0]||x[1]).map(x=> orig.includes(x[0]+"|"+x[1]) ? x : [x[0],x[1],1]);
+    const same = list.length===orig.length && list.every((x,i)=>x[0]+"|"+x[1]===orig[i]);
+    if(same) delete state.ex[k]; else state.ex[k] = list;
+    editing = null; save(); render(); return;
+  }
+  if(t.closest(".ed")) return;
+  if(document.body.classList.contains("revise")) card.classList.toggle("show");
+});
+root.addEventListener("keydown", e=>{
+  if(e.key==="Enter" && e.target.matches(".ed input")){ e.preventDefault(); e.target.closest(".card").querySelector(".save").click(); }
+});
+
+let filter = "all";
+function applyFilter(){
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("hidden", filter!=="all" && s.dataset.s!==filter));
+}
+document.querySelectorAll(".bar [data-f]").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".bar [data-f]").forEach(x=>x.classList.toggle("on",x===b));
+  filter = b.dataset.f; applyFilter();
+});
+const rev = document.getElementById("rev");
+rev.onclick=()=>{
+  const on = document.body.classList.toggle("revise");
+  rev.classList.toggle("on", on);
+  if(on && editing){ const k = editing; editing = null; rerenderCard(k); }
+  document.querySelectorAll(".card.show").forEach(c=>c.classList.remove("show"));
+};
+
+render();
+
+/* ---------- cloud sync (works across your devices when signed in) ---------- */
+(async()=>{
+  try{
+    if(!window.claude || !claude.use) return;
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    if(!db || !user) return;
+    const id = await user.id(); if(!id) return;
+    const ref = db.doc("data/users/"+id+"/state");
+    setSync("☁️ লোড হচ্ছে…");
+    const timer = setTimeout(()=>setSync("⚠️ ক্লাউডে পৌঁছানো যাচ্ছে না"), 10000);
+    const snap = await ref.get();
+    clearTimeout(timer);
+    dbRef = ref;
+    if(snap.exists){
+      const d = snap.data() || {};
+      state = {done: Object.assign({}, d.done||{}), ex: JSON.parse(JSON.stringify(d.ex||{}))};
+      try{ localStorage.setItem("sondhi-state", JSON.stringify(state)); }catch(e){}
+      if(!editing) render();
+      setSync("☁️ সিঙ্ক হয়েছে");
+    } else if(Object.keys(state.done).length || Object.keys(state.ex).length){
+      save();
+    } else setSync("☁️ সিঙ্ক চালু");
+  }catch(e){ setSync("⚠️ শুধু এই ব্রাউজারে সেভ"); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>প্রত্যয় সাধিত শব্দের অর্থ — কেন ও কীভাবে</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#141414;--paper:#FFF8E7;--y:#FFD93D;--g:#6BCB77;--p:#FF8FAB;--b:#4D96FF;--o:#FF6B35;--m:#B49BE0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hind Siliguri','Noto Sans Bengali','Nirmala UI',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:17px;background-image:radial-gradient(#14141418 1.5px,transparent 1.5px);background-size:22px 22px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.hero{background:var(--y);border-bottom:4px solid var(--ink);padding:34px 0 28px}
+.hero .tag{display:inline-block;background:var(--ink);color:var(--y);font-weight:700;padding:2px 12px;transform:rotate(-2deg);margin-bottom:10px;font-size:15px}
+.hero h1{font-size:clamp(30px,6vw,56px);line-height:1.15}
+.hero p{font-weight:600;max-width:760px;margin-top:8px}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:4px solid var(--ink)}
+nav .wrap{display:flex;gap:8px;overflow-x:auto;padding:8px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:inherit;font-weight:700;border:3px solid var(--ink);padding:1px 12px;background:var(--c,#fff);box-shadow:3px 3px 0 var(--ink);font-size:15px}
+section{padding:30px 0 6px;scroll-margin-top:56px}
+.sh{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px}
+.sh h2{font-size:clamp(22px,4vw,32px);line-height:1.25;background:var(--c);border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:3px 16px}
+.sh .pill{font-weight:700;border:3px solid var(--ink);background:#fff;padding:0 10px}
+.lead{background:#fff;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--c);padding:12px 16px;margin-bottom:20px}
+.lead b{background:#FFF1B8;padding:0 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:20px}
+.card{background:#fff;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:14px 16px 16px}
+.word{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;border-bottom:3px dashed var(--ink);padding-bottom:8px;margin-bottom:8px}
+.word b{font-size:30px;line-height:1.2}
+.word .f{font-weight:700;background:var(--c);border:2px solid var(--ink);padding:0 10px;font-size:16px}
+.word .m{font-weight:600;font-size:15px;opacity:.8}
+.k{display:grid;grid-template-columns:86px 1fr;gap:4px 10px;margin-top:6px}
+.k dt{font-weight:700;font-size:14px;background:var(--ink);color:#fff;padding:0 8px;height:max-content;margin-top:3px;text-align:center}
+.k dd{font-size:16px}
+.steps{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:2px}
+.steps span{border:2px solid var(--ink);padding:0 8px;background:#E3F0FF;font-weight:600}
+.steps i{font-style:normal;font-weight:700}
+.eg{font-style:normal;background:#DDF5E0;padding:0 4px}
+.trick{margin-top:18px;background:var(--ink);color:var(--y);font-weight:700;padding:8px 14px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--c)}
+.trick:before{content:"💡 মনে রাখুন: ";color:#fff}
+.warn{margin-top:10px;border:3px dashed var(--o);background:#FFF0E8;padding:6px 10px;font-size:15px}
+table{width:100%;border-collapse:collapse;background:#fff;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);font-size:16px}
+th,td{border:2px solid var(--ink);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--y)}
+.tw{overflow-x:auto;padding-bottom:8px}
+.rules2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.rbox{background:#fff;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:12px 14px}
+.rbox h3{font-size:20px;margin-bottom:4px}
+footer{margin-top:40px;background:var(--ink);color:#fff;text-align:center;padding:26px 0;font-weight:600}
+footer b{display:block;color:var(--y);font-size:21px}
+@media(max-width:560px){.k{grid-template-columns:1fr}.k dt{width:max-content}}
+@media print{nav{display:none}.card,.rbox{break-inside:avoid;box-shadow:none}body{background:#fff}}
+</style></head><body>
+
+<header class="hero"><div class="wrap">
+<span class="tag">বাংলা ব্যাকরণ · খাঁটি বাংলা তদ্ধিত প্রত্যয়</span>
+<h1>প্রত্যয় সাধিত শব্দ<br>কেন ওই অর্থ দেয়?</h1>
+<p>বইয়ের টেবিলের প্রতিটি উদাহরণ — গঠন, অর্থ, কেন এই অর্থ আসে, আর শব্দের চেহারা কীভাবে বদলায় (খুনিয়া → খুনে, জালিয়া → জেলে)।</p>
+</div></header>
+
+<nav><div class="wrap">
+<a href="#dhoni" style="--c:#B49BE0">আগে জানুন</a>
+<a href="#a" style="--c:#6BCB77">আ</a>
+<a href="#ai" style="--c:#FF8FAB">আই</a>
+<a href="#ami" style="--c:#FF6B35">আমি/আমো</a>
+<a href="#nipun" style="--c:#4D96FF">ইয়া · নৈপুণ্য</a>
+<a href="#malik" style="--c:#FFD93D">ই · মালিক</a>
+<a href="#britti" style="--c:#6BCB77">বৃত্তি</a>
+<a href="#upojibika" style="--c:#FF8FAB">ইয়া · উপজীবিকা</a>
+<a href="#upokoron" style="--c:#4D96FF">ইয়া · উপকরণ</a>
+<a href="#sar" style="--c:#FFD93D">সারণি</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- আগে জানুন -->
+<section id="dhoni" style="--c:#B49BE0">
+<div class="sh"><h2>আগে জেনে নিন: রূপ কেন বদলায়</h2></div>
+<div class="lead">টেবিলের <b>&gt;</b> চিহ্নটির মানে “পরে এই রূপ হয়েছে”। <b>খুনিয়া &gt; খুনে</b> মানে প্রথমে প্রত্যয় যোগে ‘খুনিয়া’ (সাধু/পুরোনো রূপ) হয়েছিল, মুখের উচ্চারণে বদলে এখন ‘খুনে’ (চলিত রূপ)। এই বদল এলোমেলো নয় — দুটি নিয়ম বারবার কাজ করে।</div>
+<div class="rules2">
+<div class="rbox"><h3>① অপিনিহিতি</h3><p>শব্দের পরের দিকের ই বা উ আগেই উচ্চারণ হয়ে যায়।</p><div class="steps"><span>জালিয়া</span><i>→</i><span>জাইল্যা</span></div><p style="font-size:15px;margin-top:4px">পূর্ববঙ্গের মুখের ভাষায় এই রূপ এখনো শোনা যায়।</p></div>
+<div class="rbox"><h3>② অভিশ্রুতি</h3><p>আগে-চলে-আসা ই/উ পাশের স্বরের সাথে মিশে স্বরটিকে বদলে দেয়, আর শেষের ‘য়া’ হয়ে যায় ‘এ’ (উয়া হলে ‘ও’)।</p><div class="steps"><span>জাইল্যা</span><i>→</i><span>জেলে</span></div><p style="font-size:15px;margin-top:4px">পশ্চিমবঙ্গের চলিত ভাষা এই রূপকেই মান্য করেছে।</p></div>
+<div class="rbox"><h3>③ মোটা দাগে ফল</h3><p><b>-ইয়া → -এ</b> (খুনিয়া→খুনে, জালিয়া→জেলে)<br><b>-উয়া → -ও</b> (মাছুয়া→মেছো, ধানুয়া→ধেনো)<br>আর শুরুর <b>আ প্রায়ই এ</b> হয় (মাটি→মেটে, বালি→বেলে)।</p></div>
+</div>
+<div class="trick">ইয়া → এ, উয়া → ও; শুরুর ‘আ’ ছোট হয়ে ‘এ’</div>
+</section>
+
+<!-- আ -->
+<section id="a" style="--c:#6BCB77">
+<div class="sh"><h2>‘আ’ প্রত্যয়</h2><span class="pill">অবজ্ঞা · বৃহৎ · সদৃশ</span></div>
+<div class="lead">একটাই ছোট্ট ‘আ’, কিন্তু তিন রকম অর্থ। কোন অর্থ হবে তা ঠিক করে <b>মূল শব্দ কী</b> আর <b>কোন প্রসঙ্গে বলা হচ্ছে</b>। মানুষের নামের সাথে বসলে সাধারণত তাচ্ছিল্য, ছোট জিনিসের নামের সাথে বসলে বড় রূপ, আর প্রাণী বা অঙ্গের নামের সাথে বসলে “তার মতো”।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>চোরা</b><span class="f">চোর + আ</span><span class="m">অবজ্ঞার্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>চোর লোকটিকে তুচ্ছ করে ডাকা — “ওই চোরাটা!”</dd>
+<dt>কেন</dt><dd>বাংলায় নামের শেষে ‘আ’ লাগিয়ে ডাকলে সম্মান কমে যায়, ঘনিষ্ঠতা বা তাচ্ছিল্য প্রকাশ পায় (রাম → রামা, শ্যাম → শ্যামা)। ‘চোর’ শব্দটা আগে থেকেই খারাপ অর্থের, ‘আ’ যোগে সেই ঘৃণা আরও জোরালো হয় — যেন কাউকে নাম ধরে ধমক দেওয়া হচ্ছে।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">চোরাটাকে আজ হাতেনাতে ধরেছি।</span></dd>
+</dl>
+<div class="warn">‘চোরাবালি’, ‘চোরাপথ’-এর ‘চোরা’ আলাদা অর্থ — ‘গোপন/লুকোনো’। পরীক্ষায় অবজ্ঞার উদাহরণ হিসেবে ব্যক্তির ক্ষেত্রেই লিখবেন।</div>
+</article>
+
+<article class="card">
+<div class="word"><b>কেষ্টা</b><span class="f">কেষ্ট + আ</span><span class="m">অবজ্ঞার্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>‘কেষ্ট’ নামের মানুষটিকে তুচ্ছ বা অবহেলায় ডাকা।</dd>
+<dt>কেন</dt><dd>কৃষ্ণ → কেষ্ট (মুখের ভাষার রূপ) → কেষ্টা। প্রতিটি ধাপে নামটি আরও ঘরোয়া ও কম সম্মানের হয়েছে। সম্মান দিতে বলা হয় ‘কেষ্টবাবু’, তাচ্ছিল্যে ‘কেষ্টা’। ‘আ’ এখানে নামকে ছোট করে দেয়।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">কেষ্টাটা আবার কাজে ফাঁকি দিয়েছে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ডিঙা</b><span class="f">ডিঙি + আ</span><span class="m">বৃহদার্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>বড় নৌকা (বাণিজ্যের নৌকা)। ‘ডিঙি’ হলো ছোট নৌকা।</dd>
+<dt>কেন</dt><dd>বাংলায় শব্দের শেষে <b>‘ই’ থাকলে প্রায়ই ছোট</b> জিনিস বোঝায়, <b>‘আ’ থাকলে বড়</b>। ‘ই’ উচ্চারণে সরু ও হালকা, ‘আ’ খোলা ও ভারী — শব্দের আওয়াজেই আকারের ছাপ পড়ে। তাই ডিঙি → ডিঙা হলে নৌকাটাও বড় হয়ে যায়। একই ধাঁচ: <span class="eg">পুঁটলি (ছোট) → পোঁটলা (বড়)</span>।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>ডিঙি</span><i>−ই</i><i>+আ</i><i>→</i><span>ডিঙা</span></div>শেষের ‘ই’ সরে গিয়ে ‘আ’ বসেছে।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">চাঁদ সওদাগরের সপ্তডিঙা মধুকর।</span> (মনসামঙ্গলের বিখ্যাত বাণিজ্যতরি)</dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>বাঘা</b><span class="f">বাঘ + আ</span><span class="m">সদৃশ অর্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>বাঘের মতো — ভয়ংকর, জাঁদরেল, প্রবল।</dd>
+<dt>কেন</dt><dd>বাঘের প্রধান গুণ শক্তি আর ভয় দেখানো। ‘আ’ যোগে শব্দটি আর প্রাণীটিকে বোঝায় না, বোঝায় <b>প্রাণীটির গুণ যার মধ্যে আছে</b>। তাই বিশেষ্য থেকে বিশেষণ তৈরি হয়।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">বাঘা বাঘা খেলোয়াড়</span> (প্রবল), <span class="eg">বাঘা তেঁতুল</span> (প্রচণ্ড টক), <span class="eg">বাঘা কুকুর</span> (হিংস্র)।</dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>হাতা</b><span class="f">হাত + আ</span><span class="m">সদৃশ অর্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>হাতের মতো দেখতে বা হাতের কাজ করে এমন জিনিস — রান্নার হাতা (বড় চামচ), জামার হাতা।</dd>
+<dt>কেন</dt><dd>রান্নার হাতা দিয়ে তরকারি তোলা হয় — ঠিক যেন হাতের তালু দিয়ে তোলা; লম্বা হাতলটা যেন বাহু। জামার হাতা হাতকে ঢেকে রাখে, আকারও হাতের মতো লম্বা। <b>আকার বা কাজে হাতের সাদৃশ্য</b> আছে বলে ‘হাত + আ’।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">হাতা দিয়ে ডাল তুলে দাও।</span> · <span class="eg">জামার হাতা গুটিয়ে কাজে লাগো।</span></dd>
+</dl>
+</article>
+</div>
+<div class="trick">নামের পরে আ = তাচ্ছিল্য · ই-এর জায়গায় আ = বড় · প্রাণী/অঙ্গ + আ = তার মতো</div>
+</section>
+
+<!-- আই -->
+<section id="ai" style="--c:#FF8FAB">
+<div class="sh"><h2>‘আই’ প্রত্যয়</h2><span class="pill">আদর · জাত</span></div>
+<div class="lead">‘আই’ টেনে উচ্চারণ করতে হয় — শব্দটা নরম ও সুরেলা হয়। তাই <b>নামের সাথে বসলে আদর</b> প্রকাশ পায়। আবার <b>জায়গার নামের সাথে বসলে</b> বোঝায় “ওই জায়গায় জন্মানো/তৈরি” (জাত অর্থ)।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>নিমাই</b><span class="f">নিম + আই</span><span class="m">আদরার্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>শ্রীচৈতন্যদেবের ছেলেবেলার আদরের ডাকনাম।</dd>
+<dt>কেন</dt><dd>প্রচলিত কাহিনি অনুযায়ী তিনি নিমগাছের তলায় জন্মেছিলেন, তাই নাম ‘নিম’। কিন্তু ‘নিম’ শুনতে শক্ত ও তেতো জিনিসের নাম। ‘আই’ যোগে নামটি কোমল, আদুরে ডাক হয়ে ওঠে — মা-বাবা যেভাবে স্নেহে শিশুকে ডাকেন।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">শচীমাতার আদরের নিমাই।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>কানাই</b><span class="f">কানু + আই</span><span class="m">আদরার্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>কৃষ্ণের আদরের নাম।</dd>
+<dt>কেন</dt><dd>কৃষ্ণ → কানু (মুখের ভাষার রূপ) → কানাই। ‘আই’ যোগে নামটি স্নেহমাখা হয়। শেষের ‘উ’ সরে গিয়ে ‘আই’ বসেছে।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>কানু</span><i>−উ</i><i>+আই</i><i>→</i><span>কানাই</span></div></dd>
+<dt>মিলিয়ে দেখুন</dt><dd><span class="eg">বলাই</span> (বলরাম), <span class="eg">নিতাই</span> (নিত্যানন্দ) — একই আদরের ধাঁচ।</dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ঢাকাই</b><span class="f">ঢাকা + আই</span><span class="m">জাত অর্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>ঢাকায় তৈরি — যেমন ঢাকাই জামদানি, ঢাকাই মসলিন।</dd>
+<dt>কেন</dt><dd>জায়গার নাম + আই = <b>“সেখান থেকে আসা/সেখানে জাত”</b>। শব্দটি তখন বিশেষণ হয়ে পণ্যের পরিচয় দেয়। ঢাকার তাঁতিরা জামদানির জন্য বিখ্যাত বলেই ‘ঢাকাই’ বিশেষণটি গুণমানের ছাপও বহন করে।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">বিয়েতে ঢাকাই জামদানি পরেছে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>পাবনাই</b><span class="f">পাবনা + আই</span><span class="m">জাত অর্থে</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>পাবনায় তৈরি — পাবনাই শাড়ি।</dd>
+<dt>কেন</dt><dd>ঢাকাই-এর মতো একই নিয়ম: জায়গার নামের পরে ‘আই’ বসে পণ্যের জন্মস্থান জানায়। পাবনা তাঁতের শাড়ির জন্য পরিচিত, তাই ‘পাবনাই শাড়ি’।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">হাটে পাবনাই শাড়ির কদর বেশি।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>রেশমি</b><span class="f">রেশম + ই</span><span class="m">জাত অর্থে (ই প্রত্যয়)</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>রেশম থেকে তৈরি, বা রেশমের মতো নরম-চকচকে।</dd>
+<dt>কেন</dt><dd>এখানে প্রত্যয় ‘আই’ নয়, ‘ই’ — কিন্তু অর্থ একই: <b>“যা থেকে জাত”</b>। জায়গার বদলে এখানে <b>উপাদান</b> থেকে জাত। রেশম থেকে তৈরি কাপড় তাই রেশমি কাপড়।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">রেশমি চুড়ি</span>, <span class="eg">রেশমি চুল</span> (রেশমের মতো মসৃণ)।</dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ধেনো</b><span class="f">ধান + ও (উয়া)</span><span class="m">জাত অর্থে (ও প্রত্যয়)</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>ধান থেকে তৈরি — ধেনো মদ; বা ধানক্ষেতে ভরা — ধেনো জমি।</dd>
+<dt>কেন</dt><dd>‘ধান’ উপাদান, তা থেকে যা জাত তা ‘ধেনো’। প্রত্যয় এখানে ‘ও’, যা আসলে পুরোনো ‘উয়া’ থেকে এসেছে।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>ধান + উয়া</span><i>→</i><span>ধানুয়া</span><i>→</i><span>ধেনো</span></div>‘উয়া’ → ‘ও’; আর শুরুর ‘আ’ ছোট হয়ে ‘এ’ (অভিশ্রুতি)।</dd>
+</dl>
+</article>
+</div>
+<div class="trick">নাম + আই = আদর · জায়গা/উপাদান + আই/ই/ও = সেখান থেকে জাত</div>
+</section>
+
+<!-- আমি / আমো -->
+<section id="ami" style="--c:#FF6B35">
+<div class="sh"><h2>‘আমি / আমো’ প্রত্যয়</h2><span class="pill">নিন্দা জ্ঞাপন</span></div>
+<div class="lead">‘আমি/আমো’ কোনো <b>মানুষের ধরন থেকে আচরণের নাম</b> তৈরি করে — আর সেই আচরণ প্রায় সবসময় <b>বেমানান বা খারাপ</b>। তাই শব্দগুলো ভাববাচক বিশেষ্য, আর সুর নিন্দার। একই দলের আরও শব্দ: <b>পাগলামি, বাঁদরামি, ন্যাকামো, ফাজলামো</b>।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>জেঠামি</b><span class="f">জেঠা + আমি</span><span class="m">নিন্দা</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>ছোট হয়েও বড়দের মতো পাকা পাকা কথা বলা বা মাতব্বরি করা — অকালপক্বতা।</dd>
+<dt>কেন</dt><dd>‘জেঠা’ পরিবারের বয়োজ্যেষ্ঠ, উপদেশ দেন, শাসন করেন। কেউ বয়স না হয়েও সেই ভূমিকা নিলে আচরণটা <b>তার সাথে মানায় না</b> — এই বেমানানটাই নিন্দার কারণ। ‘আমি’ যোগে ‘জেঠার মতো আচরণ (যেখানে তা অনুচিত)’ বোঝায়।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">এইটুকু ছেলের জেঠামি দেখো!</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ছেলেমি</b><span class="f">ছেলে + আমি</span><span class="m">নিন্দা</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>বড় হয়েও ছোটদের মতো অপরিণত আচরণ করা।</dd>
+<dt>কেন</dt><dd>জেঠামির ঠিক উল্টো দিক। শিশুর মতো আচরণ শিশুর বেলায় স্বাভাবিক, কিন্তু বড় মানুষ করলে তা বেমানান। ‘আমি’ যোগে সেই অনুচিত আচরণের নাম হয়।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>ছেলে + আমি</span><i>→</i><span>ছেলেমি</span></div>দুই স্বর (এ + আ) পাশাপাশি এলে ‘আ’ লোপ পেয়েছে, উচ্চারণ সহজ হয়েছে।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">এত বয়সে এমন ছেলেমি মানায় না।</span></dd>
+</dl>
+</article>
+</div>
+<div class="trick">জেঠামি = ছোটর বড়-ভাব · ছেলেমি = বড়র ছোট-ভাব → দুটোই বেমানান = নিন্দা</div>
+</section>
+
+<!-- ইয়া নৈপুণ্য -->
+<section id="nipun" style="--c:#4D96FF">
+<div class="sh"><h2>‘ইয়া’ প্রত্যয়</h2><span class="pill">নৈপুণ্য বোঝাতে</span></div>
+<div class="lead">কাজ বা বস্তুর নামের পরে ‘ইয়া’ বসলে বোঝায় — <b>যে ওই কাজে পটু/অভ্যস্ত</b>। চলিত ভাষায় ‘ইয়া’ সাধারণত <b>‘এ’</b> হয়ে যায় (ওপরের ‘আগে জানুন’ অংশ দেখুন)।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>খুনে</b><span class="f">খুন + ইয়া</span><span class="m">নৈপুণ্য</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>খুন করায় পাকা বা অভ্যস্ত — ভয়ংকর, নির্মম।</dd>
+<dt>কেন</dt><dd>একবার খুন করলে ‘খুনি’; কিন্তু ‘খুনে’ বললে বোঝায় খুন করা যার <b>স্বভাব, যাতে সে দক্ষ</b>। ‘ইয়া’ এখানে কাজের সাথে দক্ষতা/অভ্যাস যোগ করে। তাই বিশেষণ হিসেবেও বসে: <span class="eg">খুনে চোখ</span>।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>খুনিয়া</span><i>→</i><span>খুইন্যা</span><i>→</i><span>খুনে</span></div>অপিনিহিতি, তারপর অভিশ্রুতি — ‘ইয়া’ → ‘এ’।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">খুনে ডাকাতের দল গ্রামে হানা দিয়েছে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>নেয়ে</b><span class="f">না + ইয়া</span><span class="m">নৈপুণ্য</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>মাঝি — যে নৌকা চালাতে দক্ষ।</dd>
+<dt>কেন</dt><dd>‘না’ মানে নৌকা (নাও, নৌ)। নৌকা বাওয়া একটি দক্ষতার কাজ — স্রোত বোঝা, হাল ধরা। ‘ইয়া’ যোগে <b>নৌকা চালাতে পটু লোক</b> বোঝায়।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>না + ইয়া</span><i>→</i><span>নাইয়া</span><i>→</i><span>নেয়ে</span></div>‘নাইয়া’ শব্দটি ভাটিয়ালি গানে এখনো শোনা যায় (‘ও নাইয়া রে’)। চলিত ভাষায় আ→এ এবং ইয়া→এ হয়ে ‘নেয়ে’।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">পাকা নেয়ে ঝড়ের মধ্যেও নৌকা পার করল।</span></dd>
+</dl>
+</article>
+</div>
+<div class="trick">কাজ + ইয়া = সেই কাজে ওস্তাদ</div>
+</section>
+
+<!-- ই মালিক -->
+<section id="malik" style="--c:#FFD93D">
+<div class="sh"><h2>‘ই’ প্রত্যয়</h2><span class="pill">মালিক অর্থে</span></div>
+<div class="lead">কোনো সম্পত্তি/প্রতিষ্ঠানের নামের পরে ‘ই’ বসলে <b>মালিকানার সম্পর্ক</b> বোঝায় — হয় মালিক ব্যক্তিটি (দোকানি), নয়তো মালিকানাধীন জিনিস/অধিকার (জমিদারি)।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>দোকানি</b><span class="f">দোকান + ই</span><span class="m">মালিক</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>দোকানের মালিক বা দোকান চালায় যে।</dd>
+<dt>কেন</dt><dd>‘দোকান’ একটি জিনিস; ‘ই’ যোগে সেটি <b>তার সাথে যুক্ত মানুষের</b> নাম হয়ে যায় — যার দোকান, সে দোকানি। বস্তুবাচক বিশেষ্য থেকে ব্যক্তিবাচক বিশেষ্য।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">দোকানি দাম কমাতে রাজি হলো না।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>জমিদারি</b><span class="f">জমিদার + ই</span><span class="m">মালিক</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>জমিদারের মালিকানাধীন এলাকা, সম্পত্তি বা অধিকার।</dd>
+<dt>কেন</dt><dd>‘জমিদার’ নিজেই মালিক (জমি + দার = জমির অধিকারী)। ‘ই’ যোগে সেই <b>মালিকানা বা মালিকের অধিকারভুক্ত জিনিসটি</b> বোঝায়। অর্থাৎ দোকানি-তে মালিক মানুষটি, জমিদারি-তে মালিকানাটা — দুই দিক থেকে একই সম্পর্ক।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">তিনটি পরগনা ছিল তাঁর জমিদারির অধীনে।</span> · <span class="eg">জমিদারি প্রথা বিলুপ্ত হয়েছে।</span></dd>
+</dl>
+</article>
+</div>
+<div class="trick">দোকান → দোকানি (মালিক) · জমিদার → জমিদারি (মালিকানা)</div>
+</section>
+
+<!-- বৃত্তি -->
+<section id="britti" style="--c:#6BCB77">
+<div class="sh"><h2>‘ই / ও / আমি’ প্রত্যয়</h2><span class="pill">বৃত্তি বা ব্যবসায় অর্থে</span></div>
+<div class="lead">পেশাদার মানুষের নামের পরে ‘ই’ বসলে সাধারণত <b>সেই পেশা/কাজটির নাম</b> হয় (ডাক্তার → ডাক্তারি)। আবার কাজের জিনিসের পরে বসলে <b>সেই ব্যবসা যে করে</b> তার নাম হয় (ব্যাপার → ব্যাপারি, ঘর → ঘরামি)।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>ডাক্তারি</b><span class="f">ডাক্তার + ই</span><span class="m">বৃত্তি</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>ডাক্তারের পেশা, চিকিৎসা-বৃত্তি।</dd>
+<dt>কেন</dt><dd>‘ডাক্তার’ মানুষ; ‘ই’ যোগে <b>মানুষ থেকে তার পেশা</b>। ইংরেজি doctor থেকে আসা শব্দেও বাংলা প্রত্যয় দিব্যি বসে — এটাই বাংলার নিজস্ব প্রত্যয়ের শক্তি।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">সে গ্রামে ফিরে ডাক্তারি শুরু করেছে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>মোক্তারি</b><span class="f">মোক্তার + ই</span><span class="m">বৃত্তি</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>মোক্তারের পেশা — আদালতে অন্যের হয়ে মামলা চালানো।</dd>
+<dt>কেন</dt><dd>‘মোক্তার’ (আরবি মুখতার = প্রতিনিধি) ছিলেন নিম্ন আদালতের আইনজীবী। ডাক্তারি-র মতোই, ব্যক্তির নাম + ই = তার বৃত্তি।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">তাঁর বাবা মহকুমা আদালতে মোক্তারি করতেন।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>পোদ্দারি</b><span class="f">পোদ্দার + ই</span><span class="m">বৃত্তি</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>পোদ্দারের ব্যবসা — টাকা-পয়সা বা সোনা-রুপা পরখ করা, সুদে টাকা খাটানো।</dd>
+<dt>কেন</dt><dd>‘পোদ্দার’ (ফারসি ‘ফোতাদার’ থেকে, খাজাঞ্চি/মুদ্রা-পরীক্ষক) একজন পেশাজীবী; ‘ই’ যোগে তাঁর কারবারের নাম।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">বংশানুক্রমে তারা পোদ্দারি করে আসছে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ব্যাপারি</b><span class="f">ব্যাপার + ই</span><span class="m">ব্যবসায়</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>ব্যবসায়ী, পাইকারি কারবারি (ধানের ব্যাপারি, গরুর ব্যাপারি)।</dd>
+<dt>কেন</dt><dd>‘ব্যাপার’-এর পুরোনো অর্থ ‘বাণিজ্য, কারবার’ (সংস্কৃত ব্যাপার = কাজ)। এখানে দিকটা উল্টো: <b>কাজের নাম + ই = যে ওই কাজ করে</b>। তাই ব্যাপারি = যে বাণিজ্য করে।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">হাটে পাটের ব্যাপারিরা ভিড় করেছে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ঘরামি</b><span class="f">ঘর + আমি</span><span class="m">বৃত্তি</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>যে খড়/টিনের ঘর তৈরি বা ছাউনির কাজ করে — ঘর বানানোর মিস্ত্রি।</dd>
+<dt>কেন</dt><dd>‘ঘর’ কাজের বিষয়; ‘আমি’ যোগে <b>ঘর তৈরিকেই যে জীবিকা করেছে</b> সেই মানুষ। লক্ষ করুন — জেঠামি/ছেলেমি-তে ‘আমি’ নিন্দা দিয়েছিল, এখানে কোনো নিন্দা নেই। তাই প্রত্যয় চেনার সময় <b>মূল শব্দের অর্থ</b> দেখেই অর্থ ঠিক করতে হয়।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">বর্ষার আগে ঘরামি ডেকে চাল ছাওয়াতে হবে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>ঠাকামো</b><span class="f">‘আমো’ প্রত্যয়</span><span class="m">বইয়ের তালিকায়</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>বইয়ে বৃত্তি অর্থের উদাহরণ হিসেবে দেওয়া।</dd>
+<dt>কেন</dt><dd>টেবিলের শিরোনামে ‘ও’ প্রত্যয়ের কথা আছে, এটি সেই ‘ও/আমো’-র উদাহরণ — ‘আমো’ মূলত ‘আমি’-রই চলিত রূপ (পাগলামি ~ পাগলামো)।</dd>
+</dl>
+<div class="warn">⚠️ শব্দটি প্রচলিত অভিধানে সহজে পাওয়া যায় না, আর ছবিতে ছাপাও অস্পষ্ট — হয়তো ‘ঠকামো’ বা অন্য কোনো শব্দ। ‘ঠকামো’ হলে অর্থ ‘ঠকানোর স্বভাব’, যা নিন্দার্থে পড়ে, বৃত্তি অর্থে নয়। পরীক্ষায় লেখার আগে শিক্ষকের কাছে শব্দটি নিশ্চিত হয়ে নিন; নিরাপদ উদাহরণ হিসেবে <b>ঘরামি</b> লিখুন।</div>
+</article>
+</div>
+<div class="trick">পেশাজীবী + ই = পেশা · কাজ + ই/আমি = যে সেই কাজ করে</div>
+</section>
+
+<!-- ইয়া উপজীবিকা -->
+<section id="upojibika" style="--c:#FF8FAB">
+<div class="sh"><h2>‘ইয়া’ প্রত্যয়</h2><span class="pill">উপজীবিকা অর্থে</span></div>
+<div class="lead">যে জিনিস দিয়ে বা যে জিনিস নিয়ে কেউ <b>জীবিকা চালায়</b>, তার নামের সাথে ‘ইয়া/উয়া’ বসিয়ে ওই মানুষটির নাম হয়। চলিত রূপে ‘ইয়া → এ’, ‘উয়া → ও’।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>জেলে</b><span class="f">জাল + ইয়া</span><span class="m">উপজীবিকা</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>যে জাল দিয়ে মাছ ধরে জীবিকা চালায়।</dd>
+<dt>কেন</dt><dd>জেলের জীবনের মূল হাতিয়ার জাল। হাতিয়ারের নাম থেকেই পেশাজীবীর নাম — <b>জাল যার রুটি-রুজি, সে জেলে</b>।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>জাল + ইয়া</span><i>→</i><span>জালিয়া</span><i>→</i><span>জাইল্যা</span><i>→</i><span>জেলে</span></div>অপিনিহিতি → অভিশ্রুতি: শুরুর ‘আ’ হলো ‘এ’, শেষের ‘ইয়া’ হলো ‘এ’।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">ভোরে জেলেরা নদীতে জাল ফেলে।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>মুটে</b><span class="f">মোট + ইয়া</span><span class="m">উপজীবিকা</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>যে মাথায় বোঝা বয়ে জীবিকা চালায় — কুলি, মজুর।</dd>
+<dt>কেন</dt><dd>‘মোট’ মানে বোঝা (মালের পুঁটলি, যেমন ‘মোটঘাট’)। বোঝা বওয়াই যার কাজ, সে মুটে। এখানে মোট = বস্তু, মুটে = সেই বস্তু বহনকারী পেশাজীবী।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>মোট + ইয়া</span><i>→</i><span>মোটিয়া</span><i>→</i><span>মুটে</span></div>‘ইয়া’ → ‘এ’; আর শুরুর ‘ও’ উঁচু স্বরের প্রভাবে ‘উ’ হয়েছে।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">স্টেশনে মুটে ডেকে মালপত্র তোলা হলো।</span> (মুটে-মজুর)</dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>মেছো</b><span class="f">মাছ + উয়া</span><span class="m">উপজীবিকা</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>মাছের কারবারি, মাছ বিক্রেতা (মেছো হাট, মেছুনি)।</dd>
+<dt>কেন</dt><dd>মাছ বিক্রি বা মাছ নিয়েই যার জীবিকা — জেলে-র মতোই, কারবারের বস্তুর নাম থেকে মানুষের নাম। এখানে প্রত্যয় ‘উয়া’, তাই শেষে ‘এ’ না হয়ে ‘ও’ হয়েছে।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>মাছ + উয়া</span><i>→</i><span>মাছুয়া</span><i>→</i><span>মেছো</span></div>‘উয়া’ → ‘ও’; শুরুর ‘আ’ → ‘এ’।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">মেছো বাজারে সকাল থেকেই হাঁকডাক।</span></dd>
+</dl>
+<div class="warn">‘মেছো’ অন্য অর্থেও চলে — মাছের গন্ধযুক্ত (মেছো গন্ধ), মাছ খেকো (মেছো বাঘ)। পরীক্ষায় এখানে উপজীবিকার অর্থটি লিখবেন।</div>
+</article>
+</div>
+<div class="trick">জীবিকার হাতিয়ার/মাল + ইয়া = সেই পেশার মানুষ</div>
+</section>
+
+<!-- ইয়া উপকরণ -->
+<section id="upokoron" style="--c:#4D96FF">
+<div class="sh"><h2>‘ইয়া’ প্রত্যয়</h2><span class="pill">উপকরণে নির্মিত অর্থে</span></div>
+<div class="lead">উপাদানের নামের সাথে ‘ইয়া’ বসলে বোঝায় <b>“ওই উপাদানে তৈরি বা ওই উপাদানে ভরা”</b>। ফলাফল বিশেষণ। আগের অংশের সাথে পার্থক্য: সেখানে মানুষ (জেলে), এখানে জিনিসের গুণ (মেটে কলস)।</div>
+<div class="grid">
+
+<article class="card">
+<div class="word"><b>পাথুরে</b><span class="f">পাথর + ইয়া</span><span class="m">উপকরণ</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>পাথরে তৈরি বা পাথরে ভরা — পাথুরে মূর্তি, পাথুরে জমি।</dd>
+<dt>কেন</dt><dd>উপাদান ‘পাথর’; যে জিনিস পাথর দিয়ে গড়া বা যেখানে পাথরই বেশি, তার গুণ বোঝাতে ‘পাথুরে’। তাই বিশেষণ।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>পাথর + ইয়া</span><i>→</i><span>পাথরিয়া</span><i>→</i><span>পাথুরে</span></div>‘ইয়া’ → ‘এ’; মাঝের ‘অ’ পাশের স্বরের প্রভাবে ‘উ’ হয়েছে (স্বরসংগতি)।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">পাথুরে পথে হাঁটা কষ্টকর।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>মেটে</b><span class="f">মাটি + ইয়া</span><span class="m">উপকরণ</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>মাটিতে তৈরি — মেটে কলস, মেটে হাঁড়ি; মাটির রঙের — মেটে রং।</dd>
+<dt>কেন</dt><dd>কুমোর মাটি দিয়ে হাঁড়ি-কলস গড়েন; উপাদানটির নাম থেকেই পাত্রের পরিচয়। ‘মেটে কলস’ বললেই বোঝা যায় এটি পিতল বা স্টিলের নয়।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>মাটি + ইয়া</span><i>→</i><span>মাটিয়া</span><i>→</i><span>মাইট্যা</span><i>→</i><span>মেটে</span></div>‘মাইট্যা’ রূপটি পূর্ববঙ্গে এখনো চলে; চলিততে আ→এ, ইয়া→এ।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">উঠোনে মেটে কলসে জল রাখা।</span></dd>
+</dl>
+</article>
+
+<article class="card">
+<div class="word"><b>বেলে</b><span class="f">বালি + ইয়া</span><span class="m">উপকরণ</span></div>
+<dl class="k">
+<dt>অর্থ</dt><dd>বালিতে ভরা বা বালি মেশানো — বেলে মাটি, বেলে পাথর।</dd>
+<dt>কেন</dt><dd>যে মাটিতে বালির ভাগ বেশি তা ‘বেলে মাটি’; বালির কণা জমে যে পাথর তৈরি হয় তা ‘বেলে পাথর’। উপাদান থেকেই গুণ।</dd>
+<dt>কীভাবে</dt><dd><div class="steps"><span>বালি + ইয়া</span><i>→</i><span>বালিয়া</span><i>→</i><span>বাইল্যা</span><i>→</i><span>বেলে</span></div>মেটে-র মতো হুবহু একই পথ।</dd>
+<dt>বাক্যে</dt><dd><span class="eg">বেলে মাটিতে তরমুজ ভালো হয়।</span></dd>
+</dl>
+</article>
+</div>
+<div class="trick">উপাদান + ইয়া = তা দিয়ে তৈরি (বিশেষণ) · মাটি→মেটে, বালি→বেলে, পাথর→পাথুরে</div>
+</section>
+
+<!-- সারণি -->
+<section id="sar" style="--c:#FFD93D">
+<div class="sh"><h2>★ এক নজরে</h2></div>
+<div class="tw"><table>
+<tr><th>প্রত্যয়</th><th>অর্থ</th><th>উদাহরণ</th><th>মূল সূত্র (কেন)</th></tr>
+<tr><td><b>আ</b></td><td>অবজ্ঞা</td><td>চোরা, কেষ্টা</td><td>নামের শেষে আ = সম্মান কমে</td></tr>
+<tr><td><b>আ</b></td><td>বৃহৎ</td><td>ডিঙি → ডিঙা</td><td>ই = ছোট, আ = বড়</td></tr>
+<tr><td><b>আ</b></td><td>সদৃশ</td><td>বাঘা, হাতা</td><td>তার মতো গুণ/আকার</td></tr>
+<tr><td><b>আই</b></td><td>আদর</td><td>নিমাই, কানাই</td><td>টানা সুরেলা ডাক</td></tr>
+<tr><td><b>আই / ই / ও</b></td><td>জাত</td><td>ঢাকাই, পাবনাই, রেশমি, ধেনো</td><td>জায়গা/উপাদান থেকে জন্ম</td></tr>
+<tr><td><b>আমি / আমো</b></td><td>নিন্দা</td><td>জেঠামি, ছেলেমি</td><td>বয়সের সাথে বেমানান আচরণ</td></tr>
+<tr><td><b>ইয়া</b></td><td>নৈপুণ্য</td><td>খুনে, নেয়ে</td><td>কাজে পাকা/অভ্যস্ত</td></tr>
+<tr><td><b>ই</b></td><td>মালিক</td><td>জমিদারি, দোকানি</td><td>মালিক ↔ মালিকানা</td></tr>
+<tr><td><b>ই / ও / আমি</b></td><td>বৃত্তি/ব্যবসায়</td><td>ডাক্তারি, মোক্তারি, পোদ্দারি, ব্যাপারি, ঘরামি</td><td>মানুষ → পেশা, বা কাজ → কর্মী</td></tr>
+<tr><td><b>ইয়া</b></td><td>উপজীবিকা</td><td>জেলে, মুটে, মেছো</td><td>জীবিকার হাতিয়ার → পেশাজীবী</td></tr>
+<tr><td><b>ইয়া</b></td><td>উপকরণে নির্মিত</td><td>পাথুরে, মেটে, বেলে</td><td>উপাদান → তৈরি জিনিসের গুণ</td></tr>
+</table></div>
+</section>
+</main>
+
+<footer><div class="wrap"><b>একই প্রত্যয়, ভিন্ন অর্থ — ঠিক করে মূল শব্দ 🔍</b>ইয়া → এ, উয়া → ও · নাম + আ = তাচ্ছিল্য · নাম + আই = আদর</div></footer>
+</body></html>

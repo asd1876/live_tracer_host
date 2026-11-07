@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>বাংলা বর্ণ — প্রতিটি বর্ণের পরিচয় ও শ্রেণিবিভাগ</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f6f3ec;--card:#fffdf8;--ink:#23211d;--muted:#6c665c;--line:#e3dccf;
+    --acc:#b4441f;--acc-soft:#f6e1d6;--hl:#2d5d7b;--hl-soft:#dcebf3;--warn:#8a6100;--warn-soft:#fbefcf;}
+  @media (prefers-color-scheme: dark){:root{--bg:#17161a;--card:#222126;--ink:#ece8e1;--muted:#a39d93;--line:#38363d;
+    --acc:#ef8a63;--acc-soft:#3b2820;--hl:#8cc0de;--hl-soft:#1d2d37;--warn:#e8c26a;--warn-soft:#352c17;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",sans-serif;font-size:17px;line-height:1.7}
+  header{padding:44px 20px 24px;text-align:center}
+  h1{font-family:"Noto Serif Bengali",serif;font-weight:800;font-size:clamp(28px,5vw,42px);margin:0 0 4px}
+  header p{margin:0;color:var(--muted)}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 18px 60px}
+  h2{font-family:"Noto Serif Bengali",serif;font-size:24px;margin:44px 0 6px}
+  .sub{color:var(--muted);margin:0 0 14px;font-size:15px}
+  .explorer{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+  @media (max-width:820px){.explorer{grid-template-columns:1fr}}
+  .board{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .rowlabel{font-size:13px;color:var(--muted);margin:10px 0 6px}
+  .letters{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+  .letters.v{grid-template-columns:repeat(6,1fr)}
+  .letters.x{grid-template-columns:repeat(7,1fr)}
+  .L{aspect-ratio:1;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);
+     font-family:"Noto Serif Bengali",serif;font-size:clamp(20px,3.2vw,28px);cursor:pointer;transition:.12s;display:flex;align-items:center;justify-content:center;padding:0}
+  .L:hover{border-color:var(--acc)}
+  .L.sel{background:var(--acc);color:#fff;border-color:var(--acc)}
+  .L.on{background:var(--hl-soft);border-color:var(--hl);color:var(--hl);font-weight:800}
+  .L.dim{opacity:.28}
+  .detail{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;position:sticky;top:14px}
+  .big{font-family:"Noto Serif Bengali",serif;font-size:72px;line-height:1;color:var(--acc);margin:0}
+  .kind{color:var(--muted);font-size:15px;margin:6px 0 12px}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15.5px}
+  .kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
+  .tag{font-size:13.5px;background:var(--acc-soft);color:var(--acc);padding:2px 10px;border-radius:999px}
+  .notes{margin:12px 0 0;padding-left:18px;font-size:15px}
+  .notes li{margin-bottom:4px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+  .chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:4px 12px;border-radius:999px;cursor:pointer}
+  .chip.on{background:var(--hl);color:#fff;border-color:var(--hl)}
+  .catinfo{min-height:28px;font-size:15px;color:var(--hl);margin:6px 0 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .card h3{margin:0 0 4px;font-size:17.5px}
+  .card .ls{font-family:"Noto Serif Bengali",serif;font-size:22px;color:var(--acc);margin:2px 0 6px;letter-spacing:2px}
+  .card p{margin:0;font-size:15px;color:var(--muted)}
+  .card p b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);font-size:15.5px}
+  th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:center}
+  th{background:var(--hl-soft);color:var(--hl)}
+  td:first-child,th:first-child{text-align:left}
+  .tb{overflow-x:auto;margin:10px 0}
+  .note{background:var(--warn-soft);border-left:4px solid var(--warn);padding:12px 16px;border-radius:8px;margin:14px 0;font-size:15.5px}
+  .note b{color:var(--warn)}
+  footer{color:var(--muted);font-size:14px;text-align:center;margin-top:46px}
+</style>
+</head>
+<body>
+<header>
+  <h1>বাংলা বর্ণ — বর্ণ ধরে ধরে</h1>
+  <p>অভিযাত্রী, ধ্বনি প্রকরণ (পৃ. ২১–২৪) থেকে প্রতিটি বর্ণের শ্রেণি, উচ্চারণ ও বৈশিষ্ট্য</p>
+</header>
+<div class="wrap">
+
+<h2>১. বর্ণ কী — মূল ধারণা</h2>
+<div class="grid">
+  <div class="card"><h3>বর্ণ</h3><p>ধ্বনি নির্দেশক চিহ্ন বা প্রতীক। ধ্বনি হলো মৌখিক রূপ, <b>বর্ণ তার লিখিত রূপ</b>। 'ক' মুখে উচ্চারণ করলে ধ্বনি, লিখে প্রকাশ করলে বর্ণ।</p></div>
+  <div class="card"><h3>বর্ণমালা (Alphabet)</h3><p>কোনো ভাষায় ব্যবহৃত লিখিত বর্ণসমষ্টি। বাংলায় মোট <b>৫০টি বর্ণ</b>: স্বরবর্ণ ১১ + ব্যঞ্জনবর্ণ ৩৯।</p></div>
+  <div class="card"><h3>স্বরবর্ণ</h3><p>১. স্বরধ্বনি দ্যোতক লিখিত সাংকেতিক চিহ্ন। ২. যে বর্ণ <b>অন্য বর্ণের সাহায্য ছাড়াই</b> উচ্চারিত হয়।</p></div>
+  <div class="card"><h3>ব্যঞ্জনবর্ণ</h3><p>১. ব্যঞ্জনধ্বনি দ্যোতক লিখিত চিহ্ন। ২. যে বর্ণ <b>স্বরবর্ণের সাহায্যে</b> উচ্চারিত হয়। ক = ক্ + অ।</p></div>
+  <div class="card"><h3>বর্ণমালার উৎস ও ইতিহাস</h3><p>উদ্ভব <b>ব্রাহ্মী লিপি</b> থেকে; লেখা হয় <b>বঙ্গলিপিতে</b>; স্থায়ী রূপ দেন <b>ঈশ্বরচন্দ্র বিদ্যাসাগর</b>। প্রথম নকশা চার্লস উইলকিন্স, আধুনিক রূপ পঞ্চানন কর্মকার। সংস্কৃত দ্বারা প্রভাবিত।</p></div>
+  <div class="card"><h3>কার ও ফলা</h3><p>স্বরবর্ণের সংক্ষিপ্ত রূপ = <b>কার</b> (১০টি, অ-এর নেই)। ব্যঞ্জনবর্ণের সংক্ষিপ্ত রূপ = <b>ফলা</b> (৬টি: য, ব, র, ল, ম, ন/ণ)।</p></div>
+</div>
+
+<h2>২. বর্ণ এক্সপ্লোরার</h2>
+<p class="sub">যেকোনো বর্ণে চাপ দিন, ডানে তার পুরো পরিচয় দেখাবে। নিচের শ্রেণিতে চাপ দিলে সেই শ্রেণির বর্ণগুলো হাইলাইট হবে।</p>
+<div class="chips" id="chips"></div>
+<div class="catinfo" id="catinfo"></div>
+<div class="explorer">
+  <div class="board">
+    <div class="rowlabel">স্বরবর্ণ (১১)</div>
+    <div class="letters v" id="vow"></div>
+    <div class="rowlabel">স্পর্শ ব্যঞ্জন — ক থেকে ম (২৫) · কলাম: অঘোষ অল্পপ্রাণ · অঘোষ মহাপ্রাণ · ঘোষ অল্পপ্রাণ · ঘোষ মহাপ্রাণ · নাসিক্য</div>
+    <div class="letters" id="spr"></div>
+    <div class="rowlabel">অন্যান্য ব্যঞ্জন (১৪)</div>
+    <div class="letters x" id="oth"></div>
+  </div>
+  <div class="detail" id="detail"></div>
+</div>
+
+<h2>৩. শ্রেণি অনুযায়ী বর্ণ — ব্যাখ্যাসহ</h2>
+<div class="grid">
+  <div class="card"><h3>মৌলিক স্বরবর্ণ (৬)</h3><div class="ls">অ আ ই উ এ ও</div><p>মৌলিক স্বরধ্বনি ৭টি (এগুলো + <b>অ্যা</b>), কিন্তু 'অ্যা'-র কোনো বর্ণ নেই। মুহম্মদ আবদুল হাই 'অ্যা'-কে মূল ধ্বনির তালিকায় প্রতিষ্ঠা করেন।</p></div>
+  <div class="card"><h3>মৌলিক নয় এমন স্বরবর্ণ (৫)</h3><div class="ls">ঈ ঊ ঋ ঐ ঔ</div><p>ঐ, ঔ যৌগিক; ঈ, ঊ দীর্ঘ রূপ; 'ঋ'-কে স্বরধ্বনিই বলা চলে না (উচ্চারণ 'রি')।</p></div>
+  <div class="card"><h3>যৌগিক স্বরবর্ণ (২)</h3><div class="ls">ঐ ঔ</div><p>ঐ = অ+ই / ও+ই, ঔ = অ+উ / ও+উ। যৌগিক স্বর মোট ২৫টি, কিন্তু বর্ণ আছে মাত্র এই ২টির; বাকি ২৩টি অলিখিত।</p></div>
+  <div class="card"><h3>হ্রস্ব স্বর (৪) ও দীর্ঘ স্বর (৭)</h3><div class="ls">অ ই উ ঋ</div><p>এই ৪টি হ্রস্ব; বাকি <b>আ ঈ ঊ এ ঐ ও ঔ</b> দীর্ঘ। বাংলায় হ্রস্ব-দীর্ঘের জন্য অর্থের পার্থক্য হয় না।</p></div>
+  <div class="card"><h3>নিলীন বর্ণ</h3><div class="ls">অ</div><p>'অ'-এর কোনো সংক্ষিপ্ত রূপ (কার) নেই; ব্যঞ্জনে মিশে থাকে। শত = শ্+অ+ত্+অ।</p></div>
+  <div class="card"><h3>স্পর্শ / স্পৃষ্ট ব্যঞ্জন (২৫)</h3><div class="ls">ক — ম</div><p>উচ্চারণের সময় জিহ্বা বা ঠোঁট মুখের কোনো জায়গা স্পর্শ করে। ৫টি বর্গে ভাগ করা (ক, চ, ট, ত, প-বর্গ)।</p></div>
+  <div class="card"><h3>অঘোষ বর্ণ</h3><div class="ls">ক খ চ ছ ট ঠ ত থ প ফ</div><p>প্রতি বর্গের ১ম ও ২য় বর্ণ। স্বরতন্ত্রী <b>কম</b> কাঁপে। (উষ্ম শ ষ স-ও অঘোষ)</p></div>
+  <div class="card"><h3>ঘোষ বর্ণ</h3><div class="ls">গ ঘ ঙ জ ঝ ঞ ড ঢ ণ দ ধ ন ব ভ ম</div><p>প্রতি বর্গের ৩য়, ৪র্থ, ৫ম বর্ণ। স্বরতন্ত্রী <b>বেশি</b> কাঁপে। (হ-ও ঘোষ)</p></div>
+  <div class="card"><h3>অল্পপ্রাণ বর্ণ</h3><div class="ls">ক গ চ জ ট ড ত দ প ব</div><p>প্রতি বর্গের ১ম ও ৩য় বর্ণ। বাতাসের চাপ কম।</p></div>
+  <div class="card"><h3>মহাপ্রাণ বর্ণ</h3><div class="ls">খ ঘ ছ ঝ ঠ ঢ থ ধ ফ ভ</div><p>প্রতি বর্গের ২য় ও ৪র্থ বর্ণ। বাতাসের চাপ বেশি — উচ্চারণে 'হ'-এর মতো ভাব থাকে।</p></div>
+  <div class="card"><h3>নাসিক্য বর্ণ</h3><div class="ls">ঙ ঞ ণ ন ম</div><p>প্রতি বর্গের ৫ম বর্ণ, নাক দিয়ে বাতাস বের হয়। খাতার নোট: নাসিক্য <b>বর্ণ ৭টি</b> (+ ং, ঁ); বর্গীয় নাসিক্য <b>ধ্বনি ৩টি</b> (ঙ, ন, ম)।</p></div>
+  <div class="card"><h3>ঘৃষ্ট বর্ণ (৪)</h3><div class="ls">চ ছ জ ঝ</div><p>স্পর্শের পরপরই ঘর্ষণ হয় — চ-বর্গের প্রথম ৪টি।</p></div>
+  <div class="card"><h3>উষ্মধ্বনি / শিস ধ্বনি (৪)</h3><div class="ls">শ ষ স হ</div><p>শ, ষ, স = অঘোষ অল্পপ্রাণ; হ = ঘোষ মহাপ্রাণ। (খাতায় ভুল করে লেখা 'য' কেটে 'স' করা — য উষ্ম নয়)</p></div>
+  <div class="card"><h3>ঘর্ষণজাত ধ্বনি (৩)</h3><div class="ls">শ ষ স</div><p>বাতাস সরু পথে ঘষা খেয়ে বের হয়।</p></div>
+  <div class="card"><h3>অন্তঃস্থ বর্ণ (৪)</h3><div class="ls">য র ল ব</div><p>স্পর্শ ও উষ্ম বর্ণের <b>মাঝখানে</b> অবস্থিত বলে অন্তঃস্থ। এখানকার 'ব' অন্তঃস্থ ব — উচ্চারণ 'ওয়া' (W); বর্গীয় 'ব'-এর উচ্চারণ B।</p></div>
+  <div class="card"><h3>অর্ধস্বর</h3><div class="ls">ই̯ উ̯ এ̯ ও̯</div><p>যৌগিক স্বরে যে স্বর পুরোপুরি উচ্চারিত হয় না। খাতার নোট: অর্ধস্বর বর্ণ — <b>য়, ব</b>।</p></div>
+  <div class="card"><h3>তাড়নজাত বর্ণ (২)</h3><div class="ls">ড় ঢ়</div><p>জিহ্বার আগা দিয়ে দন্তমূলে দ্রুত টোকা (তাড়না) দিয়ে উচ্চারণ।</p></div>
+  <div class="card"><h3>কম্পনজাত বর্ণ (১)</h3><div class="ls">র</div><p>জিহ্বার আগা কয়েকবার কেঁপে উচ্চারিত হয়।</p></div>
+  <div class="card"><h3>পার্শ্বিক বর্ণ (১)</h3><div class="ls">ল</div><p>জিহ্বা দন্তমূল ছুঁয়ে থাকে, বাতাস দুই <b>পাশ</b> দিয়ে বের হয়।</p></div>
+  <div class="card"><h3>পরাশ্রয়ী বর্ণ (৩)</h3><div class="ls">ং ঃ ঁ</div><p>অন্য বর্ণের <b>আশ্রয়ে</b> বসে; স্বাধীন বর্ণ হিসেবে ব্যবহার করা যায় না।</p></div>
+  <div class="card"><h3>অযোগবাহ বর্ণ (২)</h3><div class="ls">ং ঃ</div><p>স্বর বা ব্যঞ্জন কোনোটার সাথেই পুরো <b>যোগ</b> নেই, তবু ভাব বহন করে।</p></div>
+  <div class="card"><h3>অ যুক্ত হয় না যে ব্যঞ্জনে</h3><div class="ls">ৎ ং ঃ</div><p>৩৯টি ব্যঞ্জনের ৩৬টিতে 'অ' লুকিয়ে থাকে, এই ৩টিতে থাকে না। (বইয়ের এক জায়গায় ঃ-এর বদলে ঁ লেখা)</p></div>
+  <div class="card"><h3>শব্দের প্রথমে বসে না (৪)</h3><div class="ls">ঙ ং ঞ ণ</div><p>শুধু শব্দের মাঝে বা শেষে আসে।</p></div>
+  <div class="card"><h3>ইংরেজিতে N লেখা হয় (৫)</h3><div class="ls">ঙ ঞ ন ণ ং</div><p>রোমান হরফে এই সবগুলোই N দিয়ে লেখা হয়।</p></div>
+</div>
+
+<h2>৪. মাত্রা অনুযায়ী বর্ণ</h2>
+<p class="sub">বর্ণের মাথায় যে রেখা বা কষি থাকে তা মাত্রা। বইয়ে শুধু সংখ্যা আছে; বর্ণগুলো প্রচলিত তালিকা থেকে।</p>
+<div class="tb"><table>
+  <tr><th>মাত্রা</th><th>স্বরবর্ণ</th><th>ব্যঞ্জনবর্ণ</th><th>মোট</th></tr>
+  <tr><td>পূর্ণমাত্রা</td><td>অ আ ই ঈ উ ঊ (৬)</td><td>ক ঘ চ ছ জ ঝ ট ঠ ড ঢ ত দ ন ফ ব ভ ম য র ল ষ স হ ড় ঢ় য় (২৬)</td><td>৩২</td></tr>
+  <tr><td>অর্ধমাত্রা</td><td>ঋ (১)</td><td>খ গ ণ থ ধ প শ (৭)</td><td>৮</td></tr>
+  <tr><td>মাত্রাহীন</td><td>এ ঐ ও ঔ (৪)</td><td>ঙ ঞ ৎ ং ঃ ঁ (৬)</td><td>১০</td></tr>
+</table></div>
+<div class="note"><b>মনে রাখার কৌশল:</b> অর্ধমাত্রার ৮টি — "ঋ + খগণথধপশ"। মাত্রাহীন স্বর ৪টি "এ ঐ ও ঔ" (স্বরের শেষ চারটি)।</div>
+
+<h2>৫. উচ্চারণ স্থান অনুযায়ী বর্ণ</h2>
+<div class="tb"><table>
+  <tr><th>নাম</th><th>উচ্চারণ স্থান</th><th>বর্ণ</th></tr>
+  <tr><td>কণ্ঠ্য (ক-বর্গ)</td><td>জিহ্বামূল</td><td>ক খ গ ঘ ঙ</td></tr>
+  <tr><td>তালব্য (চ-বর্গ)</td><td>অগ্রতালু</td><td>চ ছ জ ঝ ঞ, এবং শ য য়</td></tr>
+  <tr><td>মূর্ধন্য (ট-বর্গ)</td><td>পশ্চাৎ দন্তমূল</td><td>ট ঠ ড ঢ ণ, এবং ষ র ড় ঢ়</td></tr>
+  <tr><td>দন্ত্য (ত-বর্গ)</td><td>অগ্রদন্তমূল</td><td>ত থ দ ধ ন, এবং ল স</td></tr>
+  <tr><td>ওষ্ঠ্য (প-বর্গ)</td><td>ওষ্ঠ</td><td>প ফ ব ভ ম</td></tr>
+</table></div>
+<div class="tb"><table>
+  <tr><th>স্বরের অবস্থান</th><th>সম্মুখ (ঠোঁট প্রসৃত)</th><th>কেন্দ্রীয় (ঠোঁট বিবৃত)</th><th>পশ্চাৎ (ঠোঁট গোলাকৃত)</th></tr>
+  <tr><td>উচ্চ</td><td>ই ঈ</td><td>—</td><td>উ ঊ</td></tr>
+  <tr><td>উচ্চমধ্য</td><td>এ</td><td>—</td><td>ও</td></tr>
+  <tr><td>নিম্নমধ্য</td><td>অ্যা</td><td>—</td><td>অ</td></tr>
+  <tr><td>নিম্ন</td><td>—</td><td>আ</td><td>—</td></tr>
+</table></div>
+
+<h2>৬. কার ও ফলা — কোন বর্ণের কোন রূপ</h2>
+<div class="tb"><table>
+  <tr><th>অবস্থান</th><th>কার</th></tr>
+  <tr><td>ব্যঞ্জনের পরে (২)</td><td>আ-কার া, ঈ-কার ী</td></tr>
+  <tr><td>ব্যঞ্জনের আগে (৩)</td><td>ই-কার ি, এ-কার ে, ঐ-কার ৈ</td></tr>
+  <tr><td>ব্যঞ্জনের নিচে (৩)</td><td>উ-কার ু, ঊ-কার ূ, ঋ-কার ৃ</td></tr>
+  <tr><td>দুই দিকে (২)</td><td>ও-কার ো, ঔ-কার ৌ</td></tr>
+</table></div>
+<div class="tb"><table>
+  <tr><th>ফলা</th><th>উদাহরণ ও উচ্চারণ</th></tr>
+  <tr><td>য-ফলা ্য</td><td>দ্+য = দ্য, স্+য = স্য</td></tr>
+  <tr><td>ব-ফলা ্ব</td><td>শ্বাপদ (শশাপদ), স্বত্ব (সসত্তো), বিশ্ব (বিশ্শো)</td></tr>
+  <tr><td>র-ফলা ্র</td><td>ভদ্র (ভদ্দ্রো), নম্র (নম্‌রো)</td></tr>
+  <tr><td>ল-ফলা ্ল</td><td>অম্ল (অম্‌লো), শুক্ল (শুক্‌লো)</td></tr>
+  <tr><td>ম-ফলা ্ম</td><td>গ্রীষ্ম (গ্রিশ্‌শোঁ), আত্মীয় (আত্‌তীয়), পদ্ম (পদ্‌দোঁ)</td></tr>
+  <tr><td>ন/ণ-ফলা</td><td>হ্+ণ = হ্ণ (পূর্বাহ্ণ, অপরাহ্ণ), ষ্+ণ = ষ্ণ (কৃষ্ণ), হ্+ন = হ্ন (মধ্যাহ্ন, সায়াহ্ন)</td></tr>
+</table></div>
+<div class="note"><b>ণ-ফলা না ন-ফলা?</b> বর্ণের নিচে ঝুলে থাকলে (হ্ণ) ণ-ফলা; ডান পাশে '৩'-এর মতো থাকলে (ষ্ণ) ণ-ফলা; ডান পাশে সোজা থাকলে (হ্ন) ন-ফলা।</div>
+
+<h2>৭. ধ্বনি, বর্ণ ও অক্ষরের পার্থক্য</h2>
+<div class="tb"><table>
+  <tr><th>ধ্বনি</th><th>বর্ণ</th><th>অক্ষর</th></tr>
+  <tr><td>বর্ণের উচ্চারিত রূপ</td><td>ধ্বনির লিখিত রূপ</td><td>স্বর বা স্বরযুক্ত ব্যঞ্জনের উচ্চারণযোগ্য রূপ</td></tr>
+  <tr><td>শব্দ ভাঙলে পাওয়া ক্ষুদ্রতম অংশ</td><td>ধ্বনি প্রকাশের প্রতীক</td><td>এক বা একাধিক ধ্বনিতে তৈরি (খ্+অ = খ)</td></tr>
+  <tr><td>বাগযন্ত্রে উচ্চারিত</td><td>লেখনীতে তৈরি</td><td>বাগযন্ত্র ও লেখনী দুটোতেই</td></tr>
+  <tr><td>শ্রুতিগ্রাহ্য</td><td>দৃষ্টিগ্রাহ্য</td><td>দুটোই</td></tr>
+</table></div>
+<div class="note"><b>উদাহরণ:</b> 'বন্ধন' শব্দে বর্ণ ব, ন, ধ, ন — কিন্তু অক্ষর মাত্র ২টি (বন্ + ধন্)।</div>
+
+<footer>উৎস: আপলোড করা PDF — অভিযাত্রী, ধ্বনি প্রকরণ, পৃষ্ঠা ২১–২৪ (খাতার হাতে লেখা নোটসহ)। মাত্রার বর্ণতালিকা প্রচলিত ব্যাকরণ থেকে যোগ করা।</footer>
+</div>
+
+<script>
+const V = {
+ 'অ':{k:'স্বরবর্ণ · মৌলিক · হ্রস্ব',kar:'নেই (নিলীন বর্ণ)',m:'পূর্ণমাত্রা',pos:'পশ্চাৎ · নিম্নমধ্য · ঠোঁট গোলাকৃত',n:['একমাত্র স্বরবর্ণ যার কার নেই; ব্যঞ্জনে মিশে থাকে (ক = ক্+অ)','৩৬টি ব্যঞ্জনবর্ণে লুকিয়ে থাকে']},
+ 'আ':{k:'স্বরবর্ণ · মৌলিক · দীর্ঘ',kar:'া (ব্যঞ্জনের পরে)',m:'পূর্ণমাত্রা',pos:'কেন্দ্রীয় · নিম্ন · ঠোঁট বিবৃত',n:['একমাত্র কেন্দ্রীয় স্বর']},
+ 'ই':{k:'স্বরবর্ণ · মৌলিক · হ্রস্ব',kar:'ি (ব্যঞ্জনের আগে)',m:'পূর্ণমাত্রা',pos:'সম্মুখ · উচ্চ · ঠোঁট প্রসৃত',n:['যৌগিক স্বরে অর্ধস্বর ই̯ হিসেবে আসে (বই = ব্+অ+ই)']},
+ 'ঈ':{k:'স্বরবর্ণ · মৌলিক নয় · দীর্ঘ',kar:'ী (ব্যঞ্জনের পরে)',m:'পূর্ণমাত্রা',pos:'সম্মুখ · উচ্চ (ই-এর মতো)',n:['উচ্চারণে ই-এর সাথে পার্থক্য নেই']},
+ 'উ':{k:'স্বরবর্ণ · মৌলিক · হ্রস্ব',kar:'ু (ব্যঞ্জনের নিচে)',m:'পূর্ণমাত্রা',pos:'পশ্চাৎ · উচ্চ · ঠোঁট গোলাকৃত',n:['যৌগিক স্বরে অর্ধস্বর উ̯ (বউ = ব+অ+উ)']},
+ 'ঊ':{k:'স্বরবর্ণ · মৌলিক নয় · দীর্ঘ',kar:'ূ (ব্যঞ্জনের নিচে)',m:'পূর্ণমাত্রা',pos:'পশ্চাৎ · উচ্চ (উ-এর মতো)',n:[]},
+ 'ঋ':{k:'স্বরবর্ণ · মৌলিক নয় · হ্রস্ব',kar:'ৃ (ব্যঞ্জনের নিচে)',m:'অর্ধমাত্রা (একমাত্র অর্ধমাত্রার স্বর)',pos:'—',n:['ঋ-কে স্বরধ্বনি বলা চলে না, উচ্চারণ "রি"']},
+ 'এ':{k:'স্বরবর্ণ · মৌলিক · দীর্ঘ',kar:'ে (ব্যঞ্জনের আগে)',m:'মাত্রাহীন',pos:'সম্মুখ · উচ্চমধ্য · ঠোঁট প্রসৃত',n:['অর্ধস্বর এ̯ হিসেবেও আসে']},
+ 'ঐ':{k:'স্বরবর্ণ · যৌগিক · দীর্ঘ',kar:'ৈ (ব্যঞ্জনের আগে)',m:'মাত্রাহীন',pos:'যৌগিক স্বর — অবস্থান নেই',n:['ঐ = অ+ই / ও+ই','যৌগিক স্বরজ্ঞাপক বর্ণ; মূল স্বরধ্বনি নয়']},
+ 'ও':{k:'স্বরবর্ণ · মৌলিক · দীর্ঘ',kar:'ো (দুই দিকে)',m:'মাত্রাহীন',pos:'পশ্চাৎ · উচ্চমধ্য · ঠোঁট গোলাকৃত',n:['অর্ধস্বর ও̯ হিসেবেও আসে']},
+ 'ঔ':{k:'স্বরবর্ণ · যৌগিক · দীর্ঘ',kar:'ৌ (দুই দিকে)',m:'মাত্রাহীন',pos:'যৌগিক স্বর — অবস্থান নেই',n:['ঔ = অ+উ / ও+উ','যৌগিক স্বরজ্ঞাপক বর্ণ; মূল স্বরধ্বনি নয়']},
+};
+const vargas=[['ক','খ','গ','ঘ','ঙ','কণ্ঠ্য (ক-বর্গ)','জিহ্বামূল'],['চ','ছ','জ','ঝ','ঞ','তালব্য (চ-বর্গ)','অগ্রতালু'],
+ ['ট','ঠ','ড','ঢ','ণ','মূর্ধন্য (ট-বর্গ)','পশ্চাৎ দন্তমূল'],['ত','থ','দ','ধ','ন','দন্ত্য (ত-বর্গ)','অগ্রদন্তমূল'],['প','ফ','ব','ভ','ম','ওষ্ঠ্য (প-বর্গ)','ওষ্ঠ']];
+const cols=['অঘোষ অল্পপ্রাণ','অঘোষ মহাপ্রাণ','ঘোষ অল্পপ্রাণ','ঘোষ মহাপ্রাণ','ঘোষ · নাসিক্য'];
+const half='খগণথধপশ', none='ঙঞৎংঃঁ';
+const C={};
+vargas.forEach(r=>r.slice(0,5).forEach((l,i)=>{C[l]={k:'ব্যঞ্জনবর্ণ · স্পর্শ · '+r[5],pos:r[6],gh:cols[i],n:[]}}));
+const extra={
+ 'চ':['ঘৃষ্ট বর্ণ'],'ছ':['ঘৃষ্ট বর্ণ'],'জ':['ঘৃষ্ট বর্ণ'],'ঝ':['ঘৃষ্ট বর্ণ'],
+ 'ঙ':['শব্দের প্রথমে বসে না','ং-এর সাথে উচ্চারণে পার্থক্য নেই (রং = রঙ)','ইংরেজিতে N','বর্গীয় নাসিক্য ধ্বনি'],
+ 'ঞ':['শব্দের প্রথমে বসে না','অনেকটা "ইয়"-এর মতো উচ্চারিত: ভূঞা → ভূঁইয়া','চ-বর্গের আগে থাকলে ঞ-এর উচ্চারণ বজায় থাকে: জঞ্জাল, ঝঞ্ঝা','ইংরেজিতে N'],
+ 'ণ':['শব্দের প্রথমে বসে না','ন-এর সাথে উচ্চারণে পার্থক্য নেই','ইংরেজিতে N','ণ-ফলা হয়: পূর্বাহ্ণ, কৃষ্ণ'],
+ 'ন':['বর্গীয় নাসিক্য ধ্বনি','ইংরেজিতে N','ন-ফলা হয়: মধ্যাহ্ন'],
+ 'ম':['বর্গীয় নাসিক্য ধ্বনি','ম-ফলা হয়: পদ্ম, আত্মীয়'],
+ 'প':['বাঙালি শিশু প-বর্গের (ওষ্ঠ্য) ধ্বনি আগে শেখে'],
+ 'ব':['বর্গীয় ব — উচ্চারণ B (অন্তঃস্থ ব-এর উচ্চারণ "ওয়া"/W)','ব-ফলা হয়: বিশ্ব, স্বত্ব','খাতার নোট: অর্ধস্বর বর্ণ'],
+ 'ক':['অভিধানে "ক্ষ" ক-বর্গের অন্তর্গত'],
+};
+Object.entries(extra).forEach(([l,a])=>C[l].n.push(...a));
+const others={
+ 'য':{k:'ব্যঞ্জনবর্ণ · অন্তঃস্থ',pos:'অগ্রতালু',gh:'—',n:['য-ফলা হয়: দ্য, স্য']},
+ 'র':{k:'ব্যঞ্জনবর্ণ · অন্তঃস্থ · কম্পনজাত',pos:'পশ্চাৎ দন্তমূল',gh:'—',n:['জিহ্বা কেঁপে উচ্চারিত','র-ফলা হয়: ভদ্র, নম্র']},
+ 'ল':{k:'ব্যঞ্জনবর্ণ · অন্তঃস্থ · পার্শ্বিক',pos:'অগ্রদন্তমূল',gh:'—',n:['বাতাস জিহ্বার দুই পাশ দিয়ে বের হয়','ল-ফলা হয়: অম্ল, শুক্ল']},
+ 'শ':{k:'ব্যঞ্জনবর্ণ · উষ্ম/শিস · ঘর্ষণজাত',pos:'অগ্রতালু',gh:'অঘোষ অল্পপ্রাণ',n:[]},
+ 'ষ':{k:'ব্যঞ্জনবর্ণ · উষ্ম/শিস · ঘর্ষণজাত',pos:'পশ্চাৎ দন্তমূল',gh:'অঘোষ অল্পপ্রাণ',n:[]},
+ 'স':{k:'ব্যঞ্জনবর্ণ · উষ্ম/শিস · ঘর্ষণজাত',pos:'অগ্রদন্তমূল',gh:'অঘোষ অল্পপ্রাণ',n:[]},
+ 'হ':{k:'ব্যঞ্জনবর্ণ · উষ্ম/শিস',pos:'বইয়ে উল্লেখ নেই',gh:'ঘোষ মহাপ্রাণ',n:['উষ্মবর্ণের মধ্যে একমাত্র ঘোষ মহাপ্রাণ','ঘর্ষণজাতের তালিকায় নেই']},
+ 'ড়':{k:'ব্যঞ্জনবর্ণ · তাড়নজাত',pos:'পশ্চাৎ দন্তমূল',gh:'—',n:['জিহ্বার আগা দিয়ে দ্রুত টোকা দিয়ে উচ্চারণ']},
+ 'ঢ়':{k:'ব্যঞ্জনবর্ণ · তাড়নজাত',pos:'পশ্চাৎ দন্তমূল',gh:'—',n:['ড়-এর মহাপ্রাণ রূপ']},
+ 'য়':{k:'ব্যঞ্জনবর্ণ · অর্ধস্বর (খাতার নোট)',pos:'অগ্রতালু',gh:'—',n:['ক থেকে য় পর্যন্ত ৩৫টি = প্রকৃত ব্যঞ্জন']},
+ 'ৎ':{k:'ব্যঞ্জনবর্ণ · খণ্ড ত',pos:'—',gh:'—',n:['স্বতন্ত্রভাবে উচ্চারিত হয় না; এটি "ত্" (হসন্তযুক্ত ত)-এর রূপভেদ মাত্র','এতে "অ" যুক্ত হয় না']},
+ 'ং':{k:'ব্যঞ্জনবর্ণ · পরাশ্রয়ী · অযোগবাহ (অনুস্বার)',pos:'—',gh:'—',n:['উচ্চারণ ঙ-এর মতো (রং = রঙ)','শব্দের প্রথমে বসে না','ইংরেজিতে N','এতে "অ" যুক্ত হয় না','খাতার নোট: নাসিক্য বর্ণ']},
+ 'ঃ':{k:'ব্যঞ্জনবর্ণ · পরাশ্রয়ী · অযোগবাহ (বিসর্গ)',pos:'—',gh:'অঘোষ',n:['উচ্চারণ অঘোষ হ-এর মতো','শব্দের মাঝে থাকলে পরের ব্যঞ্জন দ্বিত্ব হয়: দুঃখ → দুখ্‌খো','এতে "অ" যুক্ত হয় না']},
+ 'ঁ':{k:'ব্যঞ্জনবর্ণ · পরাশ্রয়ী (চন্দ্রবিন্দু)',pos:'—',gh:'—',n:['স্বরকে নাসিক্য করে','খাতার নোট: নাসিক্য বর্ণ (মোট নাসিক্য বর্ণ ৭)']},
+};
+Object.assign(C,others);
+const consOrder=Object.keys(C);
+const CATS={
+ 'মৌলিক স্বর':['অআইউএও','মৌলিক স্বরবর্ণ ৬টি; সাথে অলিখিত "অ্যা" মিলে মৌলিক স্বরধ্বনি ৭'],
+ 'যৌগিক স্বর':['ঐঔ','যৌগিক স্বরজ্ঞাপক বর্ণ ২টি (যৌগিক স্বর মোট ২৫)'],
+ 'হ্রস্ব স্বর':['অইউঋ','হ্রস্ব স্বর ৪টি; বাকি ৭টি দীর্ঘ'],
+ 'অঘোষ':['কখচছটঠতথপফশষসঃ','স্বরতন্ত্রী কম কাঁপে'],
+ 'ঘোষ':['গঘঙজঝঞডঢণদধনবভমহ','স্বরতন্ত্রী বেশি কাঁপে'],
+ 'মহাপ্রাণ':['খঘছঝঠঢথধফভহ','বাতাসের চাপ বেশি'],
+ 'নাসিক্য':['ঙঞণনমংঁ','নাসিক্য বর্ণ ৭ (বর্গীয় ৫ + ং ঁ)'],
+ 'ঘৃষ্ট':['চছজঝ','ঘৃষ্ট বর্ণ ৪টি'],
+ 'উষ্ম':['শষসহ','উষ্ম/শিস ধ্বনি ৪টি'],
+ 'অন্তঃস্থ':['যরলব','অন্তঃস্থ বর্ণ ৪টি (এখানে ব = অন্তঃস্থ ব)'],
+ 'তাড়নজাত':['ড়ঢ়','তাড়নজাত বর্ণ ২টি'],
+ 'পরাশ্রয়ী':['ংঃঁ','পরাশ্রয়ী বর্ণ ৩টি'],
+ 'অযোগবাহ':['ংঃ','অযোগবাহ বর্ণ ২টি'],
+ 'শব্দের শুরুতে বসে না':['ঙংঞণ','এই ৪টি শব্দের প্রথমে আসে না'],
+ 'অর্ধমাত্রা':['ঋখগণথধপশ','অর্ধমাত্রার বর্ণ ৮টি'],
+ 'মাত্রাহীন':['এঐওঔঙঞৎংঃঁ','মাত্রাহীন বর্ণ ১০টি'],
+};
+function split(s){return Array.from(s.matchAll(/[ঀ-৿](?:়)?/g)).map(m=>m[0])}
+function matra(l){return half.includes(l)?'অর্ধমাত্রা':none.includes(l)?'মাত্রাহীন':'পূর্ণমাত্রা'}
+function btn(l,parent){const b=document.createElement('button');b.className='L';b.textContent=l;b.dataset.l=l;b.onclick=()=>show(l);parent.appendChild(b)}
+Object.keys(V).forEach(l=>btn(l,document.getElementById('vow')));
+vargas.forEach(r=>r.slice(0,5).forEach(l=>btn(l,document.getElementById('spr'))));
+Object.keys(others).forEach(l=>btn(l,document.getElementById('oth')));
+function esc(s){return s}
+function show(l){
+  document.querySelectorAll('.L').forEach(b=>b.classList.toggle('sel',b.dataset.l===l));
+  const d=document.getElementById('detail');
+  let rows='',info,notes;
+  if(V[l]){info=V[l];rows=`<dt>কার</dt><dd>${info.kar}</dd><dt>মাত্রা</dt><dd>${info.m}</dd><dt>জিহ্বার অবস্থান</dt><dd>${info.pos}</dd>`;}
+  else{info=C[l];rows=`<dt>উচ্চারণ স্থান</dt><dd>${info.pos}</dd><dt>ঘোষ/প্রাণ</dt><dd>${info.gh}</dd><dt>মাত্রা</dt><dd>${matra(l)}</dd><dt>'অ' যুক্ত?</dt><dd>${'ৎংঃঁ'.includes(l)?'না':'হ্যাঁ ('+l+' = '+l+'্ + অ)'}</dd>`;}
+  const cats=Object.entries(CATS).filter(([k,[s]])=>split(s).includes(l)).map(([k])=>`<span class="tag">${k}</span>`).join('');
+  notes=info.n.length?`<ul class="notes">${info.n.map(x=>`<li>${x}</li>`).join('')}</ul>`:'';
+  d.innerHTML=`<p class="big">${l}</p><p class="kind">${info.k}</p><dl class="kv">${rows}</dl><div class="tags">${cats}</div>${notes}`;
+}
+const chips=document.getElementById('chips');let active=null;
+Object.keys(CATS).forEach(k=>{const c=document.createElement('button');c.className='chip';c.textContent=k;c.onclick=()=>{
+  active=active===k?null:k;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.textContent===active));
+  const set=active?split(CATS[active][0]):null;
+  document.querySelectorAll('.L').forEach(b=>{b.classList.toggle('on',!!set&&set.includes(b.dataset.l));b.classList.toggle('dim',!!set&&!set.includes(b.dataset.l))});
+  document.getElementById('catinfo').textContent=active?`${active}: ${set.join(', ')} — ${CATS[active][1]}`:'';
+};chips.appendChild(c)});
+show('ক');
+</script>
+</body>
+</html>
