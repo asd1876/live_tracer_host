@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>শ্রম, সামাজিক তত্ত্ব ও কর্পোরেট দায়বদ্ধতা — পক্ষে ও বিপক্ষে</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#fff; --ink:#1f2937; --muted:#6b7280; --line:#e5e1d8;
+  --pro:#15803d; --pro-bg:#ecfdf3; --con:#b91c1c; --con-bg:#fef2f2;
+  --g1:#1e4e79; --g2:#2f7d4f; --g3:#7a3e9d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif;line-height:1.65}
+header{padding:36px 20px 20px;max-width:1100px;margin:0 auto}
+h1{margin:0 0 6px;font-size:clamp(1.5rem,3.2vw,2.2rem);color:#1e3a5f}
+.sub{color:var(--muted);margin:0}
+nav{position:sticky;top:0;z-index:5;background:rgba(246,244,239,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+nav button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.92rem;cursor:pointer;color:var(--ink)}
+nav button.on{background:#1e3a5f;color:#fff;border-color:#1e3a5f}
+nav input{margin-left:auto;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font:inherit;font-size:.92rem;min-width:180px}
+main{max-width:1100px;margin:0 auto;padding:20px}
+section.group{margin-bottom:40px}
+.ghead{display:flex;align-items:center;gap:12px;margin:10px 0 14px}
+.ghead .dot{width:12px;height:36px;border-radius:4px}
+.ghead h2{margin:0;font-size:1.35rem}
+.ghead p{margin:0;color:var(--muted);font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.card summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.card summary::-webkit-details-marker{display:none}
+.card summary h3{margin:0;font-size:1.1rem}
+.card summary .en{color:var(--muted);font-size:.88rem;font-weight:500}
+.card summary .chev{color:var(--muted);transition:transform .2s}
+.card[open] summary .chev{transform:rotate(90deg)}
+.body{padding:0 18px 18px}
+.def{background:#f8fafc;border-left:4px solid #94a3b8;padding:10px 14px;border-radius:6px;margin:0 0 14px}
+.def b{color:#334155}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:720px){.cols{grid-template-columns:1fr} nav input{margin-left:0;width:100%}}
+.col{border-radius:10px;padding:12px 14px}
+.col h4{margin:0 0 6px;font-size:1rem}
+.col ul{margin:0;padding-left:20px}
+.col li{margin:3px 0}
+.pro{background:var(--pro-bg)} .pro h4{color:var(--pro)}
+.con{background:var(--con-bg)} .con h4{color:var(--con)}
+.ex{margin-top:12px;font-size:.93rem;color:#374151;background:#fffbeb;border:1px dashed #f59e0b;padding:8px 12px;border-radius:8px}
+.summary-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);font-size:.95rem}
+.summary-table th,.summary-table td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.summary-table th{background:#1e3a5f;color:#fff;font-weight:600}
+.tag{display:inline-block;font-size:.78rem;padding:1px 8px;border-radius:999px;color:#fff}
+.hidden{display:none}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <h1>শ্রম, সামাজিক তত্ত্ব ও কর্পোরেট দায়বদ্ধতা</h1>
+  <p class="sub">১২টি ধারণা — Type অনুযায়ী ৩টি গ্রুপে, প্রতিটির সংজ্ঞা, পক্ষে ও বিপক্ষে যুক্তি এবং বাংলাদেশ প্রেক্ষাপট</p>
+</header>
+
+<nav><div class="wrap">
+  <button data-f="all" class="on">সব</button>
+  <button data-f="g1">১. কর্পোরেট ও শ্রম মানদণ্ড</button>
+  <button data-f="g2">২. পরিবেশ ও সবুজ শিল্প</button>
+  <button data-f="g3">৩. সমাজতাত্ত্বিক তত্ত্ব</button>
+  <input id="q" type="search" placeholder="খুঁজুন… (যেমন Anomie)">
+</div></nav>
+
+<main id="main"></main>
+
+<section style="max-width:1100px;margin:0 auto;padding:0 20px 30px">
+  <h2 style="font-size:1.3rem">এক নজরে সারসংক্ষেপ</h2>
+  <div style="overflow-x:auto"><table class="summary-table" id="tbl"></table></div>
+</section>
+
+<footer>পরীক্ষা/লিখিত প্রস্তুতির জন্য সংক্ষিপ্ত নোট • কার্ডে ক্লিক করে খুলুন/বন্ধ করুন</footer>
+
+<script>
+const groups = [
+ {id:"g1", color:"var(--g1)", title:"১. কর্পোরেট দায়বদ্ধতা ও শ্রম মানদণ্ড", en:"Corporate Responsibility & Labor Standards",
+  note:"কোম্পানি ও সাপ্লাই চেইন কীভাবে শ্রমিক ও সমাজের প্রতি দায়িত্ব পালন করে — বাস্তব ব্যবস্থাপনা ও নীতি।",
+  items:[
+  {bn:"কর্পোরেট সামাজিক দায়বদ্ধতা", en:"Corporate Social Responsibility (CSR)",
+   def:"মুনাফার বাইরে সমাজ, পরিবেশ ও স্টেকহোল্ডারদের প্রতি কোম্পানির স্বেচ্ছা দায়িত্ব। Carroll-এর পিরামিড: অর্থনৈতিক → আইনি → নৈতিক → জনহিতকর দায়িত্ব।",
+   pro:["কোম্পানির সুনাম ও ব্র্যান্ড ভ্যালু বাড়ায়","শিক্ষা, স্বাস্থ্য, দুর্যোগে সমাজের সরাসরি উপকার","বিনিয়োগকারী ও ক্রেতার আস্থা বাড়ে","দীর্ঘমেয়াদি টেকসই ব্যবসায় সহায়ক (Triple Bottom Line: People, Planet, Profit)"],
+   con:["প্রায়ই লোক দেখানো বা ‘গ্রিনওয়াশিং’/মার্কেটিং কৌশল","Milton Friedman: ব্যবসার একমাত্র দায়িত্ব মুনাফা বাড়ানো","খরচ বাড়ে, ছোট প্রতিষ্ঠানের জন্য কঠিন","স্বেচ্ছামূলক হওয়ায় জবাবদিহি ও পরিমাপ দুর্বল"],
+   ex:"বাংলাদেশে ব্যাংকগুলোর CSR ব্যয় বাংলাদেশ ব্যাংকের নির্দেশনায় পরিচালিত হয়।"},
+  {bn:"নৈতিক উৎস সংগ্রহ", en:"Ethical Sourcing",
+   def:"কাঁচামাল ও পণ্য এমনভাবে সংগ্রহ করা যাতে শ্রমিক অধিকার, নিরাপত্তা, শিশুশ্রম নিষেধ ও পরিবেশ রক্ষা নিশ্চিত হয়।",
+   pro:["শিশুশ্রম ও জোরপূর্বক শ্রম রোধ","সাপ্লাই চেইনে স্বচ্ছতা বাড়ে","পশ্চিমা ক্রেতাদের অর্ডার ধরে রাখা সহজ","সচেতন ভোক্তার আস্থা অর্জন"],
+   con:["উৎপাদন খরচ ও পণ্যের দাম বাড়ে","বহুস্তর সাবকন্ট্রাক্টিং-এ যাচাই কঠিন","বড় ব্র্যান্ড খরচের চাপ সরবরাহকারীর ওপর চাপিয়ে দেয়","ছোট সরবরাহকারী বাজার থেকে ছিটকে পড়ে"],
+   ex:"রানা প্লাজা (২০১৩) ধসের পর আন্তর্জাতিক ব্র্যান্ডগুলোর সোর্সিং নীতিতে বড় পরিবর্তন আসে।"},
+  {bn:"ন্যায্য মজুরি", en:"Fair Wage",
+   def:"এমন মজুরি যা শুধু আইনি ন্যূনতম নয়, শ্রমিক ও পরিবারের মর্যাদাপূর্ণ জীবনযাপনের (Living Wage) জন্য যথেষ্ট।",
+   pro:["শ্রমিকের জীবনমান ও পুষ্টি উন্নত হয়","উৎপাদনশীলতা বাড়ে, শ্রমিক টার্নওভার কমে","শ্রম অসন্তোষ ও ধর্মঘট কমে","অভ্যন্তরীণ চাহিদা বাড়িয়ে অর্থনীতি চাঙ্গা করে"],
+   con:["উৎপাদন খরচ বেড়ে প্রতিযোগিতা সক্ষমতা কমতে পারে","অর্ডার কম মজুরির দেশে (ভিয়েতনাম, মিয়ানমার ইত্যাদি) চলে যাওয়ার ঝুঁকি","ছোট কারখানা বন্ধ হয়ে বেকারত্ব বাড়তে পারে","‘ন্যায্য’ এর মাপকাঠি নির্ধারণ বিতর্কিত"],
+   ex:"বাংলাদেশে ২০২৩ সালে পোশাক শ্রমিকের ন্যূনতম মজুরি ১২,৫০০ টাকা নির্ধারণ করা হয়।"},
+  {bn:"সামাজিক কমপ্লায়েন্স", en:"Social Compliance",
+   def:"কারখানায় শ্রম আইন, কর্মপরিবেশ, স্বাস্থ্য-নিরাপত্তা ও মানবাধিকার মানদণ্ড মেনে চলা এবং অডিটের মাধ্যমে তা যাচাই (যেমন BSCI, WRAP, SA8000)।",
+   pro:["অগ্নি ও ভবন নিরাপত্তা নিশ্চিত হয়","আন্তর্জাতিক বাজারে প্রবেশাধিকার বজায় থাকে","শ্রমিকের অধিকার ও কর্মঘণ্টা সুরক্ষিত","দুর্ঘটনা ও আইনি ঝুঁকি কমে"],
+   con:["‘অডিট ফ্যাটিগ’ — একাধিক ক্রেতার আলাদা অডিটে খরচ ও সময় নষ্ট","অডিট প্রায়ই কাগুজে ও আগাম জানানো, বাস্তব চিত্র লুকানো যায়","খরচ সরবরাহকারী বহন করে, ক্রেতা দাম বাড়ায় না","শ্রমিকের কণ্ঠস্বর (ট্রেড ইউনিয়ন) অনেক সময় উপেক্ষিত"],
+   ex:"Accord ও Alliance (২০১৩) এবং পরে RMG Sustainability Council (RSC) বাংলাদেশে কারখানা নিরাপত্তা তদারকি করে।"}
+ ]},
+ {id:"g2", color:"var(--g2)", title:"২. পরিবেশ অর্থনীতি ও সবুজ শিল্প", en:"Environment & Green Industry",
+  note:"শিল্পায়ন ও পরিবেশের সম্পর্ক — একটি অর্থনৈতিক তত্ত্ব ও দুটি বাস্তব প্রযুক্তি/মানদণ্ড।",
+  items:[
+  {bn:"পরিবেশগত কুজনেটস রেখা", en:"Environmental Kuznets Curve (EKC)",
+   def:"উল্টো ‘U’ আকৃতির রেখা: মাথাপিছু আয় বাড়ার শুরুতে পরিবেশ দূষণ বাড়ে, একটি নির্দিষ্ট আয়স্তরের পর দূষণ কমতে থাকে (Grossman & Krueger, ১৯৯১)।",
+   pro:["উন্নয়নের সাথে প্রযুক্তি ও সচেতনতা বাড়ে — বাস্তবে কিছু দূষক (SO₂) কমেছে","ধনী দেশে কঠোর পরিবেশ আইন ও নিয়ন্ত্রণ সম্ভব হয়","অর্থনীতি শিল্প থেকে সেবা খাতে সরে যায়","উন্নয়নশীল দেশের জন্য আশাবাদী পথরেখা"],
+   con:["CO₂ ও জীববৈচিত্র্য ক্ষতির ক্ষেত্রে প্রমাণ দুর্বল","দূষণ কমে না, গরিব দেশে স্থানান্তরিত হয় (Pollution Haven Hypothesis)","কিছু ক্ষতি অপরিবর্তনীয় — ‘আগে দূষণ পরে পরিষ্কার’ বিপজ্জনক","জলবায়ু সংকটে অপেক্ষার সময় নেই"],
+   ex:"বাংলাদেশ এখন রেখার ঊর্ধ্বমুখী অংশে — দ্রুত প্রবৃদ্ধির সাথে নদী ও বায়ু দূষণ বাড়ছে।"},
+  {bn:"শূন্য তরল নিঃসরণ প্রযুক্তি", en:"Zero Liquid Discharge (ZLD) Technology",
+   def:"এমন বর্জ্য পানি শোধন ব্যবস্থা যেখানে কারখানার সব তরল বর্জ্য শোধন করে পুনর্ব্যবহার করা হয়, বাইরে কোনো তরল নিঃসরণ হয় না; কেবল কঠিন বর্জ্য অবশিষ্ট থাকে।",
+   pro:["নদী ও ভূগর্ভস্থ পানি দূষণ সম্পূর্ণ রোধ","পানি পুনর্ব্যবহারে ভূগর্ভস্থ পানির ওপর চাপ কমে","কঠোর পরিবেশ আইন ও ক্রেতার শর্ত পূরণ","লবণ ও রাসায়নিক পুনরুদ্ধার সম্ভব"],
+   con:["স্থাপন ও পরিচালন ব্যয় অত্যন্ত বেশি","প্রচুর বিদ্যুৎ/জ্বালানি লাগে — কার্বন নিঃসরণ বাড়ায়","কঠিন বর্জ্য (sludge) ব্যবস্থাপনার নতুন সমস্যা","দক্ষ জনবল ও রক্ষণাবেক্ষণের অভাব"],
+   ex:"ডাইং-ওয়াশিং ও ট্যানারি (সাভার চামড়া শিল্পনগরী) খাতে এর প্রয়োজনীয়তা সবচেয়ে বেশি।"},
+  {bn:"সবুজ কারখানা সনদ", en:"Green Factory Certification",
+   def:"জ্বালানি দক্ষতা, পানি সাশ্রয়, বর্জ্য ব্যবস্থাপনা ও টেকসই নির্মাণের জন্য প্রদত্ত সনদ — যেমন USGBC-এর LEED (Platinum/Gold/Silver)।",
+   pro:["জ্বালানি ও পানি খরচ দীর্ঘমেয়াদে কমে","ব্র্যান্ড ইমেজ ও বেশি দামের অর্ডার পাওয়ার সুযোগ","কর্মপরিবেশ (আলো, বায়ু চলাচল) উন্নত হয়","জাতীয় ভাবমূর্তি উজ্জ্বল করে"],
+   con:["সনদ ও নির্মাণে বিশাল প্রাথমিক বিনিয়োগ","ক্রেতারা সাধারণত বাড়তি দাম দেয় না","ভবনকেন্দ্রিক — শ্রমিকের মজুরি/অধিকার নিশ্চিত করে না","ছোট-মাঝারি কারখানার নাগালের বাইরে"],
+   ex:"বিশ্বের LEED-সনদপ্রাপ্ত শীর্ষ সবুজ পোশাক কারখানার বড় অংশই বাংলাদেশে।"}
+ ]},
+ {id:"g3", color:"var(--g3)", title:"৩. সমাজতাত্ত্বিক তত্ত্ব", en:"Sociological Theories",
+  note:"সমাজ, শ্রম, সংঘাত ও অপরাধ ব্যাখ্যার তাত্ত্বিক কাঠামো — শ্রম অসন্তোষ ও সামাজিক পরিবর্তন বোঝার হাতিয়ার।",
+  items:[
+  {bn:"দ্বন্দ্ব তত্ত্ব — কার্ল মার্ক্স", en:"Conflict Theory (Karl Marx)",
+   def:"সমাজ শ্রেণিসংঘাতে গঠিত — উৎপাদন উপায়ের মালিক (বুর্জোয়া) ও শ্রমিক (প্রলেতারিয়েত)-এর মধ্যে। শোষণ, উদ্বৃত্ত মূল্য ও বিচ্ছিন্নতা (Alienation) এর মূল ধারণা।",
+   pro:["অসমতা, শোষণ ও ক্ষমতার কাঠামো স্পষ্টভাবে ব্যাখ্যা করে","শ্রমিক আন্দোলন ও শ্রম আইনের তাত্ত্বিক ভিত্তি","সামাজিক পরিবর্তনের চালিকাশক্তি ব্যাখ্যা করে","পোশাক শিল্পের মালিক-শ্রমিক দ্বন্দ্ব বোঝাতে কার্যকর"],
+   con:["অতিমাত্রায় অর্থনীতিকেন্দ্রিক — ধর্ম, সংস্কৃতি উপেক্ষিত","সামাজিক ঐক্য ও সহযোগিতা ব্যাখ্যা করতে পারে না","ভবিষ্যদ্বাণীকৃত বিপ্লব উন্নত পুঁজিবাদী দেশে ঘটেনি","মধ্যবিত্ত শ্রেণির উত্থান তত্ত্বকে দুর্বল করে"],
+   ex:"মজুরি বৃদ্ধির দাবিতে পোশাক শ্রমিকদের আন্দোলন এর সাধারণ উদাহরণ।"},
+  {bn:"ক্রিয়াবাদ — এমিল ডুর্খেইম", en:"Functional Theory (Durkheim)",
+   def:"সমাজ একটি জীবদেহের মতো, যার প্রতিটি অংশ (পরিবার, শিক্ষা, ধর্ম, অর্থনীতি) নির্দিষ্ট কাজ করে স্থিতিশীলতা বজায় রাখে। যান্ত্রিক ও জৈবিক সংহতি (Mechanical/Organic Solidarity) এর মূল ধারণা।",
+   pro:["সামাজিক স্থিতিশীলতা ও ঐক্য ভালোভাবে ব্যাখ্যা করে","শ্রমবিভাজন কীভাবে পারস্পরিক নির্ভরতা তৈরি করে তা দেখায়","প্রতিষ্ঠানের ভূমিকা বোঝার কাঠামো দেয়","অপরাধেরও সামাজিক কাজ থাকতে পারে — নতুন দৃষ্টিভঙ্গি"],
+   con:["সংঘাত, অসমতা ও শোষণকে উপেক্ষা করে","বিদ্যমান অবস্থাকে (status quo) ন্যায্যতা দেয় — রক্ষণশীল","দ্রুত সামাজিক পরিবর্তন ব্যাখ্যায় দুর্বল","ব্যক্তির ভূমিকা ও এজেন্সি গৌণ"],
+   ex:"শিল্পায়নে গ্রাম থেকে শহরে আসা মানুষের যান্ত্রিক থেকে জৈবিক সংহতিতে রূপান্তর।"},
+  {bn:"নৈরাজ্য / অ্যানোমি", en:"Anomie",
+   def:"ডুর্খেইমের ধারণা: দ্রুত সামাজিক পরিবর্তনে প্রচলিত নিয়ম-মূল্যবোধ ভেঙে গেলে যে আদর্শহীন, দিকভ্রান্ত অবস্থা তৈরি হয়। পরে Robert Merton একে Strain Theory-তে প্রসারিত করেন।",
+   pro:["আত্মহত্যা, অপরাধ ও বিচ্যুতির সামাজিক কারণ ব্যাখ্যা করে","শিল্পায়ন ও নগরায়নের মানসিক প্রভাব বোঝায়","অর্থনৈতিক সংকট ও সমাজের সম্পর্ক দেখায়","নীতিনির্ধারণে সামাজিক নিয়ন্ত্রণের গুরুত্ব তুলে ধরে"],
+   con:["ধারণাটি অস্পষ্ট — পরিমাপ করা কঠিন","ব্যক্তিগত ও মনস্তাত্ত্বিক কারণ উপেক্ষা করে","মধ্যবিত্ত মূল্যবোধকে মানদণ্ড ধরে নেয়","সংস্কৃতিভেদে প্রয়োগযোগ্যতা সীমিত"],
+   ex:"গ্রাম থেকে শহরের কারখানায় আসা তরুণ শ্রমিকের পারিবারিক বন্ধন হারিয়ে বিচ্ছিন্নতা।"},
+  {bn:"আপেক্ষিক বঞ্চনা তত্ত্ব — টেড গার", en:"Relative Deprivation Theory (Ted Gurr)",
+   def:"‘Why Men Rebel’ (১৯৭০): মানুষ যা পাওয়ার যোগ্য মনে করে (প্রত্যাশা) আর যা বাস্তবে পায় (সক্ষমতা) — এর ব্যবধান থেকে হতাশা ও রাজনৈতিক সহিংসতা/বিদ্রোহ জন্ম নেয়।",
+   pro:["নিরঙ্কুশ দারিদ্র্য নয়, তুলনামূলক বঞ্চনাই অসন্তোষের কারণ — বাস্তবসম্মত","শ্রম অসন্তোষ, আন্দোলন ও বিপ্লবের মনস্তত্ত্ব ব্যাখ্যা করে","‘আকাঙ্ক্ষা বৃদ্ধির বিপ্লব’ ধারণা উন্নয়নশীল দেশে প্রাসঙ্গিক","নীতিনির্ধারকদের সতর্ক সংকেত দেয়"],
+   con:["বঞ্চিত সবাই বিদ্রোহ করে না — সাংগঠনিক সম্পদ উপেক্ষিত (Resource Mobilization সমালোচনা)","প্রত্যাশা পরিমাপ করা কঠিন","মনস্তাত্ত্বিক ব্যাখ্যায় অতিনির্ভর, কাঠামোগত কারণ কম","পূর্বাভাস দেওয়ার ক্ষমতা দুর্বল"],
+   ex:"মালিকদের সমৃদ্ধি দেখে শ্রমিকের মনে বৈষম্যের বোধ থেকে মজুরি আন্দোলন।"},
+  {bn:"সামাজিক বিশৃঙ্খলা তত্ত্ব — শ ও ম্যাককে", en:"Social Disorganization Theory (Shaw & McKay)",
+   def:"শিকাগো স্কুল (১৯৪২): অপরাধ ব্যক্তির নয়, এলাকার বৈশিষ্ট্যের ফল — দারিদ্র্য, জনসংখ্যার দ্রুত আসা-যাওয়া ও জাতিগত বৈচিত্র্যে দুর্বল সামাজিক নিয়ন্ত্রণে অপরাধ বাড়ে।",
+   pro:["অপরাধের পরিবেশগত/ভৌগোলিক কারণ দেখায়","নীতিভিত্তিক সমাধান দেয় — কমিউনিটি উন্নয়ন","বাসিন্দা বদলালেও এলাকার অপরাধহার স্থির থাকে — জোরালো প্রমাণ","নগর পরিকল্পনায় কার্যকর"],
+   con:["‘Ecological Fallacy’ — এলাকার তথ্য দিয়ে ব্যক্তিকে বিচার","হোয়াইট-কলার ও ধনী এলাকার অপরাধ ব্যাখ্যা করে না","দরিদ্র এলাকাকে কলঙ্কিত করার ঝুঁকি","পুলিশি রেকর্ডের পক্ষপাতে প্রভাবিত"],
+   ex:"শিল্পাঞ্চলের (আশুলিয়া, গাজীপুর) ঘনবসতিপূর্ণ বস্তিতে অস্থায়ী জনসংখ্যা ও সামাজিক নিয়ন্ত্রণের দুর্বলতা।"}
+ ]}
+];
+
+const main=document.getElementById('main');
+main.innerHTML = groups.map(g=>`
+<section class="group" data-g="${g.id}">
+  <div class="ghead"><span class="dot" style="background:${g.color}"></span>
+    <div><h2 style="color:${g.color}">${g.title} <span style="font-size:.85rem;color:var(--muted);font-weight:500">(${g.en})</span></h2><p>${g.note}</p></div></div>
+  ${g.items.map((it,i)=>`
+  <details class="card" data-s="${(it.bn+' '+it.en).toLowerCase()}" ${i===0?'open':''} style="border-top:3px solid ${g.color}">
+    <summary><div><h3>${it.bn}</h3><span class="en">${it.en}</span></div><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="def"><b>সংজ্ঞা:</b> ${it.def}</p>
+      <div class="cols">
+        <div class="col pro"><h4>✔ পক্ষে</h4><ul>${it.pro.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="col con"><h4>✘ বিপক্ষে</h4><ul>${it.con.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </div>
+      <div class="ex">🇧🇩 <b>বাংলাদেশ প্রেক্ষাপট:</b> ${it.ex}</div>
+    </div>
+  </details>`).join('')}
+</section>`).join('');
+
+document.getElementById('tbl').innerHTML =
+ `<tr><th>ধারণা</th><th>গ্রুপ</th><th>মূল পক্ষে যুক্তি</th><th>মূল বিপক্ষে যুক্তি</th></tr>` +
+ groups.flatMap(g=>g.items.map(it=>`<tr><td><b>${it.en}</b></td><td><span class="tag" style="background:${g.color}">${g.id==='g1'?'কর্পোরেট':g.id==='g2'?'পরিবেশ':'তত্ত্ব'}</span></td><td>${it.pro[0]}</td><td>${it.con[0]}</td></tr>`)).join('');
+
+let filt='all';
+function apply(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  document.querySelectorAll('section.group').forEach(s=>{
+    const show = filt==='all'||s.dataset.g===filt;
+    let any=false;
+    s.querySelectorAll('.card').forEach(c=>{
+      const m=!q||c.dataset.s.includes(q)||c.textContent.toLowerCase().includes(q);
+      c.classList.toggle('hidden',!m); if(m) any=true; if(q&&m) c.open=true;
+    });
+    s.classList.toggle('hidden',!show||!any);
+  });
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); filt=b.dataset.f; apply();
+});
+document.getElementById('q').oninput=apply;
+</script>
+</body>
+</html>

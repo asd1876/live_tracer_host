@@ -1,0 +1,250 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Culture, Globalization & Media Theory</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Noto+Serif+Bengali:wght@500;700&display=swap">
+<style>
+/* Layout: a single reference column. Each term is a ruled row (term + stance on the left, definition, proponent and example on the right), grouped by section, with a sticky search and stance filter. */
+:root {
+  --bg: #f4f7fa;
+  --surface: #ffffff;
+  --fg: #14202e;
+  --muted: #566577;
+  --line: #d6dee8;
+  --accent: #1f4e79;
+  --accent-soft: #e2ecf6;
+  --pro: #17704a;
+  --pro-bg: #e0f2e8;
+  --con: #a93229;
+  --con-bg: #fbe6e3;
+  --neu: #4c5866;
+  --neu-bg: #e6ebf1;
+  --font-body: "Hind Siliguri", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-display: "Noto Serif Bengali", "Noto Serif", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1620; --surface: #151f2b; --fg: #e5ecf4; --muted: #9eacbc; --line: #263546;
+    --accent: #8dbbec; --accent-soft: #1b2c40;
+    --pro: #6fd3a2; --pro-bg: #123324; --con: #f09a92; --con-bg: #3a1a18; --neu: #b4c0cd; --neu-bg: #202c3a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1620; --surface: #151f2b; --fg: #e5ecf4; --muted: #9eacbc; --line: #263546;
+  --accent: #8dbbec; --accent-soft: #1b2c40;
+  --pro: #6fd3a2; --pro-bg: #123324; --con: #f09a92; --con-bg: #3a1a18; --neu: #b4c0cd; --neu-bg: #202c3a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 56px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 62rem; margin: 0 auto; }
+header { padding-block: 40px 20px; }
+.eyebrow { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 8px; }
+h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1.25; margin: 0 0 10px; color: var(--accent); text-wrap: balance; }
+.lede { color: var(--muted); margin: 0; max-width: 42rem; }
+
+.toolbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  padding-block: 12px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center;
+}
+.search { flex: 1 1 14rem; min-width: 0; }
+.search input {
+  width: 100%; font: inherit; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px;
+}
+.search input:focus-visible, .filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button {
+  font: inherit; font-size: 0.9rem; cursor: pointer; color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px;
+}
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+.count { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-left: auto; }
+
+section { padding-top: 36px; }
+section[hidden] { display: none !important; }
+h2 { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.35; margin: 0 0 6px; text-wrap: balance; }
+.intro { color: var(--muted); margin: 0 0 14px; max-width: 46rem; }
+.list { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 8px 28px; padding: 16px 20px; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; }
+.term { font-weight: 600; font-size: 1.02rem; line-height: 1.4; margin: 0 0 6px; overflow-wrap: anywhere; }
+.chip { display: inline-block; font-size: 0.78rem; font-weight: 600; line-height: 1.5; padding: 1px 10px; border-radius: 999px; }
+.chip.pro { color: var(--pro); background: var(--pro-bg); }
+.chip.con { color: var(--con); background: var(--con-bg); }
+.chip.neu { color: var(--neu); background: var(--neu-bg); }
+.def { margin: 0 0 8px; }
+.meta { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 12px; margin: 0; font-size: 0.93rem; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; }
+.note { margin: 14px 0 0; padding: 10px 14px; background: var(--accent-soft); border-radius: 6px; font-size: 0.95rem; max-width: 46rem; }
+.note b { color: var(--accent); }
+.empty { text-align: center; color: var(--muted); padding: 48px 0; }
+@media (max-width: 640px) {
+  .row { grid-template-columns: minmax(0, 1fr); padding: 14px 16px; }
+  .count { margin-left: 0; flex-basis: 100%; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">টার্ম নোট</p>
+    <h1>Culture, Globalization &amp; Media Theory</h1>
+    <p class="lede">সংজ্ঞা, প্রবক্তা, উদাহরণ এবং পক্ষে/বিপক্ষে ধরনসহ প্রতিটি টার্ম। সার্চ করুন বা ধরন অনুযায়ী ছেঁকে দেখুন।</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="search"><input id="q" type="search" placeholder="টার্ম, প্রবক্তা বা উদাহরণ খুঁজুন" aria-label="খুঁজুন"></div>
+    <div class="filters" id="filters" role="group" aria-label="ধরন অনুযায়ী ছাঁকুন">
+      <button type="button" data-f="all" aria-pressed="true">সব</button>
+      <button type="button" data-f="pro" aria-pressed="false">পক্ষে</button>
+      <button type="button" data-f="con" aria-pressed="false">বিপক্ষে</button>
+      <button type="button" data-f="neu" aria-pressed="false">নিরপেক্ষ / অন্যান্য</button>
+    </div>
+    <div class="count" id="count" aria-live="polite"></div>
+  </div>
+
+  <main id="main"></main>
+  <p class="empty" id="empty" hidden>কোনো টার্ম মেলেনি। অন্য শব্দ বা ধরন চেষ্টা করুন।</p>
+</div>
+
+<script>
+var SECTIONS = [
+  { id: "s1", title: "১. বিশ্বায়ন ও সংস্কৃতি",
+    intro: "বিশ্বায়ন সংস্কৃতিকে একদিকে মিশিয়ে নতুন রূপ দেয় (পক্ষে), অন্যদিকে একটি সংস্কৃতির আধিপত্য ও স্বকীয়তা হারানোর ঝুঁকি তৈরি করে (বিপক্ষে)।",
+    items: [
+      ["Cultural Globalization", "সংস্কৃতির আন্তর্জাতিক বিনিময় ও আন্তঃসংযোগ, যেখানে ধারণা, পণ্য ও জীবনধারা সীমানা পেরোয়।", "Roland Robertson, Arjun Appadurai", "হলিউড সিনেমা, K-pop, ইন্টারনেট মিম", "neu", "নিরপেক্ষ"],
+      ["Cultural Hybridization", "দুই বা বেশি সংস্কৃতির মিশ্রণে নতুন সাংস্কৃতিক রূপ তৈরি।", "Homi Bhabha, Néstor García Canclini, Jan Nederveen Pieterse", "ফিউশন খাবার, দেশি-বিদেশি সুরের মিশ্র গান", "pro", "পক্ষে"],
+      ["Cultural Imperialism", "শক্তিশালী দেশ বা গোষ্ঠী কর্তৃক নিজেদের সংস্কৃতি দুর্বলদের ওপর চাপিয়ে দেওয়া।", "Herbert Schiller", "বিশ্বজুড়ে মার্কিন মিডিয়ার আধিপত্য", "con", "বিপক্ষে"],
+      ["Cultural Homogenization", "বিশ্বজুড়ে সংস্কৃতি ক্রমে একরকম হয়ে যাওয়া।", "George Ritzer (McDonaldization)", "McDonald's, Coca-Cola, একই ধাঁচের ফ্যাশন", "con", "বিপক্ষে"],
+      ["Glocalization", "বৈশ্বিক (global) পণ্য বা ধারণাকে স্থানীয় (local) রুচি অনুযায়ী বদলে নেওয়া।", "Roland Robertson", "ভারতে McDonald's-এর নিরামিষ বার্গার", "pro", "পক্ষে"],
+      ["Cultural Diffusion", "এক সমাজ থেকে অন্য সমাজে সাংস্কৃতিক উপাদানের ছড়িয়ে পড়া।", "Franz Boas ও Alfred Kroeber-এর নৃবিজ্ঞান ধারা", "সিল্ক রুটে কাগজ ও ধর্মের বিস্তার, দক্ষিণ এশিয়ায় ক্রিকেট", "pro", "পক্ষে"],
+      ["Cultural Identity Crisis", "নিজ সংস্কৃতি ও বহিরাগত প্রভাবের টানাপোড়েনে পরিচয় নিয়ে দ্বিধা।", "Stuart Hall (সাংস্কৃতিক পরিচয়), Erik Erikson (identity crisis)", "প্রবাসী দ্বিতীয় প্রজন্ম, তরুণদের ভাষা ও পোশাকের দ্বন্দ্ব", "con", "বিপক্ষে"],
+      ["Syncretism", "ভিন্ন ধর্ম, বিশ্বাস বা রীতির মিলনে নতুন বিশ্বাসব্যবস্থা।", "নৃবিজ্ঞান ও ধর্মতত্ত্বের আলোচনা", "সত্যপীর, বাউল সাধনা, আকবরের দ্বীন-ই-ইলাহি", "pro", "পক্ষে"],
+      ["Unity in Diversity", "ভিন্নতা বজায় রেখেও ঐক্যবদ্ধ থাকার নীতি।", "রাজনৈতিক ও সাংস্কৃতিক আদর্শ", "ভারতের জাতীয় ঐক্যের ধারণা, ইন্দোনেশিয়ার Bhinneka Tunggal Ika, ইউরোপীয় ইউনিয়নের মূলমন্ত্র", "pro", "পক্ষে"],
+      ["Cultural Appropriation", "প্রভাবশালী গোষ্ঠী কর্তৃক অন্য সংস্কৃতির উপাদান সম্মান বা অনুমতি ছাড়া ব্যবহার।", "উত্তর-ঔপনিবেশিক ও সমাজবিজ্ঞান আলোচনা", "আদিবাসী পোশাক বা প্রতীককে ফ্যাশন হিসেবে ব্যবহার", "con", "বিপক্ষে"],
+      ["Cultural Diplomacy", "সংস্কৃতি ব্যবহার করে দেশের ভাবমূর্তি ও আন্তর্জাতিক সম্পর্ক গড়া।", "Joseph Nye (soft power)", "কোরিয়ান ওয়েভ, British Council, Alliance Française", "pro", "পক্ষে"],
+      ["Creative Economy", "সৃজনশীলতা ও মেধাভিত্তিক শিল্পের (চলচ্চিত্র, সংগীত, ডিজাইন, গেম) অর্থনীতি।", "John Howkins (২০০১)", "চলচ্চিত্র, গেম ডেভেলপমেন্ট, ফ্যাশন ডিজাইন", "pro", "পক্ষে"]
+    ] },
+  { id: "s2", title: "২. নির্ধারণবাদ বনাম সম্ভাবনাবাদ",
+    intro: "নির্ধারণবাদ বলে সমাজ ও সংস্কৃতি একটি একক বাহ্যিক শক্তির দ্বারা গড়ে ওঠে; সম্ভাবনাবাদ ও Sauer-এর ধারণা মানুষের নিজস্ব ভূমিকাকে গুরুত্ব দেয়।",
+    items: [
+      ["Technological Determinism", "প্রযুক্তিই সমাজ, সংস্কৃতি ও মানুষের চিন্তাধারা বদলের প্রধান চালিকাশক্তি।", "Marshall McLuhan (\"the medium is the message\"), Thorstein Veblen", "ছাপাখানা বা ইন্টারনেট সমাজকে বদলে দিয়েছে", "con", "নির্ধারণবাদ"],
+      ["Geographical Determinism", "ভৌগোলিক পরিবেশ (জলবায়ু, ভূপ্রকৃতি) মানুষের জীবন ও সংস্কৃতি নির্ধারণ করে।", "Ellsworth Huntington, Friedrich Ratzel, Ellen Churchill Semple", "নদীমাতৃক অঞ্চলে কৃষিভিত্তিক সভ্যতা", "con", "নির্ধারণবাদ"],
+      ["Environmental Possibilism", "পরিবেশ কিছু সীমা দেয়, কিন্তু মানুষ নিজের সিদ্ধান্তে বিকল্প বেছে নেয়।", "Paul Vidal de la Blache, Lucien Febvre", "মরু অঞ্চলে সেচ ও প্রযুক্তিতে চাষাবাদ", "pro", "সম্ভাবনাবাদ"],
+      ["Cultural Landscape", "মানুষ প্রাকৃতিক ভূদৃশ্যকে নিজের সংস্কৃতি দিয়ে বদলে যে ভূদৃশ্য গড়ে।", "Carl Sauer (১৯২৫)", "ধানক্ষেত, টেরেস ফার্মিং, শহরের নকশা", "neu", "সম্ভাবনাবাদের কাছাকাছি"]
+    ],
+    note: "<b>মূল পার্থক্য:</b> নির্ধারণবাদে কারণ একটিই (প্রযুক্তি বা ভূগোল), সম্ভাবনাবাদে মানুষ ও পরিবেশ দুই পক্ষই ভূমিকা রাখে।" },
+  { id: "s3", title: "৩. সংস্কৃতি সংরক্ষণ ও পরিচয়",
+    intro: "এই ধারণাগুলো সংস্কৃতিকে টিকিয়ে রাখা, রক্ষা করা এবং তাকে সম্পদ ও পরিচয়ের উৎস হিসেবে দেখার পক্ষে।",
+    items: [
+      ["Folk Culture vs Popular Culture", "Folk culture ছোট, ঐতিহ্যবাহী ও স্থানীয় সমাজের সংস্কৃতি, যা মুখে মুখে বা প্রজন্মে ছড়ায়। Popular culture গণমাধ্যম ও বাজারনির্ভর, দ্রুত বদলায় ও বিশ্বজুড়ে ছড়ায়।", "সাংস্কৃতিক ভূগোল ও নৃবিজ্ঞান", "Folk: বাউল গান, পুঁথি, লোকনৃত্য। Popular: সিনেমা, পপ সংগীত, সোশ্যাল মিডিয়া ট্রেন্ড", "neu", "তুলনা"],
+      ["Oral Tradition", "লিখিত রূপ ছাড়া কথা, গান ও গল্পের মাধ্যমে জ্ঞান ও ইতিহাস প্রজন্মান্তরে পৌঁছে দেওয়া।", "Jan Vansina", "গাজীর গান, ঠাকুরমার ঝুলির গল্প, আদিবাসী মিথ", "pro", "সংরক্ষণ"],
+      ["Cultural Identity", "কোনো ব্যক্তি বা গোষ্ঠীর ভাষা, ধর্ম, রীতি ও মূল্যবোধের ভিত্তিতে গড়া আত্মপরিচয়।", "Stuart Hall", "ভাষা আন্দোলনের চেতনা, পহেলা বৈশাখ উদযাপন", "pro", "সংরক্ষণ"],
+      ["Intangible Cultural Heritage (UNESCO)", "স্পর্শযোগ্য নয় এমন ঐতিহ্য: প্রথা, পরিবেশনা, জ্ঞান ও কারুশিল্প, যা UNESCO-এর ২০০৩ সালের কনভেনশনে সুরক্ষিত।", "UNESCO (২০০৩ কনভেনশন)", "বাংলাদেশের মঙ্গল শোভাযাত্রা, জামদানি বুনন, বাউল সংগীত", "pro", "সংরক্ষণ"],
+      ["Cultural Capital", "শিক্ষা, রুচি, ভাষা ও আচরণগত দক্ষতা, যা সমাজে মর্যাদা ও সুযোগ এনে দেয়।", "Pierre Bourdieu", "মার্জিত ভাষা, শিল্প-সাহিত্যের জ্ঞান, উচ্চশিক্ষার সনদ", "neu", "বর্ণনামূলক"],
+      ["Cultural Sustainability", "সংস্কৃতিকে ভবিষ্যৎ প্রজন্মের জন্য জীবন্ত ও টেকসই রাখা।", "সাংস্কৃতিক নীতি ও UNESCO আলোচনা", "লোকশিল্পীদের প্রশিক্ষণ, মাতৃভাষায় শিক্ষা", "pro", "সংরক্ষণ"],
+      ["Geographical Indication (GI)", "নির্দিষ্ট অঞ্চলের পণ্যের মান ও খ্যাতি যখন সেই অঞ্চলের সঙ্গে যুক্ত, তখন তার আইনি সুরক্ষা।", "WTO TRIPS চুক্তি", "জামদানি, ইলিশ, ফজলি আম (বাংলাদেশের GI পণ্য), দার্জিলিং চা", "pro", "সুরক্ষা"]
+    ] },
+  { id: "s4", title: "৪. গণমাধ্যম তত্ত্ব",
+    intro: "প্রথম চারটি ধারণা মুক্ত ও দায়িত্বশীল গণমাধ্যমের পক্ষে; শেষ দুটি দেখায় কীভাবে ক্ষমতা ও পুঁজি গণমাধ্যমকে নিয়ন্ত্রণ করে (সমালোচনামূলক দৃষ্টিভঙ্গি)।",
+    items: [
+      ["Liberal Theory of the Press", "রাষ্ট্রের নিয়ন্ত্রণ ছাড়া সম্পূর্ণ স্বাধীন সংবাদপত্র। \"ভাবের মুক্ত বাজারে\" সত্য নিজেই জয়ী হবে।", "John Milton, Areopagitica (১৬৪৪)", "আমেরিকার প্রথম সংশোধনী, সেন্সরশিপবিরোধী আন্দোলন", "pro", "পক্ষে"],
+      ["Social Responsibility Theory", "স্বাধীনতার সঙ্গে সমাজের প্রতি দায়িত্বও থাকবে: সত্য, নিরপেক্ষ ও বহুমত প্রকাশ।", "Hutchins Commission (১৯৪৭)", "সম্পাদকীয় নীতিমালা, প্রেস কাউন্সিল", "pro", "পক্ষে"],
+      ["Public Sphere Theory", "নাগরিকেরা যেখানে অবাধে যুক্তিভিত্তিক আলোচনা করে জনমত গড়ে, সেই স্থান।", "Jürgen Habermas (১৯৮৯ ইংরেজি অনুবাদ)", "কফিহাউস, টক শো, অনলাইন ফোরাম", "pro", "পক্ষে"],
+      ["Watchdog Journalism", "সাংবাদিকতা সরকার ও ক্ষমতাবানদের জবাবদিহি নিশ্চিত করার প্রহরী।", "সাংবাদিকতার চতুর্থ স্তম্ভ ধারণা", "অনুসন্ধানী প্রতিবেদন, দুর্নীতি উন্মোচন", "pro", "পক্ষে"],
+      ["Propaganda Model", "মালিকানা, বিজ্ঞাপন, সরকারি উৎস, flak ও ideology-র ফিল্টারে মিডিয়া ক্ষমতাবানদের স্বার্থ রক্ষা করে।", "Noam Chomsky ও Edward Herman (১৯৮৮)", "কর্পোরেট মিডিয়ায় যুদ্ধ বা অর্থনীতির একপাক্ষিক কভারেজ", "con", "বিপক্ষে"],
+      ["Manufacturing Consent", "মিডিয়া কৌশলে জনমত তৈরি করে সাধারণ মানুষের সম্মতি আদায় করে।", "Chomsky ও Herman (বইয়ের নাম, ১৯৮৮); শব্দটি Walter Lippmann-এর", "ভোটের আগে একপেশে প্রচার, নীতিনির্ধারণে জনসমর্থন তৈরি", "con", "বিপক্ষে"]
+    ],
+    note: "<b>প্রোপাগান্ডা মডেলের পাঁচ ফিল্টার:</b> মালিকানা, বিজ্ঞাপন, সংবাদের উৎস, flak (সমালোচনামূলক প্রতিক্রিয়া) এবং একটি সাধারণ শত্রু বা আদর্শ (মূল বইয়ে ঠান্ডা যুদ্ধের কমিউনিজম-বিরোধিতা)।" },
+  { id: "s5", title: "৫. তথ্য-বিশৃঙ্খলা ও ডিজিটাল হুমকি",
+    intro: "পাঁচটি টার্ম ডিজিটাল যুগের ক্ষতিকর দিক; Fact-Checking হলো এর প্রধান প্রতিকার।",
+    items: [
+      ["Hate Speech", "জাতি, ধর্ম, লিঙ্গ বা পরিচয়ের ভিত্তিতে কোনো গোষ্ঠীর প্রতি ঘৃণা বা বিদ্বেষ ছড়ানো বক্তব্য। সহিংসতা উসকে দিতে পারে।", "বৈশিষ্ট্য: সহিংসতা উসকে দিতে পারে", "সামাজিক মাধ্যমে সংখ্যালঘুবিরোধী প্রচার", "con", "ক্ষতিকর"],
+      ["Misinformation", "ভুল তথ্য, যা প্রচারকারী সত্য মনে করে ছড়ায়।", "অনিচ্ছাকৃত", "না জেনে পুরোনো ছবি বা গুজব শেয়ার করা", "con", "ক্ষতিকর"],
+      ["Disinformation", "জেনেশুনে মিথ্যা তথ্য ছড়ানো।", "ইচ্ছাকৃত, উদ্দেশ্যপ্রণোদিত", "নির্বাচনের আগে পরিকল্পিত মিথ্যা প্রচার", "con", "ক্ষতিকর"],
+      ["Deepfake", "AI দিয়ে বানানো বা বদলে দেওয়া ভিডিও, ছবি বা অডিও, যা আসল মনে হয়।", "দৃশ্য ও শব্দের ওপর আস্থা নষ্ট করে", "নেতার ভুয়া বক্তৃতার ভিডিও", "con", "ক্ষতিকর"],
+      ["Botnet", "সংক্রমিত কম্পিউটার বা ডিভাইসের নেটওয়ার্ক, যা দূর থেকে নিয়ন্ত্রণ করে স্প্যাম, DDoS বা ভুয়া অ্যাকাউন্ট চালানো হয়।", "স্বয়ংক্রিয়ভাবে বড় পরিসরে প্রচার", "ভুয়া অ্যাকাউন্টে হ্যাশট্যাগ ট্রেন্ড করানো", "con", "ক্ষতিকর"],
+      ["Fact-Checking", "দাবি বা তথ্য যাচাই করে সত্য-মিথ্যা নির্ধারণ।", "Misinformation ও Disinformation-এর প্রতিকার", "Snopes, AFP Fact Check, বাংলাদেশের Dismislab ও Rumor Scanner", "pro", "প্রতিকার"]
+    ],
+    note: "<b>সহজে মনে রাখার উপায়:</b> Misinformation = ভুল কিন্তু অনিচ্ছাকৃত; Disinformation = ভুল এবং ইচ্ছাকৃত।" }
+];
+var META_LABEL = { s5: "বৈশিষ্ট্য" };
+
+var main = document.getElementById("main");
+var total = 0;
+SECTIONS.forEach(function (s) {
+  var sec = document.createElement("section");
+  sec.id = s.id;
+  var h = document.createElement("h2"); h.textContent = s.title; sec.appendChild(h);
+  var p = document.createElement("p"); p.className = "intro"; p.textContent = s.intro; sec.appendChild(p);
+  var list = document.createElement("div"); list.className = "list";
+  s.items.forEach(function (it) {
+    total++;
+    var row = document.createElement("div");
+    row.className = "row"; row.dataset.stance = it[4];
+    row.dataset.text = (it[0] + " " + it[1] + " " + it[2] + " " + it[3]).toLowerCase();
+    var left = document.createElement("div");
+    var t = document.createElement("p"); t.className = "term"; t.textContent = it[0];
+    var c = document.createElement("span"); c.className = "chip " + it[4]; c.textContent = it[5];
+    left.appendChild(t); left.appendChild(c);
+    var right = document.createElement("div");
+    var d = document.createElement("p"); d.className = "def"; d.textContent = it[1];
+    var dl = document.createElement("dl"); dl.className = "meta";
+    var who = s.id === "s5" ? "পার্থক্য" : "প্রবক্তা / উৎস";
+    [[who, it[2]], ["উদাহরণ", it[3]]].forEach(function (kv) {
+      var dt = document.createElement("dt"); dt.textContent = kv[0];
+      var dd = document.createElement("dd"); dd.textContent = kv[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    right.appendChild(d); right.appendChild(dl);
+    row.appendChild(left); row.appendChild(right);
+    list.appendChild(row);
+  });
+  sec.appendChild(list);
+  if (s.note) { var n = document.createElement("p"); n.className = "note"; n.innerHTML = s.note; sec.appendChild(n); }
+  main.appendChild(sec);
+});
+
+var state = { f: "all", q: "" };
+var countEl = document.getElementById("count");
+var emptyEl = document.getElementById("empty");
+function bn(n) { try { return n.toLocaleString("bn-BD"); } catch (e) { return String(n); } }
+function apply() {
+  var shown = 0;
+  document.querySelectorAll("section").forEach(function (sec) {
+    var any = 0;
+    sec.querySelectorAll(".row").forEach(function (r) {
+      var ok = (state.f === "all" || r.dataset.stance === state.f) &&
+               (!state.q || r.dataset.text.indexOf(state.q) !== -1);
+      r.hidden = !ok; if (ok) any++;
+    });
+    sec.hidden = any === 0;
+    var note = sec.querySelector(".note");
+    if (note) note.hidden = state.f !== "all" || !!state.q;
+    shown += any;
+  });
+  countEl.textContent = bn(shown) + " / " + bn(total) + " টার্ম";
+  emptyEl.hidden = shown !== 0;
+}
+document.getElementById("filters").addEventListener("click", function (e) {
+  var b = e.target.closest("button"); if (!b) return;
+  state.f = b.dataset.f;
+  this.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+  apply();
+});
+document.getElementById("q").addEventListener("input", function () {
+  state.q = this.value.trim().toLowerCase(); apply();
+});
+apply();
+</script>
+
+</body></html>
