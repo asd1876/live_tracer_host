@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>নিত্য সমাস কীভাবে হলো</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee; --paper:#fffdf9; --ink:#1d1b18; --muted:#6a645a; --line:#e2dccf;
+  --a:#2f6f8f; --a-bg:#e5f0f5; --b:#8a4f9e; --b-bg:#f1e8f5;
+  --bad:#b23a3a; --bad-bg:#fbe7e5; --good:#2c7a4b; --good-bg:#e3f3e9; --acc:#b5541c; --acc-bg:#fbeadf;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#15140f;--paper:#1f1d17;--ink:#eee7da;--muted:#a69d8f;--line:#35312a;
+  --a:#82c2de;--a-bg:#1c2b32;--b:#cfa1e0;--b-bg:#2b2231;--bad:#f08b8b;--bad-bg:#3a1f1f;--good:#7fd3a0;--good-bg:#1b3125;--acc:#f0a072;--acc-bg:#36251a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;font-size:17px;line-height:1.65}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 18px 80px}
+h1,h2,h3{font-family:'Noto Serif Bengali','Hind Siliguri',serif;margin:0}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.3}
+.lead{color:var(--muted);margin:8px 0 22px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px}
+.box p{margin:6px 0}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:12px}
+.rule{background:var(--acc-bg);border-radius:10px;padding:10px 14px;font-size:15.5px}
+.rule b{color:var(--acc)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:640px){.compare{grid-template-columns:1fr}}
+.cmp{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}
+.cmp h3{font-size:18px;margin-bottom:6px}
+.cmp.g{background:var(--good-bg)} .cmp.n{background:var(--acc-bg)}
+.eq{font-weight:600;font-size:18px;margin:4px 0}
+.pill{display:inline-block;padding:3px 11px;border-radius:999px;font-weight:600;font-size:15px;white-space:nowrap}
+.pa{background:var(--a-bg);color:var(--a)} .pb{background:var(--b-bg);color:var(--b)}
+.pbad{background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
+.pgood{background:var(--good-bg);color:var(--good)}
+.op{color:var(--muted);font-weight:700;margin:0 4px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin-bottom:8px;border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-size:15px}
+nav a:hover{border-color:var(--acc);color:var(--acc)}
+section{margin:32px 0 0;scroll-margin-top:70px}
+.sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.num{font-family:'Noto Serif Bengali',serif;font-size:30px;color:var(--acc);font-weight:800}
+h2{font-size:24px}
+.why{background:var(--acc-bg);border-left:4px solid var(--acc);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0 16px}
+.why b{color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.word{font-size:23px;font-weight:700;font-family:'Noto Serif Bengali',serif}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:15px}
+.lbl{color:var(--muted);min-width:96px}
+.ex{font-size:15px;color:var(--muted);font-style:italic}
+.reason{font-size:15px;border-top:1px dashed var(--line);padding-top:8px}
+.reason b{color:var(--good)}
+.warn{background:var(--bad-bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:28px}
+.warn h3{color:var(--bad);font-size:20px;margin-bottom:6px}
+footer{margin-top:44px;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>নিত্য সমাস কীভাবে হলো?</h1>
+  <p class="lead">তোমার বইয়ের প্রতিটি উদাহরণ — আলাদা আলাদা কারণসহ</p>
+
+  <div class="box">
+    <p><b>সংজ্ঞা:</b> যে সমাসে পদগুলো সবসময় (নিত্য) একসাথে জোড়া থাকে, যার ব্যাসবাক্য হয় না, আর ব্যাসবাক্য করতে গেলে <b>অন্য একটি শব্দের সাহায্য</b> নিতে হয়, তাকে নিত্য সমাস বলে।</p>
+    <div class="rules">
+      <div class="rule"><b>১. নিত্য সমাসবদ্ধ</b><br>পদগুলো আলাদা করে বসালে সেই অর্থ পাওয়া যায় না।</div>
+      <div class="rule"><b>২. ব্যাসবাক্য হয় না</b><br>সমাসের নিজের পদ দিয়ে ব্যাসবাক্য বানানো যায় না।</div>
+      <div class="rule"><b>৩. অন্য পদের সাহায্য</b><br>একই অর্থের অন্য শব্দ (তদর্থবাচক শব্দ) দিয়ে অর্থ বোঝাতে হয়।</div>
+    </div>
+
+    <div class="compare">
+      <div class="cmp g">
+        <h3>সাধারণ সমাস</h3>
+        <div class="eq">রাজার পুত্র = রাজপুত্র</div>
+        <p>ব্যাসবাক্যে <b>রাজা</b> আর <b>পুত্র</b> — সমাসের নিজের পদ দুটোই আছে। বাইরের কোনো শব্দ লাগেনি।</p>
+      </div>
+      <div class="cmp n">
+        <h3>নিত্য সমাস</h3>
+        <div class="eq">অন্য গ্রাম = গ্রামান্তর</div>
+        <p>সমাসে আছে <b>গ্রাম + অন্তর</b>, কিন্তু ব্যাসবাক্যে “অন্তর” নেই, এসেছে নতুন শব্দ <b>“অন্য”</b>। “গ্রামের অন্তর” বললে অর্থই বদলে যায়।</p>
+      </div>
+    </div>
+    <p style="margin-top:12px"><b>প্রতিটি কার্ডে যা দেখবে:</b> <span class="pill pa">পূর্বপদ</span> + <span class="pill pb">পরপদ</span> · সরাসরি ব্যাসবাক্য করার চেষ্টা <span class="pill pbad">ভুল</span> · অন্য পদ দিয়ে সঠিক অর্থ <span class="pill pgood">সঠিক</span></p>
+  </div>
+
+  <nav id="nav"></nav>
+  <div id="out"></div>
+
+  <div class="warn">
+    <h3>সাবধান: তেপান্তর নিত্য সমাস নয়</h3>
+    <p>দেখতে “-অন্তর” মনে হলেও <b>তেপান্তর = তে (তিন) + প্রান্তর</b>। এখানে “অন্তর” নয়, পরপদ হলো “প্রান্তর” (মাঠ)।</p>
+    <p>ব্যাসবাক্য: <b>তিন প্রান্তরের সমাহার = তেপান্তর</b>। এর ব্যাসবাক্য সমাসের নিজের পদ দিয়েই হয়, আর পূর্বপদ সংখ্যা ও অর্থ সমাহার, তাই এটি <b>দ্বিগু সমাস</b>।</p>
+  </div>
+
+  <footer>নিজের পদে ব্যাসবাক্য হয় না, অন্য শব্দ লাগে, তাই এগুলো নিত্য সমাস।</footer>
+</div>
+
+<script>
+// [সমস্তপদ, পূর্বপদ, পরপদ, সরাসরি চেষ্টা (ভুল), সঠিক অর্থ, বাক্যে উদাহরণ, কারণ]
+const DATA=[
+{id:"antar",n:"১",title:"পরপদে ‘অন্তর’",
+ why:"এখানে <b>‘অন্তর’</b> মানে মন বা ভেতর নয়, মানে <b>‘অন্য’</b>। কিন্তু “অন্তর” শব্দটি একা বসিয়ে এই অর্থ পাওয়া যায় না। “গ্রাম অন্তর” বা “গ্রামের অন্তর” বললে অর্থ দাঁড়ায় গ্রামের ভেতর। তাই ব্যাসবাক্যে “অন্তর”-এর বদলে নতুন শব্দ <b>“অন্য”</b> আনতে হয়। নিজের পদে ব্যাসবাক্য হয় না, অন্য পদের সাহায্য লাগে, তাই এগুলো নিত্য সমাস।",
+ items:[
+ ["গ্রামান্তর","গ্রাম","অন্তর","গ্রামের অন্তর","অন্য গ্রাম","সে গ্রামান্তরে চলে গেল।","“গ্রামের অন্তর” মানে গ্রামের ভেতর, যা আসল অর্থ নয়। ঠিক অর্থের জন্য “অন্য” শব্দটি বাইরে থেকে আনতে হলো।"],
+ ["দেশান্তর","দেশ","অন্তর","দেশের অন্তর","অন্য দেশ","যুদ্ধের পর অনেকে দেশান্তরী হলো।","“অন্তর” দিয়ে ‘অন্য’ বোঝানো যায় না। ব্যাসবাক্যে “অন্য দেশ” লিখতে হয়, অর্থাৎ নতুন পদ লাগে।"],
+ ["গ্রহান্তর","গ্রহ","অন্তর","গ্রহের অন্তর","অন্য গ্রহ","গ্রহান্তরে প্রাণ আছে কি না, বিজ্ঞানীরা খুঁজছেন।","“গ্রহের অন্তর” মানে গ্রহের ভেতরের অংশ। ‘অন্য গ্রহ’ বোঝাতে “অন্য” শব্দের সাহায্য নিতে হয়।"],
+ ["কালান্তর","কাল","অন্তর","কালের অন্তর","অন্য কাল","কালান্তরে এই প্রথা হারিয়ে গেছে।","সমাসের পদ “কাল” আর “অন্তর”, কিন্তু ব্যাসবাক্যে “অন্তর” নেই, এসেছে “অন্য”। তাই নিত্য সমাস।"],
+ ["রূপান্তর","রূপ","অন্তর","রূপের অন্তর","অন্য রূপ","বরফ গলে জলে রূপান্তরিত হয়।","‘অন্য রূপে বদলে যাওয়া’ বোঝাতে “অন্য” শব্দ লাগে। “রূপের অন্তর” দিয়ে এই অর্থ আসে না।"],
+ ["যুগান্তর","যুগ","অন্তর","যুগের অন্তর","অন্য যুগ","এই আবিষ্কার যুগান্তর এনেছে।","“অন্তর” এখানে ‘অন্য’ অর্থের প্রতিনিধি মাত্র। ব্যাসবাক্যে তদর্থবাচক “অন্য” বসাতে হয়।"],
+ ["ধর্মান্তর","ধর্ম","অন্তর","ধর্মের অন্তর","অন্য ধর্ম","সে ধর্মান্তরিত হয়েছে।","‘অন্য ধর্ম গ্রহণ’, এই অর্থ পেতে “অন্য” শব্দ বাইরে থেকে আনতে হয়।"],
+ ["লোকান্তর","লোক","অন্তর","লোকের অন্তর","অন্য লোক (পরলোক)","তিনি গত বছর লোকান্তরিত হয়েছেন।","“লোকের অন্তর” মানে মানুষের মন, যা সম্পূর্ণ ভিন্ন অর্থ। ‘অন্য লোক’ বোঝাতে “অন্য” লাগে।"],
+ ["বাক্যান্তর","বাক্য","অন্তর","বাক্যের অন্তর","অন্য বাক্য","বাক্যান্তরে কথাটি আবার বলো।","নিজের দুই পদে অর্থ খোলে না। “অন্য বাক্য” লিখতে নতুন পদের সাহায্য নিতে হয়।"],
+ ["উপায়ান্তর","উপায়","অন্তর","উপায়ের অন্তর","অন্য উপায়","উপায়ান্তর না দেখে সে রাজি হলো।","‘অন্য কোনো উপায়’ বোঝাতে “অন্য” শব্দ লাগে। “অন্তর” একা সেই অর্থ দেয় না।"],
+ ["স্থানান্তর","স্থান","অন্তর","স্থানের অন্তর","অন্য স্থান","অফিস স্থানান্তর করা হয়েছে।","“স্থানের অন্তর” বললে ‘জায়গার ভেতর’ বোঝায়। ঠিক অর্থে “অন্য স্থান” লাগে, তাই নিত্য সমাস।"],
+ ["পাঠান্তর","পাঠ","অন্তর","পাঠের অন্তর","অন্য পাঠ","পুঁথির এই অংশে পাঠান্তর আছে।","‘অন্য পাঠ’ (ভিন্ন সংস্করণের লেখা) বোঝাতে “অন্য” শব্দের সাহায্য নিতে হয়।"],
+ ["মতান্তর","মত","অন্তর","মতের অন্তর","অন্য মত","দুই ভাইয়ের মধ্যে মতান্তর হয়েছে।","সমাসের “অন্তর” ব্যাসবাক্যে টেকে না, সেখানে “অন্য” বসে। তাই নিত্য সমাস।"],
+ ["দ্বীপান্তর","দ্বীপ","অন্তর","দ্বীপের অন্তর","অন্য দ্বীপ (নির্বাসন)","বিপ্লবীদের দ্বীপান্তরে পাঠানো হয়েছিল।","“দ্বীপের অন্তর” মানে দ্বীপের ভেতর। ‘অন্য দ্বীপে নির্বাসন’ বোঝাতে “অন্য” লাগে।"]
+ ]},
+{id:"matra",n:"২",title:"পরপদে ‘মাত্র’",
+ why:"এখানে <b>‘মাত্র’</b> মানে <b>‘কেবল / শুধু’</b>। “জল মাত্র” বা “তৎ মাত্র” আলাদা করে বললে পরিষ্কার ব্যাসবাক্য হয় না। তাই অর্থ বোঝাতে “মাত্র”-এর বদলে <b>“কেবল”</b> শব্দটি আনতে হয়। নতুন পদের সাহায্য লাগে, তাই নিত্য সমাস।",
+ items:[
+ ["তন্মাত্র","তৎ (তা)","মাত্র","তৎ মাত্র","কেবল তাহা","তন্মাত্র অবলম্বন করে সে বেঁচে আছে।","“তৎ” আর “মাত্র” আলাদা বসালে বাক্য হয় না। সন্ধিতে জুড়ে (তৎ + মাত্র) একসাথেই থাকে, অর্থ বোঝাতে “কেবল” লাগে।"],
+ ["জলমাত্র","জল","মাত্র","জলের মাত্র","কেবল জল","সারাদিন জলমাত্র পান করে ছিল।","“জলের মাত্র” অর্থহীন। ‘শুধু জল’ বোঝাতে “কেবল” শব্দটি বাইরে থেকে আনতে হয়।"],
+ ["দর্শনমাত্র","দর্শন","মাত্র","দর্শনের মাত্র","কেবল দর্শন (দেখামাত্রই)","বাঘ দর্শনমাত্র সে দৌড় দিল।","“দর্শনের মাত্র” বলে কিছু হয় না। ‘কেবল দেখা’ বা ‘দেখার সঙ্গে সঙ্গে’ বোঝাতে অন্য শব্দ লাগে।"]
+ ]},
+{id:"ti",n:"৩",title:"পরপদে ‘টি’",
+ why:"<b>‘টি’</b> কোনো স্বাধীন শব্দ নয়, এটি একটি নির্দেশক (পদাশ্রিত নির্দেশক)। ‘টি’ একা বসতে পারে না, সবসময় শব্দের সঙ্গে জুড়ে থাকে, অর্থাৎ নিত্য সমাসবদ্ধ। এর অর্থ বোঝাতে <b>“একটি”</b> শব্দ আনতে হয়।",
+ items:[
+ ["মানুষটি","মানুষ","টি","মানুষ টি","একটি মানুষ (নির্দিষ্ট মানুষ)","মানুষটি খুব ভালো।","“টি” আলাদা করে লেখা বা বলা যায় না, তাই “মানুষ টি” কোনো ব্যাসবাক্য নয়। অর্থ বোঝাতে “একটি / সেই” শব্দের সাহায্য লাগে, তাই নিত্য সমাস।"]
+ ]}
+];
+document.getElementById('nav').innerHTML=DATA.map(s=>`<a href="#${s.id}">${s.n}. ${s.title}</a>`).join('')+`<a href="#" onclick="document.querySelector('.warn').scrollIntoView({behavior:'smooth'});return false;">⚠ তেপান্তর</a>`;
+document.getElementById('out').innerHTML=DATA.map(s=>`
+<section id="${s.id}">
+  <div class="sechead"><span class="num">${s.n}</span><h2>${s.title}</h2></div>
+  <div class="why"><b>এগুলো কেন নিত্য সমাস?</b><br>${s.why}</div>
+  <div class="grid">${s.items.map(([w,p,q,bad,good,ex,r])=>`
+    <div class="card">
+      <div class="word">${w}</div>
+      <div class="row"><span class="lbl">গঠন:</span><span class="pill pa">${p}</span><span class="op">+</span><span class="pill pb">${q}</span></div>
+      <div class="row"><span class="lbl">সরাসরি চেষ্টা:</span><span class="pill pbad">${bad}</span></div>
+      <div class="row"><span class="lbl">অন্য পদ দিয়ে:</span><span class="pill pgood">${good} = ${w}</span></div>
+      <div class="ex">বাক্যে: ${ex}</div>
+      <div class="reason"><b>কারণ:</b> ${r}</div>
+    </div>`).join('')}
+  </div>
+</section>`).join('');
+</script>
+</body>
+</html>
