@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>প্লাস্টিক দূষণ ও সার্কুলার ইকোনমি — ধরন অনুযায়ী পক্ষে-বিপক্ষে</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f8fb; --card:#fff; --ink:#1b2733; --muted:#5b6b7c; --line:#e3e9f0;
+  --accent:#1f4e79; --pro:#1e7d4f; --pro-bg:#eaf6ef; --con:#b23b3b; --con-bg:#fbeeee;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0f151c;--card:#16202a;--ink:#e6edf3;--muted:#9aabbd;--line:#253241;
+  --accent:#7fb2e5;--pro:#5fcf95;--pro-bg:#15281f;--con:#ef8a8a;--con-bg:#2b1a1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Hind Siliguri",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{padding:28px 20px 12px;max-width:1100px;margin:auto}
+h1{margin:0 0 6px;font-size:1.65rem;color:var(--accent)}
+.sub{color:var(--muted);margin:0}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 20px;border-bottom:1px solid var(--line)}
+.tools-in{max-width:1100px;margin:auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=search]{flex:1 1 240px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:5px 10px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:1100px;margin:auto;padding:10px 20px 50px}
+.timeline{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0 6px}
+.timeline h3{margin:0 0 8px;font-size:1.05rem}
+.steps{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.92rem}
+.step{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.arrow{color:var(--muted)}
+section{margin-top:26px}
+section h2{font-size:1.25rem;margin:0 0 4px;color:var(--accent);display:flex;gap:8px;align-items:baseline}
+section h2 .n{font-size:.85rem;color:var(--muted);font-weight:500}
+section > p{margin:0 0 12px;color:var(--muted);font-size:.93rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 14px 12px}
+.card h4{margin:0;font-size:1.05rem}
+.card .def{margin:4px 0 10px;color:var(--muted);font-size:.92rem}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pro,.con{border-radius:8px;padding:8px 10px;font-size:.9rem}
+.pro{background:var(--pro-bg)} .con{background:var(--con-bg)}
+.pro b{color:var(--pro)} .con b{color:var(--con)}
+.pro ul,.con ul{margin:4px 0 0;padding-left:18px}
+.pro li,.con li{margin:2px 0}
+.tag{display:inline-block;font-size:.75rem;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-left:6px;vertical-align:middle}
+@media (max-width:520px){.pc{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+.empty{color:var(--muted);text-align:center;padding:30px;display:none}
+footer{max-width:1100px;margin:auto;padding:0 20px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>প্লাস্টিক দূষণ ও সার্কুলার ইকোনমি</h1>
+  <p class="sub">১১টি টার্ম ৪টি ধরনে ভাগ করা — প্রতিটির সংক্ষিপ্ত ধারণা, <span style="color:var(--pro);font-weight:600">পক্ষে (সুবিধা)</span> ও <span style="color:var(--con);font-weight:600">বিপক্ষে (সীমাবদ্ধতা)</span></p>
+</header>
+<div class="tools"><div class="tools-in">
+  <input type="search" id="q" placeholder="খুঁজুন… যেমন: EPR, PLA, সোনালী ব্যাগ">
+  <div class="chips" id="chips"></div>
+</div></div>
+<main>
+  <div class="timeline">
+    <h3>লিনিয়ার বনাম সার্কুলার অর্থনীতি (এক নজরে)</h3>
+    <div class="steps">
+      <span class="step"><b>লিনিয়ার</b><br>নাও → বানাও → ফেলে দাও</span><span class="arrow">⟶</span>
+      <span class="step"><b>3R</b><br>Reduce → Reuse → Recycle</span><span class="arrow">⟶</span>
+      <span class="step"><b>সার্কুলার</b><br>ডিজাইন → ব্যবহার → সংগ্রহ → পুনঃউৎপাদন ↺</span>
+    </div>
+  </div>
+  <div id="out"></div>
+  <p class="empty" id="empty">কিছু পাওয়া যায়নি।</p>
+</main>
+<footer>দ্রষ্টব্য: বাংলাদেশে প্লাস্টিক বর্জ্যের মূল বিধি হলো কঠিন বর্জ্য ব্যবস্থাপনা বিধিমালা ২০২১; “Plastic Waste Management Rules” নামটি ভারতের বিধিমালা (২০১৬, পরে সংশোধিত) হিসেবে বেশি পরিচিত। “Zero Plastic Policy 2030” নামে আলাদা কোনো আইন পাওয়া যায়নি; এখানে এটিকে টেকসই প্লাস্টিক ব্যবস্থাপনার জাতীয় কর্মপরিকল্পনার ২০৩০ লক্ষ্যমাত্রার সাথে মিলিয়ে লেখা হয়েছে।</footer>
+
+<script>
+const G = [
+{id:"policy", t:"১. নীতি, আইন ও বিধিমালা", d:"সরকারি নিয়ন্ত্রণ — কে কী করতে বাধ্য।", items:[
+ ["Plastic Waste Management Rules (2020)","প্লাস্টিক উৎপাদন, ব্যবহার, সংগ্রহ ও নিষ্পত্তি নিয়ন্ত্রণের বিধিমালা — পাতলা পলিব্যাগ নিষেধ, স্থানীয় সরকারের দায়িত্ব, পৃথকীকরণ ইত্যাদি।",
+  ["আইনি কাঠামো তৈরি করে — জরিমানা ও দায় নির্ধারণ","স্থানীয় সরকার ও উৎপাদকের ভূমিকা স্পষ্ট করে"],
+  ["প্রয়োগ দুর্বল — ২০০২ সালের পলিথিন নিষেধাজ্ঞা সত্ত্বেও বাজারে পলিব্যাগ","সস্তা বিকল্পের অভাব","অনানুষ্ঠানিক খাত (টোকাই, ভাঙারি) বিবেচনায় কম"]],
+ ["Extended Producer Responsibility (EPR)","পণ্যের জীবনের শেষ পর্যন্ত (ব্যবহারের পর বর্জ্য) সংগ্রহ ও রিসাইক্লিংয়ের দায় উৎপাদক/আমদানিকারক/ব্র্যান্ডের। বাংলাদেশে EPR নির্দেশিকা ২০২৬ গেজেট হয়েছে ১৩ আগস্ট ২০২৬।",
+  ["দূষণকারী দায় বহন করে (Polluter Pays)","কোম্পানি কম ও রিসাইকেলযোগ্য প্যাকেজিং ডিজাইনে উৎসাহী হয়","রিসাইক্লিং খাতে বিনিয়োগ আসে"],
+  ["খরচ শেষে ভোক্তার ঘাড়ে পড়তে পারে","ক্ষুদ্র ও কুটির শিল্পের জন্য বোঝা","সংগ্রহের তথ্য যাচাই ও মনিটরিং কঠিন"]],
+ ["Zero Plastic Policy 2030","২০৩০ সালের মধ্যে অপ্রয়োজনীয় ও একবার-ব্যবহার্য প্লাস্টিক প্রায় নির্মূলের লক্ষ্য; জাতীয় কর্মপরিকল্পনায় ২০৩০-এর মধ্যে প্লাস্টিক বর্জ্য ৩০% কমানোর লক্ষ্য রয়েছে।",
+  ["স্পষ্ট সময়সীমা ও লক্ষ্য","বিকল্প পণ্য ও উদ্ভাবনে বাজার তৈরি","নদী, সমুদ্র ও জনস্বাস্থ্য রক্ষা"],
+  ["“শূন্য প্লাস্টিক” বাস্তবে অবাস্তব — চিকিৎসা ও খাদ্য নিরাপত্তায় প্লাস্টিক জরুরি","প্লাস্টিক শিল্পের কর্মসংস্থানে প্রভাব","আগের লক্ষ্যগুলো (২০২৫-২৬) পূরণ নিয়ে সংশয়"]]
+]},
+{id:"concept", t:"২. ধারণা ও কাঠামো (Concept & Framework)", d:"চিন্তার ভিত্তি — সম্পদকে চক্রাকারে রাখা।", items:[
+ ["Circular Economy","“নাও-বানাও-ফেলো” লিনিয়ার মডেলের বদলে পণ্য ও উপকরণকে যতদিন সম্ভব ব্যবহারে রাখা; বর্জ্যকেই সম্পদ ধরা।",
+  ["কাঁচামাল আমদানি ও খরচ কমায়","বর্জ্য ও কার্বন নিঃসরণ কমায়","নতুন ব্যবসা ও সবুজ কর্মসংস্থান"],
+  ["অবকাঠামো ও প্রাথমিক বিনিয়োগ বেশি","সব প্লাস্টিক (বহুস্তর মোড়ক) চক্রে ফেরানো যায় না","ভোক্তার অভ্যাস বদলানো কঠিন"]],
+ ["Circular Economy Framework (UNEP)","জাতিসংঘ পরিবেশ কর্মসূচির নির্দেশনা — উৎস থেকে বর্জ্য প্রতিরোধ, পণ্য নকশা, পুনর্ব্যবহার ও নীতিগত সমন্বয়; বৈশ্বিক প্লাস্টিক চুক্তি আলোচনাতেও এ দৃষ্টিভঙ্গি।",
+  ["দেশগুলোকে একই মানদণ্ড ও দিকনির্দেশনা দেয়","কারিগরি সহায়তা ও জ্ঞান বিনিময়"],
+  ["আইনত বাধ্যতামূলক নয়","উন্নয়নশীল দেশে অর্থ ও প্রযুক্তির ঘাটতি","দেশভেদে স্থানীয় বাস্তবতার সাথে না মেলা"]],
+ ["3R Principle (Reduce, Reuse, Recycle)","কমাও → পুনর্ব্যবহার করো → পুনঃচক্রায়ন করো — অগ্রাধিকার এই ক্রমেই। বাংলাদেশে জাতীয় 3R কৌশল রয়েছে।",
+  ["সহজবোধ্য — ব্যক্তি থেকে শিল্প সবার জন্য প্রযোজ্য","উৎসেই বর্জ্য কমায়"],
+  ["বাস্তবে Recycle-এ বেশি জোর, Reduce অবহেলিত","রিসাইক্লিংয়ে মান কমে (downcycling)","নকশা ও উৎপাদকের দায় উপেক্ষিত — তাই এখন 5R/6R আলোচনা"]]
+]},
+{id:"material", t:"৩. বিকল্প উপকরণ (বায়োপ্লাস্টিক ও প্রাকৃতিক)", d:"প্রচলিত পেট্রোলিয়ামভিত্তিক প্লাস্টিকের বদলে।", items:[
+ ["Biodegradable","অণুজীব দ্বারা পানি, CO₂ ও জৈববস্তুতে ভেঙে যেতে সক্ষম উপকরণ।",
+  ["দীর্ঘমেয়াদি দূষণ ও মাইক্রোপ্লাস্টিক কম","ল্যান্ডফিলের চাপ কমায়"],
+  ["অনেকটি শুধু শিল্প কম্পোস্টিং অবস্থায় ভাঙে — নদী/সমুদ্রে নয়","“বায়োডিগ্রেডেবল” লেবেলে ভুল ধারণা ও গ্রিনওয়াশিং","প্রচলিত রিসাইক্লিং ধারায় মিশলে সমস্যা"]],
+ ["PLA (Polylactic Acid)","ভুট্টা/আখের স্টার্চ থেকে তৈরি বায়োপ্লাস্টিক; কাপ, প্যাকেট, 3D প্রিন্টিংয়ে ব্যবহৃত।",
+  ["নবায়নযোগ্য উৎস, জীবাশ্ম জ্বালানি কম লাগে","দেখতে ও ব্যবহারে প্রচলিত প্লাস্টিকের মতো"],
+  ["শিল্প কম্পোস্টিং (উচ্চ তাপ) ছাড়া সহজে ভাঙে না","তাপ সহ্যক্ষমতা কম","খাদ্যশস্যের জমির সাথে প্রতিযোগিতা"]],
+ ["PHA (Polyhydroxyalkanoate)","ব্যাকটেরিয়া চিনি/তেল খেয়ে যে পলিমার তৈরি করে।",
+  ["মাটি ও সামুদ্রিক পরিবেশেও প্রাকৃতিকভাবে ভাঙে","বর্জ্য তেল/খাদ্য বর্জ্য থেকেও উৎপাদন সম্ভব"],
+  ["উৎপাদন খরচ অনেক বেশি","বড় পরিসরে উৎপাদন এখনো সীমিত","কিছু ক্ষেত্রে ভঙ্গুরতা"]],
+ ["Sonali Bag (সোনালী ব্যাগ)","বাংলাদেশি বিজ্ঞানী ড. মোবারক আহমদ খান উদ্ভাবিত পাট থেকে তৈরি পচনশীল পলিমার ব্যাগ; ২০১৭ সালে লতিফ বাওয়ানী জুট মিলে পাইলট উৎপাদন শুরু।",
+  ["দেশীয় কাঁচামাল (পাট) — কৃষক ও পাটশিল্প লাভবান","মাটিতে কয়েক মাসে পচে যায়","রপ্তানির বড় সম্ভাবনা"],
+  ["পলিথিনের তুলনায় দাম বেশি","বাণিজ্যিক উৎপাদন এখনো সীমিত — যন্ত্রপাতি ও বিনিয়োগের অভাব","চাহিদার তুলনায় সরবরাহ কম"]]
+]},
+{id:"tech", t:"৪. প্রযুক্তি ও বর্জ্য ব্যবস্থাপনা পদ্ধতি", d:"সংগ্রহ ও পৃথকীকরণ — সার্কুলার ইকোনমির মেরুদণ্ড।", items:[
+ ["Smart Waste Segregation System","সেন্সর, AI/ক্যামেরা, IoT বিন বা অ্যাপ দিয়ে উৎসে বা কেন্দ্রে বর্জ্য স্বয়ংক্রিয়ভাবে আলাদা (প্লাস্টিক, জৈব, কাগজ, ধাতু) করা ও ট্র্যাক করা।",
+  ["রিসাইক্লিংয়ের মান ও পরিমাণ বাড়ে","তথ্যভিত্তিক সংগ্রহ — খরচ ও সময় কমে","EPR লক্ষ্য পূরণের তথ্য যাচাই সহজ"],
+  ["প্রাথমিক খরচ ও রক্ষণাবেক্ষণ বেশি","বিদ্যুৎ, ইন্টারনেট ও দক্ষ জনবল দরকার","অনানুষ্ঠানিক বর্জ্যকর্মীদের জীবিকায় প্রভাব"]]
+]}
+];
+
+const out=document.getElementById('out'), chips=document.getElementById('chips'), q=document.getElementById('q');
+let active="all";
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function chip(id,label){const b=document.createElement('button');b.className='chip'+(id===active?' on':'');b.textContent=label;b.onclick=()=>{active=id;render();};chips.appendChild(b);}
+function render(){
+  chips.innerHTML='';chip('all','সব');G.forEach(g=>chip(g.id,g.t.replace(/^[^ ]+ /,'').split(' (')[0]));
+  const term=q.value.trim().toLowerCase();let html='',count=0;
+  G.forEach(g=>{
+    if(active!=='all'&&active!==g.id)return;
+    const its=g.items.filter(i=>!term||i.flat().join(' ').toLowerCase().includes(term));
+    if(!its.length)return;count+=its.length;
+    html+=`<section><h2>${g.t} <span class="n">${its.length}টি</span></h2><p>${g.d}</p><div class="grid">`+
+    its.map(([n,d,p,c])=>`<div class="card"><h4>${esc(n)}</h4><p class="def">${esc(d)}</p><div class="pc">
+      <div class="pro"><b>✔ পক্ষে</b><ul>${p.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="con"><b>✘ বিপক্ষে</b><ul>${c.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div></div>`).join('')+`</div></section>`;
+  });
+  out.innerHTML=html;document.getElementById('empty').style.display=count?'none':'block';
+}
+q.addEventListener('input',render);render();
+</script>
+</body>
+</html>

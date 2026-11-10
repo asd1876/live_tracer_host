@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>শিক্ষা ও দক্ষতা উন্নয়নের তত্ত্বসমূহ — ধরন অনুযায়ী পক্ষে ও বিপক্ষে</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --card:#ffffff; --ink:#1f2328; --muted:#5f6670; --line:#e4e0d6;
+  --pro:#1f7a4d; --pro-bg:#eaf6ef; --con:#b23a3a; --con-bg:#fbeceb;
+  --g1:#2f5d9e; --g2:#7a4fa3; --g3:#b8741a; --g4:#1f7a77; --g5:#b23a62;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#16181c; --card:#1f2228; --ink:#e8e6e1; --muted:#a3a9b2; --line:#30343c;
+    --pro:#5cc48f; --pro-bg:#17301f; --con:#ec7a7a; --con-bg:#3a1d1d;
+    --g1:#6f9be0; --g2:#b18ae0; --g3:#e0a453; --g4:#5cc4c0; --g5:#e57aa0; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif;line-height:1.7;font-size:16px}
+.wrap{max-width:1100px;margin:0 auto;padding:32px 20px 64px}
+header h1{font-family:'Noto Serif Bengali',serif;font-size:clamp(1.6rem,3.5vw,2.3rem);margin:0 0 6px;line-height:1.3}
+header p{color:var(--muted);margin:0 0 20px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--line)}
+nav button{font:inherit;font-size:.9rem;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:5px 14px;border-radius:999px;cursor:pointer}
+nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:36px}
+.map a{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:12px 14px}
+.map a b{display:block;color:var(--c);font-size:.95rem}
+.map a span{font-size:.85rem;color:var(--muted)}
+section.group{margin:0 0 44px}
+.ghead{display:flex;align-items:baseline;gap:12px;border-left:6px solid var(--c);padding-left:14px;margin-bottom:16px}
+.ghead h2{font-family:'Noto Serif Bengali',serif;margin:0;font-size:1.45rem;color:var(--c)}
+.ghead small{color:var(--muted)}
+.theory{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
+.theory h3{margin:0 0 4px;font-size:1.2rem}
+.theory .en{color:var(--muted);font-size:.9rem;font-weight:500}
+.meta{font-size:.88rem;color:var(--muted);margin:6px 0 10px}
+.meta b{color:var(--ink);font-weight:600}
+.def{margin:0 0 14px}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.pc{grid-template-columns:1fr}}
+.pro,.con{border-radius:10px;padding:12px 16px}
+.pro{background:var(--pro-bg)} .con{background:var(--con-bg)}
+.pro h4{color:var(--pro)} .con h4{color:var(--con)}
+h4{margin:0 0 6px;font-size:1rem}
+ul{margin:0;padding-left:20px} li{margin:3px 0}
+.bd{margin-top:12px;font-size:.92rem;border-top:1px dashed var(--line);padding-top:10px}
+.bd b{color:var(--c)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-size:.92rem}
+th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--line)}
+.tblwrap{overflow-x:auto}
+.hidden{display:none}
+footer{margin-top:40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>শিক্ষা, দক্ষতা ও উন্নয়ন: তত্ত্বসমূহের ধরনভিত্তিক বিন্যাস</h1>
+  <p>৮টি ধারণা/তত্ত্ব ৫টি ধরনে ভাগ করা হয়েছে। প্রতিটির সংজ্ঞা, মূল চিন্তাবিদ, পক্ষে ও বিপক্ষে যুক্তি এবং বাংলাদেশ প্রেক্ষাপটে প্রাসঙ্গিকতা দেওয়া আছে।</p>
+</header>
+
+<nav id="nav">
+  <button class="on" data-f="all">সব</button>
+  <button data-f="g1">মৌলিক ধারণা</button>
+  <button data-f="g2">মান ও ফলাফল</button>
+  <button data-f="g3">অর্থনীতি ও শ্রমবাজার</button>
+  <button data-f="g4">দক্ষতা (TVET)</button>
+  <button data-f="g5">সামাজিক ন্যায্যতা</button>
+  <button data-f="cmp">তুলনা সারণি</button>
+</nav>
+
+<div class="map">
+  <a href="#g1" style="--c:var(--g1)"><b>১. মৌলিক ধারণা</b><span>Education (Human Capital ভিত্তি)</span></a>
+  <a href="#g2" style="--c:var(--g2)"><b>২. মান ও ফলাফলভিত্তিক</b><span>Learning Outcome Framework, Teacher Quality Theory</span></a>
+  <a href="#g3" style="--c:var(--g3)"><b>৩. অর্থনীতি ও শ্রমবাজার</b><span>Mismatch / Skill Gap, Knowledge Economy</span></a>
+  <a href="#g4" style="--c:var(--g4)"><b>৪. দক্ষতা উন্নয়ন (TVET)</b><span>TVET, TVET for Development</span></a>
+  <a href="#g5" style="--c:var(--g5)"><b>৫. সামাজিক ন্যায্যতা</b><span>Educational Inequality / Social Exclusion</span></a>
+</div>
+
+<!-- GROUP 1 -->
+<section class="group" id="g1" data-g="g1" style="--c:var(--g1)">
+  <div class="ghead"><h2>১. মৌলিক ধারণা</h2><small>Foundational Concept — অন্য সব তত্ত্বের ভিত্তি</small></div>
+
+  <div class="theory">
+    <h3>শিক্ষা <span class="en">(Education — Human Capital দৃষ্টিভঙ্গি)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Theodore Schultz (1961), Gary Becker (1964), John Dewey; বিকল্প দৃষ্টিভঙ্গি — Amartya Sen (Capability Approach)</div>
+    <p class="def">শিক্ষা হলো জ্ঞান, দক্ষতা, মূল্যবোধ ও মনোভাব অর্জনের প্রক্রিয়া। মানব পুঁজি তত্ত্ব অনুযায়ী শিক্ষা একটি বিনিয়োগ — এটি উৎপাদনশীলতা, আয় ও অর্থনৈতিক প্রবৃদ্ধি বাড়ায়। Sen-এর দৃষ্টিতে শিক্ষা মানুষের স্বাধীনতা ও সক্ষমতা বাড়ায়, শুধু আয় নয়।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>শিক্ষার বছর বাড়লে ব্যক্তিগত আয় বাড়ে — বহু দেশে প্রমাণিত (Mincer রিটার্ন)।</li>
+        <li>জাতীয় উৎপাদনশীলতা ও প্রবৃদ্ধির সাথে ইতিবাচক সম্পর্ক।</li>
+        <li>স্বাস্থ্য, নারী ক্ষমতায়ন, গণতান্ত্রিক অংশগ্রহণসহ অ-অর্থনৈতিক সুফল।</li>
+        <li>সামাজিক গতিশীলতার (social mobility) প্রধান হাতিয়ার।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li><b>Screening/Signalling তত্ত্ব</b> (Spence 1973): ডিগ্রি দক্ষতা নয়, শুধু যোগ্যতার সংকেত দেয়।</li>
+        <li>স্কুলে বছর বাড়লেও শেখা না-ও বাড়তে পারে ("schooling ≠ learning")।</li>
+        <li>শিক্ষাকে কেবল অর্থনৈতিক বিনিয়োগ ভাবলে মানবিক ও নাগরিক উদ্দেশ্য উপেক্ষিত হয়।</li>
+        <li>Bowles & Gintis: শিক্ষা বিদ্যমান শ্রেণি-কাঠামো পুনরুৎপাদন করে।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> প্রাথমিকে ভর্তি প্রায় সর্বজনীন হলেও শেখার মান ও শিক্ষিত বেকারত্ব — "শিক্ষা বনাম শেখা" বিতর্কটি এখানে খুব প্রাসঙ্গিক।</div>
+  </div>
+</section>
+
+<!-- GROUP 2 -->
+<section class="group" id="g2" data-g="g2" style="--c:var(--g2)">
+  <div class="ghead"><h2>২. মান ও ফলাফলভিত্তিক তত্ত্ব</h2><small>Quality & Outcome — "কতটা শিখছে, কে শেখাচ্ছে"</small></div>
+
+  <div class="theory">
+    <h3>শিখনফল কাঠামো <span class="en">(Learning Outcome Framework / Outcome-Based Education)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Benjamin Bloom (Taxonomy, 1956), William Spady (OBE, 1994), Biggs (Constructive Alignment); SDG 4 ও UNESCO</div>
+    <p class="def">শিক্ষার সাফল্য মাপা হয় শিক্ষার্থী শেষে কী জানে ও করতে পারে তা দিয়ে — ইনপুট (ভবন, বই, ভর্তি) দিয়ে নয়। পাঠ্যক্রম, পাঠদান ও মূল্যায়ন নির্দিষ্ট শিখনফলের সাথে সমন্বিত করা হয়।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>স্পষ্ট লক্ষ্য — শিক্ষক, শিক্ষার্থী, অভিভাবক সবাই জানে কী অর্জন করতে হবে।</li>
+        <li>জবাবদিহি ও মাননিয়ন্ত্রণ সহজ হয়; তুলনামূলক মূল্যায়ন (PISA, NSA) সম্ভব।</li>
+        <li>শ্রমবাজারের চাহিদার সাথে পাঠ্যক্রম মেলানো যায়।</li>
+        <li>যোগ্যতাভিত্তিক স্বীকৃতি ও আন্তর্জাতিক মানের (যেমন OBE অ্যাক্রেডিটেশন) পথ খোলে।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li>যা মাপা যায় শুধু তাই গুরুত্ব পায় — সৃজনশীলতা, মূল্যবোধ উপেক্ষিত।</li>
+        <li>"Teaching to the test" — পরীক্ষাকেন্দ্রিক সংকীর্ণ পাঠদান।</li>
+        <li>কাগজে-কলমে শিখনফল লেখা হয়, বাস্তবে প্রয়োগ দুর্বল।</li>
+        <li>প্রেক্ষাপট ও শিক্ষার্থীর বৈচিত্র্য উপেক্ষা করে একই মানদণ্ড চাপায়।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> সৃজনশীল প্রশ্নপদ্ধতি, যোগ্যতাভিত্তিক নতুন কারিকুলাম এবং বিশ্ববিদ্যালয়ে BAC-এর OBE বাস্তবায়ন — বাস্তবায়নের চ্যালেঞ্জ নিয়ে বিতর্ক চলমান।</div>
+  </div>
+
+  <div class="theory">
+    <h3>শিক্ষকের মান তত্ত্ব <span class="en">(Teacher Quality Theory)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Eric Hanushek, Linda Darling-Hammond, Rivkin-Hanushek-Kain (2005), Chetty et al. (2014); McKinsey রিপোর্ট (2007)</div>
+    <p class="def">স্কুলের ভেতরের উপাদানগুলোর মধ্যে শিক্ষকের মানই শিক্ষার্থীর শিখনফলের সবচেয়ে বড় নির্ধারক। "একটি শিক্ষাব্যবস্থার মান তার শিক্ষকদের মানের চেয়ে বেশি হতে পারে না।"</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>গবেষণায় দেখা যায় ভালো শিক্ষক বছরে শিক্ষার্থীর অর্জন উল্লেখযোগ্যভাবে বাড়ায়।</li>
+        <li>দীর্ঘমেয়াদি প্রভাব — ভালো শিক্ষক ভবিষ্যৎ আয় ও কলেজে ভর্তিও বাড়ায় (Chetty)।</li>
+        <li>নীতিগতভাবে স্পষ্ট হস্তক্ষেপ: নিয়োগ, প্রশিক্ষণ, প্রণোদনা।</li>
+        <li>ফিনল্যান্ড, সিঙ্গাপুরের সাফল্য এই যুক্তি সমর্থন করে।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li>"শিক্ষকের মান" সংজ্ঞায়িত ও পরিমাপ করা কঠিন — ডিগ্রি বা অভিজ্ঞতা দুর্বল নির্দেশক।</li>
+        <li>Value-added মডেল অস্থির ও বিতর্কিত; শিক্ষককে অন্যায্যভাবে দায়ী করতে পারে।</li>
+        <li>পারিবারিক পটভূমি ও স্কুলের বাইরের প্রভাব (Coleman Report) প্রায়ই বেশি শক্তিশালী।</li>
+        <li>বড় শ্রেণিকক্ষ, কম বেতন, প্রশাসনিক চাপ — কাঠামোগত সমস্যা উপেক্ষিত হয়।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> NTRCA-র মাধ্যমে নিয়োগ সংস্কার, উচ্চ শিক্ষার্থী-শিক্ষক অনুপাত, কোচিং-নির্ভরতা ও শিক্ষকদের পেশাগত মর্যাদা নিয়ে আলোচনায় তত্ত্বটি সরাসরি প্রযোজ্য।</div>
+  </div>
+</section>
+
+<!-- GROUP 3 -->
+<section class="group" id="g3" data-g="g3" style="--c:var(--g3)">
+  <div class="ghead"><h2>৩. অর্থনীতি ও শ্রমবাজারভিত্তিক তত্ত্ব</h2><small>Economic & Labour Market — "শিক্ষা কি কাজে লাগছে"</small></div>
+
+  <div class="theory">
+    <h3>অসামঞ্জস্য / দক্ষতা ঘাটতি তত্ত্ব <span class="en">(Mismatch Theory / Skill Gap Theory)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Richard Freeman (<i>The Overeducated American</i>, 1976), Sattinger, Hartog; ILO, World Bank STEP সার্ভে</div>
+    <p class="def">শিক্ষাব্যবস্থা যে দক্ষতা তৈরি করে আর শ্রমবাজার যে দক্ষতা চায় — এর মধ্যে ফারাক থাকে। এটি হতে পারে <i>উল্লম্ব</i> (অতি-শিক্ষিত বা কম-শিক্ষিত) বা <i>অনুভূমিক</i> (ভুল বিষয়ে পড়া)।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>শিক্ষিত বেকারত্ব ও একই সাথে দক্ষ কর্মীর অভাব — এই বৈপরীত্য ভালোভাবে ব্যাখ্যা করে।</li>
+        <li>নিয়োগকর্তা সার্ভে নিয়মিত সফট স্কিল ও প্রযুক্তিগত দক্ষতার ঘাটতি দেখায়।</li>
+        <li>পাঠ্যক্রম সংস্কার ও শিল্প-শিক্ষা অংশীদারিত্বের যুক্তি দেয়।</li>
+        <li>নীতিনির্ধারণে চাহিদাভিত্তিক পরিকল্পনা (skills forecasting) উৎসাহিত করে।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li>সমস্যা দক্ষতায় নয়, চাকরি সৃষ্টির অভাবে — চাহিদার দিক উপেক্ষিত।</li>
+        <li>নিয়োগকর্তারা কম বেতনে বেশি দক্ষতা চান; "ঘাটতি" অনেক সময় অতিরঞ্জিত।</li>
+        <li>বাজারের চাহিদা দ্রুত বদলায় — শিক্ষাকে এর পেছনে ছোটানো অবাস্তব।</li>
+        <li>শিক্ষাকে শুধু চাকরির প্রস্তুতি হিসেবে সংকুচিত করে।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> স্নাতকদের মধ্যে উচ্চ বেকারত্বের হার, অথচ RMG, IT ও লাইট ইঞ্জিনিয়ারিং খাতে মধ্যম-স্তরের দক্ষ কর্মী ও ব্যবস্থাপকের ঘাটতি — ক্লাসিক skill mismatch-এর উদাহরণ।</div>
+  </div>
+
+  <div class="theory">
+    <h3>জ্ঞান অর্থনীতি <span class="en">(Knowledge Economy)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Fritz Machlup (1962), Peter Drucker (1969), Daniel Bell; OECD (1996), World Bank KAM; Powell & Snellman (2004)</div>
+    <p class="def">যে অর্থনীতিতে প্রবৃদ্ধির মূল চালিকাশক্তি জ্ঞান, তথ্য, উদ্ভাবন ও প্রযুক্তি — জমি বা কাঁচামাল নয়। চারটি স্তম্ভ: শিক্ষা ও দক্ষতা, উদ্ভাবন ব্যবস্থা, ICT অবকাঠামো, প্রাতিষ্ঠানিক কাঠামো।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>উচ্চ মূল্য সংযোজন ও টেকসই প্রবৃদ্ধির পথ (দক্ষিণ কোরিয়া, সিঙ্গাপুর)।</li>
+        <li>উচ্চশিক্ষা, গবেষণা ও আজীবন শিক্ষায় বিনিয়োগের শক্ত যুক্তি দেয়।</li>
+        <li>সেবা খাত, ফ্রিল্যান্সিং ও ডিজিটাল অর্থনীতির সম্প্রসারণ ব্যাখ্যা করে।</li>
+        <li>সস্তা শ্রমনির্ভরতা থেকে বেরিয়ে আসার কৌশল।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li>ধারণাটি অস্পষ্ট ও পরিমাপ কঠিন; অনেকটা নীতিগত বুলি।</li>
+        <li>ডিজিটাল বিভাজন বাড়ায় — দক্ষ ও অদক্ষের আয়-বৈষম্য প্রসারিত হয়।</li>
+        <li>উন্নয়নশীল দেশে কৃষি ও শিল্পভিত্তি উপেক্ষা করে লাফ দেওয়া ঝুঁকিপূর্ণ।</li>
+        <li>Brown, Lauder & Ashton: "সবাই উচ্চ দক্ষ চাকরি পাবে" — এই প্রতিশ্রুতি বাস্তবে ভাঙছে।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> "ডিজিটাল/স্মার্ট বাংলাদেশ" ভিশন, ICT রপ্তানি ও ফ্রিল্যান্সিং বৃদ্ধি; কিন্তু R&D ব্যয় খুব কম এবং গ্রাম-শহর ডিজিটাল বিভাজন প্রকট।</div>
+  </div>
+</section>
+
+<!-- GROUP 4 -->
+<section class="group" id="g4" data-g="g4" style="--c:var(--g4)">
+  <div class="ghead"><h2>৪. দক্ষতা উন্নয়ন: কারিগরি ও বৃত্তিমূলক শিক্ষা</h2><small>Skills Development — "হাতে-কলমে দক্ষতা"</small></div>
+
+  <div class="theory">
+    <h3>কারিগরি ও বৃত্তিমূলক শিক্ষা ও প্রশিক্ষণ <span class="en">(TVET)</span></h3>
+    <div class="meta"><b>মূল উৎস:</b> UNESCO-UNEVOC, ILO; জার্মানির Dual System; Competency-Based Training (CBT)</div>
+    <p class="def">নির্দিষ্ট পেশা বা কাজের জন্য প্রয়োজনীয় ব্যবহারিক জ্ঞান ও দক্ষতা প্রদানকারী আনুষ্ঠানিক, অনানুষ্ঠানিক ও উপানুষ্ঠানিক শিক্ষা — যেমন পলিটেকনিক, ভোকেশনাল স্কুল, শিক্ষানবিশি (apprenticeship)।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>সরাসরি কর্মসংস্থানযোগ্য দক্ষতা; দ্রুত শ্রমবাজারে প্রবেশ।</li>
+        <li>যারা সাধারণ উচ্চশিক্ষায় যায় না তাদের জন্য বিকল্প পথ।</li>
+        <li>Dual system (জার্মানি, সুইজারল্যান্ড) তরুণ বেকারত্ব কমাতে সফল।</li>
+        <li>বিদেশে দক্ষ শ্রমিক পাঠিয়ে রেমিট্যান্স বৃদ্ধি সম্ভব।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li>সামাজিক মর্যাদা কম — "দুর্বল শিক্ষার্থীদের পথ" হিসেবে দেখা হয়।</li>
+        <li>যন্ত্রপাতি ও প্রশিক্ষিত প্রশিক্ষক ব্যয়বহুল; মান প্রায়ই দুর্বল।</li>
+        <li>সংকীর্ণ দক্ষতা প্রযুক্তি বদলালে দ্রুত অচল হয়ে যায় (Hanushek et al., 2017)।</li>
+        <li>শিল্পের সাথে সংযোগ না থাকলে প্রশিক্ষণ বাজারে কাজে আসে না।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> BTEB, NSDA ও National Skills Development Policy; কারিগরিতে ভর্তির হার বাড়ানোর লক্ষ্য থাকলেও মান, মর্যাদা ও শিল্প-সংযোগে ঘাটতি রয়ে গেছে।</div>
+  </div>
+
+  <div class="theory">
+    <h3>উন্নয়নের জন্য TVET <span class="en">(TVET for Development)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Philip Foster ("Vocational School Fallacy", 1965), Simon McGrath, Kenneth King; UNESCO TVET Strategy (2016–21), SDG 4.3, 4.4, 8.6</div>
+    <p class="def">TVET-কে শুধু চাকরির প্রশিক্ষণ নয়, বরং দারিদ্র্য বিমোচন, অন্তর্ভুক্তিমূলক প্রবৃদ্ধি, শিল্পায়ন ও টেকসই উন্নয়নের কৌশল হিসেবে দেখা। সাম্প্রতিক ধারায় Capability Approach ও "Green Skills" যুক্ত হয়েছে।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>অনানুষ্ঠানিক খাত ও গ্রামীণ দরিদ্রদের আয় বৃদ্ধির সরাসরি উপায়।</li>
+        <li>নারী, প্রতিবন্ধী ও প্রান্তিকদের অর্থনৈতিক অন্তর্ভুক্তি বাড়ায়।</li>
+        <li>শিল্পায়ন ও রপ্তানি বৈচিত্র্যকরণে দক্ষ জনবল জোগায় (পূর্ব এশিয়ার অভিজ্ঞতা)।</li>
+        <li>জনমিতিক লভ্যাংশ (demographic dividend) কাজে লাগানোর হাতিয়ার।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li><b>Foster-এর সমালোচনা:</b> মানুষ শ্রমবাজারের সংকেত দেখে সিদ্ধান্ত নেয়; শুধু স্কুলে বৃত্তিমূলক কোর্স চাপালে উন্নয়ন হয় না।</li>
+        <li>চাকরি না থাকলে দক্ষতা দিয়ে লাভ নেই — "supply-side" ভুল।</li>
+        <li>দাতা-নির্ভর প্রকল্প প্রায়ই টেকসই হয় না।</li>
+        <li>দরিদ্রদের নিম্নমর্যাদার পথে আটকে রেখে বৈষম্য স্থায়ী করতে পারে।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> SEIP, ASSET-এর মতো প্রকল্প; প্রবাসী শ্রমিকদের দক্ষতা সনদ (NTVQF/BNQF) ও জনমিতিক লভ্যাংশের সময়সীমা — এখানে উন্নয়ন-কেন্দ্রিক TVET খুবই আলোচিত।</div>
+  </div>
+</section>
+
+<!-- GROUP 5 -->
+<section class="group" id="g5" data-g="g5" style="--c:var(--g5)">
+  <div class="ghead"><h2>৫. সামাজিক ন্যায্যতা তত্ত্ব</h2><small>Equity & Sociological — "কে বাদ পড়ছে, কেন"</small></div>
+
+  <div class="theory">
+    <h3>শিক্ষাগত বৈষম্য / সামাজিক বর্জন <span class="en">(Educational Inequality / Social Exclusion)</span></h3>
+    <div class="meta"><b>মূল চিন্তাবিদ:</b> Pierre Bourdieu (Cultural Capital), James Coleman (Coleman Report, 1966), Bowles & Gintis (1976), René Lenoir (1974), Hilary Silver (1994), Amartya Sen</div>
+    <p class="def">শ্রেণি, লিঙ্গ, অঞ্চল, জাতিসত্তা, প্রতিবন্ধিতা ইত্যাদি কারণে কিছু গোষ্ঠী শিক্ষায় প্রবেশ, অংশগ্রহণ ও ফলাফলে পিছিয়ে থাকে। সামাজিক বর্জন তত্ত্ব দেখায় এই বঞ্চনা বহুমাত্রিক ও প্রক্রিয়াগত — শুধু দারিদ্র্য নয়, সম্পর্ক ও প্রতিষ্ঠান থেকেও বাদ পড়া।</p>
+    <div class="pc">
+      <div class="pro"><h4>✔ পক্ষে</h4><ul>
+        <li>কেন একই সুযোগ থাকা সত্ত্বেও ফলাফল ভিন্ন হয় তা ব্যাখ্যা করে (সাংস্কৃতিক পুঁজি)।</li>
+        <li>বহুমাত্রিক বঞ্চনা চিহ্নিত করে লক্ষ্যভিত্তিক নীতি (বৃত্তি, উপবৃত্তি, কোটা) গ্রহণে সহায়তা।</li>
+        <li>SDG 4-এর "কাউকে পেছনে ফেলে নয়" নীতির তাত্ত্বিক ভিত্তি।</li>
+        <li>প্রাতিষ্ঠানিক ও কাঠামোগত বাধার দিকে দৃষ্টি দেয়, শুধু ব্যক্তির দোষ নয়।</li>
+      </ul></div>
+      <div class="con"><h4>✘ বিপক্ষে</h4><ul>
+        <li>"Social exclusion" ধারণা অস্পষ্ট ও বহু অর্থে ব্যবহৃত — পরিমাপ কঠিন।</li>
+        <li>অতিরিক্ত কাঠামোবাদী — ব্যক্তির প্রচেষ্টা ও এজেন্সি কম গুরুত্ব পায়।</li>
+        <li>রোগনির্ণয় ভালো করে কিন্তু সুনির্দিষ্ট সমাধান কম দেয়।</li>
+        <li>অন্তর্ভুক্তি (inclusion) মানে মূলধারায় মিশিয়ে দেওয়া — বিকল্প পরিচয় হারানোর ঝুঁকি।</li>
+      </ul></div>
+    </div>
+    <div class="bd"><b>বাংলাদেশ প্রেক্ষাপট:</b> মেয়েদের উপবৃত্তির সাফল্য উল্লেখযোগ্য; তবে চর-হাওর-পার্বত্য অঞ্চল, আদিবাসী ভাষাভাষী, প্রতিবন্ধী, শিশুশ্রমিক এবং বাংলা-ইংরেজি-মাদ্রাসা ধারার বিভাজনে বৈষম্য রয়ে গেছে।</div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="group" id="cmp" data-g="cmp" style="--c:var(--ink)">
+  <div class="ghead"><h2>তুলনা সারণি</h2><small>এক নজরে</small></div>
+  <div class="tblwrap"><table>
+    <thead><tr><th>ধরন</th><th>তত্ত্ব</th><th>মূল প্রশ্ন</th><th>প্রধান শক্তি</th><th>প্রধান দুর্বলতা</th></tr></thead>
+    <tbody>
+      <tr><td>মৌলিক</td><td>Education / Human Capital</td><td>শিক্ষা কেন দরকার?</td><td>আয় ও প্রবৃদ্ধির সাথে সম্পর্ক</td><td>Schooling ≠ learning; signalling</td></tr>
+      <tr><td>মান ও ফলাফল</td><td>Learning Outcome Framework</td><td>শিক্ষার্থী কী শিখল?</td><td>স্পষ্ট লক্ষ্য ও জবাবদিহি</td><td>পরীক্ষাকেন্দ্রিকতা</td></tr>
+      <tr><td>মান ও ফলাফল</td><td>Teacher Quality Theory</td><td>কে শেখাচ্ছে?</td><td>সবচেয়ে কার্যকর স্কুল-অভ্যন্তরীণ উপাদান</td><td>পরিমাপ কঠিন; পারিবারিক প্রভাব উপেক্ষা</td></tr>
+      <tr><td>অর্থনীতি</td><td>Mismatch / Skill Gap</td><td>শিক্ষা কি বাজারের সাথে মিলছে?</td><td>শিক্ষিত বেকারত্ব ব্যাখ্যা</td><td>চাকরি সৃষ্টির অভাব উপেক্ষা</td></tr>
+      <tr><td>অর্থনীতি</td><td>Knowledge Economy</td><td>ভবিষ্যৎ প্রবৃদ্ধি কোথা থেকে?</td><td>উচ্চশিক্ষা ও উদ্ভাবনে বিনিয়োগের যুক্তি</td><td>অস্পষ্ট; ডিজিটাল বৈষম্য</td></tr>
+      <tr><td>দক্ষতা</td><td>TVET</td><td>কীভাবে কাজের দক্ষতা দেওয়া যায়?</td><td>সরাসরি কর্মসংস্থান</td><td>নিম্ন মর্যাদা ও মান</td></tr>
+      <tr><td>দক্ষতা</td><td>TVET for Development</td><td>দক্ষতা কি দারিদ্র্য কমায়?</td><td>অন্তর্ভুক্তিমূলক প্রবৃদ্ধি</td><td>Vocational school fallacy</td></tr>
+      <tr><td>ন্যায্যতা</td><td>Educational Inequality / Social Exclusion</td><td>কে বাদ পড়ছে?</td><td>কাঠামোগত বাধা চিহ্নিত করে</td><td>অস্পষ্ট ও সমাধানে দুর্বল</td></tr>
+    </tbody>
+  </table></div>
+  <p class="bd" style="--c:var(--g1)"><b>সম্পর্কসূত্র:</b> Knowledge Economy চাহিদা তৈরি করে → Mismatch তত্ত্ব ফারাক দেখায় → TVET ও Learning Outcome Framework সেই ফারাক পূরণের উপায় → Teacher Quality বাস্তবায়নের চাবিকাঠি → Social Exclusion মনে করিয়ে দেয় সুফল যেন সবার কাছে পৌঁছায়।</p>
+</section>
+
+<footer>টীকা: চিন্তাবিদ ও উৎসের নাম পরিচিত একাডেমিক সাহিত্য থেকে নেওয়া; গবেষণাপত্রে ব্যবহারের আগে মূল উৎস যাচাই করে নিন।</footer>
+</div>
+<script>
+document.getElementById('nav').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#nav button').forEach(function(x){x.classList.toggle('on',x===b)});
+  var f=b.dataset.f;
+  document.querySelectorAll('section.group').forEach(function(s){
+    s.classList.toggle('hidden', f!=='all' && s.dataset.g!==f);
+  });
+  document.querySelector('.map').classList.toggle('hidden', f!=='all');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ই-গভর্নেন্স ও সাইবার নিরাপত্তা — ধরন অনুযায়ী গ্রুপ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f2;--card:#fff;--ink:#1d1d1b;--muted:#6b6a63;--line:#e4e2da;
+  --pro:#1f7a4d;--pro-bg:#e5f3ec;--con:#b23a2e;--con-bg:#f8e7e4;
+  --fix:#2b5ea8;--fix-bg:#e6eef9;--neu:#7a6420;--neu-bg:#f4efdc;--warn-bg:#fff6dc;--warn:#7a5a00;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#17171a;--card:#212125;--ink:#ecebe6;--muted:#a3a29b;--line:#34343a;
+  --pro:#5fcf96;--pro-bg:#1d3329;--con:#f08a7e;--con-bg:#3a2321;
+  --fix:#86b0ee;--fix-bg:#1f2b3d;--neu:#dcc274;--neu-bg:#33301f;--warn-bg:#332c17;--warn:#e8cf86;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:1.7rem;margin:0 0 4px;line-height:1.3}
+.sub{color:var(--muted);margin:0 0 20px}
+.legend,.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.badge{display:inline-block;font-size:.78rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pro{color:var(--pro);background:var(--pro-bg)} .con{color:var(--con);background:var(--con-bg)}
+.fix{color:var(--fix);background:var(--fix-bg)} .neu{color:var(--neu);background:var(--neu-bg)}
+.filters button{font:inherit;font-size:.9rem;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:5px 14px;border-radius:999px;cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 14px;font-size:.9rem;margin:6px 0 4px}
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 30px}
+.debate .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.debate h2{font-size:1.1rem;margin:0 0 8px}
+.debate ul{margin:0;padding-left:20px} .debate li{margin:4px 0}
+.box.p{border-top:4px solid var(--pro)} .box.c{border-top:4px solid var(--con)} .box.f{border-top:4px solid var(--fix);grid-column:1/-1}
+section.grp{margin-top:26px}
+section.grp h2{font-size:1.15rem;margin:0 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+section.grp h2 small{color:var(--muted);font-weight:400;font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.item .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.item b{font-size:.98rem;line-height:1.35}
+.item p{margin:6px 0 0;font-size:.88rem;color:var(--muted)}
+.hide{display:none!important}
+@media (max-width:700px){.debate{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>ই-গভর্নেন্স ও সাইবার নিরাপত্তা</h1>
+<p class="sub">২৪টি মূল শব্দ, ৮টি ধরনে ভাগ করা। প্রতিটিতে অবস্থান ট্যাগ: পক্ষে (সুবিধা) · বিপক্ষে (ঝুঁকি/সমালোচনা) · সমাধান (প্রতিরোধ/প্রতিকার) · নিরপেক্ষ (মৌলিক ধারণা)।</p>
+
+<div class="legend">
+  <span class="badge pro">পক্ষে</span><span class="badge con">বিপক্ষে</span>
+  <span class="badge fix">সমাধান</span><span class="badge neu">নিরপেক্ষ</span>
+</div>
+
+<div class="note"><b>সাম্প্রতিক আপডেট:</b> Digital Security Act 2018 → Cyber Security Act 2023 → Cyber Security Ordinance 2025 (কার্যকর ২১ মে ২০২৫)। ২০২৬ সালের ৩০ এপ্রিল সংসদে পাস হওয়া Cyber Security Act 2026 অধ্যাদেশটির জায়গা নিয়েছে। পরীক্ষায় লেখার সময় এই ধারাবাহিকতা উল্লেখ করুন।</div>
+
+<div class="debate">
+  <div class="box p">
+    <h2>✅ পক্ষে যুক্তি (ই-গভর্নেন্স কেন দরকার)</h2>
+    <ul>
+      <li><b>G2C, UDC, National Portal</b>: ঘরের কাছে সেবা, সময় ও খরচ কমে</li>
+      <li><b>E-GP, E-Nothi</b>: কাগজবিহীন অফিস, স্বচ্ছতা বাড়ে, দুর্নীতি কমে</li>
+      <li><b>G2B, PPP</b>: ব্যবসা সহজ হয়, বেসরকারি বিনিয়োগ আসে</li>
+      <li><b>G2G, G2E</b>: দপ্তরের মধ্যে সমন্বয় ও কর্মী ব্যবস্থাপনা দক্ষ হয়</li>
+      <li><b>Starlink</b>: দুর্গম এলাকায় সংযোগ মেলে, ইন্টারনেট শাটডাউনেও সংযোগ টিকে থাকে</li>
+      <li><b>A2I</b>: সরকারি উদ্ভাবনের সফল মডেল</li>
+    </ul>
+  </div>
+  <div class="box c">
+    <h2>⚠️ বিপক্ষে যুক্তি (ঝুঁকি ও সমালোচনা)</h2>
+    <ul>
+      <li><b>Cyber Crime</b>: হ্যাকিং, ফিশিং, আর্থিক জালিয়াতি, তথ্য চুরি</li>
+      <li><b>Cyberbullying</b>: বিশেষত নারী ও শিশুর অনলাইন হয়রানি</li>
+      <li><b>Digital Security Act 2018</b>: মতপ্রকাশের স্বাধীনতা খর্ব হয়, সাংবাদিক হয়রানির অভিযোগ ওঠে</li>
+      <li><b>ডিজিটাল বৈষম্য</b>: গ্রাম, নারী ও বয়স্করা পিছিয়ে থাকেন। Starlink-এর খরচ সাধারণ মানুষের নাগালের বাইরে</li>
+      <li><b>নজরদারি ও ডেটা ঝুঁকি</b>: কেন্দ্রীভূত তথ্যভান্ডার ফাঁস হতে পারে, রাষ্ট্রের অতিরিক্ত ক্ষমতা নিয়েও উদ্বেগ</li>
+      <li><b>PPP</b>: চুক্তি অস্বচ্ছ হলে জনস্বার্থ ক্ষুণ্ণ হওয়ার ঝুঁকি</li>
+    </ul>
+  </div>
+  <div class="box f">
+    <h2>🔧 সমাধান ও নীতি সুপারিশ</h2>
+    <ul>
+      <li><b>আইনি কাঠামো:</b> Cyber Security Ordinance 2025 (বিতর্কিত ৯টি ধারা বাদ দেওয়া হয়, ইন্টারনেট প্রবেশাধিকার নাগরিক অধিকার হিসেবে স্বীকৃতি পায়)</li>
+      <li><b>প্রতিষ্ঠান:</b> National CERT, Cyber Investigation Unit, Cyber Tribunal, Cyber Appellate Tribunal</li>
+      <li><b>আন্তর্জাতিক সহযোগিতা:</b> Interpol, Global Threat Intelligence Network</li>
+      <li><b>নীতি:</b> AI &amp; Data Governance এবং Inclusive Governance Strategy। এর সঙ্গে ডিজিটাল সাক্ষরতা ও সচেতনতা বাড়ানো</li>
+    </ul>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="on" data-f="all">সব</button>
+  <button data-f="pro">পক্ষে</button>
+  <button data-f="con">বিপক্ষে</button>
+  <button data-f="fix">সমাধান</button>
+  <button data-f="neu">নিরপেক্ষ</button>
+</div>
+
+<div id="groups"></div>
+</div>
+
+<script>
+const L={pro:"পক্ষে",con:"বিপক্ষে",fix:"সমাধান",neu:"নিরপেক্ষ"};
+const G=[
+ {t:"১. মৌলিক ধারণা",s:"Core concept",i:[
+  ["ICT (Information and Communication Technology)","neu","তথ্য সংগ্রহ, সংরক্ষণ, প্রক্রিয়াকরণ ও আদান-প্রদানের প্রযুক্তি। ই-গভর্নেন্সের ভিত্তি।"]]},
+ {t:"২. ই-গভর্নেন্সের মডেল (সম্পর্কের ধরন)",s:"E-Governance models",i:[
+  ["Government to Citizen (G2C)","pro","সরকার থেকে নাগরিকে সরাসরি সেবা: জন্মনিবন্ধন, ভাতা, ভূমিসেবা, পরীক্ষার ফল।"],
+  ["Government to Business (G2B)","pro","ব্যবসায়ীদের জন্য সেবা: ট্রেড লাইসেন্স, ই-ট্যাক্স, ই-টেন্ডারিং।"],
+  ["Government to Government (G2G)","pro","মন্ত্রণালয় ও দপ্তরের মধ্যে ইলেকট্রনিক তথ্য বিনিময় ও সমন্বয়।"],
+  ["Government to Employee (G2E)","pro","সরকারি কর্মীদের বেতন, ছুটি, প্রশিক্ষণ ও তথ্য ব্যবস্থাপনা অনলাইনে।"]]},
+ {t:"৩. বাংলাদেশের ডিজিটাল সেবা উদ্যোগ",s:"Bangladesh initiatives",i:[
+  ["A2I (Access to Information)","pro","প্রধানমন্ত্রীর কার্যালয়ভিত্তিক সরকারি উদ্ভাবন কর্মসূচি। পরে নাম হয় Aspire to Innovate। UDC, পোর্টাল ও ই-নথির মূল চালিকাশক্তি।"],
+  ["Union Digital Center (UDC)","pro","২০১০ সালে চালু। ইউনিয়ন পর্যায়ে উদ্যোক্তার মাধ্যমে সরকারি ও বেসরকারি ডিজিটাল সেবা দেওয়া হয়।"],
+  ["E-Nothi","pro","সরকারি দপ্তরে কাগজবিহীন ফাইল ব্যবস্থাপনা (পরে উন্নত সংস্করণ D-Nothi)।"],
+  ["Bangladesh National Portal","pro","সব সরকারি দপ্তরের ওয়েবসাইট এক প্ল্যাটফর্মে (bangladesh.gov.bd)।"],
+  ["E-Tendering & E-GP System","pro","CPTU পরিচালিত ইলেকট্রনিক সরকারি ক্রয়ব্যবস্থা। টেন্ডারবাজি কমে, স্বচ্ছতা বাড়ে।"],
+  ["Public-Private Partnership (PPP)","pro","সরকারি ও বেসরকারি অংশীদারিত্বে অবকাঠামো ও সেবা। এতে বিনিয়োগ আসে, তবে চুক্তি অস্বচ্ছ হলে ঝুঁকি থাকে।"],
+  ["Starlink Internet","pro","SpaceX-এর স্যাটেলাইট ইন্টারনেট, বাংলাদেশে চালু ২০ মে ২০২৫। দুর্গম এলাকায় সংযোগ দেয়। তবে খরচ বেশি এবং বিদেশি নির্ভরতা নিয়ে প্রশ্ন আছে।"]]},
+ {t:"৪. সাইবার আইন",s:"Cyber laws",i:[
+  ["Digital Security Act, 2018","con","কিছু ধারা অস্পষ্ট ছিল, এবং সাংবাদিক ও ভিন্নমতাবলম্বীদের বিরুদ্ধে অপব্যবহারের অভিযোগে ব্যাপক সমালোচিত হয়। পরে ২০২৩ সালের আইন দিয়ে প্রতিস্থাপিত হয়।"],
+  ["Cyber Security Ordinance, 2025","fix","Cyber Security Act 2023 বাতিল করে জারি হয়। ৯টি বিতর্কিত ধারা বাদ দেওয়া হয়, ইন্টারনেট প্রবেশাধিকার নাগরিক অধিকার হিসেবে স্বীকৃতি পায়। অনলাইনে নারী ও শিশু হয়রানি, অনলাইন জুয়া ও AI-ভিত্তিক অপরাধ শাস্তিযোগ্য হয়। সমালোচনা: পুলিশ ও নিয়ন্ত্রক সংস্থার ক্ষমতা এখনো বেশি। ২০২৬ সালে Cyber Security Act 2026 এর জায়গা নিয়েছে।"]]},
+ {t:"৫. সাইবার হুমকি",s:"Cyber threats",i:[
+  ["Cyber Crime","con","হ্যাকিং, ফিশিং, র‍্যানসমওয়্যার, অনলাইন প্রতারণা ও তথ্য চুরি। ২০১৬ সালের বাংলাদেশ ব্যাংক রিজার্ভ চুরি এর আলোচিত উদাহরণ।"],
+  ["Cyberbullying","con","অনলাইনে হুমকি, অপমান ও হয়রানি। এর প্রধান শিকার নারী, শিশু ও কিশোর-কিশোরী।"]]},
+ {t:"৬. বিচার ও প্রয়োগকারী প্রতিষ্ঠান",s:"Enforcement & judiciary",i:[
+  ["Cyber Tribunal","fix","সাইবার অপরাধের বিচারের জন্য বিশেষ আদালত।"],
+  ["Cyber Appellate Tribunal","fix","সাইবার ট্রাইব্যুনালের রায়ের বিরুদ্ধে আপিল শোনার বিধান (আইসিটি আইন ২০০৬)।"],
+  ["Cyber Investigation Unit","fix","পুলিশের বিশেষায়িত সাইবার অপরাধ তদন্ত ইউনিট (যেমন CID-র সাইবার পুলিশ সেন্টার)।"],
+  ["National CERT (Computer Emergency Response Team)","fix","সাইবার আক্রমণ শনাক্ত, সতর্কতা জারি ও দ্রুত প্রতিক্রিয়ার দায়িত্বে থাকে। বাংলাদেশে BGD e-GOV CIRT (বাংলাদেশ কম্পিউটার কাউন্সিল) এই ভূমিকা পালন করে।"]]},
+ {t:"৭. আন্তর্জাতিক সহযোগিতা",s:"International cooperation",i:[
+  ["Interpol","fix","আন্তর্জাতিক পুলিশ সংস্থা। সীমান্ত পেরোনো সাইবার অপরাধ তদন্তে সহায়তা করে।"],
+  ["Global Threat Intelligence Network","fix","বিশ্বজুড়ে সাইবার হুমকির তথ্য দ্রুত আদান-প্রদানের নেটওয়ার্ক।"]]},
+ {t:"৮. কৌশল ও নীতি",s:"Strategy & policy",i:[
+  ["Inclusive Governance Strategy","fix","নারী, গ্রামীণ, প্রতিবন্ধী ও প্রান্তিক মানুষকে ডিজিটাল সেবায় যুক্ত করার কৌশল।"],
+  ["AI & Data Governance","fix","AI-এর দায়িত্বশীল ব্যবহার এবং ব্যক্তিগত তথ্য সুরক্ষার নিয়ম (যেমন Personal Data Protection Ordinance 2025)।"]]}
+];
+const root=document.getElementById("groups");
+G.forEach(g=>{
+  const s=document.createElement("section");s.className="grp";
+  s.innerHTML=`<h2>${g.t} <small>${g.s} · ${g.i.length}টি</small></h2><div class="grid">`+
+   g.i.map(([n,k,d])=>`<div class="item" data-k="${k}"><div class="top"><b>${n}</b><span class="badge ${k}">${L[k]}</span></div><p>${d}</p></div>`).join("")+`</div>`;
+  root.appendChild(s);
+});
+document.getElementById("filters").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  document.querySelectorAll("#filters button").forEach(x=>x.classList.toggle("on",x===b));
+  const f=b.dataset.f;
+  document.querySelectorAll(".item").forEach(it=>it.classList.toggle("hide",f!=="all"&&it.dataset.k!==f));
+  document.querySelectorAll("section.grp").forEach(s=>s.classList.toggle("hide",!s.querySelector(".item:not(.hide)")));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ব্লু ইকোনমি ও সামুদ্রিক সম্পদ — ধরনভিত্তিক বিভাজন</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f6f7f4;--card:#fff;--ink:#1d2a22;--muted:#5d6b62;--line:#e2e6df;
+  --pro:#1f7a4d;--pro-bg:#eaf5ee;--con:#b0413e;--con-bg:#fbeeed;--accent:#1f4e79;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#141815;--card:#1d221e;--ink:#e6ebe6;--muted:#9aa69d;--line:#2d342f;
+  --pro:#6fcf97;--pro-bg:#1c2c22;--con:#f08a85;--con-bg:#2f1f1e;--accent:#8ab8e6;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:1.7rem;margin:0 0 4px;color:var(--accent)}
+.sub{color:var(--muted);margin:0 0 20px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:22px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:.92rem}
+.tab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+input[type=search]{margin-left:auto;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;min-width:200px}
+.group{margin-bottom:34px}
+.ghead{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--line);padding-bottom:6px;margin-bottom:14px}
+.ghead h2{margin:0;font-size:1.3rem}
+.ghead span{color:var(--muted);font-size:.92rem}
+.gnote{color:var(--muted);font-size:.93rem;margin:-6px 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ctop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.ctop h3{margin:0;font-size:1.12rem}
+.tag{font-size:.78rem;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+.desc{margin:6px 0 12px}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.pc{grid-template-columns:1fr}}
+.pro,.con{border-radius:8px;padding:10px 14px}
+.pro{background:var(--pro-bg)}.con{background:var(--con-bg)}
+.pro b{color:var(--pro)}.con b{color:var(--con)}
+.pc ul{margin:6px 0 0;padding-left:20px}
+.pc li{margin-bottom:3px}
+.ex{margin-top:10px;font-size:.92rem;color:var(--muted)}
+.empty{color:var(--muted);padding:20px;text-align:center}
+.summary{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:24px;font-size:.95rem}
+.summary table{width:100%;border-collapse:collapse}
+.summary td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.summary td:first-child{font-weight:600;white-space:nowrap;width:1%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ব্লু ইকোনমি ও সামুদ্রিক সম্পদ</h1>
+  <p class="sub">১১টি বিষয় ৫টি ধরনে ভাগ করা — প্রতিটির সংক্ষিপ্ত পরিচিতি, পক্ষে ও বিপক্ষে যুক্তি</p>
+
+  <div class="summary" id="summary"></div>
+
+  <div class="controls" id="controls">
+    <input type="search" id="q" placeholder="খুঁজুন… (যেমন: Ostrom)">
+  </div>
+  <div id="list"></div>
+</div>
+
+<script>
+const GROUPS = [
+ {id:"concept", name:"১. মূল ধারণা ও উন্নয়ন কাঠামো", en:"Core Concepts & Development Frameworks",
+  note:"সমুদ্রভিত্তিক উন্নয়নের মৌলিক রূপরেখা — অন্য সব বিষয় এর সাথে যুক্ত।",
+  items:[
+   {n:"Blue Economy (সুনীল অর্থনীতি)", t:"গুন্টার পাউলি ২০১০ · রিও+২০ (২০১২)",
+    d:"সমুদ্র ও উপকূলীয় সম্পদের টেকসই ব্যবহারের মাধ্যমে অর্থনৈতিক প্রবৃদ্ধি, কর্মসংস্থান ও জীবিকা উন্নয়ন — একইসাথে সামুদ্রিক বাস্তুতন্ত্রের স্বাস্থ্য রক্ষা। খাত: মৎস্য, নৌপরিবহন, বন্দর, পর্যটন, খনিজ ও গ্যাস, সামুদ্রিক জৈবপ্রযুক্তি, নবায়নযোগ্য সামুদ্রিক জ্বালানি। বাংলাদেশ মিয়ানমার (২০১২) ও ভারতের (২০১৪) সাথে সমুদ্রসীমা বিরোধ নিষ্পত্তির পর প্রায় ১,১৮,৮১৩ বর্গকিমি সমুদ্র এলাকার অধিকার পায়।",
+    p:["নতুন প্রবৃদ্ধির উৎস ও কর্মসংস্থান","খাদ্য (প্রোটিন) ও জ্বালানি নিরাপত্তা","বাণিজ্য ও বন্দরভিত্তিক অর্থনীতির বিকাশ","SDG-14 (জলজ জীবন) অর্জনে সহায়ক"],
+    c:["অতিরিক্ত আহরণ ও দূষণের ঝুঁকি — ‘নীল’ নামে ‘বাদামি’ প্রবৃদ্ধি","গভীর সমুদ্র গবেষণা, জরিপ ও প্রযুক্তিতে বড় বিনিয়োগ দরকার","উপকূলীয় জেলে ও স্থানীয় জনগোষ্ঠী প্রান্তিক হতে পারে (ocean grabbing)","অনেক সংস্থার মধ্যে সমন্বয়হীনতা"]},
+   {n:"Sustainable Development Model (টেকসই উন্নয়ন মডেল)", t:"ব্রুন্টল্যান্ড রিপোর্ট ১৯৮৭ · SDG ২০১৫",
+    d:"“বর্তমান প্রজন্মের চাহিদা পূরণ, ভবিষ্যৎ প্রজন্মের চাহিদা পূরণের সক্ষমতা ক্ষুণ্ণ না করে।” তিন স্তম্ভ: অর্থনৈতিক, সামাজিক ও পরিবেশগত। সমুদ্রের ক্ষেত্রে মূল লক্ষ্য SDG-14।",
+    p:["উন্নয়ন ও পরিবেশকে সাংঘর্ষিক না দেখে সমন্বিত করে","আন্তঃপ্রজন্ম ন্যায্যতা","বৈশ্বিকভাবে গৃহীত সাধারণ কাঠামো (SDG)"],
+    c:["সংজ্ঞা অস্পষ্ট — যেকোনো প্রকল্পকে ‘টেকসই’ বলা যায়","বাস্তবে অর্থনৈতিক স্তম্ভই প্রাধান্য পায় (weak sustainability)","পরিমাপ ও জবাবদিহি কঠিন"]}
+  ]},
+ {id:"inst", name:"২. প্রাতিষ্ঠানিক ও শাসন কাঠামো", en:"Institutions & Governance",
+  note:"ব্লু ইকোনমি বাস্তবায়নের জন্য প্রতিষ্ঠান। (এই দুটির সংজ্ঞা পাঠ্যক্রমভেদে ভিন্ন হতে পারে — আপনার নোট মিলিয়ে নিন।)",
+  items:[
+   {n:"National Ocean Governance Authority (জাতীয় সমুদ্র শাসন কর্তৃপক্ষ)", t:"প্রাতিষ্ঠানিক মডেল",
+    d:"মৎস্য, নৌপরিবহন, জ্বালানি, পরিবেশ, প্রতিরক্ষা ইত্যাদি সমুদ্রসংশ্লিষ্ট সব মন্ত্রণালয়ের কাজ সমন্বয়ে একটি কেন্দ্রীয় জাতীয় কর্তৃপক্ষ। বাংলাদেশে এ ধরনের সমন্বয়ের দায়িত্বে ২০১৭ সালে ‘ব্লু ইকোনমি সেল’ গঠিত হয়।",
+    p:["খণ্ডিত (fragmented) শাসনের বদলে সমন্বিত সিদ্ধান্ত","সামুদ্রিক স্থানিক পরিকল্পনা (Marine Spatial Planning) সহজ হয়","আন্তর্জাতিক আইন (UNCLOS) বাস্তবায়নে একক দায়িত্ব"],
+    c:["মন্ত্রণালয়গুলোর ক্ষমতা নিয়ে দ্বন্দ্ব (turf war)","আমলাতান্ত্রিক জটিলতা ও কেন্দ্রীকরণ","স্থানীয় জেলে সম্প্রদায়ের মতামত উপেক্ষিত হতে পারে","পর্যাপ্ত দক্ষ জনবল ও বাজেটের অভাব"]},
+   {n:"Blue Economy Hub (ব্লু ইকোনমি হাব)", t:"ক্লাস্টার/কেন্দ্র ধারণা",
+    d:"গবেষণা, বিনিয়োগ, বন্দর-লজিস্টিকস, প্রশিক্ষণ ও সামুদ্রিক শিল্পকে এক জায়গায় কেন্দ্রীভূত করে সমুদ্র অর্থনীতির কেন্দ্রস্থল গড়ে তোলা। বাংলাদেশের প্রেক্ষাপটে চট্টগ্রাম–কক্সবাজার–মাতারবাড়ি–পায়রা অঞ্চলকে সম্ভাব্য হাব হিসেবে আলোচনা করা হয়।",
+    p:["একই স্থানে অবকাঠামো ও জ্ঞান — খরচ কমে (agglomeration)","বিদেশি বিনিয়োগ আকর্ষণ","আঞ্চলিক বাণিজ্য-কেন্দ্র হওয়ার সুযোগ (বঙ্গোপসাগর অঞ্চল)"],
+    c:["উপকূলীয় বাস্তুতন্ত্র ও ম্যানগ্রোভের ক্ষতি","স্থানীয় মানুষের উচ্ছেদ ও জমি অধিগ্রহণ","আঞ্চলিক বৈষম্য বাড়তে পারে","বিদেশি ঋণনির্ভরতা ও ভূরাজনৈতিক প্রতিযোগিতা"]}
+  ]},
+ {id:"problem", name:"৩. সমস্যা ও চ্যালেঞ্জ", en:"Problems & Threats",
+  note:"এগুলো নেতিবাচক বিষয়, তাই ‘পক্ষে’ ঘরে আছে কেন এগুলো ঘটে বা কারা স্বল্পমেয়াদে লাভবান হয়, আর ‘বিপক্ষে’ ঘরে আছে ক্ষতিগুলো।",
+  items:[
+   {n:"IUU Fishing (অবৈধ, অপ্রতিবেদিত ও অনিয়ন্ত্রিত মাছ ধরা)", t:"FAO IPOA-IUU ২০০১ · PSMA ২০১৬",
+    pl:"কেন ঘটে / স্বল্পমেয়াদি লাভ", cl:"ক্ষতি ও দমনের যুক্তি",
+    d:"Illegal — আইন ভেঙে (লাইসেন্স ছাড়া, নিষিদ্ধ সময়/জালে); Unreported — ধরা মাছের তথ্য গোপন বা ভুল; Unregulated — নিয়ন্ত্রণহীন এলাকায় বা পতাকাবিহীন জাহাজে মাছ ধরা। দমনে আন্তর্জাতিক হাতিয়ার Port State Measures Agreement (PSMA)।",
+    p:["দ্রুত ও বেশি মুনাফা; লাইসেন্স-ফি ও করের খরচ বাঁচে","দরিদ্র জেলের জীবিকার চাপ","দুর্বল নজরদারি ও সমুদ্রে আইন প্রয়োগের অভাব"],
+    c:["মৎস্য মজুত হ্রাস — দীর্ঘমেয়াদে সবার আয় কমে","সরকারের রাজস্ব ক্ষতি; বৈধ জেলেরা অসম প্রতিযোগিতায় পড়ে","সামুদ্রিক জীববৈচিত্র্যের ক্ষতি; প্রায়ই শ্রম-নির্যাতন ও চোরাচালানের সাথে যুক্ত","বৈজ্ঞানিক মজুত-মূল্যায়ন ভুল হয়"]},
+   {n:"Overexploitation (অতিআহরণ)", t:"ধারণা",
+    pl:"কেন ঘটে / স্বল্পমেয়াদি লাভ", cl:"ক্ষতি ও বিরুদ্ধ যুক্তি",
+    d:"প্রাকৃতিক সম্পদ তার পুনরুৎপাদন হারের চেয়ে দ্রুত আহরণ করা। মৎস্যে Maximum Sustainable Yield (MSY)-এর বেশি ধরা। FAO-এর হিসাবে বিশ্বের মাছের মজুতের এক-তৃতীয়াংশের বেশি অতিআহরিত।",
+    p:["তাৎক্ষণিক আয়, খাদ্য ও কর্মসংস্থান","জনসংখ্যা বৃদ্ধি ও চাহিদার চাপ","উন্মুক্ত সম্পদে ‘আমি না ধরলে অন্যরা ধরবে’ মানসিকতা"],
+    c:["মজুত ধসে পড়া (যেমন কানাডার কড মাছ, ১৯৯২)","প্রজাতি বিলুপ্তি ও খাদ্যশৃঙ্খলে ভারসাম্যহীনতা","ভবিষ্যৎ প্রজন্মের সম্পদ নিঃশেষ","‘Tragedy of the Commons’-এর বাস্তব উদাহরণ"]}
+  ]},
+ {id:"theory", name:"৪. তত্ত্ব (সাধারণ সম্পদ ও পরিবেশ অর্থনীতি)", en:"Theories",
+  note:"সমুদ্র একটি সাধারণ সম্পদ — এর ব্যবস্থাপনা ব্যাখ্যার তাত্ত্বিক ভিত্তি।",
+  items:[
+   {n:"Common-Pool Resource Theory (সাধারণ সম্পদ তত্ত্ব)", t:"তত্ত্ব · হার্ডিন ১৯৬৮ ‘Tragedy of the Commons’",
+    d:"যে সম্পদ থেকে কাউকে বাদ দেওয়া কঠিন (non-excludable) কিন্তু একজনের ব্যবহারে অন্যের জন্য কমে যায় (rivalrous) — যেমন সমুদ্রের মাছ, ভূগর্ভস্থ পানি। হার্ডিনের মতে এ সম্পদ অনিবার্যভাবে ধ্বংস হয়; সমাধান রাষ্ট্রীয় নিয়ন্ত্রণ বা ব্যক্তিমালিকানা।",
+    p:["অতিআহরণ কেন ঘটে তার স্পষ্ট ব্যাখ্যা","কোটা, লাইসেন্স, নিষেধাজ্ঞার মতো নীতির যুক্তি দেয়","ব্যক্তিস্বার্থ ও সমষ্টিস্বার্থের দ্বন্দ্ব তুলে ধরে"],
+    c:["হার্ডিনের ‘অনিবার্য ধ্বংস’ ধারণা অতি-নৈরাশ্যবাদী","সম্প্রদায়ের স্ব-ব্যবস্থাপনার সক্ষমতা উপেক্ষা করে (অস্ট্রমের সমালোচনা)","রাষ্ট্র বা বাজার সমাধান সবসময় কার্যকর নয়"]},
+   {n:"Governing the Commons (এলিনর অস্ট্রম)", t:"গ্রন্থ ১৯৯০ · নোবেল (অর্থনীতি) ২০০৯",
+    d:"অস্ট্রম মাঠপর্যায়ের গবেষণায় দেখান, স্থানীয় সম্প্রদায় নিজেরাই নিয়ম তৈরি করে সাধারণ সম্পদ টেকসইভাবে পরিচালনা করতে পারে। সফল ব্যবস্থাপনার ৮টি নকশা-নীতি (design principles): স্পষ্ট সীমানা, স্থানীয় উপযোগী নিয়ম, সম্মিলিত সিদ্ধান্ত, নজরদারি, ধাপে ধাপে শাস্তি, বিরোধ নিষ্পত্তি ব্যবস্থা, নিজস্ব সংগঠনের স্বীকৃতি, এবং বহুস্তর (nested) শাসন।",
+    p:["রাষ্ট্র ও বাজারের বাইরে তৃতীয় পথ — সম্প্রদায়ভিত্তিক ব্যবস্থাপনা","বাস্তব উদাহরণে প্রমাণিত (সুইস চারণভূমি, জাপানি বন, স্পেনের সেচ)","স্থানীয় জ্ঞান ও অংশগ্রহণকে গুরুত্ব দেয়","বাংলাদেশে হাওর-বিলের সমাজভিত্তিক মৎস্য ব্যবস্থাপনায় প্রাসঙ্গিক"],
+    c:["ছোট ও স্থিতিশীল সম্প্রদায়ে বেশি কার্যকর; বিশাল সমুদ্রে প্রয়োগ কঠিন","বহিরাগত বাণিজ্যিক ট্রলার বা বিদেশি জাহাজকে নিয়ন্ত্রণ করতে পারে না","স্থানীয় অভিজাতদের আধিপত্য (elite capture)-এর ঝুঁকি"]},
+   {n:"Ecological Economics Theory (পরিবেশগত অর্থনীতি তত্ত্ব)", t:"তত্ত্ব · হারম্যান ডেলি, রবার্ট কস্তানজা",
+    d:"অর্থনীতিকে পরিবেশের একটি উপব্যবস্থা (subsystem) হিসেবে দেখে — পৃথিবীর সম্পদ সীমিত, তাই অসীম প্রবৃদ্ধি সম্ভব নয়। ‘স্থিতিশীল অর্থনীতি’ (steady-state economy) ও strong sustainability-র পক্ষে।",
+    p:["প্রকৃতির সীমা (biophysical limits) স্বীকার করে","প্রাকৃতিক সম্পদকে মানবসৃষ্ট পুঁজি দিয়ে প্রতিস্থাপনযোগ্য মনে করে না","দীর্ঘমেয়াদি ও আন্তঃপ্রজন্ম দৃষ্টিভঙ্গি"],
+    c:["প্রবৃদ্ধি সীমিত করার ধারণা উন্নয়নশীল দেশে রাজনৈতিকভাবে অগ্রহণযোগ্য","প্রযুক্তিগত উদ্ভাবনের সম্ভাবনা কম গুরুত্ব পায়","নীতিতে রূপান্তর ও পরিমাপ কঠিন"]}
+  ]},
+ {id:"measure", name:"৫. পরিবেশগত সীমা ও মূল্যায়নের ধারণা", en:"Ecological Limits & Valuation",
+  note:"সম্পদ কতটুকু ব্যবহার করা যায় এবং তার মূল্য কীভাবে মাপা যায় — নীতির পরিমাপক হাতিয়ার।",
+  items:[
+   {n:"Carrying Capacity (ধারণক্ষমতা)", t:"বাস্তুবিদ্যা",
+    d:"একটি পরিবেশ দীর্ঘমেয়াদে ক্ষতি ছাড়া সর্বোচ্চ যত জনসংখ্যা বা ব্যবহার টিকিয়ে রাখতে পারে। মৎস্যে এর প্রয়োগ MSY; পর্যটনে কোনো স্থানে সর্বোচ্চ পর্যটক সংখ্যা (যেমন সেন্টমার্টিনে পর্যটক সীমিত করার উদ্যোগ)।",
+    p:["সম্পদ ব্যবহারের বৈজ্ঞানিক সীমা নির্ধারণ","কোটা ও পর্যটক নিয়ন্ত্রণের ভিত্তি","বাস্তুতন্ত্র ধসের আগাম সতর্কতা"],
+    c:["সঠিক মান নির্ণয় কঠিন; পরিবেশ ও প্রযুক্তির সাথে বদলায়","মানুষের ক্ষেত্রে প্রয়োগ বিতর্কিত (ভোগের ধরন উপেক্ষিত)","জীবিকা হারানোর আশঙ্কায় স্থানীয় বিরোধিতা"]},
+   {n:"Natural Capital (প্রাকৃতিক পুঁজি)", t:"ধারণা · কস্তানজা ১৯৯৭ · জাতিসংঘ SEEA",
+    d:"প্রকৃতির সম্পদভাণ্ডার (মাছ, ম্যানগ্রোভ, প্রবাল প্রাচীর, পানি) কে পুঁজি হিসেবে দেখা, যা থেকে প্রতিনিয়ত ‘বাস্তুতন্ত্র সেবা’ (ecosystem services) পাওয়া যায় — খাদ্য, ঝড় থেকে সুরক্ষা, কার্বন শোষণ ইত্যাদি। যেমন সুন্দরবন ঘূর্ণিঝড়ের প্রাকৃতিক ঢাল।",
+    p:["প্রকৃতির অদৃশ্য মূল্যকে জাতীয় হিসাব ও নীতিতে দৃশ্যমান করে","জিডিপির বাইরে প্রকৃত সম্পদ পরিমাপ (green accounting)","সংরক্ষণে বিনিয়োগের অর্থনৈতিক যুক্তি দেয়"],
+    c:["প্রকৃতিকে পণ্যে পরিণত করা (commodification) নিয়ে নৈতিক আপত্তি","অনেক সেবার আর্থিক মূল্য নির্ধারণ অনিশ্চিত","‘মূল্য দিলে ধ্বংস করা যায়’ — এমন বাণিজ্যিক যুক্তির ঝুঁকি"]}
+  ]}
+];
+
+const summary = document.getElementById('summary');
+summary.innerHTML = '<table>' + GROUPS.map(g =>
+  `<tr><td>${g.name.replace(/^\S+\s/,'')}</td><td>${g.items.map(i=>i.n.split(' (')[0]).join(' · ')}</td></tr>`).join('') + '</table>';
+
+const controls = document.getElementById('controls');
+const q = document.getElementById('q');
+let active = 'all';
+const tabs = [{id:'all',name:'সব'}].concat(GROUPS.map(g=>({id:g.id,name:g.name.replace(/^\S+\s/,'')})));
+tabs.forEach(t=>{
+  const b=document.createElement('button');b.className='tab'+(t.id==='all'?' on':'');b.textContent=t.name;b.dataset.id=t.id;
+  b.onclick=()=>{active=t.id;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.id===active));render();};
+  controls.insertBefore(b,q);
+});
+q.addEventListener('input',render);
+
+function render(){
+  const term=q.value.trim().toLowerCase();
+  const list=document.getElementById('list');
+  let html='';
+  GROUPS.forEach(g=>{
+    if(active!=='all'&&active!==g.id)return;
+    const items=g.items.filter(i=>!term||(i.n+i.d+i.t).toLowerCase().includes(term));
+    if(!items.length)return;
+    html+=`<section class="group"><div class="ghead"><h2>${g.name}</h2><span>${g.en}</span></div><p class="gnote">${g.note}</p>`;
+    items.forEach(i=>{
+      html+=`<div class="card"><div class="ctop"><h3>${i.n}</h3><span class="tag">${i.t}</span></div>
+      <p class="desc">${i.d}</p>
+      <div class="pc"><div class="pro"><b>✔ ${i.pl||"পক্ষে"}</b><ul>${i.p.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="con"><b>✘ ${i.cl||"বিপক্ষে"}</b><ul>${i.c.map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div>`;
+    });
+    html+='</section>';
+  });
+  list.innerHTML=html||'<div class="empty">কিছু পাওয়া যায়নি</div>';
+}
+render();
+</script>
+</body>
+</html>
