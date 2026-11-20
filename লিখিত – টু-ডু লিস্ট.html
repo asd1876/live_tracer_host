@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>সিনিয়র অফিসার লিখিত – টু-ডু লিস্ট</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#eef3f1;--card:#fff;--ink:#12262b;--mute:#5b6f73;--line:#d5e0dd;--acc:#0f766e;--accsoft:#d6efe9;--mark:#9a4a07;--marksoft:#fbe9d3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1819;--card:#16262a;--ink:#e6f1ef;--mute:#92a9ad;--line:#27403f;--acc:#2dd4bf;--accsoft:#14403d;--mark:#f5b46b;--marksoft:#3a2a14}}
+:root[data-theme="dark"]{--bg:#0e1819;--card:#16262a;--ink:#e6f1ef;--mute:#92a9ad;--line:#27403f;--acc:#2dd4bf;--accsoft:#14403d;--mark:#f5b46b;--marksoft:#3a2a14}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;font-size:16px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);padding:14px 16px 12px;border-bottom:1px solid var(--line)}
+.wrap{max-width:640px;margin:0 auto}
+h1{font-size:20px;margin:0 0 2px;font-weight:700}
+.sub{margin:0;color:var(--mute);font-size:14px}
+.bar{height:10px;background:var(--line);border-radius:6px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .25s}
+.stat{display:flex;justify-content:space-between;font-size:14px;margin-top:6px;font-weight:600}
+main{padding:14px 16px 40px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:14px;display:flex;align-items:center;gap:10px;min-height:64px}
+summary::-webkit-details-marker{display:none}
+.tt{flex:1;min-width:0}
+.tt b{display:block;font-size:17px;font-weight:600;line-height:1.3}
+.tt span{font-size:13px;color:var(--mute)}
+.mk{background:var(--marksoft);color:var(--mark);font-weight:700;font-size:13px;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.cnt{font-size:13px;font-weight:600;color:var(--acc);min-width:38px;text-align:right}
+.chev{width:10px;height:10px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);transition:transform .2s;margin:0 4px 3px 2px}
+details[open] .chev{transform:rotate(-135deg);margin-bottom:-3px}
+details.done summary{background:var(--accsoft)}
+ul{list-style:none;margin:0;padding:0 0 6px;border-top:1px solid var(--line)}
+li label{display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:50px;cursor:pointer}
+li+li{border-top:1px dashed var(--line)}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;border:2px solid var(--mute);border-radius:8px;margin:0;display:grid;place-content:center;background:transparent}
+input[type=checkbox]:checked{background:var(--acc);border-color:var(--acc)}
+input[type=checkbox]:checked::after{content:"";width:6px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+input[type=checkbox]:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+li label span{flex:1}
+li input:checked+span{color:var(--mute);text-decoration:line-through}
+.day{font-size:12px;color:var(--mute);white-space:nowrap}
+.foot{text-align:center;margin-top:18px}
+.tools{display:flex;gap:10px;margin-bottom:12px}
+.tools button{flex:1;color:var(--acc);border-color:var(--acc);font-weight:600}
+button{font:inherit;font-size:14px;background:transparent;color:var(--mute);border:1px solid var(--line);border-radius:10px;padding:10px 16px;min-height:44px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>সিনিয়র অফিসার লিখিত ২০২৬</h1>
+<p class="sub" id="cd">পরীক্ষা ২৭ নভেম্বর • মোট ২০০ নম্বর • ২ ঘণ্টা</p>
+<div class="bar"><i id="pb"></i></div>
+<div class="stat"><span id="pt">০% সম্পন্ন</span><span id="pc">০/০</span></div>
+</div></header>
+<main><div class="wrap"><div class="tools"><button id="ex">সব খুলুন</button><button id="mn">সব বন্ধ করুন</button></div><div id="list"></div></div>
+<div class="foot"><button id="reset">সব টিক মুছে নতুন করে শুরু</button></div></main>
+<script>
+var D=[
+{t:"ফোকাস রাইটিং (ইংরেজি)",m:30,d:"দিন ১ • ১৭ নভেম্বর",i:["সাম্প্রতিক বিষয়ের তালিকা বানানো (অর্থনীতি, ব্যাংকিং, ডিজিটাল সেবা, জলবায়ু, শিক্ষা)","১টি ফোকাস রাইটিং ঘড়ি ধরে লেখা","ভূমিকা – মূল আলোচনা – উপসংহার: তিন ভাগ পরিষ্কার রাখা","সহজ বাক্য ব্যবহারের চর্চা","নিশ্চিত না হলে সংখ্যা না দিয়ে সাধারণভাবে লেখা","প্রতিদিন ১টি বিষয়ে লেখা"]},
+{t:"ফোকাস রাইটিং (বাংলা)",m:30,d:"দিন ২ • ১৮ নভেম্বর",i:["১টি বাংলা ফোকাস রাইটিং ঘড়ি ধরে লেখা","বর্তমান অবস্থা – সমস্যা – সমাধান – উপসংহার সাজানো","শুদ্ধ ভাষা ও বানানের দিকে নজর"]},
+{t:"আর্থিক ও ব্যাংকিং জ্ঞান",m:10,d:"দিন ২ • ১৮ নভেম্বর",i:["ব্যাংক কীভাবে কাজ করে","বাংলাদেশ ব্যাংকের ভূমিকা","সুদের হার","মুদ্রানীতি","বাণিজ্যিক ব্যাংকের কাজ"]},
+{t:"গণিত (এসএসসি লেভেল)",m:30,d:"দিন ৩–৪ • ১৯–২০ নভেম্বর",i:["শতকরা – ১০টি অঙ্ক হাতে করা","লাভ-ক্ষতি – ১০টি অঙ্ক","সরল সুদ – ১০টি অঙ্ক","চক্রবৃদ্ধি সুদ – ১০টি অঙ্ক","অনুপাত-সমানুপাত","গড়","বীজগণিতের প্রাথমিক ধারণা","বয়স সংক্রান্ত সমস্যা","সময় ও কাজ","নৌকা ও স্রোত","সব সূত্র এক পাতায় লিখে রাখা","প্রতিদিন ১৫–২০টি অঙ্ক হাতে সমাধান","ক্যালকুলেটর ছাড়া চর্চা"]},
+{t:"বাংলা থেকে ইংরেজি অনুবাদ",m:20,d:"দিন ৪–৫ • ২০–২১ নভেম্বর",i:["পত্রিকার ১টি বাংলা অনুচ্ছেদ ইংরেজিতে অনুবাদ","ইংরেজি অনুচ্ছেদ বাংলায় অনুবাদের চর্চা","শব্দে শব্দে নয়, ভাব অনুবাদ করা","অচেনা শব্দের তালিকা বানানো","না জানা শব্দের জায়গায় সহজ শব্দে বাক্য সাজানো"]},
+{t:"ইংরেজি ভাষা দক্ষতা",m:20,d:"দিন ৫ • ২১ নভেম্বর",i:["গ্রামার ঝালাই","ভোকাবুলারি","কমপ্রিহেনশন ও বাক্য সংশোধন অনুশীলন"]},
+{t:"অ্যানালিটিক্যাল রিজনিং ও আর্গুমেন্টেটিভ রাইটিং",m:40,d:"দিন ৬ • ২২ নভেম্বর",i:["১টি সমস্যা বা বিতর্কিত বিষয় বেছে নেওয়া","পক্ষে ২টি যুক্তি লেখা","বিপক্ষে ২টি যুক্তি লেখা","নিজের অবস্থান স্পষ্ট করে সিদ্ধান্ত লেখা","যুক্তিগুলো পরস্পরবিরোধী কি না যাচাই","প্রতিদিন ১টি বিষয় নিয়ে ভাবা"]},
+{t:"সাধারণ জ্ঞান",m:10,d:"দিন ৭ • ২৩ নভেম্বর",i:["সাম্প্রতিক ঘটনাবলি","বাংলাদেশের অর্থনীতি","ব্যাংক ও আর্থিক প্রতিষ্ঠান","আন্তর্জাতিক গুরুত্বপূর্ণ ঘটনা"]},
+{t:"বাংলা ব্যাকরণ",m:10,d:"দিন ৭ • ২৩ নভেম্বর",i:["সন্ধি","সমাস","কারক ও বিভক্তি","এক কথায় প্রকাশ","বাগধারা","শুদ্ধ বানান"]},
+{t:"মক টেস্ট ও রিভিশন",m:0,d:"দিন ৮–১০ • ২৪–২৬ নভেম্বর",i:["বিগত সালের প্রশ্নে পূর্ণ মক টেস্ট (২ ঘণ্টা, ঘড়ি ধরে) – দিন ৮","কোথায় সময় বেশি লেগেছে ও কোন অংশে নম্বর কম, লিখে রাখা – দিন ৯","দুর্বল জায়গাগুলো ঝালাই – দিন ৯","সময় বণ্টন অনুশীলন (ফোকাস ২০+২০, রিজনিং ২৫, গণিত ২০ মিনিট)","হালকা রিভিশন: ফোকাস রাইটিং তালিকা, গণিতের সূত্র, সাধারণ জ্ঞান নোট – দিন ১০","দুপুরের পর পড়া বন্ধ – দিন ১০","অ্যাডমিট কার্ড, কলম ও প্রয়োজনীয় জিনিস গুছানো – দিন ১০","রাতে তাড়াতাড়ি ঘুমানো"]}
+];
+var K="so26_checked",S={},bn="০১২৩৪৫৬৭৮৯";
+function b(n){return String(n).replace(/\d/g,function(x){return bn[x]})}
+try{S=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){S={}}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+var L=document.getElementById("list");
+D.forEach(function(s,a){
+var det=document.createElement("details");if(a===0)det.open=true;
+var sm=document.createElement("summary");
+sm.innerHTML='<div class="tt"><b></b><span></span></div>'+(s.m?'<span class="mk">'+b(s.m)+' নম্বর</span>':'')+'<span class="cnt"></span><i class="chev"></i>';
+sm.querySelector("b").textContent=s.t;sm.querySelector(".tt span").textContent=s.d;
+det.appendChild(sm);
+var ul=document.createElement("ul");
+s.i.forEach(function(x,j){
+var id=a+"-"+j,li=document.createElement("li"),lb=document.createElement("label"),cb=document.createElement("input"),sp=document.createElement("span");
+cb.type="checkbox";cb.checked=!!S[id];sp.textContent=x;
+cb.onchange=function(){if(cb.checked)S[id]=1;else delete S[id];save();upd()};
+lb.appendChild(cb);lb.appendChild(sp);li.appendChild(lb);ul.appendChild(li)});
+det.appendChild(ul);L.appendChild(det)});
+function upd(){
+var tot=0,dn=0;
+document.querySelectorAll("details").forEach(function(d){
+var c=d.querySelectorAll("input"),k=0;
+c.forEach(function(x){if(x.checked)k++});
+tot+=c.length;dn+=k;
+d.querySelector(".cnt").textContent=b(k)+"/"+b(c.length);
+d.classList.toggle("done",k===c.length)});
+var p=tot?Math.round(dn*100/tot):0;
+document.getElementById("pb").style.width=p+"%";
+document.getElementById("pt").textContent=b(p)+"% সম্পন্ন";
+document.getElementById("pc").textContent=b(dn)+"/"+b(tot)+" কাজ"}
+function tg(o){document.querySelectorAll("details").forEach(function(d){d.open=o})}
+document.getElementById("ex").onclick=function(){tg(true)};
+document.getElementById("mn").onclick=function(){tg(false)};
+document.getElementById("reset").onclick=function(){
+if(!confirm("সব টিক মুছে ফেলবেন?"))return;
+S={};save();document.querySelectorAll("input").forEach(function(x){x.checked=false});upd()};
+(function(){var n=new Date(),e=new Date(2026,10,27),t=new Date(n.getFullYear(),n.getMonth(),n.getDate()),d=Math.round((e-t)/864e5),el=document.getElementById("cd");
+if(d>0)el.textContent="পরীক্ষার আর "+b(d)+" দিন বাকি (২৭ নভেম্বর) • ২০০ নম্বর • ২ ঘণ্টা";
+else if(d===0)el.textContent="আজ পরীক্ষা – শুভকামনা!"})();
+upd();
+</script>
+</body>
+</html>
